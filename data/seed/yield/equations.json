@@ -1,0 +1,12 @@
+[
+    {
+        "equation_id": "EQ11001",
+        "target_variable_id": "VAR11001",
+        "version": 1,
+        "scope_type": "linha",
+        "scope_value": "L1_L7",
+        "expression": "1",
+        "source_reference": "TEST_SEED_YIELD_EQUATION",
+        "status": "DRAFT"
+    }
+]

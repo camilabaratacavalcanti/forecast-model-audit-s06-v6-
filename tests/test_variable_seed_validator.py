@@ -1,0 +1,785 @@
+import json
+
+import pytest
+
+from app.validation.variable_seed_validator import (
+    validate_enum_values,
+    validate_field_types,
+    validate_non_empty_values,
+    validate_scope_consistency,
+    validate_scope_values,
+    validate_seed,
+    validate_variable_id_ranges,
+    validate_variable_ids,
+    validate_variable_signatures,
+)
+
+
+def make_variable(**overrides):
+    """
+    Cria uma variável válida para os testes.
+
+    Cada teste pode sobrescrever apenas o campo
+    que deseja tornar inválido.
+    """
+    variable = {
+        "variable_id": "VAR11001",
+        "variable_name": "test_variable",
+        "description": "Test variable",
+        "unit": "t",
+        "variable_type": "entrada",
+        "frequency": "mensal",
+        "scope_type": "linha_grupo",
+        "scope_value": "L1_L3",
+        "source_reference": "TestSheet!A1",
+        "status": "ativo",
+        "_block": "yield",
+    }
+
+    variable.update(overrides)
+
+    return variable
+
+
+# ============================================================
+# validate_field_types
+# ============================================================
+
+
+def test_validate_field_types_accepts_valid_variable():
+    variable = make_variable()
+
+    errors = validate_field_types([variable])
+
+    assert errors == []
+
+
+def test_validate_field_types_rejects_non_string_variable_name():
+    variable = make_variable(
+        variable_name=123
+    )
+
+    errors = validate_field_types([variable])
+
+    assert len(errors) == 1
+    assert "variable_name" in errors[0]
+    assert "expected string" in errors[0]
+
+
+def test_validate_field_types_rejects_non_string_description():
+    variable = make_variable(
+        description=123
+    )
+
+    errors = validate_field_types([variable])
+
+    assert len(errors) == 1
+    assert "description" in errors[0]
+
+
+def test_validate_field_types_rejects_non_string_unit():
+    variable = make_variable(
+        unit=123
+    )
+
+    errors = validate_field_types([variable])
+
+    assert len(errors) == 1
+    assert "unit" in errors[0]
+
+
+def test_validate_field_types_rejects_non_string_source_reference():
+    variable = make_variable(
+        source_reference=123
+    )
+
+    errors = validate_field_types([variable])
+
+    assert len(errors) == 1
+    assert "source_reference" in errors[0]
+
+
+def test_validate_field_types_allows_null_scope():
+    variable = make_variable(
+        scope_type=None,
+        scope_value=None,
+    )
+
+    errors = validate_field_types([variable])
+
+    assert errors == []
+
+
+def test_validate_field_types_rejects_non_string_scope_type():
+    variable = make_variable(
+        scope_type=123
+    )
+
+    errors = validate_field_types([variable])
+
+    assert len(errors) == 1
+    assert "scope_type" in errors[0]
+
+
+def test_validate_field_types_rejects_non_string_scope_value():
+    variable = make_variable(
+        scope_value=123
+    )
+
+    errors = validate_field_types([variable])
+
+    assert len(errors) == 1
+    assert "scope_value" in errors[0]
+
+
+# ============================================================
+# validate_non_empty_values
+# ============================================================
+
+
+@pytest.mark.parametrize(
+    "field",
+    [
+        "variable_id",
+        "variable_name",
+        "description",
+        "unit",
+        "source_reference",
+    ],
+)
+def test_validate_non_empty_values_rejects_empty_string(
+    field,
+):
+    variable = make_variable(
+        **{field: ""}
+    )
+
+    errors = validate_non_empty_values([variable])
+
+    assert len(errors) == 1
+    assert field in errors[0]
+
+
+@pytest.mark.parametrize(
+    "field",
+    [
+        "variable_id",
+        "variable_name",
+        "description",
+        "unit",
+        "source_reference",
+    ],
+)
+def test_validate_non_empty_values_rejects_whitespace(
+    field,
+):
+    variable = make_variable(
+        **{field: "   "}
+    )
+
+    errors = validate_non_empty_values([variable])
+
+    assert len(errors) == 1
+    assert field in errors[0]
+
+
+# ============================================================
+# validate_enum_values
+# ============================================================
+
+
+def test_validate_enum_values_accepts_valid_values():
+    variable = make_variable()
+
+    errors = validate_enum_values([variable])
+
+    assert errors == []
+
+
+def test_validate_enum_values_rejects_invalid_variable_type():
+    variable = make_variable(
+        variable_type="entrada_interna"
+    )
+
+    errors = validate_enum_values([variable])
+
+    assert len(errors) == 1
+    assert "variable_type" in errors[0]
+    assert "entrada_interna" in errors[0]
+
+
+def test_validate_enum_values_rejects_invalid_frequency():
+    variable = make_variable(
+        frequency="semanal"
+    )
+
+    errors = validate_enum_values([variable])
+
+    assert len(errors) == 1
+    assert "frequency" in errors[0]
+    assert "semanal" in errors[0]
+
+
+def test_validate_enum_values_rejects_invalid_scope_type():
+    variable = make_variable(
+        scope_type="equipamento"
+    )
+
+    errors = validate_enum_values([variable])
+
+    assert len(errors) == 1
+    assert "scope_type" in errors[0]
+    assert "equipamento" in errors[0]
+
+
+def test_validate_enum_values_rejects_invalid_status():
+    variable = make_variable(
+        status="DELETED"
+    )
+
+    errors = validate_enum_values([variable])
+
+    assert len(errors) == 1
+    assert "status" in errors[0]
+    assert "DELETED" in errors[0]
+
+
+def test_validate_enum_values_allows_null_scope_type():
+    variable = make_variable(
+        scope_type=None,
+        scope_value=None,
+    )
+
+    errors = validate_enum_values([variable])
+
+    assert errors == []
+
+
+def test_validate_enum_values_accepts_valid_unit():
+    variables = [
+        {
+            "variable_id": "VAR11001",
+            "variable_name": "hydrate_production",
+            "description": "Produção de Hidrato",
+            "unit": "t",
+            "variable_type": "calculado",
+            "frequency": "mensal",
+            "scope_type": None,
+            "scope_value": None,
+            "source_reference": "NovoOficial!D152:O152",
+            "status": "ativo",
+        }
+    ]
+
+    errors = validate_enum_values(variables)
+
+    assert errors == []
+
+
+def test_validate_enum_values_rejects_invalid_unit():
+    variables = [
+        {
+            "variable_id": "VAR11001",
+            "variable_name": "hydrate_production",
+            "description": "Produção de Hidrato",
+            "unit": "ton",
+            "variable_type": "calculado",
+            "frequency": "mensal",
+            "scope_type": None,
+            "scope_value": None,
+            "source_reference": "NovoOficial!D152:O152",
+            "status": "ativo",
+        }
+    ]
+
+    errors = validate_enum_values(variables)
+
+    assert len(errors) == 1
+    assert "Invalid value 'ton'" in errors[0]
+    assert "'unit'" in errors[0]
+
+
+def test_validate_enum_values_accepts_valid_scope_value_line():
+    variables = [
+        {
+            "variable_id": "VAR11001",
+            "variable_name": "hydrate_production",
+            "description": "Produção de Hidrato",
+            "unit": "t",
+            "variable_type": "calculado",
+            "frequency": "mensal",
+            "scope_type": "linha",
+            "scope_value": "L1",
+            "source_reference": "NovoOficial!D152:O152",
+            "status": "ativo",
+        }
+    ]
+
+    errors = validate_enum_values(variables)
+
+    assert errors == []
+
+
+def test_validate_enum_values_accepts_valid_scope_value_line_group():
+    variables = [
+        {
+            "variable_id": "VAR11002",
+            "variable_name": "hydrate_production",
+            "description": "Produção de Hidrato",
+            "unit": "t",
+            "variable_type": "calculado",
+            "frequency": "mensal",
+            "scope_type": "linha_grupo",
+            "scope_value": "L1_L3",
+            "source_reference": "NovoOficial!D152:O152",
+            "status": "ativo",
+        }
+    ]
+
+    errors = validate_enum_values(variables)
+
+    assert errors == []
+
+
+def test_validate_enum_values_rejects_invalid_scope_value():
+    variables = [
+        {
+            "variable_id": "VAR11003",
+            "variable_name": "hydrate_production",
+            "description": "Produção de Hidrato",
+            "unit": "t",
+            "variable_type": "calculado",
+            "frequency": "mensal",
+            "scope_type": "linha_grupo",
+            "scope_value": "L1_3",
+            "source_reference": "NovoOficial!D152:O152",
+            "status": "ativo",
+        }
+    ]
+
+    errors = validate_enum_values(variables)
+
+    assert len(errors) == 1
+    assert "Invalid value 'L1_3'" in errors[0]
+    assert "'scope_value'" in errors[0]
+
+
+def test_validate_enum_values_accepts_null_scope():
+    variables = [
+        {
+            "variable_id": "VAR11004",
+            "variable_name": "hydrate_production",
+            "description": "Produção de Hidrato",
+            "unit": "t",
+            "variable_type": "calculado",
+            "frequency": "mensal",
+            "scope_type": None,
+            "scope_value": None,
+            "source_reference": "NovoOficial!D152:O152",
+            "status": "ativo",
+        }
+    ]
+
+    errors = validate_enum_values(variables)
+
+    assert errors == []
+
+
+def test_validate_enum_values_accepts_external_input_variable_type():
+    variable = make_variable(
+        variable_type="entrada_externa"
+    )
+
+    errors = validate_enum_values([variable])
+
+    assert errors == []
+
+
+def test_validate_enum_values_accepts_valid_scope_value_all_lines():
+    variable = make_variable(
+        scope_type="linha_grupo",
+        scope_value="L1_L7",
+    )
+
+    errors = validate_enum_values([variable])
+
+    assert errors == []
+
+
+def test_validate_scope_values_accepts_all_lines_scope():
+    variable = make_variable(
+        scope_type="linha_grupo",
+        scope_value="L1_L7",
+    )
+
+    errors = validate_scope_values([variable])
+
+    assert errors == []
+
+
+def test_validate_enum_values_accepts_dimensionless_unit():
+    variable = make_variable(
+        unit="-"
+    )
+
+    errors = validate_enum_values([variable])
+
+    assert errors == []
+
+
+def test_validate_enum_values_accepts_specific_surface_area_unit():
+    variable = make_variable(
+        unit="m²/kg"
+    )
+
+    errors = validate_enum_values([variable])
+
+    assert errors == []
+
+
+# ============================================================
+# validate_scope_consistency
+# ============================================================
+
+
+def test_validate_scope_consistency_allows_both_null():
+    variable = make_variable(
+        scope_type=None,
+        scope_value=None,
+    )
+
+    errors = validate_scope_consistency([variable])
+
+    assert errors == []
+
+
+def test_validate_scope_consistency_allows_both_filled():
+    variable = make_variable(
+        scope_type="linha_grupo",
+        scope_value="L1_L3",
+    )
+
+    errors = validate_scope_consistency([variable])
+
+    assert errors == []
+
+
+def test_validate_scope_consistency_rejects_type_without_value():
+    variable = make_variable(
+        scope_type="linha_grupo",
+        scope_value=None,
+    )
+
+    errors = validate_scope_consistency([variable])
+
+    assert len(errors) == 1
+    assert "scope_type and scope_value" in errors[0]
+
+
+def test_validate_scope_consistency_rejects_value_without_type():
+    variable = make_variable(
+        scope_type=None,
+        scope_value="L1_L3",
+    )
+
+    errors = validate_scope_consistency([variable])
+
+    assert len(errors) == 1
+    assert "scope_type and scope_value" in errors[0]
+
+
+# ============================================================
+# validate_scope_values
+# ============================================================
+
+
+def test_validate_scope_values_accepts_valid_scope():
+    variable = make_variable()
+
+    errors = validate_scope_values([variable])
+
+    assert errors == []
+
+
+def test_validate_scope_values_rejects_empty_scope_type():
+    variable = make_variable(
+        scope_type=""
+    )
+
+    errors = validate_scope_values([variable])
+
+    assert len(errors) == 1
+    assert "scope_type" in errors[0]
+
+
+def test_validate_scope_values_rejects_whitespace_scope_type():
+    variable = make_variable(
+        scope_type="   "
+    )
+
+    errors = validate_scope_values([variable])
+
+    assert len(errors) == 1
+    assert "scope_type" in errors[0]
+
+
+def test_validate_scope_values_rejects_empty_scope_value():
+    variable = make_variable(
+        scope_value=""
+    )
+
+    errors = validate_scope_values([variable])
+
+    assert len(errors) == 1
+    assert "scope_value" in errors[0]
+
+
+def test_validate_scope_values_rejects_whitespace_scope_value():
+    variable = make_variable(
+        scope_value="   "
+    )
+
+    errors = validate_scope_values([variable])
+
+    assert len(errors) == 1
+    assert "scope_value" in errors[0]
+
+
+# ============================================================
+# validate_variable_id_ranges
+# ============================================================
+
+
+def test_validate_variable_id_ranges_accepts_valid_yield_id():
+    variable = make_variable(
+        variable_id="VAR11001"
+    )
+
+    errors = validate_variable_id_ranges([variable])
+
+    assert errors == []
+
+
+def test_validate_variable_id_ranges_rejects_wrong_yield_range():
+    variable = make_variable(
+        variable_id="VAR12001"
+    )
+
+    errors = validate_variable_id_ranges([variable])
+
+    assert len(errors) == 1
+    assert "out of range" in errors[0]
+
+
+def test_validate_variable_id_ranges_rejects_invalid_prefix():
+    variable = make_variable(
+        variable_id="ABC11001"
+    )
+
+    errors = validate_variable_id_ranges([variable])
+
+    assert len(errors) == 1
+    assert "VAR followed by digits" in errors[0]
+
+
+def test_validate_variable_id_ranges_rejects_non_numeric_suffix():
+    variable = make_variable(
+        variable_id="VAR11ABC"
+    )
+
+    errors = validate_variable_id_ranges([variable])
+
+    assert len(errors) == 1
+    assert "VAR followed by digits" in errors[0]
+
+
+# ============================================================
+# validate_variable_ids
+# ============================================================
+
+
+def test_validate_variable_ids_accepts_unique_ids():
+    variables = [
+        make_variable(variable_id="VAR11001"),
+        make_variable(variable_id="VAR11002"),
+    ]
+
+    errors = validate_variable_ids(variables)
+
+    assert errors == []
+
+
+def test_validate_variable_ids_rejects_duplicate_ids():
+    variables = [
+        make_variable(variable_id="VAR11001"),
+        make_variable(variable_id="VAR11001"),
+    ]
+
+    errors = validate_variable_ids(variables)
+
+    assert len(errors) == 1
+    assert "Duplicate variable_id" in errors[0]
+    assert "VAR11001" in errors[0]
+
+
+# ============================================================
+# validate_variable_signatures
+# ============================================================
+
+
+def test_validate_variable_signatures_accepts_different_variables():
+    variables = [
+        make_variable(
+            variable_id="VAR11001",
+            variable_name="yield_a",
+        ),
+        make_variable(
+            variable_id="VAR11002",
+            variable_name="yield_b",
+        ),
+    ]
+
+    warnings = validate_variable_signatures(variables)
+
+    assert warnings == []
+
+
+def test_validate_variable_signatures_warns_possible_duplicate():
+    variables = [
+        make_variable(
+            variable_id="VAR11001",
+        ),
+        make_variable(
+            variable_id="VAR11002",
+        ),
+    ]
+
+    warnings = validate_variable_signatures(variables)
+
+    assert len(warnings) == 1
+    assert "Possible duplicate variable" in warnings[0]
+
+
+# ============================================================
+# validate_seed
+# ============================================================
+
+
+def test_validate_seed_accepts_valid_seed(tmp_path):
+    seed_path = tmp_path / "seed"
+    yield_path = seed_path / "yield"
+
+    yield_path.mkdir(parents=True)
+
+    variables = [
+        {
+            "variable_id": "VAR11001",
+            "variable_name": "yield_test",
+            "description": "Test yield",
+            "unit": "%",
+            "variable_type": "entrada",
+            "frequency": "mensal",
+            "scope_type": "linha_grupo",
+            "scope_value": "L1_L3",
+            "source_reference": "Yield!A1",
+            "status": "ativo",
+        }
+    ]
+
+    variables_file = yield_path / "variables.json"
+
+    variables_file.write_text(
+        json.dumps(variables),
+        encoding="utf-8",
+    )
+
+    result = validate_seed(seed_path)
+
+    assert result["is_valid"] is True
+    assert result["errors"] == []
+
+
+def test_validate_seed_rejects_invalid_enum(tmp_path):
+    seed_path = tmp_path / "seed"
+    yield_path = seed_path / "yield"
+
+    yield_path.mkdir(parents=True)
+
+    variables = [
+        {
+            "variable_id": "VAR11001",
+            "variable_name": "yield_test",
+            "description": "Test yield",
+            "unit": "%",
+            "variable_type": "wrong_type",
+            "frequency": "mensal",
+            "scope_type": "linha_grupo",
+            "scope_value": "L1_L3",
+            "source_reference": "Yield!A1",
+            "status": "ativo",
+        }
+    ]
+
+    variables_file = yield_path / "variables.json"
+
+    variables_file.write_text(
+        json.dumps(variables),
+        encoding="utf-8",
+    )
+
+    result = validate_seed(seed_path)
+
+    assert result["is_valid"] is False
+    assert any(
+        "variable_type" in error
+        for error in result["errors"]
+    )
+
+
+def test_validate_seed_rejects_empty_required_value(tmp_path):
+    seed_path = tmp_path / "seed"
+    yield_path = seed_path / "yield"
+
+    yield_path.mkdir(parents=True)
+
+    variables = [
+        {
+            "variable_id": "VAR11001",
+            "variable_name": "",
+            "description": "Test yield",
+            "unit": "%",
+            "variable_type": "entrada",
+            "frequency": "mensal",
+            "scope_type": "linha_grupo",
+            "scope_value": "L1_L3",
+            "source_reference": "Yield!A1",
+            "status": "ativo",
+        }
+    ]
+
+    variables_file = yield_path / "variables.json"
+
+    variables_file.write_text(
+        json.dumps(variables),
+        encoding="utf-8",
+    )
+
+    result = validate_seed(seed_path)
+
+    assert result["is_valid"] is False
+    assert any(
+        "variable_name" in error
+        for error in result["errors"]
+    )
+
+
+def test_validate_seed_rejects_nonexistent_path(
+    tmp_path,
+):
+    seed_path = tmp_path / "does_not_exist"
+
+    result = validate_seed(seed_path)
+
+    assert result["is_valid"] is False
+    assert len(result["errors"]) == 1
+    assert "does not exist" in result["errors"][0]
