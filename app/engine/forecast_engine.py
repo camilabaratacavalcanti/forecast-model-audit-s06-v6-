@@ -242,9 +242,19 @@ class ForecastEngine:
 
         O fluxo legado baseado em EquationRegistry permanece
         separado e inalterado.
+
+        Apenas EquationDefinitions com status elegível para
+        publicação (ver EquationSelector.ACTIVE_STATUSES) participam
+        do cálculo. Definitions em DRAFT/PENDING/REJECTED nunca são
+        materializadas nem calculadas por este caminho.
         """
 
-        definitions = equation_definition_registry.all()
+        definitions = [
+            definition
+            for definition in equation_definition_registry.all()
+            if definition.status
+            in EquationSelector.ACTIVE_STATUSES
+        ]
 
         instances: list[EquationInstance] = []
 

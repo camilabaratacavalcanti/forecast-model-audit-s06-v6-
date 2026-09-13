@@ -219,15 +219,13 @@ class DependencyGraph:
         )
 
         for variable_reference in dependencies.variables:
-            contextualized_variable_reference = (
-                self._contextualize_variable_reference(
-                    variable_reference,
-                    instance,
-                )
-            )
-
-            producer_id = variable_producers.get(
-                contextualized_variable_reference
+            (
+                matched_reference,
+                producer_id,
+            ) = self._resolve_variable_producer(
+                variable_reference,
+                instance,
+                variable_producers,
             )
 
             if producer_id is None:
@@ -236,7 +234,7 @@ class DependencyGraph:
             dependency_id = producer_id
 
             if (
-                "@" in contextualized_variable_reference
+                "@" in matched_reference
                 and "@" not in producer_id
             ):
                 dependency_id = self._build_node_id(
@@ -253,6 +251,63 @@ class DependencyGraph:
                 dependency_id,
                 set(),
             )
+
+    @classmethod
+    def _resolve_variable_producer(
+        cls,
+        variable_reference: str,
+        instance: EquationInstance,
+        variable_producers: dict[str, str],
+    ) -> tuple[str, str | None]:
+        """
+        Resolve o produtor de uma referência de variável dentro do
+        contexto de uma EquationInstance.
+
+        Referências já explicitamente escopadas (contêm "@") seguem
+        o comportamento existente: são recontextualizadas para o
+        escopo da instance corrente.
+
+        Referências sem escopo (ex.: "VAR11020") são resolvidas, em
+        primeiro lugar, contra um produtor no mesmo escopo da
+        instance (ex.: "VAR11020@L4"), refletindo a regra de que uma
+        referência sem "@Lx" pertence ao escopo da própria equação.
+        Se não houver produtor nesse escopo, cai para a busca legada
+        pela referência não escopada (compatibilidade retroativa).
+        """
+
+        if "@" in variable_reference:
+            contextualized = cls._contextualize_variable_reference(
+                variable_reference,
+                instance,
+            )
+
+            return (
+                contextualized,
+                variable_producers.get(contextualized),
+            )
+
+        if (
+            instance.scope_type == "linha"
+            and instance.scope_value
+        ):
+            scoped_reference = (
+                f"{variable_reference}@{instance.scope_value}"
+            )
+
+            scoped_producer_id = variable_producers.get(
+                scoped_reference
+            )
+
+            if scoped_producer_id is not None:
+                return (
+                    scoped_reference,
+                    scoped_producer_id,
+                )
+
+        return (
+            variable_reference,
+            variable_producers.get(variable_reference),
+        )
 
     @staticmethod
     def _contextualize_variable_reference(

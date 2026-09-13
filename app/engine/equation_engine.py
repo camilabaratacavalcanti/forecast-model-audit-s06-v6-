@@ -93,8 +93,16 @@ class EquationEngine:
             expression
         )
 
+        # Referências sem escopo explícito na expressão (ex.:
+        # "PARAM11003" ou "VAR11020") são resolvidas, em primeiro
+        # lugar, no próprio escopo da EquationInstance em execução.
+        # Referências explicitamente escopadas (ex.: "VAR11001@L2")
+        # não são afetadas: já foram tratadas por
+        # _contextualize_expression/normalizadas pelo parser.
         evaluator = ExpressionEvaluator(
-            calculation_context
+            calculation_context,
+            default_scope_type=instance.scope_type,
+            default_scope_value=instance.scope_value,
         )
 
         try:

@@ -565,6 +565,16 @@ def validate_parameter_ids(parameters):
     """
     Verifica duplicidade de Parameter_ID.
 
+    Um mesmo Parameter_ID pode representar legitimamente uma única
+    definição lógica materializada por linha (ex.: "tanque_base"),
+    com uma ParameterDefinition por linha, cada uma com seu próprio
+    scope_value e value — o mesmo modelo já suportado pela chave
+    composta do ParameterDefinitionRegistry (id, version, scope_type,
+    scope_value). Por isso, a duplicidade é avaliada nessa mesma
+    chave composta, e não apenas no Parameter_ID isolado: dois
+    registros com o mesmo ID só são duplicados quando também
+    coincidem em version, scope_type e scope_value.
+
     parameters:
         lista de tuplas (parameter, file_path)
     """
@@ -578,8 +588,15 @@ def validate_parameter_ids(parameters):
         if parameter_id is None:
             continue
 
-        if parameter_id in seen:
-            previous_file = seen[parameter_id]
+        key = (
+            parameter_id,
+            parameter.get("version"),
+            parameter.get("scope_type"),
+            parameter.get("scope_value"),
+        )
+
+        if key in seen:
+            previous_file = seen[key]
 
             errors.append(
                 f"Parameter_ID duplicado: '{parameter_id}'. "
@@ -587,7 +604,7 @@ def validate_parameter_ids(parameters):
             )
 
         else:
-            seen[parameter_id] = file_path
+            seen[key] = file_path
 
     return errors
 

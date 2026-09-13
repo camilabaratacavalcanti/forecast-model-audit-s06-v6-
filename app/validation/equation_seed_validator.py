@@ -1,6 +1,12 @@
 import json
 from pathlib import Path
 
+from app.engine.exceptions import (
+    InvalidExpressionError,
+    UnsafeExpressionError,
+)
+from app.engine.expression_parser import ExpressionParser
+
 
 # ============================================================
 # REGRAS DO EQUATION REGISTRY
@@ -661,6 +667,49 @@ def validate_equation_signatures(equations):
             signatures[signature] = index
 
     return warnings
+
+
+# ============================================================
+# VALIDAÇÃO SINTÁTICA DA EXPRESSÃO (opt-in)
+# ============================================================
+
+def validate_expression_syntax(equations):
+    """
+    Valida se o campo 'expression' de cada equação é uma expressão
+    matemática sintaticamente válida e seguro para o
+    ExpressionParser/ExpressionEvaluator (VAR#####/PARAM##### com ou
+    sem sufixo "@Lx", operadores aritméticos, parênteses).
+
+    Esta validação é deliberadamente NÃO incluída em validate_seed():
+    seeds legados/fixtures de teste usam expressões textuais
+    (nomes livres, descrições de agregação temporal) que nunca
+    passaram por essa checagem. Chamá-la é responsabilidade de quem
+    está validando um seed que se pretende executável pelo Engine
+    real (ex.: o seed real do Yield).
+    """
+    errors = []
+
+    parser = ExpressionParser()
+
+    for index, equation in enumerate(equations):
+        expression = equation.get("expression")
+
+        if not isinstance(expression, str):
+            continue
+
+        try:
+            parser.parse(expression)
+        except (
+            InvalidExpressionError,
+            UnsafeExpressionError,
+        ) as exc:
+            errors.append(
+                f"Equação no índice {index} "
+                f"({equation.get('equation_id', '?')}): "
+                f"expressão inválida para o ExpressionParser: {exc}"
+            )
+
+    return errors
 
 
 # ============================================================

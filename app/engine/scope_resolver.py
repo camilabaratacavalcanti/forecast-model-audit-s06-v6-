@@ -150,6 +150,16 @@ class ScopeResolver:
                 "scope_type is required for scope resolution"
             )
 
+        # "área" e "global" são escopos únicos, sem materialização
+        # por linha. Seu scope_value concreto é tipicamente None
+        # (ver validators), portanto são resolvidos antes da
+        # exigência geral de scope_value abaixo, que só se aplica
+        # aos scope_types que materializam por linha/grupo/planta.
+        if scope_type in {"área", "global"}:
+            return [
+                (scope_type, scope_value),
+            ]
+
         if not scope_value:
             raise ValueError(
                 "scope_value is required for scope resolution"
@@ -163,11 +173,6 @@ class ScopeResolver:
 
         if scope_type == "planta":
             return self._resolve_plant_scope(scope_value)
-
-        if scope_type in {"área", "global"}:
-            return [
-                (scope_type, scope_value),
-            ]
 
         raise ValueError(
             f"Unsupported scope_type: {scope_type}"

@@ -50,8 +50,17 @@ class ExpressionEvaluator:
     def __init__(
         self,
         calculation_context: CalculationContext,
+        default_scope_type: str | None = None,
+        default_scope_value: str | None = None,
     ):
         self.calculation_context = calculation_context
+
+        # Escopo da EquationInstance em execução, usado para resolver
+        # referências sem escopo explícito (ex.: "PARAM11003" dentro de
+        # uma instance @L4) no mesmo escopo da própria instance, antes
+        # de recorrer à API legada (não escopada).
+        self.default_scope_type = default_scope_type
+        self.default_scope_value = default_scope_value
 
     def evaluate(
         self,
@@ -210,11 +219,37 @@ class ExpressionEvaluator:
 
         if name.startswith("VAR"):
 
+            if self.default_scope_type and self.default_scope_value:
+                try:
+                    return (
+                        self.calculation_context
+                        .get_variable_value(
+                            name,
+                            scope_type=self.default_scope_type,
+                            scope_value=self.default_scope_value,
+                        )
+                    )
+                except VariableNotFoundError:
+                    pass
+
             return self.calculation_context.get_variable(
                 name,
             )
 
         if name.startswith("PARAM"):
+
+            if self.default_scope_type and self.default_scope_value:
+                try:
+                    return (
+                        self.calculation_context
+                        .get_parameter_value(
+                            name,
+                            scope_type=self.default_scope_type,
+                            scope_value=self.default_scope_value,
+                        )
+                    )
+                except ParameterNotFoundError:
+                    pass
 
             return self.calculation_context.get_parameter(
                 name,

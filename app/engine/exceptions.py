@@ -158,3 +158,12 @@ class TargetVariableNotFoundError(RegistryIntegrityError):
     não existe no VariableRegistry.
     """
     pass
+
+
+class EquationTargetScopeMismatchError(RegistryIntegrityError):
+    """
+    Indica que o escopo declarado de uma EquationDefinition
+    (scope_type/scope_value) não corresponde ao escopo declarado
+    da VariableDefinition que ela produz.
+    """
+    pass
