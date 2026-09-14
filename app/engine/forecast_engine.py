@@ -9,9 +9,14 @@ Objetivo:
     escopo ou avaliação das expressões.
 """
 
+from datetime import date
+
 from app.domain.equations.models import Equation
 from app.domain.parameters.registry import ParameterRegistry
-from app.domain.variables.registry import VariableRegistry
+from app.domain.variables.registry import (
+    VariableDefinitionRegistry,
+    VariableRegistry,
+)
 from app.engine.calculation_context import CalculationContext
 from app.engine.dependency_extractor import DependencyExtractor
 from app.engine.dependency_graph import DependencyGraph
@@ -21,6 +26,7 @@ from app.engine.exceptions import DuplicateVariableProducerError
 from app.engine.registry_validator import RegistryIntegrityValidator
 from app.engine.equation_selector import EquationSelector
 from app.engine.scope_resolver import ScopeResolver
+from app.engine.time_period_resolver import TimePeriodResolver
 from app.domain.equations.models import (
     EquationDefinition,
     EquationInstance,
@@ -67,6 +73,8 @@ class ForecastEngine:
         self.scope_resolver = (
             scope_resolver or ScopeResolver()
         )
+
+        self.time_period_resolver = TimePeriodResolver()
 
     def materialize_equation(
         self,
@@ -246,6 +254,10 @@ class ForecastEngine:
         self,
         equation_definition_registry: EquationDefinitionRegistry,
         calculation_context: CalculationContext,
+        variable_definition_registry: (
+            VariableDefinitionRegistry | None
+        ) = None,
+        run_date: date | None = None,
     ) -> dict[str, int | float]:
         """
         Executa as EquationDefinitions cadastradas no
@@ -270,6 +282,22 @@ class ForecastEngine:
         publicação (ver EquationSelector.ACTIVE_STATUSES) participam
         do cálculo. Definitions em DRAFT/PENDING/REJECTED nunca são
         materializadas nem calculadas por este caminho.
+
+        Dimensão temporal (opcional, retrocompatível):
+
+        Quando `variable_definition_registry` e `run_date` são
+        ambos informados, o ForecastEngine atua como orquestrador
+        temporal: para cada EquationInstance, a frequência efetiva é
+        derivada de `target_variable_id` via VariableDefinition (a
+        EquationDefinition nunca carrega frequência própria), o
+        período corrente é resolvido por TimePeriodResolver
+        (janela efetiva truncada em run_date) e o `period_id`
+        resultante é propagado ao EquationEngine e usado como chave
+        temporal ao armazenar o resultado.
+
+        Quando qualquer um dos dois parâmetros é omitido, o
+        comportamento permanece exatamente o mesmo de antes desta
+        capacidade (single snapshot, period_id=None).
         """
 
         definitions = [
@@ -347,10 +375,19 @@ class ForecastEngine:
                 )
             ]
 
+            period_id = self._resolve_instance_period_id(
+                instance=instance,
+                variable_definition_registry=(
+                    variable_definition_registry
+                ),
+                run_date=run_date,
+            )
+
             result = self.equation_engine.calculate_instance(
                 instance=instance,
                 definition=definition,
                 calculation_context=calculation_context,
+                period_id=period_id,
             )
 
             calculation_context.set_variable_value(
@@ -358,6 +395,7 @@ class ForecastEngine:
                 value=result,
                 scope_type=instance.scope_type,
                 scope_value=instance.scope_value,
+                period_id=period_id,
             )
 
             results[
@@ -365,6 +403,39 @@ class ForecastEngine:
             ] = result
 
         return results
+
+    def _resolve_instance_period_id(
+        self,
+        instance: EquationInstance,
+        variable_definition_registry: (
+            VariableDefinitionRegistry | None
+        ),
+        run_date: date | None,
+    ) -> str | None:
+        """
+        Deriva o period_id efetivo de uma EquationInstance a partir
+        da frequência da VariableDefinition alvo (nunca da própria
+        EquationDefinition/EquationInstance, que não carregam
+        frequência).
+
+        Retorna None quando a dimensão temporal não foi ativada
+        (variable_definition_registry ou run_date ausentes),
+        preservando o comportamento atemporal existente.
+        """
+
+        if variable_definition_registry is None or run_date is None:
+            return None
+
+        variable_definition = variable_definition_registry.get(
+            instance.target_variable_id
+        )
+
+        period = self.time_period_resolver.effective_window(
+            frequency=variable_definition.frequency,
+            run_date=run_date,
+        )
+
+        return period.period_id
 
     def _build_instance_variable_producers(
         self,

@@ -38,7 +38,7 @@ class TimePeriodResolver:
     - realizar agregações.
     """
 
-    SUPPORTED_FREQUENCIES = {"diário", "mensal"}
+    SUPPORTED_FREQUENCIES = {"diário", "mensal", "anual"}
 
     def resolve(
         self,
@@ -58,6 +58,64 @@ class TimePeriodResolver:
 
         if frequency == "mensal":
             return self._resolve_monthly(start_date, end_date)
+
+        if frequency == "anual":
+            return self._resolve_annual(start_date, end_date)
+
+        # Proteção adicional caso novas frequências sejam adicionadas.
+        raise ValueError(f"Unsupported frequency: {frequency}")
+
+    def effective_window(
+        self,
+        frequency: str,
+        run_date: date,
+    ) -> TimePeriod:
+        """
+        Resolve a janela efetiva do período corrente em `run_date`.
+
+        Diferente de `resolve()` (que sempre gera períodos completos de
+        calendário), esta janela é truncada em `run_date`: o `end_date`
+        nunca ultrapassa `run_date`, mesmo que o mês/ano de calendário
+        ainda não tenha terminado.
+
+        - diário: period_id = run_date (start == end == run_date).
+        - mensal: period_id = ano-mês de run_date; start = primeiro dia
+          do mês; end = run_date.
+        - anual: period_id = ano de run_date; start = 1º de janeiro;
+          end = run_date.
+        """
+
+        self._validate_frequency(frequency)
+        self._validate_dates(run_date, run_date)
+
+        if frequency == "diário":
+            return TimePeriod(
+                period_id=run_date.isoformat(),
+                frequency="diário",
+                start_date=run_date,
+                end_date=run_date,
+            )
+
+        if frequency == "mensal":
+            period_id = f"{run_date.year:04d}-{run_date.month:02d}"
+            month_start = date(run_date.year, run_date.month, 1)
+
+            return TimePeriod(
+                period_id=period_id,
+                frequency="mensal",
+                start_date=month_start,
+                end_date=run_date,
+            )
+
+        if frequency == "anual":
+            year_start = date(run_date.year, 1, 1)
+
+            return TimePeriod(
+                period_id=f"{run_date.year:04d}",
+                frequency="anual",
+                start_date=year_start,
+                end_date=run_date,
+            )
 
         # Proteção adicional caso novas frequências sejam adicionadas.
         raise ValueError(f"Unsupported frequency: {frequency}")
@@ -143,6 +201,25 @@ class TimePeriodResolver:
                 current_year += 1
             else:
                 current_month += 1
+
+        return periods
+
+    def _resolve_annual(
+        self,
+        start_date: date,
+        end_date: date,
+    ) -> list[TimePeriod]:
+        periods: list[TimePeriod] = []
+
+        for year in range(start_date.year, end_date.year + 1):
+            periods.append(
+                TimePeriod(
+                    period_id=f"{year:04d}",
+                    frequency="anual",
+                    start_date=date(year, 1, 1),
+                    end_date=date(year, 12, 31),
+                )
+            )
 
         return periods
 

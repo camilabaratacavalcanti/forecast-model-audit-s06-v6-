@@ -70,6 +70,7 @@ class EquationEngine:
         instance,
         definition,
         calculation_context: CalculationContext,
+        period_id: str | None = None,
     ) -> int | float:
         """
         Executa uma EquationInstance utilizando a expressão
@@ -91,6 +92,12 @@ class EquationEngine:
 
         Essa é a única regra de contextualização da plataforma; não
         há uma segunda transformação (textual) sobrepondo-a.
+
+        `period_id`, quando informado, identifica o período temporal
+        corrente da execução (ex.: "2026-09-14", "2026-09" ou "2026")
+        e é propagado ao ExpressionEvaluator como período padrão para
+        resolver VAR/PARAM. Omitido, o comportamento é o mesmo de
+        antes (sem dimensão temporal).
         """
 
         expression = definition.expression
@@ -103,6 +110,7 @@ class EquationEngine:
             calculation_context,
             default_scope_type=instance.scope_type,
             default_scope_value=instance.scope_value,
+            default_period_id=period_id,
         )
 
         try:
