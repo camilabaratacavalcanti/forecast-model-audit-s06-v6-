@@ -167,3 +167,35 @@ class EquationTargetScopeMismatchError(RegistryIntegrityError):
     da VariableDefinition que ela produz.
     """
     pass
+
+
+class TemporalAggregationError(Exception):
+    """
+    Erro base da camada de Temporal Aggregation (Fase B).
+    """
+
+
+class InvalidAggregationRuleError(TemporalAggregationError):
+    """
+    A AggregationRule está mal formada: tipo de agregação não
+    suportado, WEIGHTED_AVERAGE sem weight_variable_id, ou janela
+    explícita inconsistente (apenas um dos dois extremos informado,
+    ou start_date posterior a end_date).
+    """
+
+
+class EmptyAggregationWindowError(TemporalAggregationError):
+    """
+    Nenhum valor de origem foi encontrado dentro da janela temporal
+    da agregação (janela vazia de dados, não de erro de leitura).
+    """
+
+
+class ZeroWeightSumError(TemporalAggregationError):
+    """
+    A soma dos pesos de uma WEIGHTED_AVERAGE é zero.
+
+    O resultado não pode ser determinado por divisão (e não deve
+    ser mascarado silenciosamente com um valor arbitrário como 0),
+    então este erro é propagado explicitamente ao chamador.
+    """
