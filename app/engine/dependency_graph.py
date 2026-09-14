@@ -223,12 +223,20 @@ class DependencyGraph:
             set(),
         )
 
-        for variable_reference in dependencies.variables:
+        # Variáveis e parâmetros usam exatamente a mesma regra de
+        # resolução/contextualização — a referência (VAR ou PARAM)
+        # é que determina se o escopo é explícito ou implícito, não
+        # o tipo do identificador.
+        all_references = (
+            dependencies.variables | dependencies.parameters
+        )
+
+        for reference in all_references:
             (
                 matched_reference,
                 producer_id,
             ) = self._resolve_variable_producer(
-                variable_reference,
+                reference,
                 instance,
                 variable_producers,
             )
@@ -236,17 +244,11 @@ class DependencyGraph:
             if producer_id is None:
                 continue
 
-            dependency_id = producer_id
-
-            if (
-                "@" in matched_reference
-                and "@" not in producer_id
-            ):
-                dependency_id = self._build_node_id(
-                    producer_id,
-                    instance.scope_type,
-                    instance.scope_value,
-                )
+            dependency_id = self._scope_dependency_id(
+                matched_reference,
+                producer_id,
+                instance,
+            )
 
             self._dependencies[equation_node_id].add(
                 dependency_id
@@ -256,6 +258,61 @@ class DependencyGraph:
                 dependency_id,
                 set(),
             )
+
+    @classmethod
+    def _scope_dependency_id(
+        cls,
+        matched_reference: str,
+        producer_id: str,
+        instance: EquationInstance,
+    ) -> str:
+        """
+        Constrói o identificador de nó do produtor, quando o valor
+        registrado em variable_producers ainda não é um node_id
+        totalmente qualificado (não contém "@").
+
+        O escopo usado para qualificar o produtor vem SEMPRE da
+        própria referência resolvida (matched_reference), nunca do
+        escopo da EquationInstance corrente:
+
+            - referência explícita (ex.: "VAR10001@L2"): o escopo
+              "linha:L2" embutido na própria referência é usado —
+              mesmo que a instance em execução seja outra linha
+              (ex.: L5). Fazer o contrário reintroduziria o
+              vazamento de contexto que este método existe para
+              impedir.
+            - referência implícita já contextualizada por
+              _resolve_variable_producer (ex.: "VAR10001@L5",
+              produzida a partir de "VAR10001" em uma instance L5):
+              o escopo embutido já É o da instance, então o
+              resultado é idêntico a usar instance.scope_type/
+              scope_value diretamente.
+            - referência implícita sem contextualização disponível
+              (fallback legado, sem "@"): usa o escopo da própria
+              instance, mantendo a compatibilidade retroativa já
+              existente.
+        """
+
+        if "@" in producer_id:
+            return producer_id
+
+        if "@" in matched_reference:
+            _base_reference, explicit_line = matched_reference.split(
+                "@",
+                1,
+            )
+
+            return cls._build_node_id(
+                producer_id,
+                "linha",
+                explicit_line,
+            )
+
+        return cls._build_node_id(
+            producer_id,
+            instance.scope_type,
+            instance.scope_value,
+        )
 
     @staticmethod
     def _resolve_variable_producer(
