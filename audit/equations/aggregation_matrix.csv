@@ -1,0 +1,6 @@
+concept,source_name,found_in_source,found_in_platform,platform_equation_ids,note
+Weighted EOC temperature,eoc_temp,True,True,EQ11013; EQ11029; EQ11045,"10 linha(s)-fonte, 3 EquationDefinition(s) na plataforma."
+Weighted EOC solids,eoc_solids,True,True,EQ11025; EQ11041; EQ11057,"10 linha(s)-fonte, 3 EquationDefinition(s) na plataforma."
+Base production sum,producao_base_ppt,True,True,EQ11005; EQ11026; EQ11042; EQ11058,"10 linha(s)-fonte, 4 EquationDefinition(s) na plataforma."
+Tank sum,,False,False,,Nenhuma linha do workbook do Yield usa esse nome ou conceito. Nao ha equacao/variavel do bloco Yield associada.
+Ratio DBO Planta,,False,False,,Nenhuma linha do workbook do Yield usa esse nome ou conceito. Nao ha equacao/variavel do bloco Yield associada.

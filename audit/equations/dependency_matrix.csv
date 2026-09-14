@@ -1,0 +1,107 @@
+equation_definition_id,target,scope,platform_dependencies,dependency_count
+EQ11001,yield,linha/L1_L7,ltp_a_c; ltp_tc; ratio_spent; sl_solids,4
+EQ11002,ltp,linha/L1_L7,lth; ltp_lth,2
+EQ11003,ssa_media,linha/L1_L7,ssa_sf; ssa_sg,2
+EQ11004,n_ppt,linha/L1_L7,tanque; tanque_base,2
+EQ11005,producao_base_ppt,linha/L1_L7,ltp; yield,2
+EQ11006,ratio_spent,linha/L1_L7,eoc_solids; eoc_solids_base; eoc_temp; eoc_temp_base; ltp; ltp_base; ltp_tc; ltp_tc_base; n_ppt; n_ppt_base; ratio_spent_base; ssa_media; ssa_media_base,13
+EQ11007,yield_base,linha/L1_L7,ltp_a_c_base; ltp_tc_base; ratio_spent_base; sl_solids_base,4
+EQ11008,ltp_base,linha/L1_L7,lth_base; ltp_lth_base,2
+EQ11009,ssa_media_base,linha/L1_L7,ssa_sf_base; ssa_sg_base,2
+EQ11010,producao_base_ppt_base,linha/L1_L7,ltp_base; yield_base,2
+EQ11011,yield,linha_grupo/L1_L3,ltp@L1; ltp@L2; ltp@L3; yield@L1; yield@L2; yield@L3,6
+EQ11012,ratio_spent,linha_grupo/L1_L3,ltp@L1; ltp@L2; ltp@L3; ratio_spent@L1; ratio_spent@L2; ratio_spent@L3,6
+EQ11013,eoc_temp,linha_grupo/L1_L3,eoc_temp@L1; eoc_temp@L2; eoc_temp@L3; ltp@L1; ltp@L2; ltp@L3,6
+EQ11014,ltp,linha_grupo/L1_L3,ltp@L1; ltp@L2; ltp@L3,3
+EQ11015,lth,linha_grupo/L1_L3,lth@L1; lth@L2; lth@L3,3
+EQ11016,oee,linha_grupo/L1_L3,oee@L1; oee@L2; oee@L3,3
+EQ11017,ltp_lth,linha_grupo/L1_L3,ltp_lth@L1; ltp_lth@L2; ltp_lth@L3,3
+EQ11018,ltp_tc,linha_grupo/L1_L3,ltp_tc@L1; ltp_tc@L2; ltp_tc@L3,3
+EQ11019,ltp_a_c,linha_grupo/L1_L3,ltp_a_c@L1; ltp_a_c@L2; ltp_a_c@L3,3
+EQ11020,sl_solids,linha_grupo/L1_L3,sl_solids@L1; sl_solids@L2; sl_solids@L3,3
+EQ11021,ssa_sf,linha_grupo/L1_L3,ssa_sf@L1; ssa_sf@L2; ssa_sf@L3,3
+EQ11022,ssa_sg,linha_grupo/L1_L3,ssa_sg@L1; ssa_sg@L2; ssa_sg@L3,3
+EQ11023,ssa_media,linha_grupo/L1_L3,ssa_media@L1; ssa_media@L2; ssa_media@L3,3
+EQ11024,n_ppt,linha_grupo/L1_L3,n_ppt@L1; n_ppt@L2; n_ppt@L3,3
+EQ11025,eoc_solids,linha_grupo/L1_L3,eoc_solids@L1; eoc_solids@L2; eoc_solids@L3,3
+EQ11026,producao_base_ppt,linha_grupo/L1_L3,producao_base_ppt@L1; producao_base_ppt@L2; producao_base_ppt@L3,3
+EQ11027,yield,linha_grupo/L4_L5,ltp@L4; ltp@L5; yield@L4; yield@L5,4
+EQ11028,ratio_spent,linha_grupo/L4_L5,ltp@L4; ltp@L5; ratio_spent@L4; ratio_spent@L5,4
+EQ11029,eoc_temp,linha_grupo/L4_L5,eoc_temp@L4; eoc_temp@L5; ltp@L4; ltp@L5,4
+EQ11030,ltp,linha_grupo/L4_L5,ltp@L4; ltp@L5,2
+EQ11031,lth,linha_grupo/L4_L5,lth@L4; lth@L5,2
+EQ11032,oee,linha_grupo/L4_L5,oee@L4; oee@L5,2
+EQ11033,ltp_lth,linha_grupo/L4_L5,ltp_lth@L4; ltp_lth@L5,2
+EQ11034,ltp_tc,linha_grupo/L4_L5,ltp_tc@L4; ltp_tc@L5,2
+EQ11035,ltp_a_c,linha_grupo/L4_L5,ltp_a_c@L4; ltp_a_c@L5,2
+EQ11036,sl_solids,linha_grupo/L4_L5,sl_solids@L4; sl_solids@L5,2
+EQ11037,ssa_sf,linha_grupo/L4_L5,ssa_sf@L4; ssa_sf@L5,2
+EQ11038,ssa_sg,linha_grupo/L4_L5,ssa_sg@L4; ssa_sg@L5,2
+EQ11039,ssa_media,linha_grupo/L4_L5,ssa_media@L4; ssa_media@L5,2
+EQ11040,n_ppt,linha_grupo/L4_L5,n_ppt@L4; n_ppt@L5,2
+EQ11041,eoc_solids,linha_grupo/L4_L5,eoc_solids@L4; eoc_solids@L5,2
+EQ11042,producao_base_ppt,linha_grupo/L4_L5,producao_base_ppt@L4; producao_base_ppt@L5,2
+EQ11043,yield,linha_grupo/L6_L7,ltp@L6; ltp@L7; yield@L6; yield@L7,4
+EQ11044,ratio_spent,linha_grupo/L6_L7,ltp@L6; ltp@L7; ratio_spent@L6; ratio_spent@L7,4
+EQ11045,eoc_temp,linha_grupo/L6_L7,eoc_temp@L6; eoc_temp@L7; ltp@L6; ltp@L7,4
+EQ11046,ltp,linha_grupo/L6_L7,ltp@L6; ltp@L7,2
+EQ11047,lth,linha_grupo/L6_L7,lth@L6; lth@L7,2
+EQ11048,oee,linha_grupo/L6_L7,oee@L6; oee@L7,2
+EQ11049,ltp_lth,linha_grupo/L6_L7,ltp_lth@L6; ltp_lth@L7,2
+EQ11050,ltp_tc,linha_grupo/L6_L7,ltp_tc@L6; ltp_tc@L7,2
+EQ11051,ltp_a_c,linha_grupo/L6_L7,ltp_a_c@L6; ltp_a_c@L7,2
+EQ11052,sl_solids,linha_grupo/L6_L7,sl_solids@L6; sl_solids@L7,2
+EQ11053,ssa_sf,linha_grupo/L6_L7,ssa_sf@L6; ssa_sf@L7,2
+EQ11054,ssa_sg,linha_grupo/L6_L7,ssa_sg@L6; ssa_sg@L7,2
+EQ11055,ssa_media,linha_grupo/L6_L7,ssa_media@L6; ssa_media@L7,2
+EQ11056,n_ppt,linha_grupo/L6_L7,n_ppt@L6; n_ppt@L7,2
+EQ11057,eoc_solids,linha_grupo/L6_L7,eoc_solids@L6; eoc_solids@L7,2
+EQ11058,producao_base_ppt,linha_grupo/L6_L7,producao_base_ppt@L6; producao_base_ppt@L7,2
+EQ11059,yield_base,linha_grupo/L1_L3,ltp_base@L1; ltp_base@L2; ltp_base@L3; yield_base@L1; yield_base@L2; yield_base@L3,6
+EQ11060,ltp_base,linha_grupo/L1_L3,ltp_base@L1; ltp_base@L2; ltp_base@L3,3
+EQ11061,lth_base,linha_grupo/L1_L3,lth_base@L1; lth_base@L2; lth_base@L3,3
+EQ11062,oee_base,linha_grupo/L1_L3,oee_base@L1; oee_base@L2; oee_base@L3,3
+EQ11063,ltp_lth_base,linha_grupo/L1_L3,ltp_lth_base@L1; ltp_lth_base@L2; ltp_lth_base@L3,3
+EQ11064,ltp_tc_base,linha_grupo/L1_L3,ltp_tc_base@L1; ltp_tc_base@L2; ltp_tc_base@L3,3
+EQ11065,ltp_a_c_base,linha_grupo/L1_L3,ltp_a_c_base@L1; ltp_a_c_base@L2; ltp_a_c_base@L3,3
+EQ11066,sl_solids_base,linha_grupo/L1_L3,sl_solids_base@L1; sl_solids_base@L2; sl_solids_base@L3,3
+EQ11067,ratio_spent_base,linha_grupo/L1_L3,ratio_spent_base@L1; ratio_spent_base@L2; ratio_spent_base@L3,3
+EQ11068,ssa_sf_base,linha_grupo/L1_L3,ssa_sf_base@L1; ssa_sf_base@L2; ssa_sf_base@L3,3
+EQ11069,ssa_sg_base,linha_grupo/L1_L3,ssa_sg_base@L1; ssa_sg_base@L2; ssa_sg_base@L3,3
+EQ11070,ssa_media_base,linha_grupo/L1_L3,ssa_media_base@L1; ssa_media_base@L2; ssa_media_base@L3,3
+EQ11071,n_ppt_base,linha_grupo/L1_L3,n_ppt_base@L1; n_ppt_base@L2; n_ppt_base@L3,3
+EQ11072,eoc_temp_base,linha_grupo/L1_L3,eoc_temp_base@L1; eoc_temp_base@L2; eoc_temp_base@L3,3
+EQ11073,eoc_solids_base,linha_grupo/L1_L3,eoc_solids_base@L1; eoc_solids_base@L2; eoc_solids_base@L3,3
+EQ11074,producao_base_ppt_base,linha_grupo/L1_L3,producao_base_ppt_base@L1; producao_base_ppt_base@L2; producao_base_ppt_base@L3,3
+EQ11075,yield_base,linha_grupo/L4_L5,ltp_base@L4; ltp_base@L5; yield_base@L4; yield_base@L5,4
+EQ11076,ltp_base,linha_grupo/L4_L5,ltp_base@L4; ltp_base@L5,2
+EQ11077,lth_base,linha_grupo/L4_L5,lth_base@L4; lth_base@L5,2
+EQ11078,oee_base,linha_grupo/L4_L5,oee_base@L4; oee_base@L5,2
+EQ11079,ltp_lth_base,linha_grupo/L4_L5,ltp_lth_base@L4; ltp_lth_base@L5,2
+EQ11080,ltp_tc_base,linha_grupo/L4_L5,ltp_tc_base@L4; ltp_tc_base@L5,2
+EQ11081,ltp_a_c_base,linha_grupo/L4_L5,ltp_a_c_base@L4; ltp_a_c_base@L5,2
+EQ11082,sl_solids_base,linha_grupo/L4_L5,sl_solids_base@L4; sl_solids_base@L5,2
+EQ11083,ratio_spent_base,linha_grupo/L4_L5,ratio_spent_base@L4; ratio_spent_base@L5,2
+EQ11084,ssa_sf_base,linha_grupo/L4_L5,ssa_sf_base@L4; ssa_sf_base@L5,2
+EQ11085,ssa_sg_base,linha_grupo/L4_L5,ssa_sg_base@L4; ssa_sg_base@L5,2
+EQ11086,ssa_media_base,linha_grupo/L4_L5,ssa_media_base@L4; ssa_media_base@L5,2
+EQ11087,n_ppt_base,linha_grupo/L4_L5,n_ppt_base@L4; n_ppt_base@L5,2
+EQ11088,eoc_temp_base,linha_grupo/L4_L5,eoc_temp_base@L4; eoc_temp_base@L5,2
+EQ11089,eoc_solids_base,linha_grupo/L4_L5,eoc_solids_base@L4; eoc_solids_base@L5,2
+EQ11090,producao_base_ppt_base,linha_grupo/L4_L5,producao_base_ppt_base@L4; producao_base_ppt_base@L5,2
+EQ11091,yield_base,linha_grupo/L6_L7,ltp_base@L6; ltp_base@L7; yield_base@L6; yield_base@L7,4
+EQ11092,ltp_base,linha_grupo/L6_L7,ltp_base@L6; ltp_base@L7,2
+EQ11093,lth_base,linha_grupo/L6_L7,lth_base@L6; lth_base@L7,2
+EQ11094,oee_base,linha_grupo/L6_L7,oee_base@L6; oee_base@L7,2
+EQ11095,ltp_lth_base,linha_grupo/L6_L7,ltp_lth_base@L6; ltp_lth_base@L7,2
+EQ11096,ltp_tc_base,linha_grupo/L6_L7,ltp_tc_base@L6; ltp_tc_base@L7,2
+EQ11097,ltp_a_c_base,linha_grupo/L6_L7,ltp_a_c_base@L6; ltp_a_c_base@L7,2
+EQ11098,sl_solids_base,linha_grupo/L6_L7,sl_solids_base@L6; sl_solids_base@L7,2
+EQ11099,ratio_spent_base,linha_grupo/L6_L7,ratio_spent_base@L6; ratio_spent_base@L7,2
+EQ11100,ssa_sf_base,linha_grupo/L6_L7,ssa_sf_base@L6; ssa_sf_base@L7,2
+EQ11101,ssa_sg_base,linha_grupo/L6_L7,ssa_sg_base@L6; ssa_sg_base@L7,2
+EQ11102,ssa_media_base,linha_grupo/L6_L7,ssa_media_base@L6; ssa_media_base@L7,2
+EQ11103,n_ppt_base,linha_grupo/L6_L7,n_ppt_base@L6; n_ppt_base@L7,2
+EQ11104,eoc_temp_base,linha_grupo/L6_L7,eoc_temp_base@L6; eoc_temp_base@L7,2
+EQ11105,eoc_solids_base,linha_grupo/L6_L7,eoc_solids_base@L6; eoc_solids_base@L7,2
+EQ11106,producao_base_ppt_base,linha_grupo/L6_L7,producao_base_ppt_base@L6; producao_base_ppt_base@L7,2
