@@ -187,20 +187,25 @@ class DependencyGraph:
         A definição contém a regra matemática.
         A instância fornece o contexto concreto de execução.
 
-        Referências de variáveis contextualizadas na expressão são
-        adaptadas ao escopo da instância antes da resolução de seus
-        produtores.
+        Uma referência explicitamente escopada na expressão (ex.:
+        "VAR11001@L4") é usada exatamente como declarada — nunca é
+        reescrita para o escopo da instância. Somente referências
+        sem escopo (ex.: "VAR11001") são resolvidas contra um
+        produtor no mesmo escopo da instância corrente; essa é a
+        mesma semântica aplicada pelo EquationEngine/
+        ExpressionEvaluator na avaliação.
 
         Exemplo:
 
             Definition:
-                VAR11001@L4
+                VAR11001@L4 + VAR11002
 
             Instance:
                 linha:L5
 
-            Referência contextualizada:
-                VAR11001@L5
+            Dependências:
+                VAR11001@L4  (mantida, explícita)
+                VAR11002@L5  (contextualizada, era implícita)
         """
 
         dependencies = extractor.extract(
@@ -252,9 +257,8 @@ class DependencyGraph:
                 set(),
             )
 
-    @classmethod
+    @staticmethod
     def _resolve_variable_producer(
-        cls,
         variable_reference: str,
         instance: EquationInstance,
         variable_producers: dict[str, str],
@@ -263,27 +267,27 @@ class DependencyGraph:
         Resolve o produtor de uma referência de variável dentro do
         contexto de uma EquationInstance.
 
-        Referências já explicitamente escopadas (contêm "@") seguem
-        o comportamento existente: são recontextualizadas para o
-        escopo da instance corrente.
+        Referência explicitamente escopada (contém "@", ex.:
+        "VAR11020@L2"): NUNCA é reescrita. É usada exatamente como
+        declarada para localizar seu produtor, independentemente do
+        escopo da instance corrente — essa é a mesma garantia dada
+        pelo EquationEngine/ExpressionEvaluator na avaliação, e é
+        crítica para equações de agregação (linha_grupo) que somam/
+        ponderam explicitamente várias linhas em uma única
+        expressão.
 
-        Referências sem escopo (ex.: "VAR11020") são resolvidas, em
-        primeiro lugar, contra um produtor no mesmo escopo da
-        instance (ex.: "VAR11020@L4"), refletindo a regra de que uma
-        referência sem "@Lx" pertence ao escopo da própria equação.
-        Se não houver produtor nesse escopo, cai para a busca legada
-        pela referência não escopada (compatibilidade retroativa).
+        Referência sem escopo (ex.: "VAR11020"): pertence ao escopo
+        da própria equação. É resolvida, em primeiro lugar, contra
+        um produtor no mesmo escopo da instance (ex.:
+        "VAR11020@L4"); se não houver produtor ali, cai para a
+        busca legada pela referência não escopada (compatibilidade
+        retroativa com o fluxo baseado em Equation/EquationRegistry).
         """
 
         if "@" in variable_reference:
-            contextualized = cls._contextualize_variable_reference(
-                variable_reference,
-                instance,
-            )
-
             return (
-                contextualized,
-                variable_producers.get(contextualized),
+                variable_reference,
+                variable_producers.get(variable_reference),
             )
 
         if (
@@ -308,36 +312,3 @@ class DependencyGraph:
             variable_reference,
             variable_producers.get(variable_reference),
         )
-
-    @staticmethod
-    def _contextualize_variable_reference(
-        variable_reference: str,
-        instance: EquationInstance,
-    ) -> str:
-        """
-        Contextualiza uma referência de variável para o escopo
-        da EquationInstance.
-
-        Referências sem contexto permanecem inalteradas.
-
-        Exemplo:
-
-            VAR11001@L4 + Instance(L5)
-            -> VAR11001@L5
-        """
-
-        if (
-            instance.scope_type != "linha"
-            or instance.scope_value is None
-        ):
-            return variable_reference
-
-        if "@" not in variable_reference:
-            return variable_reference
-
-        variable_id, _ = variable_reference.split(
-            "@",
-            1,
-        )
-
-        return f"{variable_id}@{instance.scope_value}"

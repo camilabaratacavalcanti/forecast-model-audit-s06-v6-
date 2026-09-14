@@ -61,7 +61,7 @@ ALLOWED_FREQUENCIES = {
 ALLOWED_SCOPE_TYPES = {
     "linha",
     "linha_grupo",
-    # "área",
+    "área",
     "planta",
     "global",
 }
@@ -428,6 +428,12 @@ def validate_enum_values(
 # ============================================================
 
 
+# scope_types cujo scope_value concreto é sempre None: não
+# materializam por linha/grupo/planta, e essa ausência de valor não
+# é um erro (ver contrato de scope da plataforma).
+SCOPELESS_SCOPE_TYPES = {"área", "global"}
+
+
 def validate_scope_consistency(
     variables: list[dict],
 ) -> list[str]:
@@ -436,7 +442,9 @@ def validate_scope_consistency(
 
     Regra:
     - ambos None; ou
-    - ambos preenchidos.
+    - ambos preenchidos; ou
+    - scope_type em {"área", "global"} com scope_value None
+      (escopo singular, sem materialização por linha).
     """
     errors = []
 
@@ -446,6 +454,12 @@ def validate_scope_consistency(
 
         scope_type = variable.get("scope_type")
         scope_value = variable.get("scope_value")
+
+        if (
+            scope_type in SCOPELESS_SCOPE_TYPES
+            and scope_value is None
+        ):
+            continue
 
         if (scope_type is None) != (scope_value is None):
             errors.append(
@@ -479,6 +493,67 @@ def validate_scope_values(
                     f"Empty value for field '{field}' "
                     f"in {block}/variables.json "
                     f"for variable {variable_id}"
+                )
+
+    return errors
+
+
+def validate_scope_type_value_combination(
+    variables: list[dict],
+) -> list[str]:
+    """
+    Valida a combinação semântica entre scope_type e scope_value,
+    equivalente à mesma validação já existente em
+    parameter_seed_validator/equation_seed_validator:
+
+        linha       -> L1 ... L7 ou L1_L7
+        linha_grupo -> L1_L3, L4_L5, L6_L7 ou L1_L7
+        área/planta/global -> sem scope_value específico de linha
+    """
+    errors = []
+
+    valid_line_values = {
+        "L1", "L2", "L3", "L4", "L5", "L6", "L7", "L1_L7",
+    }
+
+    valid_line_group_values = {
+        "L1_L3", "L4_L5", "L6_L7", "L1_L7",
+    }
+
+    for variable in variables:
+        block = variable.get("_block", "unknown")
+        variable_id = variable.get("variable_id", "unknown")
+
+        scope_type = variable.get("scope_type")
+        scope_value = variable.get("scope_value")
+
+        if scope_type is None:
+            continue
+
+        if scope_type == "linha":
+            if scope_value not in valid_line_values:
+                errors.append(
+                    f"Invalid scope_value '{scope_value}' for "
+                    f"scope_type 'linha' in {block}/variables.json "
+                    f"for variable {variable_id}"
+                )
+
+        elif scope_type == "linha_grupo":
+            if scope_value not in valid_line_group_values:
+                errors.append(
+                    f"Invalid scope_value '{scope_value}' for "
+                    f"scope_type 'linha_grupo' in "
+                    f"{block}/variables.json for variable "
+                    f"{variable_id}"
+                )
+
+        elif scope_type in SCOPELESS_SCOPE_TYPES | {"planta"}:
+            if scope_value is not None:
+                errors.append(
+                    f"scope_type '{scope_type}' must not have a "
+                    f"line-specific scope_value in "
+                    f"{block}/variables.json for variable "
+                    f"{variable_id}"
                 )
 
     return errors
@@ -718,6 +793,10 @@ def validate_seed(seed_path: Path) -> dict:
 
     errors.extend(
         validate_scope_values(variables)
+    )
+
+    errors.extend(
+        validate_scope_type_value_combination(variables)
     )
 
     errors.extend(

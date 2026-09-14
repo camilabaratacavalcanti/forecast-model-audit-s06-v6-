@@ -114,6 +114,18 @@ class ForecastEngine:
         """
         Executa as equações respeitando a ordem
         determinada pelas dependências.
+
+        Este é um método de BAIXO NÍVEL: recebe diretamente a lista
+        de equações a executar e NÃO filtra por status. A seleção
+        de quais equações são elegíveis (ex.: apenas PUBLISHED) é
+        responsabilidade do chamador — ver EquationSelector — ou dos
+        métodos de alto nível deste mesmo engine
+        (calculate_from_registry, calculate_from_definition_registry),
+        que fazem essa seleção antes de chegar aqui. Passar uma
+        equação DRAFT/REJECTED diretamente para calculate() a
+        executa; isso é intencional, pois este método também serve
+        fluxos de teste/depuração que já operam sobre um conjunto
+        pré-selecionado.
         """
 
         graph = DependencyGraph()
@@ -199,6 +211,13 @@ class ForecastEngine:
         """
         Valida os Registries e executa as equações cadastradas
         no EquationRegistry.
+
+        Este é um método de ALTO NÍVEL: carrega TODAS as equações
+        do Registry, mas apenas as elegíveis (ver
+        EquationSelector.ACTIVE_STATUSES) participam do cálculo.
+        Uma equação DRAFT/PENDING/REJECTED cadastrada no Registry
+        nunca é executada por este caminho, mesmo que ainda seja
+        validada quanto à integridade de suas referências.
         """
 
         self.registry_validator.validate_registry(
@@ -207,7 +226,11 @@ class ForecastEngine:
             parameter_registry=parameter_registry,
         )
 
-        equations = equation_registry.all()
+        equations = [
+            equation
+            for equation in equation_registry.all()
+            if equation.status in EquationSelector.ACTIVE_STATUSES
+        ]
 
         variable_producers = self._build_variable_producers(
             equations

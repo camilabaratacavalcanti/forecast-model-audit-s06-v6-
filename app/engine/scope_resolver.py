@@ -151,11 +151,19 @@ class ScopeResolver:
             )
 
         # "área" e "global" são escopos únicos, sem materialização
-        # por linha. Seu scope_value concreto é tipicamente None
-        # (ver validators), portanto são resolvidos antes da
-        # exigência geral de scope_value abaixo, que só se aplica
-        # aos scope_types que materializam por linha/grupo/planta.
+        # por linha: seu scope_value concreto é sempre None — a
+        # ausência de valor não é um erro, mas um valor presente é
+        # (mesma exigência que "planta" já faz para "PLANTA").
+        # São resolvidos antes da exigência geral de scope_value
+        # abaixo, que só se aplica aos scope_types que materializam
+        # por linha/grupo/planta.
         if scope_type in {"área", "global"}:
+            if scope_value is not None:
+                raise ValueError(
+                    f"scope_type '{scope_type}' does not accept a "
+                    f"concrete scope_value: {scope_value!r}"
+                )
+
             return [
                 (scope_type, scope_value),
             ]

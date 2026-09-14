@@ -75,27 +75,44 @@ class ParameterInstance:
     parameter_definition_id: str
     version: int
     scope_type: str
-    scope_value: str
+    scope_value: str | None
     value: float | int
+
+    # scope_types cujo scope_value concreto é None (não materializam
+    # por linha/grupo/planta): a Definition e a Instance coincidem
+    # em uma única ocorrência singular.
+    SCOPELESS_SCOPE_TYPES = {"área", "global"}
 
     @classmethod
     def create(
         cls,
         definition: ParameterDefinition,
         scope_type: str,
-        scope_value: str,
+        scope_value: str | None,
     ) -> "ParameterInstance":
 
-        if not scope_type or not scope_value:
+        if not scope_type:
             raise ValueError(
-                "scope_type and scope_value are required "
-                "to create a parameter instance"
+                "scope_type is required to create a parameter instance"
+            )
+
+        if (
+            not scope_value
+            and scope_type not in cls.SCOPELESS_SCOPE_TYPES
+        ):
+            raise ValueError(
+                "scope_value is required to create a parameter instance"
             )
 
         instance_id = (
             f"{definition.parameter_definition_id}"
             f"@v{definition.version}"
             f"@{scope_value}"
+            if scope_value
+            else (
+                f"{definition.parameter_definition_id}"
+                f"@v{definition.version}"
+            )
         )
 
         return cls(

@@ -75,6 +75,12 @@ ALLOWED_SCOPE_TYPES = {
 }
 
 
+# scope_types cujo scope_value concreto é sempre None: não
+# materializam por linha/grupo/planta, e essa ausência de valor não
+# é um erro (ver contrato de scope da plataforma).
+SCOPELESS_SCOPE_TYPES = {"área", "global"}
+
+
 ALLOWED_SCOPE_VALUES = {
     "L1",
     "L2",
@@ -392,13 +398,19 @@ def validate_scope_consistency(parameter, file_path):
     consistente.
 
     Ambos podem ser null, mas não é permitido que apenas um deles
-    seja null.
+    seja null — exceto quando scope_type é "área" ou "global": esses
+    escopos são singulares (sem materialização por linha/grupo/
+    planta) e seu scope_value concreto é sempre None por definição,
+    o que não constitui inconsistência.
     """
 
     errors = []
 
     scope_type = parameter.get("scope_type")
     scope_value = parameter.get("scope_value")
+
+    if scope_type in SCOPELESS_SCOPE_TYPES and scope_value is None:
+        return errors
 
     if (scope_type is None) != (scope_value is None):
         errors.append(

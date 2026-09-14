@@ -86,14 +86,19 @@ class VariableInstance:
     variable_instance_id: str
     variable_definition_id: str
     scope_type: str
-    scope_value: str
+    scope_value: str | None
+
+    # scope_types cujo scope_value concreto é None (não materializam
+    # por linha/grupo/planta): a Definition e a Instance coincidem
+    # em uma única ocorrência singular.
+    SCOPELESS_SCOPE_TYPES = {"área", "global"}
 
     @classmethod
     def create(
         cls,
         definition: VariableDefinition,
         scope_type: str,
-        scope_value: str,
+        scope_value: str | None,
     ) -> "VariableInstance":
 
         if not scope_type:
@@ -101,13 +106,18 @@ class VariableInstance:
                 "scope_type is required to create a variable instance"
             )
 
-        if not scope_value:
+        if (
+            not scope_value
+            and scope_type not in cls.SCOPELESS_SCOPE_TYPES
+        ):
             raise ValueError(
                 "scope_value is required to create a variable instance"
             )
 
         instance_id = (
             f"{definition.variable_definition_id}@{scope_value}"
+            if scope_value
+            else definition.variable_definition_id
         )
 
         return cls(

@@ -70,14 +70,19 @@ class EquationInstance:
     target_variable_id: str
     version: int
     scope_type: str
-    scope_value: str
+    scope_value: str | None
+
+    # scope_types cujo scope_value concreto é None (não materializam
+    # por linha/grupo/planta): a Definition e a Instance coincidem
+    # em uma única ocorrência singular.
+    SCOPELESS_SCOPE_TYPES = {"área", "global"}
 
     @classmethod
     def create(
         cls,
         definition: EquationDefinition,
         scope_type: str,
-        scope_value: str,
+        scope_value: str | None,
     ) -> "EquationInstance":
         if not scope_type:
             raise ValueError(
@@ -85,7 +90,10 @@ class EquationInstance:
                 "EquationInstance."
             )
 
-        if not scope_value:
+        if (
+            not scope_value
+            and scope_type not in cls.SCOPELESS_SCOPE_TYPES
+        ):
             raise ValueError(
                 "scope_value é obrigatório para criar "
                 "EquationInstance."
@@ -95,6 +103,11 @@ class EquationInstance:
             f"{definition.equation_definition_id}"
             f"@v{definition.version}"
             f"@{scope_value}"
+            if scope_value
+            else (
+                f"{definition.equation_definition_id}"
+                f"@v{definition.version}"
+            )
         )
 
         return cls(

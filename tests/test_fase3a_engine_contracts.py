@@ -198,31 +198,41 @@ def test_bare_reference_falls_back_to_legacy_when_no_scoped_value():
 
 
 def test_explicit_scoped_reference_is_not_affected_by_context():
+    """
+    Prova direta do cenário crítico do contrato: a EquationInstance
+    está em L5 (scope_type="linha", o MESMO scope_type que a antiga
+    implementação reescrevia indiscriminadamente), e a expressão
+    referencia explicitamente L2 — não L5.
+
+    Antes da correção pós-code-review, EquationEngine reescrevia
+    qualquer "@Lx" presente na expressão para o escopo da instance
+    em execução sempre que scope_type=="linha" — isto é, "VAR10001@L2"
+    virava "VAR10001@L5" e o teste abaixo teria FALHADO (resultado
+    500 em vez de 20, ou VariableNotFoundError, dependendo dos
+    valores no contexto). Usar scope_type="linha_grupo" (como na
+    versão anterior deste teste) não exercitava esse código — a
+    reescrita só existia para scope_type=="linha", então aquele
+    teste passava mesmo com o bug presente.
+    """
+
     definition = EquationDefinition(
         equation_definition_id="EQ11096",
         target_variable_id="VAR11095",
         version=1,
-        scope_type="linha_grupo",
-        scope_value="L1_L3",
-        expression="VAR10001@L1 + VAR10001@L2 + VAR10001@L3",
+        scope_type="linha",
+        scope_value="L1_L7",
+        expression="VAR10001@L2",
         source_reference="TEST",
         status="PUBLISHED",
     )
 
     instance = EquationInstance.create(
         definition=definition,
-        scope_type="linha_grupo",
-        scope_value="L1_L3",
+        scope_type="linha",
+        scope_value="L5",
     )
 
     context = CalculationContext()
-
-    context.set_variable_value(
-        variable_id="VAR10001",
-        value=10,
-        scope_type="linha",
-        scope_value="L1",
-    )
 
     context.set_variable_value(
         variable_id="VAR10001",
@@ -231,11 +241,14 @@ def test_explicit_scoped_reference_is_not_affected_by_context():
         scope_value="L2",
     )
 
+    # Valor propositalmente diferente em L5: se a implementação
+    # reescrevesse "VAR10001@L2" para "VAR10001@L5", o resultado
+    # seria 500, não 20.
     context.set_variable_value(
         variable_id="VAR10001",
-        value=30,
+        value=500,
         scope_type="linha",
-        scope_value="L3",
+        scope_value="L5",
     )
 
     engine = EquationEngine()
@@ -246,7 +259,7 @@ def test_explicit_scoped_reference_is_not_affected_by_context():
         calculation_context=context,
     )
 
-    assert result == 60
+    assert result == 20
 
 
 # ============================================================
