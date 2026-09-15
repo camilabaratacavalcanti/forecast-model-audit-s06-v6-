@@ -62,6 +62,7 @@ YIELD_INPUT_DAILY_VALUES = {
     "eoc_temp": 74.0,
     "eoc_solids": 250.0,
     "tanque": 12.0,
+    "ltp_tc": 273.0,
 }
 
 YIELD_INPUT_ANNUAL_VALUES = {
@@ -1016,10 +1017,15 @@ def test_yield_real_seed_preserved_and_aggregated_on_top_of_results():
         equation_instances,
     ) = loader.load_all_definitions_and_instances()
 
-    # As 106 EquationDefinitions / 166 EquationInstances reais
-    # continuam intactas — nenhuma foi alterada por esta fase.
-    assert len(equation_definitions.all()) == 106
-    assert len(equation_instances.all()) == 166
+    # O seed do Yield inclui, desde a implementação do v4
+    # (EquationDefinitions L1_L7 + AggregationRules), 138
+    # EquationDefinitions (106 originais + 32 novas de
+    # linha_grupo/L1_L7 diário/anual) e 198 EquationInstances
+    # (166 originais + 32, já que L1_L7 é escopo singular, sem
+    # materialização por linha). As 106 originais não foram
+    # alteradas — apenas adições.
+    assert len(equation_definitions.all()) == 138
+    assert len(equation_instances.all()) == 198
 
     context = CalculationContext()
 

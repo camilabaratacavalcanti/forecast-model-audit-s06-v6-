@@ -567,29 +567,39 @@ def test_c15_forecast_value_identity_direct_vs_aggregated_no_collision():
     assert len(registry) == 1
 
 
-def test_c15_registry_rejects_conflicting_duplicate_identity():
+def test_c15_registry_updates_current_value_for_same_identity():
+    """
+    Contrato revisado por TD-C01: uma nova Execution atualizando a
+    mesma identidade lógica NÃO é mais um erro (o comportamento
+    original da Fase C, que rejeitava qualquer valor conflitante
+    para a mesma identidade, foi deliberadamente substituído — ver
+    TD-C01/TD-C03 e tests/test_fase_c_execution_and_history.py para
+    a cobertura completa do novo contrato de atualização progressiva
+    e histórico).
+    """
+
     registry = ForecastValueRegistry()
 
     value_a = ForecastValue(
         "VAR30601", "linha", "L1", "diário", 2026, "2026-09-14", 10.0,
+        execution_id="EXEC-A",
     )
-    value_b_conflicting = ForecastValue(
+    value_b = ForecastValue(
         "VAR30601", "linha", "L1", "diário", 2026, "2026-09-14", 99.0,
-    )
-    value_b_idempotent = ForecastValue(
-        "VAR30601", "linha", "L1", "diário", 2026, "2026-09-14", 10.0,
-        execution_id="exec-2",
+        execution_id="EXEC-B",
     )
 
     registry.add(value_a)
+    registry.add(value_b)
 
-    # Idempotente: mesma identidade, mesmo valor -> permitido.
-    registry.add(value_b_idempotent)
     assert len(registry) == 1
-
-    # Conflitante: mesma identidade, valor diferente -> rejeitado.
-    with pytest.raises(ValueError):
-        registry.add(value_b_conflicting)
+    assert registry.get(value_a.identity()).value == 99.0
+    assert registry.get(value_a.identity()).execution_id == "EXEC-B"
+    assert registry.history(value_a.identity())[0].value == 10.0
+    assert (
+        registry.history(value_a.identity())[0].execution_id
+        == "EXEC-A"
+    )
 
 
 # ============================================================
@@ -636,6 +646,7 @@ YIELD_INPUT_DAILY_VALUES = {
     "eoc_temp": 74.0,
     "eoc_solids": 250.0,
     "tanque": 12.0,
+    "ltp_tc": 273.0,
 }
 
 YIELD_INPUT_ANNUAL_VALUES = {
@@ -692,8 +703,11 @@ def test_c17_yield_real_daily_to_monthly_with_varied_daily_inputs():
         parameter_instances, equation_definitions, equation_instances,
     ) = loader.load_all_definitions_and_instances()
 
-    assert len(equation_definitions.all()) == 106
-    assert len(equation_instances.all()) == 166
+    # Seed do Yield v4: 106 EquationDefinitions originais + 32 novas
+    # (linha_grupo/L1_L7 diário/anual) = 138; 166 EquationInstances
+    # originais + 32 (L1_L7 é escopo singular) = 198.
+    assert len(equation_definitions.all()) == 138
+    assert len(equation_instances.all()) == 198
 
     context = CalculationContext()
     definitions_by_name_scope = _populate_yield_context(

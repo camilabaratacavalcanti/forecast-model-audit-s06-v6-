@@ -48,6 +48,7 @@ INPUT_DAILY_VALUES = {
     "eoc_temp": 74.0,
     "eoc_solids": 250.0,
     "tanque": 12.0,
+    "ltp_tc": 273.0,
 }
 
 INPUT_ANNUAL_VALUES = {

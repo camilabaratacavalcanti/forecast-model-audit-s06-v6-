@@ -1,17 +1,5 @@
 [
   {
-    "parameter_id": "PARAM11001",
-    "parameter_name": "ltp_tc",
-    "description": "Teor de soda cáustica total associado ao LTP (Total Caustic).",
-    "unit": "g/l",
-    "value": 273,
-    "version": 1,
-    "scope_type": "linha",
-    "scope_value": "L1_L7",
-    "source_reference": "descritivo_das_variáveis_yield.xlsx",
-    "status": "ativo"
-  },
-  {
     "parameter_id": "PARAM11002",
     "parameter_name": "ltp_tc_base",
     "description": "Valor base do teor de soda cáustica total associado ao LTP.",

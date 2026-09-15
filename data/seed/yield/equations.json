@@ -5,7 +5,7 @@
     "version": 1,
     "scope_type": "linha",
     "scope_value": "L1_L7",
-    "expression": "(VAR11006 - VAR11008)*PARAM11001 - 0.654*VAR11007",
+    "expression": "(VAR11006 - VAR11008)*VAR11240 - 0.654*VAR11007",
     "source_reference": "descritivo_das_variáveis_yield.xlsx",
     "status": "PUBLISHED"
   },
@@ -55,7 +55,7 @@
     "version": 1,
     "scope_type": "linha",
     "scope_value": "L1_L7",
-    "expression": "VAR11087 - 0.005*(VAR11012 - VAR11091) - 0.0017*(-VAR11013 + VAR11092) - 0.0007*((VAR11014 - VAR11093)/5) - 0.0017*(PARAM11002 - PARAM11001) - 0.004*((VAR11081 - VAR11002)/100) + 0.002*(VAR11090 - VAR11011)",
+    "expression": "VAR11087 - 0.005*(VAR11012 - VAR11091) - 0.0017*(-VAR11013 + VAR11092) - 0.0007*((VAR11014 - VAR11093)/5) - 0.0017*(PARAM11002 - VAR11240) - 0.004*((VAR11081 - VAR11002)/100) + 0.002*(VAR11090 - VAR11011)",
     "source_reference": "descritivo_das_variáveis_yield.xlsx",
     "status": "PUBLISHED"
   },
@@ -175,7 +175,7 @@
     "version": 1,
     "scope_type": "linha_grupo",
     "scope_value": "L1_L3",
-    "expression": "( PARAM11001@L1 + PARAM11001@L2 + PARAM11001@L3 ) / 3",
+    "expression": "( VAR11240@L1 + VAR11240@L2 + VAR11240@L3 ) / 3",
     "source_reference": "descritivo_das_variáveis_yield.xlsx",
     "status": "PUBLISHED"
   },
@@ -335,7 +335,7 @@
     "version": 1,
     "scope_type": "linha_grupo",
     "scope_value": "L4_L5",
-    "expression": "( PARAM11001@L4 + PARAM11001@L5 ) / 2",
+    "expression": "( VAR11240@L4 + VAR11240@L5 ) / 2",
     "source_reference": "descritivo_das_variáveis_yield.xlsx",
     "status": "PUBLISHED"
   },
@@ -495,7 +495,7 @@
     "version": 1,
     "scope_type": "linha_grupo",
     "scope_value": "L6_L7",
-    "expression": "( PARAM11001@L6 + PARAM11001@L7 ) / 2",
+    "expression": "( VAR11240@L6 + VAR11240@L7 ) / 2",
     "source_reference": "descritivo_das_variáveis_yield.xlsx",
     "status": "PUBLISHED"
   },
@@ -1057,6 +1057,326 @@
     "scope_value": "L6_L7",
     "expression": "VAR11094@L6 + VAR11094@L7",
     "source_reference": "descritivo_das_variáveis_yield.xlsx",
+    "status": "PUBLISHED"
+  },
+  {
+    "equation_id": "EQ11107",
+    "target_variable_id": "VAR11064",
+    "version": 1,
+    "scope_type": "linha_grupo",
+    "scope_value": "L1_L7",
+    "expression": "( VAR11001@L1 * VAR11002@L1 + VAR11001@L2 * VAR11002@L2 + VAR11001@L3 * VAR11002@L3 + VAR11001@L4 * VAR11002@L4 + VAR11001@L5 * VAR11002@L5 + VAR11001@L6 * VAR11002@L6 + VAR11001@L7 * VAR11002@L7 ) / ( VAR11002@L1 + VAR11002@L2 + VAR11002@L3 + VAR11002@L4 + VAR11002@L5 + VAR11002@L6 + VAR11002@L7 )",
+    "source_reference": "descritivo_das_variáveis_yield_v4.xlsx",
+    "status": "PUBLISHED"
+  },
+  {
+    "equation_id": "EQ11108",
+    "target_variable_id": "VAR11065",
+    "version": 1,
+    "scope_type": "linha_grupo",
+    "scope_value": "L1_L7",
+    "expression": "( VAR11002@L1*VAR11003@L1 + VAR11002@L2*VAR11003@L2 + VAR11002@L3*VAR11003@L3 + VAR11002@L4*VAR11003@L4 + VAR11002@L5*VAR11003@L5 + VAR11002@L6*VAR11003@L6 + VAR11002@L7*VAR11003@L7 ) / ( VAR11003@L1 + VAR11003@L2 + VAR11003@L3 + VAR11003@L4 + VAR11003@L5 + VAR11003@L6 + VAR11003@L7 ) ",
+    "source_reference": "descritivo_das_variáveis_yield_v4.xlsx",
+    "status": "PUBLISHED"
+  },
+  {
+    "equation_id": "EQ11109",
+    "target_variable_id": "VAR11066",
+    "version": 1,
+    "scope_type": "linha_grupo",
+    "scope_value": "L1_L7",
+    "expression": "( VAR11003@L1*VAR11004@L1 + VAR11003@L2*VAR11004@L2 + VAR11003@L3*VAR11004@L3 + VAR11003@L4*VAR11004@L4 + VAR11003@L5*VAR11004@L5 + VAR11003@L6*VAR11004@L6 + VAR11003@L7*VAR11004@L7 ) / ( VAR11004@L1 + VAR11004@L2 + VAR11004@L3 + VAR11004@L4 + VAR11004@L5 + VAR11004@L6 + VAR11004@L7)",
+    "source_reference": "descritivo_das_variáveis_yield_v4.xlsx",
+    "status": "PUBLISHED"
+  },
+  {
+    "equation_id": "EQ11110",
+    "target_variable_id": "VAR11067",
+    "version": 1,
+    "scope_type": "linha_grupo",
+    "scope_value": "L1_L7",
+    "expression": "( VAR11004@L1*VAR11005@L1 + VAR11004@L2*VAR11005@L2 + VAR11004@L3*VAR11005@L3 + VAR11004@L4*VAR11005@L4 + VAR11004@L5*VAR11005@L5 + VAR11004@L6*VAR11005@L6 + VAR11004@L7*VAR11005@L7) / ( VAR11005@L1 + VAR11005@L2 + VAR11005@L3 +  VAR11005@L4 +  VAR11005@L5 +  VAR11005@L6 +  VAR11005@L7)",
+    "source_reference": "descritivo_das_variáveis_yield_v4.xlsx",
+    "status": "PUBLISHED"
+  },
+  {
+    "equation_id": "EQ11111",
+    "target_variable_id": "VAR11068",
+    "version": 1,
+    "scope_type": "linha_grupo",
+    "scope_value": "L1_L7",
+    "expression": "( VAR11005@L1*VAR11240@L1 + VAR11005@L2*VAR11240@L2 + VAR11005@L3*VAR11240@L3 + VAR11005@L4*VAR11240@L4 + VAR11005@L5*VAR11240@L5 + VAR11005@L6*VAR11240@L6 + VAR11005@L7*VAR11240@L7 ) / ( VAR11240@L1 + VAR11240@L2 + VAR11240@L3 + VAR11240@L4 + VAR11240@L5 + VAR11240@L6 + VAR11240@L7 )",
+    "source_reference": "descritivo_das_variáveis_yield_v4.xlsx",
+    "status": "PUBLISHED"
+  },
+  {
+    "equation_id": "EQ11112",
+    "target_variable_id": "VAR11069",
+    "version": 1,
+    "scope_type": "linha_grupo",
+    "scope_value": "L1_L7",
+    "expression": "( VAR11240@L1*VAR11002@L1 + VAR11240@L2*VAR11002@L2 + VAR11240@L3*VAR11002@L3 + VAR11240@L4*VAR11002@L4 + VAR11240@L5*VAR11002@L5 + VAR11240@L6*VAR11002@L6 + VAR11240@L7*VAR11002@L7 ) / ( VAR11002@L1 + VAR11002@L2 + VAR11002@L3 + VAR11002@L4 + VAR11002@L5 + VAR11002@L6 + VAR11002@L7 )",
+    "source_reference": "descritivo_das_variáveis_yield_v4.xlsx",
+    "status": "PUBLISHED"
+  },
+  {
+    "equation_id": "EQ11113",
+    "target_variable_id": "VAR11070",
+    "version": 1,
+    "scope_type": "linha_grupo",
+    "scope_value": "L1_L7",
+    "expression": "( VAR11006@L1*VAR11002@L1 + VAR11006@L2*VAR11002@L2 + VAR11006@L3*VAR11002@L3 + VAR11006@L4*VAR11002@L4 + VAR11006@L5*VAR11002@L5 + VAR11006@L6*VAR11002@L6 + VAR11006@L7*VAR11002@L7 ) / ( VAR11002@L1 + VAR11002@L2 + VAR11002@L3 + VAR11002@L4 + VAR11002@L5 + VAR11002@L6 + VAR11002@L7 )",
+    "source_reference": "descritivo_das_variáveis_yield_v4.xlsx",
+    "status": "PUBLISHED"
+  },
+  {
+    "equation_id": "EQ11114",
+    "target_variable_id": "VAR11071",
+    "version": 1,
+    "scope_type": "linha_grupo",
+    "scope_value": "L1_L7",
+    "expression": "( VAR11007@L1*VAR11008@L1 + VAR11007@L2*VAR11008@L2 + VAR11007@L3*VAR11008@L3 + VAR11007@L4*VAR11008@L4 + VAR11007@L5*VAR11008@L5 + VAR11007@L6*VAR11008@L6 + VAR11007@L7*VAR11008@L7 ) / ( VAR11008@L1 + VAR11008@L2 + VAR11008@L3 + VAR11008@L4 + VAR11008@L5 + VAR11008@L6 + VAR11008@L7 )",
+    "source_reference": "descritivo_das_variáveis_yield_v4.xlsx",
+    "status": "PUBLISHED"
+  },
+  {
+    "equation_id": "EQ11115",
+    "target_variable_id": "VAR11072",
+    "version": 1,
+    "scope_type": "linha_grupo",
+    "scope_value": "L1_L7",
+    "expression": "( VAR11008@L1*VAR11002@L1 + VAR11008@L2*VAR11002@L2 + VAR11008@L3*VAR11002@L3 + VAR11008@L4*VAR11002@L4 + VAR11008@L5*VAR11002@L5 + VAR11008@L6*VAR11002@L6 + VAR11008@L7*VAR11002@L7 ) / ( VAR11002@L1 + VAR11002@L2 + VAR11002@L3 + VAR11002@L4 + VAR11002@L5 + VAR11002@L6 + VAR11002@L7 )",
+    "source_reference": "descritivo_das_variáveis_yield_v4.xlsx",
+    "status": "PUBLISHED"
+  },
+  {
+    "equation_id": "EQ11116",
+    "target_variable_id": "VAR11073",
+    "version": 1,
+    "scope_type": "linha_grupo",
+    "scope_value": "L1_L7",
+    "expression": "( VAR11009@L1*VAR11010@L1 + VAR11009@L2*VAR11010@L2 + VAR11009@L3*VAR11010@L3 + VAR11009@L4*VAR11010@L4 + VAR11009@L5*VAR11010@L5 + VAR11009@L6*VAR11010@L6 + VAR11009@L7*VAR11010@L7 ) / ( VAR11010@L1 + VAR11010@L2 + VAR11010@L3 + VAR11010@L4 + VAR11010@L5 + VAR11010@L6 + VAR11010@L7 )",
+    "source_reference": "descritivo_das_variáveis_yield_v4.xlsx",
+    "status": "PUBLISHED"
+  },
+  {
+    "equation_id": "EQ11117",
+    "target_variable_id": "VAR11074",
+    "version": 1,
+    "scope_type": "linha_grupo",
+    "scope_value": "L1_L7",
+    "expression": "( VAR11010@L1*VAR11011@L1 + VAR11010@L2*VAR11011@L2 + VAR11010@L3*VAR11011@L3 + VAR11010@L4*VAR11011@L4 + VAR11010@L5*VAR11011@L5 + VAR11010@L6*VAR11011@L6 + VAR11010@L7*VAR11011@L7 ) / ( VAR11011@L1 + VAR11011@L2 + VAR11011@L3 + VAR11011@L4 + VAR11011@L5 + VAR11011@L6 + VAR11011@L7 )",
+    "source_reference": "descritivo_das_variáveis_yield_v4.xlsx",
+    "status": "PUBLISHED"
+  },
+  {
+    "equation_id": "EQ11118",
+    "target_variable_id": "VAR11075",
+    "version": 1,
+    "scope_type": "linha_grupo",
+    "scope_value": "L1_L7",
+    "expression": "( VAR11011@L1*VAR11012@L1 + VAR11011@L2*VAR11012@L2 + VAR11011@L3*VAR11012@L3 + VAR11011@L4*VAR11012@L4 + VAR11011@L5*VAR11012@L5 + VAR11011@L6*VAR11012@L6 + VAR11011@L7*VAR11012@L7 ) / ( VAR11012@L1 + VAR11012@L2 + VAR11012@L3 + VAR11012@L4 + VAR11012@L5 + VAR11012@L6 + VAR11012@L7 )",
+    "source_reference": "descritivo_das_variáveis_yield_v4.xlsx",
+    "status": "PUBLISHED"
+  },
+  {
+    "equation_id": "EQ11119",
+    "target_variable_id": "VAR11076",
+    "version": 1,
+    "scope_type": "linha_grupo",
+    "scope_value": "L1_L7",
+    "expression": "( VAR11012@L1*VAR11013@L1 + VAR11012@L2*VAR11013@L2 + VAR11012@L3*VAR11013@L3 + VAR11012@L4*VAR11013@L4 + VAR11012@L5*VAR11013@L5 + VAR11012@L6*VAR11013@L6 + VAR11012@L7*VAR11013@L7 ) / ( VAR11013@L1 + VAR11013@L2 + VAR11013@L3 + VAR11013@L4 + VAR11013@L5 + VAR11013@L6 + VAR11013@L7 )",
+    "source_reference": "descritivo_das_variáveis_yield_v4.xlsx",
+    "status": "PUBLISHED"
+  },
+  {
+    "equation_id": "EQ11120",
+    "target_variable_id": "VAR11077",
+    "version": 1,
+    "scope_type": "linha_grupo",
+    "scope_value": "L1_L7",
+    "expression": "( VAR11013@L1*VAR11014@L1 + VAR11013@L2*VAR11014@L2 + VAR11013@L3*VAR11014@L3 + VAR11013@L4*VAR11014@L4 + VAR11013@L5*VAR11014@L5 + VAR11013@L6*VAR11014@L6 + VAR11013@L7*VAR11014@L7 ) / ( VAR11014@L1 + VAR11014@L2 + VAR11014@L3 + VAR11014@L4 + VAR11014@L5 + VAR11014@L6 + VAR11014@L7 )",
+    "source_reference": "descritivo_das_variáveis_yield_v4.xlsx",
+    "status": "PUBLISHED"
+  },
+  {
+    "equation_id": "EQ11121",
+    "target_variable_id": "VAR11078",
+    "version": 1,
+    "scope_type": "linha_grupo",
+    "scope_value": "L1_L7",
+    "expression": "( VAR11014@L1*VAR11002@L1 + VAR11014@L2*VAR11002@L2 + VAR11014@L3*VAR11002@L3 + VAR11014@L4*VAR11002@L4 + VAR11014@L5*VAR11002@L5 + VAR11014@L6*VAR11002@L6 + VAR11014@L7*VAR11002@L7 ) / ( VAR11002@L1 + VAR11002@L2 + VAR11002@L3 + VAR11002@L4 + VAR11002@L5 + VAR11002@L6 + VAR11002@L7 )",
+    "source_reference": "descritivo_das_variáveis_yield_v4.xlsx",
+    "status": "PUBLISHED"
+  },
+  {
+    "equation_id": "EQ11122",
+    "target_variable_id": "VAR11079",
+    "version": 1,
+    "scope_type": "linha_grupo",
+    "scope_value": "L1_L7",
+    "expression": "VAR11015@L1 + VAR11015@L2 + VAR11015@L3 + VAR11015@L4 + VAR11015@L5 + VAR11015@L6 + VAR11015@L7",
+    "source_reference": "descritivo_das_variáveis_yield_v4.xlsx",
+    "status": "PUBLISHED"
+  },
+  {
+    "equation_id": "EQ11123",
+    "target_variable_id": "VAR11143",
+    "version": 1,
+    "scope_type": "linha_grupo",
+    "scope_value": "L1_L7",
+    "expression": "( VAR11080@L1 * VAR11081@L1 + VAR11080@L2 * VAR11081@L2 + VAR11080@L3 * VAR11081@L3 + VAR11080@L4 * VAR11081@L4 + VAR11080@L5 * VAR11081@L5 + VAR11080@L6 * VAR11081@L6 + VAR11080@L7 * VAR11081@L7 ) / ( VAR11081@L1 + VAR11081@L2 + VAR11081@L3 + VAR11081@L4 + VAR11081@L5 + VAR11081@L6 + VAR11081@L7 )",
+    "source_reference": "descritivo_das_variáveis_yield_v4.xlsx",
+    "status": "PUBLISHED"
+  },
+  {
+    "equation_id": "EQ11124",
+    "target_variable_id": "VAR11144",
+    "version": 1,
+    "scope_type": "linha_grupo",
+    "scope_value": "L1_L7",
+    "expression": "( VAR11081@L1*VAR11082@L1 + VAR11081@L2*VAR11082@L2 + VAR11081@L3*VAR11082@L3 + VAR11081@L4*VAR11082@L4 + VAR11081@L5*VAR11082@L5 + VAR11081@L6*VAR11082@L6 + VAR11081@L7*VAR11082@L7 ) / ( VAR11082@L1 + VAR11082@L2 + VAR11082@L3 + VAR11082@L4 + VAR11082@L5 + VAR11082@L6 + VAR11082@L7 )",
+    "source_reference": "descritivo_das_variáveis_yield_v4.xlsx",
+    "status": "PUBLISHED"
+  },
+  {
+    "equation_id": "EQ11125",
+    "target_variable_id": "VAR11145",
+    "version": 1,
+    "scope_type": "linha_grupo",
+    "scope_value": "L1_L7",
+    "expression": "( VAR11082@L1*VAR11083@L1 + VAR11082@L2*VAR11083@L2 + VAR11082@L3*VAR11083@L3 + VAR11082@L4*VAR11083@L4 + VAR11082@L5*VAR11083@L5 + VAR11082@L6*VAR11083@L6 + VAR11082@L7*VAR11083@L7 ) / ( VAR11083@L1 + VAR11083@L2 + VAR11083@L3 + VAR11083@L4 + VAR11083@L5 + VAR11083@L6 + VAR11083@L7 )",
+    "source_reference": "descritivo_das_variáveis_yield_v4.xlsx",
+    "status": "PUBLISHED"
+  },
+  {
+    "equation_id": "EQ11126",
+    "target_variable_id": "VAR11146",
+    "version": 1,
+    "scope_type": "linha_grupo",
+    "scope_value": "L1_L7",
+    "expression": "( VAR11083@L1*VAR11084@L1 + VAR11083@L2*VAR11084@L2 + VAR11083@L3*VAR11084@L3 + VAR11083@L4*VAR11084@L4 + VAR11083@L5*VAR11084@L5 + VAR11083@L6*VAR11084@L6 + VAR11083@L7*VAR11084@L7 ) / ( VAR11084@L1 + VAR11084@L2 + VAR11084@L3 + VAR11084@L4 + VAR11084@L5 + VAR11084@L6 + VAR11084@L7 )",
+    "source_reference": "descritivo_das_variáveis_yield_v4.xlsx",
+    "status": "PUBLISHED"
+  },
+  {
+    "equation_id": "EQ11127",
+    "target_variable_id": "VAR11147",
+    "version": 1,
+    "scope_type": "linha_grupo",
+    "scope_value": "L1_L7",
+    "expression": "( VAR11084@L1*PARAM11002@L1 + VAR11084@L2*PARAM11002@L2 + VAR11084@L3*PARAM11002@L3 + VAR11084@L4*PARAM11002@L4 + VAR11084@L5*PARAM11002@L5 + VAR11084@L6*PARAM11002@L6 + VAR11084@L7*PARAM11002@L7 ) / ( PARAM11002@L1 + PARAM11002@L2 + PARAM11002@L3 + PARAM11002@L4 + PARAM11002@L5 + PARAM11002@L6 + PARAM11002@L7 )",
+    "source_reference": "descritivo_das_variáveis_yield_v4.xlsx",
+    "status": "PUBLISHED"
+  },
+  {
+    "equation_id": "EQ11128",
+    "target_variable_id": "VAR11148",
+    "version": 1,
+    "scope_type": "linha_grupo",
+    "scope_value": "L1_L7",
+    "expression": "( PARAM11002@L1*VAR11085@L1 + PARAM11002@L2*VAR11085@L2 + PARAM11002@L3*VAR11085@L3 + PARAM11002@L4*VAR11085@L4 + PARAM11002@L5*VAR11085@L5 + PARAM11002@L6*VAR11085@L6 + PARAM11002@L7*VAR11085@L7 ) / ( VAR11085@L1 + VAR11085@L2 + VAR11085@L3 + VAR11085@L4 + VAR11085@L5 + VAR11085@L6 + VAR11085@L7 )",
+    "source_reference": "descritivo_das_variáveis_yield_v4.xlsx",
+    "status": "PUBLISHED"
+  },
+  {
+    "equation_id": "EQ11129",
+    "target_variable_id": "VAR11149",
+    "version": 1,
+    "scope_type": "linha_grupo",
+    "scope_value": "L1_L7",
+    "expression": "( VAR11085@L1*VAR11086@L1 + VAR11085@L2*VAR11086@L2 + VAR11085@L3*VAR11086@L3 + VAR11085@L4*VAR11086@L4 + VAR11085@L5*VAR11086@L5 + VAR11085@L6*VAR11086@L6 + VAR11085@L7*VAR11086@L7 ) / ( VAR11086@L1 + VAR11086@L2 + VAR11086@L3 + VAR11086@L4 + VAR11086@L5 + VAR11086@L6 + VAR11086@L7 )",
+    "source_reference": "descritivo_das_variáveis_yield_v4.xlsx",
+    "status": "PUBLISHED"
+  },
+  {
+    "equation_id": "EQ11130",
+    "target_variable_id": "VAR11150",
+    "version": 1,
+    "scope_type": "linha_grupo",
+    "scope_value": "L1_L7",
+    "expression": "( VAR11086@L1*VAR11087@L1 + VAR11086@L2*VAR11087@L2 + VAR11086@L3*VAR11087@L3 + VAR11086@L4*VAR11087@L4 + VAR11086@L5*VAR11087@L5 + VAR11086@L6*VAR11087@L6 + VAR11086@L7*VAR11087@L7 ) / ( VAR11087@L1 + VAR11087@L2 + VAR11087@L3 + VAR11087@L4 + VAR11087@L5 + VAR11087@L6 + VAR11087@L7 )",
+    "source_reference": "descritivo_das_variáveis_yield_v4.xlsx",
+    "status": "PUBLISHED"
+  },
+  {
+    "equation_id": "EQ11131",
+    "target_variable_id": "VAR11151",
+    "version": 1,
+    "scope_type": "linha_grupo",
+    "scope_value": "L1_L7",
+    "expression": "( VAR11087@L1*VAR11088@L1 + VAR11087@L2*VAR11088@L2 + VAR11087@L3*VAR11088@L3 + VAR11087@L4*VAR11088@L4 + VAR11087@L5*VAR11088@L5 + VAR11087@L6*VAR11088@L6 + VAR11087@L7*VAR11088@L7 ) / ( VAR11088@L1 + VAR11088@L2 + VAR11088@L3 + VAR11088@L4 + VAR11088@L5 + VAR11088@L6 + VAR11088@L7 )",
+    "source_reference": "descritivo_das_variáveis_yield_v4.xlsx",
+    "status": "PUBLISHED"
+  },
+  {
+    "equation_id": "EQ11132",
+    "target_variable_id": "VAR11152",
+    "version": 1,
+    "scope_type": "linha_grupo",
+    "scope_value": "L1_L7",
+    "expression": "( VAR11088@L1*VAR11089@L1 + VAR11088@L2*VAR11089@L2 + VAR11088@L3*VAR11089@L3 + VAR11088@L4*VAR11089@L4 + VAR11088@L5*VAR11089@L5 + VAR11088@L6*VAR11089@L6 + VAR11088@L7*VAR11089@L7 ) / ( VAR11089@L1 + VAR11089@L2 + VAR11089@L3 + VAR11089@L4 + VAR11089@L5 + VAR11089@L6 + VAR11089@L7 )",
+    "source_reference": "descritivo_das_variáveis_yield_v4.xlsx",
+    "status": "PUBLISHED"
+  },
+  {
+    "equation_id": "EQ11133",
+    "target_variable_id": "VAR11153",
+    "version": 1,
+    "scope_type": "linha_grupo",
+    "scope_value": "L1_L7",
+    "expression": "( VAR11089@L1*VAR11090@L1 + VAR11089@L2*VAR11090@L2 + VAR11089@L3*VAR11090@L3 + VAR11089@L4*VAR11090@L4 + VAR11089@L5*VAR11090@L5 + VAR11089@L6*VAR11090@L6 + VAR11089@L7*VAR11090@L7 ) / ( VAR11090@L1 + VAR11090@L2 + VAR11090@L3 + VAR11090@L4 + VAR11090@L5 + VAR11090@L6 + VAR11090@L7 )",
+    "source_reference": "descritivo_das_variáveis_yield_v4.xlsx",
+    "status": "PUBLISHED"
+  },
+  {
+    "equation_id": "EQ11134",
+    "target_variable_id": "VAR11154",
+    "version": 1,
+    "scope_type": "linha_grupo",
+    "scope_value": "L1_L7",
+    "expression": "( VAR11090@L1*VAR11091@L1 + VAR11090@L2*VAR11091@L2 + VAR11090@L3*VAR11091@L3 + VAR11090@L4*VAR11091@L4 + VAR11090@L5*VAR11091@L5 + VAR11090@L6*VAR11091@L6 + VAR11090@L7*VAR11091@L7 ) / ( VAR11091@L1 + VAR11091@L2 + VAR11091@L3 + VAR11091@L4 + VAR11091@L5 + VAR11091@L6 + VAR11091@L7 )",
+    "source_reference": "descritivo_das_variáveis_yield_v4.xlsx",
+    "status": "PUBLISHED"
+  },
+  {
+    "equation_id": "EQ11135",
+    "target_variable_id": "VAR11155",
+    "version": 1,
+    "scope_type": "linha_grupo",
+    "scope_value": "L1_L7",
+    "expression": "( VAR11091@L1*VAR11092@L1 + VAR11091@L2*VAR11092@L2 + VAR11091@L3*VAR11092@L3 + VAR11091@L4*VAR11092@L4 + VAR11091@L5*VAR11092@L5 + VAR11091@L6*VAR11092@L6 + VAR11091@L7*VAR11092@L7 ) / ( VAR11092@L1 + VAR11092@L2 + VAR11092@L3 + VAR11092@L4 + VAR11092@L5 + VAR11092@L6 + VAR11092@L7 )",
+    "source_reference": "descritivo_das_variáveis_yield_v4.xlsx",
+    "status": "PUBLISHED"
+  },
+  {
+    "equation_id": "EQ11136",
+    "target_variable_id": "VAR11156",
+    "version": 1,
+    "scope_type": "linha_grupo",
+    "scope_value": "L1_L7",
+    "expression": "( VAR11092@L1*VAR11093@L1 + VAR11092@L2*VAR11093@L2 + VAR11092@L3*VAR11093@L3 + VAR11092@L4*VAR11093@L4 + VAR11092@L5*VAR11093@L5 + VAR11092@L6*VAR11093@L6 + VAR11092@L7*VAR11093@L7 ) / ( VAR11093@L1 + VAR11093@L2 + VAR11093@L3 + VAR11093@L4 + VAR11093@L5 + VAR11093@L6 + VAR11093@L7 )",
+    "source_reference": "descritivo_das_variáveis_yield_v4.xlsx",
+    "status": "PUBLISHED"
+  },
+  {
+    "equation_id": "EQ11137",
+    "target_variable_id": "VAR11157",
+    "version": 1,
+    "scope_type": "linha_grupo",
+    "scope_value": "L1_L7",
+    "expression": "( VAR11093@L1*VAR11094@L1 + VAR11093@L2*VAR11094@L2 + VAR11093@L3*VAR11094@L3 + VAR11093@L4*VAR11094@L4 + VAR11093@L5*VAR11094@L5 + VAR11093@L6*VAR11094@L6 + VAR11093@L7*VAR11094@L7 ) / ( VAR11094@L1 + VAR11094@L2 + VAR11094@L3 + VAR11094@L4 + VAR11094@L5 + VAR11094@L6 + VAR11094@L7 )",
+    "source_reference": "descritivo_das_variáveis_yield_v4.xlsx",
+    "status": "PUBLISHED"
+  },
+  {
+    "equation_id": "EQ11138",
+    "target_variable_id": "VAR11158",
+    "version": 1,
+    "scope_type": "linha_grupo",
+    "scope_value": "L1_L7",
+    "expression": "VAR11094@L1 + VAR11094@L2 + VAR11094@L3 + VAR11094@L4 + VAR11094@L5 + VAR11094@L6 + VAR11094@L7",
+    "source_reference": "descritivo_das_variáveis_yield_v4.xlsx",
     "status": "PUBLISHED"
   }
 ]

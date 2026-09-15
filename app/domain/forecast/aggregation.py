@@ -86,3 +86,38 @@ class AggregationRule:
                 "window_start_date deve ser anterior ou igual a "
                 "window_end_date."
             )
+
+
+class AggregationRuleRegistry:
+    """
+    Registry em memória de AggregationRule, indexado por
+    `aggregation_rule_id` — mesmo padrão já usado por
+    `EquationDefinitionRegistry`/`VariableDefinitionRegistry`/etc.
+
+    Não é um Repository: sem I/O, sem persistência, apenas o
+    container que o SeedLoader preenche a partir do seed.
+    """
+
+    def __init__(self):
+        self._rules: dict[str, AggregationRule] = {}
+
+    def add(self, rule: AggregationRule) -> None:
+        if rule.aggregation_rule_id in self._rules:
+            raise ValueError(
+                "aggregation_rule_id já cadastrado: "
+                f"{rule.aggregation_rule_id}"
+            )
+
+        self._rules[rule.aggregation_rule_id] = rule
+
+    def get(self, aggregation_rule_id: str) -> AggregationRule:
+        return self._rules[aggregation_rule_id]
+
+    def all(self) -> list[AggregationRule]:
+        return list(self._rules.values())
+
+    def __len__(self) -> int:
+        return len(self._rules)
+
+    def __iter__(self):
+        return iter(self._rules.values())

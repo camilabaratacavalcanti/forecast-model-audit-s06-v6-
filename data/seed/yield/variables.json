@@ -2860,11 +2860,23 @@
     "variable_name": "tanque",
     "description": "Número de tanques/precipitadores em operação na linha (entrada diária).",
     "unit": "-",
-    "variable_type": "entrada",
+    "variable_type": "entrada_externa",
     "frequency": "diário",
     "scope_type": "linha",
     "scope_value": "L1_L7",
     "source_reference": "descritivo_das_variáveis_yield.xlsx",
+    "status": "ativo"
+  },
+  {
+    "variable_id": "VAR11240",
+    "variable_name": "ltp_tc",
+    "description": "Teor de soda cáustica total associado ao LTP (Total Caustic) — entrada diária por linha.",
+    "unit": "g/l",
+    "variable_type": "entrada_externa",
+    "frequency": "diário",
+    "scope_type": "linha",
+    "scope_value": "L1_L7",
+    "source_reference": "descritivo_das_variáveis_yield_v4.xlsx",
     "status": "ativo"
   }
 ]

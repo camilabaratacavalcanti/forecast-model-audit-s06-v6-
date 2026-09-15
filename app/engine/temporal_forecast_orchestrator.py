@@ -12,6 +12,8 @@ Objetivo (Fase C):
 
         run_date
             ↓
+        start_execution (Execution.start, status=RUNNING)
+            ↓
         TemporalForecastOrchestrator
             ↓
         ┌──────────────────┬──────────────────────────┐
@@ -21,16 +23,30 @@ Objetivo (Fase C):
     (TimePeriodResolver) (ForecastEngine)     (TemporalAggregationService)
                             │                           │
                             ▼                           ▼
-                    DIRECT ForecastValue       Aggregated ForecastValue
+                 direct_forecast_value       Aggregated ForecastValue
                             │                           │
                             └─────────────┬─────────────┘
                                           ▼
                                 ForecastValueRegistry (opcional)
+                                          │
+                                          ▼
+                        execution.complete() / execution.fail()
+                          (decidido pelo chamador, não automático)
+
+    Uma Execution (TD-C02) contextualiza a rodada — não calcula nada
+    e não é armazenada dentro de ForecastValue: apenas seu
+    `execution_id` é propagado como proveniência. `ForecastValueRegistry`
+    (TD-C01/TD-C03) usa esse `execution_id` para saber quando um novo
+    valor está substituindo o vigente, arquivando o anterior em
+    histórico em vez de rejeitá-lo.
 
 Não é responsabilidade deste componente:
-    - persistir resultados (ver ForecastValueRegistry: apenas memória);
+    - persistir resultados ou Executions (ver ForecastValueRegistry:
+      apenas memória, sem Repository/Azure);
     - decidir regras de negócio de agregação (isso pertence a cada
       AggregationRule, definida pelo chamador);
+    - transicionar automaticamente o status de uma Execution em caso
+      de erro (ver docstring de `run_aggregation`);
     - alterar EquationDefinition/EquationInstance/DependencyGraph/
       ExpressionEvaluator/EquationEngine — nenhum deles é modificado
       ou tem sua semântica alterada por este módulo.
@@ -40,6 +56,7 @@ from datetime import date
 
 from app.domain.equations.registry import EquationDefinitionRegistry
 from app.domain.forecast.aggregation import AggregationRule
+from app.domain.forecast.execution import Execution
 from app.domain.forecast.models import ForecastValue
 from app.domain.variables.registry import VariableDefinitionRegistry
 from app.engine.calculation_context import CalculationContext
@@ -70,6 +87,31 @@ class TemporalForecastOrchestrator:
         )
         self.time_period_resolver = (
             time_period_resolver or TimePeriodResolver()
+        )
+
+    def start_execution(
+        self,
+        run_date: date,
+        model_version: str = "v1",
+        execution_id: str | None = None,
+    ) -> Execution:
+        """
+        Cria uma nova Execution (status RUNNING) para `run_date`.
+
+        O TemporalForecastOrchestrator é responsável por CRIAR a
+        Execution (esta chamada) — não por persisti-la nem por
+        decidir seu ciclo de vida além disso: transições de status
+        (`execution.complete()`/`execution.fail()`) são feitas pelo
+        chamador, no ponto em que ele sabe se a rodada terminou com
+        sucesso ou falhou (ver docstring de `run_aggregation` sobre
+        por que este componente não envolve as chamadas em
+        try/except automaticamente).
+        """
+
+        return Execution.start(
+            run_date=run_date,
+            model_version=model_version,
+            execution_id=execution_id,
         )
 
     def available_periods(
@@ -175,7 +217,7 @@ class TemporalForecastOrchestrator:
         variable_definition_registry: VariableDefinitionRegistry,
         calculation_context: CalculationContext,
         run_date: date,
-        execution_id: str | None = None,
+        execution: Execution | None = None,
     ) -> ForecastValue:
         """
         Constrói o ForecastValue (DIRECT, aggregation_rule_id=None)
@@ -190,7 +232,16 @@ class TemporalForecastOrchestrator:
         efetivo (VariableDefinition.frequency +
         TimePeriodResolver.effective_window), sem duplicar nenhuma
         regra de calendário nova.
+
+        `execution`, quando informado, identifica a Execution que
+        produziu este valor (seu `execution_id` é copiado para o
+        ForecastValue resultante — nunca a Execution inteira, que
+        não é armazenada em ForecastValue). `execution.run_date`
+        deve ser exatamente `run_date`: uma Execution pertence a um
+        único run_date, por contrato.
         """
+
+        self._validate_execution_run_date(execution, run_date)
 
         variable_definition = variable_definition_registry.get(
             variable_id
@@ -218,8 +269,11 @@ class TemporalForecastOrchestrator:
             forecast_year=forecast_year,
             period_id=period.period_id,
             value=value,
-            execution_id=execution_id,
+            execution_id=(
+                execution.execution_id if execution else None
+            ),
             aggregation_rule_id=None,
+            run_date=run_date,
         )
 
     def run_aggregation(
@@ -229,13 +283,27 @@ class TemporalForecastOrchestrator:
         scope_type: str | None,
         scope_value: str | None,
         run_date: date,
-        execution_id: str | None = None,
+        execution: Execution | None = None,
     ) -> ForecastValue:
         """
         Executa uma agregação TEMPORAL_AGGREGATED para `run_date`:
         delega integralmente a `TemporalAggregationService.aggregate`
         — nenhum algoritmo de agregação é reimplementado aqui.
+
+        `execution`, quando informado, segue a mesma regra de
+        `direct_forecast_value`: apenas seu `execution_id` é
+        propagado ao ForecastValue resultante.
+
+        Esta chamada NÃO envolve `execution.complete()`/`.fail()`
+        automaticamente: se o cálculo falhar, a exceção original
+        (ex.: VariableNotFoundError) propaga sem ser interceptada —
+        decidir se isso significa que a Execution falhou é
+        responsabilidade de quem chamou, no seu próprio bloco
+        try/except, exatamente como o restante da plataforma trata
+        erros (fail-fast, sem captura silenciosa em nenhuma camada).
         """
+
+        self._validate_execution_run_date(execution, run_date)
 
         return self.aggregation_service.aggregate(
             rule=rule,
@@ -243,5 +311,21 @@ class TemporalForecastOrchestrator:
             scope_type=scope_type,
             scope_value=scope_value,
             run_date=run_date,
-            execution_id=execution_id,
+            execution_id=(
+                execution.execution_id if execution else None
+            ),
         )
+
+    @staticmethod
+    def _validate_execution_run_date(
+        execution: Execution | None,
+        run_date: date,
+    ) -> None:
+        if execution is not None and execution.run_date != run_date:
+            raise ValueError(
+                "run_date informado "
+                f"({run_date.isoformat()}) não corresponde ao "
+                "run_date da Execution "
+                f"({execution.run_date.isoformat()}): uma "
+                "Execution pertence a um único run_date."
+            )

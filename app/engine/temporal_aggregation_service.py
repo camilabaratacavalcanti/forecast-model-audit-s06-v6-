@@ -140,6 +140,7 @@ class TemporalAggregationService:
             value=result,
             execution_id=execution_id,
             aggregation_rule_id=rule.aggregation_rule_id,
+            run_date=run_date,
         )
 
     def _resolve_window(

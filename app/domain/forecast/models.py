@@ -1,4 +1,5 @@
 from dataclasses import dataclass
+from datetime import date
 
 
 @dataclass(frozen=True)
@@ -25,6 +26,14 @@ class ForecastValue:
     resultados colidiriam na mesma identidade lógica. Um ForecastValue
     calculado DIRECT (sem agregação) tem aggregation_rule_id=None.
 
+    `run_date`, como `execution_id`, é proveniência — não faz parte
+    da identidade. Foi adicionado (TD-C02) porque, sem ele, não havia
+    como reconstruir "até que dia este número é válido" a partir de
+    um ForecastValue já calculado (um período mensal em andamento
+    recalculado em dias diferentes produz o mesmo period_id com
+    valores diferentes; sem run_date, os dois resultados eram
+    indistinguíveis exceto pelo value).
+
     Este modelo não é persistido (sem Azure, sem repository próprio
     nesta fase) — representa apenas a forma mínima de um resultado
     temporal em memória.
@@ -39,6 +48,7 @@ class ForecastValue:
     value: int | float
     execution_id: str | None = None
     aggregation_rule_id: str | None = None
+    run_date: date | None = None
 
     def identity(
         self,
