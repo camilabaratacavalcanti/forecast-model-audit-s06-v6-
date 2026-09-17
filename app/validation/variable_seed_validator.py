@@ -93,7 +93,29 @@ ALLOWED_UNITS = {
     "R$",
     "$",
     "-",
+    # Bloco Production (auditoria descritivo_das_variáveis_production_v1.xlsx):
+    "h",
+    "tpd",
+    "Mtpy",
+    "dias",
+    "kg/t",
 }
+
+
+# Aliases de unidade que representam a MESMA grandeza física que uma
+# unidade já canônica em ALLOWED_UNITS, apenas com grafia diferente
+# na fonte (workbook). Normalizados para a forma canônica no
+# carregamento do seed (`load_variables_from_seed`), antes de
+# qualquer validação -- não é uma conversão numérica (nenhum fator
+# multiplicativo), apenas troca de rótulo textual.
+UNIT_ALIASES = {
+    "tph": "t/h",
+}
+
+
+def normalize_unit(unit):
+    """Normaliza um alias de unidade para sua forma canônica."""
+    return UNIT_ALIASES.get(unit, unit)
 
 
 ALLOWED_SCOPE_VALUES = {
@@ -108,6 +130,7 @@ ALLOWED_SCOPE_VALUES = {
     "L4_L5",
     "L6_L7",
     "L1_L7",
+    "PLANTA",
 }
 
 
@@ -223,6 +246,11 @@ def load_variables_from_seed(seed_path: Path) -> list[dict]:
     Carrega todas as variáveis existentes nos blocos do seed.
 
     O nome do bloco é acrescentado internamente em '_block'.
+
+    A unidade de cada variável é normalizada (`normalize_unit`) neste
+    ponto, antes de qualquer validação ou construção de domain
+    object -- ex.: "tph" (grafia do workbook) vira "t/h" (forma
+    canônica), sem nenhuma conversão numérica.
     """
     variables = []
 
@@ -235,6 +263,10 @@ def load_variables_from_seed(seed_path: Path) -> list[dict]:
         for variable in block_variables:
             variable_with_block = variable.copy()
             variable_with_block["_block"] = block_name
+            if "unit" in variable_with_block:
+                variable_with_block["unit"] = normalize_unit(
+                    variable_with_block["unit"]
+                )
             variables.append(variable_with_block)
 
     return variables
@@ -508,7 +540,12 @@ def validate_scope_type_value_combination(
 
         linha       -> L1 ... L7 ou L1_L7
         linha_grupo -> L1_L3, L4_L5, L6_L7 ou L1_L7
-        área/planta/global -> sem scope_value específico de linha
+        área/global -> sem scope_value específico de linha
+        planta      -> scope_value deve ser exatamente "PLANTA"
+                       (escopo singular, mas com um scope_value
+                       concreto — não None — pois é o valor exigido
+                       por ScopeResolver.PLANT_SCOPE para resolver a
+                       instância; ver ScopeResolver._resolve_plant_scope)
     """
     errors = []
 
@@ -547,13 +584,21 @@ def validate_scope_type_value_combination(
                     f"{variable_id}"
                 )
 
-        elif scope_type in SCOPELESS_SCOPE_TYPES | {"planta"}:
+        elif scope_type in SCOPELESS_SCOPE_TYPES:
             if scope_value is not None:
                 errors.append(
                     f"scope_type '{scope_type}' must not have a "
                     f"line-specific scope_value in "
                     f"{block}/variables.json for variable "
                     f"{variable_id}"
+                )
+
+        elif scope_type == "planta":
+            if scope_value != "PLANTA":
+                errors.append(
+                    f"scope_type 'planta' requires scope_value "
+                    f"'PLANTA' in {block}/variables.json for "
+                    f"variable {variable_id}"
                 )
 
     return errors
@@ -765,6 +810,10 @@ def validate_seed(seed_path: Path) -> dict:
         for variable in data:
             variable_with_block = variable.copy()
             variable_with_block["_block"] = block_name
+            if "unit" in variable_with_block:
+                variable_with_block["unit"] = normalize_unit(
+                    variable_with_block["unit"]
+                )
             variables.append(variable_with_block)
 
     # --------------------------------------------------------

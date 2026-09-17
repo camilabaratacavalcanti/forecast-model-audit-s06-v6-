@@ -46,6 +46,16 @@ ALLOWED_UNARY_OPERATORS = {
 }
 
 
+ALLOWED_COMPARE_OPERATORS = {
+    ast.Gt,
+    ast.GtE,
+    ast.Lt,
+    ast.LtE,
+    ast.Eq,
+    ast.NotEq,
+}
+
+
 class ExpressionParser:
     """
     Responsável por analisar e validar expressões
@@ -127,6 +137,8 @@ class ExpressionParser:
                     ast.BinOp,
                     ast.UnaryOp,
                     ast.Load,
+                    ast.IfExp,
+                    ast.Compare,
                 ),
             ):
                 continue
@@ -143,6 +155,14 @@ class ExpressionParser:
                 if type(node) not in ALLOWED_UNARY_OPERATORS:
                     raise UnsafeExpressionError(
                         "Operador unário não permitido: "
+                        f"{type(node).__name__}"
+                    )
+                continue
+
+            if isinstance(node, ast.cmpop):
+                if type(node) not in ALLOWED_COMPARE_OPERATORS:
+                    raise UnsafeExpressionError(
+                        "Operador de comparação não permitido: "
                         f"{type(node).__name__}"
                     )
                 continue

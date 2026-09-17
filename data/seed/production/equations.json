@@ -1,0 +1,262 @@
+[
+  {
+    "equation_id": "EQ12001",
+    "target_variable_id": "VAR12016",
+    "version": 1,
+    "scope_type": "linha",
+    "scope_value": "L1_L7",
+    "expression": "(( ((VAR12002*VAR12003) + (VAR12004*VAR12005) + (VAR12006*VAR12007) + (VAR12008*VAR12009)) + (24 - VAR12003 - VAR12005 - VAR12007 - VAR12009) * PARAM12001 ) / 24 * VAR12001) if ( ((VAR12002*VAR12003) + (VAR12004*VAR12005) + (VAR12006*VAR12007) + (VAR12008*VAR12009)) + (24 - VAR12003 - VAR12005 - VAR12007 - VAR12009) * PARAM12001 ) / 24 >= PARAM12001 else ( ((VAR12002*VAR12003) + (VAR12004*VAR12005) + (VAR12006*VAR12007) + (VAR12008*VAR12009)) + (24 - VAR12003 - VAR12005 - VAR12007 - VAR12009) * PARAM12001 ) / 24",
+    "source_reference": "descritivo_das_variáveis_production_v1.xlsx",
+    "status": "PUBLISHED"
+  },
+  {
+    "equation_id": "EQ12002",
+    "target_variable_id": "VAR12018",
+    "version": 1,
+    "scope_type": "linha_grupo",
+    "scope_value": "L1_L7",
+    "expression": "VAR12016@L1 + VAR12016@L2 + VAR12016@L3 + VAR12016@L4 + VAR12016@L5 + VAR12016@L6 + VAR12016@L7",
+    "source_reference": "descritivo_das_variáveis_production_v1.xlsx",
+    "status": "PUBLISHED"
+  },
+  {
+    "equation_id": "EQ12003",
+    "target_variable_id": "VAR12021",
+    "version": 1,
+    "scope_type": "linha_grupo",
+    "scope_value": "L1_L7",
+    "expression": "( VAR11001@L1 * VAR12016@L1 + VAR11001@L2 * VAR12016@L2 + VAR11001@L3 * VAR12016@L3 + VAR11001@L4 * VAR12016@L4 + VAR11001@L5 * VAR12016@L5 + VAR11001@L6 * VAR12016@L6 + VAR11001@L7 * VAR12016@L7 ) / ( VAR12016@L1 + VAR12016@L2 + VAR12016@L3 + VAR12016@L4 + VAR12016@L5 + VAR12016@L6 + VAR12016@L7 )",
+    "source_reference": "descritivo_das_variáveis_production_v1.xlsx",
+    "status": "PUBLISHED"
+  },
+  {
+    "equation_id": "EQ12004",
+    "target_variable_id": "VAR12024",
+    "version": 1,
+    "scope_type": "linha",
+    "scope_value": "L1_L7",
+    "expression": "VAR12016 / PARAM12001",
+    "source_reference": "descritivo_das_variáveis_production_v1.xlsx",
+    "status": "PUBLISHED"
+  },
+  {
+    "equation_id": "EQ12005",
+    "target_variable_id": "VAR12026",
+    "version": 1,
+    "scope_type": "linha_grupo",
+    "scope_value": "L1_L7",
+    "expression": "( (VAR12024@L1 * PARAM12001@L1) + (VAR12024@L2 * PARAM12001@L2) + (VAR12024@L3 * PARAM12001@L3) + (VAR12024@L4 * PARAM12001@L4) + (VAR12024@L5 * PARAM12001@L5) + (VAR12024@L6 * PARAM12001@L6) + (VAR12024@L7 * PARAM12001@L7) ) / ( PARAM12001@L1 + PARAM12001@L2 + PARAM12001@L3 + PARAM12001@L4 + PARAM12001@L5 + PARAM12001@L6 + PARAM12001@L7 )",
+    "source_reference": "descritivo_das_variáveis_production_v1.xlsx",
+    "status": "PUBLISHED"
+  },
+  {
+    "equation_id": "EQ12006",
+    "target_variable_id": "VAR12029",
+    "version": 1,
+    "scope_type": "linha",
+    "scope_value": "L1",
+    "expression": "((VAR11001@L1 + VAR11001@L2 + VAR11001@L3)/3) + PARAM12002",
+    "source_reference": "descritivo_das_variáveis_production_v1.xlsx",
+    "status": "PUBLISHED"
+  },
+  {
+    "equation_id": "EQ12007",
+    "target_variable_id": "VAR12030",
+    "version": 1,
+    "scope_type": "linha",
+    "scope_value": "L2",
+    "expression": "((VAR11001@L1 + VAR11001@L2 + VAR11001@L3)/3) + PARAM12002",
+    "source_reference": "descritivo_das_variáveis_production_v1.xlsx",
+    "status": "PUBLISHED"
+  },
+  {
+    "equation_id": "EQ12008",
+    "target_variable_id": "VAR12031",
+    "version": 1,
+    "scope_type": "linha",
+    "scope_value": "L3",
+    "expression": "((VAR11001@L1 + VAR11001@L2 + VAR11001@L3)/3) + PARAM12002",
+    "source_reference": "descritivo_das_variáveis_production_v1.xlsx",
+    "status": "PUBLISHED"
+  },
+  {
+    "equation_id": "EQ12009",
+    "target_variable_id": "VAR12032",
+    "version": 1,
+    "scope_type": "linha",
+    "scope_value": "L4",
+    "expression": "((VAR11001@L4 + VAR11001@L5)/2) + PARAM12002",
+    "source_reference": "descritivo_das_variáveis_production_v1.xlsx",
+    "status": "PUBLISHED"
+  },
+  {
+    "equation_id": "EQ12010",
+    "target_variable_id": "VAR12033",
+    "version": 1,
+    "scope_type": "linha",
+    "scope_value": "L5",
+    "expression": "((VAR11001@L4 + VAR11001@L5)/2) + PARAM12002",
+    "source_reference": "descritivo_das_variáveis_production_v1.xlsx",
+    "status": "PUBLISHED"
+  },
+  {
+    "equation_id": "EQ12011",
+    "target_variable_id": "VAR12034",
+    "version": 1,
+    "scope_type": "linha",
+    "scope_value": "L6",
+    "expression": "((VAR11001@L6 + VAR11001@L7)/2) + PARAM12002",
+    "source_reference": "descritivo_das_variáveis_production_v1.xlsx",
+    "status": "PUBLISHED"
+  },
+  {
+    "equation_id": "EQ12012",
+    "target_variable_id": "VAR12035",
+    "version": 1,
+    "scope_type": "linha",
+    "scope_value": "L7",
+    "expression": "((VAR11001@L6 + VAR11001@L7)/2) + PARAM12002",
+    "source_reference": "descritivo_das_variáveis_production_v1.xlsx",
+    "status": "PUBLISHED"
+  },
+  {
+    "equation_id": "EQ12013",
+    "target_variable_id": "VAR12043",
+    "version": 1,
+    "scope_type": "linha_grupo",
+    "scope_value": "L1_L7",
+    "expression": "( (VAR12029@L1 * VAR12016@L1) + (VAR12030@L2 * VAR12016@L2) + (VAR12031@L3 * VAR12016@L3) + (VAR12032@L4 * VAR12016@L4) + (VAR12033@L5 * VAR12016@L5) + (VAR12034@L6 * VAR12016@L6) + (VAR12035@L7 * VAR12016@L7) ) / ( VAR12016@L1 + VAR12016@L2 + VAR12016@L3 + VAR12016@L4 + VAR12016@L5 + VAR12016@L6 + VAR12016@L7 )",
+    "source_reference": "descritivo_das_variáveis_production_v1.xlsx",
+    "status": "PUBLISHED"
+  },
+  {
+    "equation_id": "EQ12014",
+    "target_variable_id": "VAR12046",
+    "version": 1,
+    "scope_type": "linha",
+    "scope_value": "L1",
+    "expression": "VAR12016 * VAR12029 * PARAM12003 * 1.0902 * 24 / 1000",
+    "source_reference": "descritivo_das_variáveis_production_v1.xlsx",
+    "status": "PUBLISHED"
+  },
+  {
+    "equation_id": "EQ12015",
+    "target_variable_id": "VAR12047",
+    "version": 1,
+    "scope_type": "linha",
+    "scope_value": "L2",
+    "expression": "VAR12016 * VAR12030 * PARAM12003 * 1.0902 * 24 / 1000",
+    "source_reference": "descritivo_das_variáveis_production_v1.xlsx",
+    "status": "PUBLISHED"
+  },
+  {
+    "equation_id": "EQ12016",
+    "target_variable_id": "VAR12048",
+    "version": 1,
+    "scope_type": "linha",
+    "scope_value": "L3",
+    "expression": "VAR12016 * VAR12031 * PARAM12003 * 1.0902 * 24 / 1000",
+    "source_reference": "descritivo_das_variáveis_production_v1.xlsx",
+    "status": "PUBLISHED"
+  },
+  {
+    "equation_id": "EQ12017",
+    "target_variable_id": "VAR12049",
+    "version": 1,
+    "scope_type": "linha",
+    "scope_value": "L4",
+    "expression": "VAR12016 * VAR12032 * PARAM12003 * 1.0902 * 24 / 1000",
+    "source_reference": "descritivo_das_variáveis_production_v1.xlsx",
+    "status": "PUBLISHED"
+  },
+  {
+    "equation_id": "EQ12018",
+    "target_variable_id": "VAR12050",
+    "version": 1,
+    "scope_type": "linha",
+    "scope_value": "L5",
+    "expression": "VAR12016 * VAR12033 * PARAM12003 * 1.0902 * 24 / 1000",
+    "source_reference": "descritivo_das_variáveis_production_v1.xlsx",
+    "status": "PUBLISHED"
+  },
+  {
+    "equation_id": "EQ12019",
+    "target_variable_id": "VAR12051",
+    "version": 1,
+    "scope_type": "linha",
+    "scope_value": "L6",
+    "expression": "VAR12016 * VAR12034 * PARAM12003 * 1.0902 * 24 / 1000",
+    "source_reference": "descritivo_das_variáveis_production_v1.xlsx",
+    "status": "PUBLISHED"
+  },
+  {
+    "equation_id": "EQ12020",
+    "target_variable_id": "VAR12052",
+    "version": 1,
+    "scope_type": "linha",
+    "scope_value": "L7",
+    "expression": "VAR12016 * VAR12035 * PARAM12003 * 1.0902 * 24 / 1000",
+    "source_reference": "descritivo_das_variáveis_production_v1.xlsx",
+    "status": "PUBLISHED"
+  },
+  {
+    "equation_id": "EQ12021",
+    "target_variable_id": "VAR12060",
+    "version": 1,
+    "scope_type": "linha_grupo",
+    "scope_value": "L1_L7",
+    "expression": "VAR12046@L1 + VAR12047@L2 + VAR12048@L3 + VAR12049@L4 + VAR12050@L5 + VAR12051@L6 + VAR12052@L7",
+    "source_reference": "descritivo_das_variáveis_production_v1.xlsx",
+    "status": "PUBLISHED"
+  },
+  {
+    "equation_id": "EQ12022",
+    "target_variable_id": "VAR12064",
+    "version": 1,
+    "scope_type": "linha_grupo",
+    "scope_value": "L1_L7",
+    "expression": "VAR12060 * PARAM12004 / 1_000_000",
+    "source_reference": "descritivo_das_variáveis_production_v1.xlsx",
+    "status": "PUBLISHED"
+  },
+  {
+    "equation_id": "EQ12023",
+    "target_variable_id": "VAR12065",
+    "version": 1,
+    "scope_type": "linha_grupo",
+    "scope_value": "L1_L7",
+    "expression": "VAR12014 / 1000",
+    "source_reference": "descritivo_das_variáveis_production_v1.xlsx",
+    "status": "PUBLISHED"
+  },
+  {
+    "equation_id": "EQ12024",
+    "target_variable_id": "VAR12066",
+    "version": 1,
+    "scope_type": "linha_grupo",
+    "scope_value": "L1_L7",
+    "expression": "VAR12015 / 1000",
+    "source_reference": "descritivo_das_variáveis_production_v1.xlsx",
+    "status": "PUBLISHED"
+  },
+  {
+    "equation_id": "EQ12025",
+    "target_variable_id": "VAR12067",
+    "version": 1,
+    "scope_type": "linha_grupo",
+    "scope_value": "L1_L7",
+    "expression": "VAR12065",
+    "source_reference": "descritivo_das_variáveis_production_v1.xlsx",
+    "status": "PUBLISHED"
+  },
+  {
+    "equation_id": "EQ12026",
+    "target_variable_id": "VAR12083",
+    "version": 1,
+    "scope_type": "linha_grupo",
+    "scope_value": "L1_L7",
+    "expression": "100 * (VAR12075 / 24) / (PARAM12005 * 13)",
+    "source_reference": "descritivo_das_variáveis_production_v1.xlsx",
+    "status": "PUBLISHED"
+  }
+]

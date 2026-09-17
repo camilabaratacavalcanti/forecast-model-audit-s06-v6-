@@ -238,3 +238,31 @@ def test_extract_duplicate_scoped_dependencies(extractor):
     )
 
     assert result.parameters == frozenset()
+
+
+# ============================================================
+# TESTE 14 — DEPENDÊNCIAS EM EXPRESSÃO CONDICIONAL (BD-07)
+# ============================================================
+
+
+def test_extract_dependencies_from_all_if_expression_branches(
+    extractor,
+):
+    """
+    Uma expressão `X if cond else Y` tem dependências nos três
+    ramos (teste, verdadeiro, falso) -- todas devem ser
+    extraídas, mesmo que cada ramo referencie variáveis distintas.
+    """
+
+    result = extractor.extract(
+        "VAR12001@L1 * PARAM12001@L1 if VAR12001@L1 > VAR12002 "
+        "else VAR12002",
+    )
+
+    assert result.variables == frozenset(
+        {"VAR12001@L1", "VAR12002"},
+    )
+
+    assert result.parameters == frozenset(
+        {"PARAM12001@L1"},
+    )

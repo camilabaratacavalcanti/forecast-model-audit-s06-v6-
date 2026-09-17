@@ -29,10 +29,20 @@ from pathlib import Path
 import pytest
 
 from app.domain.equations.models import EquationDefinition
-from app.domain.equations.registry import EquationDefinitionRegistry
+from app.domain.equations.registry import (
+    EquationDefinitionRegistry,
+    EquationInstanceRegistry,
+)
 from app.domain.forecast.aggregation import AggregationRule
+from app.domain.parameters.registry import (
+    ParameterDefinitionRegistry,
+    ParameterInstanceRegistry,
+)
 from app.domain.variables.models import VariableDefinition
-from app.domain.variables.registry import VariableDefinitionRegistry
+from app.domain.variables.registry import (
+    VariableDefinitionRegistry,
+    VariableInstanceRegistry,
+)
 from app.engine.calculation_context import CalculationContext
 from app.engine.exceptions import (
     EmptyAggregationWindowError,
@@ -1005,6 +1015,64 @@ def test_aggregate_raises_empty_window_error_when_run_date_precedes_explicit_win
 # ============================================================
 
 
+def _is_yield_id(entity_id):
+    """
+    Filtra pela faixa de IDs reservada ao bloco Yield (11000-11999).
+    Necessário porque `SeedLoader` carrega TODOS os blocos do seed a
+    partir de `SEED_ROOT` (agora inclui também "production") -- este
+    teste audita especificamente o seed real do Yield, isolado dos
+    demais blocos, preservando seu objetivo original.
+    """
+
+    digits = "".join(ch for ch in entity_id if ch.isdigit())
+
+    return bool(digits) and 11000 <= int(digits) <= 11999
+
+
+def _filter_yield_block(loaded_seed):
+    (
+        variable_definitions, variable_instances,
+        parameter_definitions, parameter_instances,
+        equation_definitions, equation_instances,
+    ) = loaded_seed
+
+    yield_variable_definitions = VariableDefinitionRegistry()
+    for d in variable_definitions.all():
+        if _is_yield_id(d.variable_definition_id):
+            yield_variable_definitions.add(d)
+
+    yield_variable_instances = VariableInstanceRegistry()
+    for i in variable_instances.all():
+        if _is_yield_id(i.variable_definition_id):
+            yield_variable_instances.add(i)
+
+    yield_parameter_definitions = ParameterDefinitionRegistry()
+    for d in parameter_definitions.all():
+        if _is_yield_id(d.parameter_definition_id):
+            yield_parameter_definitions.add(d)
+
+    yield_parameter_instances = ParameterInstanceRegistry()
+    for i in parameter_instances.all():
+        if _is_yield_id(i.parameter_definition_id):
+            yield_parameter_instances.add(i)
+
+    yield_equation_definitions = EquationDefinitionRegistry()
+    for d in equation_definitions.all():
+        if _is_yield_id(d.equation_definition_id):
+            yield_equation_definitions.add(d)
+
+    yield_equation_instances = EquationInstanceRegistry()
+    for i in equation_instances.all():
+        if _is_yield_id(i.target_variable_id):
+            yield_equation_instances.add(i)
+
+    return (
+        yield_variable_definitions, yield_variable_instances,
+        yield_parameter_definitions, yield_parameter_instances,
+        yield_equation_definitions, yield_equation_instances,
+    )
+
+
 def test_yield_real_seed_preserved_and_aggregated_on_top_of_results():
     loader = SeedLoader(SEED_ROOT)
 
@@ -1015,7 +1083,9 @@ def test_yield_real_seed_preserved_and_aggregated_on_top_of_results():
         parameter_instances,
         equation_definitions,
         equation_instances,
-    ) = loader.load_all_definitions_and_instances()
+    ) = _filter_yield_block(
+        loader.load_all_definitions_and_instances()
+    )
 
     # O seed do Yield inclui, desde a implementação do v4
     # (EquationDefinitions L1_L7 + AggregationRules), 138

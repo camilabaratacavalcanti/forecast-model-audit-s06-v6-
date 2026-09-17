@@ -168,6 +168,25 @@ class TemporalAggregationService:
 
             return rule.window_start_date, window_end
 
+        if rule.aggregation_type == "MOVING_AVERAGE":
+            # Sem janela explícita: MOVING_AVERAGE é sempre
+            # progressiva dentro do mês corrente (1º dia do mês até
+            # run_date), independentemente de `target_frequency` —
+            # é o que permite uma variável "diária" cujo valor de
+            # cada dia é o acumulado do mês até aquele dia (ex.:
+            # `producao_planta_movel`). Não depende de
+            # `target_frequency` como as demais janelas: o
+            # `target_period` (usado abaixo em `aggregate()` para o
+            # period_id do resultado) continua vindo de
+            # `rule.target_frequency`, sem alteração — só a janela
+            # de LEITURA dos valores de origem muda aqui.
+            month_window = self.time_period_resolver.effective_window(
+                frequency="mensal",
+                run_date=run_date,
+            )
+
+            return month_window.start_date, month_window.end_date
+
         target_period = self.time_period_resolver.effective_window(
             frequency=rule.target_frequency,
             run_date=run_date,

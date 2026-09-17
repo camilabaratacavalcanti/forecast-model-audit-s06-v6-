@@ -73,6 +73,7 @@ ALLOWED_SCOPE_VALUES = {
     "L4_L5",
     "L6_L7",
     "L1_L7",
+    "PLANTA",
 }
 
 
@@ -387,7 +388,8 @@ def validate_scope_consistency(equations):
         scope_value deve ser None.
 
     planta:
-        scope_value deve ser None.
+        scope_value deve ser exatamente "PLANTA"
+        (ver ScopeResolver.PLANT_SCOPE).
     """
     errors = []
 
@@ -442,14 +444,18 @@ def validate_scope_consistency(equations):
                     "scope_value deve ser L1_L3, L4_L5, L6_L7 ou L1_L7."
                 )
 
-        elif scope_type in {
-            "área",
-            "planta",
-        }:
+        elif scope_type == "área":
             if scope_value is not None:
                 errors.append(
                     f"{index}: scope_type '{scope_type}' "
                     "não deve possuir scope_value específico."
+                )
+
+        elif scope_type == "planta":
+            if scope_value != "PLANTA":
+                errors.append(
+                    f"{index}: scope_type 'planta' exige "
+                    "scope_value 'PLANTA'."
                 )
 
     return errors

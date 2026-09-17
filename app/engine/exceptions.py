@@ -199,3 +199,35 @@ class ZeroWeightSumError(TemporalAggregationError):
     ser mascarado silenciosamente com um valor arbitrário como 0),
     então este erro é propagado explicitamente ao chamador.
     """
+
+
+class AmbiguousSpatialPrecedenceError(Exception):
+    """
+    Indica que dois ou mais candidatos espaciais (linha_grupo) que
+    contêm o mesmo scope consumidor não são comparáveis entre si por
+    inclusão de conjuntos (nem G1 ⊂ G2, nem G2 ⊂ G1).
+
+    A precedência espacial não pode ser determinada silenciosamente
+    nesse caso: este erro é propagado explicitamente em vez de
+    escolher arbitrariamente um dos candidatos.
+    """
+
+    def __init__(
+        self,
+        *,
+        scope_type: str,
+        scope_value: str,
+        candidate_a: str,
+        candidate_b: str,
+    ):
+        self.scope_type = scope_type
+        self.scope_value = scope_value
+        self.candidate_a = candidate_a
+        self.candidate_b = candidate_b
+
+        super().__init__(
+            f"Precedência espacial ambígua para "
+            f"{scope_type}/{scope_value}: os candidatos "
+            f"'{candidate_a}' e '{candidate_b}' não são "
+            f"comparáveis por inclusão de conjuntos."
+        )

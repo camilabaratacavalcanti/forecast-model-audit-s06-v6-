@@ -1,3 +1,5 @@
+from types import MappingProxyType
+
 import pytest
 
 from app.domain.equations.models import (
@@ -9,7 +11,10 @@ from app.domain.parameters.models import (
 from app.domain.variables.models import (
     VariableDefinition,
 )
-from app.engine.scope_resolver import ScopeResolver
+from app.engine.scope_resolver import (
+    ScopeResolver,
+    get_group_members,
+)
 
 
 @pytest.fixture
@@ -380,3 +385,188 @@ def test_l1_l7_has_different_behavior_for_line_and_line_group(
     assert group_result == [
         ("linha_grupo", "L1_L7"),
     ]
+
+
+# ============================================================
+# Decisão A — Planta (A-T01..A-T04)
+# ============================================================
+
+
+def test_planta_planta_is_the_canonical_representation(resolver):
+    """A-T01: ("planta", "PLANTA") é aceita e é a representação
+    canônica retornada pelo resolver."""
+
+    result = resolver.resolve_scopes(
+        scope_type="planta",
+        scope_value="PLANTA",
+    )
+
+    assert result == [("planta", "PLANTA")]
+    assert result == [ScopeResolver.CANONICAL_PLANT_SCOPE]
+
+
+def test_planta_none_is_not_equivalent_to_planta(resolver):
+    """A-T02: ("planta", None) não é uma representação válida/
+    equivalente de planta."""
+
+    with pytest.raises(ValueError, match="scope_value is required"):
+        resolver.resolve_scopes(
+            scope_type="planta",
+            scope_value=None,
+        )
+
+    assert ("planta", None) != ScopeResolver.CANONICAL_PLANT_SCOPE
+
+
+def test_planta_global_is_not_equivalent_to_planta(resolver):
+    """A-T03: ("planta", "GLOBAL") não é uma representação válida/
+    equivalente de planta."""
+
+    with pytest.raises(ValueError, match="Invalid plant scope_value"):
+        resolver.resolve_scopes(
+            scope_type="planta",
+            scope_value="GLOBAL",
+        )
+
+    assert ("planta", "GLOBAL") != ScopeResolver.CANONICAL_PLANT_SCOPE
+
+
+def test_canonical_plant_scope_is_stable_across_resolver_calls(
+    resolver,
+):
+    """A-T04: o resolver interno (_resolve_plant_scope) usa a mesma
+    constante CANONICAL_PLANT_SCOPE, sem duplicar a string "PLANTA"
+    como um literal independente."""
+
+    result = resolver.resolve_scopes(
+        scope_type="planta",
+        scope_value=ScopeResolver.PLANT_SCOPE,
+    )
+
+    assert result[0] is ScopeResolver.CANONICAL_PLANT_SCOPE
+    assert ScopeResolver.CANONICAL_PLANT_SCOPE == (
+        "planta",
+        ScopeResolver.PLANT_SCOPE,
+    )
+
+
+# ============================================================
+# Decisão B — Grupos / GROUP_MEMBERS (B-T01..B-T09)
+# ============================================================
+
+
+def test_all_four_groups_exist(resolver):
+    """B-T01: os 4 grupos existem em GROUP_MEMBERS."""
+
+    assert set(ScopeResolver.GROUP_MEMBERS.keys()) == {
+        "L1_L7",
+        "L1_L3",
+        "L4_L5",
+        "L6_L7",
+    }
+
+
+def test_group_members_l1_l7():
+    """B-T02: composição exata de L1_L7."""
+
+    assert get_group_members("L1_L7") == frozenset(
+        {"L1", "L2", "L3", "L4", "L5", "L6", "L7"}
+    )
+
+
+def test_group_members_l1_l3():
+    """B-T03: composição exata de L1_L3."""
+
+    assert get_group_members("L1_L3") == frozenset(
+        {"L1", "L2", "L3"}
+    )
+
+
+def test_group_members_l4_l5():
+    """B-T04: composição exata de L4_L5."""
+
+    assert get_group_members("L4_L5") == frozenset({"L4", "L5"})
+
+
+def test_group_members_l6_l7():
+    """B-T05: composição exata de L6_L7."""
+
+    assert get_group_members("L6_L7") == frozenset({"L6", "L7"})
+
+
+def test_group_members_unknown_group_raises_error():
+    with pytest.raises(ValueError, match="Unknown line group"):
+        get_group_members("L1_L2")
+
+
+def test_group_members_is_immutable():
+    """B-T06: mutar o retorno de get_group_members (ou tentar mutar
+    GROUP_MEMBERS diretamente) não afeta a fonte de verdade."""
+
+    members = get_group_members("L4_L5")
+
+    with pytest.raises(AttributeError):
+        members.add("L6")
+
+    assert get_group_members("L4_L5") == frozenset({"L4", "L5"})
+
+    assert isinstance(
+        ScopeResolver.GROUP_MEMBERS,
+        MappingProxyType,
+    )
+
+    with pytest.raises(TypeError):
+        ScopeResolver.GROUP_MEMBERS["L4_L5"] = frozenset({"L4"})
+
+
+def test_line_group_is_not_equivalent_to_line(resolver):
+    """B-T07: linha_grupo/L1_L7 não é equivalente a linha/L1_L7 —
+    são scopes diferentes (um único grupo vs. 7 linhas)."""
+
+    group_result = resolver.resolve_scopes(
+        scope_type="linha_grupo",
+        scope_value="L1_L7",
+    )
+
+    line_result = resolver.resolve_scopes(
+        scope_type="linha",
+        scope_value="L1_L7",
+    )
+
+    assert group_result == [("linha_grupo", "L1_L7")]
+    assert len(line_result) == 7
+    assert group_result != line_result
+
+
+def test_group_membership_does_not_create_line_instances(
+    resolver,
+):
+    """B-T08: consultar GROUP_MEMBERS/get_group_members não cria nem
+    altera nenhuma VariableInstance/ParameterInstance/EquationInstance
+    de linha — a definição de linha_grupo continua resolvendo para
+    uma única Instance de grupo, não para Instances de linha."""
+
+    get_group_members("L4_L5")
+
+    definition = make_variable_definition(
+        scope_type="linha_grupo",
+        scope_value="L4_L5",
+    )
+
+    instances = resolver.resolve_variable(definition)
+
+    assert len(instances) == 1
+    assert instances[0].scope_type == "linha_grupo"
+    assert instances[0].scope_value == "L4_L5"
+
+
+def test_group_membership_does_not_perform_aggregation():
+    """B-T09: get_group_members retorna apenas a composição (um
+    frozenset de identificadores de linha), nunca um valor numérico
+    calculado (soma, média etc.)."""
+
+    members = get_group_members("L1_L7")
+
+    assert isinstance(members, frozenset)
+    assert all(isinstance(member, str) for member in members)
+    assert members <= ScopeResolver.LINE_SCOPES
