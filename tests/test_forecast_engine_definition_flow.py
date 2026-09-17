@@ -30,12 +30,18 @@ def make_definition(
 
 
 def test_forecast_engine_executes_definition_instances_by_scope():
+    """
+    A expressão usa referências SEM escopo explícito — a forma
+    correta de expressar "os valores desta mesma linha" em uma
+    Definition materializada por linha (L4 e L5).
+    """
+
     registry = EquationDefinitionRegistry()
 
     definition = make_definition(
         equation_definition_id="EQ11001",
         target_variable_id="VAR11001",
-        expression="VAR10001@L4 + PARAM10001@L4",
+        expression="VAR10001 + PARAM10001",
     )
 
     registry.add(definition)
@@ -96,18 +102,24 @@ def test_forecast_engine_executes_definition_instances_by_scope():
 
 
 def test_forecast_engine_resolves_dependencies_between_instances():
+    """
+    As expressões usam referências SEM escopo explícito — a forma
+    correta de expressar "os valores desta mesma linha" em uma
+    Definition materializada por linha (L4 e L5).
+    """
+
     registry = EquationDefinitionRegistry()
 
     producer = make_definition(
         equation_definition_id="EQ11001",
         target_variable_id="VAR11001",
-        expression="VAR10001@L4 * PARAM10001@L4",
+        expression="VAR10001 * PARAM10001",
     )
 
     consumer = make_definition(
         equation_definition_id="EQ11002",
         target_variable_id="VAR11002",
-        expression="VAR11001@L4 + PARAM10002@L4",
+        expression="VAR11001 + PARAM10002",
     )
 
     registry.add(producer)

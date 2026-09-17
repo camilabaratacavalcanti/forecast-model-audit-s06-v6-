@@ -21,11 +21,16 @@ Também mantém os métodos legados de carregamento para
 compatibilidade com a arquitetura existente.
 """
 
+import json
 from pathlib import Path
 
 from app.domain.equations.models import (
     Equation,
     EquationDefinition,
+)
+from app.domain.forecast.aggregation import (
+    AggregationRule,
+    AggregationRuleRegistry,
 )
 from app.domain.equations.registry import (
     EquationDefinitionRegistry,
@@ -646,3 +651,46 @@ class SeedLoader:
             equation_definitions,
             equation_instances,
         )
+
+    def load_aggregation_rules(
+        self,
+        registry: AggregationRuleRegistry | None = None,
+    ) -> AggregationRuleRegistry:
+        """
+        Carrega as AggregationRule declaradas em qualquer
+        `aggregation_rules.json` presente sob os blocos do seed
+        (ex.: `data/seed/yield/aggregation_rules.json`).
+
+        Diferente de Variable/Parameter/Equation, não há um
+        validator dedicado: a validação estrutural de cada regra
+        (tipo de agregação suportado, weight_variable_id exigido
+        para WEIGHTED_AVERAGE, consistência de janela explícita)
+        já é feita por `AggregationRule.__post_init__` — reaproveitada
+        aqui, não duplicada. Integridade referencial (se
+        source_variable_id/target_variable_id existem no
+        VariableDefinitionRegistry) não é verificada por este
+        método, pelo mesmo motivo que o restante do SeedLoader não
+        verifica: é responsabilidade do chamador, com o
+        RegistryIntegrityValidator ou equivalente, quando aplicável.
+
+        Não é chamado por `load_all_definitions_and_instances()`:
+        estender aquela tupla quebraria todos os chamadores
+        existentes que a desestruturam posicionalmente. Este método
+        é independente, chamado explicitamente por quem precisar de
+        AggregationRules.
+        """
+
+        if registry is None:
+            registry = AggregationRuleRegistry()
+
+        for rules_path in sorted(
+            self.seed_root.glob("*/aggregation_rules.json")
+        ):
+            with open(rules_path, encoding="utf-8") as f:
+                rules_data = json.load(f)
+
+            for rule_data in rules_data:
+                rule = AggregationRule(**rule_data)
+                registry.add(rule)
+
+        return registry

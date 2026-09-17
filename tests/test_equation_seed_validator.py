@@ -376,6 +376,7 @@ def test_allowed_scope_values():
         "L4_L5",
         "L6_L7",
         "L1_L7",
+        "PLANTA",
     }
 
 
@@ -590,19 +591,44 @@ def test_scope_line_group_rejects_individual_line(
     assert len(errors) == 1
 
 
-@pytest.mark.parametrize(
-    "scope_type",
-    [
-        "área",
-        "planta",
-    ],
-)
-def test_validate_scope_values_accepts_area_and_plant_without_value(
+def test_validate_scope_values_accepts_area_without_value(
     equation_base,
-    scope_type,
 ):
-    equation_base["scope_type"] = scope_type
+    equation_base["scope_type"] = "área"
     equation_base["scope_value"] = None
+
+    errors = validate_scope_consistency(
+        [equation_base]
+    )
+
+    assert errors == []
+
+
+def test_validate_scope_values_rejects_planta_without_value(
+    equation_base,
+):
+    """
+    Contrato de `planta` (corrigido): diferente de "área", o
+    `scope_value=None` NÃO é mais aceito -- o contrato canônico
+    exige "PLANTA" explicitamente, consistente com
+    `ScopeResolver.PLANT_SCOPE`.
+    """
+
+    equation_base["scope_type"] = "planta"
+    equation_base["scope_value"] = None
+
+    errors = validate_scope_consistency(
+        [equation_base]
+    )
+
+    assert errors != []
+
+
+def test_validate_scope_values_accepts_planta_with_planta_value(
+    equation_base,
+):
+    equation_base["scope_type"] = "planta"
+    equation_base["scope_value"] = "PLANTA"
 
     errors = validate_scope_consistency(
         [equation_base]

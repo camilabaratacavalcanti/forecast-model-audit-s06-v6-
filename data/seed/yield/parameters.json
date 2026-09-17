@@ -1,17 +1,5 @@
 [
   {
-    "parameter_id": "PARAM11001",
-    "parameter_name": "ltp_tc",
-    "description": "Teor de soda cáustica total associado ao LTP (Total Caustic).",
-    "unit": "g/l",
-    "value": 273,
-    "version": 1,
-    "scope_type": "linha",
-    "scope_value": "L1_L7",
-    "source_reference": "descritivo_das_variáveis_yield.xlsx",
-    "status": "ativo"
-  },
-  {
     "parameter_id": "PARAM11002",
     "parameter_name": "ltp_tc_base",
     "description": "Valor base do teor de soda cáustica total associado ao LTP.",
@@ -25,8 +13,8 @@
   },
   {
     "parameter_id": "PARAM11003",
-    "parameter_name": "tanque_L1_base",
-    "description": "Número base de tanques/precipitadores em operação para a linha L1.",
+    "parameter_name": "tanque_base",
+    "description": "Número base de tanques/precipitadores em operação (definição única, materializada por linha).",
     "unit": "-",
     "value": 14,
     "version": 1,
@@ -36,9 +24,9 @@
     "status": "ativo"
   },
   {
-    "parameter_id": "PARAM11004",
-    "parameter_name": "tanque_L2_base",
-    "description": "Número base de tanques/precipitadores em operação para a linha L2.",
+    "parameter_id": "PARAM11003",
+    "parameter_name": "tanque_base",
+    "description": "Número base de tanques/precipitadores em operação (definição única, materializada por linha).",
     "unit": "-",
     "value": 14,
     "version": 1,
@@ -48,9 +36,9 @@
     "status": "ativo"
   },
   {
-    "parameter_id": "PARAM11005",
-    "parameter_name": "tanque_L3_base",
-    "description": "Número base de tanques/precipitadores em operação para a linha L3.",
+    "parameter_id": "PARAM11003",
+    "parameter_name": "tanque_base",
+    "description": "Número base de tanques/precipitadores em operação (definição única, materializada por linha).",
     "unit": "-",
     "value": 16,
     "version": 1,
@@ -60,9 +48,9 @@
     "status": "ativo"
   },
   {
-    "parameter_id": "PARAM11006",
-    "parameter_name": "tanque_L4_base",
-    "description": "Número base de tanques/precipitadores em operação para a linha L4.",
+    "parameter_id": "PARAM11003",
+    "parameter_name": "tanque_base",
+    "description": "Número base de tanques/precipitadores em operação (definição única, materializada por linha).",
     "unit": "-",
     "value": 18,
     "version": 1,
@@ -72,9 +60,9 @@
     "status": "ativo"
   },
   {
-    "parameter_id": "PARAM11007",
-    "parameter_name": "tanque_L5_base",
-    "description": "Número base de tanques/precipitadores em operação para a linha L5.",
+    "parameter_id": "PARAM11003",
+    "parameter_name": "tanque_base",
+    "description": "Número base de tanques/precipitadores em operação (definição única, materializada por linha).",
     "unit": "-",
     "value": 18,
     "version": 1,
@@ -84,9 +72,9 @@
     "status": "ativo"
   },
   {
-    "parameter_id": "PARAM11008",
-    "parameter_name": "tanque_L6_base",
-    "description": "Número base de tanques/precipitadores em operação para a linha L6.",
+    "parameter_id": "PARAM11003",
+    "parameter_name": "tanque_base",
+    "description": "Número base de tanques/precipitadores em operação (definição única, materializada por linha).",
     "unit": "-",
     "value": 18,
     "version": 1,
@@ -96,9 +84,9 @@
     "status": "ativo"
   },
   {
-    "parameter_id": "PARAM11009",
-    "parameter_name": "tanque_L7_base",
-    "description": "Número base de tanques/precipitadores em operação para a linha L7.",
+    "parameter_id": "PARAM11003",
+    "parameter_name": "tanque_base",
+    "description": "Número base de tanques/precipitadores em operação (definição única, materializada por linha).",
     "unit": "-",
     "value": 18,
     "version": 1,

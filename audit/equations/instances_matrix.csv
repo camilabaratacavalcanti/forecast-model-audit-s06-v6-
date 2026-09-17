@@ -1,0 +1,107 @@
+equation_definition_id,scope_type,scope_value,actual_instance_count,actual_instance_scopes
+EQ11001,linha,L1_L7,7,L1; L2; L3; L4; L5; L6; L7
+EQ11002,linha,L1_L7,7,L1; L2; L3; L4; L5; L6; L7
+EQ11003,linha,L1_L7,7,L1; L2; L3; L4; L5; L6; L7
+EQ11004,linha,L1_L7,7,L1; L2; L3; L4; L5; L6; L7
+EQ11005,linha,L1_L7,7,L1; L2; L3; L4; L5; L6; L7
+EQ11006,linha,L1_L7,7,L1; L2; L3; L4; L5; L6; L7
+EQ11007,linha,L1_L7,7,L1; L2; L3; L4; L5; L6; L7
+EQ11008,linha,L1_L7,7,L1; L2; L3; L4; L5; L6; L7
+EQ11009,linha,L1_L7,7,L1; L2; L3; L4; L5; L6; L7
+EQ11010,linha,L1_L7,7,L1; L2; L3; L4; L5; L6; L7
+EQ11011,linha_grupo,L1_L3,1,L1_L3
+EQ11012,linha_grupo,L1_L3,1,L1_L3
+EQ11013,linha_grupo,L1_L3,1,L1_L3
+EQ11014,linha_grupo,L1_L3,1,L1_L3
+EQ11015,linha_grupo,L1_L3,1,L1_L3
+EQ11016,linha_grupo,L1_L3,1,L1_L3
+EQ11017,linha_grupo,L1_L3,1,L1_L3
+EQ11018,linha_grupo,L1_L3,1,L1_L3
+EQ11019,linha_grupo,L1_L3,1,L1_L3
+EQ11020,linha_grupo,L1_L3,1,L1_L3
+EQ11021,linha_grupo,L1_L3,1,L1_L3
+EQ11022,linha_grupo,L1_L3,1,L1_L3
+EQ11023,linha_grupo,L1_L3,1,L1_L3
+EQ11024,linha_grupo,L1_L3,1,L1_L3
+EQ11025,linha_grupo,L1_L3,1,L1_L3
+EQ11026,linha_grupo,L1_L3,1,L1_L3
+EQ11027,linha_grupo,L4_L5,1,L4_L5
+EQ11028,linha_grupo,L4_L5,1,L4_L5
+EQ11029,linha_grupo,L4_L5,1,L4_L5
+EQ11030,linha_grupo,L4_L5,1,L4_L5
+EQ11031,linha_grupo,L4_L5,1,L4_L5
+EQ11032,linha_grupo,L4_L5,1,L4_L5
+EQ11033,linha_grupo,L4_L5,1,L4_L5
+EQ11034,linha_grupo,L4_L5,1,L4_L5
+EQ11035,linha_grupo,L4_L5,1,L4_L5
+EQ11036,linha_grupo,L4_L5,1,L4_L5
+EQ11037,linha_grupo,L4_L5,1,L4_L5
+EQ11038,linha_grupo,L4_L5,1,L4_L5
+EQ11039,linha_grupo,L4_L5,1,L4_L5
+EQ11040,linha_grupo,L4_L5,1,L4_L5
+EQ11041,linha_grupo,L4_L5,1,L4_L5
+EQ11042,linha_grupo,L4_L5,1,L4_L5
+EQ11043,linha_grupo,L6_L7,1,L6_L7
+EQ11044,linha_grupo,L6_L7,1,L6_L7
+EQ11045,linha_grupo,L6_L7,1,L6_L7
+EQ11046,linha_grupo,L6_L7,1,L6_L7
+EQ11047,linha_grupo,L6_L7,1,L6_L7
+EQ11048,linha_grupo,L6_L7,1,L6_L7
+EQ11049,linha_grupo,L6_L7,1,L6_L7
+EQ11050,linha_grupo,L6_L7,1,L6_L7
+EQ11051,linha_grupo,L6_L7,1,L6_L7
+EQ11052,linha_grupo,L6_L7,1,L6_L7
+EQ11053,linha_grupo,L6_L7,1,L6_L7
+EQ11054,linha_grupo,L6_L7,1,L6_L7
+EQ11055,linha_grupo,L6_L7,1,L6_L7
+EQ11056,linha_grupo,L6_L7,1,L6_L7
+EQ11057,linha_grupo,L6_L7,1,L6_L7
+EQ11058,linha_grupo,L6_L7,1,L6_L7
+EQ11059,linha_grupo,L1_L3,1,L1_L3
+EQ11060,linha_grupo,L1_L3,1,L1_L3
+EQ11061,linha_grupo,L1_L3,1,L1_L3
+EQ11062,linha_grupo,L1_L3,1,L1_L3
+EQ11063,linha_grupo,L1_L3,1,L1_L3
+EQ11064,linha_grupo,L1_L3,1,L1_L3
+EQ11065,linha_grupo,L1_L3,1,L1_L3
+EQ11066,linha_grupo,L1_L3,1,L1_L3
+EQ11067,linha_grupo,L1_L3,1,L1_L3
+EQ11068,linha_grupo,L1_L3,1,L1_L3
+EQ11069,linha_grupo,L1_L3,1,L1_L3
+EQ11070,linha_grupo,L1_L3,1,L1_L3
+EQ11071,linha_grupo,L1_L3,1,L1_L3
+EQ11072,linha_grupo,L1_L3,1,L1_L3
+EQ11073,linha_grupo,L1_L3,1,L1_L3
+EQ11074,linha_grupo,L1_L3,1,L1_L3
+EQ11075,linha_grupo,L4_L5,1,L4_L5
+EQ11076,linha_grupo,L4_L5,1,L4_L5
+EQ11077,linha_grupo,L4_L5,1,L4_L5
+EQ11078,linha_grupo,L4_L5,1,L4_L5
+EQ11079,linha_grupo,L4_L5,1,L4_L5
+EQ11080,linha_grupo,L4_L5,1,L4_L5
+EQ11081,linha_grupo,L4_L5,1,L4_L5
+EQ11082,linha_grupo,L4_L5,1,L4_L5
+EQ11083,linha_grupo,L4_L5,1,L4_L5
+EQ11084,linha_grupo,L4_L5,1,L4_L5
+EQ11085,linha_grupo,L4_L5,1,L4_L5
+EQ11086,linha_grupo,L4_L5,1,L4_L5
+EQ11087,linha_grupo,L4_L5,1,L4_L5
+EQ11088,linha_grupo,L4_L5,1,L4_L5
+EQ11089,linha_grupo,L4_L5,1,L4_L5
+EQ11090,linha_grupo,L4_L5,1,L4_L5
+EQ11091,linha_grupo,L6_L7,1,L6_L7
+EQ11092,linha_grupo,L6_L7,1,L6_L7
+EQ11093,linha_grupo,L6_L7,1,L6_L7
+EQ11094,linha_grupo,L6_L7,1,L6_L7
+EQ11095,linha_grupo,L6_L7,1,L6_L7
+EQ11096,linha_grupo,L6_L7,1,L6_L7
+EQ11097,linha_grupo,L6_L7,1,L6_L7
+EQ11098,linha_grupo,L6_L7,1,L6_L7
+EQ11099,linha_grupo,L6_L7,1,L6_L7
+EQ11100,linha_grupo,L6_L7,1,L6_L7
+EQ11101,linha_grupo,L6_L7,1,L6_L7
+EQ11102,linha_grupo,L6_L7,1,L6_L7
+EQ11103,linha_grupo,L6_L7,1,L6_L7
+EQ11104,linha_grupo,L6_L7,1,L6_L7
+EQ11105,linha_grupo,L6_L7,1,L6_L7
+EQ11106,linha_grupo,L6_L7,1,L6_L7

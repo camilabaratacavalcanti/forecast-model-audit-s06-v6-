@@ -469,7 +469,6 @@ def test_validate_scope_values_accepts_line_group_values(
     "scope_type",
     [
         "área",
-        "planta",
         "global",
     ],
 )
@@ -480,6 +479,43 @@ def test_validate_scope_values_accepts_null_value_for_non_line_scope(
 ):
     valid_parameter["scope_type"] = scope_type
     valid_parameter["scope_value"] = None
+
+    errors = validate_scope_values(
+        valid_parameter,
+        tmp_path / "parameters.json",
+    )
+
+    assert errors == []
+
+
+def test_validate_scope_values_rejects_null_value_for_planta_scope(
+    valid_parameter,
+    tmp_path,
+):
+    """
+    Contrato de `planta` (corrigido): diferente de "área"/"global",
+    `scope_value=None` NÃO é mais aceito -- o contrato canônico
+    exige "PLANTA" explicitamente, consistente com
+    `ScopeResolver.PLANT_SCOPE`.
+    """
+
+    valid_parameter["scope_type"] = "planta"
+    valid_parameter["scope_value"] = None
+
+    errors = validate_scope_values(
+        valid_parameter,
+        tmp_path / "parameters.json",
+    )
+
+    assert errors != []
+
+
+def test_validate_scope_values_accepts_planta_with_planta_value(
+    valid_parameter,
+    tmp_path,
+):
+    valid_parameter["scope_type"] = "planta"
+    valid_parameter["scope_value"] = "PLANTA"
 
     errors = validate_scope_values(
         valid_parameter,

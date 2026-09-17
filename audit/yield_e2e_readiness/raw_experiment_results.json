@@ -1,0 +1,51 @@
+{
+  "equation_definitions_count": 106,
+  "equation_instances_count": 166,
+  "variable_definitions_count": 239,
+  "variable_instances_count": 521,
+  "parameter_definitions_count": 9,
+  "parameter_instances_count": 21,
+  "status_distribution": {
+    "PUBLISHED": 106
+  },
+  "graph_nodes": 166,
+  "graph_edges": 168,
+  "has_cycle": false,
+  "cycles_found": 0,
+  "execution_order_length": 166,
+  "deterministic_order": true,
+  "leaf_nodes_count": 0,
+  "leaf_nodes_sample": [],
+  "duplicate_producers": 0,
+  "variable_dependency_refs": 268,
+  "parameter_dependency_refs": 19,
+  "explicit_scope_refs": 252,
+  "scope_resolution_cases": {
+    "Caso A/B: VAR@L2 + VAR@L3 em instance L5 == 50 (nao 200)": "PASS",
+    "Caso A/B (graph): dependencies == {PROD_L2, PROD_L3}, sem PROD_L5": "PASS",
+    "Caso C: VAR implicita em instance L5 == 100 (usa L5)": "PASS",
+    "Caso D: VAR@L2 + VAR (implicita) em L5 == 20 + 100 == 120": "PASS",
+    "Caso E: PARAM@L2 + PARAM@L3 em L5 == 12 (nao 1998)": "PASS",
+    "Caso E (graph): PARAM@Lx preserva escopo explicito no grafo": "PASS",
+    "Caso F: EQ11011 (yield@L1_L3) usa referencias @L1/@L2/@L3 explicitas": "PASS"
+  },
+  "full_execution_status": "PASS",
+  "full_execution_result_count": 166,
+  "full_execution_expected_count": 166,
+  "full_execution_error": null,
+  "chain_n_ppt_L4": 6.0,
+  "chain_ratio_spent_L4": 0.52,
+  "chain_yield_L4": 175.98000000000002,
+  "chain_status": "PASS",
+  "yield_is_leaf_output": false,
+  "final_output_sample": {
+    "L1": 170.51999999999998,
+    "L2": 170.51999999999998,
+    "L3": 173.25,
+    "L4": 175.98000000000002,
+    "L5": 175.98000000000002,
+    "L6": 175.98000000000002,
+    "L7": 175.98000000000002
+  },
+  "persistence_in_memory_only": true
+}

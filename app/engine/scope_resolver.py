@@ -18,6 +18,9 @@ Objetivo:
         Instance
 """
 
+from types import MappingProxyType
+from typing import Mapping
+
 from app.domain.equations.models import EquationInstance
 from app.domain.parameters.models import ParameterInstance
 from app.domain.variables.models import VariableInstance
@@ -49,6 +52,29 @@ class ScopeResolver:
     }
 
     PLANT_SCOPE = "PLANTA"
+
+    # Decisão A: única representação canônica do escopo de planta.
+    # ("planta", None), ("planta", "GLOBAL") e qualquer outra variação
+    # não são equivalentes — apenas esta tupla representa a planta.
+    CANONICAL_PLANT_SCOPE: tuple[str, str] = ("planta", PLANT_SCOPE)
+
+    # Decisão B: composição estática de cada linha_grupo. Fonte única
+    # de verdade para "quais linhas pertencem a este grupo" — não
+    # confundir com resolução de escopo (ScopeResolver trata o grupo
+    # como uma única Instance, nunca expande linha_grupo em linha) nem
+    # com projeção/precedência/cálculo (fora do escopo desta estrutura).
+    # MappingProxyType impede reatribuição de entradas do dict externo;
+    # os valores são frozenset, portanto também imutáveis.
+    GROUP_MEMBERS: Mapping[str, frozenset[str]] = MappingProxyType(
+        {
+            "L1_L7": frozenset(
+                {"L1", "L2", "L3", "L4", "L5", "L6", "L7"}
+            ),
+            "L1_L3": frozenset({"L1", "L2", "L3"}),
+            "L4_L5": frozenset({"L4", "L5"}),
+            "L6_L7": frozenset({"L6", "L7"}),
+        }
+    )
 
     def resolve_variable(
         self,
@@ -150,6 +176,24 @@ class ScopeResolver:
                 "scope_type is required for scope resolution"
             )
 
+        # "área" e "global" são escopos únicos, sem materialização
+        # por linha: seu scope_value concreto é sempre None — a
+        # ausência de valor não é um erro, mas um valor presente é
+        # (mesma exigência que "planta" já faz para "PLANTA").
+        # São resolvidos antes da exigência geral de scope_value
+        # abaixo, que só se aplica aos scope_types que materializam
+        # por linha/grupo/planta.
+        if scope_type in {"área", "global"}:
+            if scope_value is not None:
+                raise ValueError(
+                    f"scope_type '{scope_type}' does not accept a "
+                    f"concrete scope_value: {scope_value!r}"
+                )
+
+            return [
+                (scope_type, scope_value),
+            ]
+
         if not scope_value:
             raise ValueError(
                 "scope_value is required for scope resolution"
@@ -163,11 +207,6 @@ class ScopeResolver:
 
         if scope_type == "planta":
             return self._resolve_plant_scope(scope_value)
-
-        if scope_type in {"área", "global"}:
-            return [
-                (scope_type, scope_value),
-            ]
 
         raise ValueError(
             f"Unsupported scope_type: {scope_type}"
@@ -235,7 +274,7 @@ class ScopeResolver:
             )
 
         return [
-            ("planta", self.PLANT_SCOPE),
+            self.CANONICAL_PLANT_SCOPE,
         ]
 
     @staticmethod
@@ -270,3 +309,21 @@ class ScopeResolver:
             )
 
         return start_number, end_number
+
+
+def get_group_members(group_value: str) -> frozenset[str]:
+    """
+    Retorna a composição estática (conjunto de linhas) de um
+    linha_grupo, a partir de `ScopeResolver.GROUP_MEMBERS`.
+
+    Não resolve escopo, não materializa Instance e não executa
+    nenhum cálculo (soma, média etc.) — apenas expõe a composição
+    já definida em `ScopeResolver.GROUP_MEMBERS`.
+    """
+
+    try:
+        return ScopeResolver.GROUP_MEMBERS[group_value]
+    except KeyError:
+        raise ValueError(
+            f"Unknown line group: {group_value}"
+        ) from None

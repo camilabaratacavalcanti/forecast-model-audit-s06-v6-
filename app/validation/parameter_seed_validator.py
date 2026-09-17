@@ -63,7 +63,29 @@ ALLOWED_UNITS = {
     "R$",
     "$",
     "-",
+    # Bloco Production (auditoria descritivo_das_variáveis_production_v1.xlsx):
+    "h",
+    "tpd",
+    "Mtpy",
+    "dias",
+    "kg/t",
 }
+
+
+# Aliases de unidade que representam a MESMA grandeza física que uma
+# unidade já canônica em ALLOWED_UNITS, apenas com grafia diferente
+# na fonte (workbook). Normalizados para a forma canônica no
+# carregamento do seed (`load_parameters_from_seed`), antes de
+# qualquer validação -- não é uma conversão numérica (nenhum fator
+# multiplicativo), apenas troca de rótulo textual.
+UNIT_ALIASES = {
+    "tph": "t/h",
+}
+
+
+def normalize_unit(unit):
+    """Normaliza um alias de unidade para sua forma canônica."""
+    return UNIT_ALIASES.get(unit, unit)
 
 
 ALLOWED_SCOPE_TYPES = {
@@ -73,6 +95,12 @@ ALLOWED_SCOPE_TYPES = {
     "planta",
     "global",
 }
+
+
+# scope_types cujo scope_value concreto é sempre None: não
+# materializam por linha/grupo/planta, e essa ausência de valor não
+# é um erro (ver contrato de scope da plataforma).
+SCOPELESS_SCOPE_TYPES = {"área", "global"}
 
 
 ALLOWED_SCOPE_VALUES = {
@@ -87,6 +115,7 @@ ALLOWED_SCOPE_VALUES = {
     "L4_L5",
     "L6_L7",
     "L1_L7",
+    "PLANTA",
 }
 
 
@@ -220,6 +249,11 @@ def load_parameters_from_seed(seed_root: Path):
 
     Retorna uma lista de tuplas:
         (parameter, file_path)
+
+    A unidade de cada parâmetro é normalizada (`normalize_unit`)
+    neste ponto, antes de qualquer validação ou construção de domain
+    object -- ex.: "tph" (grafia do workbook) vira "t/h" (forma
+    canônica), sem nenhuma conversão numérica.
     """
 
     parameters = []
@@ -245,6 +279,9 @@ def load_parameters_from_seed(seed_root: Path):
             continue
 
         for parameter in data:
+            parameter = parameter.copy()
+            if "unit" in parameter:
+                parameter["unit"] = normalize_unit(parameter["unit"])
             parameters.append((parameter, file_path))
 
     return parameters, errors
@@ -392,13 +429,19 @@ def validate_scope_consistency(parameter, file_path):
     consistente.
 
     Ambos podem ser null, mas não é permitido que apenas um deles
-    seja null.
+    seja null — exceto quando scope_type é "área" ou "global": esses
+    escopos são singulares (sem materialização por linha/grupo/
+    planta) e seu scope_value concreto é sempre None por definição,
+    o que não constitui inconsistência.
     """
 
     errors = []
 
     scope_type = parameter.get("scope_type")
     scope_value = parameter.get("scope_value")
+
+    if scope_type in SCOPELESS_SCOPE_TYPES and scope_value is None:
+        return errors
 
     if (scope_type is None) != (scope_value is None):
         errors.append(
@@ -420,7 +463,9 @@ def validate_scope_values(parameter, file_path):
     A validação garante que:
         linha       -> L1 ... L7
         linha_grupo -> L1_L3, L4_L5 ou L6_L7
-        área/planta/global -> sem valor específico de linha
+        área/global -> sem valor específico de linha
+        planta      -> scope_value deve ser exatamente "PLANTA"
+                       (ver ScopeResolver.PLANT_SCOPE)
     """
 
     errors = []
@@ -465,7 +510,6 @@ def validate_scope_values(parameter, file_path):
 
     elif scope_type in {
         "área",
-        "planta",
         "global",
     }:
         if scope_value is not None:
@@ -473,6 +517,13 @@ def validate_scope_values(parameter, file_path):
                 f"{file_path}: scope_type '{scope_type}' "
                 f"não deve possuir scope_value específico "
                 f"de linha."
+            )
+
+    elif scope_type == "planta":
+        if scope_value != "PLANTA":
+            errors.append(
+                f"{file_path}: scope_type 'planta' exige "
+                f"scope_value 'PLANTA'."
             )
 
     return errors
@@ -565,6 +616,16 @@ def validate_parameter_ids(parameters):
     """
     Verifica duplicidade de Parameter_ID.
 
+    Um mesmo Parameter_ID pode representar legitimamente uma única
+    definição lógica materializada por linha (ex.: "tanque_base"),
+    com uma ParameterDefinition por linha, cada uma com seu próprio
+    scope_value e value — o mesmo modelo já suportado pela chave
+    composta do ParameterDefinitionRegistry (id, version, scope_type,
+    scope_value). Por isso, a duplicidade é avaliada nessa mesma
+    chave composta, e não apenas no Parameter_ID isolado: dois
+    registros com o mesmo ID só são duplicados quando também
+    coincidem em version, scope_type e scope_value.
+
     parameters:
         lista de tuplas (parameter, file_path)
     """
@@ -578,8 +639,15 @@ def validate_parameter_ids(parameters):
         if parameter_id is None:
             continue
 
-        if parameter_id in seen:
-            previous_file = seen[parameter_id]
+        key = (
+            parameter_id,
+            parameter.get("version"),
+            parameter.get("scope_type"),
+            parameter.get("scope_value"),
+        )
+
+        if key in seen:
+            previous_file = seen[key]
 
             errors.append(
                 f"Parameter_ID duplicado: '{parameter_id}'. "
@@ -587,7 +655,7 @@ def validate_parameter_ids(parameters):
             )
 
         else:
-            seen[parameter_id] = file_path
+            seen[key] = file_path
 
     return errors
 

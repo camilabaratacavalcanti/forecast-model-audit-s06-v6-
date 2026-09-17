@@ -158,3 +158,76 @@ class TargetVariableNotFoundError(RegistryIntegrityError):
     não existe no VariableRegistry.
     """
     pass
+
+
+class EquationTargetScopeMismatchError(RegistryIntegrityError):
+    """
+    Indica que o escopo declarado de uma EquationDefinition
+    (scope_type/scope_value) não corresponde ao escopo declarado
+    da VariableDefinition que ela produz.
+    """
+    pass
+
+
+class TemporalAggregationError(Exception):
+    """
+    Erro base da camada de Temporal Aggregation (Fase B).
+    """
+
+
+class InvalidAggregationRuleError(TemporalAggregationError):
+    """
+    A AggregationRule está mal formada: tipo de agregação não
+    suportado, WEIGHTED_AVERAGE sem weight_variable_id, ou janela
+    explícita inconsistente (apenas um dos dois extremos informado,
+    ou start_date posterior a end_date).
+    """
+
+
+class EmptyAggregationWindowError(TemporalAggregationError):
+    """
+    Nenhum valor de origem foi encontrado dentro da janela temporal
+    da agregação (janela vazia de dados, não de erro de leitura).
+    """
+
+
+class ZeroWeightSumError(TemporalAggregationError):
+    """
+    A soma dos pesos de uma WEIGHTED_AVERAGE é zero.
+
+    O resultado não pode ser determinado por divisão (e não deve
+    ser mascarado silenciosamente com um valor arbitrário como 0),
+    então este erro é propagado explicitamente ao chamador.
+    """
+
+
+class AmbiguousSpatialPrecedenceError(Exception):
+    """
+    Indica que dois ou mais candidatos espaciais (linha_grupo) que
+    contêm o mesmo scope consumidor não são comparáveis entre si por
+    inclusão de conjuntos (nem G1 ⊂ G2, nem G2 ⊂ G1).
+
+    A precedência espacial não pode ser determinada silenciosamente
+    nesse caso: este erro é propagado explicitamente em vez de
+    escolher arbitrariamente um dos candidatos.
+    """
+
+    def __init__(
+        self,
+        *,
+        scope_type: str,
+        scope_value: str,
+        candidate_a: str,
+        candidate_b: str,
+    ):
+        self.scope_type = scope_type
+        self.scope_value = scope_value
+        self.candidate_a = candidate_a
+        self.candidate_b = candidate_b
+
+        super().__init__(
+            f"Precedência espacial ambígua para "
+            f"{scope_type}/{scope_value}: os candidatos "
+            f"'{candidate_a}' e '{candidate_b}' não são "
+            f"comparáveis por inclusão de conjuntos."
+        )

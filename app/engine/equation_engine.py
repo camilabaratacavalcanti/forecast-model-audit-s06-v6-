@@ -5,8 +5,6 @@ o contexto para resolver valores e o evaluator para calcular o resultado.
 É a porta de entrada da execução de uma equação.
 """
 
-import re
-
 from app.domain.equations.models import Equation
 
 from app.engine.calculation_context import CalculationContext
@@ -72,6 +70,7 @@ class EquationEngine:
         instance,
         definition,
         calculation_context: CalculationContext,
+        period_id: str | None = None,
     ) -> int | float:
         """
         Executa uma EquationInstance utilizando a expressão
@@ -80,21 +79,38 @@ class EquationEngine:
         A EquationInstance fornece o contexto concreto.
         A EquationDefinition fornece a expressão matemática.
 
-        A expressão é contextualizada para o escopo da instance
-        antes de ser enviada ao parser.
+        A expressão da Definition é enviada ao parser exatamente
+        como declarada — nenhuma reescrita textual é aplicada aqui.
+        A contextualização acontece inteiramente na resolução de
+        cada referência (ver ExpressionEvaluator):
+
+            - uma referência sem escopo explícito (ex.: "PARAM11003")
+              é resolvida no escopo da própria EquationInstance;
+            - uma referência explicitamente escopada (ex.:
+              "VAR11001@L2") é resolvida exatamente naquele escopo,
+              independentemente do escopo da instance em execução.
+
+        Essa é a única regra de contextualização da plataforma; não
+        há uma segunda transformação (textual) sobrepondo-a.
+
+        `period_id`, quando informado, identifica o período temporal
+        corrente da execução (ex.: "2026-09-14", "2026-09" ou "2026")
+        e é propagado ao ExpressionEvaluator como período padrão para
+        resolver VAR/PARAM. Omitido, o comportamento é o mesmo de
+        antes (sem dimensão temporal).
         """
 
-        expression = self._contextualize_expression(
-            definition.expression,
-            instance,
-        )
+        expression = definition.expression
 
         tree = self.parser.parse(
             expression
         )
 
         evaluator = ExpressionEvaluator(
-            calculation_context
+            calculation_context,
+            default_scope_type=instance.scope_type,
+            default_scope_value=instance.scope_value,
+            default_period_id=period_id,
         )
 
         try:
@@ -113,35 +129,3 @@ class EquationEngine:
                 expression=expression,
                 original_error=exc,
             ) from exc
-
-    @staticmethod
-    def _contextualize_expression(
-        expression: str,
-        instance,
-    ) -> str:
-        """
-        Ajusta referências contextualizadas da expressão para o
-        escopo concreto da EquationInstance.
-
-        Exemplo:
-
-            VAR10001@L4
-
-        para uma instance L5 torna-se:
-
-            VAR10001@L5
-        """
-
-        if (
-            instance.scope_type != "linha"
-            or not instance.scope_value
-        ):
-            return expression
-
-        return re.sub(
-            r"\b(VAR\d{5}|PARAM\d{5})@L[1-7]\b",
-            lambda match: (
-                f"{match.group(1)}@{instance.scope_value}"
-            ),
-            expression,
-        )

@@ -1,0 +1,6 @@
+source_scope,target_scope,aggregation,supported,required,executed,gap_id
+linha/L1..L7,linha_grupo/L1_L3,weighted average (peso=ltp) para yield/ratio_spent/eoc_temp; media simples para os demais; soma para producao_base_ppt,YES,YES,YES,
+linha/L1..L7,linha_grupo/L4_L5,idem L1_L3,YES,YES,YES,
+linha/L1..L7,linha_grupo/L6_L7,idem L1_L3,YES,YES,YES,
+linha/L1..L7,linha_grupo/L1_L7 (planta inteira),nao seedado (ver Fase 3A: anomalia de encadeamento de pesos na fonte),PARTIALLY,NOT_DEMONSTRATED,NO,GAP-06
+diário,mensal,media diario->mensal (nao seedada; TimePeriodResolver desconectado do calculo),NO,NOT_DEMONSTRATED,NO,GAP-04

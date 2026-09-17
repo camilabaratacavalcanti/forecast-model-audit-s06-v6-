@@ -79,13 +79,19 @@ def test_dependency_resolver_orders_equation_instances_by_dependency():
 
 
 def test_dependency_resolver_preserves_instance_isolation():
+    """
+    A expressão usa uma referência SEM escopo explícito
+    ("VAR11001") — a forma correta de expressar "o produtor desta
+    mesma linha" em uma Definition materializada por linha.
+    """
+
     definition = EquationDefinition(
         equation_definition_id="EQ11002",
         target_variable_id="VAR11002",
         version=1,
         scope_type="linha",
         scope_value="L1_L7",
-        expression="VAR11001@L4",
+        expression="VAR11001",
         source_reference="TEST",
         status="PUBLISHED",
     )

@@ -1,6 +1,12 @@
 import json
 from pathlib import Path
 
+from app.engine.exceptions import (
+    InvalidExpressionError,
+    UnsafeExpressionError,
+)
+from app.engine.expression_parser import ExpressionParser
+
 
 # ============================================================
 # REGRAS DO EQUATION REGISTRY
@@ -67,6 +73,7 @@ ALLOWED_SCOPE_VALUES = {
     "L4_L5",
     "L6_L7",
     "L1_L7",
+    "PLANTA",
 }
 
 
@@ -381,7 +388,8 @@ def validate_scope_consistency(equations):
         scope_value deve ser None.
 
     planta:
-        scope_value deve ser None.
+        scope_value deve ser exatamente "PLANTA"
+        (ver ScopeResolver.PLANT_SCOPE).
     """
     errors = []
 
@@ -436,14 +444,18 @@ def validate_scope_consistency(equations):
                     "scope_value deve ser L1_L3, L4_L5, L6_L7 ou L1_L7."
                 )
 
-        elif scope_type in {
-            "área",
-            "planta",
-        }:
+        elif scope_type == "área":
             if scope_value is not None:
                 errors.append(
                     f"{index}: scope_type '{scope_type}' "
                     "não deve possuir scope_value específico."
+                )
+
+        elif scope_type == "planta":
+            if scope_value != "PLANTA":
+                errors.append(
+                    f"{index}: scope_type 'planta' exige "
+                    "scope_value 'PLANTA'."
                 )
 
     return errors
@@ -661,6 +673,49 @@ def validate_equation_signatures(equations):
             signatures[signature] = index
 
     return warnings
+
+
+# ============================================================
+# VALIDAÇÃO SINTÁTICA DA EXPRESSÃO (opt-in)
+# ============================================================
+
+def validate_expression_syntax(equations):
+    """
+    Valida se o campo 'expression' de cada equação é uma expressão
+    matemática sintaticamente válida e seguro para o
+    ExpressionParser/ExpressionEvaluator (VAR#####/PARAM##### com ou
+    sem sufixo "@Lx", operadores aritméticos, parênteses).
+
+    Esta validação é deliberadamente NÃO incluída em validate_seed():
+    seeds legados/fixtures de teste usam expressões textuais
+    (nomes livres, descrições de agregação temporal) que nunca
+    passaram por essa checagem. Chamá-la é responsabilidade de quem
+    está validando um seed que se pretende executável pelo Engine
+    real (ex.: o seed real do Yield).
+    """
+    errors = []
+
+    parser = ExpressionParser()
+
+    for index, equation in enumerate(equations):
+        expression = equation.get("expression")
+
+        if not isinstance(expression, str):
+            continue
+
+        try:
+            parser.parse(expression)
+        except (
+            InvalidExpressionError,
+            UnsafeExpressionError,
+        ) as exc:
+            errors.append(
+                f"Equação no índice {index} "
+                f"({equation.get('equation_id', '?')}): "
+                f"expressão inválida para o ExpressionParser: {exc}"
+            )
+
+    return errors
 
 
 # ============================================================

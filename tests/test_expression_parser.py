@@ -159,3 +159,63 @@ def test_parser_rejects_invalid_scoped_identifier(parser):
         parser.parse(
             "VAR11001@AREA"
         )
+
+
+# ============================================================
+# Suporte a expressões condicionais (IfExp) — BD-07
+# ============================================================
+
+
+def test_parser_accepts_if_expression(parser):
+    tree = parser.parse(
+        "VAR12001 if VAR12001 >= VAR12002 else VAR12002"
+    )
+
+    assert isinstance(tree.body, ast.IfExp)
+
+
+def test_parser_accepts_composite_if_expression(parser):
+    tree = parser.parse(
+        "VAR12001 * PARAM12001 if VAR12001 > 10 else VAR12001"
+    )
+
+    assert isinstance(tree.body, ast.IfExp)
+
+
+@pytest.mark.parametrize(
+    "operator_symbol",
+    [">", ">=", "<", "<=", "==", "!="],
+)
+def test_parser_accepts_all_relational_operators(
+    parser, operator_symbol,
+):
+    tree = parser.parse(
+        f"VAR12001 if VAR12001 {operator_symbol} VAR12002 "
+        "else VAR12002"
+    )
+
+    assert isinstance(tree.body, ast.IfExp)
+    assert isinstance(tree.body.test, ast.Compare)
+
+
+def test_parser_rejects_boolean_operators(parser):
+    with pytest.raises(UnsafeExpressionError):
+        parser.parse(
+            "VAR12001 if VAR12001 > 0 and VAR12002 > 0 "
+            "else VAR12002"
+        )
+
+
+def test_parser_rejects_function_call_inside_if_expression(parser):
+    with pytest.raises(UnsafeExpressionError):
+        parser.parse(
+            "max(VAR12001, VAR12002) if VAR12001 > 0 "
+            "else VAR12002"
+        )
+
+
+def test_parser_rejects_lambda(parser):
+    with pytest.raises(UnsafeExpressionError):
+        parser.parse(
+            "(lambda x: x)(VAR12001)"
+        )
