@@ -103,8 +103,16 @@ def _prepare_context(rule, scope_type, scope_value):
     )
 
     if rule.weight_variable_id:
+        # Os pesos são populados em WEIGHT_VARIABLE_ID (o peso
+        # contratual, producao_planta_t_h) e NÃO em
+        # `rule.weight_variable_id`. A diferença importa: se o peso
+        # declarado na regra for trocado por outra grandeza, o
+        # contexto não terá pesos onde o serviço vai procurar e a
+        # agregação falha alto. Populando pelo campo da própria regra,
+        # qualquer substituição de peso seria autoconsistente e este
+        # teste não a distinguiria.
         _populate(
-            ctx, rule.weight_variable_id, scope_type, scope_value,
+            ctx, WEIGHT_VARIABLE_ID, scope_type, scope_value,
             dict(zip(DAYS, WEIGHTS)),
         )
 

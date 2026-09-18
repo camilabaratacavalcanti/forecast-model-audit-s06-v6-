@@ -39,6 +39,7 @@ teste não simula com mocks.
 Não altera seeds, não altera código de produção.
 """
 
+from datetime import date
 from pathlib import Path
 
 import pytest
@@ -46,6 +47,10 @@ import pytest
 from app.domain.equations.registry import EquationDefinitionRegistry
 from app.engine.calculation_context import CalculationContext
 from app.engine.forecast_engine import ForecastEngine
+from app.engine.temporal_aggregation_service import (
+    TemporalAggregationService,
+)
+from app.engine.time_period_resolver import TimePeriodResolver
 from app.repositories.seed_loader import SeedLoader
 
 SEED_ROOT = Path(__file__).resolve().parent.parent / "data" / "seed"
@@ -656,19 +661,281 @@ def test_cross_block_inputs_are_declared_as_inputs_with_a_source(
         }
 
 
+@pytest.mark.parametrize(
+    "variable_id,description",
+    [
+        ("VAR18031", "evaporado_total_evaporacao (bloco area_04_13)"),
+        ("VAR18012", "temperatura_lp (bloco temperature_lp)"),
+        ("VAR18001", "producao (bloco production)"),
+        ("VAR18008", "lth (bloco production)"),
+        ("VAR18046", "consumo_vapor_outros (entrada_externa)"),
+    ],
+)
 def test_a_missing_cross_block_input_fails_loudly(
-    loaded_seed, seed_parameters,
+    loaded_seed, seed_parameters, variable_id, description,
 ):
     """
-    Sem `evaporado_total_evaporacao` (bloco area_04_13) a cadeia não
-    devolve silenciosamente zero nem pula a equação: falha
-    explicitamente.
+    A ausência de qualquer entrada externa ao bloco faz a cadeia
+    falhar explicitamente -- nunca devolver zero, None ou NaN, nem
+    pular a equação em silêncio.
+
+    Cobre as quatro entradas cujo workbook aponta outro bloco como
+    fonte, mais `consumo_vapor_outros`, que é entrada externa sem
+    bloco de origem declarado.
     """
 
     from app.engine.exceptions import VariableNotFoundError
 
     ctx = CalculationContext()
-    _populate_inputs(ctx, seed_parameters, skip={"VAR18031"})
+    _populate_inputs(ctx, seed_parameters, skip={variable_id})
 
     with pytest.raises(VariableNotFoundError):
         _run(loaded_seed, ctx)
+
+
+# ============================================================
+# Cadeia diário -> AggregationRule -> mensal -> EQ18020
+# ============================================================
+#
+# Acrescentado pela auditoria pós-implementação: a Fase 2 validou
+# cada elo isoladamente (as equações diárias pelo ForecastEngine, as
+# AggregationRules pelo TemporalAggregationService, e o vínculo por ID
+# de EQ18020 estaticamente), mas nunca executou a COMPOSIÇÃO dos três.
+# Sem este teste, uma quebra que só aparecesse na junção -- por
+# exemplo o valor mensal não chegando ao período que EQ18020 lê --
+# passaria por todos os outros testes.
+
+
+CHAIN_MONTH = date(2026, 9, 1)
+
+CHAIN_DAYS = [date(2026, 9, 1), date(2026, 9, 2), date(2026, 9, 3)]
+
+# Fatores (produção, lth, evaporado) aplicados às entradas de cada
+# dia. Os três variam de forma INDEPENDENTE de propósito.
+#
+# Escalar tudo por um fator comum não serviria: `especifico_vapor_*`
+# é a razão entre um consumo e a produção, e a produção aparece nos
+# dois lados. Com um fator único, `especifico_vapor_evaporacao_total`
+# fica invariante (consumo ∝ evaporado ∝ f, produção ∝ f) e os três
+# dias produziriam o mesmo valor -- caso em que média ponderada e
+# média simples coincidem e o teste deixaria de distinguir
+# WEIGHTED_AVERAGE de AVERAGE. As temperaturas ficam fixas, para que
+# o ramo da condicional não mude entre os dias.
+CHAIN_DAY_FACTORS = [
+    (1.0, 1.0, 1.0),
+    (1.4, 1.1, 1.6),
+    (0.7, 1.3, 0.9),
+]
+
+
+def _scaled_inputs(factors):
+    producao_factor, lth_factor, evaporado_factor = factors
+
+    scaled = {}
+
+    for line, values in LINE_INPUTS.items():
+        scaled[line] = dict(values)
+        scaled[line]["producao"] = values["producao"] * producao_factor
+        scaled[line]["lth"] = values["lth"] * lth_factor
+        scaled[line]["evaporado"] = (
+            values["evaporado"] * evaporado_factor
+        )
+
+    return scaled
+
+
+def _run_dated(loaded_seed, ctx, run_date):
+    var_defs, _vi, _pd, _pi, eq_defs, _ei = loaded_seed
+
+    subset = _subset_registry(eq_defs, DAILY_EQUATION_IDS)
+
+    ForecastEngine().calculate_from_definition_registry(
+        equation_definition_registry=subset,
+        calculation_context=ctx,
+        variable_definition_registry=var_defs,
+        run_date=run_date,
+    )
+
+
+def test_daily_to_monthly_chain_feeds_eq18020(
+    loaded_seed, seed_parameters,
+):
+    """
+    Executa a composição completa, sem escrever à mão nenhum valor
+    calculado:
+
+        23 equações diárias (ForecastEngine real, um dia por vez)
+            -> energia_digestao / energia_evaporacao DIÁRIOS
+        AggregationRule WEIGHTED_AVERAGE (serviço real)
+            -> energia_digestao / energia_evaporacao MENSAIS
+        EQ18020 (ForecastEngine real, escopo mensal)
+            -> energia_media_frct
+
+    O esperado é recalculado aqui: a média ponderada mensal é
+    Σ(vₓ·wₓ)/Σ(wₓ) sobre os valores DIÁRIOS que a própria cadeia
+    produziu em cada dia, e o resultado final é a soma das duas
+    parcelas mensais. Nada disso reaproveita o retorno do
+    TemporalAggregationService nem do ForecastEngine.
+    """
+
+    var_defs, _vi, _pd, _pi, eq_defs, _ei = loaded_seed
+
+    ctx = CalculationContext()
+
+    daily_digestao = []
+    daily_evaporacao = []
+    daily_planta = []
+
+    for day, factors in zip(CHAIN_DAYS, CHAIN_DAY_FACTORS):
+        inputs = _scaled_inputs(factors)
+
+        _populate_inputs(ctx, seed_parameters, inputs)
+
+        _run_dated(loaded_seed, ctx, day)
+
+        _per_line, group, _sub = _expected(seed_parameters, inputs)
+
+        daily_digestao.append(group["VAR18027"])
+        daily_evaporacao.append(group["VAR18040"])
+        daily_planta.append(group["VAR18003"])
+
+        # A cadeia diária tem de bater dia a dia, no período do dia.
+        for variable_id, expected_value in (
+            ("VAR18027", group["VAR18027"]),
+            ("VAR18040", group["VAR18040"]),
+            ("VAR18003", group["VAR18003"]),
+        ):
+            assert ctx.get_variable_value(
+                variable_id,
+                scope_type="linha_grupo",
+                scope_value="L1_L7",
+                period_id=day.isoformat(),
+            ) == pytest.approx(expected_value, rel=1e-12)
+
+    # Os três dias têm de ser realmente diferentes, senão a média
+    # ponderada não discriminaria nada.
+    assert len(set(daily_planta)) == 3
+    assert len(set(daily_digestao)) == 3
+    assert len(set(daily_evaporacao)) == 3
+
+    rules = {
+        rule.target_variable_id: rule
+        for rule in SeedLoader(SEED_ROOT).load_aggregation_rules().all()
+        if rule.aggregation_rule_id.startswith("AGR-ENERGY-")
+    }
+
+    service = TemporalAggregationService()
+
+    run_date = CHAIN_DAYS[-1]
+
+    monthly = {}
+
+    for target_variable_id, daily_values in (
+        ("VAR18028", daily_digestao),
+        ("VAR18041", daily_evaporacao),
+    ):
+        rule = rules[target_variable_id]
+
+        assert rule.aggregation_type == "WEIGHTED_AVERAGE"
+        assert rule.weight_variable_id == "VAR18003"
+
+        result = service.aggregate(
+            rule=rule,
+            calculation_context=ctx,
+            scope_type="linha_grupo",
+            scope_value="L1_L7",
+            run_date=run_date,
+        )
+
+        expected_monthly = sum(
+            value * weight
+            for value, weight in zip(daily_values, daily_planta)
+        ) / sum(daily_planta)
+
+        # A média ponderada tem de diferir da simples, senão o teste
+        # não distinguiria WEIGHTED_AVERAGE de AVERAGE.
+        simple = sum(daily_values) / len(daily_values)
+        assert expected_monthly != pytest.approx(simple, rel=1e-9)
+
+        assert result.value == pytest.approx(
+            expected_monthly, rel=1e-12,
+        )
+
+        monthly[target_variable_id] = result.value
+
+    monthly_period_id = (
+        TimePeriodResolver()
+        .effective_window(frequency="mensal", run_date=run_date)
+        .period_id
+    )
+
+    # O serviço de agregação não escreve de volta no contexto: o
+    # valor mensal só chega ao período mensal por esta escrita
+    # explícita, que é o papel do orquestrador na plataforma.
+    for variable_id, value in monthly.items():
+        ctx.set_variable_value(
+            variable_id, value, "linha_grupo", "L1_L7",
+            period_id=monthly_period_id,
+        )
+
+    ForecastEngine().calculate_from_definition_registry(
+        equation_definition_registry=_subset_registry(
+            eq_defs, ["EQ18020"],
+        ),
+        calculation_context=ctx,
+        variable_definition_registry=var_defs,
+        run_date=run_date,
+    )
+
+    expected_frct = (
+        monthly["VAR18028"] + monthly["VAR18041"]
+    )
+
+    assert ctx.get_variable_value(
+        "VAR18044",
+        scope_type="linha_grupo",
+        scope_value="L1_L7",
+        period_id=monthly_period_id,
+    ) == pytest.approx(expected_frct, rel=1e-12)
+
+
+def test_eq18020_cannot_be_satisfied_by_daily_values_alone(
+    loaded_seed, seed_parameters,
+):
+    """
+    Se a etapa de agregação não acontecer, EQ18020 não pode
+    silenciosamente cair nos valores DIÁRIOS de energia_digestao /
+    energia_evaporacao: o período mensal não existe e a execução
+    falha alto.
+
+    É o contra-teste do anterior -- sem ele, um EQ18020 que lesse os
+    valores diários passaria pela cadeia acima sem ninguém perceber.
+    """
+
+    var_defs, _vi, _pd, _pi, eq_defs, _ei = loaded_seed
+
+    ctx = CalculationContext()
+
+    _populate_inputs(ctx, seed_parameters)
+
+    _run_dated(loaded_seed, ctx, CHAIN_DAYS[-1])
+
+    # Os diários existem; os mensais (VAR18028/VAR18041), não.
+    assert ctx.get_variable_value(
+        "VAR18027",
+        scope_type="linha_grupo",
+        scope_value="L1_L7",
+        period_id=CHAIN_DAYS[-1].isoformat(),
+    ) is not None
+
+    from app.engine.exceptions import VariableNotFoundError
+
+    with pytest.raises(VariableNotFoundError):
+        ForecastEngine().calculate_from_definition_registry(
+            equation_definition_registry=_subset_registry(
+                eq_defs, ["EQ18020"],
+            ),
+            calculation_context=ctx,
+            variable_definition_registry=var_defs,
+            run_date=CHAIN_DAYS[-1],
+        )
