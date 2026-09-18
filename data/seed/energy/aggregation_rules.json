@@ -1,0 +1,97 @@
+[
+  {
+    "aggregation_rule_id": "AGR-ENERGY-PRODUCAO_PLANTA_T_H_MEDIA_MOVEL-GRUPO-L1_L7-DIARIO-MOVING_AVERAGE",
+    "source_variable_id": "VAR18003",
+    "source_frequency": "diário",
+    "target_variable_id": "VAR18004",
+    "target_frequency": "diário",
+    "aggregation_type": "MOVING_AVERAGE"
+  },
+  {
+    "aggregation_rule_id": "AGR-ENERGY-VAZAO_VAPOR_DIGESTAO-LINHA-L1_L7-MENSAL-AVERAGE",
+    "source_variable_id": "VAR18020",
+    "source_frequency": "diário",
+    "target_variable_id": "VAR18021",
+    "target_frequency": "mensal",
+    "aggregation_type": "AVERAGE"
+  },
+  {
+    "aggregation_rule_id": "AGR-ENERGY-VAZAO_VAPOR_DIGESTAO_TOTAL-GRUPO-L1_L7-MENSAL-AVERAGE",
+    "source_variable_id": "VAR18022",
+    "source_frequency": "diário",
+    "target_variable_id": "VAR18023",
+    "target_frequency": "mensal",
+    "aggregation_type": "AVERAGE"
+  },
+  {
+    "aggregation_rule_id": "AGR-ENERGY-ESPECIFICO_VAPOR_DIGESTAO_MEDIO-GRUPO-L1_L7-MENSAL-WEIGHTED_AVERAGE",
+    "source_variable_id": "VAR18025",
+    "source_frequency": "diário",
+    "target_variable_id": "VAR18026",
+    "target_frequency": "mensal",
+    "aggregation_type": "WEIGHTED_AVERAGE",
+    "weight_variable_id": "VAR18003"
+  },
+  {
+    "aggregation_rule_id": "AGR-ENERGY-ENERGIA_DIGESTAO-GRUPO-L1_L7-MENSAL-WEIGHTED_AVERAGE",
+    "source_variable_id": "VAR18027",
+    "source_frequency": "diário",
+    "target_variable_id": "VAR18028",
+    "target_frequency": "mensal",
+    "aggregation_type": "WEIGHTED_AVERAGE",
+    "weight_variable_id": "VAR18003"
+  },
+  {
+    "aggregation_rule_id": "AGR-ENERGY-ESPECIFICO_VAPOR_EVAPORACAO_TOTAL-GRUPO-L1_L7-MENSAL-WEIGHTED_AVERAGE",
+    "source_variable_id": "VAR18038",
+    "source_frequency": "diário",
+    "target_variable_id": "VAR18039",
+    "target_frequency": "mensal",
+    "aggregation_type": "WEIGHTED_AVERAGE",
+    "weight_variable_id": "VAR18003"
+  },
+  {
+    "aggregation_rule_id": "AGR-ENERGY-ENERGIA_EVAPORACAO-GRUPO-L1_L7-MENSAL-WEIGHTED_AVERAGE",
+    "source_variable_id": "VAR18040",
+    "source_frequency": "diário",
+    "target_variable_id": "VAR18041",
+    "target_frequency": "mensal",
+    "aggregation_type": "WEIGHTED_AVERAGE",
+    "weight_variable_id": "VAR18003"
+  },
+  {
+    "aggregation_rule_id": "AGR-ENERGY-ENERGIA_BAYER-GRUPO-L1_L7-MENSAL-WEIGHTED_AVERAGE",
+    "source_variable_id": "VAR18042",
+    "source_frequency": "diário",
+    "target_variable_id": "VAR18043",
+    "target_frequency": "mensal",
+    "aggregation_type": "WEIGHTED_AVERAGE",
+    "weight_variable_id": "VAR18003"
+  },
+  {
+    "aggregation_rule_id": "AGR-ENERGY-ESPECIFICO_VAPOR_OUTROS-GRUPO-L1_L7-MENSAL-WEIGHTED_AVERAGE",
+    "source_variable_id": "VAR18047",
+    "source_frequency": "diário",
+    "target_variable_id": "VAR18048",
+    "target_frequency": "mensal",
+    "aggregation_type": "WEIGHTED_AVERAGE",
+    "weight_variable_id": "VAR18003"
+  },
+  {
+    "aggregation_rule_id": "AGR-ENERGY-ESPECIFICO_DEMANDA_BAYER_MEDIO-GRUPO-L1_L7-MENSAL-AVERAGE",
+    "source_variable_id": "VAR18050",
+    "source_frequency": "diário",
+    "target_variable_id": "VAR18051",
+    "target_frequency": "mensal",
+    "aggregation_type": "AVERAGE"
+  },
+  {
+    "aggregation_rule_id": "AGR-ENERGY-ESPECIFICO_DEMANDA_BAYER_MEDIA_PONDERADA-GRUPO-L1_L7-MENSAL-WEIGHTED_AVERAGE",
+    "source_variable_id": "VAR18050",
+    "source_frequency": "diário",
+    "target_variable_id": "VAR18052",
+    "target_frequency": "mensal",
+    "aggregation_type": "WEIGHTED_AVERAGE",
+    "weight_variable_id": "VAR18003"
+  }
+]
