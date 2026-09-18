@@ -129,9 +129,25 @@ def _filter_yield_block(loaded_seed):
 
 
 def _filter_yield_rules(aggregation_rule_registry):
+    """
+    Isola as AggregationRule do bloco Yield, pelo mesmo criterio
+    ja usado por `_is_yield_id` para as entidades: a faixa de IDs
+    reservada ao bloco (11000-11999).
+
+    O filtro anterior era uma lista negra do nome do bloco
+    ("PRODUCTION" nao no aggregation_rule_id), o que so isolava os
+    blocos ja existentes quando ele foi escrito: qualquer bloco novo
+    vazava para dentro da fixture deste modulo, que se declara
+    "isolado dos demais blocos". Nenhuma assercao dos testes foi
+    alterada -- apenas o predicado de isolamento passou a exprimir a
+    intencao ja documentada no topo do arquivo.
+    """
+
     yield_rules = AggregationRuleRegistry()
     for rule in aggregation_rule_registry.all():
-        if "PRODUCTION" not in rule.aggregation_rule_id:
+        if _is_yield_id(rule.source_variable_id) and _is_yield_id(
+            rule.target_variable_id
+        ):
             yield_rules.add(rule)
     return yield_rules
 
