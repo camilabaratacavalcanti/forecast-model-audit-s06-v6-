@@ -1,0 +1,242 @@
+[
+  {
+    "equation_id": "EQ18001",
+    "target_variable_id": "VAR18002",
+    "version": 1,
+    "scope_type": "linha",
+    "scope_value": "L1_L7",
+    "expression": "VAR18001 / 24",
+    "source_reference": "descritivo_das_variáveis_energy_v2.xlsx",
+    "status": "PUBLISHED"
+  },
+  {
+    "equation_id": "EQ18002",
+    "target_variable_id": "VAR18003",
+    "version": 1,
+    "scope_type": "linha_grupo",
+    "scope_value": "L1_L7",
+    "expression": "VAR18002@L1 + VAR18002@L2 + VAR18002@L3 + VAR18002@L4 + VAR18002@L5 + VAR18002@L6 + VAR18002@L7",
+    "source_reference": "descritivo_das_variáveis_energy_v2.xlsx",
+    "status": "PUBLISHED"
+  },
+  {
+    "equation_id": "EQ18003",
+    "target_variable_id": "VAR18017",
+    "version": 1,
+    "scope_type": "linha",
+    "scope_value": "L1_L7",
+    "expression": "(VAR18015 + PARAM18002) if VAR18012 > PARAM18001 else (VAR18016 + PARAM18002)",
+    "source_reference": "descritivo_das_variáveis_energy_v2.xlsx",
+    "status": "PUBLISHED"
+  },
+  {
+    "equation_id": "EQ18004",
+    "target_variable_id": "VAR18019",
+    "version": 1,
+    "scope_type": "linha",
+    "scope_value": "L1_L7",
+    "expression": "VAR18018 - ( VAR18012 + VAR18017 ) + PARAM18003",
+    "source_reference": "descritivo_das_variáveis_energy_v2.xlsx",
+    "status": "PUBLISHED"
+  },
+  {
+    "equation_id": "EQ18005",
+    "target_variable_id": "VAR18020",
+    "version": 1,
+    "scope_type": "linha",
+    "scope_value": "L1_L7",
+    "expression": "(VAR18008 * 1.27 * 0.85157 * ( VAR18018 - ( VAR18012 + VAR18017 ) ) ) / 482",
+    "source_reference": "descritivo_das_variáveis_energy_v2.xlsx",
+    "status": "PUBLISHED"
+  },
+  {
+    "equation_id": "EQ18006",
+    "target_variable_id": "VAR18022",
+    "version": 1,
+    "scope_type": "linha_grupo",
+    "scope_value": "L1_L7",
+    "expression": "VAR18020@L1 + VAR18020@L2 + VAR18020@L3 + VAR18020@L4 + VAR18020@L5 + VAR18020@L6 + VAR18020@L7",
+    "source_reference": "descritivo_das_variáveis_energy_v2.xlsx",
+    "status": "PUBLISHED"
+  },
+  {
+    "equation_id": "EQ18007",
+    "target_variable_id": "VAR18024",
+    "version": 1,
+    "scope_type": "linha",
+    "scope_value": "L1_L7",
+    "expression": "VAR18020 / VAR18002",
+    "source_reference": "descritivo_das_variáveis_energy_v2.xlsx",
+    "status": "PUBLISHED"
+  },
+  {
+    "equation_id": "EQ18008",
+    "target_variable_id": "VAR18025",
+    "version": 1,
+    "scope_type": "linha_grupo",
+    "scope_value": "L1_L7",
+    "expression": "( (VAR18002@L1 * VAR18024@L1) + (VAR18002@L2 * VAR18024@L2) + (VAR18002@L3 * VAR18024@L3) + (VAR18002@L4 * VAR18024@L4) + (VAR18002@L5 * VAR18024@L5) + (VAR18002@L6 * VAR18024@L6) + (VAR18002@L7 * VAR18024@L7) ) / VAR18003",
+    "source_reference": "descritivo_das_variáveis_energy_v2.xlsx",
+    "status": "PUBLISHED"
+  },
+  {
+    "equation_id": "EQ18009",
+    "target_variable_id": "VAR18027",
+    "version": 1,
+    "scope_type": "linha_grupo",
+    "scope_value": "L1_L7",
+    "expression": "VAR18025*2.455609",
+    "source_reference": "descritivo_das_variáveis_energy_v2.xlsx",
+    "status": "PUBLISHED"
+  },
+  {
+    "equation_id": "EQ18010",
+    "target_variable_id": "VAR18030",
+    "version": 1,
+    "scope_type": "linha",
+    "scope_value": "L1_L7",
+    "expression": "(VAR18029 / 80) * VAR18012",
+    "source_reference": "descritivo_das_variáveis_energy_v2.xlsx",
+    "status": "PUBLISHED"
+  },
+  {
+    "equation_id": "EQ18011",
+    "target_variable_id": "VAR18032",
+    "version": 1,
+    "scope_type": "linha",
+    "scope_value": "L1_L7",
+    "expression": "VAR18031 / VAR18030",
+    "source_reference": "descritivo_das_variáveis_energy_v2.xlsx",
+    "status": "PUBLISHED"
+  },
+  {
+    "equation_id": "EQ18012",
+    "target_variable_id": "VAR18033",
+    "version": 1,
+    "scope_type": "linha_grupo",
+    "scope_value": "L1_L7",
+    "expression": "VAR18032@L1 + VAR18032@L2 + VAR18032@L3 + VAR18032@L4 + VAR18032@L5 + VAR18032@L6 + VAR18032@L7",
+    "source_reference": "descritivo_das_variáveis_energy_v2.xlsx",
+    "status": "PUBLISHED"
+  },
+  {
+    "equation_id": "EQ18013",
+    "target_variable_id": "VAR18034",
+    "version": 1,
+    "scope_type": "linha",
+    "scope_value": "L1_L7",
+    "expression": "VAR18032 / VAR18002",
+    "source_reference": "descritivo_das_variáveis_energy_v2.xlsx",
+    "status": "PUBLISHED"
+  },
+  {
+    "equation_id": "EQ18014",
+    "target_variable_id": "VAR18035",
+    "version": 1,
+    "scope_type": "linha_grupo",
+    "scope_value": "L1_L3",
+    "expression": "(VAR18032@L1 + VAR18032@L2 + VAR18032@L3 ) / ( VAR18002@L1 + VAR18002@L2 + VAR18002@L3 )",
+    "source_reference": "descritivo_das_variáveis_energy_v2.xlsx",
+    "status": "PUBLISHED"
+  },
+  {
+    "equation_id": "EQ18015",
+    "target_variable_id": "VAR18036",
+    "version": 1,
+    "scope_type": "linha_grupo",
+    "scope_value": "L4_L5",
+    "expression": "(VAR18032@L4 + VAR18032@L5 ) / ( VAR18002@L4 + VAR18002@L5 )",
+    "source_reference": "descritivo_das_variáveis_energy_v2.xlsx",
+    "status": "PUBLISHED"
+  },
+  {
+    "equation_id": "EQ18016",
+    "target_variable_id": "VAR18037",
+    "version": 1,
+    "scope_type": "linha_grupo",
+    "scope_value": "L6_L7",
+    "expression": "(VAR18032@L6 + VAR18032@L7 ) / ( VAR18002@L6 + VAR18002@L7 )",
+    "source_reference": "descritivo_das_variáveis_energy_v2.xlsx",
+    "status": "PUBLISHED"
+  },
+  {
+    "equation_id": "EQ18017",
+    "target_variable_id": "VAR18038",
+    "version": 1,
+    "scope_type": "linha_grupo",
+    "scope_value": "L1_L7",
+    "expression": "VAR18033 / VAR18003",
+    "source_reference": "descritivo_das_variáveis_energy_v2.xlsx",
+    "status": "PUBLISHED"
+  },
+  {
+    "equation_id": "EQ18018",
+    "target_variable_id": "VAR18040",
+    "version": 1,
+    "scope_type": "linha_grupo",
+    "scope_value": "L1_L7",
+    "expression": "VAR18038*2.455609",
+    "source_reference": "descritivo_das_variáveis_energy_v2.xlsx",
+    "status": "PUBLISHED"
+  },
+  {
+    "equation_id": "EQ18019",
+    "target_variable_id": "VAR18042",
+    "version": 1,
+    "scope_type": "linha_grupo",
+    "scope_value": "L1_L7",
+    "expression": "VAR18027 + VAR18040",
+    "source_reference": "descritivo_das_variáveis_energy_v2.xlsx",
+    "status": "PUBLISHED"
+  },
+  {
+    "equation_id": "EQ18020",
+    "target_variable_id": "VAR18044",
+    "version": 1,
+    "scope_type": "linha_grupo",
+    "scope_value": "L1_L7",
+    "expression": "VAR18028 + VAR18041",
+    "source_reference": "descritivo_das_variáveis_energy_v2.xlsx",
+    "status": "PUBLISHED"
+  },
+  {
+    "equation_id": "EQ18021",
+    "target_variable_id": "VAR18045",
+    "version": 1,
+    "scope_type": "linha_grupo",
+    "scope_value": "L1_L7",
+    "expression": "VAR18022 + VAR18033",
+    "source_reference": "descritivo_das_variáveis_energy_v2.xlsx",
+    "status": "PUBLISHED"
+  },
+  {
+    "equation_id": "EQ18022",
+    "target_variable_id": "VAR18047",
+    "version": 1,
+    "scope_type": "linha_grupo",
+    "scope_value": "L1_L7",
+    "expression": "VAR18046 / VAR18003",
+    "source_reference": "descritivo_das_variáveis_energy_v2.xlsx",
+    "status": "PUBLISHED"
+  },
+  {
+    "equation_id": "EQ18023",
+    "target_variable_id": "VAR18049",
+    "version": 1,
+    "scope_type": "linha_grupo",
+    "scope_value": "L1_L7",
+    "expression": "VAR18045 + VAR18046",
+    "source_reference": "descritivo_das_variáveis_energy_v2.xlsx",
+    "status": "PUBLISHED"
+  },
+  {
+    "equation_id": "EQ18024",
+    "target_variable_id": "VAR18050",
+    "version": 1,
+    "scope_type": "linha_grupo",
+    "scope_value": "L1_L7",
+    "expression": "VAR18049 / VAR18003",
+    "source_reference": "descritivo_das_variáveis_energy_v2.xlsx",
+    "status": "PUBLISHED"
+  }
+]
