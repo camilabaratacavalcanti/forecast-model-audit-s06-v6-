@@ -1,0 +1,50 @@
+[
+  {
+    "parameter_id": "PARAM18001",
+    "parameter_name": "temperatura_lp_referencia",
+    "description": "Temperatura de referência do licor pobre utilizada no cálculo do delta térmico regenerativo.",
+    "unit": "°C",
+    "value": 72,
+    "version": 1,
+    "scope_type": "linha",
+    "scope_value": "L1_L7",
+    "source_reference": "descritivo_das_variáveis_energy_v2.xlsx",
+    "status": "ativo"
+  },
+  {
+    "parameter_id": "PARAM18002",
+    "parameter_name": "fator_ajuste_delta_t_reg",
+    "description": "Fator de ajuste aplicado ao delta térmico regenerativo.",
+    "unit": "°C",
+    "value": 0,
+    "version": 1,
+    "scope_type": "linha",
+    "scope_value": "L1_L7",
+    "source_reference": "descritivo_das_variáveis_energy_v2.xlsx",
+    "status": "ativo"
+  },
+  {
+    "parameter_id": "PARAM18003",
+    "parameter_name": "fator_ajuste_delta_t_vapor_vivo",
+    "description": "Fator de ajuste aplicado ao delta térmico do vapor vivo.",
+    "unit": "°C",
+    "value": 0,
+    "version": 1,
+    "scope_type": "linha",
+    "scope_value": "L1_L7",
+    "source_reference": "descritivo_das_variáveis_energy_v2.xlsx",
+    "status": "ativo"
+  },
+  {
+    "parameter_id": "PARAM18004",
+    "parameter_name": "delta_t_vapor_vivo_maximo",
+    "description": "Valor máximo de referência para o delta térmico do vapor vivo.",
+    "unit": "°C",
+    "value": 56,
+    "version": 1,
+    "scope_type": "linha_grupo",
+    "scope_value": "L1_L7",
+    "source_reference": "descritivo_das_variáveis_energy_v2.xlsx",
+    "status": "ativo"
+  }
+]

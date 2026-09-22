@@ -69,6 +69,8 @@ ALLOWED_UNITS = {
     "Mtpy",
     "dias",
     "kg/t",
+    # Bloco Energy (auditoria descritivo_das_variaveis_energy_v2.xlsx):
+    "GJ/t",
 }
 
 
