@@ -1234,3 +1234,54 @@ def test_parameter_id_ranges_are_contiguous_with_no_gaps():
 def test_parameter_id_ranges_names_have_no_duplicates():
     names = list(PARAMETER_ID_RANGES)
     assert len(names) == len(set(names))
+
+
+# ============================================================
+# Padronizacao de unidades de taxa de massa (t/h, t/d, t/mes)
+# ============================================================
+
+
+@pytest.mark.parametrize("unit", ["t/h", "t/d", "t/mês"])
+def test_validate_enum_values_accepts_mass_rate_units(
+    valid_parameter,
+    tmp_path,
+    unit,
+):
+    valid_parameter["unit"] = unit
+
+    errors = validate_enum_values(
+        valid_parameter,
+        tmp_path / "parameters.json",
+    )
+
+    assert errors == []
+
+
+@pytest.mark.parametrize(
+    "unit",
+    [
+        "ton/h",
+        "ton/d",
+        "ton/dia",
+        "ton/mês",
+        "ton/month",
+        "t/hour",
+        "t/day",
+        "t/month",
+        "t/m",
+    ],
+)
+def test_validate_enum_values_rejects_non_standard_mass_rate_variants(
+    valid_parameter,
+    tmp_path,
+    unit,
+):
+    valid_parameter["unit"] = unit
+
+    errors = validate_enum_values(
+        valid_parameter,
+        tmp_path / "parameters.json",
+    )
+
+    assert len(errors) == 1
+    assert "unit" in errors[0]

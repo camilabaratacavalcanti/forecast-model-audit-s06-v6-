@@ -889,3 +889,68 @@ def test_variable_id_ranges_are_contiguous_with_no_gaps():
 def test_variable_id_ranges_names_have_no_duplicates():
     names = list(VARIABLE_ID_RANGES)
     assert len(names) == len(set(names))
+
+
+# ============================================================
+# Padronizacao de unidades de taxa de massa (t/h, t/d, t/mes)
+# ============================================================
+
+
+@pytest.mark.parametrize("unit", ["t/h", "t/d", "t/mês"])
+def test_validate_enum_values_accepts_mass_rate_units(unit):
+    variables = [
+        {
+            "variable_id": "VAR11001",
+            "variable_name": "producao_taxa",
+            "description": "Taxa de producao de teste.",
+            "unit": unit,
+            "variable_type": "calculado",
+            "frequency": "diário",
+            "scope_type": "linha",
+            "scope_value": "L1_L7",
+            "source_reference": "teste",
+            "status": "ativo",
+        }
+    ]
+
+    errors = validate_enum_values(variables)
+
+    assert errors == []
+
+
+@pytest.mark.parametrize(
+    "unit",
+    [
+        "ton/h",
+        "ton/d",
+        "ton/dia",
+        "ton/mês",
+        "ton/month",
+        "t/hour",
+        "t/day",
+        "t/month",
+        "t/m",
+    ],
+)
+def test_validate_enum_values_rejects_non_standard_mass_rate_variants(
+    unit,
+):
+    variables = [
+        {
+            "variable_id": "VAR11001",
+            "variable_name": "producao_taxa",
+            "description": "Taxa de producao de teste.",
+            "unit": unit,
+            "variable_type": "calculado",
+            "frequency": "diário",
+            "scope_type": "linha",
+            "scope_value": "L1_L7",
+            "source_reference": "teste",
+            "status": "ativo",
+        }
+    ]
+
+    errors = validate_enum_values(variables)
+
+    assert len(errors) == 1
+    assert "'unit'" in errors[0]

@@ -124,6 +124,11 @@ ALLOWED_UNITS = {
     "kg/t",
     # Bloco Energy (auditoria descritivo_das_variaveis_energy_v2.xlsx):
     "GJ/t",
+    # Padronizacao de unidades de taxa de massa: "t/h" ja existia;
+    # "t/d" e "t/mês" adicionadas para completar o trio oficial
+    # (toneladas por hora / dia / mes).
+    "t/d",
+    "t/mês",
 }
 
 
