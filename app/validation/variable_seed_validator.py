@@ -20,11 +20,20 @@ REQUIRED_VARIABLE_FIELDS = [
 ]
 
 
+# Taxonomia oficial de blocos (28 blocos, faixa continua
+# 10000-37999, 1000 IDs por bloco, sem sobreposicao).
+#
+# "hydrate" e "costs" foram removidos desta taxonomia:
+# "hydrate" foi substituido por "max_ht" na mesma faixa
+# (13000-13999); "costs" foi desmembrado nos tres blocos de
+# custo (custo_budget, custo_forecast_bdgt, custo_forecast_real)
+# mais os blocos budget/forecast, cada um com faixa propria.
+# "shared" foi realocado de 23000-23999 para 37000-37999.
 VARIABLE_ID_RANGES = {
     "maintenance": (10000, 10999),
     "yield": (11000, 11999),
     "production": (12000, 12999),
-    "hydrate": (13000, 13999),
+    "max_ht": (13000, 13999),
     "alumina": (14000, 14999),
     "temperature_lp": (15000, 15999),
     "area_41": (16000, 16999),
@@ -33,8 +42,22 @@ VARIABLE_ID_RANGES = {
     "boilers": (19000, 19999),
     "volume": (20000, 20999),
     "soda": (21000, 21999),
-    "costs": (22000, 22999),
-    "shared": (23000, 23999),
+    "fator_residuo": (22000, 22999),
+    "vazao_condensado": (23000, 23999),
+    "forecast_volume": (24000, 24999),
+    "meta_volume_cheio": (25000, 25999),
+    "controle_espaco_vazio_meta": (26000, 26999),
+    "lime_dia": (27000, 27999),
+    "floculante_hidrato_2026": (28000, 28999),
+    "floculante_lama_dia": (29000, 29999),
+    "premissas_ppt_mensal": (30000, 30999),
+    "acido": (31000, 31999),
+    "custo_budget": (32000, 32999),
+    "custo_forecast_bdgt": (33000, 33999),
+    "custo_forecast_real": (34000, 34999),
+    "budget": (35000, 35999),
+    "forecast": (36000, 36999),
+    "shared": (37000, 37999),
 }
 
 
