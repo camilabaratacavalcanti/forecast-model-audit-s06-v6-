@@ -5,6 +5,7 @@ import pytest
 from pathlib import Path
 
 from app.validation.parameter_seed_validator import (
+    PARAMETER_ID_RANGES,
     build_parameter_signature,
     validate_enum_values,
     validate_field_types,
@@ -741,9 +742,9 @@ def test_validate_parameter_id_ranges_accepts_production_ids(
 @pytest.mark.parametrize(
     "parameter_id",
     [
-        "PARAM23000",
-        "PARAM23500",
-        "PARAM23999",
+        "PARAM37000",
+        "PARAM37500",
+        "PARAM37999",
     ],
 )
 def test_validate_parameter_id_ranges_accepts_shared_ids(
@@ -1131,3 +1132,105 @@ def test_validate_seed_warns_when_no_parameter_files(
     assert errors == []
     assert len(warnings) == 1
     assert "parameters.json" in warnings[0]
+
+
+# ============================================================
+# PARAMETER_ID_RANGES -- contrato da taxonomia oficial de blocos
+# ============================================================
+#
+# Protege a taxonomia oficial de 28 blocos (10000-37999), sem
+# depender de nenhuma seed real: valida a estrutura do proprio
+# catalogo. Identica, bloco a bloco, a VARIABLE_ID_RANGES.
+# "hydrate" e "costs" nao existem mais como blocos de ID;
+# "max_ht" ocupa a faixa antes usada por "hydrate"; "shared"
+# foi realocado para 37000-37999.
+
+
+def test_parameter_id_ranges_has_exactly_28_blocks():
+    assert len(PARAMETER_ID_RANGES) == 28
+
+
+def test_parameter_id_ranges_matches_official_taxonomy():
+    assert PARAMETER_ID_RANGES == {
+        "maintenance": (10000, 10999),
+        "yield": (11000, 11999),
+        "production": (12000, 12999),
+        "max_ht": (13000, 13999),
+        "alumina": (14000, 14999),
+        "temperature_lp": (15000, 15999),
+        "area_41": (16000, 16999),
+        "area_04_13": (17000, 17999),
+        "energy": (18000, 18999),
+        "boilers": (19000, 19999),
+        "volume": (20000, 20999),
+        "soda": (21000, 21999),
+        "fator_residuo": (22000, 22999),
+        "vazao_condensado": (23000, 23999),
+        "forecast_volume": (24000, 24999),
+        "meta_volume_cheio": (25000, 25999),
+        "controle_espaco_vazio_meta": (26000, 26999),
+        "lime_dia": (27000, 27999),
+        "floculante_hidrato_2026": (28000, 28999),
+        "floculante_lama_dia": (29000, 29999),
+        "premissas_ppt_mensal": (30000, 30999),
+        "acido": (31000, 31999),
+        "custo_budget": (32000, 32999),
+        "custo_forecast_bdgt": (33000, 33999),
+        "custo_forecast_real": (34000, 34999),
+        "budget": (35000, 35999),
+        "forecast": (36000, 36999),
+        "shared": (37000, 37999),
+    }
+
+
+def test_parameter_id_ranges_hydrate_and_costs_no_longer_exist():
+    assert "hydrate" not in PARAMETER_ID_RANGES
+    assert "costs" not in PARAMETER_ID_RANGES
+
+
+def test_parameter_id_ranges_max_ht_occupies_former_hydrate_range():
+    assert PARAMETER_ID_RANGES["max_ht"] == (13000, 13999)
+
+
+def test_parameter_id_ranges_shared_is_the_last_block():
+    names = list(PARAMETER_ID_RANGES)
+    assert names[-1] == "shared"
+    assert PARAMETER_ID_RANGES["shared"] == (37000, 37999)
+
+
+def test_parameter_id_ranges_first_block_starts_at_10000():
+    first_name = next(iter(PARAMETER_ID_RANGES))
+    assert PARAMETER_ID_RANGES[first_name][0] == 10000
+
+
+def test_parameter_id_ranges_last_block_ends_at_37999():
+    last_name = list(PARAMETER_ID_RANGES)[-1]
+    assert PARAMETER_ID_RANGES[last_name][1] == 37999
+
+
+def test_parameter_id_ranges_every_block_has_exactly_1000_ids():
+    for name, (minimum, maximum) in PARAMETER_ID_RANGES.items():
+        assert maximum - minimum + 1 == 1000, name
+
+
+def test_parameter_id_ranges_no_overlap_between_any_two_blocks():
+    intervals = sorted(PARAMETER_ID_RANGES.values())
+
+    for (_, previous_max), (next_min, _) in zip(
+        intervals, intervals[1:]
+    ):
+        assert next_min > previous_max
+
+
+def test_parameter_id_ranges_are_contiguous_with_no_gaps():
+    intervals = sorted(PARAMETER_ID_RANGES.values())
+
+    for (_, previous_max), (next_min, _) in zip(
+        intervals, intervals[1:]
+    ):
+        assert next_min == previous_max + 1
+
+
+def test_parameter_id_ranges_names_have_no_duplicates():
+    names = list(PARAMETER_ID_RANGES)
+    assert len(names) == len(set(names))

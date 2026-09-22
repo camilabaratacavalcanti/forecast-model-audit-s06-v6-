@@ -799,7 +799,7 @@ def test_equation_id_ranges_are_defined():
         "maintenance": (10000, 10999),
         "yield": (11000, 11999),
         "production": (12000, 12999),
-        "hydrate": (13000, 13999),
+        "max_ht": (13000, 13999),
         "alumina": (14000, 14999),
         "temperature_lp": (15000, 15999),
         "area_41": (16000, 16999),
@@ -808,8 +808,22 @@ def test_equation_id_ranges_are_defined():
         "boilers": (19000, 19999),
         "volume": (20000, 20999),
         "soda": (21000, 21999),
-        "costs": (22000, 22999),
-        "shared": (23000, 23999),
+        "fator_residuo": (22000, 22999),
+        "vazao_condensado": (23000, 23999),
+        "forecast_volume": (24000, 24999),
+        "meta_volume_cheio": (25000, 25999),
+        "controle_espaco_vazio_meta": (26000, 26999),
+        "lime_dia": (27000, 27999),
+        "floculante_hidrato_2026": (28000, 28999),
+        "floculante_lama_dia": (29000, 29999),
+        "premissas_ppt_mensal": (30000, 30999),
+        "acido": (31000, 31999),
+        "custo_budget": (32000, 32999),
+        "custo_forecast_bdgt": (33000, 33999),
+        "custo_forecast_real": (34000, 34999),
+        "budget": (35000, 35999),
+        "forecast": (36000, 36999),
+        "shared": (37000, 37999),
     }
 
 
@@ -882,7 +896,7 @@ def test_validate_equation_id_ranges_accepts_upper_boundaries(
     [
         "EQ09999",
         "EQ109999",
-        "EQ24000",
+        "EQ38000",
         "EQ99999",
     ],
 )
@@ -1237,3 +1251,78 @@ def test_validate_seed_rejects_duplicate_id_and_version(
         "combinação duplicada" in error
         for error in errors
     )
+
+
+# ============================================================
+# EQUATION_ID_RANGES -- contrato da taxonomia oficial de blocos
+# ============================================================
+#
+# Protege a taxonomia oficial de 28 blocos (10000-37999), sem
+# depender de nenhuma seed real: valida a estrutura do proprio
+# catalogo. Identica, bloco a bloco, a VARIABLE_ID_RANGES e a
+# PARAMETER_ID_RANGES. "hydrate" e "costs" nao existem mais como
+# blocos de ID; "max_ht" ocupa a faixa antes usada por "hydrate";
+# "shared" foi realocado para 37000-37999.
+#
+# (O teste `test_equation_id_ranges_are_defined`, acima, ja
+# confere a igualdade byte-a-byte com a taxonomia oficial; os
+# testes abaixo protegem a ESTRUTURA do catalogo -- contagem,
+# contiguidade, ausencia de sobreposicao -- que a igualdade nao
+# comunica isoladamente.)
+
+
+def test_equation_id_ranges_has_exactly_28_blocks():
+    assert len(EQUATION_ID_RANGES) == 28
+
+
+def test_equation_id_ranges_hydrate_and_costs_no_longer_exist():
+    assert "hydrate" not in EQUATION_ID_RANGES
+    assert "costs" not in EQUATION_ID_RANGES
+
+
+def test_equation_id_ranges_max_ht_occupies_former_hydrate_range():
+    assert EQUATION_ID_RANGES["max_ht"] == (13000, 13999)
+
+
+def test_equation_id_ranges_shared_is_the_last_block():
+    names = list(EQUATION_ID_RANGES)
+    assert names[-1] == "shared"
+    assert EQUATION_ID_RANGES["shared"] == (37000, 37999)
+
+
+def test_equation_id_ranges_first_block_starts_at_10000():
+    first_name = next(iter(EQUATION_ID_RANGES))
+    assert EQUATION_ID_RANGES[first_name][0] == 10000
+
+
+def test_equation_id_ranges_last_block_ends_at_37999():
+    last_name = list(EQUATION_ID_RANGES)[-1]
+    assert EQUATION_ID_RANGES[last_name][1] == 37999
+
+
+def test_equation_id_ranges_every_block_has_exactly_1000_ids():
+    for name, (minimum, maximum) in EQUATION_ID_RANGES.items():
+        assert maximum - minimum + 1 == 1000, name
+
+
+def test_equation_id_ranges_no_overlap_between_any_two_blocks():
+    intervals = sorted(EQUATION_ID_RANGES.values())
+
+    for (_, previous_max), (next_min, _) in zip(
+        intervals, intervals[1:]
+    ):
+        assert next_min > previous_max
+
+
+def test_equation_id_ranges_are_contiguous_with_no_gaps():
+    intervals = sorted(EQUATION_ID_RANGES.values())
+
+    for (_, previous_max), (next_min, _) in zip(
+        intervals, intervals[1:]
+    ):
+        assert next_min == previous_max + 1
+
+
+def test_equation_id_ranges_names_have_no_duplicates():
+    names = list(EQUATION_ID_RANGES)
+    assert len(names) == len(set(names))
