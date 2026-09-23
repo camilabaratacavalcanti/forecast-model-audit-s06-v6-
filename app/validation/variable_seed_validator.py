@@ -142,6 +142,15 @@ ALLOWED_UNITS = {
     # (toneladas por hora / dia / mes).
     "t/d",
     "t/mês",
+    # Bloco MaxHT (auditoria descritivo_das_variáveis_MaxHT_v5.xlsx):
+    "t/ano",
+    "kg/h",
+    "kg/d",
+    "kg/mês",
+    "kg/ano",
+    "m³/mês",
+    "m³/ano",
+    "mg/l",
 }
 
 

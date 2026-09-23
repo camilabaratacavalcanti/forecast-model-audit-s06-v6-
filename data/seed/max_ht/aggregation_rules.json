@@ -1,0 +1,882 @@
+[
+  {
+    "aggregation_rule_id": "AGR-MAX_HT-PRODUCAO-LINHA-L1_L7-MENSAL-SUM",
+    "source_variable_id": "VAR13001",
+    "source_frequency": "diário",
+    "target_variable_id": "VAR13002",
+    "target_frequency": "mensal",
+    "aggregation_type": "SUM"
+  },
+  {
+    "aggregation_rule_id": "AGR-MAX_HT-PRODUCAO-LINHA-L1_L7-ANUAL-SUM",
+    "source_variable_id": "VAR13001",
+    "source_frequency": "diário",
+    "target_variable_id": "VAR13003",
+    "target_frequency": "anual",
+    "aggregation_type": "SUM"
+  },
+  {
+    "aggregation_rule_id": "AGR-MAX_HT-PRODUCAO-LINHA-L1_L7-MENSAL-AVERAGE",
+    "source_variable_id": "VAR13001",
+    "source_frequency": "diário",
+    "target_variable_id": "VAR13004",
+    "target_frequency": "mensal",
+    "aggregation_type": "AVERAGE"
+  },
+  {
+    "aggregation_rule_id": "AGR-MAX_HT-PRODUCAO-LINHA-L1_L7-ANUAL-AVERAGE",
+    "source_variable_id": "VAR13001",
+    "source_frequency": "diário",
+    "target_variable_id": "VAR13005",
+    "target_frequency": "anual",
+    "aggregation_type": "AVERAGE"
+  },
+  {
+    "aggregation_rule_id": "AGR-MAX_HT-REFINERY-GRUPO-L1_L7-MENSAL-SUM",
+    "source_variable_id": "VAR13006",
+    "source_frequency": "diário",
+    "target_variable_id": "VAR13007",
+    "target_frequency": "mensal",
+    "aggregation_type": "SUM"
+  },
+  {
+    "aggregation_rule_id": "AGR-MAX_HT-REFINERY-GRUPO-L1_L7-ANUAL-SUM",
+    "source_variable_id": "VAR13006",
+    "source_frequency": "diário",
+    "target_variable_id": "VAR13008",
+    "target_frequency": "anual",
+    "aggregation_type": "SUM"
+  },
+  {
+    "aggregation_rule_id": "AGR-MAX_HT-REFINERY-GRUPO-L1_L7-MENSAL-AVERAGE",
+    "source_variable_id": "VAR13006",
+    "source_frequency": "diário",
+    "target_variable_id": "VAR13009",
+    "target_frequency": "mensal",
+    "aggregation_type": "AVERAGE"
+  },
+  {
+    "aggregation_rule_id": "AGR-MAX_HT-REFINERY-GRUPO-L1_L7-ANUAL-AVERAGE",
+    "source_variable_id": "VAR13006",
+    "source_frequency": "diário",
+    "target_variable_id": "VAR13010",
+    "target_frequency": "anual",
+    "aggregation_type": "AVERAGE"
+  },
+  {
+    "aggregation_rule_id": "AGR-MAX_HT-ALIMENTAÇÃO_EVAP-LINHA-L1_L7-MENSAL-SUM",
+    "source_variable_id": "VAR13011",
+    "source_frequency": "diário",
+    "target_variable_id": "VAR13012",
+    "target_frequency": "mensal",
+    "aggregation_type": "SUM"
+  },
+  {
+    "aggregation_rule_id": "AGR-MAX_HT-ALIMENTAÇÃO_EVAP-LINHA-L1_L7-ANUAL-SUM",
+    "source_variable_id": "VAR13011",
+    "source_frequency": "diário",
+    "target_variable_id": "VAR13013",
+    "target_frequency": "anual",
+    "aggregation_type": "SUM"
+  },
+  {
+    "aggregation_rule_id": "AGR-MAX_HT-ALIMENTAÇÃO_EVAP-LINHA-L1_L7-MENSAL-AVERAGE",
+    "source_variable_id": "VAR13011",
+    "source_frequency": "diário",
+    "target_variable_id": "VAR13014",
+    "target_frequency": "mensal",
+    "aggregation_type": "AVERAGE"
+  },
+  {
+    "aggregation_rule_id": "AGR-MAX_HT-ALIMENTAÇÃO_EVAP-LINHA-L1_L7-ANUAL-AVERAGE",
+    "source_variable_id": "VAR13011",
+    "source_frequency": "diário",
+    "target_variable_id": "VAR13015",
+    "target_frequency": "anual",
+    "aggregation_type": "AVERAGE"
+  },
+  {
+    "aggregation_rule_id": "AGR-MAX_HT-ALIMENTAÇÃO_EVAP_TOTAL-GRUPO-L1_L7-MENSAL-SUM",
+    "source_variable_id": "VAR13016",
+    "source_frequency": "diário",
+    "target_variable_id": "VAR13017",
+    "target_frequency": "mensal",
+    "aggregation_type": "SUM"
+  },
+  {
+    "aggregation_rule_id": "AGR-MAX_HT-ALIMENTAÇÃO_EVAP_TOTAL-GRUPO-L1_L7-ANUAL-SUM",
+    "source_variable_id": "VAR13016",
+    "source_frequency": "diário",
+    "target_variable_id": "VAR13018",
+    "target_frequency": "anual",
+    "aggregation_type": "SUM"
+  },
+  {
+    "aggregation_rule_id": "AGR-MAX_HT-ALIMENTAÇÃO_EVAP_TOTAL-GRUPO-L1_L7-MENSAL-AVERAGE",
+    "source_variable_id": "VAR13016",
+    "source_frequency": "diário",
+    "target_variable_id": "VAR13019",
+    "target_frequency": "mensal",
+    "aggregation_type": "AVERAGE"
+  },
+  {
+    "aggregation_rule_id": "AGR-MAX_HT-ALIMENTAÇÃO_EVAP_TOTAL-GRUPO-L1_L7-ANUAL-AVERAGE",
+    "source_variable_id": "VAR13016",
+    "source_frequency": "diário",
+    "target_variable_id": "VAR13020",
+    "target_frequency": "anual",
+    "aggregation_type": "AVERAGE"
+  },
+  {
+    "aggregation_rule_id": "AGR-MAX_HT-LTH-LINHA-L1_L7-MENSAL-SUM",
+    "source_variable_id": "VAR13021",
+    "source_frequency": "diário",
+    "target_variable_id": "VAR13022",
+    "target_frequency": "mensal",
+    "aggregation_type": "SUM"
+  },
+  {
+    "aggregation_rule_id": "AGR-MAX_HT-LTH-LINHA-L1_L7-ANUAL-SUM",
+    "source_variable_id": "VAR13021",
+    "source_frequency": "diário",
+    "target_variable_id": "VAR13023",
+    "target_frequency": "anual",
+    "aggregation_type": "SUM"
+  },
+  {
+    "aggregation_rule_id": "AGR-MAX_HT-LTH-LINHA-L1_L7-MENSAL-AVERAGE",
+    "source_variable_id": "VAR13021",
+    "source_frequency": "diário",
+    "target_variable_id": "VAR13024",
+    "target_frequency": "mensal",
+    "aggregation_type": "AVERAGE"
+  },
+  {
+    "aggregation_rule_id": "AGR-MAX_HT-LTH-LINHA-L1_L7-ANUAL-AVERAGE",
+    "source_variable_id": "VAR13021",
+    "source_frequency": "diário",
+    "target_variable_id": "VAR13025",
+    "target_frequency": "anual",
+    "aggregation_type": "AVERAGE"
+  },
+  {
+    "aggregation_rule_id": "AGR-MAX_HT-LTH_TOTAL-GRUPO-L1_L7-MENSAL-SUM",
+    "source_variable_id": "VAR13026",
+    "source_frequency": "diário",
+    "target_variable_id": "VAR13027",
+    "target_frequency": "mensal",
+    "aggregation_type": "SUM"
+  },
+  {
+    "aggregation_rule_id": "AGR-MAX_HT-LTH_TOTAL-GRUPO-L1_L7-ANUAL-SUM",
+    "source_variable_id": "VAR13026",
+    "source_frequency": "diário",
+    "target_variable_id": "VAR13028",
+    "target_frequency": "anual",
+    "aggregation_type": "SUM"
+  },
+  {
+    "aggregation_rule_id": "AGR-MAX_HT-LTH_TOTAL-GRUPO-L1_L7-MENSAL-AVERAGE",
+    "source_variable_id": "VAR13026",
+    "source_frequency": "diário",
+    "target_variable_id": "VAR13029",
+    "target_frequency": "mensal",
+    "aggregation_type": "AVERAGE"
+  },
+  {
+    "aggregation_rule_id": "AGR-MAX_HT-LTH_TOTAL-GRUPO-L1_L7-ANUAL-AVERAGE",
+    "source_variable_id": "VAR13026",
+    "source_frequency": "diário",
+    "target_variable_id": "VAR13030",
+    "target_frequency": "anual",
+    "aggregation_type": "AVERAGE"
+  },
+  {
+    "aggregation_rule_id": "AGR-MAX_HT-FLUXO_PARA_EVAP-LINHA-L1_L7-MENSAL-SUM",
+    "source_variable_id": "VAR13032",
+    "source_frequency": "diário",
+    "target_variable_id": "VAR13033",
+    "target_frequency": "mensal",
+    "aggregation_type": "SUM"
+  },
+  {
+    "aggregation_rule_id": "AGR-MAX_HT-FLUXO_PARA_EVAP-LINHA-L1_L7-ANUAL-SUM",
+    "source_variable_id": "VAR13032",
+    "source_frequency": "diário",
+    "target_variable_id": "VAR13034",
+    "target_frequency": "anual",
+    "aggregation_type": "SUM"
+  },
+  {
+    "aggregation_rule_id": "AGR-MAX_HT-FLUXO_PARA_EVAP-LINHA-L1_L7-MENSAL-AVERAGE",
+    "source_variable_id": "VAR13032",
+    "source_frequency": "diário",
+    "target_variable_id": "VAR13035",
+    "target_frequency": "mensal",
+    "aggregation_type": "AVERAGE"
+  },
+  {
+    "aggregation_rule_id": "AGR-MAX_HT-FLUXO_PARA_EVAP-LINHA-L1_L7-ANUAL-AVERAGE",
+    "source_variable_id": "VAR13032",
+    "source_frequency": "diário",
+    "target_variable_id": "VAR13036",
+    "target_frequency": "anual",
+    "aggregation_type": "AVERAGE"
+  },
+  {
+    "aggregation_rule_id": "AGR-MAX_HT-FLUXO_PARA_EVAP_TOTAL-GRUPO-L1_L7-MENSAL-SUM",
+    "source_variable_id": "VAR13037",
+    "source_frequency": "diário",
+    "target_variable_id": "VAR13038",
+    "target_frequency": "mensal",
+    "aggregation_type": "SUM"
+  },
+  {
+    "aggregation_rule_id": "AGR-MAX_HT-FLUXO_PARA_EVAP_TOTAL-GRUPO-L1_L7-ANUAL-SUM",
+    "source_variable_id": "VAR13037",
+    "source_frequency": "diário",
+    "target_variable_id": "VAR13039",
+    "target_frequency": "anual",
+    "aggregation_type": "SUM"
+  },
+  {
+    "aggregation_rule_id": "AGR-MAX_HT-FLUXO_PARA_EVAP_TOTAL-GRUPO-L1_L7-MENSAL-AVERAGE",
+    "source_variable_id": "VAR13037",
+    "source_frequency": "diário",
+    "target_variable_id": "VAR13040",
+    "target_frequency": "mensal",
+    "aggregation_type": "AVERAGE"
+  },
+  {
+    "aggregation_rule_id": "AGR-MAX_HT-FLUXO_PARA_EVAP_TOTAL-GRUPO-L1_L7-ANUAL-AVERAGE",
+    "source_variable_id": "VAR13037",
+    "source_frequency": "diário",
+    "target_variable_id": "VAR13041",
+    "target_frequency": "anual",
+    "aggregation_type": "AVERAGE"
+  },
+  {
+    "aggregation_rule_id": "AGR-MAX_HT-FLUXO_PARA_A18_LINHA-LINHA-L1_L7-MENSAL-SUM",
+    "source_variable_id": "VAR13043",
+    "source_frequency": "diário",
+    "target_variable_id": "VAR13044",
+    "target_frequency": "mensal",
+    "aggregation_type": "SUM"
+  },
+  {
+    "aggregation_rule_id": "AGR-MAX_HT-FLUXO_PARA_A18_LINHA-LINHA-L1_L7-ANUAL-SUM",
+    "source_variable_id": "VAR13043",
+    "source_frequency": "diário",
+    "target_variable_id": "VAR13045",
+    "target_frequency": "anual",
+    "aggregation_type": "SUM"
+  },
+  {
+    "aggregation_rule_id": "AGR-MAX_HT-FLUXO_PARA_A18_LINHA-LINHA-L1_L7-MENSAL-AVERAGE",
+    "source_variable_id": "VAR13043",
+    "source_frequency": "diário",
+    "target_variable_id": "VAR13046",
+    "target_frequency": "mensal",
+    "aggregation_type": "AVERAGE"
+  },
+  {
+    "aggregation_rule_id": "AGR-MAX_HT-FLUXO_PARA_A18_LINHA-LINHA-L1_L7-ANUAL-AVERAGE",
+    "source_variable_id": "VAR13043",
+    "source_frequency": "diário",
+    "target_variable_id": "VAR13047",
+    "target_frequency": "anual",
+    "aggregation_type": "AVERAGE"
+  },
+  {
+    "aggregation_rule_id": "AGR-MAX_HT-FLUXO_PARA_A18_LINHA_TOTAL-GRUPO-L1_L7-MENSAL-SUM",
+    "source_variable_id": "VAR13048",
+    "source_frequency": "diário",
+    "target_variable_id": "VAR13049",
+    "target_frequency": "mensal",
+    "aggregation_type": "SUM"
+  },
+  {
+    "aggregation_rule_id": "AGR-MAX_HT-FLUXO_PARA_A18_LINHA_TOTAL-GRUPO-L1_L7-ANUAL-SUM",
+    "source_variable_id": "VAR13048",
+    "source_frequency": "diário",
+    "target_variable_id": "VAR13050",
+    "target_frequency": "anual",
+    "aggregation_type": "SUM"
+  },
+  {
+    "aggregation_rule_id": "AGR-MAX_HT-FLUXO_PARA_A18_LINHA_TOTAL-GRUPO-L1_L7-MENSAL-AVERAGE",
+    "source_variable_id": "VAR13048",
+    "source_frequency": "diário",
+    "target_variable_id": "VAR13051",
+    "target_frequency": "mensal",
+    "aggregation_type": "AVERAGE"
+  },
+  {
+    "aggregation_rule_id": "AGR-MAX_HT-FLUXO_PARA_A18_LINHA_TOTAL-GRUPO-L1_L7-ANUAL-AVERAGE",
+    "source_variable_id": "VAR13048",
+    "source_frequency": "diário",
+    "target_variable_id": "VAR13052",
+    "target_frequency": "anual",
+    "aggregation_type": "AVERAGE"
+  },
+  {
+    "aggregation_rule_id": "AGR-MAX_HT-A18_L123-GRUPO-L1_L3-MENSAL-SUM",
+    "source_variable_id": "VAR13053",
+    "source_frequency": "diário",
+    "target_variable_id": "VAR13054",
+    "target_frequency": "mensal",
+    "aggregation_type": "SUM"
+  },
+  {
+    "aggregation_rule_id": "AGR-MAX_HT-A18_L123-GRUPO-L1_L3-ANUAL-SUM",
+    "source_variable_id": "VAR13053",
+    "source_frequency": "diário",
+    "target_variable_id": "VAR13055",
+    "target_frequency": "anual",
+    "aggregation_type": "SUM"
+  },
+  {
+    "aggregation_rule_id": "AGR-MAX_HT-A18_L123-GRUPO-L1_L3-MENSAL-AVERAGE",
+    "source_variable_id": "VAR13053",
+    "source_frequency": "diário",
+    "target_variable_id": "VAR13056",
+    "target_frequency": "mensal",
+    "aggregation_type": "AVERAGE"
+  },
+  {
+    "aggregation_rule_id": "AGR-MAX_HT-A18_L123-GRUPO-L1_L3-ANUAL-AVERAGE",
+    "source_variable_id": "VAR13053",
+    "source_frequency": "diário",
+    "target_variable_id": "VAR13057",
+    "target_frequency": "anual",
+    "aggregation_type": "AVERAGE"
+  },
+  {
+    "aggregation_rule_id": "AGR-MAX_HT-A13_L123-GRUPO-L1_L3-MENSAL-SUM",
+    "source_variable_id": "VAR13058",
+    "source_frequency": "diário",
+    "target_variable_id": "VAR13059",
+    "target_frequency": "mensal",
+    "aggregation_type": "SUM"
+  },
+  {
+    "aggregation_rule_id": "AGR-MAX_HT-A13_L123-GRUPO-L1_L3-ANUAL-SUM",
+    "source_variable_id": "VAR13058",
+    "source_frequency": "diário",
+    "target_variable_id": "VAR13060",
+    "target_frequency": "anual",
+    "aggregation_type": "SUM"
+  },
+  {
+    "aggregation_rule_id": "AGR-MAX_HT-A13_L123-GRUPO-L1_L3-MENSAL-AVERAGE",
+    "source_variable_id": "VAR13058",
+    "source_frequency": "diário",
+    "target_variable_id": "VAR13061",
+    "target_frequency": "mensal",
+    "aggregation_type": "AVERAGE"
+  },
+  {
+    "aggregation_rule_id": "AGR-MAX_HT-A13_L123-GRUPO-L1_L3-ANUAL-AVERAGE",
+    "source_variable_id": "VAR13058",
+    "source_frequency": "diário",
+    "target_variable_id": "VAR13062",
+    "target_frequency": "anual",
+    "aggregation_type": "AVERAGE"
+  },
+  {
+    "aggregation_rule_id": "AGR-MAX_HT-A18_A13_L123-GRUPO-L1_L3-MENSAL-SUM",
+    "source_variable_id": "VAR13063",
+    "source_frequency": "diário",
+    "target_variable_id": "VAR13064",
+    "target_frequency": "mensal",
+    "aggregation_type": "SUM"
+  },
+  {
+    "aggregation_rule_id": "AGR-MAX_HT-A18_A13_L123-GRUPO-L1_L3-ANUAL-SUM",
+    "source_variable_id": "VAR13063",
+    "source_frequency": "diário",
+    "target_variable_id": "VAR13065",
+    "target_frequency": "anual",
+    "aggregation_type": "SUM"
+  },
+  {
+    "aggregation_rule_id": "AGR-MAX_HT-A18_A13_L123-GRUPO-L1_L3-MENSAL-AVERAGE",
+    "source_variable_id": "VAR13063",
+    "source_frequency": "diário",
+    "target_variable_id": "VAR13066",
+    "target_frequency": "mensal",
+    "aggregation_type": "AVERAGE"
+  },
+  {
+    "aggregation_rule_id": "AGR-MAX_HT-A18_A13_L123-GRUPO-L1_L3-ANUAL-AVERAGE",
+    "source_variable_id": "VAR13063",
+    "source_frequency": "diário",
+    "target_variable_id": "VAR13067",
+    "target_frequency": "anual",
+    "aggregation_type": "AVERAGE"
+  },
+  {
+    "aggregation_rule_id": "AGR-MAX_HT-MASSA_TOTAL_MAX_HT_L123-GRUPO-L1_L3-MENSAL-SUM",
+    "source_variable_id": "VAR13069",
+    "source_frequency": "diário",
+    "target_variable_id": "VAR13070",
+    "target_frequency": "mensal",
+    "aggregation_type": "SUM"
+  },
+  {
+    "aggregation_rule_id": "AGR-MAX_HT-MASSA_TOTAL_MAX_HT_L123-GRUPO-L1_L3-ANUAL-SUM",
+    "source_variable_id": "VAR13069",
+    "source_frequency": "diário",
+    "target_variable_id": "VAR13071",
+    "target_frequency": "anual",
+    "aggregation_type": "SUM"
+  },
+  {
+    "aggregation_rule_id": "AGR-MAX_HT-MASSA_TOTAL_MAX_HT_L123-GRUPO-L1_L3-MENSAL-AVERAGE",
+    "source_variable_id": "VAR13069",
+    "source_frequency": "diário",
+    "target_variable_id": "VAR13072",
+    "target_frequency": "mensal",
+    "aggregation_type": "AVERAGE"
+  },
+  {
+    "aggregation_rule_id": "AGR-MAX_HT-MASSA_TOTAL_MAX_HT_L123-GRUPO-L1_L3-ANUAL-AVERAGE",
+    "source_variable_id": "VAR13069",
+    "source_frequency": "diário",
+    "target_variable_id": "VAR13073",
+    "target_frequency": "anual",
+    "aggregation_type": "AVERAGE"
+  },
+  {
+    "aggregation_rule_id": "AGR-MAX_HT-PRODUCAO_L123-GRUPO-L1_L3-MENSAL-SUM",
+    "source_variable_id": "VAR13074",
+    "source_frequency": "diário",
+    "target_variable_id": "VAR13075",
+    "target_frequency": "mensal",
+    "aggregation_type": "SUM"
+  },
+  {
+    "aggregation_rule_id": "AGR-MAX_HT-PRODUCAO_L123-GRUPO-L1_L3-ANUAL-SUM",
+    "source_variable_id": "VAR13074",
+    "source_frequency": "diário",
+    "target_variable_id": "VAR13076",
+    "target_frequency": "anual",
+    "aggregation_type": "SUM"
+  },
+  {
+    "aggregation_rule_id": "AGR-MAX_HT-PRODUCAO_L123-GRUPO-L1_L3-MENSAL-AVERAGE",
+    "source_variable_id": "VAR13074",
+    "source_frequency": "diário",
+    "target_variable_id": "VAR13077",
+    "target_frequency": "mensal",
+    "aggregation_type": "AVERAGE"
+  },
+  {
+    "aggregation_rule_id": "AGR-MAX_HT-PRODUCAO_L123-GRUPO-L1_L3-ANUAL-AVERAGE",
+    "source_variable_id": "VAR13074",
+    "source_frequency": "diário",
+    "target_variable_id": "VAR13078",
+    "target_frequency": "anual",
+    "aggregation_type": "AVERAGE"
+  },
+  {
+    "aggregation_rule_id": "AGR-MAX_HT-ESP_MAXHT_L123-GRUPO-L1_L3-MENSAL-AVERAGE",
+    "source_variable_id": "VAR13079",
+    "source_frequency": "diário",
+    "target_variable_id": "VAR13080",
+    "target_frequency": "mensal",
+    "aggregation_type": "AVERAGE"
+  },
+  {
+    "aggregation_rule_id": "AGR-MAX_HT-ESP_MAXHT_L123-GRUPO-L1_L3-ANUAL-AVERAGE",
+    "source_variable_id": "VAR13079",
+    "source_frequency": "diário",
+    "target_variable_id": "VAR13081",
+    "target_frequency": "anual",
+    "aggregation_type": "AVERAGE"
+  },
+  {
+    "aggregation_rule_id": "AGR-MAX_HT-A18_L45-GRUPO-L4_L5-MENSAL-SUM",
+    "source_variable_id": "VAR13082",
+    "source_frequency": "diário",
+    "target_variable_id": "VAR13083",
+    "target_frequency": "mensal",
+    "aggregation_type": "SUM"
+  },
+  {
+    "aggregation_rule_id": "AGR-MAX_HT-A18_L45-GRUPO-L4_L5-ANUAL-SUM",
+    "source_variable_id": "VAR13082",
+    "source_frequency": "diário",
+    "target_variable_id": "VAR13084",
+    "target_frequency": "anual",
+    "aggregation_type": "SUM"
+  },
+  {
+    "aggregation_rule_id": "AGR-MAX_HT-A18_L45-GRUPO-L4_L5-MENSAL-AVERAGE",
+    "source_variable_id": "VAR13082",
+    "source_frequency": "diário",
+    "target_variable_id": "VAR13085",
+    "target_frequency": "mensal",
+    "aggregation_type": "AVERAGE"
+  },
+  {
+    "aggregation_rule_id": "AGR-MAX_HT-A18_L45-GRUPO-L4_L5-ANUAL-AVERAGE",
+    "source_variable_id": "VAR13082",
+    "source_frequency": "diário",
+    "target_variable_id": "VAR13086",
+    "target_frequency": "anual",
+    "aggregation_type": "AVERAGE"
+  },
+  {
+    "aggregation_rule_id": "AGR-MAX_HT-A13_L45-GRUPO-L4_L5-MENSAL-SUM",
+    "source_variable_id": "VAR13087",
+    "source_frequency": "diário",
+    "target_variable_id": "VAR13088",
+    "target_frequency": "mensal",
+    "aggregation_type": "SUM"
+  },
+  {
+    "aggregation_rule_id": "AGR-MAX_HT-A13_L45-GRUPO-L4_L5-ANUAL-SUM",
+    "source_variable_id": "VAR13087",
+    "source_frequency": "diário",
+    "target_variable_id": "VAR13089",
+    "target_frequency": "anual",
+    "aggregation_type": "SUM"
+  },
+  {
+    "aggregation_rule_id": "AGR-MAX_HT-A13_L45-GRUPO-L4_L5-MENSAL-AVERAGE",
+    "source_variable_id": "VAR13087",
+    "source_frequency": "diário",
+    "target_variable_id": "VAR13090",
+    "target_frequency": "mensal",
+    "aggregation_type": "AVERAGE"
+  },
+  {
+    "aggregation_rule_id": "AGR-MAX_HT-A13_L45-GRUPO-L4_L5-ANUAL-AVERAGE",
+    "source_variable_id": "VAR13087",
+    "source_frequency": "diário",
+    "target_variable_id": "VAR13091",
+    "target_frequency": "anual",
+    "aggregation_type": "AVERAGE"
+  },
+  {
+    "aggregation_rule_id": "AGR-MAX_HT-A18_A13_L45-GRUPO-L4_L5-MENSAL-SUM",
+    "source_variable_id": "VAR13092",
+    "source_frequency": "diário",
+    "target_variable_id": "VAR13093",
+    "target_frequency": "mensal",
+    "aggregation_type": "SUM"
+  },
+  {
+    "aggregation_rule_id": "AGR-MAX_HT-A18_A13_L45-GRUPO-L4_L5-ANUAL-SUM",
+    "source_variable_id": "VAR13092",
+    "source_frequency": "diário",
+    "target_variable_id": "VAR13094",
+    "target_frequency": "anual",
+    "aggregation_type": "SUM"
+  },
+  {
+    "aggregation_rule_id": "AGR-MAX_HT-A18_A13_L45-GRUPO-L4_L5-MENSAL-AVERAGE",
+    "source_variable_id": "VAR13092",
+    "source_frequency": "diário",
+    "target_variable_id": "VAR13095",
+    "target_frequency": "mensal",
+    "aggregation_type": "AVERAGE"
+  },
+  {
+    "aggregation_rule_id": "AGR-MAX_HT-A18_A13_L45-GRUPO-L4_L5-ANUAL-AVERAGE",
+    "source_variable_id": "VAR13092",
+    "source_frequency": "diário",
+    "target_variable_id": "VAR13096",
+    "target_frequency": "anual",
+    "aggregation_type": "AVERAGE"
+  },
+  {
+    "aggregation_rule_id": "AGR-MAX_HT-MASSA_TOTAL_MAX_HT_L45-GRUPO-L4_L5-MENSAL-SUM",
+    "source_variable_id": "VAR13098",
+    "source_frequency": "diário",
+    "target_variable_id": "VAR13099",
+    "target_frequency": "mensal",
+    "aggregation_type": "SUM"
+  },
+  {
+    "aggregation_rule_id": "AGR-MAX_HT-MASSA_TOTAL_MAX_HT_L45-GRUPO-L4_L5-ANUAL-SUM",
+    "source_variable_id": "VAR13098",
+    "source_frequency": "diário",
+    "target_variable_id": "VAR13100",
+    "target_frequency": "anual",
+    "aggregation_type": "SUM"
+  },
+  {
+    "aggregation_rule_id": "AGR-MAX_HT-MASSA_TOTAL_MAX_HT_L45-GRUPO-L4_L5-MENSAL-AVERAGE",
+    "source_variable_id": "VAR13098",
+    "source_frequency": "diário",
+    "target_variable_id": "VAR13101",
+    "target_frequency": "mensal",
+    "aggregation_type": "AVERAGE"
+  },
+  {
+    "aggregation_rule_id": "AGR-MAX_HT-MASSA_TOTAL_MAX_HT_L45-GRUPO-L4_L5-ANUAL-AVERAGE",
+    "source_variable_id": "VAR13098",
+    "source_frequency": "diário",
+    "target_variable_id": "VAR13102",
+    "target_frequency": "anual",
+    "aggregation_type": "AVERAGE"
+  },
+  {
+    "aggregation_rule_id": "AGR-MAX_HT-PRODUCAO_L45-GRUPO-L4_L5-MENSAL-SUM",
+    "source_variable_id": "VAR13103",
+    "source_frequency": "diário",
+    "target_variable_id": "VAR13104",
+    "target_frequency": "mensal",
+    "aggregation_type": "SUM"
+  },
+  {
+    "aggregation_rule_id": "AGR-MAX_HT-PRODUCAO_L45-GRUPO-L4_L5-ANUAL-SUM",
+    "source_variable_id": "VAR13103",
+    "source_frequency": "diário",
+    "target_variable_id": "VAR13105",
+    "target_frequency": "anual",
+    "aggregation_type": "SUM"
+  },
+  {
+    "aggregation_rule_id": "AGR-MAX_HT-PRODUCAO_L45-GRUPO-L4_L5-MENSAL-AVERAGE",
+    "source_variable_id": "VAR13103",
+    "source_frequency": "diário",
+    "target_variable_id": "VAR13106",
+    "target_frequency": "mensal",
+    "aggregation_type": "AVERAGE"
+  },
+  {
+    "aggregation_rule_id": "AGR-MAX_HT-PRODUCAO_L45-GRUPO-L4_L5-ANUAL-AVERAGE",
+    "source_variable_id": "VAR13103",
+    "source_frequency": "diário",
+    "target_variable_id": "VAR13107",
+    "target_frequency": "anual",
+    "aggregation_type": "AVERAGE"
+  },
+  {
+    "aggregation_rule_id": "AGR-MAX_HT-ESP_MAXHT_L45-GRUPO-L4_L5-MENSAL-AVERAGE",
+    "source_variable_id": "VAR13108",
+    "source_frequency": "diário",
+    "target_variable_id": "VAR13109",
+    "target_frequency": "mensal",
+    "aggregation_type": "AVERAGE"
+  },
+  {
+    "aggregation_rule_id": "AGR-MAX_HT-ESP_MAXHT_L45-GRUPO-L4_L5-ANUAL-AVERAGE",
+    "source_variable_id": "VAR13108",
+    "source_frequency": "diário",
+    "target_variable_id": "VAR13110",
+    "target_frequency": "anual",
+    "aggregation_type": "AVERAGE"
+  },
+  {
+    "aggregation_rule_id": "AGR-MAX_HT-A18_L67-GRUPO-L6_L7-MENSAL-SUM",
+    "source_variable_id": "VAR13111",
+    "source_frequency": "diário",
+    "target_variable_id": "VAR13112",
+    "target_frequency": "mensal",
+    "aggregation_type": "SUM"
+  },
+  {
+    "aggregation_rule_id": "AGR-MAX_HT-A18_L67-GRUPO-L6_L7-ANUAL-SUM",
+    "source_variable_id": "VAR13111",
+    "source_frequency": "diário",
+    "target_variable_id": "VAR13113",
+    "target_frequency": "anual",
+    "aggregation_type": "SUM"
+  },
+  {
+    "aggregation_rule_id": "AGR-MAX_HT-A18_L67-GRUPO-L6_L7-MENSAL-AVERAGE",
+    "source_variable_id": "VAR13111",
+    "source_frequency": "diário",
+    "target_variable_id": "VAR13114",
+    "target_frequency": "mensal",
+    "aggregation_type": "AVERAGE"
+  },
+  {
+    "aggregation_rule_id": "AGR-MAX_HT-A18_L67-GRUPO-L6_L7-ANUAL-AVERAGE",
+    "source_variable_id": "VAR13111",
+    "source_frequency": "diário",
+    "target_variable_id": "VAR13115",
+    "target_frequency": "anual",
+    "aggregation_type": "AVERAGE"
+  },
+  {
+    "aggregation_rule_id": "AGR-MAX_HT-A13_L67-GRUPO-L6_L7-MENSAL-SUM",
+    "source_variable_id": "VAR13116",
+    "source_frequency": "diário",
+    "target_variable_id": "VAR13117",
+    "target_frequency": "mensal",
+    "aggregation_type": "SUM"
+  },
+  {
+    "aggregation_rule_id": "AGR-MAX_HT-A13_L67-GRUPO-L6_L7-ANUAL-SUM",
+    "source_variable_id": "VAR13116",
+    "source_frequency": "diário",
+    "target_variable_id": "VAR13118",
+    "target_frequency": "anual",
+    "aggregation_type": "SUM"
+  },
+  {
+    "aggregation_rule_id": "AGR-MAX_HT-A13_L67-GRUPO-L6_L7-MENSAL-AVERAGE",
+    "source_variable_id": "VAR13116",
+    "source_frequency": "diário",
+    "target_variable_id": "VAR13119",
+    "target_frequency": "mensal",
+    "aggregation_type": "AVERAGE"
+  },
+  {
+    "aggregation_rule_id": "AGR-MAX_HT-A13_L67-GRUPO-L6_L7-ANUAL-AVERAGE",
+    "source_variable_id": "VAR13116",
+    "source_frequency": "diário",
+    "target_variable_id": "VAR13120",
+    "target_frequency": "anual",
+    "aggregation_type": "AVERAGE"
+  },
+  {
+    "aggregation_rule_id": "AGR-MAX_HT-A18_A13_L67-GRUPO-L6_L7-MENSAL-SUM",
+    "source_variable_id": "VAR13121",
+    "source_frequency": "diário",
+    "target_variable_id": "VAR13122",
+    "target_frequency": "mensal",
+    "aggregation_type": "SUM"
+  },
+  {
+    "aggregation_rule_id": "AGR-MAX_HT-A18_A13_L67-GRUPO-L6_L7-ANUAL-SUM",
+    "source_variable_id": "VAR13121",
+    "source_frequency": "diário",
+    "target_variable_id": "VAR13123",
+    "target_frequency": "anual",
+    "aggregation_type": "SUM"
+  },
+  {
+    "aggregation_rule_id": "AGR-MAX_HT-A18_A13_L67-GRUPO-L6_L7-MENSAL-AVERAGE",
+    "source_variable_id": "VAR13121",
+    "source_frequency": "diário",
+    "target_variable_id": "VAR13124",
+    "target_frequency": "mensal",
+    "aggregation_type": "AVERAGE"
+  },
+  {
+    "aggregation_rule_id": "AGR-MAX_HT-A18_A13_L67-GRUPO-L6_L7-ANUAL-AVERAGE",
+    "source_variable_id": "VAR13121",
+    "source_frequency": "diário",
+    "target_variable_id": "VAR13125",
+    "target_frequency": "anual",
+    "aggregation_type": "AVERAGE"
+  },
+  {
+    "aggregation_rule_id": "AGR-MAX_HT-MASSA_TOTAL_MAX_HT_L67-GRUPO-L6_L7-MENSAL-SUM",
+    "source_variable_id": "VAR13127",
+    "source_frequency": "diário",
+    "target_variable_id": "VAR13128",
+    "target_frequency": "mensal",
+    "aggregation_type": "SUM"
+  },
+  {
+    "aggregation_rule_id": "AGR-MAX_HT-MASSA_TOTAL_MAX_HT_L67-GRUPO-L6_L7-ANUAL-SUM",
+    "source_variable_id": "VAR13127",
+    "source_frequency": "diário",
+    "target_variable_id": "VAR13129",
+    "target_frequency": "anual",
+    "aggregation_type": "SUM"
+  },
+  {
+    "aggregation_rule_id": "AGR-MAX_HT-MASSA_TOTAL_MAX_HT_L67-GRUPO-L6_L7-MENSAL-AVERAGE",
+    "source_variable_id": "VAR13127",
+    "source_frequency": "diário",
+    "target_variable_id": "VAR13130",
+    "target_frequency": "mensal",
+    "aggregation_type": "AVERAGE"
+  },
+  {
+    "aggregation_rule_id": "AGR-MAX_HT-MASSA_TOTAL_MAX_HT_L67-GRUPO-L6_L7-ANUAL-AVERAGE",
+    "source_variable_id": "VAR13127",
+    "source_frequency": "diário",
+    "target_variable_id": "VAR13131",
+    "target_frequency": "anual",
+    "aggregation_type": "AVERAGE"
+  },
+  {
+    "aggregation_rule_id": "AGR-MAX_HT-PRODUCAO_L67-GRUPO-L6_L7-MENSAL-SUM",
+    "source_variable_id": "VAR13132",
+    "source_frequency": "diário",
+    "target_variable_id": "VAR13133",
+    "target_frequency": "mensal",
+    "aggregation_type": "SUM"
+  },
+  {
+    "aggregation_rule_id": "AGR-MAX_HT-PRODUCAO_L67-GRUPO-L6_L7-ANUAL-SUM",
+    "source_variable_id": "VAR13132",
+    "source_frequency": "diário",
+    "target_variable_id": "VAR13134",
+    "target_frequency": "anual",
+    "aggregation_type": "SUM"
+  },
+  {
+    "aggregation_rule_id": "AGR-MAX_HT-PRODUCAO_L67-GRUPO-L6_L7-MENSAL-AVERAGE",
+    "source_variable_id": "VAR13132",
+    "source_frequency": "diário",
+    "target_variable_id": "VAR13135",
+    "target_frequency": "mensal",
+    "aggregation_type": "AVERAGE"
+  },
+  {
+    "aggregation_rule_id": "AGR-MAX_HT-PRODUCAO_L67-GRUPO-L6_L7-ANUAL-AVERAGE",
+    "source_variable_id": "VAR13132",
+    "source_frequency": "diário",
+    "target_variable_id": "VAR13136",
+    "target_frequency": "anual",
+    "aggregation_type": "AVERAGE"
+  },
+  {
+    "aggregation_rule_id": "AGR-MAX_HT-ESP_MAXHT_L67-GRUPO-L6_L7-MENSAL-AVERAGE",
+    "source_variable_id": "VAR13137",
+    "source_frequency": "diário",
+    "target_variable_id": "VAR13138",
+    "target_frequency": "mensal",
+    "aggregation_type": "AVERAGE"
+  },
+  {
+    "aggregation_rule_id": "AGR-MAX_HT-ESP_MAXHT_L67-GRUPO-L6_L7-ANUAL-AVERAGE",
+    "source_variable_id": "VAR13137",
+    "source_frequency": "diário",
+    "target_variable_id": "VAR13139",
+    "target_frequency": "anual",
+    "aggregation_type": "AVERAGE"
+  },
+  {
+    "aggregation_rule_id": "AGR-MAX_HT-MASSA_TOTAL_MAX_HT_TOTAL-GRUPO-L1_L7-MENSAL-SUM",
+    "source_variable_id": "VAR13141",
+    "source_frequency": "diário",
+    "target_variable_id": "VAR13142",
+    "target_frequency": "mensal",
+    "aggregation_type": "SUM"
+  },
+  {
+    "aggregation_rule_id": "AGR-MAX_HT-MASSA_TOTAL_MAX_HT_TOTAL-GRUPO-L1_L7-ANUAL-SUM",
+    "source_variable_id": "VAR13141",
+    "source_frequency": "diário",
+    "target_variable_id": "VAR13143",
+    "target_frequency": "anual",
+    "aggregation_type": "SUM"
+  },
+  {
+    "aggregation_rule_id": "AGR-MAX_HT-MASSA_TOTAL_MAX_HT_TOTAL-GRUPO-L1_L7-MENSAL-AVERAGE",
+    "source_variable_id": "VAR13141",
+    "source_frequency": "diário",
+    "target_variable_id": "VAR13144",
+    "target_frequency": "mensal",
+    "aggregation_type": "AVERAGE"
+  },
+  {
+    "aggregation_rule_id": "AGR-MAX_HT-MASSA_TOTAL_MAX_HT_TOTAL-GRUPO-L1_L7-ANUAL-AVERAGE",
+    "source_variable_id": "VAR13141",
+    "source_frequency": "diário",
+    "target_variable_id": "VAR13145",
+    "target_frequency": "anual",
+    "aggregation_type": "AVERAGE"
+  }
+]

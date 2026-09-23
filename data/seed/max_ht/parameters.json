@@ -1,0 +1,50 @@
+[
+  {
+    "parameter_id": "PARAM13001",
+    "parameter_name": "fator_massa_total_max_ht_l123",
+    "description": "Fator multiplicativo anual utilizado para ajustar a massa total máxima de Max HT do grupo de linhas L1 a L3.",
+    "unit": "-",
+    "value": 1.05,
+    "version": 1,
+    "scope_type": "linha_grupo",
+    "scope_value": "L1_L3",
+    "source_reference": "descritivo_das_variáveis_MaxHT_v5.xlsx",
+    "status": "ativo"
+  },
+  {
+    "parameter_id": "PARAM13002",
+    "parameter_name": "fator_massa_total_max_ht_l45",
+    "description": "Fator multiplicativo anual utilizado para ajustar a massa total máxima de Max HT do grupo de linhas L4 e L5.",
+    "unit": "-",
+    "value": 1.05,
+    "version": 1,
+    "scope_type": "linha_grupo",
+    "scope_value": "L4_L5",
+    "source_reference": "descritivo_das_variáveis_MaxHT_v5.xlsx",
+    "status": "ativo"
+  },
+  {
+    "parameter_id": "PARAM13003",
+    "parameter_name": "fator_massa_total_max_ht_l67",
+    "description": "Fator multiplicativo anual utilizado para ajustar a massa total máxima de Max HT do grupo de linhas L6 e L7.",
+    "unit": "-",
+    "value": 1.05,
+    "version": 1,
+    "scope_type": "linha_grupo",
+    "scope_value": "L6_L7",
+    "source_reference": "descritivo_das_variáveis_MaxHT_v5.xlsx",
+    "status": "ativo"
+  },
+  {
+    "parameter_id": "PARAM13004",
+    "parameter_name": "fator_massa_total_max_ht",
+    "description": "Fator multiplicativo anual utilizado para ajustar a massa total máxima de Max HT consolidada para toda a planta.",
+    "unit": "-",
+    "value": 1.05,
+    "version": 1,
+    "scope_type": "linha_grupo",
+    "scope_value": "L1_L7",
+    "source_reference": "descritivo_das_variáveis_MaxHT_v5.xlsx",
+    "status": "ativo"
+  }
+]

@@ -1,0 +1,292 @@
+[
+  {
+    "equation_id": "EQ13001",
+    "target_variable_id": "VAR13006",
+    "version": 1,
+    "scope_type": "linha_grupo",
+    "scope_value": "L1_L7",
+    "expression": "VAR13001@L1 + VAR13001@L2 + VAR13001@L3 + VAR13001@L4 + VAR13001@L5 + VAR13001@L6 + VAR13001@L7",
+    "source_reference": "descritivo_das_variáveis_MaxHT_v5.xlsx",
+    "status": "PUBLISHED"
+  },
+  {
+    "equation_id": "EQ13002",
+    "target_variable_id": "VAR13016",
+    "version": 1,
+    "scope_type": "linha_grupo",
+    "scope_value": "L1_L7",
+    "expression": "VAR13011@L1 + VAR13011@L2 + VAR13011@L3 + VAR13011@L4 + VAR13011@L5 + VAR13011@L6 + VAR13011@L7",
+    "source_reference": "descritivo_das_variáveis_MaxHT_v5.xlsx",
+    "status": "PUBLISHED"
+  },
+  {
+    "equation_id": "EQ13003",
+    "target_variable_id": "VAR13026",
+    "version": 1,
+    "scope_type": "linha_grupo",
+    "scope_value": "L1_L7",
+    "expression": "VAR13021@L1 + VAR13021@L2 + VAR13021@L3 + VAR13021@L4 + VAR13021@L5 + VAR13021@L6 + VAR13021@L7",
+    "source_reference": "descritivo_das_variáveis_MaxHT_v5.xlsx",
+    "status": "PUBLISHED"
+  },
+  {
+    "equation_id": "EQ13004",
+    "target_variable_id": "VAR13032",
+    "version": 1,
+    "scope_type": "linha",
+    "scope_value": "L1_L7",
+    "expression": "(VAR13011*VAR13031)/1000",
+    "source_reference": "descritivo_das_variáveis_MaxHT_v5.xlsx",
+    "status": "PUBLISHED"
+  },
+  {
+    "equation_id": "EQ13005",
+    "target_variable_id": "VAR13037",
+    "version": 1,
+    "scope_type": "linha_grupo",
+    "scope_value": "L1_L7",
+    "expression": "VAR13032@L1 + VAR13032@L2 + VAR13032@L3 + VAR13032@L4 + VAR13032@L5 + VAR13032@L6 + VAR13032@L7",
+    "source_reference": "descritivo_das_variáveis_MaxHT_v5.xlsx",
+    "status": "PUBLISHED"
+  },
+  {
+    "equation_id": "EQ13006",
+    "target_variable_id": "VAR13043",
+    "version": 1,
+    "scope_type": "linha",
+    "scope_value": "L1_L7",
+    "expression": "(VAR13021*VAR13042)/1000",
+    "source_reference": "descritivo_das_variáveis_MaxHT_v5.xlsx",
+    "status": "PUBLISHED"
+  },
+  {
+    "equation_id": "EQ13007",
+    "target_variable_id": "VAR13048",
+    "version": 1,
+    "scope_type": "linha_grupo",
+    "scope_value": "L1_L7",
+    "expression": "VAR13043@L1 + VAR13043@L2 + VAR13043@L3 + VAR13043@L4 + VAR13043@L5 +VAR13043@L6 + VAR13043@L7",
+    "source_reference": "descritivo_das_variáveis_MaxHT_v5.xlsx",
+    "status": "PUBLISHED"
+  },
+  {
+    "equation_id": "EQ13008",
+    "target_variable_id": "VAR13053",
+    "version": 1,
+    "scope_type": "linha_grupo",
+    "scope_value": "L1_L3",
+    "expression": "VAR13043@L1 + VAR13043@L2 + VAR13043@L3",
+    "source_reference": "descritivo_das_variáveis_MaxHT_v5.xlsx",
+    "status": "PUBLISHED"
+  },
+  {
+    "equation_id": "EQ13009",
+    "target_variable_id": "VAR13058",
+    "version": 1,
+    "scope_type": "linha_grupo",
+    "scope_value": "L1_L3",
+    "expression": "VAR13032@L1 + VAR13032@L2 + VAR13032@L3",
+    "source_reference": "descritivo_das_variáveis_MaxHT_v5.xlsx",
+    "status": "PUBLISHED"
+  },
+  {
+    "equation_id": "EQ13010",
+    "target_variable_id": "VAR13063",
+    "version": 1,
+    "scope_type": "linha_grupo",
+    "scope_value": "L1_L3",
+    "expression": "VAR13053 + VAR13058",
+    "source_reference": "descritivo_das_variáveis_MaxHT_v5.xlsx",
+    "status": "PUBLISHED"
+  },
+  {
+    "equation_id": "EQ13011",
+    "target_variable_id": "VAR13069",
+    "version": 1,
+    "scope_type": "linha_grupo",
+    "scope_value": "L1_L3",
+    "expression": "VAR13063*PARAM13001*VAR13068",
+    "source_reference": "descritivo_das_variáveis_MaxHT_v5.xlsx",
+    "status": "PUBLISHED"
+  },
+  {
+    "equation_id": "EQ13012",
+    "target_variable_id": "VAR13074",
+    "version": 1,
+    "scope_type": "linha_grupo",
+    "scope_value": "L1_L3",
+    "expression": "VAR13001@L1 + VAR13001@L2 + VAR13001@L3",
+    "source_reference": "descritivo_das_variáveis_MaxHT_v5.xlsx",
+    "status": "PUBLISHED"
+  },
+  {
+    "equation_id": "EQ13013",
+    "target_variable_id": "VAR13079",
+    "version": 1,
+    "scope_type": "linha_grupo",
+    "scope_value": "L1_L3",
+    "expression": "VAR13069/VAR13074",
+    "source_reference": "descritivo_das_variáveis_MaxHT_v5.xlsx",
+    "status": "PUBLISHED"
+  },
+  {
+    "equation_id": "EQ13014",
+    "target_variable_id": "VAR13082",
+    "version": 1,
+    "scope_type": "linha_grupo",
+    "scope_value": "L4_L5",
+    "expression": "VAR13043@L4 + VAR13043@L5",
+    "source_reference": "descritivo_das_variáveis_MaxHT_v5.xlsx",
+    "status": "PUBLISHED"
+  },
+  {
+    "equation_id": "EQ13015",
+    "target_variable_id": "VAR13087",
+    "version": 1,
+    "scope_type": "linha_grupo",
+    "scope_value": "L4_L5",
+    "expression": "VAR13032@L4 + VAR13032@L5",
+    "source_reference": "descritivo_das_variáveis_MaxHT_v5.xlsx",
+    "status": "PUBLISHED"
+  },
+  {
+    "equation_id": "EQ13016",
+    "target_variable_id": "VAR13092",
+    "version": 1,
+    "scope_type": "linha_grupo",
+    "scope_value": "L4_L5",
+    "expression": "VAR13082 + VAR13087",
+    "source_reference": "descritivo_das_variáveis_MaxHT_v5.xlsx",
+    "status": "PUBLISHED"
+  },
+  {
+    "equation_id": "EQ13017",
+    "target_variable_id": "VAR13098",
+    "version": 1,
+    "scope_type": "linha_grupo",
+    "scope_value": "L4_L5",
+    "expression": "VAR13092*PARAM13002*VAR13097",
+    "source_reference": "descritivo_das_variáveis_MaxHT_v5.xlsx",
+    "status": "PUBLISHED"
+  },
+  {
+    "equation_id": "EQ13018",
+    "target_variable_id": "VAR13103",
+    "version": 1,
+    "scope_type": "linha_grupo",
+    "scope_value": "L4_L5",
+    "expression": "VAR13001@L4 + VAR13001@L5",
+    "source_reference": "descritivo_das_variáveis_MaxHT_v5.xlsx",
+    "status": "PUBLISHED"
+  },
+  {
+    "equation_id": "EQ13019",
+    "target_variable_id": "VAR13108",
+    "version": 1,
+    "scope_type": "linha_grupo",
+    "scope_value": "L4_L5",
+    "expression": "VAR13098/VAR13103",
+    "source_reference": "descritivo_das_variáveis_MaxHT_v5.xlsx",
+    "status": "PUBLISHED"
+  },
+  {
+    "equation_id": "EQ13020",
+    "target_variable_id": "VAR13111",
+    "version": 1,
+    "scope_type": "linha_grupo",
+    "scope_value": "L6_L7",
+    "expression": "VAR13043@L6 + VAR13043@L7",
+    "source_reference": "descritivo_das_variáveis_MaxHT_v5.xlsx",
+    "status": "PUBLISHED"
+  },
+  {
+    "equation_id": "EQ13021",
+    "target_variable_id": "VAR13116",
+    "version": 1,
+    "scope_type": "linha_grupo",
+    "scope_value": "L6_L7",
+    "expression": "VAR13032@L6 + VAR13032@L7",
+    "source_reference": "descritivo_das_variáveis_MaxHT_v5.xlsx",
+    "status": "PUBLISHED"
+  },
+  {
+    "equation_id": "EQ13022",
+    "target_variable_id": "VAR13121",
+    "version": 1,
+    "scope_type": "linha_grupo",
+    "scope_value": "L6_L7",
+    "expression": "VAR13111 + VAR13116",
+    "source_reference": "descritivo_das_variáveis_MaxHT_v5.xlsx",
+    "status": "PUBLISHED"
+  },
+  {
+    "equation_id": "EQ13023",
+    "target_variable_id": "VAR13127",
+    "version": 1,
+    "scope_type": "linha_grupo",
+    "scope_value": "L6_L7",
+    "expression": "VAR13121*PARAM13003*VAR13126",
+    "source_reference": "descritivo_das_variáveis_MaxHT_v5.xlsx",
+    "status": "PUBLISHED"
+  },
+  {
+    "equation_id": "EQ13024",
+    "target_variable_id": "VAR13132",
+    "version": 1,
+    "scope_type": "linha_grupo",
+    "scope_value": "L6_L7",
+    "expression": "VAR13001@L6 + VAR13001@L7",
+    "source_reference": "descritivo_das_variáveis_MaxHT_v5.xlsx",
+    "status": "PUBLISHED"
+  },
+  {
+    "equation_id": "EQ13025",
+    "target_variable_id": "VAR13137",
+    "version": 1,
+    "scope_type": "linha_grupo",
+    "scope_value": "L6_L7",
+    "expression": "VAR13127/VAR13132",
+    "source_reference": "descritivo_das_variáveis_MaxHT_v5.xlsx",
+    "status": "PUBLISHED"
+  },
+  {
+    "equation_id": "EQ13026",
+    "target_variable_id": "VAR13141",
+    "version": 1,
+    "scope_type": "linha_grupo",
+    "scope_value": "L1_L7",
+    "expression": "( VAR13037 + VAR13048 ) * PARAM13004 * VAR13140",
+    "source_reference": "descritivo_das_variáveis_MaxHT_v5.xlsx",
+    "status": "PUBLISHED"
+  },
+  {
+    "equation_id": "EQ13027",
+    "target_variable_id": "VAR13146",
+    "version": 1,
+    "scope_type": "linha_grupo",
+    "scope_value": "L1_L7",
+    "expression": "(VAR13069 + VAR13098 + VAR13127)/VAR13006",
+    "source_reference": "descritivo_das_variáveis_MaxHT_v5.xlsx",
+    "status": "PUBLISHED"
+  },
+  {
+    "equation_id": "EQ13028",
+    "target_variable_id": "VAR13147",
+    "version": 1,
+    "scope_type": "linha_grupo",
+    "scope_value": "L1_L7",
+    "expression": "VAR13142/VAR13007",
+    "source_reference": "descritivo_das_variáveis_MaxHT_v5.xlsx",
+    "status": "PUBLISHED"
+  },
+  {
+    "equation_id": "EQ13029",
+    "target_variable_id": "VAR13148",
+    "version": 1,
+    "scope_type": "linha_grupo",
+    "scope_value": "L1_L7",
+    "expression": "VAR13143/VAR13008",
+    "source_reference": "descritivo_das_variáveis_MaxHT_v5.xlsx",
+    "status": "PUBLISHED"
+  }
+]
