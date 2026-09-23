@@ -7,10 +7,11 @@ O projeto usa a mesma segmentação numérica de blocos nos três
 registries -- confirmado empiricamente pelos seeds reais (yield,
 production, energy usam a MESMA faixa nos três tipos de entidade).
 Este módulo formaliza essa convenção como contrato e prova, com os
-IDs reais existentes no repositório, que a expansão da taxonomia
-para 28 blocos (introdução de `max_ht`, remoção de `hydrate`/`costs`,
-realocação de `shared`) não afetou a classificação de nenhum ID já
-existente.
+IDs reais existentes no repositório, que as sucessivas expansões da
+taxonomia (28 blocos com a introdução de `max_ht`, remoção de
+`hydrate`/`costs`; depois 29 blocos com a introdução de
+`budget_vs_forecast` e a realocação de `shared` de 37000-37999 para
+38000-38999) não afetaram a classificação de nenhum ID já existente.
 
 Não depende de seeds sintéticos: lê diretamente `data/seed/`.
 """

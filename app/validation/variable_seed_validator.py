@@ -20,15 +20,27 @@ REQUIRED_VARIABLE_FIELDS = [
 ]
 
 
-# Taxonomia oficial de blocos (28 blocos, faixa continua
-# 10000-37999, 1000 IDs por bloco, sem sobreposicao).
+# Taxonomia oficial de blocos (29 blocos, faixa continua
+# 10000-38999, 1000 IDs por bloco, sem sobreposicao).
 #
 # "hydrate" e "costs" foram removidos desta taxonomia:
 # "hydrate" foi substituido por "max_ht" na mesma faixa
 # (13000-13999); "costs" foi desmembrado nos tres blocos de
-# custo (custo_budget, custo_forecast_bdgt, custo_forecast_real)
+# custo (budget_cost, budget_forecast_cost, actual_forecast_cost)
 # mais os blocos budget/forecast, cada um com faixa propria.
-# "shared" foi realocado de 23000-23999 para 37000-37999.
+#
+# As chaves antes em portugues (fator_residuo, vazao_condensado,
+# meta_volume_cheio, controle_espaco_vazio_meta, lime_dia,
+# floculante_hidrato_2026, floculante_lama_dia,
+# premissas_ppt_mensal, acido, custo_budget, custo_forecast_bdgt,
+# custo_forecast_real) foram renomeadas para ingles (residue_factor,
+# condensate_flow, full_volume_target, empty_space_target_control,
+# lime, hydrated_flocculant, sludge_flocculant,
+# monthly_ppt_assumptions, acid, budget_cost, budget_forecast_cost,
+# actual_forecast_cost), mantendo os mesmos ranges numericos.
+#
+# "budget_vs_forecast" foi introduzido em 37000-37999; "shared"
+# foi realocado de 37000-37999 para 38000-38999.
 VARIABLE_ID_RANGES = {
     "maintenance": (10000, 10999),
     "yield": (11000, 11999),
@@ -42,22 +54,23 @@ VARIABLE_ID_RANGES = {
     "boilers": (19000, 19999),
     "volume": (20000, 20999),
     "soda": (21000, 21999),
-    "fator_residuo": (22000, 22999),
-    "vazao_condensado": (23000, 23999),
+    "residue_factor": (22000, 22999),
+    "condensate_flow": (23000, 23999),
     "forecast_volume": (24000, 24999),
-    "meta_volume_cheio": (25000, 25999),
-    "controle_espaco_vazio_meta": (26000, 26999),
-    "lime_dia": (27000, 27999),
-    "floculante_hidrato_2026": (28000, 28999),
-    "floculante_lama_dia": (29000, 29999),
-    "premissas_ppt_mensal": (30000, 30999),
-    "acido": (31000, 31999),
-    "custo_budget": (32000, 32999),
-    "custo_forecast_bdgt": (33000, 33999),
-    "custo_forecast_real": (34000, 34999),
+    "full_volume_target": (25000, 25999),
+    "empty_space_target_control": (26000, 26999),
+    "lime": (27000, 27999),
+    "hydrated_flocculant": (28000, 28999),
+    "sludge_flocculant": (29000, 29999),
+    "monthly_ppt_assumptions": (30000, 30999),
+    "acid": (31000, 31999),
+    "budget_cost": (32000, 32999),
+    "budget_forecast_cost": (33000, 33999),
+    "actual_forecast_cost": (34000, 34999),
     "budget": (35000, 35999),
     "forecast": (36000, 36999),
-    "shared": (37000, 37999),
+    "budget_vs_forecast": (37000, 37999),
+    "shared": (38000, 38999),
 }
 
 
