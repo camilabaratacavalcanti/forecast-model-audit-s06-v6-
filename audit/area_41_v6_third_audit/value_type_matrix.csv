@@ -1,0 +1,55 @@
+row,entidade,kind,variable_type,value_type,conteudo_esperado,conteudo_utilizado,valido
+3,vazao_ltp@L1_L3,variable,entrada_externa,numeric,numeric,operando numérico / resultado,sim
+4,vazao_ltp@L4_L5,variable,entrada_externa,numeric,numeric,operando numérico / resultado,sim
+5,vazao_ltp@L6_L7,variable,entrada_externa,numeric,numeric,operando numérico / resultado,sim
+6,retirada_cond_corr_ltp@L1_L3,variable,calculado,numeric,numeric,operando numérico / resultado,sim
+7,retirada_cond_corr_ltp@L4_L5,variable,calculado,numeric,numeric,operando numérico / resultado,sim
+8,retirada_cond_corr_ltp@L6_L7,variable,calculado,numeric,numeric,operando numérico / resultado,sim
+9,lth@L1_L7,variable,entrada,numeric,numeric,operando numérico / resultado,sim
+10,lth_grupo@L1_L3,variable,calculado,numeric,numeric,operando numérico / resultado,sim
+11,lth_grupo@L4_L5,variable,calculado,numeric,numeric,operando numérico / resultado,sim
+12,lth_grupo@L6_L7,variable,calculado,numeric,numeric,operando numérico / resultado,sim
+13,fator_retirada_cond_corr_lth@L1_L3,variable,entrada_externa,numeric,numeric,operando numérico / resultado,sim
+14,fator_retirada_cond_corr_lth@L4_L5,variable,entrada_externa,numeric,numeric,operando numérico / resultado,sim
+15,fator_retirada_cond_corr_lth@L6_L7,variable,entrada_externa,numeric,numeric,operando numérico / resultado,sim
+16,retirada_cond_corr_lth@L1_L3,variable,calculado,numeric,numeric,operando numérico / resultado,sim
+17,retirada_cond_corr_lth@L4_L5,variable,calculado,numeric,numeric,operando numérico / resultado,sim
+18,retirada_cond_corr_lth@L6_L7,variable,calculado,numeric,numeric,operando numérico / resultado,sim
+19,valor_retirada@L1,variable,entrada_externa,numeric,numeric,operando numérico / resultado,sim
+20,valor_retirada@L2,variable,entrada_externa,numeric,numeric,operando numérico / resultado,sim
+21,valor_retirada@L3,variable,entrada_externa,numeric,numeric,operando numérico / resultado,sim
+22,retirada_condensado_grupo@L1_L3,variable,calculado,numeric,numeric,operando numérico / resultado,sim
+23,retirada_condensado_grupo@L1_L3,variable,calculado,numeric,numeric,operando numérico / resultado,sim
+24,retirada_condensado_grupo@L1_L3,variable,calculado,numeric,numeric,operando numérico / resultado,sim
+25,hes_l4@L4,variable,entrada_externa,categorical,categorical,"comparado a textos ['1 By pass', '1 By pass e LC', 'LC', 'Normal', 'Overhaul/Parada']",sim
+26,hes_l5@L5,variable,entrada_externa,categorical,categorical,"comparado a textos ['1 By pass', '1 By pass e LC', 'LC', 'Normal', 'Overhaul/Parada']",sim
+27,hes_l6@L6,variable,entrada_externa,categorical,categorical,"comparado a textos ['1 By pass', '1 By pass e LC', 'LC', 'Normal', 'Overhaul/Parada']",sim
+28,hes_l7@L7,variable,entrada_externa,categorical,categorical,"comparado a textos ['1 By pass', '1 By pass e LC', 'LC', 'Normal', 'Overhaul/Parada']",sim
+29,desconto_retirada_41c@L4_L5,variable,entrada_externa,numeric,numeric,operando numérico / resultado,sim
+30,desconto_retirada_41c@L6_L7,variable,entrada_externa,numeric,numeric,operando numérico / resultado,sim
+31,desconto_retirada_41d@L4_L5,variable,entrada_externa,numeric,numeric,operando numérico / resultado,sim
+32,retirada_meta_41a@PLANTA,parameter,,,(não se aplica: parâmetro numérico),parâmetro numérico,sim
+33,retirada_meta_41b@PLANTA,parameter,,,(não se aplica: parâmetro numérico),parâmetro numérico,sim
+34,retirada_meta_41x@PLANTA,parameter,,,(não se aplica: parâmetro numérico),parâmetro numérico,sim
+35,retirada_meta_41c@PLANTA,parameter,,,(não se aplica: parâmetro numérico),parâmetro numérico,sim
+36,retirada_meta_41d@PLANTA,parameter,,,(não se aplica: parâmetro numérico),parâmetro numérico,sim
+37,retirada_performance_41c@PLANTA,parameter,,,(não se aplica: parâmetro numérico),parâmetro numérico,sim
+38,retirada_manobra_linha_41a@PLANTA,parameter,,,(não se aplica: parâmetro numérico),parâmetro numérico,sim
+39,retirada_condensado_grupo@L4_L5,variable,calculado,numeric,numeric,operando numérico / resultado,sim
+40,retirada_condensado_grupo@L4_L5,variable,calculado,numeric,numeric,operando numérico / resultado,sim
+41,retirada_condensado_grupo@L4_L5,variable,calculado,numeric,numeric,operando numérico / resultado,sim
+42,retirada_condensado_grupo@L6_L7,variable,calculado,numeric,numeric,operando numérico / resultado,sim
+43,retirada_condensado_grupo@L6_L7,variable,calculado,numeric,numeric,operando numérico / resultado,sim
+44,retirada_condensado_grupo@L6_L7,variable,calculado,numeric,numeric,operando numérico / resultado,sim
+45,retirada_condensado_linha@L1,variable,calculado,numeric,numeric,operando numérico / resultado,sim
+46,retirada_condensado_linha@L2,variable,calculado,numeric,numeric,operando numérico / resultado,sim
+47,retirada_condensado_linha@L3,variable,calculado,numeric,numeric,operando numérico / resultado,sim
+48,retirada_condensado_linha@L4,variable,calculado,numeric,numeric,operando numérico / resultado,sim
+49,retirada_condensado_linha@L5,variable,calculado,numeric,numeric,operando numérico / resultado,sim
+50,retirada_condensado_linha@L6,variable,calculado,numeric,numeric,operando numérico / resultado,sim
+51,retirada_condensado_linha@L7,variable,calculado,numeric,numeric,operando numérico / resultado,sim
+52,retirada_condensado_linha@L1_L7,variable,calculado,numeric,numeric,operando numérico / resultado,sim
+53,retirada_condensado_linha@L1_L7,variable,calculado,numeric,numeric,operando numérico / resultado,sim
+54,retirada_condensado_total@L1_L7,variable,calculado,numeric,numeric,operando numérico / resultado,sim
+55,retirada_condensado_total@L1_L7,variable,calculado,numeric,numeric,operando numérico / resultado,sim
+56,retirada_condensado_total@L1_L7,variable,calculado,numeric,numeric,operando numérico / resultado,sim

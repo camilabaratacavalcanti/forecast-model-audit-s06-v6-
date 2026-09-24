@@ -1,0 +1,63 @@
+== M1_lth_grupo_soma (sha 75f74cea6c72)
+MUTATION RUN: 12 FAIL
+  FAIL [proveniência] todas as alterações da cadeia são previstas
+  FAIL [proveniência] v6_validado = v5_validado + K30,K31
+  FAIL [equações] spec == texto == runtime (diferentes)
+  FAIL [equações] spec == texto == runtime (iguais)
+  FAIL [equações] spec == texto == runtime (assimetricos)
+  FAIL [equações] spec == texto == runtime (proximos_de_zero)
+  FAIL [equações] spec == texto == runtime (enunciado_21)
+  FAIL [A020] lth_grupo = 20/50/50 (média, não soma)
+  FAIL [texto/booleano] 30 combinações de estados L4_L5: spec == texto == runtime (inclui F)
+  FAIL [texto/booleano] 30 combinações de estados L6_L7: spec == texto == runtime (inclui F)
+  FAIL [agregações] todas as 22 instâncias = média independente dos diários (AVERAGE, sem fator)
+exit=1
+== M2_41c_41d_trocados (sha e25a186f6196)
+MUTATION RUN: 5 FAIL
+  FAIL [proveniência] todas as alterações da cadeia são previstas
+  FAIL [proveniência] v6_validado = v5_validado + K30,K31
+  FAIL [41c/41d] desconto_retirada_41c@L6_L7 = Forecast A41!C28 (decisão do usuário)
+  FAIL [41c/41d] desconto_retirada_41d@L4_L5 = Forecast A41!C27 (decisão do usuário)
+exit=1
+== M3_sem_value_type (sha f4d8c8846939)
+MUTATION RUN ABORTED (FAIL): CalculationValueError: O valor da variável VAR98023 deve ser numérico: a variável não é declarada categórica.
+  FAIL [integridade] cabeçalho = 15 colunas históricas + value_type
+  FAIL [proveniência] todas as alterações da cadeia são previstas
+  FAIL [proveniência] v6_validado = v5_validado + K30,K31
+  FAIL [identidade] dimensões/merged/cabeçalho iguais entre v5_validado e v6_validado
+  FAIL [value_type] value_type correto em todas as entidades
+exit=2
+== M4_hes_sem_escopo (sha 5f539d2e136b)
+MUTATION RUN ABORTED (FAIL): RuntimeError: generator raised StopIteration
+  FAIL [proveniência] todas as alterações da cadeia são previstas
+  FAIL [proveniência] v6_validado = v5_validado + K30,K31
+  FAIL [A019] todas as referências resolvem para exatamente 1 produtor
+  FAIL [A019] resolução independente == resolvedor central da plataforma
+exit=2
+== M5_agregacao_SUM (sha 66dbb90caa42)
+MUTATION RUN: 5 FAIL
+  FAIL [proveniência] todas as alterações da cadeia são previstas
+  FAIL [proveniência] v6_validado = v5_validado + K30,K31
+  FAIL [agregações] todas as 22 instâncias = média independente dos diários (AVERAGE, sem fator)
+  FAIL [/h gate] A41: nenhuma SUM; unidade origem == destino em todas as agregações
+exit=1
+== M6_rateio_grupo_errado (sha b0c61e9402cb)
+MUTATION RUN: 18 FAIL
+  FAIL [proveniência] todas as alterações da cadeia são previstas
+  FAIL [proveniência] v6_validado = v5_validado + K30,K31
+  FAIL [@grupo] L1,L2,L3->L1_L3; L4,L5->L4_L5; L6,L7->L6_L7
+  FAIL [equações] spec == texto == runtime (diferentes)
+  FAIL [rateio] Σ linhas == grupo (diferentes)
+  FAIL [equações] spec == texto == runtime (iguais)
+  FAIL [rateio] Σ linhas == grupo (iguais)
+  FAIL [equações] spec == texto == runtime (assimetricos)
+  FAIL [rateio] Σ linhas == grupo (assimetricos)
+  FAIL [equações] spec == texto == runtime (proximos_de_zero)
+  FAIL [rateio] Σ linhas == grupo (proximos_de_zero)
+  FAIL [equações] spec == texto == runtime (enunciado_21)
+  FAIL [rateio] Σ linhas == grupo (enunciado_21)
+  FAIL [texto/booleano] 30 combinações de estados L4_L5: spec == texto == runtime (inclui F)
+  FAIL [texto/booleano] 30 combinações de estados L6_L7: spec == texto == runtime (inclui F)
+  FAIL [agregações] todas as 22 instâncias = média independente dos diários (AVERAGE, sem fator)
+  FAIL [isolamento] perturbar lth de uma linha só altera o próprio grupo, suas linhas e o total
+exit=1

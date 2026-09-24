@@ -1,0 +1,60 @@
+consumidor,linha_consumidor,referencia,frequencia_consumidor,escopo_consumidor,modo,produtor_resolvido,frequencia_produtor,escopo_produtor,instancia_lida,temporal,produtor_plataforma,deterministico,independente_igual_plataforma
+retirada_cond_corr_ltp@L1_L3,6,vazao_ltp,diário,linha_grupo/L1_L3,implícita,vazao_ltp (linha 3),mensal,linha_grupo/L1_L3,linha_grupo/L1_L3,frequência mais grossa (período que contém o dia),vazao_ltp (linha 3),sim,sim
+retirada_cond_corr_ltp@L4_L5,7,vazao_ltp,diário,linha_grupo/L4_L5,implícita,vazao_ltp (linha 4),mensal,linha_grupo/L4_L5,linha_grupo/L4_L5,frequência mais grossa (período que contém o dia),vazao_ltp (linha 4),sim,sim
+retirada_cond_corr_ltp@L6_L7,8,vazao_ltp,diário,linha_grupo/L6_L7,implícita,vazao_ltp (linha 5),mensal,linha_grupo/L6_L7,linha_grupo/L6_L7,frequência mais grossa (período que contém o dia),vazao_ltp (linha 5),sim,sim
+lth_grupo@L1_L3,10,lth@L1,diário,linha_grupo/L1_L3,explícita,lth (linha 9),diário,linha/L1_L7,linha/L1,mesma frequência,lth (linha 9),sim,sim
+lth_grupo@L1_L3,10,lth@L2,diário,linha_grupo/L1_L3,explícita,lth (linha 9),diário,linha/L1_L7,linha/L2,mesma frequência,lth (linha 9),sim,sim
+lth_grupo@L1_L3,10,lth@L3,diário,linha_grupo/L1_L3,explícita,lth (linha 9),diário,linha/L1_L7,linha/L3,mesma frequência,lth (linha 9),sim,sim
+lth_grupo@L4_L5,11,lth@L4,diário,linha_grupo/L4_L5,explícita,lth (linha 9),diário,linha/L1_L7,linha/L4,mesma frequência,lth (linha 9),sim,sim
+lth_grupo@L4_L5,11,lth@L5,diário,linha_grupo/L4_L5,explícita,lth (linha 9),diário,linha/L1_L7,linha/L5,mesma frequência,lth (linha 9),sim,sim
+lth_grupo@L6_L7,12,lth@L6,diário,linha_grupo/L6_L7,explícita,lth (linha 9),diário,linha/L1_L7,linha/L6,mesma frequência,lth (linha 9),sim,sim
+lth_grupo@L6_L7,12,lth@L7,diário,linha_grupo/L6_L7,explícita,lth (linha 9),diário,linha/L1_L7,linha/L7,mesma frequência,lth (linha 9),sim,sim
+retirada_cond_corr_lth@L1_L3,16,lth_grupo,diário,linha_grupo/L1_L3,implícita,lth_grupo (linha 10),diário,linha_grupo/L1_L3,linha_grupo/L1_L3,mesma frequência,lth_grupo (linha 10),sim,sim
+retirada_cond_corr_lth@L1_L3,16,fator_retirada_cond_corr_lth,diário,linha_grupo/L1_L3,implícita,fator_retirada_cond_corr_lth (linha 13),mensal,linha_grupo/L1_L3,linha_grupo/L1_L3,frequência mais grossa (período que contém o dia),fator_retirada_cond_corr_lth (linha 13),sim,sim
+retirada_cond_corr_lth@L4_L5,17,lth_grupo,diário,linha_grupo/L4_L5,implícita,lth_grupo (linha 11),diário,linha_grupo/L4_L5,linha_grupo/L4_L5,mesma frequência,lth_grupo (linha 11),sim,sim
+retirada_cond_corr_lth@L4_L5,17,fator_retirada_cond_corr_lth,diário,linha_grupo/L4_L5,implícita,fator_retirada_cond_corr_lth (linha 14),mensal,linha_grupo/L4_L5,linha_grupo/L4_L5,frequência mais grossa (período que contém o dia),fator_retirada_cond_corr_lth (linha 14),sim,sim
+retirada_cond_corr_lth@L6_L7,18,lth_grupo,diário,linha_grupo/L6_L7,implícita,lth_grupo (linha 12),diário,linha_grupo/L6_L7,linha_grupo/L6_L7,mesma frequência,lth_grupo (linha 12),sim,sim
+retirada_cond_corr_lth@L6_L7,18,fator_retirada_cond_corr_lth,diário,linha_grupo/L6_L7,implícita,fator_retirada_cond_corr_lth (linha 15),mensal,linha_grupo/L6_L7,linha_grupo/L6_L7,frequência mais grossa (período que contém o dia),fator_retirada_cond_corr_lth (linha 15),sim,sim
+retirada_condensado_grupo@L1_L3,22,valor_retirada@L1,diário,linha_grupo/L1_L3,explícita,valor_retirada (linha 19),diário,linha/L1,linha/L1,mesma frequência,valor_retirada (linha 19),sim,sim
+retirada_condensado_grupo@L1_L3,22,valor_retirada@L2,diário,linha_grupo/L1_L3,explícita,valor_retirada (linha 20),diário,linha/L2,linha/L2,mesma frequência,valor_retirada (linha 20),sim,sim
+retirada_condensado_grupo@L1_L3,22,valor_retirada@L3,diário,linha_grupo/L1_L3,explícita,valor_retirada (linha 21),diário,linha/L3,linha/L3,mesma frequência,valor_retirada (linha 21),sim,sim
+retirada_condensado_grupo@L1_L3,22,retirada_cond_corr_ltp,diário,linha_grupo/L1_L3,implícita,retirada_cond_corr_ltp (linha 6),diário,linha_grupo/L1_L3,linha_grupo/L1_L3,mesma frequência,retirada_cond_corr_ltp (linha 6),sim,sim
+retirada_condensado_grupo@L1_L3,22,retirada_cond_corr_lth,diário,linha_grupo/L1_L3,implícita,retirada_cond_corr_lth (linha 16),diário,linha_grupo/L1_L3,linha_grupo/L1_L3,mesma frequência,retirada_cond_corr_lth (linha 16),sim,sim
+retirada_condensado_grupo@L4_L5,39,retirada_cond_corr_ltp,diário,linha_grupo/L4_L5,implícita,retirada_cond_corr_ltp (linha 7),diário,linha_grupo/L4_L5,linha_grupo/L4_L5,mesma frequência,retirada_cond_corr_ltp (linha 7),sim,sim
+retirada_condensado_grupo@L4_L5,39,retirada_cond_corr_lth,diário,linha_grupo/L4_L5,implícita,retirada_cond_corr_lth (linha 17),diário,linha_grupo/L4_L5,linha_grupo/L4_L5,mesma frequência,retirada_cond_corr_lth (linha 17),sim,sim
+retirada_condensado_grupo@L4_L5,39,hes_l4@L4,diário,linha_grupo/L4_L5,explícita,hes_l4 (linha 25),diário,linha/L4,linha/L4,mesma frequência,hes_l4 (linha 25),sim,sim
+retirada_condensado_grupo@L4_L5,39,hes_l5@L5,diário,linha_grupo/L4_L5,explícita,hes_l5 (linha 26),diário,linha/L5,linha/L5,mesma frequência,hes_l5 (linha 26),sim,sim
+retirada_condensado_grupo@L4_L5,39,desconto_retirada_41d,diário,linha_grupo/L4_L5,implícita,desconto_retirada_41d (linha 31),diário,linha_grupo/L4_L5,linha_grupo/L4_L5,mesma frequência,desconto_retirada_41d (linha 31),sim,sim
+retirada_condensado_grupo@L4_L5,39,desconto_retirada_41c,diário,linha_grupo/L4_L5,implícita,desconto_retirada_41c (linha 29),diário,linha_grupo/L4_L5,linha_grupo/L4_L5,mesma frequência,desconto_retirada_41c (linha 29),sim,sim
+retirada_condensado_grupo@L6_L7,42,retirada_cond_corr_ltp,diário,linha_grupo/L6_L7,implícita,retirada_cond_corr_ltp (linha 8),diário,linha_grupo/L6_L7,linha_grupo/L6_L7,mesma frequência,retirada_cond_corr_ltp (linha 8),sim,sim
+retirada_condensado_grupo@L6_L7,42,retirada_cond_corr_lth,diário,linha_grupo/L6_L7,implícita,retirada_cond_corr_lth (linha 18),diário,linha_grupo/L6_L7,linha_grupo/L6_L7,mesma frequência,retirada_cond_corr_lth (linha 18),sim,sim
+retirada_condensado_grupo@L6_L7,42,hes_l6@L6,diário,linha_grupo/L6_L7,explícita,hes_l6 (linha 27),diário,linha/L6,linha/L6,mesma frequência,hes_l6 (linha 27),sim,sim
+retirada_condensado_grupo@L6_L7,42,hes_l7@L7,diário,linha_grupo/L6_L7,explícita,hes_l7 (linha 28),diário,linha/L7,linha/L7,mesma frequência,hes_l7 (linha 28),sim,sim
+retirada_condensado_grupo@L6_L7,42,desconto_retirada_41c,diário,linha_grupo/L6_L7,implícita,desconto_retirada_41c (linha 30),diário,linha_grupo/L6_L7,linha_grupo/L6_L7,mesma frequência,desconto_retirada_41c (linha 30),sim,sim
+retirada_condensado_linha@L1,45,retirada_condensado_grupo@L1_L3,diário,linha/L1,explícita,retirada_condensado_grupo (linha 22),diário,linha_grupo/L1_L3,linha_grupo/L1_L3,mesma frequência,retirada_condensado_grupo (linha 22),sim,sim
+retirada_condensado_linha@L1,45,lth@L1,diário,linha/L1,explícita,lth (linha 9),diário,linha/L1_L7,linha/L1,mesma frequência,lth (linha 9),sim,sim
+retirada_condensado_linha@L1,45,lth@L2,diário,linha/L1,explícita,lth (linha 9),diário,linha/L1_L7,linha/L2,mesma frequência,lth (linha 9),sim,sim
+retirada_condensado_linha@L1,45,lth@L3,diário,linha/L1,explícita,lth (linha 9),diário,linha/L1_L7,linha/L3,mesma frequência,lth (linha 9),sim,sim
+retirada_condensado_linha@L2,46,retirada_condensado_grupo@L1_L3,diário,linha/L2,explícita,retirada_condensado_grupo (linha 22),diário,linha_grupo/L1_L3,linha_grupo/L1_L3,mesma frequência,retirada_condensado_grupo (linha 22),sim,sim
+retirada_condensado_linha@L2,46,lth@L2,diário,linha/L2,explícita,lth (linha 9),diário,linha/L1_L7,linha/L2,mesma frequência,lth (linha 9),sim,sim
+retirada_condensado_linha@L2,46,lth@L1,diário,linha/L2,explícita,lth (linha 9),diário,linha/L1_L7,linha/L1,mesma frequência,lth (linha 9),sim,sim
+retirada_condensado_linha@L2,46,lth@L3,diário,linha/L2,explícita,lth (linha 9),diário,linha/L1_L7,linha/L3,mesma frequência,lth (linha 9),sim,sim
+retirada_condensado_linha@L3,47,retirada_condensado_grupo@L1_L3,diário,linha/L3,explícita,retirada_condensado_grupo (linha 22),diário,linha_grupo/L1_L3,linha_grupo/L1_L3,mesma frequência,retirada_condensado_grupo (linha 22),sim,sim
+retirada_condensado_linha@L3,47,lth@L3,diário,linha/L3,explícita,lth (linha 9),diário,linha/L1_L7,linha/L3,mesma frequência,lth (linha 9),sim,sim
+retirada_condensado_linha@L3,47,lth@L1,diário,linha/L3,explícita,lth (linha 9),diário,linha/L1_L7,linha/L1,mesma frequência,lth (linha 9),sim,sim
+retirada_condensado_linha@L3,47,lth@L2,diário,linha/L3,explícita,lth (linha 9),diário,linha/L1_L7,linha/L2,mesma frequência,lth (linha 9),sim,sim
+retirada_condensado_linha@L4,48,retirada_condensado_grupo@L4_L5,diário,linha/L4,explícita,retirada_condensado_grupo (linha 39),diário,linha_grupo/L4_L5,linha_grupo/L4_L5,mesma frequência,retirada_condensado_grupo (linha 39),sim,sim
+retirada_condensado_linha@L4,48,lth@L4,diário,linha/L4,explícita,lth (linha 9),diário,linha/L1_L7,linha/L4,mesma frequência,lth (linha 9),sim,sim
+retirada_condensado_linha@L4,48,lth@L5,diário,linha/L4,explícita,lth (linha 9),diário,linha/L1_L7,linha/L5,mesma frequência,lth (linha 9),sim,sim
+retirada_condensado_linha@L5,49,retirada_condensado_grupo@L4_L5,diário,linha/L5,explícita,retirada_condensado_grupo (linha 39),diário,linha_grupo/L4_L5,linha_grupo/L4_L5,mesma frequência,retirada_condensado_grupo (linha 39),sim,sim
+retirada_condensado_linha@L5,49,lth@L5,diário,linha/L5,explícita,lth (linha 9),diário,linha/L1_L7,linha/L5,mesma frequência,lth (linha 9),sim,sim
+retirada_condensado_linha@L5,49,lth@L4,diário,linha/L5,explícita,lth (linha 9),diário,linha/L1_L7,linha/L4,mesma frequência,lth (linha 9),sim,sim
+retirada_condensado_linha@L6,50,retirada_condensado_grupo@L6_L7,diário,linha/L6,explícita,retirada_condensado_grupo (linha 42),diário,linha_grupo/L6_L7,linha_grupo/L6_L7,mesma frequência,retirada_condensado_grupo (linha 42),sim,sim
+retirada_condensado_linha@L6,50,lth@L6,diário,linha/L6,explícita,lth (linha 9),diário,linha/L1_L7,linha/L6,mesma frequência,lth (linha 9),sim,sim
+retirada_condensado_linha@L6,50,lth@L7,diário,linha/L6,explícita,lth (linha 9),diário,linha/L1_L7,linha/L7,mesma frequência,lth (linha 9),sim,sim
+retirada_condensado_linha@L7,51,retirada_condensado_grupo@L6_L7,diário,linha/L7,explícita,retirada_condensado_grupo (linha 42),diário,linha_grupo/L6_L7,linha_grupo/L6_L7,mesma frequência,retirada_condensado_grupo (linha 42),sim,sim
+retirada_condensado_linha@L7,51,lth@L7,diário,linha/L7,explícita,lth (linha 9),diário,linha/L1_L7,linha/L7,mesma frequência,lth (linha 9),sim,sim
+retirada_condensado_linha@L7,51,lth@L6,diário,linha/L7,explícita,lth (linha 9),diário,linha/L1_L7,linha/L6,mesma frequência,lth (linha 9),sim,sim
+retirada_condensado_total@L1_L7,54,retirada_condensado_grupo@L1_L3,diário,linha_grupo/L1_L7,explícita,retirada_condensado_grupo (linha 22),diário,linha_grupo/L1_L3,linha_grupo/L1_L3,mesma frequência,retirada_condensado_grupo (linha 22),sim,sim
+retirada_condensado_total@L1_L7,54,retirada_condensado_grupo@L4_L5,diário,linha_grupo/L1_L7,explícita,retirada_condensado_grupo (linha 39),diário,linha_grupo/L4_L5,linha_grupo/L4_L5,mesma frequência,retirada_condensado_grupo (linha 39),sim,sim
+retirada_condensado_total@L1_L7,54,retirada_condensado_grupo@L6_L7,diário,linha_grupo/L1_L7,explícita,retirada_condensado_grupo (linha 42),diário,linha_grupo/L6_L7,linha_grupo/L6_L7,mesma frequência,retirada_condensado_grupo (linha 42),sim,sim

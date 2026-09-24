@@ -1,0 +1,1301 @@
+cenario,entidade,spec,texto_independente,runtime,status
+valores:diferentes,lth_grupo@L1_L3,1100.0,1100.0,1100.0,PASS
+valores:diferentes,lth_grupo@L4_L5,970.0,970.0,970.0,PASS
+valores:diferentes,lth_grupo@L6_L7,1100.0,1100.0,1100.0,PASS
+valores:diferentes,retirada_cond_corr_lth@L1_L3,52.241865561555585,52.241865561555585,52.241865561555585,PASS
+valores:diferentes,retirada_cond_corr_lth@L4_L5,48.88652943961213,48.88652943961213,48.88652943961213,PASS
+valores:diferentes,retirada_cond_corr_lth@L6_L7,53.107563637622576,53.107563637622576,53.107563637622576,PASS
+valores:diferentes,retirada_cond_corr_ltp@L1_L3,53.93641212842863,53.93641212842863,53.93641212842863,PASS
+valores:diferentes,retirada_cond_corr_ltp@L4_L5,53.63907810868153,53.63907810868153,53.63907810868153,PASS
+valores:diferentes,retirada_cond_corr_ltp@L6_L7,52.87525472002136,52.87525472002136,52.87525472002136,PASS
+valores:diferentes,retirada_condensado_grupo@L1_L3,136.91636029938087,136.91636029938087,136.91636029938087,PASS
+valores:diferentes,retirada_condensado_grupo@L4_L5,90.4949026618612,90.4949026618612,90.4949026618612,PASS
+valores:diferentes,retirada_condensado_grupo@L6_L7,100.46461783520243,100.46461783520243,100.46461783520243,PASS
+valores:diferentes,retirada_condensado_linha@L1,41.489806151327535,41.489806151327535,41.489806151327535,PASS
+valores:diferentes,retirada_condensado_linha@L2,45.63878676646029,45.63878676646029,45.63878676646029,PASS
+valores:diferentes,retirada_condensado_linha@L3,49.78776738159305,49.78776738159305,49.78776738159305,PASS
+valores:diferentes,retirada_condensado_linha@L4,41.98217133797685,41.98217133797685,41.98217133797685,PASS
+valores:diferentes,retirada_condensado_linha@L5,48.51273132388436,48.51273132388436,48.51273132388436,PASS
+valores:diferentes,retirada_condensado_linha@L6,45.66573537963747,45.66573537963747,45.66573537963747,PASS
+valores:diferentes,retirada_condensado_linha@L7,54.798882455564964,54.798882455564964,54.798882455564964,PASS
+valores:diferentes,retirada_condensado_total@L1_L7,327.8758807964445,327.8758807964445,327.8758807964445,PASS
+valores:iguais,lth_grupo@L1_L3,1100.0,1100.0,1100.0,PASS
+valores:iguais,lth_grupo@L4_L5,1100.0,1100.0,1100.0,PASS
+valores:iguais,lth_grupo@L6_L7,1100.0,1100.0,1100.0,PASS
+valores:iguais,retirada_cond_corr_lth@L1_L3,52.241865561555585,52.241865561555585,52.241865561555585,PASS
+valores:iguais,retirada_cond_corr_lth@L4_L5,52.241865561555585,52.241865561555585,52.241865561555585,PASS
+valores:iguais,retirada_cond_corr_lth@L6_L7,52.241865561555585,52.241865561555585,52.241865561555585,PASS
+valores:iguais,retirada_cond_corr_ltp@L1_L3,53.93641212842863,53.93641212842863,53.93641212842863,PASS
+valores:iguais,retirada_cond_corr_ltp@L4_L5,53.93641212842863,53.93641212842863,53.93641212842863,PASS
+valores:iguais,retirada_cond_corr_ltp@L6_L7,53.93641212842863,53.93641212842863,53.93641212842863,PASS
+valores:iguais,retirada_condensado_grupo@L1_L3,136.91636029938087,136.91636029938087,136.91636029938087,PASS
+valores:iguais,retirada_condensado_grupo@L4_L5,96.61090686625391,96.61090686625391,96.61090686625391,PASS
+valores:iguais,retirada_condensado_grupo@L6_L7,96.61090686625391,96.61090686625391,96.61090686625391,PASS
+valores:iguais,retirada_condensado_linha@L1,45.63878676646029,45.63878676646029,45.63878676646029,PASS
+valores:iguais,retirada_condensado_linha@L2,45.63878676646029,45.63878676646029,45.63878676646029,PASS
+valores:iguais,retirada_condensado_linha@L3,45.63878676646029,45.63878676646029,45.63878676646029,PASS
+valores:iguais,retirada_condensado_linha@L4,48.30545343312696,48.30545343312696,48.30545343312696,PASS
+valores:iguais,retirada_condensado_linha@L5,48.30545343312696,48.30545343312696,48.30545343312696,PASS
+valores:iguais,retirada_condensado_linha@L6,48.30545343312696,48.30545343312696,48.30545343312696,PASS
+valores:iguais,retirada_condensado_linha@L7,48.30545343312696,48.30545343312696,48.30545343312696,PASS
+valores:iguais,retirada_condensado_total@L1_L7,330.1381740318887,330.1381740318887,330.1381740318887,PASS
+valores:assimetricos,lth_grupo@L1_L3,671.6666666666666,671.6666666666666,671.6666666666666,PASS
+valores:assimetricos,lth_grupo@L4_L5,150.5,150.5,150.5,PASS
+valores:assimetricos,lth_grupo@L6_L7,499.75,499.75,499.75,PASS
+valores:assimetricos,retirada_cond_corr_lth@L1_L3,42.634784318443565,42.634784318443565,42.634784318443565,PASS
+valores:assimetricos,retirada_cond_corr_lth@L4_L5,13.504096816268671,13.504096816268671,13.504096816268671,PASS
+valores:assimetricos,retirada_cond_corr_lth@L6_L7,36.87691853327466,36.87691853327466,36.87691853327466,PASS
+valores:assimetricos,retirada_cond_corr_ltp@L1_L3,53.93641212842863,53.93641212842863,53.93641212842863,PASS
+valores:assimetricos,retirada_cond_corr_ltp@L4_L5,53.93641212842863,53.93641212842863,53.93641212842863,PASS
+valores:assimetricos,retirada_cond_corr_ltp@L6_L7,53.93641212842863,53.93641212842863,53.93641212842863,PASS
+valores:assimetricos,retirada_condensado_grupo@L1_L3,108.09511657004481,108.09511657004481,108.09511657004481,PASS
+valores:assimetricos,retirada_condensado_grupo@L4_L5,19.135369375680085,19.135369375680085,19.135369375680085,PASS
+valores:assimetricos,retirada_condensado_grupo@L6_L7,65.88101280969207,65.88101280969207,65.88101280969207,PASS
+valores:assimetricos,retirada_condensado_linha@L1,0.5364521914146145,0.5364521914146145,0.5364521914146145,PASS
+valores:assimetricos,retirada_condensado_linha@L2,107.29043828292288,107.29043828292288,107.29043828292288,PASS
+valores:assimetricos,retirada_condensado_linha@L3,0.26822609570730727,0.26822609570730727,0.26822609570730727,PASS
+valores:assimetricos,retirada_condensado_linha@L4,19.071796719946928,19.071796719946928,19.071796719946928,PASS
+valores:assimetricos,retirada_condensado_linha@L5,0.06357265573315643,0.06357265573315643,0.06357265573315643,PASS
+valores:assimetricos,retirada_condensado_linha@L6,65.84805582479477,65.84805582479477,65.84805582479477,PASS
+valores:assimetricos,retirada_condensado_linha@L7,0.03295698489729468,0.03295698489729468,0.03295698489729468,PASS
+valores:assimetricos,retirada_condensado_total@L1_L7,193.11149875541696,193.11149875541696,193.11149875541696,PASS
+valores:proximos_de_zero,lth_grupo@L1_L3,2e-06,2e-06,2e-06,PASS
+valores:proximos_de_zero,lth_grupo@L4_L5,3e-06,3e-06,3e-06,PASS
+valores:proximos_de_zero,lth_grupo@L6_L7,1.5e-06,1.5e-06,1.5e-06,PASS
+valores:proximos_de_zero,retirada_cond_corr_lth@L1_L3,-339.70086102326013,-339.70086102326013,-339.70086102326013,PASS
+valores:proximos_de_zero,retirada_cond_corr_lth@L4_L5,-331.8044280428536,-331.8044280428536,-331.8044280428536,PASS
+valores:proximos_de_zero,retirada_cond_corr_lth@L6_L7,-345.3034693842585,-345.3034693842585,-345.3034693842585,PASS
+valores:proximos_de_zero,retirada_cond_corr_ltp@L1_L3,53.93641212842863,53.93641212842863,53.93641212842863,PASS
+valores:proximos_de_zero,retirada_cond_corr_ltp@L4_L5,53.93641212842863,53.93641212842863,53.93641212842863,PASS
+valores:proximos_de_zero,retirada_cond_corr_ltp@L6_L7,53.93641212842863,53.93641212842863,53.93641212842863,PASS
+valores:proximos_de_zero,retirada_condensado_grupo@L1_L3,-1038.9118194550663,-1038.9118194550663,-1038.9118194550663,PASS
+valores:proximos_de_zero,retirada_condensado_grupo@L4_L5,-671.4816803425645,-671.4816803425645,-671.4816803425645,PASS
+valores:proximos_de_zero,retirada_condensado_grupo@L6_L7,-698.4797630253743,-698.4797630253743,-698.4797630253743,PASS
+valores:proximos_de_zero,retirada_condensado_linha@L1,-173.15196990917772,-173.15196990917772,-173.15196990917772,PASS
+valores:proximos_de_zero,retirada_condensado_linha@L2,-346.30393981835545,-346.30393981835545,-346.30393981835545,PASS
+valores:proximos_de_zero,retirada_condensado_linha@L3,-519.4559097275331,-519.4559097275331,-519.4559097275331,PASS
+valores:proximos_de_zero,retirada_condensado_linha@L4,-111.9136133904274,-111.9136133904274,-111.9136133904274,PASS
+valores:proximos_de_zero,retirada_condensado_linha@L5,-559.5680669521371,-559.5680669521371,-559.5680669521371,PASS
+valores:proximos_de_zero,retirada_condensado_linha@L6,-465.65317535024946,-465.65317535024946,-465.65317535024946,PASS
+valores:proximos_de_zero,retirada_condensado_linha@L7,-232.82658767512473,-232.82658767512473,-232.82658767512473,PASS
+valores:proximos_de_zero,retirada_condensado_total@L1_L7,-2408.873262823005,-2408.873262823005,-2408.873262823005,PASS
+valores:enunciado_21,lth_grupo@L1_L3,20.0,20.0,20.0,PASS
+valores:enunciado_21,lth_grupo@L4_L5,50.0,50.0,50.0,PASS
+valores:enunciado_21,lth_grupo@L6_L7,50.0,50.0,50.0,PASS
+valores:enunciado_21,retirada_cond_corr_lth@L1_L3,-25.800948220846784,-25.800948220846784,-25.800948220846784,PASS
+valores:enunciado_21,retirada_cond_corr_lth@L4_L5,-7.956186217597619,-7.956186217597619,-7.956186217597619,PASS
+valores:enunciado_21,retirada_cond_corr_lth@L6_L7,-7.956186217597619,-7.956186217597619,-7.956186217597619,PASS
+valores:enunciado_21,retirada_cond_corr_ltp@L1_L3,53.93641212842863,53.93641212842863,53.93641212842863,PASS
+valores:enunciado_21,retirada_cond_corr_ltp@L4_L5,53.93641212842863,53.93641212842863,53.93641212842863,PASS
+valores:enunciado_21,retirada_cond_corr_ltp@L6_L7,53.93641212842863,53.93641212842863,53.93641212842863,PASS
+valores:enunciado_21,retirada_condensado_grupo@L1_L3,-97.21208104782622,-97.21208104782622,-97.21208104782622,PASS
+valores:enunciado_21,retirada_condensado_grupo@L4_L5,-23.785196692052494,-23.785196692052494,-23.785196692052494,PASS
+valores:enunciado_21,retirada_condensado_grupo@L6_L7,-23.785196692052494,-23.785196692052494,-23.785196692052494,PASS
+valores:enunciado_21,retirada_condensado_linha@L1,-16.20201350797104,-16.20201350797104,-16.20201350797104,PASS
+valores:enunciado_21,retirada_condensado_linha@L2,-32.40402701594208,-32.40402701594208,-32.40402701594208,PASS
+valores:enunciado_21,retirada_condensado_linha@L3,-48.60604052391311,-48.60604052391311,-48.60604052391311,PASS
+valores:enunciado_21,retirada_condensado_linha@L4,-9.514078676820997,-9.514078676820997,-9.514078676820997,PASS
+valores:enunciado_21,retirada_condensado_linha@L5,-14.271118015231496,-14.271118015231496,-14.271118015231496,PASS
+valores:enunciado_21,retirada_condensado_linha@L6,-16.649637684436744,-16.649637684436744,-16.649637684436744,PASS
+valores:enunciado_21,retirada_condensado_linha@L7,-7.135559007615748,-7.135559007615748,-7.135559007615748,PASS
+valores:enunciado_21,retirada_condensado_total@L1_L7,-144.7824744319312,-144.7824744319312,-144.7824744319312,PASS
+estados L4_L5: Normal / Normal,lth_grupo@L1_L3,1100.0,1100.0,1100.0,PASS
+estados L4_L5: Normal / Normal,lth_grupo@L4_L5,970.0,970.0,970.0,PASS
+estados L4_L5: Normal / Normal,lth_grupo@L6_L7,1100.0,1100.0,1100.0,PASS
+estados L4_L5: Normal / Normal,retirada_cond_corr_lth@L1_L3,52.241865561555585,52.241865561555585,52.241865561555585,PASS
+estados L4_L5: Normal / Normal,retirada_cond_corr_lth@L4_L5,48.88652943961213,48.88652943961213,48.88652943961213,PASS
+estados L4_L5: Normal / Normal,retirada_cond_corr_lth@L6_L7,53.107563637622576,53.107563637622576,53.107563637622576,PASS
+estados L4_L5: Normal / Normal,retirada_cond_corr_ltp@L1_L3,53.93641212842863,53.93641212842863,53.93641212842863,PASS
+estados L4_L5: Normal / Normal,retirada_cond_corr_ltp@L4_L5,53.63907810868153,53.63907810868153,53.63907810868153,PASS
+estados L4_L5: Normal / Normal,retirada_cond_corr_ltp@L6_L7,52.87525472002136,52.87525472002136,52.87525472002136,PASS
+estados L4_L5: Normal / Normal,retirada_condensado_grupo@L1_L3,136.91636029938087,136.91636029938087,136.91636029938087,PASS
+estados L4_L5: Normal / Normal,retirada_condensado_grupo@L4_L5,90.4949026618612,90.4949026618612,90.4949026618612,PASS
+estados L4_L5: Normal / Normal,retirada_condensado_grupo@L6_L7,100.46461783520243,100.46461783520243,100.46461783520243,PASS
+estados L4_L5: Normal / Normal,retirada_condensado_linha@L1,41.489806151327535,41.489806151327535,41.489806151327535,PASS
+estados L4_L5: Normal / Normal,retirada_condensado_linha@L2,45.63878676646029,45.63878676646029,45.63878676646029,PASS
+estados L4_L5: Normal / Normal,retirada_condensado_linha@L3,49.78776738159305,49.78776738159305,49.78776738159305,PASS
+estados L4_L5: Normal / Normal,retirada_condensado_linha@L4,41.98217133797685,41.98217133797685,41.98217133797685,PASS
+estados L4_L5: Normal / Normal,retirada_condensado_linha@L5,48.51273132388436,48.51273132388436,48.51273132388436,PASS
+estados L4_L5: Normal / Normal,retirada_condensado_linha@L6,45.66573537963747,45.66573537963747,45.66573537963747,PASS
+estados L4_L5: Normal / Normal,retirada_condensado_linha@L7,54.798882455564964,54.798882455564964,54.798882455564964,PASS
+estados L4_L5: Normal / Normal,retirada_condensado_total@L1_L7,327.8758807964445,327.8758807964445,327.8758807964445,PASS
+estados L4_L5: Normal / LC,lth_grupo@L1_L3,1100.0,1100.0,1100.0,PASS
+estados L4_L5: Normal / LC,lth_grupo@L4_L5,970.0,970.0,970.0,PASS
+estados L4_L5: Normal / LC,lth_grupo@L6_L7,1100.0,1100.0,1100.0,PASS
+estados L4_L5: Normal / LC,retirada_cond_corr_lth@L1_L3,52.241865561555585,52.241865561555585,52.241865561555585,PASS
+estados L4_L5: Normal / LC,retirada_cond_corr_lth@L4_L5,48.88652943961213,48.88652943961213,48.88652943961213,PASS
+estados L4_L5: Normal / LC,retirada_cond_corr_lth@L6_L7,53.107563637622576,53.107563637622576,53.107563637622576,PASS
+estados L4_L5: Normal / LC,retirada_cond_corr_ltp@L1_L3,53.93641212842863,53.93641212842863,53.93641212842863,PASS
+estados L4_L5: Normal / LC,retirada_cond_corr_ltp@L4_L5,53.63907810868153,53.63907810868153,53.63907810868153,PASS
+estados L4_L5: Normal / LC,retirada_cond_corr_ltp@L6_L7,52.87525472002136,52.87525472002136,52.87525472002136,PASS
+estados L4_L5: Normal / LC,retirada_condensado_grupo@L1_L3,136.91636029938087,136.91636029938087,136.91636029938087,PASS
+estados L4_L5: Normal / LC,retirada_condensado_grupo@L4_L5,71.64179794064012,71.64179794064012,71.64179794064012,PASS
+estados L4_L5: Normal / LC,retirada_condensado_grupo@L6_L7,100.46461783520243,100.46461783520243,100.46461783520243,PASS
+estados L4_L5: Normal / LC,retirada_condensado_linha@L1,41.489806151327535,41.489806151327535,41.489806151327535,PASS
+estados L4_L5: Normal / LC,retirada_condensado_linha@L2,45.63878676646029,45.63878676646029,45.63878676646029,PASS
+estados L4_L5: Normal / LC,retirada_condensado_linha@L3,49.78776738159305,49.78776738159305,49.78776738159305,PASS
+estados L4_L5: Normal / LC,retirada_condensado_linha@L4,33.235885642565,33.235885642565,33.235885642565,PASS
+estados L4_L5: Normal / LC,retirada_condensado_linha@L5,38.40591229807511,38.40591229807511,38.40591229807511,PASS
+estados L4_L5: Normal / LC,retirada_condensado_linha@L6,45.66573537963747,45.66573537963747,45.66573537963747,PASS
+estados L4_L5: Normal / LC,retirada_condensado_linha@L7,54.798882455564964,54.798882455564964,54.798882455564964,PASS
+estados L4_L5: Normal / LC,retirada_condensado_total@L1_L7,309.0227760752234,309.0227760752234,309.0227760752234,PASS
+estados L4_L5: Normal / Overhaul/Parada,lth_grupo@L1_L3,1100.0,1100.0,1100.0,PASS
+estados L4_L5: Normal / Overhaul/Parada,lth_grupo@L4_L5,970.0,970.0,970.0,PASS
+estados L4_L5: Normal / Overhaul/Parada,lth_grupo@L6_L7,1100.0,1100.0,1100.0,PASS
+estados L4_L5: Normal / Overhaul/Parada,retirada_cond_corr_lth@L1_L3,52.241865561555585,52.241865561555585,52.241865561555585,PASS
+estados L4_L5: Normal / Overhaul/Parada,retirada_cond_corr_lth@L4_L5,48.88652943961213,48.88652943961213,48.88652943961213,PASS
+estados L4_L5: Normal / Overhaul/Parada,retirada_cond_corr_lth@L6_L7,53.107563637622576,53.107563637622576,53.107563637622576,PASS
+estados L4_L5: Normal / Overhaul/Parada,retirada_cond_corr_ltp@L1_L3,53.93641212842863,53.93641212842863,53.93641212842863,PASS
+estados L4_L5: Normal / Overhaul/Parada,retirada_cond_corr_ltp@L4_L5,53.63907810868153,53.63907810868153,53.63907810868153,PASS
+estados L4_L5: Normal / Overhaul/Parada,retirada_cond_corr_ltp@L6_L7,52.87525472002136,52.87525472002136,52.87525472002136,PASS
+estados L4_L5: Normal / Overhaul/Parada,retirada_condensado_grupo@L1_L3,136.91636029938087,136.91636029938087,136.91636029938087,PASS
+estados L4_L5: Normal / Overhaul/Parada,retirada_condensado_grupo@L4_L5,40.494902661861204,40.494902661861204,40.494902661861204,PASS
+estados L4_L5: Normal / Overhaul/Parada,retirada_condensado_grupo@L6_L7,100.46461783520243,100.46461783520243,100.46461783520243,PASS
+estados L4_L5: Normal / Overhaul/Parada,retirada_condensado_linha@L1,41.489806151327535,41.489806151327535,41.489806151327535,PASS
+estados L4_L5: Normal / Overhaul/Parada,retirada_condensado_linha@L2,45.63878676646029,45.63878676646029,45.63878676646029,PASS
+estados L4_L5: Normal / Overhaul/Parada,retirada_condensado_linha@L3,49.78776738159305,49.78776738159305,49.78776738159305,PASS
+estados L4_L5: Normal / Overhaul/Parada,retirada_condensado_linha@L4,18.786295049317054,18.786295049317054,18.786295049317054,PASS
+estados L4_L5: Normal / Overhaul/Parada,retirada_condensado_linha@L5,21.70860761254415,21.70860761254415,21.70860761254415,PASS
+estados L4_L5: Normal / Overhaul/Parada,retirada_condensado_linha@L6,45.66573537963747,45.66573537963747,45.66573537963747,PASS
+estados L4_L5: Normal / Overhaul/Parada,retirada_condensado_linha@L7,54.798882455564964,54.798882455564964,54.798882455564964,PASS
+estados L4_L5: Normal / Overhaul/Parada,retirada_condensado_total@L1_L7,277.8758807964445,277.8758807964445,277.8758807964445,PASS
+estados L4_L5: Normal / 1 By pass,lth_grupo@L1_L3,1100.0,1100.0,1100.0,PASS
+estados L4_L5: Normal / 1 By pass,lth_grupo@L4_L5,970.0,970.0,970.0,PASS
+estados L4_L5: Normal / 1 By pass,lth_grupo@L6_L7,1100.0,1100.0,1100.0,PASS
+estados L4_L5: Normal / 1 By pass,retirada_cond_corr_lth@L1_L3,52.241865561555585,52.241865561555585,52.241865561555585,PASS
+estados L4_L5: Normal / 1 By pass,retirada_cond_corr_lth@L4_L5,48.88652943961213,48.88652943961213,48.88652943961213,PASS
+estados L4_L5: Normal / 1 By pass,retirada_cond_corr_lth@L6_L7,53.107563637622576,53.107563637622576,53.107563637622576,PASS
+estados L4_L5: Normal / 1 By pass,retirada_cond_corr_ltp@L1_L3,53.93641212842863,53.93641212842863,53.93641212842863,PASS
+estados L4_L5: Normal / 1 By pass,retirada_cond_corr_ltp@L4_L5,53.63907810868153,53.63907810868153,53.63907810868153,PASS
+estados L4_L5: Normal / 1 By pass,retirada_cond_corr_ltp@L6_L7,52.87525472002136,52.87525472002136,52.87525472002136,PASS
+estados L4_L5: Normal / 1 By pass,retirada_condensado_grupo@L1_L3,136.91636029938087,136.91636029938087,136.91636029938087,PASS
+estados L4_L5: Normal / 1 By pass,retirada_condensado_grupo@L4_L5,86.4949026618612,86.4949026618612,86.4949026618612,PASS
+estados L4_L5: Normal / 1 By pass,retirada_condensado_grupo@L6_L7,100.46461783520243,100.46461783520243,100.46461783520243,PASS
+estados L4_L5: Normal / 1 By pass,retirada_condensado_linha@L1,41.489806151327535,41.489806151327535,41.489806151327535,PASS
+estados L4_L5: Normal / 1 By pass,retirada_condensado_linha@L2,45.63878676646029,45.63878676646029,45.63878676646029,PASS
+estados L4_L5: Normal / 1 By pass,retirada_condensado_linha@L3,49.78776738159305,49.78776738159305,49.78776738159305,PASS
+estados L4_L5: Normal / 1 By pass,retirada_condensado_linha@L4,40.12650123488407,40.12650123488407,40.12650123488407,PASS
+estados L4_L5: Normal / 1 By pass,retirada_condensado_linha@L5,46.368401426977144,46.368401426977144,46.368401426977144,PASS
+estados L4_L5: Normal / 1 By pass,retirada_condensado_linha@L6,45.66573537963747,45.66573537963747,45.66573537963747,PASS
+estados L4_L5: Normal / 1 By pass,retirada_condensado_linha@L7,54.798882455564964,54.798882455564964,54.798882455564964,PASS
+estados L4_L5: Normal / 1 By pass,retirada_condensado_total@L1_L7,323.8758807964445,323.8758807964445,323.8758807964445,PASS
+estados L4_L5: Normal / 1 By pass e LC,lth_grupo@L1_L3,1100.0,1100.0,1100.0,PASS
+estados L4_L5: Normal / 1 By pass e LC,lth_grupo@L4_L5,970.0,970.0,970.0,PASS
+estados L4_L5: Normal / 1 By pass e LC,lth_grupo@L6_L7,1100.0,1100.0,1100.0,PASS
+estados L4_L5: Normal / 1 By pass e LC,retirada_cond_corr_lth@L1_L3,52.241865561555585,52.241865561555585,52.241865561555585,PASS
+estados L4_L5: Normal / 1 By pass e LC,retirada_cond_corr_lth@L4_L5,48.88652943961213,48.88652943961213,48.88652943961213,PASS
+estados L4_L5: Normal / 1 By pass e LC,retirada_cond_corr_lth@L6_L7,53.107563637622576,53.107563637622576,53.107563637622576,PASS
+estados L4_L5: Normal / 1 By pass e LC,retirada_cond_corr_ltp@L1_L3,53.93641212842863,53.93641212842863,53.93641212842863,PASS
+estados L4_L5: Normal / 1 By pass e LC,retirada_cond_corr_ltp@L4_L5,53.63907810868153,53.63907810868153,53.63907810868153,PASS
+estados L4_L5: Normal / 1 By pass e LC,retirada_cond_corr_ltp@L6_L7,52.87525472002136,52.87525472002136,52.87525472002136,PASS
+estados L4_L5: Normal / 1 By pass e LC,retirada_condensado_grupo@L1_L3,136.91636029938087,136.91636029938087,136.91636029938087,PASS
+estados L4_L5: Normal / 1 By pass e LC,retirada_condensado_grupo@L4_L5,F,F,F,PASS
+estados L4_L5: Normal / 1 By pass e LC,retirada_condensado_grupo@L6_L7,100.46461783520243,100.46461783520243,100.46461783520243,PASS
+estados L4_L5: Normal / 1 By pass e LC,retirada_condensado_linha@L1,41.489806151327535,41.489806151327535,41.489806151327535,PASS
+estados L4_L5: Normal / 1 By pass e LC,retirada_condensado_linha@L2,45.63878676646029,45.63878676646029,45.63878676646029,PASS
+estados L4_L5: Normal / 1 By pass e LC,retirada_condensado_linha@L3,49.78776738159305,49.78776738159305,49.78776738159305,PASS
+estados L4_L5: Normal / 1 By pass e LC,retirada_condensado_linha@L4,F,<falha: consumo de F>,,PASS
+estados L4_L5: Normal / 1 By pass e LC,retirada_condensado_linha@L5,F,<falha: consumo de F>,,PASS
+estados L4_L5: Normal / 1 By pass e LC,retirada_condensado_linha@L6,45.66573537963747,45.66573537963747,,NAO_CALCULADO (fail-fast)
+estados L4_L5: Normal / 1 By pass e LC,retirada_condensado_linha@L7,54.798882455564964,54.798882455564964,,NAO_CALCULADO (fail-fast)
+estados L4_L5: Normal / 1 By pass e LC,retirada_condensado_total@L1_L7,F,<falha: consumo de F>,,PASS
+estados L4_L5: LC / Normal,lth_grupo@L1_L3,1100.0,1100.0,1100.0,PASS
+estados L4_L5: LC / Normal,lth_grupo@L4_L5,970.0,970.0,970.0,PASS
+estados L4_L5: LC / Normal,lth_grupo@L6_L7,1100.0,1100.0,1100.0,PASS
+estados L4_L5: LC / Normal,retirada_cond_corr_lth@L1_L3,52.241865561555585,52.241865561555585,52.241865561555585,PASS
+estados L4_L5: LC / Normal,retirada_cond_corr_lth@L4_L5,48.88652943961213,48.88652943961213,48.88652943961213,PASS
+estados L4_L5: LC / Normal,retirada_cond_corr_lth@L6_L7,53.107563637622576,53.107563637622576,53.107563637622576,PASS
+estados L4_L5: LC / Normal,retirada_cond_corr_ltp@L1_L3,53.93641212842863,53.93641212842863,53.93641212842863,PASS
+estados L4_L5: LC / Normal,retirada_cond_corr_ltp@L4_L5,53.63907810868153,53.63907810868153,53.63907810868153,PASS
+estados L4_L5: LC / Normal,retirada_cond_corr_ltp@L6_L7,52.87525472002136,52.87525472002136,52.87525472002136,PASS
+estados L4_L5: LC / Normal,retirada_condensado_grupo@L1_L3,136.91636029938087,136.91636029938087,136.91636029938087,PASS
+estados L4_L5: LC / Normal,retirada_condensado_grupo@L4_L5,71.64179794064012,71.64179794064012,71.64179794064012,PASS
+estados L4_L5: LC / Normal,retirada_condensado_grupo@L6_L7,100.46461783520243,100.46461783520243,100.46461783520243,PASS
+estados L4_L5: LC / Normal,retirada_condensado_linha@L1,41.489806151327535,41.489806151327535,41.489806151327535,PASS
+estados L4_L5: LC / Normal,retirada_condensado_linha@L2,45.63878676646029,45.63878676646029,45.63878676646029,PASS
+estados L4_L5: LC / Normal,retirada_condensado_linha@L3,49.78776738159305,49.78776738159305,49.78776738159305,PASS
+estados L4_L5: LC / Normal,retirada_condensado_linha@L4,33.235885642565,33.235885642565,33.235885642565,PASS
+estados L4_L5: LC / Normal,retirada_condensado_linha@L5,38.40591229807511,38.40591229807511,38.40591229807511,PASS
+estados L4_L5: LC / Normal,retirada_condensado_linha@L6,45.66573537963747,45.66573537963747,45.66573537963747,PASS
+estados L4_L5: LC / Normal,retirada_condensado_linha@L7,54.798882455564964,54.798882455564964,54.798882455564964,PASS
+estados L4_L5: LC / Normal,retirada_condensado_total@L1_L7,309.0227760752234,309.0227760752234,309.0227760752234,PASS
+estados L4_L5: LC / LC,lth_grupo@L1_L3,1100.0,1100.0,1100.0,PASS
+estados L4_L5: LC / LC,lth_grupo@L4_L5,970.0,970.0,970.0,PASS
+estados L4_L5: LC / LC,lth_grupo@L6_L7,1100.0,1100.0,1100.0,PASS
+estados L4_L5: LC / LC,retirada_cond_corr_lth@L1_L3,52.241865561555585,52.241865561555585,52.241865561555585,PASS
+estados L4_L5: LC / LC,retirada_cond_corr_lth@L4_L5,48.88652943961213,48.88652943961213,48.88652943961213,PASS
+estados L4_L5: LC / LC,retirada_cond_corr_lth@L6_L7,53.107563637622576,53.107563637622576,53.107563637622576,PASS
+estados L4_L5: LC / LC,retirada_cond_corr_ltp@L1_L3,53.93641212842863,53.93641212842863,53.93641212842863,PASS
+estados L4_L5: LC / LC,retirada_cond_corr_ltp@L4_L5,53.63907810868153,53.63907810868153,53.63907810868153,PASS
+estados L4_L5: LC / LC,retirada_cond_corr_ltp@L6_L7,52.87525472002136,52.87525472002136,52.87525472002136,PASS
+estados L4_L5: LC / LC,retirada_condensado_grupo@L1_L3,136.91636029938087,136.91636029938087,136.91636029938087,PASS
+estados L4_L5: LC / LC,retirada_condensado_grupo@L4_L5,71.64179794064012,71.64179794064012,71.64179794064012,PASS
+estados L4_L5: LC / LC,retirada_condensado_grupo@L6_L7,100.46461783520243,100.46461783520243,100.46461783520243,PASS
+estados L4_L5: LC / LC,retirada_condensado_linha@L1,41.489806151327535,41.489806151327535,41.489806151327535,PASS
+estados L4_L5: LC / LC,retirada_condensado_linha@L2,45.63878676646029,45.63878676646029,45.63878676646029,PASS
+estados L4_L5: LC / LC,retirada_condensado_linha@L3,49.78776738159305,49.78776738159305,49.78776738159305,PASS
+estados L4_L5: LC / LC,retirada_condensado_linha@L4,33.235885642565,33.235885642565,33.235885642565,PASS
+estados L4_L5: LC / LC,retirada_condensado_linha@L5,38.40591229807511,38.40591229807511,38.40591229807511,PASS
+estados L4_L5: LC / LC,retirada_condensado_linha@L6,45.66573537963747,45.66573537963747,45.66573537963747,PASS
+estados L4_L5: LC / LC,retirada_condensado_linha@L7,54.798882455564964,54.798882455564964,54.798882455564964,PASS
+estados L4_L5: LC / LC,retirada_condensado_total@L1_L7,309.0227760752234,309.0227760752234,309.0227760752234,PASS
+estados L4_L5: LC / Overhaul/Parada,lth_grupo@L1_L3,1100.0,1100.0,1100.0,PASS
+estados L4_L5: LC / Overhaul/Parada,lth_grupo@L4_L5,970.0,970.0,970.0,PASS
+estados L4_L5: LC / Overhaul/Parada,lth_grupo@L6_L7,1100.0,1100.0,1100.0,PASS
+estados L4_L5: LC / Overhaul/Parada,retirada_cond_corr_lth@L1_L3,52.241865561555585,52.241865561555585,52.241865561555585,PASS
+estados L4_L5: LC / Overhaul/Parada,retirada_cond_corr_lth@L4_L5,48.88652943961213,48.88652943961213,48.88652943961213,PASS
+estados L4_L5: LC / Overhaul/Parada,retirada_cond_corr_lth@L6_L7,53.107563637622576,53.107563637622576,53.107563637622576,PASS
+estados L4_L5: LC / Overhaul/Parada,retirada_cond_corr_ltp@L1_L3,53.93641212842863,53.93641212842863,53.93641212842863,PASS
+estados L4_L5: LC / Overhaul/Parada,retirada_cond_corr_ltp@L4_L5,53.63907810868153,53.63907810868153,53.63907810868153,PASS
+estados L4_L5: LC / Overhaul/Parada,retirada_cond_corr_ltp@L6_L7,52.87525472002136,52.87525472002136,52.87525472002136,PASS
+estados L4_L5: LC / Overhaul/Parada,retirada_condensado_grupo@L1_L3,136.91636029938087,136.91636029938087,136.91636029938087,PASS
+estados L4_L5: LC / Overhaul/Parada,retirada_condensado_grupo@L4_L5,71.64179794064012,71.64179794064012,71.64179794064012,PASS
+estados L4_L5: LC / Overhaul/Parada,retirada_condensado_grupo@L6_L7,100.46461783520243,100.46461783520243,100.46461783520243,PASS
+estados L4_L5: LC / Overhaul/Parada,retirada_condensado_linha@L1,41.489806151327535,41.489806151327535,41.489806151327535,PASS
+estados L4_L5: LC / Overhaul/Parada,retirada_condensado_linha@L2,45.63878676646029,45.63878676646029,45.63878676646029,PASS
+estados L4_L5: LC / Overhaul/Parada,retirada_condensado_linha@L3,49.78776738159305,49.78776738159305,49.78776738159305,PASS
+estados L4_L5: LC / Overhaul/Parada,retirada_condensado_linha@L4,33.235885642565,33.235885642565,33.235885642565,PASS
+estados L4_L5: LC / Overhaul/Parada,retirada_condensado_linha@L5,38.40591229807511,38.40591229807511,38.40591229807511,PASS
+estados L4_L5: LC / Overhaul/Parada,retirada_condensado_linha@L6,45.66573537963747,45.66573537963747,45.66573537963747,PASS
+estados L4_L5: LC / Overhaul/Parada,retirada_condensado_linha@L7,54.798882455564964,54.798882455564964,54.798882455564964,PASS
+estados L4_L5: LC / Overhaul/Parada,retirada_condensado_total@L1_L7,309.0227760752234,309.0227760752234,309.0227760752234,PASS
+estados L4_L5: LC / 1 By pass,lth_grupo@L1_L3,1100.0,1100.0,1100.0,PASS
+estados L4_L5: LC / 1 By pass,lth_grupo@L4_L5,970.0,970.0,970.0,PASS
+estados L4_L5: LC / 1 By pass,lth_grupo@L6_L7,1100.0,1100.0,1100.0,PASS
+estados L4_L5: LC / 1 By pass,retirada_cond_corr_lth@L1_L3,52.241865561555585,52.241865561555585,52.241865561555585,PASS
+estados L4_L5: LC / 1 By pass,retirada_cond_corr_lth@L4_L5,48.88652943961213,48.88652943961213,48.88652943961213,PASS
+estados L4_L5: LC / 1 By pass,retirada_cond_corr_lth@L6_L7,53.107563637622576,53.107563637622576,53.107563637622576,PASS
+estados L4_L5: LC / 1 By pass,retirada_cond_corr_ltp@L1_L3,53.93641212842863,53.93641212842863,53.93641212842863,PASS
+estados L4_L5: LC / 1 By pass,retirada_cond_corr_ltp@L4_L5,53.63907810868153,53.63907810868153,53.63907810868153,PASS
+estados L4_L5: LC / 1 By pass,retirada_cond_corr_ltp@L6_L7,52.87525472002136,52.87525472002136,52.87525472002136,PASS
+estados L4_L5: LC / 1 By pass,retirada_condensado_grupo@L1_L3,136.91636029938087,136.91636029938087,136.91636029938087,PASS
+estados L4_L5: LC / 1 By pass,retirada_condensado_grupo@L4_L5,71.64179794064012,71.64179794064012,71.64179794064012,PASS
+estados L4_L5: LC / 1 By pass,retirada_condensado_grupo@L6_L7,100.46461783520243,100.46461783520243,100.46461783520243,PASS
+estados L4_L5: LC / 1 By pass,retirada_condensado_linha@L1,41.489806151327535,41.489806151327535,41.489806151327535,PASS
+estados L4_L5: LC / 1 By pass,retirada_condensado_linha@L2,45.63878676646029,45.63878676646029,45.63878676646029,PASS
+estados L4_L5: LC / 1 By pass,retirada_condensado_linha@L3,49.78776738159305,49.78776738159305,49.78776738159305,PASS
+estados L4_L5: LC / 1 By pass,retirada_condensado_linha@L4,33.235885642565,33.235885642565,33.235885642565,PASS
+estados L4_L5: LC / 1 By pass,retirada_condensado_linha@L5,38.40591229807511,38.40591229807511,38.40591229807511,PASS
+estados L4_L5: LC / 1 By pass,retirada_condensado_linha@L6,45.66573537963747,45.66573537963747,45.66573537963747,PASS
+estados L4_L5: LC / 1 By pass,retirada_condensado_linha@L7,54.798882455564964,54.798882455564964,54.798882455564964,PASS
+estados L4_L5: LC / 1 By pass,retirada_condensado_total@L1_L7,309.0227760752234,309.0227760752234,309.0227760752234,PASS
+estados L4_L5: LC / 1 By pass e LC,lth_grupo@L1_L3,1100.0,1100.0,1100.0,PASS
+estados L4_L5: LC / 1 By pass e LC,lth_grupo@L4_L5,970.0,970.0,970.0,PASS
+estados L4_L5: LC / 1 By pass e LC,lth_grupo@L6_L7,1100.0,1100.0,1100.0,PASS
+estados L4_L5: LC / 1 By pass e LC,retirada_cond_corr_lth@L1_L3,52.241865561555585,52.241865561555585,52.241865561555585,PASS
+estados L4_L5: LC / 1 By pass e LC,retirada_cond_corr_lth@L4_L5,48.88652943961213,48.88652943961213,48.88652943961213,PASS
+estados L4_L5: LC / 1 By pass e LC,retirada_cond_corr_lth@L6_L7,53.107563637622576,53.107563637622576,53.107563637622576,PASS
+estados L4_L5: LC / 1 By pass e LC,retirada_cond_corr_ltp@L1_L3,53.93641212842863,53.93641212842863,53.93641212842863,PASS
+estados L4_L5: LC / 1 By pass e LC,retirada_cond_corr_ltp@L4_L5,53.63907810868153,53.63907810868153,53.63907810868153,PASS
+estados L4_L5: LC / 1 By pass e LC,retirada_cond_corr_ltp@L6_L7,52.87525472002136,52.87525472002136,52.87525472002136,PASS
+estados L4_L5: LC / 1 By pass e LC,retirada_condensado_grupo@L1_L3,136.91636029938087,136.91636029938087,136.91636029938087,PASS
+estados L4_L5: LC / 1 By pass e LC,retirada_condensado_grupo@L4_L5,71.64179794064012,71.64179794064012,71.64179794064012,PASS
+estados L4_L5: LC / 1 By pass e LC,retirada_condensado_grupo@L6_L7,100.46461783520243,100.46461783520243,100.46461783520243,PASS
+estados L4_L5: LC / 1 By pass e LC,retirada_condensado_linha@L1,41.489806151327535,41.489806151327535,41.489806151327535,PASS
+estados L4_L5: LC / 1 By pass e LC,retirada_condensado_linha@L2,45.63878676646029,45.63878676646029,45.63878676646029,PASS
+estados L4_L5: LC / 1 By pass e LC,retirada_condensado_linha@L3,49.78776738159305,49.78776738159305,49.78776738159305,PASS
+estados L4_L5: LC / 1 By pass e LC,retirada_condensado_linha@L4,33.235885642565,33.235885642565,33.235885642565,PASS
+estados L4_L5: LC / 1 By pass e LC,retirada_condensado_linha@L5,38.40591229807511,38.40591229807511,38.40591229807511,PASS
+estados L4_L5: LC / 1 By pass e LC,retirada_condensado_linha@L6,45.66573537963747,45.66573537963747,45.66573537963747,PASS
+estados L4_L5: LC / 1 By pass e LC,retirada_condensado_linha@L7,54.798882455564964,54.798882455564964,54.798882455564964,PASS
+estados L4_L5: LC / 1 By pass e LC,retirada_condensado_total@L1_L7,309.0227760752234,309.0227760752234,309.0227760752234,PASS
+estados L4_L5: Overhaul/Parada / Normal,lth_grupo@L1_L3,1100.0,1100.0,1100.0,PASS
+estados L4_L5: Overhaul/Parada / Normal,lth_grupo@L4_L5,970.0,970.0,970.0,PASS
+estados L4_L5: Overhaul/Parada / Normal,lth_grupo@L6_L7,1100.0,1100.0,1100.0,PASS
+estados L4_L5: Overhaul/Parada / Normal,retirada_cond_corr_lth@L1_L3,52.241865561555585,52.241865561555585,52.241865561555585,PASS
+estados L4_L5: Overhaul/Parada / Normal,retirada_cond_corr_lth@L4_L5,48.88652943961213,48.88652943961213,48.88652943961213,PASS
+estados L4_L5: Overhaul/Parada / Normal,retirada_cond_corr_lth@L6_L7,53.107563637622576,53.107563637622576,53.107563637622576,PASS
+estados L4_L5: Overhaul/Parada / Normal,retirada_cond_corr_ltp@L1_L3,53.93641212842863,53.93641212842863,53.93641212842863,PASS
+estados L4_L5: Overhaul/Parada / Normal,retirada_cond_corr_ltp@L4_L5,53.63907810868153,53.63907810868153,53.63907810868153,PASS
+estados L4_L5: Overhaul/Parada / Normal,retirada_cond_corr_ltp@L6_L7,52.87525472002136,52.87525472002136,52.87525472002136,PASS
+estados L4_L5: Overhaul/Parada / Normal,retirada_condensado_grupo@L1_L3,136.91636029938087,136.91636029938087,136.91636029938087,PASS
+estados L4_L5: Overhaul/Parada / Normal,retirada_condensado_grupo@L4_L5,40.494902661861204,40.494902661861204,40.494902661861204,PASS
+estados L4_L5: Overhaul/Parada / Normal,retirada_condensado_grupo@L6_L7,100.46461783520243,100.46461783520243,100.46461783520243,PASS
+estados L4_L5: Overhaul/Parada / Normal,retirada_condensado_linha@L1,41.489806151327535,41.489806151327535,41.489806151327535,PASS
+estados L4_L5: Overhaul/Parada / Normal,retirada_condensado_linha@L2,45.63878676646029,45.63878676646029,45.63878676646029,PASS
+estados L4_L5: Overhaul/Parada / Normal,retirada_condensado_linha@L3,49.78776738159305,49.78776738159305,49.78776738159305,PASS
+estados L4_L5: Overhaul/Parada / Normal,retirada_condensado_linha@L4,18.786295049317054,18.786295049317054,18.786295049317054,PASS
+estados L4_L5: Overhaul/Parada / Normal,retirada_condensado_linha@L5,21.70860761254415,21.70860761254415,21.70860761254415,PASS
+estados L4_L5: Overhaul/Parada / Normal,retirada_condensado_linha@L6,45.66573537963747,45.66573537963747,45.66573537963747,PASS
+estados L4_L5: Overhaul/Parada / Normal,retirada_condensado_linha@L7,54.798882455564964,54.798882455564964,54.798882455564964,PASS
+estados L4_L5: Overhaul/Parada / Normal,retirada_condensado_total@L1_L7,277.8758807964445,277.8758807964445,277.8758807964445,PASS
+estados L4_L5: Overhaul/Parada / LC,lth_grupo@L1_L3,1100.0,1100.0,1100.0,PASS
+estados L4_L5: Overhaul/Parada / LC,lth_grupo@L4_L5,970.0,970.0,970.0,PASS
+estados L4_L5: Overhaul/Parada / LC,lth_grupo@L6_L7,1100.0,1100.0,1100.0,PASS
+estados L4_L5: Overhaul/Parada / LC,retirada_cond_corr_lth@L1_L3,52.241865561555585,52.241865561555585,52.241865561555585,PASS
+estados L4_L5: Overhaul/Parada / LC,retirada_cond_corr_lth@L4_L5,48.88652943961213,48.88652943961213,48.88652943961213,PASS
+estados L4_L5: Overhaul/Parada / LC,retirada_cond_corr_lth@L6_L7,53.107563637622576,53.107563637622576,53.107563637622576,PASS
+estados L4_L5: Overhaul/Parada / LC,retirada_cond_corr_ltp@L1_L3,53.93641212842863,53.93641212842863,53.93641212842863,PASS
+estados L4_L5: Overhaul/Parada / LC,retirada_cond_corr_ltp@L4_L5,53.63907810868153,53.63907810868153,53.63907810868153,PASS
+estados L4_L5: Overhaul/Parada / LC,retirada_cond_corr_ltp@L6_L7,52.87525472002136,52.87525472002136,52.87525472002136,PASS
+estados L4_L5: Overhaul/Parada / LC,retirada_condensado_grupo@L1_L3,136.91636029938087,136.91636029938087,136.91636029938087,PASS
+estados L4_L5: Overhaul/Parada / LC,retirada_condensado_grupo@L4_L5,71.64179794064012,71.64179794064012,71.64179794064012,PASS
+estados L4_L5: Overhaul/Parada / LC,retirada_condensado_grupo@L6_L7,100.46461783520243,100.46461783520243,100.46461783520243,PASS
+estados L4_L5: Overhaul/Parada / LC,retirada_condensado_linha@L1,41.489806151327535,41.489806151327535,41.489806151327535,PASS
+estados L4_L5: Overhaul/Parada / LC,retirada_condensado_linha@L2,45.63878676646029,45.63878676646029,45.63878676646029,PASS
+estados L4_L5: Overhaul/Parada / LC,retirada_condensado_linha@L3,49.78776738159305,49.78776738159305,49.78776738159305,PASS
+estados L4_L5: Overhaul/Parada / LC,retirada_condensado_linha@L4,33.235885642565,33.235885642565,33.235885642565,PASS
+estados L4_L5: Overhaul/Parada / LC,retirada_condensado_linha@L5,38.40591229807511,38.40591229807511,38.40591229807511,PASS
+estados L4_L5: Overhaul/Parada / LC,retirada_condensado_linha@L6,45.66573537963747,45.66573537963747,45.66573537963747,PASS
+estados L4_L5: Overhaul/Parada / LC,retirada_condensado_linha@L7,54.798882455564964,54.798882455564964,54.798882455564964,PASS
+estados L4_L5: Overhaul/Parada / LC,retirada_condensado_total@L1_L7,309.0227760752234,309.0227760752234,309.0227760752234,PASS
+estados L4_L5: Overhaul/Parada / Overhaul/Parada,lth_grupo@L1_L3,1100.0,1100.0,1100.0,PASS
+estados L4_L5: Overhaul/Parada / Overhaul/Parada,lth_grupo@L4_L5,970.0,970.0,970.0,PASS
+estados L4_L5: Overhaul/Parada / Overhaul/Parada,lth_grupo@L6_L7,1100.0,1100.0,1100.0,PASS
+estados L4_L5: Overhaul/Parada / Overhaul/Parada,retirada_cond_corr_lth@L1_L3,52.241865561555585,52.241865561555585,52.241865561555585,PASS
+estados L4_L5: Overhaul/Parada / Overhaul/Parada,retirada_cond_corr_lth@L4_L5,48.88652943961213,48.88652943961213,48.88652943961213,PASS
+estados L4_L5: Overhaul/Parada / Overhaul/Parada,retirada_cond_corr_lth@L6_L7,53.107563637622576,53.107563637622576,53.107563637622576,PASS
+estados L4_L5: Overhaul/Parada / Overhaul/Parada,retirada_cond_corr_ltp@L1_L3,53.93641212842863,53.93641212842863,53.93641212842863,PASS
+estados L4_L5: Overhaul/Parada / Overhaul/Parada,retirada_cond_corr_ltp@L4_L5,53.63907810868153,53.63907810868153,53.63907810868153,PASS
+estados L4_L5: Overhaul/Parada / Overhaul/Parada,retirada_cond_corr_ltp@L6_L7,52.87525472002136,52.87525472002136,52.87525472002136,PASS
+estados L4_L5: Overhaul/Parada / Overhaul/Parada,retirada_condensado_grupo@L1_L3,136.91636029938087,136.91636029938087,136.91636029938087,PASS
+estados L4_L5: Overhaul/Parada / Overhaul/Parada,retirada_condensado_grupo@L4_L5,40.494902661861204,40.494902661861204,40.494902661861204,PASS
+estados L4_L5: Overhaul/Parada / Overhaul/Parada,retirada_condensado_grupo@L6_L7,100.46461783520243,100.46461783520243,100.46461783520243,PASS
+estados L4_L5: Overhaul/Parada / Overhaul/Parada,retirada_condensado_linha@L1,41.489806151327535,41.489806151327535,41.489806151327535,PASS
+estados L4_L5: Overhaul/Parada / Overhaul/Parada,retirada_condensado_linha@L2,45.63878676646029,45.63878676646029,45.63878676646029,PASS
+estados L4_L5: Overhaul/Parada / Overhaul/Parada,retirada_condensado_linha@L3,49.78776738159305,49.78776738159305,49.78776738159305,PASS
+estados L4_L5: Overhaul/Parada / Overhaul/Parada,retirada_condensado_linha@L4,18.786295049317054,18.786295049317054,18.786295049317054,PASS
+estados L4_L5: Overhaul/Parada / Overhaul/Parada,retirada_condensado_linha@L5,21.70860761254415,21.70860761254415,21.70860761254415,PASS
+estados L4_L5: Overhaul/Parada / Overhaul/Parada,retirada_condensado_linha@L6,45.66573537963747,45.66573537963747,45.66573537963747,PASS
+estados L4_L5: Overhaul/Parada / Overhaul/Parada,retirada_condensado_linha@L7,54.798882455564964,54.798882455564964,54.798882455564964,PASS
+estados L4_L5: Overhaul/Parada / Overhaul/Parada,retirada_condensado_total@L1_L7,277.8758807964445,277.8758807964445,277.8758807964445,PASS
+estados L4_L5: Overhaul/Parada / 1 By pass,lth_grupo@L1_L3,1100.0,1100.0,1100.0,PASS
+estados L4_L5: Overhaul/Parada / 1 By pass,lth_grupo@L4_L5,970.0,970.0,970.0,PASS
+estados L4_L5: Overhaul/Parada / 1 By pass,lth_grupo@L6_L7,1100.0,1100.0,1100.0,PASS
+estados L4_L5: Overhaul/Parada / 1 By pass,retirada_cond_corr_lth@L1_L3,52.241865561555585,52.241865561555585,52.241865561555585,PASS
+estados L4_L5: Overhaul/Parada / 1 By pass,retirada_cond_corr_lth@L4_L5,48.88652943961213,48.88652943961213,48.88652943961213,PASS
+estados L4_L5: Overhaul/Parada / 1 By pass,retirada_cond_corr_lth@L6_L7,53.107563637622576,53.107563637622576,53.107563637622576,PASS
+estados L4_L5: Overhaul/Parada / 1 By pass,retirada_cond_corr_ltp@L1_L3,53.93641212842863,53.93641212842863,53.93641212842863,PASS
+estados L4_L5: Overhaul/Parada / 1 By pass,retirada_cond_corr_ltp@L4_L5,53.63907810868153,53.63907810868153,53.63907810868153,PASS
+estados L4_L5: Overhaul/Parada / 1 By pass,retirada_cond_corr_ltp@L6_L7,52.87525472002136,52.87525472002136,52.87525472002136,PASS
+estados L4_L5: Overhaul/Parada / 1 By pass,retirada_condensado_grupo@L1_L3,136.91636029938087,136.91636029938087,136.91636029938087,PASS
+estados L4_L5: Overhaul/Parada / 1 By pass,retirada_condensado_grupo@L4_L5,40.494902661861204,40.494902661861204,40.494902661861204,PASS
+estados L4_L5: Overhaul/Parada / 1 By pass,retirada_condensado_grupo@L6_L7,100.46461783520243,100.46461783520243,100.46461783520243,PASS
+estados L4_L5: Overhaul/Parada / 1 By pass,retirada_condensado_linha@L1,41.489806151327535,41.489806151327535,41.489806151327535,PASS
+estados L4_L5: Overhaul/Parada / 1 By pass,retirada_condensado_linha@L2,45.63878676646029,45.63878676646029,45.63878676646029,PASS
+estados L4_L5: Overhaul/Parada / 1 By pass,retirada_condensado_linha@L3,49.78776738159305,49.78776738159305,49.78776738159305,PASS
+estados L4_L5: Overhaul/Parada / 1 By pass,retirada_condensado_linha@L4,18.786295049317054,18.786295049317054,18.786295049317054,PASS
+estados L4_L5: Overhaul/Parada / 1 By pass,retirada_condensado_linha@L5,21.70860761254415,21.70860761254415,21.70860761254415,PASS
+estados L4_L5: Overhaul/Parada / 1 By pass,retirada_condensado_linha@L6,45.66573537963747,45.66573537963747,45.66573537963747,PASS
+estados L4_L5: Overhaul/Parada / 1 By pass,retirada_condensado_linha@L7,54.798882455564964,54.798882455564964,54.798882455564964,PASS
+estados L4_L5: Overhaul/Parada / 1 By pass,retirada_condensado_total@L1_L7,277.8758807964445,277.8758807964445,277.8758807964445,PASS
+estados L4_L5: Overhaul/Parada / 1 By pass e LC,lth_grupo@L1_L3,1100.0,1100.0,1100.0,PASS
+estados L4_L5: Overhaul/Parada / 1 By pass e LC,lth_grupo@L4_L5,970.0,970.0,970.0,PASS
+estados L4_L5: Overhaul/Parada / 1 By pass e LC,lth_grupo@L6_L7,1100.0,1100.0,1100.0,PASS
+estados L4_L5: Overhaul/Parada / 1 By pass e LC,retirada_cond_corr_lth@L1_L3,52.241865561555585,52.241865561555585,52.241865561555585,PASS
+estados L4_L5: Overhaul/Parada / 1 By pass e LC,retirada_cond_corr_lth@L4_L5,48.88652943961213,48.88652943961213,48.88652943961213,PASS
+estados L4_L5: Overhaul/Parada / 1 By pass e LC,retirada_cond_corr_lth@L6_L7,53.107563637622576,53.107563637622576,53.107563637622576,PASS
+estados L4_L5: Overhaul/Parada / 1 By pass e LC,retirada_cond_corr_ltp@L1_L3,53.93641212842863,53.93641212842863,53.93641212842863,PASS
+estados L4_L5: Overhaul/Parada / 1 By pass e LC,retirada_cond_corr_ltp@L4_L5,53.63907810868153,53.63907810868153,53.63907810868153,PASS
+estados L4_L5: Overhaul/Parada / 1 By pass e LC,retirada_cond_corr_ltp@L6_L7,52.87525472002136,52.87525472002136,52.87525472002136,PASS
+estados L4_L5: Overhaul/Parada / 1 By pass e LC,retirada_condensado_grupo@L1_L3,136.91636029938087,136.91636029938087,136.91636029938087,PASS
+estados L4_L5: Overhaul/Parada / 1 By pass e LC,retirada_condensado_grupo@L4_L5,40.494902661861204,40.494902661861204,40.494902661861204,PASS
+estados L4_L5: Overhaul/Parada / 1 By pass e LC,retirada_condensado_grupo@L6_L7,100.46461783520243,100.46461783520243,100.46461783520243,PASS
+estados L4_L5: Overhaul/Parada / 1 By pass e LC,retirada_condensado_linha@L1,41.489806151327535,41.489806151327535,41.489806151327535,PASS
+estados L4_L5: Overhaul/Parada / 1 By pass e LC,retirada_condensado_linha@L2,45.63878676646029,45.63878676646029,45.63878676646029,PASS
+estados L4_L5: Overhaul/Parada / 1 By pass e LC,retirada_condensado_linha@L3,49.78776738159305,49.78776738159305,49.78776738159305,PASS
+estados L4_L5: Overhaul/Parada / 1 By pass e LC,retirada_condensado_linha@L4,18.786295049317054,18.786295049317054,18.786295049317054,PASS
+estados L4_L5: Overhaul/Parada / 1 By pass e LC,retirada_condensado_linha@L5,21.70860761254415,21.70860761254415,21.70860761254415,PASS
+estados L4_L5: Overhaul/Parada / 1 By pass e LC,retirada_condensado_linha@L6,45.66573537963747,45.66573537963747,45.66573537963747,PASS
+estados L4_L5: Overhaul/Parada / 1 By pass e LC,retirada_condensado_linha@L7,54.798882455564964,54.798882455564964,54.798882455564964,PASS
+estados L4_L5: Overhaul/Parada / 1 By pass e LC,retirada_condensado_total@L1_L7,277.8758807964445,277.8758807964445,277.8758807964445,PASS
+estados L4_L5: 1 By pass / Normal,lth_grupo@L1_L3,1100.0,1100.0,1100.0,PASS
+estados L4_L5: 1 By pass / Normal,lth_grupo@L4_L5,970.0,970.0,970.0,PASS
+estados L4_L5: 1 By pass / Normal,lth_grupo@L6_L7,1100.0,1100.0,1100.0,PASS
+estados L4_L5: 1 By pass / Normal,retirada_cond_corr_lth@L1_L3,52.241865561555585,52.241865561555585,52.241865561555585,PASS
+estados L4_L5: 1 By pass / Normal,retirada_cond_corr_lth@L4_L5,48.88652943961213,48.88652943961213,48.88652943961213,PASS
+estados L4_L5: 1 By pass / Normal,retirada_cond_corr_lth@L6_L7,53.107563637622576,53.107563637622576,53.107563637622576,PASS
+estados L4_L5: 1 By pass / Normal,retirada_cond_corr_ltp@L1_L3,53.93641212842863,53.93641212842863,53.93641212842863,PASS
+estados L4_L5: 1 By pass / Normal,retirada_cond_corr_ltp@L4_L5,53.63907810868153,53.63907810868153,53.63907810868153,PASS
+estados L4_L5: 1 By pass / Normal,retirada_cond_corr_ltp@L6_L7,52.87525472002136,52.87525472002136,52.87525472002136,PASS
+estados L4_L5: 1 By pass / Normal,retirada_condensado_grupo@L1_L3,136.91636029938087,136.91636029938087,136.91636029938087,PASS
+estados L4_L5: 1 By pass / Normal,retirada_condensado_grupo@L4_L5,86.4949026618612,86.4949026618612,86.4949026618612,PASS
+estados L4_L5: 1 By pass / Normal,retirada_condensado_grupo@L6_L7,100.46461783520243,100.46461783520243,100.46461783520243,PASS
+estados L4_L5: 1 By pass / Normal,retirada_condensado_linha@L1,41.489806151327535,41.489806151327535,41.489806151327535,PASS
+estados L4_L5: 1 By pass / Normal,retirada_condensado_linha@L2,45.63878676646029,45.63878676646029,45.63878676646029,PASS
+estados L4_L5: 1 By pass / Normal,retirada_condensado_linha@L3,49.78776738159305,49.78776738159305,49.78776738159305,PASS
+estados L4_L5: 1 By pass / Normal,retirada_condensado_linha@L4,40.12650123488407,40.12650123488407,40.12650123488407,PASS
+estados L4_L5: 1 By pass / Normal,retirada_condensado_linha@L5,46.368401426977144,46.368401426977144,46.368401426977144,PASS
+estados L4_L5: 1 By pass / Normal,retirada_condensado_linha@L6,45.66573537963747,45.66573537963747,45.66573537963747,PASS
+estados L4_L5: 1 By pass / Normal,retirada_condensado_linha@L7,54.798882455564964,54.798882455564964,54.798882455564964,PASS
+estados L4_L5: 1 By pass / Normal,retirada_condensado_total@L1_L7,323.8758807964445,323.8758807964445,323.8758807964445,PASS
+estados L4_L5: 1 By pass / LC,lth_grupo@L1_L3,1100.0,1100.0,1100.0,PASS
+estados L4_L5: 1 By pass / LC,lth_grupo@L4_L5,970.0,970.0,970.0,PASS
+estados L4_L5: 1 By pass / LC,lth_grupo@L6_L7,1100.0,1100.0,1100.0,PASS
+estados L4_L5: 1 By pass / LC,retirada_cond_corr_lth@L1_L3,52.241865561555585,52.241865561555585,52.241865561555585,PASS
+estados L4_L5: 1 By pass / LC,retirada_cond_corr_lth@L4_L5,48.88652943961213,48.88652943961213,48.88652943961213,PASS
+estados L4_L5: 1 By pass / LC,retirada_cond_corr_lth@L6_L7,53.107563637622576,53.107563637622576,53.107563637622576,PASS
+estados L4_L5: 1 By pass / LC,retirada_cond_corr_ltp@L1_L3,53.93641212842863,53.93641212842863,53.93641212842863,PASS
+estados L4_L5: 1 By pass / LC,retirada_cond_corr_ltp@L4_L5,53.63907810868153,53.63907810868153,53.63907810868153,PASS
+estados L4_L5: 1 By pass / LC,retirada_cond_corr_ltp@L6_L7,52.87525472002136,52.87525472002136,52.87525472002136,PASS
+estados L4_L5: 1 By pass / LC,retirada_condensado_grupo@L1_L3,136.91636029938087,136.91636029938087,136.91636029938087,PASS
+estados L4_L5: 1 By pass / LC,retirada_condensado_grupo@L4_L5,71.64179794064012,71.64179794064012,71.64179794064012,PASS
+estados L4_L5: 1 By pass / LC,retirada_condensado_grupo@L6_L7,100.46461783520243,100.46461783520243,100.46461783520243,PASS
+estados L4_L5: 1 By pass / LC,retirada_condensado_linha@L1,41.489806151327535,41.489806151327535,41.489806151327535,PASS
+estados L4_L5: 1 By pass / LC,retirada_condensado_linha@L2,45.63878676646029,45.63878676646029,45.63878676646029,PASS
+estados L4_L5: 1 By pass / LC,retirada_condensado_linha@L3,49.78776738159305,49.78776738159305,49.78776738159305,PASS
+estados L4_L5: 1 By pass / LC,retirada_condensado_linha@L4,33.235885642565,33.235885642565,33.235885642565,PASS
+estados L4_L5: 1 By pass / LC,retirada_condensado_linha@L5,38.40591229807511,38.40591229807511,38.40591229807511,PASS
+estados L4_L5: 1 By pass / LC,retirada_condensado_linha@L6,45.66573537963747,45.66573537963747,45.66573537963747,PASS
+estados L4_L5: 1 By pass / LC,retirada_condensado_linha@L7,54.798882455564964,54.798882455564964,54.798882455564964,PASS
+estados L4_L5: 1 By pass / LC,retirada_condensado_total@L1_L7,309.0227760752234,309.0227760752234,309.0227760752234,PASS
+estados L4_L5: 1 By pass / Overhaul/Parada,lth_grupo@L1_L3,1100.0,1100.0,1100.0,PASS
+estados L4_L5: 1 By pass / Overhaul/Parada,lth_grupo@L4_L5,970.0,970.0,970.0,PASS
+estados L4_L5: 1 By pass / Overhaul/Parada,lth_grupo@L6_L7,1100.0,1100.0,1100.0,PASS
+estados L4_L5: 1 By pass / Overhaul/Parada,retirada_cond_corr_lth@L1_L3,52.241865561555585,52.241865561555585,52.241865561555585,PASS
+estados L4_L5: 1 By pass / Overhaul/Parada,retirada_cond_corr_lth@L4_L5,48.88652943961213,48.88652943961213,48.88652943961213,PASS
+estados L4_L5: 1 By pass / Overhaul/Parada,retirada_cond_corr_lth@L6_L7,53.107563637622576,53.107563637622576,53.107563637622576,PASS
+estados L4_L5: 1 By pass / Overhaul/Parada,retirada_cond_corr_ltp@L1_L3,53.93641212842863,53.93641212842863,53.93641212842863,PASS
+estados L4_L5: 1 By pass / Overhaul/Parada,retirada_cond_corr_ltp@L4_L5,53.63907810868153,53.63907810868153,53.63907810868153,PASS
+estados L4_L5: 1 By pass / Overhaul/Parada,retirada_cond_corr_ltp@L6_L7,52.87525472002136,52.87525472002136,52.87525472002136,PASS
+estados L4_L5: 1 By pass / Overhaul/Parada,retirada_condensado_grupo@L1_L3,136.91636029938087,136.91636029938087,136.91636029938087,PASS
+estados L4_L5: 1 By pass / Overhaul/Parada,retirada_condensado_grupo@L4_L5,40.494902661861204,40.494902661861204,40.494902661861204,PASS
+estados L4_L5: 1 By pass / Overhaul/Parada,retirada_condensado_grupo@L6_L7,100.46461783520243,100.46461783520243,100.46461783520243,PASS
+estados L4_L5: 1 By pass / Overhaul/Parada,retirada_condensado_linha@L1,41.489806151327535,41.489806151327535,41.489806151327535,PASS
+estados L4_L5: 1 By pass / Overhaul/Parada,retirada_condensado_linha@L2,45.63878676646029,45.63878676646029,45.63878676646029,PASS
+estados L4_L5: 1 By pass / Overhaul/Parada,retirada_condensado_linha@L3,49.78776738159305,49.78776738159305,49.78776738159305,PASS
+estados L4_L5: 1 By pass / Overhaul/Parada,retirada_condensado_linha@L4,18.786295049317054,18.786295049317054,18.786295049317054,PASS
+estados L4_L5: 1 By pass / Overhaul/Parada,retirada_condensado_linha@L5,21.70860761254415,21.70860761254415,21.70860761254415,PASS
+estados L4_L5: 1 By pass / Overhaul/Parada,retirada_condensado_linha@L6,45.66573537963747,45.66573537963747,45.66573537963747,PASS
+estados L4_L5: 1 By pass / Overhaul/Parada,retirada_condensado_linha@L7,54.798882455564964,54.798882455564964,54.798882455564964,PASS
+estados L4_L5: 1 By pass / Overhaul/Parada,retirada_condensado_total@L1_L7,277.8758807964445,277.8758807964445,277.8758807964445,PASS
+estados L4_L5: 1 By pass / 1 By pass,lth_grupo@L1_L3,1100.0,1100.0,1100.0,PASS
+estados L4_L5: 1 By pass / 1 By pass,lth_grupo@L4_L5,970.0,970.0,970.0,PASS
+estados L4_L5: 1 By pass / 1 By pass,lth_grupo@L6_L7,1100.0,1100.0,1100.0,PASS
+estados L4_L5: 1 By pass / 1 By pass,retirada_cond_corr_lth@L1_L3,52.241865561555585,52.241865561555585,52.241865561555585,PASS
+estados L4_L5: 1 By pass / 1 By pass,retirada_cond_corr_lth@L4_L5,48.88652943961213,48.88652943961213,48.88652943961213,PASS
+estados L4_L5: 1 By pass / 1 By pass,retirada_cond_corr_lth@L6_L7,53.107563637622576,53.107563637622576,53.107563637622576,PASS
+estados L4_L5: 1 By pass / 1 By pass,retirada_cond_corr_ltp@L1_L3,53.93641212842863,53.93641212842863,53.93641212842863,PASS
+estados L4_L5: 1 By pass / 1 By pass,retirada_cond_corr_ltp@L4_L5,53.63907810868153,53.63907810868153,53.63907810868153,PASS
+estados L4_L5: 1 By pass / 1 By pass,retirada_cond_corr_ltp@L6_L7,52.87525472002136,52.87525472002136,52.87525472002136,PASS
+estados L4_L5: 1 By pass / 1 By pass,retirada_condensado_grupo@L1_L3,136.91636029938087,136.91636029938087,136.91636029938087,PASS
+estados L4_L5: 1 By pass / 1 By pass,retirada_condensado_grupo@L4_L5,86.4949026618612,86.4949026618612,86.4949026618612,PASS
+estados L4_L5: 1 By pass / 1 By pass,retirada_condensado_grupo@L6_L7,100.46461783520243,100.46461783520243,100.46461783520243,PASS
+estados L4_L5: 1 By pass / 1 By pass,retirada_condensado_linha@L1,41.489806151327535,41.489806151327535,41.489806151327535,PASS
+estados L4_L5: 1 By pass / 1 By pass,retirada_condensado_linha@L2,45.63878676646029,45.63878676646029,45.63878676646029,PASS
+estados L4_L5: 1 By pass / 1 By pass,retirada_condensado_linha@L3,49.78776738159305,49.78776738159305,49.78776738159305,PASS
+estados L4_L5: 1 By pass / 1 By pass,retirada_condensado_linha@L4,40.12650123488407,40.12650123488407,40.12650123488407,PASS
+estados L4_L5: 1 By pass / 1 By pass,retirada_condensado_linha@L5,46.368401426977144,46.368401426977144,46.368401426977144,PASS
+estados L4_L5: 1 By pass / 1 By pass,retirada_condensado_linha@L6,45.66573537963747,45.66573537963747,45.66573537963747,PASS
+estados L4_L5: 1 By pass / 1 By pass,retirada_condensado_linha@L7,54.798882455564964,54.798882455564964,54.798882455564964,PASS
+estados L4_L5: 1 By pass / 1 By pass,retirada_condensado_total@L1_L7,323.8758807964445,323.8758807964445,323.8758807964445,PASS
+estados L4_L5: 1 By pass / 1 By pass e LC,lth_grupo@L1_L3,1100.0,1100.0,1100.0,PASS
+estados L4_L5: 1 By pass / 1 By pass e LC,lth_grupo@L4_L5,970.0,970.0,970.0,PASS
+estados L4_L5: 1 By pass / 1 By pass e LC,lth_grupo@L6_L7,1100.0,1100.0,1100.0,PASS
+estados L4_L5: 1 By pass / 1 By pass e LC,retirada_cond_corr_lth@L1_L3,52.241865561555585,52.241865561555585,52.241865561555585,PASS
+estados L4_L5: 1 By pass / 1 By pass e LC,retirada_cond_corr_lth@L4_L5,48.88652943961213,48.88652943961213,48.88652943961213,PASS
+estados L4_L5: 1 By pass / 1 By pass e LC,retirada_cond_corr_lth@L6_L7,53.107563637622576,53.107563637622576,53.107563637622576,PASS
+estados L4_L5: 1 By pass / 1 By pass e LC,retirada_cond_corr_ltp@L1_L3,53.93641212842863,53.93641212842863,53.93641212842863,PASS
+estados L4_L5: 1 By pass / 1 By pass e LC,retirada_cond_corr_ltp@L4_L5,53.63907810868153,53.63907810868153,53.63907810868153,PASS
+estados L4_L5: 1 By pass / 1 By pass e LC,retirada_cond_corr_ltp@L6_L7,52.87525472002136,52.87525472002136,52.87525472002136,PASS
+estados L4_L5: 1 By pass / 1 By pass e LC,retirada_condensado_grupo@L1_L3,136.91636029938087,136.91636029938087,136.91636029938087,PASS
+estados L4_L5: 1 By pass / 1 By pass e LC,retirada_condensado_grupo@L4_L5,86.4949026618612,86.4949026618612,86.4949026618612,PASS
+estados L4_L5: 1 By pass / 1 By pass e LC,retirada_condensado_grupo@L6_L7,100.46461783520243,100.46461783520243,100.46461783520243,PASS
+estados L4_L5: 1 By pass / 1 By pass e LC,retirada_condensado_linha@L1,41.489806151327535,41.489806151327535,41.489806151327535,PASS
+estados L4_L5: 1 By pass / 1 By pass e LC,retirada_condensado_linha@L2,45.63878676646029,45.63878676646029,45.63878676646029,PASS
+estados L4_L5: 1 By pass / 1 By pass e LC,retirada_condensado_linha@L3,49.78776738159305,49.78776738159305,49.78776738159305,PASS
+estados L4_L5: 1 By pass / 1 By pass e LC,retirada_condensado_linha@L4,40.12650123488407,40.12650123488407,40.12650123488407,PASS
+estados L4_L5: 1 By pass / 1 By pass e LC,retirada_condensado_linha@L5,46.368401426977144,46.368401426977144,46.368401426977144,PASS
+estados L4_L5: 1 By pass / 1 By pass e LC,retirada_condensado_linha@L6,45.66573537963747,45.66573537963747,45.66573537963747,PASS
+estados L4_L5: 1 By pass / 1 By pass e LC,retirada_condensado_linha@L7,54.798882455564964,54.798882455564964,54.798882455564964,PASS
+estados L4_L5: 1 By pass / 1 By pass e LC,retirada_condensado_total@L1_L7,323.8758807964445,323.8758807964445,323.8758807964445,PASS
+estados L4_L5: 1 By pass e LC / Normal,lth_grupo@L1_L3,1100.0,1100.0,1100.0,PASS
+estados L4_L5: 1 By pass e LC / Normal,lth_grupo@L4_L5,970.0,970.0,970.0,PASS
+estados L4_L5: 1 By pass e LC / Normal,lth_grupo@L6_L7,1100.0,1100.0,1100.0,PASS
+estados L4_L5: 1 By pass e LC / Normal,retirada_cond_corr_lth@L1_L3,52.241865561555585,52.241865561555585,52.241865561555585,PASS
+estados L4_L5: 1 By pass e LC / Normal,retirada_cond_corr_lth@L4_L5,48.88652943961213,48.88652943961213,48.88652943961213,PASS
+estados L4_L5: 1 By pass e LC / Normal,retirada_cond_corr_lth@L6_L7,53.107563637622576,53.107563637622576,53.107563637622576,PASS
+estados L4_L5: 1 By pass e LC / Normal,retirada_cond_corr_ltp@L1_L3,53.93641212842863,53.93641212842863,53.93641212842863,PASS
+estados L4_L5: 1 By pass e LC / Normal,retirada_cond_corr_ltp@L4_L5,53.63907810868153,53.63907810868153,53.63907810868153,PASS
+estados L4_L5: 1 By pass e LC / Normal,retirada_cond_corr_ltp@L6_L7,52.87525472002136,52.87525472002136,52.87525472002136,PASS
+estados L4_L5: 1 By pass e LC / Normal,retirada_condensado_grupo@L1_L3,136.91636029938087,136.91636029938087,136.91636029938087,PASS
+estados L4_L5: 1 By pass e LC / Normal,retirada_condensado_grupo@L4_L5,F,F,F,PASS
+estados L4_L5: 1 By pass e LC / Normal,retirada_condensado_grupo@L6_L7,100.46461783520243,100.46461783520243,100.46461783520243,PASS
+estados L4_L5: 1 By pass e LC / Normal,retirada_condensado_linha@L1,41.489806151327535,41.489806151327535,41.489806151327535,PASS
+estados L4_L5: 1 By pass e LC / Normal,retirada_condensado_linha@L2,45.63878676646029,45.63878676646029,45.63878676646029,PASS
+estados L4_L5: 1 By pass e LC / Normal,retirada_condensado_linha@L3,49.78776738159305,49.78776738159305,49.78776738159305,PASS
+estados L4_L5: 1 By pass e LC / Normal,retirada_condensado_linha@L4,F,<falha: consumo de F>,,PASS
+estados L4_L5: 1 By pass e LC / Normal,retirada_condensado_linha@L5,F,<falha: consumo de F>,,PASS
+estados L4_L5: 1 By pass e LC / Normal,retirada_condensado_linha@L6,45.66573537963747,45.66573537963747,,NAO_CALCULADO (fail-fast)
+estados L4_L5: 1 By pass e LC / Normal,retirada_condensado_linha@L7,54.798882455564964,54.798882455564964,,NAO_CALCULADO (fail-fast)
+estados L4_L5: 1 By pass e LC / Normal,retirada_condensado_total@L1_L7,F,<falha: consumo de F>,,PASS
+estados L4_L5: 1 By pass e LC / LC,lth_grupo@L1_L3,1100.0,1100.0,1100.0,PASS
+estados L4_L5: 1 By pass e LC / LC,lth_grupo@L4_L5,970.0,970.0,970.0,PASS
+estados L4_L5: 1 By pass e LC / LC,lth_grupo@L6_L7,1100.0,1100.0,1100.0,PASS
+estados L4_L5: 1 By pass e LC / LC,retirada_cond_corr_lth@L1_L3,52.241865561555585,52.241865561555585,52.241865561555585,PASS
+estados L4_L5: 1 By pass e LC / LC,retirada_cond_corr_lth@L4_L5,48.88652943961213,48.88652943961213,48.88652943961213,PASS
+estados L4_L5: 1 By pass e LC / LC,retirada_cond_corr_lth@L6_L7,53.107563637622576,53.107563637622576,53.107563637622576,PASS
+estados L4_L5: 1 By pass e LC / LC,retirada_cond_corr_ltp@L1_L3,53.93641212842863,53.93641212842863,53.93641212842863,PASS
+estados L4_L5: 1 By pass e LC / LC,retirada_cond_corr_ltp@L4_L5,53.63907810868153,53.63907810868153,53.63907810868153,PASS
+estados L4_L5: 1 By pass e LC / LC,retirada_cond_corr_ltp@L6_L7,52.87525472002136,52.87525472002136,52.87525472002136,PASS
+estados L4_L5: 1 By pass e LC / LC,retirada_condensado_grupo@L1_L3,136.91636029938087,136.91636029938087,136.91636029938087,PASS
+estados L4_L5: 1 By pass e LC / LC,retirada_condensado_grupo@L4_L5,71.64179794064012,71.64179794064012,71.64179794064012,PASS
+estados L4_L5: 1 By pass e LC / LC,retirada_condensado_grupo@L6_L7,100.46461783520243,100.46461783520243,100.46461783520243,PASS
+estados L4_L5: 1 By pass e LC / LC,retirada_condensado_linha@L1,41.489806151327535,41.489806151327535,41.489806151327535,PASS
+estados L4_L5: 1 By pass e LC / LC,retirada_condensado_linha@L2,45.63878676646029,45.63878676646029,45.63878676646029,PASS
+estados L4_L5: 1 By pass e LC / LC,retirada_condensado_linha@L3,49.78776738159305,49.78776738159305,49.78776738159305,PASS
+estados L4_L5: 1 By pass e LC / LC,retirada_condensado_linha@L4,33.235885642565,33.235885642565,33.235885642565,PASS
+estados L4_L5: 1 By pass e LC / LC,retirada_condensado_linha@L5,38.40591229807511,38.40591229807511,38.40591229807511,PASS
+estados L4_L5: 1 By pass e LC / LC,retirada_condensado_linha@L6,45.66573537963747,45.66573537963747,45.66573537963747,PASS
+estados L4_L5: 1 By pass e LC / LC,retirada_condensado_linha@L7,54.798882455564964,54.798882455564964,54.798882455564964,PASS
+estados L4_L5: 1 By pass e LC / LC,retirada_condensado_total@L1_L7,309.0227760752234,309.0227760752234,309.0227760752234,PASS
+estados L4_L5: 1 By pass e LC / Overhaul/Parada,lth_grupo@L1_L3,1100.0,1100.0,1100.0,PASS
+estados L4_L5: 1 By pass e LC / Overhaul/Parada,lth_grupo@L4_L5,970.0,970.0,970.0,PASS
+estados L4_L5: 1 By pass e LC / Overhaul/Parada,lth_grupo@L6_L7,1100.0,1100.0,1100.0,PASS
+estados L4_L5: 1 By pass e LC / Overhaul/Parada,retirada_cond_corr_lth@L1_L3,52.241865561555585,52.241865561555585,52.241865561555585,PASS
+estados L4_L5: 1 By pass e LC / Overhaul/Parada,retirada_cond_corr_lth@L4_L5,48.88652943961213,48.88652943961213,48.88652943961213,PASS
+estados L4_L5: 1 By pass e LC / Overhaul/Parada,retirada_cond_corr_lth@L6_L7,53.107563637622576,53.107563637622576,53.107563637622576,PASS
+estados L4_L5: 1 By pass e LC / Overhaul/Parada,retirada_cond_corr_ltp@L1_L3,53.93641212842863,53.93641212842863,53.93641212842863,PASS
+estados L4_L5: 1 By pass e LC / Overhaul/Parada,retirada_cond_corr_ltp@L4_L5,53.63907810868153,53.63907810868153,53.63907810868153,PASS
+estados L4_L5: 1 By pass e LC / Overhaul/Parada,retirada_cond_corr_ltp@L6_L7,52.87525472002136,52.87525472002136,52.87525472002136,PASS
+estados L4_L5: 1 By pass e LC / Overhaul/Parada,retirada_condensado_grupo@L1_L3,136.91636029938087,136.91636029938087,136.91636029938087,PASS
+estados L4_L5: 1 By pass e LC / Overhaul/Parada,retirada_condensado_grupo@L4_L5,40.494902661861204,40.494902661861204,40.494902661861204,PASS
+estados L4_L5: 1 By pass e LC / Overhaul/Parada,retirada_condensado_grupo@L6_L7,100.46461783520243,100.46461783520243,100.46461783520243,PASS
+estados L4_L5: 1 By pass e LC / Overhaul/Parada,retirada_condensado_linha@L1,41.489806151327535,41.489806151327535,41.489806151327535,PASS
+estados L4_L5: 1 By pass e LC / Overhaul/Parada,retirada_condensado_linha@L2,45.63878676646029,45.63878676646029,45.63878676646029,PASS
+estados L4_L5: 1 By pass e LC / Overhaul/Parada,retirada_condensado_linha@L3,49.78776738159305,49.78776738159305,49.78776738159305,PASS
+estados L4_L5: 1 By pass e LC / Overhaul/Parada,retirada_condensado_linha@L4,18.786295049317054,18.786295049317054,18.786295049317054,PASS
+estados L4_L5: 1 By pass e LC / Overhaul/Parada,retirada_condensado_linha@L5,21.70860761254415,21.70860761254415,21.70860761254415,PASS
+estados L4_L5: 1 By pass e LC / Overhaul/Parada,retirada_condensado_linha@L6,45.66573537963747,45.66573537963747,45.66573537963747,PASS
+estados L4_L5: 1 By pass e LC / Overhaul/Parada,retirada_condensado_linha@L7,54.798882455564964,54.798882455564964,54.798882455564964,PASS
+estados L4_L5: 1 By pass e LC / Overhaul/Parada,retirada_condensado_total@L1_L7,277.8758807964445,277.8758807964445,277.8758807964445,PASS
+estados L4_L5: 1 By pass e LC / 1 By pass,lth_grupo@L1_L3,1100.0,1100.0,1100.0,PASS
+estados L4_L5: 1 By pass e LC / 1 By pass,lth_grupo@L4_L5,970.0,970.0,970.0,PASS
+estados L4_L5: 1 By pass e LC / 1 By pass,lth_grupo@L6_L7,1100.0,1100.0,1100.0,PASS
+estados L4_L5: 1 By pass e LC / 1 By pass,retirada_cond_corr_lth@L1_L3,52.241865561555585,52.241865561555585,52.241865561555585,PASS
+estados L4_L5: 1 By pass e LC / 1 By pass,retirada_cond_corr_lth@L4_L5,48.88652943961213,48.88652943961213,48.88652943961213,PASS
+estados L4_L5: 1 By pass e LC / 1 By pass,retirada_cond_corr_lth@L6_L7,53.107563637622576,53.107563637622576,53.107563637622576,PASS
+estados L4_L5: 1 By pass e LC / 1 By pass,retirada_cond_corr_ltp@L1_L3,53.93641212842863,53.93641212842863,53.93641212842863,PASS
+estados L4_L5: 1 By pass e LC / 1 By pass,retirada_cond_corr_ltp@L4_L5,53.63907810868153,53.63907810868153,53.63907810868153,PASS
+estados L4_L5: 1 By pass e LC / 1 By pass,retirada_cond_corr_ltp@L6_L7,52.87525472002136,52.87525472002136,52.87525472002136,PASS
+estados L4_L5: 1 By pass e LC / 1 By pass,retirada_condensado_grupo@L1_L3,136.91636029938087,136.91636029938087,136.91636029938087,PASS
+estados L4_L5: 1 By pass e LC / 1 By pass,retirada_condensado_grupo@L4_L5,86.4949026618612,86.4949026618612,86.4949026618612,PASS
+estados L4_L5: 1 By pass e LC / 1 By pass,retirada_condensado_grupo@L6_L7,100.46461783520243,100.46461783520243,100.46461783520243,PASS
+estados L4_L5: 1 By pass e LC / 1 By pass,retirada_condensado_linha@L1,41.489806151327535,41.489806151327535,41.489806151327535,PASS
+estados L4_L5: 1 By pass e LC / 1 By pass,retirada_condensado_linha@L2,45.63878676646029,45.63878676646029,45.63878676646029,PASS
+estados L4_L5: 1 By pass e LC / 1 By pass,retirada_condensado_linha@L3,49.78776738159305,49.78776738159305,49.78776738159305,PASS
+estados L4_L5: 1 By pass e LC / 1 By pass,retirada_condensado_linha@L4,40.12650123488407,40.12650123488407,40.12650123488407,PASS
+estados L4_L5: 1 By pass e LC / 1 By pass,retirada_condensado_linha@L5,46.368401426977144,46.368401426977144,46.368401426977144,PASS
+estados L4_L5: 1 By pass e LC / 1 By pass,retirada_condensado_linha@L6,45.66573537963747,45.66573537963747,45.66573537963747,PASS
+estados L4_L5: 1 By pass e LC / 1 By pass,retirada_condensado_linha@L7,54.798882455564964,54.798882455564964,54.798882455564964,PASS
+estados L4_L5: 1 By pass e LC / 1 By pass,retirada_condensado_total@L1_L7,323.8758807964445,323.8758807964445,323.8758807964445,PASS
+estados L4_L5: 1 By pass e LC / 1 By pass e LC,lth_grupo@L1_L3,1100.0,1100.0,1100.0,PASS
+estados L4_L5: 1 By pass e LC / 1 By pass e LC,lth_grupo@L4_L5,970.0,970.0,970.0,PASS
+estados L4_L5: 1 By pass e LC / 1 By pass e LC,lth_grupo@L6_L7,1100.0,1100.0,1100.0,PASS
+estados L4_L5: 1 By pass e LC / 1 By pass e LC,retirada_cond_corr_lth@L1_L3,52.241865561555585,52.241865561555585,52.241865561555585,PASS
+estados L4_L5: 1 By pass e LC / 1 By pass e LC,retirada_cond_corr_lth@L4_L5,48.88652943961213,48.88652943961213,48.88652943961213,PASS
+estados L4_L5: 1 By pass e LC / 1 By pass e LC,retirada_cond_corr_lth@L6_L7,53.107563637622576,53.107563637622576,53.107563637622576,PASS
+estados L4_L5: 1 By pass e LC / 1 By pass e LC,retirada_cond_corr_ltp@L1_L3,53.93641212842863,53.93641212842863,53.93641212842863,PASS
+estados L4_L5: 1 By pass e LC / 1 By pass e LC,retirada_cond_corr_ltp@L4_L5,53.63907810868153,53.63907810868153,53.63907810868153,PASS
+estados L4_L5: 1 By pass e LC / 1 By pass e LC,retirada_cond_corr_ltp@L6_L7,52.87525472002136,52.87525472002136,52.87525472002136,PASS
+estados L4_L5: 1 By pass e LC / 1 By pass e LC,retirada_condensado_grupo@L1_L3,136.91636029938087,136.91636029938087,136.91636029938087,PASS
+estados L4_L5: 1 By pass e LC / 1 By pass e LC,retirada_condensado_grupo@L4_L5,70.60013127397345,70.60013127397345,70.60013127397345,PASS
+estados L4_L5: 1 By pass e LC / 1 By pass e LC,retirada_condensado_grupo@L6_L7,100.46461783520243,100.46461783520243,100.46461783520243,PASS
+estados L4_L5: 1 By pass e LC / 1 By pass e LC,retirada_condensado_linha@L1,41.489806151327535,41.489806151327535,41.489806151327535,PASS
+estados L4_L5: 1 By pass e LC / 1 By pass e LC,retirada_condensado_linha@L2,45.63878676646029,45.63878676646029,45.63878676646029,PASS
+estados L4_L5: 1 By pass e LC / 1 By pass e LC,retirada_condensado_linha@L3,49.78776738159305,49.78776738159305,49.78776738159305,PASS
+estados L4_L5: 1 By pass e LC / 1 By pass e LC,retirada_condensado_linha@L4,32.75263821988459,32.75263821988459,32.75263821988459,PASS
+estados L4_L5: 1 By pass e LC / 1 By pass e LC,retirada_condensado_linha@L5,37.84749305408886,37.84749305408886,37.84749305408886,PASS
+estados L4_L5: 1 By pass e LC / 1 By pass e LC,retirada_condensado_linha@L6,45.66573537963747,45.66573537963747,45.66573537963747,PASS
+estados L4_L5: 1 By pass e LC / 1 By pass e LC,retirada_condensado_linha@L7,54.798882455564964,54.798882455564964,54.798882455564964,PASS
+estados L4_L5: 1 By pass e LC / 1 By pass e LC,retirada_condensado_total@L1_L7,307.98110940855673,307.98110940855673,307.98110940855673,PASS
+estados L4_L5: Overhaul / Normal,lth_grupo@L1_L3,1100.0,1100.0,1100.0,PASS
+estados L4_L5: Overhaul / Normal,lth_grupo@L4_L5,970.0,970.0,970.0,PASS
+estados L4_L5: Overhaul / Normal,lth_grupo@L6_L7,1100.0,1100.0,1100.0,PASS
+estados L4_L5: Overhaul / Normal,retirada_cond_corr_lth@L1_L3,52.241865561555585,52.241865561555585,52.241865561555585,PASS
+estados L4_L5: Overhaul / Normal,retirada_cond_corr_lth@L4_L5,48.88652943961213,48.88652943961213,48.88652943961213,PASS
+estados L4_L5: Overhaul / Normal,retirada_cond_corr_lth@L6_L7,53.107563637622576,53.107563637622576,53.107563637622576,PASS
+estados L4_L5: Overhaul / Normal,retirada_cond_corr_ltp@L1_L3,53.93641212842863,53.93641212842863,53.93641212842863,PASS
+estados L4_L5: Overhaul / Normal,retirada_cond_corr_ltp@L4_L5,53.63907810868153,53.63907810868153,53.63907810868153,PASS
+estados L4_L5: Overhaul / Normal,retirada_cond_corr_ltp@L6_L7,52.87525472002136,52.87525472002136,52.87525472002136,PASS
+estados L4_L5: Overhaul / Normal,retirada_condensado_grupo@L1_L3,136.91636029938087,136.91636029938087,136.91636029938087,PASS
+estados L4_L5: Overhaul / Normal,retirada_condensado_grupo@L4_L5,F,F,F,PASS
+estados L4_L5: Overhaul / Normal,retirada_condensado_grupo@L6_L7,100.46461783520243,100.46461783520243,100.46461783520243,PASS
+estados L4_L5: Overhaul / Normal,retirada_condensado_linha@L1,41.489806151327535,41.489806151327535,41.489806151327535,PASS
+estados L4_L5: Overhaul / Normal,retirada_condensado_linha@L2,45.63878676646029,45.63878676646029,45.63878676646029,PASS
+estados L4_L5: Overhaul / Normal,retirada_condensado_linha@L3,49.78776738159305,49.78776738159305,49.78776738159305,PASS
+estados L4_L5: Overhaul / Normal,retirada_condensado_linha@L4,F,<falha: consumo de F>,,PASS
+estados L4_L5: Overhaul / Normal,retirada_condensado_linha@L5,F,<falha: consumo de F>,,PASS
+estados L4_L5: Overhaul / Normal,retirada_condensado_linha@L6,45.66573537963747,45.66573537963747,,NAO_CALCULADO (fail-fast)
+estados L4_L5: Overhaul / Normal,retirada_condensado_linha@L7,54.798882455564964,54.798882455564964,,NAO_CALCULADO (fail-fast)
+estados L4_L5: Overhaul / Normal,retirada_condensado_total@L1_L7,F,<falha: consumo de F>,,PASS
+estados L4_L5: Overhaul / LC,lth_grupo@L1_L3,1100.0,1100.0,1100.0,PASS
+estados L4_L5: Overhaul / LC,lth_grupo@L4_L5,970.0,970.0,970.0,PASS
+estados L4_L5: Overhaul / LC,lth_grupo@L6_L7,1100.0,1100.0,1100.0,PASS
+estados L4_L5: Overhaul / LC,retirada_cond_corr_lth@L1_L3,52.241865561555585,52.241865561555585,52.241865561555585,PASS
+estados L4_L5: Overhaul / LC,retirada_cond_corr_lth@L4_L5,48.88652943961213,48.88652943961213,48.88652943961213,PASS
+estados L4_L5: Overhaul / LC,retirada_cond_corr_lth@L6_L7,53.107563637622576,53.107563637622576,53.107563637622576,PASS
+estados L4_L5: Overhaul / LC,retirada_cond_corr_ltp@L1_L3,53.93641212842863,53.93641212842863,53.93641212842863,PASS
+estados L4_L5: Overhaul / LC,retirada_cond_corr_ltp@L4_L5,53.63907810868153,53.63907810868153,53.63907810868153,PASS
+estados L4_L5: Overhaul / LC,retirada_cond_corr_ltp@L6_L7,52.87525472002136,52.87525472002136,52.87525472002136,PASS
+estados L4_L5: Overhaul / LC,retirada_condensado_grupo@L1_L3,136.91636029938087,136.91636029938087,136.91636029938087,PASS
+estados L4_L5: Overhaul / LC,retirada_condensado_grupo@L4_L5,71.64179794064012,71.64179794064012,71.64179794064012,PASS
+estados L4_L5: Overhaul / LC,retirada_condensado_grupo@L6_L7,100.46461783520243,100.46461783520243,100.46461783520243,PASS
+estados L4_L5: Overhaul / LC,retirada_condensado_linha@L1,41.489806151327535,41.489806151327535,41.489806151327535,PASS
+estados L4_L5: Overhaul / LC,retirada_condensado_linha@L2,45.63878676646029,45.63878676646029,45.63878676646029,PASS
+estados L4_L5: Overhaul / LC,retirada_condensado_linha@L3,49.78776738159305,49.78776738159305,49.78776738159305,PASS
+estados L4_L5: Overhaul / LC,retirada_condensado_linha@L4,33.235885642565,33.235885642565,33.235885642565,PASS
+estados L4_L5: Overhaul / LC,retirada_condensado_linha@L5,38.40591229807511,38.40591229807511,38.40591229807511,PASS
+estados L4_L5: Overhaul / LC,retirada_condensado_linha@L6,45.66573537963747,45.66573537963747,45.66573537963747,PASS
+estados L4_L5: Overhaul / LC,retirada_condensado_linha@L7,54.798882455564964,54.798882455564964,54.798882455564964,PASS
+estados L4_L5: Overhaul / LC,retirada_condensado_total@L1_L7,309.0227760752234,309.0227760752234,309.0227760752234,PASS
+estados L4_L5: Overhaul / Overhaul/Parada,lth_grupo@L1_L3,1100.0,1100.0,1100.0,PASS
+estados L4_L5: Overhaul / Overhaul/Parada,lth_grupo@L4_L5,970.0,970.0,970.0,PASS
+estados L4_L5: Overhaul / Overhaul/Parada,lth_grupo@L6_L7,1100.0,1100.0,1100.0,PASS
+estados L4_L5: Overhaul / Overhaul/Parada,retirada_cond_corr_lth@L1_L3,52.241865561555585,52.241865561555585,52.241865561555585,PASS
+estados L4_L5: Overhaul / Overhaul/Parada,retirada_cond_corr_lth@L4_L5,48.88652943961213,48.88652943961213,48.88652943961213,PASS
+estados L4_L5: Overhaul / Overhaul/Parada,retirada_cond_corr_lth@L6_L7,53.107563637622576,53.107563637622576,53.107563637622576,PASS
+estados L4_L5: Overhaul / Overhaul/Parada,retirada_cond_corr_ltp@L1_L3,53.93641212842863,53.93641212842863,53.93641212842863,PASS
+estados L4_L5: Overhaul / Overhaul/Parada,retirada_cond_corr_ltp@L4_L5,53.63907810868153,53.63907810868153,53.63907810868153,PASS
+estados L4_L5: Overhaul / Overhaul/Parada,retirada_cond_corr_ltp@L6_L7,52.87525472002136,52.87525472002136,52.87525472002136,PASS
+estados L4_L5: Overhaul / Overhaul/Parada,retirada_condensado_grupo@L1_L3,136.91636029938087,136.91636029938087,136.91636029938087,PASS
+estados L4_L5: Overhaul / Overhaul/Parada,retirada_condensado_grupo@L4_L5,40.494902661861204,40.494902661861204,40.494902661861204,PASS
+estados L4_L5: Overhaul / Overhaul/Parada,retirada_condensado_grupo@L6_L7,100.46461783520243,100.46461783520243,100.46461783520243,PASS
+estados L4_L5: Overhaul / Overhaul/Parada,retirada_condensado_linha@L1,41.489806151327535,41.489806151327535,41.489806151327535,PASS
+estados L4_L5: Overhaul / Overhaul/Parada,retirada_condensado_linha@L2,45.63878676646029,45.63878676646029,45.63878676646029,PASS
+estados L4_L5: Overhaul / Overhaul/Parada,retirada_condensado_linha@L3,49.78776738159305,49.78776738159305,49.78776738159305,PASS
+estados L4_L5: Overhaul / Overhaul/Parada,retirada_condensado_linha@L4,18.786295049317054,18.786295049317054,18.786295049317054,PASS
+estados L4_L5: Overhaul / Overhaul/Parada,retirada_condensado_linha@L5,21.70860761254415,21.70860761254415,21.70860761254415,PASS
+estados L4_L5: Overhaul / Overhaul/Parada,retirada_condensado_linha@L6,45.66573537963747,45.66573537963747,45.66573537963747,PASS
+estados L4_L5: Overhaul / Overhaul/Parada,retirada_condensado_linha@L7,54.798882455564964,54.798882455564964,54.798882455564964,PASS
+estados L4_L5: Overhaul / Overhaul/Parada,retirada_condensado_total@L1_L7,277.8758807964445,277.8758807964445,277.8758807964445,PASS
+estados L4_L5: Overhaul / 1 By pass,lth_grupo@L1_L3,1100.0,1100.0,1100.0,PASS
+estados L4_L5: Overhaul / 1 By pass,lth_grupo@L4_L5,970.0,970.0,970.0,PASS
+estados L4_L5: Overhaul / 1 By pass,lth_grupo@L6_L7,1100.0,1100.0,1100.0,PASS
+estados L4_L5: Overhaul / 1 By pass,retirada_cond_corr_lth@L1_L3,52.241865561555585,52.241865561555585,52.241865561555585,PASS
+estados L4_L5: Overhaul / 1 By pass,retirada_cond_corr_lth@L4_L5,48.88652943961213,48.88652943961213,48.88652943961213,PASS
+estados L4_L5: Overhaul / 1 By pass,retirada_cond_corr_lth@L6_L7,53.107563637622576,53.107563637622576,53.107563637622576,PASS
+estados L4_L5: Overhaul / 1 By pass,retirada_cond_corr_ltp@L1_L3,53.93641212842863,53.93641212842863,53.93641212842863,PASS
+estados L4_L5: Overhaul / 1 By pass,retirada_cond_corr_ltp@L4_L5,53.63907810868153,53.63907810868153,53.63907810868153,PASS
+estados L4_L5: Overhaul / 1 By pass,retirada_cond_corr_ltp@L6_L7,52.87525472002136,52.87525472002136,52.87525472002136,PASS
+estados L4_L5: Overhaul / 1 By pass,retirada_condensado_grupo@L1_L3,136.91636029938087,136.91636029938087,136.91636029938087,PASS
+estados L4_L5: Overhaul / 1 By pass,retirada_condensado_grupo@L4_L5,86.4949026618612,86.4949026618612,86.4949026618612,PASS
+estados L4_L5: Overhaul / 1 By pass,retirada_condensado_grupo@L6_L7,100.46461783520243,100.46461783520243,100.46461783520243,PASS
+estados L4_L5: Overhaul / 1 By pass,retirada_condensado_linha@L1,41.489806151327535,41.489806151327535,41.489806151327535,PASS
+estados L4_L5: Overhaul / 1 By pass,retirada_condensado_linha@L2,45.63878676646029,45.63878676646029,45.63878676646029,PASS
+estados L4_L5: Overhaul / 1 By pass,retirada_condensado_linha@L3,49.78776738159305,49.78776738159305,49.78776738159305,PASS
+estados L4_L5: Overhaul / 1 By pass,retirada_condensado_linha@L4,40.12650123488407,40.12650123488407,40.12650123488407,PASS
+estados L4_L5: Overhaul / 1 By pass,retirada_condensado_linha@L5,46.368401426977144,46.368401426977144,46.368401426977144,PASS
+estados L4_L5: Overhaul / 1 By pass,retirada_condensado_linha@L6,45.66573537963747,45.66573537963747,45.66573537963747,PASS
+estados L4_L5: Overhaul / 1 By pass,retirada_condensado_linha@L7,54.798882455564964,54.798882455564964,54.798882455564964,PASS
+estados L4_L5: Overhaul / 1 By pass,retirada_condensado_total@L1_L7,323.8758807964445,323.8758807964445,323.8758807964445,PASS
+estados L4_L5: Overhaul / 1 By pass e LC,lth_grupo@L1_L3,1100.0,1100.0,1100.0,PASS
+estados L4_L5: Overhaul / 1 By pass e LC,lth_grupo@L4_L5,970.0,970.0,970.0,PASS
+estados L4_L5: Overhaul / 1 By pass e LC,lth_grupo@L6_L7,1100.0,1100.0,1100.0,PASS
+estados L4_L5: Overhaul / 1 By pass e LC,retirada_cond_corr_lth@L1_L3,52.241865561555585,52.241865561555585,52.241865561555585,PASS
+estados L4_L5: Overhaul / 1 By pass e LC,retirada_cond_corr_lth@L4_L5,48.88652943961213,48.88652943961213,48.88652943961213,PASS
+estados L4_L5: Overhaul / 1 By pass e LC,retirada_cond_corr_lth@L6_L7,53.107563637622576,53.107563637622576,53.107563637622576,PASS
+estados L4_L5: Overhaul / 1 By pass e LC,retirada_cond_corr_ltp@L1_L3,53.93641212842863,53.93641212842863,53.93641212842863,PASS
+estados L4_L5: Overhaul / 1 By pass e LC,retirada_cond_corr_ltp@L4_L5,53.63907810868153,53.63907810868153,53.63907810868153,PASS
+estados L4_L5: Overhaul / 1 By pass e LC,retirada_cond_corr_ltp@L6_L7,52.87525472002136,52.87525472002136,52.87525472002136,PASS
+estados L4_L5: Overhaul / 1 By pass e LC,retirada_condensado_grupo@L1_L3,136.91636029938087,136.91636029938087,136.91636029938087,PASS
+estados L4_L5: Overhaul / 1 By pass e LC,retirada_condensado_grupo@L4_L5,F,F,F,PASS
+estados L4_L5: Overhaul / 1 By pass e LC,retirada_condensado_grupo@L6_L7,100.46461783520243,100.46461783520243,100.46461783520243,PASS
+estados L4_L5: Overhaul / 1 By pass e LC,retirada_condensado_linha@L1,41.489806151327535,41.489806151327535,41.489806151327535,PASS
+estados L4_L5: Overhaul / 1 By pass e LC,retirada_condensado_linha@L2,45.63878676646029,45.63878676646029,45.63878676646029,PASS
+estados L4_L5: Overhaul / 1 By pass e LC,retirada_condensado_linha@L3,49.78776738159305,49.78776738159305,49.78776738159305,PASS
+estados L4_L5: Overhaul / 1 By pass e LC,retirada_condensado_linha@L4,F,<falha: consumo de F>,,PASS
+estados L4_L5: Overhaul / 1 By pass e LC,retirada_condensado_linha@L5,F,<falha: consumo de F>,,PASS
+estados L4_L5: Overhaul / 1 By pass e LC,retirada_condensado_linha@L6,45.66573537963747,45.66573537963747,,NAO_CALCULADO (fail-fast)
+estados L4_L5: Overhaul / 1 By pass e LC,retirada_condensado_linha@L7,54.798882455564964,54.798882455564964,,NAO_CALCULADO (fail-fast)
+estados L4_L5: Overhaul / 1 By pass e LC,retirada_condensado_total@L1_L7,F,<falha: consumo de F>,,PASS
+estados L6_L7: Normal / Normal,lth_grupo@L1_L3,1100.0,1100.0,1100.0,PASS
+estados L6_L7: Normal / Normal,lth_grupo@L4_L5,970.0,970.0,970.0,PASS
+estados L6_L7: Normal / Normal,lth_grupo@L6_L7,1100.0,1100.0,1100.0,PASS
+estados L6_L7: Normal / Normal,retirada_cond_corr_lth@L1_L3,52.241865561555585,52.241865561555585,52.241865561555585,PASS
+estados L6_L7: Normal / Normal,retirada_cond_corr_lth@L4_L5,48.88652943961213,48.88652943961213,48.88652943961213,PASS
+estados L6_L7: Normal / Normal,retirada_cond_corr_lth@L6_L7,53.107563637622576,53.107563637622576,53.107563637622576,PASS
+estados L6_L7: Normal / Normal,retirada_cond_corr_ltp@L1_L3,53.93641212842863,53.93641212842863,53.93641212842863,PASS
+estados L6_L7: Normal / Normal,retirada_cond_corr_ltp@L4_L5,53.63907810868153,53.63907810868153,53.63907810868153,PASS
+estados L6_L7: Normal / Normal,retirada_cond_corr_ltp@L6_L7,52.87525472002136,52.87525472002136,52.87525472002136,PASS
+estados L6_L7: Normal / Normal,retirada_condensado_grupo@L1_L3,136.91636029938087,136.91636029938087,136.91636029938087,PASS
+estados L6_L7: Normal / Normal,retirada_condensado_grupo@L4_L5,90.4949026618612,90.4949026618612,90.4949026618612,PASS
+estados L6_L7: Normal / Normal,retirada_condensado_grupo@L6_L7,100.46461783520243,100.46461783520243,100.46461783520243,PASS
+estados L6_L7: Normal / Normal,retirada_condensado_linha@L1,41.489806151327535,41.489806151327535,41.489806151327535,PASS
+estados L6_L7: Normal / Normal,retirada_condensado_linha@L2,45.63878676646029,45.63878676646029,45.63878676646029,PASS
+estados L6_L7: Normal / Normal,retirada_condensado_linha@L3,49.78776738159305,49.78776738159305,49.78776738159305,PASS
+estados L6_L7: Normal / Normal,retirada_condensado_linha@L4,41.98217133797685,41.98217133797685,41.98217133797685,PASS
+estados L6_L7: Normal / Normal,retirada_condensado_linha@L5,48.51273132388436,48.51273132388436,48.51273132388436,PASS
+estados L6_L7: Normal / Normal,retirada_condensado_linha@L6,45.66573537963747,45.66573537963747,45.66573537963747,PASS
+estados L6_L7: Normal / Normal,retirada_condensado_linha@L7,54.798882455564964,54.798882455564964,54.798882455564964,PASS
+estados L6_L7: Normal / Normal,retirada_condensado_total@L1_L7,327.8758807964445,327.8758807964445,327.8758807964445,PASS
+estados L6_L7: Normal / LC,lth_grupo@L1_L3,1100.0,1100.0,1100.0,PASS
+estados L6_L7: Normal / LC,lth_grupo@L4_L5,970.0,970.0,970.0,PASS
+estados L6_L7: Normal / LC,lth_grupo@L6_L7,1100.0,1100.0,1100.0,PASS
+estados L6_L7: Normal / LC,retirada_cond_corr_lth@L1_L3,52.241865561555585,52.241865561555585,52.241865561555585,PASS
+estados L6_L7: Normal / LC,retirada_cond_corr_lth@L4_L5,48.88652943961213,48.88652943961213,48.88652943961213,PASS
+estados L6_L7: Normal / LC,retirada_cond_corr_lth@L6_L7,53.107563637622576,53.107563637622576,53.107563637622576,PASS
+estados L6_L7: Normal / LC,retirada_cond_corr_ltp@L1_L3,53.93641212842863,53.93641212842863,53.93641212842863,PASS
+estados L6_L7: Normal / LC,retirada_cond_corr_ltp@L4_L5,53.63907810868153,53.63907810868153,53.63907810868153,PASS
+estados L6_L7: Normal / LC,retirada_cond_corr_ltp@L6_L7,52.87525472002136,52.87525472002136,52.87525472002136,PASS
+estados L6_L7: Normal / LC,retirada_condensado_grupo@L1_L3,136.91636029938087,136.91636029938087,136.91636029938087,PASS
+estados L6_L7: Normal / LC,retirada_condensado_grupo@L4_L5,90.4949026618612,90.4949026618612,90.4949026618612,PASS
+estados L6_L7: Normal / LC,retirada_condensado_grupo@L6_L7,79.53448911953525,79.53448911953525,79.53448911953525,PASS
+estados L6_L7: Normal / LC,retirada_condensado_linha@L1,41.489806151327535,41.489806151327535,41.489806151327535,PASS
+estados L6_L7: Normal / LC,retirada_condensado_linha@L2,45.63878676646029,45.63878676646029,45.63878676646029,PASS
+estados L6_L7: Normal / LC,retirada_condensado_linha@L3,49.78776738159305,49.78776738159305,49.78776738159305,PASS
+estados L6_L7: Normal / LC,retirada_condensado_linha@L4,41.98217133797685,41.98217133797685,41.98217133797685,PASS
+estados L6_L7: Normal / LC,retirada_condensado_linha@L5,48.51273132388436,48.51273132388436,48.51273132388436,PASS
+estados L6_L7: Normal / LC,retirada_condensado_linha@L6,36.15204050887966,36.15204050887966,36.15204050887966,PASS
+estados L6_L7: Normal / LC,retirada_condensado_linha@L7,43.38244861065559,43.38244861065559,43.38244861065559,PASS
+estados L6_L7: Normal / LC,retirada_condensado_total@L1_L7,306.9457520807773,306.9457520807773,306.9457520807773,PASS
+estados L6_L7: Normal / Overhaul/Parada,lth_grupo@L1_L3,1100.0,1100.0,1100.0,PASS
+estados L6_L7: Normal / Overhaul/Parada,lth_grupo@L4_L5,970.0,970.0,970.0,PASS
+estados L6_L7: Normal / Overhaul/Parada,lth_grupo@L6_L7,1100.0,1100.0,1100.0,PASS
+estados L6_L7: Normal / Overhaul/Parada,retirada_cond_corr_lth@L1_L3,52.241865561555585,52.241865561555585,52.241865561555585,PASS
+estados L6_L7: Normal / Overhaul/Parada,retirada_cond_corr_lth@L4_L5,48.88652943961213,48.88652943961213,48.88652943961213,PASS
+estados L6_L7: Normal / Overhaul/Parada,retirada_cond_corr_lth@L6_L7,53.107563637622576,53.107563637622576,53.107563637622576,PASS
+estados L6_L7: Normal / Overhaul/Parada,retirada_cond_corr_ltp@L1_L3,53.93641212842863,53.93641212842863,53.93641212842863,PASS
+estados L6_L7: Normal / Overhaul/Parada,retirada_cond_corr_ltp@L4_L5,53.63907810868153,53.63907810868153,53.63907810868153,PASS
+estados L6_L7: Normal / Overhaul/Parada,retirada_cond_corr_ltp@L6_L7,52.87525472002136,52.87525472002136,52.87525472002136,PASS
+estados L6_L7: Normal / Overhaul/Parada,retirada_condensado_grupo@L1_L3,136.91636029938087,136.91636029938087,136.91636029938087,PASS
+estados L6_L7: Normal / Overhaul/Parada,retirada_condensado_grupo@L4_L5,90.4949026618612,90.4949026618612,90.4949026618612,PASS
+estados L6_L7: Normal / Overhaul/Parada,retirada_condensado_grupo@L6_L7,50.46461783520243,50.46461783520243,50.46461783520243,PASS
+estados L6_L7: Normal / Overhaul/Parada,retirada_condensado_linha@L1,41.489806151327535,41.489806151327535,41.489806151327535,PASS
+estados L6_L7: Normal / Overhaul/Parada,retirada_condensado_linha@L2,45.63878676646029,45.63878676646029,45.63878676646029,PASS
+estados L6_L7: Normal / Overhaul/Parada,retirada_condensado_linha@L3,49.78776738159305,49.78776738159305,49.78776738159305,PASS
+estados L6_L7: Normal / Overhaul/Parada,retirada_condensado_linha@L4,41.98217133797685,41.98217133797685,41.98217133797685,PASS
+estados L6_L7: Normal / Overhaul/Parada,retirada_condensado_linha@L5,48.51273132388436,48.51273132388436,48.51273132388436,PASS
+estados L6_L7: Normal / Overhaul/Parada,retirada_condensado_linha@L6,22.93846265236474,22.93846265236474,22.93846265236474,PASS
+estados L6_L7: Normal / Overhaul/Parada,retirada_condensado_linha@L7,27.52615518283769,27.52615518283769,27.52615518283769,PASS
+estados L6_L7: Normal / Overhaul/Parada,retirada_condensado_total@L1_L7,277.8758807964445,277.8758807964445,277.8758807964445,PASS
+estados L6_L7: Normal / 1 By pass,lth_grupo@L1_L3,1100.0,1100.0,1100.0,PASS
+estados L6_L7: Normal / 1 By pass,lth_grupo@L4_L5,970.0,970.0,970.0,PASS
+estados L6_L7: Normal / 1 By pass,lth_grupo@L6_L7,1100.0,1100.0,1100.0,PASS
+estados L6_L7: Normal / 1 By pass,retirada_cond_corr_lth@L1_L3,52.241865561555585,52.241865561555585,52.241865561555585,PASS
+estados L6_L7: Normal / 1 By pass,retirada_cond_corr_lth@L4_L5,48.88652943961213,48.88652943961213,48.88652943961213,PASS
+estados L6_L7: Normal / 1 By pass,retirada_cond_corr_lth@L6_L7,53.107563637622576,53.107563637622576,53.107563637622576,PASS
+estados L6_L7: Normal / 1 By pass,retirada_cond_corr_ltp@L1_L3,53.93641212842863,53.93641212842863,53.93641212842863,PASS
+estados L6_L7: Normal / 1 By pass,retirada_cond_corr_ltp@L4_L5,53.63907810868153,53.63907810868153,53.63907810868153,PASS
+estados L6_L7: Normal / 1 By pass,retirada_cond_corr_ltp@L6_L7,52.87525472002136,52.87525472002136,52.87525472002136,PASS
+estados L6_L7: Normal / 1 By pass,retirada_condensado_grupo@L1_L3,136.91636029938087,136.91636029938087,136.91636029938087,PASS
+estados L6_L7: Normal / 1 By pass,retirada_condensado_grupo@L4_L5,90.4949026618612,90.4949026618612,90.4949026618612,PASS
+estados L6_L7: Normal / 1 By pass,retirada_condensado_grupo@L6_L7,94.46461783520243,94.46461783520243,94.46461783520243,PASS
+estados L6_L7: Normal / 1 By pass,retirada_condensado_linha@L1,41.489806151327535,41.489806151327535,41.489806151327535,PASS
+estados L6_L7: Normal / 1 By pass,retirada_condensado_linha@L2,45.63878676646029,45.63878676646029,45.63878676646029,PASS
+estados L6_L7: Normal / 1 By pass,retirada_condensado_linha@L3,49.78776738159305,49.78776738159305,49.78776738159305,PASS
+estados L6_L7: Normal / 1 By pass,retirada_condensado_linha@L4,41.98217133797685,41.98217133797685,41.98217133797685,PASS
+estados L6_L7: Normal / 1 By pass,retirada_condensado_linha@L5,48.51273132388436,48.51273132388436,48.51273132388436,PASS
+estados L6_L7: Normal / 1 By pass,retirada_condensado_linha@L6,42.93846265236474,42.93846265236474,42.93846265236474,PASS
+estados L6_L7: Normal / 1 By pass,retirada_condensado_linha@L7,51.52615518283769,51.52615518283769,51.52615518283769,PASS
+estados L6_L7: Normal / 1 By pass,retirada_condensado_total@L1_L7,321.8758807964445,321.8758807964445,321.8758807964445,PASS
+estados L6_L7: Normal / 1 By pass e LC,lth_grupo@L1_L3,1100.0,1100.0,1100.0,PASS
+estados L6_L7: Normal / 1 By pass e LC,lth_grupo@L4_L5,970.0,970.0,970.0,PASS
+estados L6_L7: Normal / 1 By pass e LC,lth_grupo@L6_L7,1100.0,1100.0,1100.0,PASS
+estados L6_L7: Normal / 1 By pass e LC,retirada_cond_corr_lth@L1_L3,52.241865561555585,52.241865561555585,52.241865561555585,PASS
+estados L6_L7: Normal / 1 By pass e LC,retirada_cond_corr_lth@L4_L5,48.88652943961213,48.88652943961213,48.88652943961213,PASS
+estados L6_L7: Normal / 1 By pass e LC,retirada_cond_corr_lth@L6_L7,53.107563637622576,53.107563637622576,53.107563637622576,PASS
+estados L6_L7: Normal / 1 By pass e LC,retirada_cond_corr_ltp@L1_L3,53.93641212842863,53.93641212842863,53.93641212842863,PASS
+estados L6_L7: Normal / 1 By pass e LC,retirada_cond_corr_ltp@L4_L5,53.63907810868153,53.63907810868153,53.63907810868153,PASS
+estados L6_L7: Normal / 1 By pass e LC,retirada_cond_corr_ltp@L6_L7,52.87525472002136,52.87525472002136,52.87525472002136,PASS
+estados L6_L7: Normal / 1 By pass e LC,retirada_condensado_grupo@L1_L3,136.91636029938087,136.91636029938087,136.91636029938087,PASS
+estados L6_L7: Normal / 1 By pass e LC,retirada_condensado_grupo@L4_L5,90.4949026618612,90.4949026618612,90.4949026618612,PASS
+estados L6_L7: Normal / 1 By pass e LC,retirada_condensado_grupo@L6_L7,F,F,F,PASS
+estados L6_L7: Normal / 1 By pass e LC,retirada_condensado_linha@L1,41.489806151327535,41.489806151327535,41.489806151327535,PASS
+estados L6_L7: Normal / 1 By pass e LC,retirada_condensado_linha@L2,45.63878676646029,45.63878676646029,45.63878676646029,PASS
+estados L6_L7: Normal / 1 By pass e LC,retirada_condensado_linha@L3,49.78776738159305,49.78776738159305,49.78776738159305,PASS
+estados L6_L7: Normal / 1 By pass e LC,retirada_condensado_linha@L4,41.98217133797685,41.98217133797685,41.98217133797685,PASS
+estados L6_L7: Normal / 1 By pass e LC,retirada_condensado_linha@L5,48.51273132388436,48.51273132388436,48.51273132388436,PASS
+estados L6_L7: Normal / 1 By pass e LC,retirada_condensado_linha@L6,F,<falha: consumo de F>,,PASS
+estados L6_L7: Normal / 1 By pass e LC,retirada_condensado_linha@L7,F,<falha: consumo de F>,,PASS
+estados L6_L7: Normal / 1 By pass e LC,retirada_condensado_total@L1_L7,F,<falha: consumo de F>,,PASS
+estados L6_L7: LC / Normal,lth_grupo@L1_L3,1100.0,1100.0,1100.0,PASS
+estados L6_L7: LC / Normal,lth_grupo@L4_L5,970.0,970.0,970.0,PASS
+estados L6_L7: LC / Normal,lth_grupo@L6_L7,1100.0,1100.0,1100.0,PASS
+estados L6_L7: LC / Normal,retirada_cond_corr_lth@L1_L3,52.241865561555585,52.241865561555585,52.241865561555585,PASS
+estados L6_L7: LC / Normal,retirada_cond_corr_lth@L4_L5,48.88652943961213,48.88652943961213,48.88652943961213,PASS
+estados L6_L7: LC / Normal,retirada_cond_corr_lth@L6_L7,53.107563637622576,53.107563637622576,53.107563637622576,PASS
+estados L6_L7: LC / Normal,retirada_cond_corr_ltp@L1_L3,53.93641212842863,53.93641212842863,53.93641212842863,PASS
+estados L6_L7: LC / Normal,retirada_cond_corr_ltp@L4_L5,53.63907810868153,53.63907810868153,53.63907810868153,PASS
+estados L6_L7: LC / Normal,retirada_cond_corr_ltp@L6_L7,52.87525472002136,52.87525472002136,52.87525472002136,PASS
+estados L6_L7: LC / Normal,retirada_condensado_grupo@L1_L3,136.91636029938087,136.91636029938087,136.91636029938087,PASS
+estados L6_L7: LC / Normal,retirada_condensado_grupo@L4_L5,90.4949026618612,90.4949026618612,90.4949026618612,PASS
+estados L6_L7: LC / Normal,retirada_condensado_grupo@L6_L7,79.53448911953525,79.53448911953525,79.53448911953525,PASS
+estados L6_L7: LC / Normal,retirada_condensado_linha@L1,41.489806151327535,41.489806151327535,41.489806151327535,PASS
+estados L6_L7: LC / Normal,retirada_condensado_linha@L2,45.63878676646029,45.63878676646029,45.63878676646029,PASS
+estados L6_L7: LC / Normal,retirada_condensado_linha@L3,49.78776738159305,49.78776738159305,49.78776738159305,PASS
+estados L6_L7: LC / Normal,retirada_condensado_linha@L4,41.98217133797685,41.98217133797685,41.98217133797685,PASS
+estados L6_L7: LC / Normal,retirada_condensado_linha@L5,48.51273132388436,48.51273132388436,48.51273132388436,PASS
+estados L6_L7: LC / Normal,retirada_condensado_linha@L6,36.15204050887966,36.15204050887966,36.15204050887966,PASS
+estados L6_L7: LC / Normal,retirada_condensado_linha@L7,43.38244861065559,43.38244861065559,43.38244861065559,PASS
+estados L6_L7: LC / Normal,retirada_condensado_total@L1_L7,306.9457520807773,306.9457520807773,306.9457520807773,PASS
+estados L6_L7: LC / LC,lth_grupo@L1_L3,1100.0,1100.0,1100.0,PASS
+estados L6_L7: LC / LC,lth_grupo@L4_L5,970.0,970.0,970.0,PASS
+estados L6_L7: LC / LC,lth_grupo@L6_L7,1100.0,1100.0,1100.0,PASS
+estados L6_L7: LC / LC,retirada_cond_corr_lth@L1_L3,52.241865561555585,52.241865561555585,52.241865561555585,PASS
+estados L6_L7: LC / LC,retirada_cond_corr_lth@L4_L5,48.88652943961213,48.88652943961213,48.88652943961213,PASS
+estados L6_L7: LC / LC,retirada_cond_corr_lth@L6_L7,53.107563637622576,53.107563637622576,53.107563637622576,PASS
+estados L6_L7: LC / LC,retirada_cond_corr_ltp@L1_L3,53.93641212842863,53.93641212842863,53.93641212842863,PASS
+estados L6_L7: LC / LC,retirada_cond_corr_ltp@L4_L5,53.63907810868153,53.63907810868153,53.63907810868153,PASS
+estados L6_L7: LC / LC,retirada_cond_corr_ltp@L6_L7,52.87525472002136,52.87525472002136,52.87525472002136,PASS
+estados L6_L7: LC / LC,retirada_condensado_grupo@L1_L3,136.91636029938087,136.91636029938087,136.91636029938087,PASS
+estados L6_L7: LC / LC,retirada_condensado_grupo@L4_L5,90.4949026618612,90.4949026618612,90.4949026618612,PASS
+estados L6_L7: LC / LC,retirada_condensado_grupo@L6_L7,79.53448911953525,79.53448911953525,79.53448911953525,PASS
+estados L6_L7: LC / LC,retirada_condensado_linha@L1,41.489806151327535,41.489806151327535,41.489806151327535,PASS
+estados L6_L7: LC / LC,retirada_condensado_linha@L2,45.63878676646029,45.63878676646029,45.63878676646029,PASS
+estados L6_L7: LC / LC,retirada_condensado_linha@L3,49.78776738159305,49.78776738159305,49.78776738159305,PASS
+estados L6_L7: LC / LC,retirada_condensado_linha@L4,41.98217133797685,41.98217133797685,41.98217133797685,PASS
+estados L6_L7: LC / LC,retirada_condensado_linha@L5,48.51273132388436,48.51273132388436,48.51273132388436,PASS
+estados L6_L7: LC / LC,retirada_condensado_linha@L6,36.15204050887966,36.15204050887966,36.15204050887966,PASS
+estados L6_L7: LC / LC,retirada_condensado_linha@L7,43.38244861065559,43.38244861065559,43.38244861065559,PASS
+estados L6_L7: LC / LC,retirada_condensado_total@L1_L7,306.9457520807773,306.9457520807773,306.9457520807773,PASS
+estados L6_L7: LC / Overhaul/Parada,lth_grupo@L1_L3,1100.0,1100.0,1100.0,PASS
+estados L6_L7: LC / Overhaul/Parada,lth_grupo@L4_L5,970.0,970.0,970.0,PASS
+estados L6_L7: LC / Overhaul/Parada,lth_grupo@L6_L7,1100.0,1100.0,1100.0,PASS
+estados L6_L7: LC / Overhaul/Parada,retirada_cond_corr_lth@L1_L3,52.241865561555585,52.241865561555585,52.241865561555585,PASS
+estados L6_L7: LC / Overhaul/Parada,retirada_cond_corr_lth@L4_L5,48.88652943961213,48.88652943961213,48.88652943961213,PASS
+estados L6_L7: LC / Overhaul/Parada,retirada_cond_corr_lth@L6_L7,53.107563637622576,53.107563637622576,53.107563637622576,PASS
+estados L6_L7: LC / Overhaul/Parada,retirada_cond_corr_ltp@L1_L3,53.93641212842863,53.93641212842863,53.93641212842863,PASS
+estados L6_L7: LC / Overhaul/Parada,retirada_cond_corr_ltp@L4_L5,53.63907810868153,53.63907810868153,53.63907810868153,PASS
+estados L6_L7: LC / Overhaul/Parada,retirada_cond_corr_ltp@L6_L7,52.87525472002136,52.87525472002136,52.87525472002136,PASS
+estados L6_L7: LC / Overhaul/Parada,retirada_condensado_grupo@L1_L3,136.91636029938087,136.91636029938087,136.91636029938087,PASS
+estados L6_L7: LC / Overhaul/Parada,retirada_condensado_grupo@L4_L5,90.4949026618612,90.4949026618612,90.4949026618612,PASS
+estados L6_L7: LC / Overhaul/Parada,retirada_condensado_grupo@L6_L7,79.53448911953525,79.53448911953525,79.53448911953525,PASS
+estados L6_L7: LC / Overhaul/Parada,retirada_condensado_linha@L1,41.489806151327535,41.489806151327535,41.489806151327535,PASS
+estados L6_L7: LC / Overhaul/Parada,retirada_condensado_linha@L2,45.63878676646029,45.63878676646029,45.63878676646029,PASS
+estados L6_L7: LC / Overhaul/Parada,retirada_condensado_linha@L3,49.78776738159305,49.78776738159305,49.78776738159305,PASS
+estados L6_L7: LC / Overhaul/Parada,retirada_condensado_linha@L4,41.98217133797685,41.98217133797685,41.98217133797685,PASS
+estados L6_L7: LC / Overhaul/Parada,retirada_condensado_linha@L5,48.51273132388436,48.51273132388436,48.51273132388436,PASS
+estados L6_L7: LC / Overhaul/Parada,retirada_condensado_linha@L6,36.15204050887966,36.15204050887966,36.15204050887966,PASS
+estados L6_L7: LC / Overhaul/Parada,retirada_condensado_linha@L7,43.38244861065559,43.38244861065559,43.38244861065559,PASS
+estados L6_L7: LC / Overhaul/Parada,retirada_condensado_total@L1_L7,306.9457520807773,306.9457520807773,306.9457520807773,PASS
+estados L6_L7: LC / 1 By pass,lth_grupo@L1_L3,1100.0,1100.0,1100.0,PASS
+estados L6_L7: LC / 1 By pass,lth_grupo@L4_L5,970.0,970.0,970.0,PASS
+estados L6_L7: LC / 1 By pass,lth_grupo@L6_L7,1100.0,1100.0,1100.0,PASS
+estados L6_L7: LC / 1 By pass,retirada_cond_corr_lth@L1_L3,52.241865561555585,52.241865561555585,52.241865561555585,PASS
+estados L6_L7: LC / 1 By pass,retirada_cond_corr_lth@L4_L5,48.88652943961213,48.88652943961213,48.88652943961213,PASS
+estados L6_L7: LC / 1 By pass,retirada_cond_corr_lth@L6_L7,53.107563637622576,53.107563637622576,53.107563637622576,PASS
+estados L6_L7: LC / 1 By pass,retirada_cond_corr_ltp@L1_L3,53.93641212842863,53.93641212842863,53.93641212842863,PASS
+estados L6_L7: LC / 1 By pass,retirada_cond_corr_ltp@L4_L5,53.63907810868153,53.63907810868153,53.63907810868153,PASS
+estados L6_L7: LC / 1 By pass,retirada_cond_corr_ltp@L6_L7,52.87525472002136,52.87525472002136,52.87525472002136,PASS
+estados L6_L7: LC / 1 By pass,retirada_condensado_grupo@L1_L3,136.91636029938087,136.91636029938087,136.91636029938087,PASS
+estados L6_L7: LC / 1 By pass,retirada_condensado_grupo@L4_L5,90.4949026618612,90.4949026618612,90.4949026618612,PASS
+estados L6_L7: LC / 1 By pass,retirada_condensado_grupo@L6_L7,79.53448911953525,79.53448911953525,79.53448911953525,PASS
+estados L6_L7: LC / 1 By pass,retirada_condensado_linha@L1,41.489806151327535,41.489806151327535,41.489806151327535,PASS
+estados L6_L7: LC / 1 By pass,retirada_condensado_linha@L2,45.63878676646029,45.63878676646029,45.63878676646029,PASS
+estados L6_L7: LC / 1 By pass,retirada_condensado_linha@L3,49.78776738159305,49.78776738159305,49.78776738159305,PASS
+estados L6_L7: LC / 1 By pass,retirada_condensado_linha@L4,41.98217133797685,41.98217133797685,41.98217133797685,PASS
+estados L6_L7: LC / 1 By pass,retirada_condensado_linha@L5,48.51273132388436,48.51273132388436,48.51273132388436,PASS
+estados L6_L7: LC / 1 By pass,retirada_condensado_linha@L6,36.15204050887966,36.15204050887966,36.15204050887966,PASS
+estados L6_L7: LC / 1 By pass,retirada_condensado_linha@L7,43.38244861065559,43.38244861065559,43.38244861065559,PASS
+estados L6_L7: LC / 1 By pass,retirada_condensado_total@L1_L7,306.9457520807773,306.9457520807773,306.9457520807773,PASS
+estados L6_L7: LC / 1 By pass e LC,lth_grupo@L1_L3,1100.0,1100.0,1100.0,PASS
+estados L6_L7: LC / 1 By pass e LC,lth_grupo@L4_L5,970.0,970.0,970.0,PASS
+estados L6_L7: LC / 1 By pass e LC,lth_grupo@L6_L7,1100.0,1100.0,1100.0,PASS
+estados L6_L7: LC / 1 By pass e LC,retirada_cond_corr_lth@L1_L3,52.241865561555585,52.241865561555585,52.241865561555585,PASS
+estados L6_L7: LC / 1 By pass e LC,retirada_cond_corr_lth@L4_L5,48.88652943961213,48.88652943961213,48.88652943961213,PASS
+estados L6_L7: LC / 1 By pass e LC,retirada_cond_corr_lth@L6_L7,53.107563637622576,53.107563637622576,53.107563637622576,PASS
+estados L6_L7: LC / 1 By pass e LC,retirada_cond_corr_ltp@L1_L3,53.93641212842863,53.93641212842863,53.93641212842863,PASS
+estados L6_L7: LC / 1 By pass e LC,retirada_cond_corr_ltp@L4_L5,53.63907810868153,53.63907810868153,53.63907810868153,PASS
+estados L6_L7: LC / 1 By pass e LC,retirada_cond_corr_ltp@L6_L7,52.87525472002136,52.87525472002136,52.87525472002136,PASS
+estados L6_L7: LC / 1 By pass e LC,retirada_condensado_grupo@L1_L3,136.91636029938087,136.91636029938087,136.91636029938087,PASS
+estados L6_L7: LC / 1 By pass e LC,retirada_condensado_grupo@L4_L5,90.4949026618612,90.4949026618612,90.4949026618612,PASS
+estados L6_L7: LC / 1 By pass e LC,retirada_condensado_grupo@L6_L7,79.53448911953525,79.53448911953525,79.53448911953525,PASS
+estados L6_L7: LC / 1 By pass e LC,retirada_condensado_linha@L1,41.489806151327535,41.489806151327535,41.489806151327535,PASS
+estados L6_L7: LC / 1 By pass e LC,retirada_condensado_linha@L2,45.63878676646029,45.63878676646029,45.63878676646029,PASS
+estados L6_L7: LC / 1 By pass e LC,retirada_condensado_linha@L3,49.78776738159305,49.78776738159305,49.78776738159305,PASS
+estados L6_L7: LC / 1 By pass e LC,retirada_condensado_linha@L4,41.98217133797685,41.98217133797685,41.98217133797685,PASS
+estados L6_L7: LC / 1 By pass e LC,retirada_condensado_linha@L5,48.51273132388436,48.51273132388436,48.51273132388436,PASS
+estados L6_L7: LC / 1 By pass e LC,retirada_condensado_linha@L6,36.15204050887966,36.15204050887966,36.15204050887966,PASS
+estados L6_L7: LC / 1 By pass e LC,retirada_condensado_linha@L7,43.38244861065559,43.38244861065559,43.38244861065559,PASS
+estados L6_L7: LC / 1 By pass e LC,retirada_condensado_total@L1_L7,306.9457520807773,306.9457520807773,306.9457520807773,PASS
+estados L6_L7: Overhaul/Parada / Normal,lth_grupo@L1_L3,1100.0,1100.0,1100.0,PASS
+estados L6_L7: Overhaul/Parada / Normal,lth_grupo@L4_L5,970.0,970.0,970.0,PASS
+estados L6_L7: Overhaul/Parada / Normal,lth_grupo@L6_L7,1100.0,1100.0,1100.0,PASS
+estados L6_L7: Overhaul/Parada / Normal,retirada_cond_corr_lth@L1_L3,52.241865561555585,52.241865561555585,52.241865561555585,PASS
+estados L6_L7: Overhaul/Parada / Normal,retirada_cond_corr_lth@L4_L5,48.88652943961213,48.88652943961213,48.88652943961213,PASS
+estados L6_L7: Overhaul/Parada / Normal,retirada_cond_corr_lth@L6_L7,53.107563637622576,53.107563637622576,53.107563637622576,PASS
+estados L6_L7: Overhaul/Parada / Normal,retirada_cond_corr_ltp@L1_L3,53.93641212842863,53.93641212842863,53.93641212842863,PASS
+estados L6_L7: Overhaul/Parada / Normal,retirada_cond_corr_ltp@L4_L5,53.63907810868153,53.63907810868153,53.63907810868153,PASS
+estados L6_L7: Overhaul/Parada / Normal,retirada_cond_corr_ltp@L6_L7,52.87525472002136,52.87525472002136,52.87525472002136,PASS
+estados L6_L7: Overhaul/Parada / Normal,retirada_condensado_grupo@L1_L3,136.91636029938087,136.91636029938087,136.91636029938087,PASS
+estados L6_L7: Overhaul/Parada / Normal,retirada_condensado_grupo@L4_L5,90.4949026618612,90.4949026618612,90.4949026618612,PASS
+estados L6_L7: Overhaul/Parada / Normal,retirada_condensado_grupo@L6_L7,50.46461783520243,50.46461783520243,50.46461783520243,PASS
+estados L6_L7: Overhaul/Parada / Normal,retirada_condensado_linha@L1,41.489806151327535,41.489806151327535,41.489806151327535,PASS
+estados L6_L7: Overhaul/Parada / Normal,retirada_condensado_linha@L2,45.63878676646029,45.63878676646029,45.63878676646029,PASS
+estados L6_L7: Overhaul/Parada / Normal,retirada_condensado_linha@L3,49.78776738159305,49.78776738159305,49.78776738159305,PASS
+estados L6_L7: Overhaul/Parada / Normal,retirada_condensado_linha@L4,41.98217133797685,41.98217133797685,41.98217133797685,PASS
+estados L6_L7: Overhaul/Parada / Normal,retirada_condensado_linha@L5,48.51273132388436,48.51273132388436,48.51273132388436,PASS
+estados L6_L7: Overhaul/Parada / Normal,retirada_condensado_linha@L6,22.93846265236474,22.93846265236474,22.93846265236474,PASS
+estados L6_L7: Overhaul/Parada / Normal,retirada_condensado_linha@L7,27.52615518283769,27.52615518283769,27.52615518283769,PASS
+estados L6_L7: Overhaul/Parada / Normal,retirada_condensado_total@L1_L7,277.8758807964445,277.8758807964445,277.8758807964445,PASS
+estados L6_L7: Overhaul/Parada / LC,lth_grupo@L1_L3,1100.0,1100.0,1100.0,PASS
+estados L6_L7: Overhaul/Parada / LC,lth_grupo@L4_L5,970.0,970.0,970.0,PASS
+estados L6_L7: Overhaul/Parada / LC,lth_grupo@L6_L7,1100.0,1100.0,1100.0,PASS
+estados L6_L7: Overhaul/Parada / LC,retirada_cond_corr_lth@L1_L3,52.241865561555585,52.241865561555585,52.241865561555585,PASS
+estados L6_L7: Overhaul/Parada / LC,retirada_cond_corr_lth@L4_L5,48.88652943961213,48.88652943961213,48.88652943961213,PASS
+estados L6_L7: Overhaul/Parada / LC,retirada_cond_corr_lth@L6_L7,53.107563637622576,53.107563637622576,53.107563637622576,PASS
+estados L6_L7: Overhaul/Parada / LC,retirada_cond_corr_ltp@L1_L3,53.93641212842863,53.93641212842863,53.93641212842863,PASS
+estados L6_L7: Overhaul/Parada / LC,retirada_cond_corr_ltp@L4_L5,53.63907810868153,53.63907810868153,53.63907810868153,PASS
+estados L6_L7: Overhaul/Parada / LC,retirada_cond_corr_ltp@L6_L7,52.87525472002136,52.87525472002136,52.87525472002136,PASS
+estados L6_L7: Overhaul/Parada / LC,retirada_condensado_grupo@L1_L3,136.91636029938087,136.91636029938087,136.91636029938087,PASS
+estados L6_L7: Overhaul/Parada / LC,retirada_condensado_grupo@L4_L5,90.4949026618612,90.4949026618612,90.4949026618612,PASS
+estados L6_L7: Overhaul/Parada / LC,retirada_condensado_grupo@L6_L7,79.53448911953525,79.53448911953525,79.53448911953525,PASS
+estados L6_L7: Overhaul/Parada / LC,retirada_condensado_linha@L1,41.489806151327535,41.489806151327535,41.489806151327535,PASS
+estados L6_L7: Overhaul/Parada / LC,retirada_condensado_linha@L2,45.63878676646029,45.63878676646029,45.63878676646029,PASS
+estados L6_L7: Overhaul/Parada / LC,retirada_condensado_linha@L3,49.78776738159305,49.78776738159305,49.78776738159305,PASS
+estados L6_L7: Overhaul/Parada / LC,retirada_condensado_linha@L4,41.98217133797685,41.98217133797685,41.98217133797685,PASS
+estados L6_L7: Overhaul/Parada / LC,retirada_condensado_linha@L5,48.51273132388436,48.51273132388436,48.51273132388436,PASS
+estados L6_L7: Overhaul/Parada / LC,retirada_condensado_linha@L6,36.15204050887966,36.15204050887966,36.15204050887966,PASS
+estados L6_L7: Overhaul/Parada / LC,retirada_condensado_linha@L7,43.38244861065559,43.38244861065559,43.38244861065559,PASS
+estados L6_L7: Overhaul/Parada / LC,retirada_condensado_total@L1_L7,306.9457520807773,306.9457520807773,306.9457520807773,PASS
+estados L6_L7: Overhaul/Parada / Overhaul/Parada,lth_grupo@L1_L3,1100.0,1100.0,1100.0,PASS
+estados L6_L7: Overhaul/Parada / Overhaul/Parada,lth_grupo@L4_L5,970.0,970.0,970.0,PASS
+estados L6_L7: Overhaul/Parada / Overhaul/Parada,lth_grupo@L6_L7,1100.0,1100.0,1100.0,PASS
+estados L6_L7: Overhaul/Parada / Overhaul/Parada,retirada_cond_corr_lth@L1_L3,52.241865561555585,52.241865561555585,52.241865561555585,PASS
+estados L6_L7: Overhaul/Parada / Overhaul/Parada,retirada_cond_corr_lth@L4_L5,48.88652943961213,48.88652943961213,48.88652943961213,PASS
+estados L6_L7: Overhaul/Parada / Overhaul/Parada,retirada_cond_corr_lth@L6_L7,53.107563637622576,53.107563637622576,53.107563637622576,PASS
+estados L6_L7: Overhaul/Parada / Overhaul/Parada,retirada_cond_corr_ltp@L1_L3,53.93641212842863,53.93641212842863,53.93641212842863,PASS
+estados L6_L7: Overhaul/Parada / Overhaul/Parada,retirada_cond_corr_ltp@L4_L5,53.63907810868153,53.63907810868153,53.63907810868153,PASS
+estados L6_L7: Overhaul/Parada / Overhaul/Parada,retirada_cond_corr_ltp@L6_L7,52.87525472002136,52.87525472002136,52.87525472002136,PASS
+estados L6_L7: Overhaul/Parada / Overhaul/Parada,retirada_condensado_grupo@L1_L3,136.91636029938087,136.91636029938087,136.91636029938087,PASS
+estados L6_L7: Overhaul/Parada / Overhaul/Parada,retirada_condensado_grupo@L4_L5,90.4949026618612,90.4949026618612,90.4949026618612,PASS
+estados L6_L7: Overhaul/Parada / Overhaul/Parada,retirada_condensado_grupo@L6_L7,50.46461783520243,50.46461783520243,50.46461783520243,PASS
+estados L6_L7: Overhaul/Parada / Overhaul/Parada,retirada_condensado_linha@L1,41.489806151327535,41.489806151327535,41.489806151327535,PASS
+estados L6_L7: Overhaul/Parada / Overhaul/Parada,retirada_condensado_linha@L2,45.63878676646029,45.63878676646029,45.63878676646029,PASS
+estados L6_L7: Overhaul/Parada / Overhaul/Parada,retirada_condensado_linha@L3,49.78776738159305,49.78776738159305,49.78776738159305,PASS
+estados L6_L7: Overhaul/Parada / Overhaul/Parada,retirada_condensado_linha@L4,41.98217133797685,41.98217133797685,41.98217133797685,PASS
+estados L6_L7: Overhaul/Parada / Overhaul/Parada,retirada_condensado_linha@L5,48.51273132388436,48.51273132388436,48.51273132388436,PASS
+estados L6_L7: Overhaul/Parada / Overhaul/Parada,retirada_condensado_linha@L6,22.93846265236474,22.93846265236474,22.93846265236474,PASS
+estados L6_L7: Overhaul/Parada / Overhaul/Parada,retirada_condensado_linha@L7,27.52615518283769,27.52615518283769,27.52615518283769,PASS
+estados L6_L7: Overhaul/Parada / Overhaul/Parada,retirada_condensado_total@L1_L7,277.8758807964445,277.8758807964445,277.8758807964445,PASS
+estados L6_L7: Overhaul/Parada / 1 By pass,lth_grupo@L1_L3,1100.0,1100.0,1100.0,PASS
+estados L6_L7: Overhaul/Parada / 1 By pass,lth_grupo@L4_L5,970.0,970.0,970.0,PASS
+estados L6_L7: Overhaul/Parada / 1 By pass,lth_grupo@L6_L7,1100.0,1100.0,1100.0,PASS
+estados L6_L7: Overhaul/Parada / 1 By pass,retirada_cond_corr_lth@L1_L3,52.241865561555585,52.241865561555585,52.241865561555585,PASS
+estados L6_L7: Overhaul/Parada / 1 By pass,retirada_cond_corr_lth@L4_L5,48.88652943961213,48.88652943961213,48.88652943961213,PASS
+estados L6_L7: Overhaul/Parada / 1 By pass,retirada_cond_corr_lth@L6_L7,53.107563637622576,53.107563637622576,53.107563637622576,PASS
+estados L6_L7: Overhaul/Parada / 1 By pass,retirada_cond_corr_ltp@L1_L3,53.93641212842863,53.93641212842863,53.93641212842863,PASS
+estados L6_L7: Overhaul/Parada / 1 By pass,retirada_cond_corr_ltp@L4_L5,53.63907810868153,53.63907810868153,53.63907810868153,PASS
+estados L6_L7: Overhaul/Parada / 1 By pass,retirada_cond_corr_ltp@L6_L7,52.87525472002136,52.87525472002136,52.87525472002136,PASS
+estados L6_L7: Overhaul/Parada / 1 By pass,retirada_condensado_grupo@L1_L3,136.91636029938087,136.91636029938087,136.91636029938087,PASS
+estados L6_L7: Overhaul/Parada / 1 By pass,retirada_condensado_grupo@L4_L5,90.4949026618612,90.4949026618612,90.4949026618612,PASS
+estados L6_L7: Overhaul/Parada / 1 By pass,retirada_condensado_grupo@L6_L7,50.46461783520243,50.46461783520243,50.46461783520243,PASS
+estados L6_L7: Overhaul/Parada / 1 By pass,retirada_condensado_linha@L1,41.489806151327535,41.489806151327535,41.489806151327535,PASS
+estados L6_L7: Overhaul/Parada / 1 By pass,retirada_condensado_linha@L2,45.63878676646029,45.63878676646029,45.63878676646029,PASS
+estados L6_L7: Overhaul/Parada / 1 By pass,retirada_condensado_linha@L3,49.78776738159305,49.78776738159305,49.78776738159305,PASS
+estados L6_L7: Overhaul/Parada / 1 By pass,retirada_condensado_linha@L4,41.98217133797685,41.98217133797685,41.98217133797685,PASS
+estados L6_L7: Overhaul/Parada / 1 By pass,retirada_condensado_linha@L5,48.51273132388436,48.51273132388436,48.51273132388436,PASS
+estados L6_L7: Overhaul/Parada / 1 By pass,retirada_condensado_linha@L6,22.93846265236474,22.93846265236474,22.93846265236474,PASS
+estados L6_L7: Overhaul/Parada / 1 By pass,retirada_condensado_linha@L7,27.52615518283769,27.52615518283769,27.52615518283769,PASS
+estados L6_L7: Overhaul/Parada / 1 By pass,retirada_condensado_total@L1_L7,277.8758807964445,277.8758807964445,277.8758807964445,PASS
+estados L6_L7: Overhaul/Parada / 1 By pass e LC,lth_grupo@L1_L3,1100.0,1100.0,1100.0,PASS
+estados L6_L7: Overhaul/Parada / 1 By pass e LC,lth_grupo@L4_L5,970.0,970.0,970.0,PASS
+estados L6_L7: Overhaul/Parada / 1 By pass e LC,lth_grupo@L6_L7,1100.0,1100.0,1100.0,PASS
+estados L6_L7: Overhaul/Parada / 1 By pass e LC,retirada_cond_corr_lth@L1_L3,52.241865561555585,52.241865561555585,52.241865561555585,PASS
+estados L6_L7: Overhaul/Parada / 1 By pass e LC,retirada_cond_corr_lth@L4_L5,48.88652943961213,48.88652943961213,48.88652943961213,PASS
+estados L6_L7: Overhaul/Parada / 1 By pass e LC,retirada_cond_corr_lth@L6_L7,53.107563637622576,53.107563637622576,53.107563637622576,PASS
+estados L6_L7: Overhaul/Parada / 1 By pass e LC,retirada_cond_corr_ltp@L1_L3,53.93641212842863,53.93641212842863,53.93641212842863,PASS
+estados L6_L7: Overhaul/Parada / 1 By pass e LC,retirada_cond_corr_ltp@L4_L5,53.63907810868153,53.63907810868153,53.63907810868153,PASS
+estados L6_L7: Overhaul/Parada / 1 By pass e LC,retirada_cond_corr_ltp@L6_L7,52.87525472002136,52.87525472002136,52.87525472002136,PASS
+estados L6_L7: Overhaul/Parada / 1 By pass e LC,retirada_condensado_grupo@L1_L3,136.91636029938087,136.91636029938087,136.91636029938087,PASS
+estados L6_L7: Overhaul/Parada / 1 By pass e LC,retirada_condensado_grupo@L4_L5,90.4949026618612,90.4949026618612,90.4949026618612,PASS
+estados L6_L7: Overhaul/Parada / 1 By pass e LC,retirada_condensado_grupo@L6_L7,50.46461783520243,50.46461783520243,50.46461783520243,PASS
+estados L6_L7: Overhaul/Parada / 1 By pass e LC,retirada_condensado_linha@L1,41.489806151327535,41.489806151327535,41.489806151327535,PASS
+estados L6_L7: Overhaul/Parada / 1 By pass e LC,retirada_condensado_linha@L2,45.63878676646029,45.63878676646029,45.63878676646029,PASS
+estados L6_L7: Overhaul/Parada / 1 By pass e LC,retirada_condensado_linha@L3,49.78776738159305,49.78776738159305,49.78776738159305,PASS
+estados L6_L7: Overhaul/Parada / 1 By pass e LC,retirada_condensado_linha@L4,41.98217133797685,41.98217133797685,41.98217133797685,PASS
+estados L6_L7: Overhaul/Parada / 1 By pass e LC,retirada_condensado_linha@L5,48.51273132388436,48.51273132388436,48.51273132388436,PASS
+estados L6_L7: Overhaul/Parada / 1 By pass e LC,retirada_condensado_linha@L6,22.93846265236474,22.93846265236474,22.93846265236474,PASS
+estados L6_L7: Overhaul/Parada / 1 By pass e LC,retirada_condensado_linha@L7,27.52615518283769,27.52615518283769,27.52615518283769,PASS
+estados L6_L7: Overhaul/Parada / 1 By pass e LC,retirada_condensado_total@L1_L7,277.8758807964445,277.8758807964445,277.8758807964445,PASS
+estados L6_L7: 1 By pass / Normal,lth_grupo@L1_L3,1100.0,1100.0,1100.0,PASS
+estados L6_L7: 1 By pass / Normal,lth_grupo@L4_L5,970.0,970.0,970.0,PASS
+estados L6_L7: 1 By pass / Normal,lth_grupo@L6_L7,1100.0,1100.0,1100.0,PASS
+estados L6_L7: 1 By pass / Normal,retirada_cond_corr_lth@L1_L3,52.241865561555585,52.241865561555585,52.241865561555585,PASS
+estados L6_L7: 1 By pass / Normal,retirada_cond_corr_lth@L4_L5,48.88652943961213,48.88652943961213,48.88652943961213,PASS
+estados L6_L7: 1 By pass / Normal,retirada_cond_corr_lth@L6_L7,53.107563637622576,53.107563637622576,53.107563637622576,PASS
+estados L6_L7: 1 By pass / Normal,retirada_cond_corr_ltp@L1_L3,53.93641212842863,53.93641212842863,53.93641212842863,PASS
+estados L6_L7: 1 By pass / Normal,retirada_cond_corr_ltp@L4_L5,53.63907810868153,53.63907810868153,53.63907810868153,PASS
+estados L6_L7: 1 By pass / Normal,retirada_cond_corr_ltp@L6_L7,52.87525472002136,52.87525472002136,52.87525472002136,PASS
+estados L6_L7: 1 By pass / Normal,retirada_condensado_grupo@L1_L3,136.91636029938087,136.91636029938087,136.91636029938087,PASS
+estados L6_L7: 1 By pass / Normal,retirada_condensado_grupo@L4_L5,90.4949026618612,90.4949026618612,90.4949026618612,PASS
+estados L6_L7: 1 By pass / Normal,retirada_condensado_grupo@L6_L7,94.46461783520243,94.46461783520243,94.46461783520243,PASS
+estados L6_L7: 1 By pass / Normal,retirada_condensado_linha@L1,41.489806151327535,41.489806151327535,41.489806151327535,PASS
+estados L6_L7: 1 By pass / Normal,retirada_condensado_linha@L2,45.63878676646029,45.63878676646029,45.63878676646029,PASS
+estados L6_L7: 1 By pass / Normal,retirada_condensado_linha@L3,49.78776738159305,49.78776738159305,49.78776738159305,PASS
+estados L6_L7: 1 By pass / Normal,retirada_condensado_linha@L4,41.98217133797685,41.98217133797685,41.98217133797685,PASS
+estados L6_L7: 1 By pass / Normal,retirada_condensado_linha@L5,48.51273132388436,48.51273132388436,48.51273132388436,PASS
+estados L6_L7: 1 By pass / Normal,retirada_condensado_linha@L6,42.93846265236474,42.93846265236474,42.93846265236474,PASS
+estados L6_L7: 1 By pass / Normal,retirada_condensado_linha@L7,51.52615518283769,51.52615518283769,51.52615518283769,PASS
+estados L6_L7: 1 By pass / Normal,retirada_condensado_total@L1_L7,321.8758807964445,321.8758807964445,321.8758807964445,PASS
+estados L6_L7: 1 By pass / LC,lth_grupo@L1_L3,1100.0,1100.0,1100.0,PASS
+estados L6_L7: 1 By pass / LC,lth_grupo@L4_L5,970.0,970.0,970.0,PASS
+estados L6_L7: 1 By pass / LC,lth_grupo@L6_L7,1100.0,1100.0,1100.0,PASS
+estados L6_L7: 1 By pass / LC,retirada_cond_corr_lth@L1_L3,52.241865561555585,52.241865561555585,52.241865561555585,PASS
+estados L6_L7: 1 By pass / LC,retirada_cond_corr_lth@L4_L5,48.88652943961213,48.88652943961213,48.88652943961213,PASS
+estados L6_L7: 1 By pass / LC,retirada_cond_corr_lth@L6_L7,53.107563637622576,53.107563637622576,53.107563637622576,PASS
+estados L6_L7: 1 By pass / LC,retirada_cond_corr_ltp@L1_L3,53.93641212842863,53.93641212842863,53.93641212842863,PASS
+estados L6_L7: 1 By pass / LC,retirada_cond_corr_ltp@L4_L5,53.63907810868153,53.63907810868153,53.63907810868153,PASS
+estados L6_L7: 1 By pass / LC,retirada_cond_corr_ltp@L6_L7,52.87525472002136,52.87525472002136,52.87525472002136,PASS
+estados L6_L7: 1 By pass / LC,retirada_condensado_grupo@L1_L3,136.91636029938087,136.91636029938087,136.91636029938087,PASS
+estados L6_L7: 1 By pass / LC,retirada_condensado_grupo@L4_L5,90.4949026618612,90.4949026618612,90.4949026618612,PASS
+estados L6_L7: 1 By pass / LC,retirada_condensado_grupo@L6_L7,79.53448911953525,79.53448911953525,79.53448911953525,PASS
+estados L6_L7: 1 By pass / LC,retirada_condensado_linha@L1,41.489806151327535,41.489806151327535,41.489806151327535,PASS
+estados L6_L7: 1 By pass / LC,retirada_condensado_linha@L2,45.63878676646029,45.63878676646029,45.63878676646029,PASS
+estados L6_L7: 1 By pass / LC,retirada_condensado_linha@L3,49.78776738159305,49.78776738159305,49.78776738159305,PASS
+estados L6_L7: 1 By pass / LC,retirada_condensado_linha@L4,41.98217133797685,41.98217133797685,41.98217133797685,PASS
+estados L6_L7: 1 By pass / LC,retirada_condensado_linha@L5,48.51273132388436,48.51273132388436,48.51273132388436,PASS
+estados L6_L7: 1 By pass / LC,retirada_condensado_linha@L6,36.15204050887966,36.15204050887966,36.15204050887966,PASS
+estados L6_L7: 1 By pass / LC,retirada_condensado_linha@L7,43.38244861065559,43.38244861065559,43.38244861065559,PASS
+estados L6_L7: 1 By pass / LC,retirada_condensado_total@L1_L7,306.9457520807773,306.9457520807773,306.9457520807773,PASS
+estados L6_L7: 1 By pass / Overhaul/Parada,lth_grupo@L1_L3,1100.0,1100.0,1100.0,PASS
+estados L6_L7: 1 By pass / Overhaul/Parada,lth_grupo@L4_L5,970.0,970.0,970.0,PASS
+estados L6_L7: 1 By pass / Overhaul/Parada,lth_grupo@L6_L7,1100.0,1100.0,1100.0,PASS
+estados L6_L7: 1 By pass / Overhaul/Parada,retirada_cond_corr_lth@L1_L3,52.241865561555585,52.241865561555585,52.241865561555585,PASS
+estados L6_L7: 1 By pass / Overhaul/Parada,retirada_cond_corr_lth@L4_L5,48.88652943961213,48.88652943961213,48.88652943961213,PASS
+estados L6_L7: 1 By pass / Overhaul/Parada,retirada_cond_corr_lth@L6_L7,53.107563637622576,53.107563637622576,53.107563637622576,PASS
+estados L6_L7: 1 By pass / Overhaul/Parada,retirada_cond_corr_ltp@L1_L3,53.93641212842863,53.93641212842863,53.93641212842863,PASS
+estados L6_L7: 1 By pass / Overhaul/Parada,retirada_cond_corr_ltp@L4_L5,53.63907810868153,53.63907810868153,53.63907810868153,PASS
+estados L6_L7: 1 By pass / Overhaul/Parada,retirada_cond_corr_ltp@L6_L7,52.87525472002136,52.87525472002136,52.87525472002136,PASS
+estados L6_L7: 1 By pass / Overhaul/Parada,retirada_condensado_grupo@L1_L3,136.91636029938087,136.91636029938087,136.91636029938087,PASS
+estados L6_L7: 1 By pass / Overhaul/Parada,retirada_condensado_grupo@L4_L5,90.4949026618612,90.4949026618612,90.4949026618612,PASS
+estados L6_L7: 1 By pass / Overhaul/Parada,retirada_condensado_grupo@L6_L7,50.46461783520243,50.46461783520243,50.46461783520243,PASS
+estados L6_L7: 1 By pass / Overhaul/Parada,retirada_condensado_linha@L1,41.489806151327535,41.489806151327535,41.489806151327535,PASS
+estados L6_L7: 1 By pass / Overhaul/Parada,retirada_condensado_linha@L2,45.63878676646029,45.63878676646029,45.63878676646029,PASS
+estados L6_L7: 1 By pass / Overhaul/Parada,retirada_condensado_linha@L3,49.78776738159305,49.78776738159305,49.78776738159305,PASS
+estados L6_L7: 1 By pass / Overhaul/Parada,retirada_condensado_linha@L4,41.98217133797685,41.98217133797685,41.98217133797685,PASS
+estados L6_L7: 1 By pass / Overhaul/Parada,retirada_condensado_linha@L5,48.51273132388436,48.51273132388436,48.51273132388436,PASS
+estados L6_L7: 1 By pass / Overhaul/Parada,retirada_condensado_linha@L6,22.93846265236474,22.93846265236474,22.93846265236474,PASS
+estados L6_L7: 1 By pass / Overhaul/Parada,retirada_condensado_linha@L7,27.52615518283769,27.52615518283769,27.52615518283769,PASS
+estados L6_L7: 1 By pass / Overhaul/Parada,retirada_condensado_total@L1_L7,277.8758807964445,277.8758807964445,277.8758807964445,PASS
+estados L6_L7: 1 By pass / 1 By pass,lth_grupo@L1_L3,1100.0,1100.0,1100.0,PASS
+estados L6_L7: 1 By pass / 1 By pass,lth_grupo@L4_L5,970.0,970.0,970.0,PASS
+estados L6_L7: 1 By pass / 1 By pass,lth_grupo@L6_L7,1100.0,1100.0,1100.0,PASS
+estados L6_L7: 1 By pass / 1 By pass,retirada_cond_corr_lth@L1_L3,52.241865561555585,52.241865561555585,52.241865561555585,PASS
+estados L6_L7: 1 By pass / 1 By pass,retirada_cond_corr_lth@L4_L5,48.88652943961213,48.88652943961213,48.88652943961213,PASS
+estados L6_L7: 1 By pass / 1 By pass,retirada_cond_corr_lth@L6_L7,53.107563637622576,53.107563637622576,53.107563637622576,PASS
+estados L6_L7: 1 By pass / 1 By pass,retirada_cond_corr_ltp@L1_L3,53.93641212842863,53.93641212842863,53.93641212842863,PASS
+estados L6_L7: 1 By pass / 1 By pass,retirada_cond_corr_ltp@L4_L5,53.63907810868153,53.63907810868153,53.63907810868153,PASS
+estados L6_L7: 1 By pass / 1 By pass,retirada_cond_corr_ltp@L6_L7,52.87525472002136,52.87525472002136,52.87525472002136,PASS
+estados L6_L7: 1 By pass / 1 By pass,retirada_condensado_grupo@L1_L3,136.91636029938087,136.91636029938087,136.91636029938087,PASS
+estados L6_L7: 1 By pass / 1 By pass,retirada_condensado_grupo@L4_L5,90.4949026618612,90.4949026618612,90.4949026618612,PASS
+estados L6_L7: 1 By pass / 1 By pass,retirada_condensado_grupo@L6_L7,94.46461783520243,94.46461783520243,94.46461783520243,PASS
+estados L6_L7: 1 By pass / 1 By pass,retirada_condensado_linha@L1,41.489806151327535,41.489806151327535,41.489806151327535,PASS
+estados L6_L7: 1 By pass / 1 By pass,retirada_condensado_linha@L2,45.63878676646029,45.63878676646029,45.63878676646029,PASS
+estados L6_L7: 1 By pass / 1 By pass,retirada_condensado_linha@L3,49.78776738159305,49.78776738159305,49.78776738159305,PASS
+estados L6_L7: 1 By pass / 1 By pass,retirada_condensado_linha@L4,41.98217133797685,41.98217133797685,41.98217133797685,PASS
+estados L6_L7: 1 By pass / 1 By pass,retirada_condensado_linha@L5,48.51273132388436,48.51273132388436,48.51273132388436,PASS
+estados L6_L7: 1 By pass / 1 By pass,retirada_condensado_linha@L6,42.93846265236474,42.93846265236474,42.93846265236474,PASS
+estados L6_L7: 1 By pass / 1 By pass,retirada_condensado_linha@L7,51.52615518283769,51.52615518283769,51.52615518283769,PASS
+estados L6_L7: 1 By pass / 1 By pass,retirada_condensado_total@L1_L7,321.8758807964445,321.8758807964445,321.8758807964445,PASS
+estados L6_L7: 1 By pass / 1 By pass e LC,lth_grupo@L1_L3,1100.0,1100.0,1100.0,PASS
+estados L6_L7: 1 By pass / 1 By pass e LC,lth_grupo@L4_L5,970.0,970.0,970.0,PASS
+estados L6_L7: 1 By pass / 1 By pass e LC,lth_grupo@L6_L7,1100.0,1100.0,1100.0,PASS
+estados L6_L7: 1 By pass / 1 By pass e LC,retirada_cond_corr_lth@L1_L3,52.241865561555585,52.241865561555585,52.241865561555585,PASS
+estados L6_L7: 1 By pass / 1 By pass e LC,retirada_cond_corr_lth@L4_L5,48.88652943961213,48.88652943961213,48.88652943961213,PASS
+estados L6_L7: 1 By pass / 1 By pass e LC,retirada_cond_corr_lth@L6_L7,53.107563637622576,53.107563637622576,53.107563637622576,PASS
+estados L6_L7: 1 By pass / 1 By pass e LC,retirada_cond_corr_ltp@L1_L3,53.93641212842863,53.93641212842863,53.93641212842863,PASS
+estados L6_L7: 1 By pass / 1 By pass e LC,retirada_cond_corr_ltp@L4_L5,53.63907810868153,53.63907810868153,53.63907810868153,PASS
+estados L6_L7: 1 By pass / 1 By pass e LC,retirada_cond_corr_ltp@L6_L7,52.87525472002136,52.87525472002136,52.87525472002136,PASS
+estados L6_L7: 1 By pass / 1 By pass e LC,retirada_condensado_grupo@L1_L3,136.91636029938087,136.91636029938087,136.91636029938087,PASS
+estados L6_L7: 1 By pass / 1 By pass e LC,retirada_condensado_grupo@L4_L5,90.4949026618612,90.4949026618612,90.4949026618612,PASS
+estados L6_L7: 1 By pass / 1 By pass e LC,retirada_condensado_grupo@L6_L7,94.46461783520243,94.46461783520243,94.46461783520243,PASS
+estados L6_L7: 1 By pass / 1 By pass e LC,retirada_condensado_linha@L1,41.489806151327535,41.489806151327535,41.489806151327535,PASS
+estados L6_L7: 1 By pass / 1 By pass e LC,retirada_condensado_linha@L2,45.63878676646029,45.63878676646029,45.63878676646029,PASS
+estados L6_L7: 1 By pass / 1 By pass e LC,retirada_condensado_linha@L3,49.78776738159305,49.78776738159305,49.78776738159305,PASS
+estados L6_L7: 1 By pass / 1 By pass e LC,retirada_condensado_linha@L4,41.98217133797685,41.98217133797685,41.98217133797685,PASS
+estados L6_L7: 1 By pass / 1 By pass e LC,retirada_condensado_linha@L5,48.51273132388436,48.51273132388436,48.51273132388436,PASS
+estados L6_L7: 1 By pass / 1 By pass e LC,retirada_condensado_linha@L6,42.93846265236474,42.93846265236474,42.93846265236474,PASS
+estados L6_L7: 1 By pass / 1 By pass e LC,retirada_condensado_linha@L7,51.52615518283769,51.52615518283769,51.52615518283769,PASS
+estados L6_L7: 1 By pass / 1 By pass e LC,retirada_condensado_total@L1_L7,321.8758807964445,321.8758807964445,321.8758807964445,PASS
+estados L6_L7: 1 By pass e LC / Normal,lth_grupo@L1_L3,1100.0,1100.0,1100.0,PASS
+estados L6_L7: 1 By pass e LC / Normal,lth_grupo@L4_L5,970.0,970.0,970.0,PASS
+estados L6_L7: 1 By pass e LC / Normal,lth_grupo@L6_L7,1100.0,1100.0,1100.0,PASS
+estados L6_L7: 1 By pass e LC / Normal,retirada_cond_corr_lth@L1_L3,52.241865561555585,52.241865561555585,52.241865561555585,PASS
+estados L6_L7: 1 By pass e LC / Normal,retirada_cond_corr_lth@L4_L5,48.88652943961213,48.88652943961213,48.88652943961213,PASS
+estados L6_L7: 1 By pass e LC / Normal,retirada_cond_corr_lth@L6_L7,53.107563637622576,53.107563637622576,53.107563637622576,PASS
+estados L6_L7: 1 By pass e LC / Normal,retirada_cond_corr_ltp@L1_L3,53.93641212842863,53.93641212842863,53.93641212842863,PASS
+estados L6_L7: 1 By pass e LC / Normal,retirada_cond_corr_ltp@L4_L5,53.63907810868153,53.63907810868153,53.63907810868153,PASS
+estados L6_L7: 1 By pass e LC / Normal,retirada_cond_corr_ltp@L6_L7,52.87525472002136,52.87525472002136,52.87525472002136,PASS
+estados L6_L7: 1 By pass e LC / Normal,retirada_condensado_grupo@L1_L3,136.91636029938087,136.91636029938087,136.91636029938087,PASS
+estados L6_L7: 1 By pass e LC / Normal,retirada_condensado_grupo@L4_L5,90.4949026618612,90.4949026618612,90.4949026618612,PASS
+estados L6_L7: 1 By pass e LC / Normal,retirada_condensado_grupo@L6_L7,F,F,F,PASS
+estados L6_L7: 1 By pass e LC / Normal,retirada_condensado_linha@L1,41.489806151327535,41.489806151327535,41.489806151327535,PASS
+estados L6_L7: 1 By pass e LC / Normal,retirada_condensado_linha@L2,45.63878676646029,45.63878676646029,45.63878676646029,PASS
+estados L6_L7: 1 By pass e LC / Normal,retirada_condensado_linha@L3,49.78776738159305,49.78776738159305,49.78776738159305,PASS
+estados L6_L7: 1 By pass e LC / Normal,retirada_condensado_linha@L4,41.98217133797685,41.98217133797685,41.98217133797685,PASS
+estados L6_L7: 1 By pass e LC / Normal,retirada_condensado_linha@L5,48.51273132388436,48.51273132388436,48.51273132388436,PASS
+estados L6_L7: 1 By pass e LC / Normal,retirada_condensado_linha@L6,F,<falha: consumo de F>,,PASS
+estados L6_L7: 1 By pass e LC / Normal,retirada_condensado_linha@L7,F,<falha: consumo de F>,,PASS
+estados L6_L7: 1 By pass e LC / Normal,retirada_condensado_total@L1_L7,F,<falha: consumo de F>,,PASS
+estados L6_L7: 1 By pass e LC / LC,lth_grupo@L1_L3,1100.0,1100.0,1100.0,PASS
+estados L6_L7: 1 By pass e LC / LC,lth_grupo@L4_L5,970.0,970.0,970.0,PASS
+estados L6_L7: 1 By pass e LC / LC,lth_grupo@L6_L7,1100.0,1100.0,1100.0,PASS
+estados L6_L7: 1 By pass e LC / LC,retirada_cond_corr_lth@L1_L3,52.241865561555585,52.241865561555585,52.241865561555585,PASS
+estados L6_L7: 1 By pass e LC / LC,retirada_cond_corr_lth@L4_L5,48.88652943961213,48.88652943961213,48.88652943961213,PASS
+estados L6_L7: 1 By pass e LC / LC,retirada_cond_corr_lth@L6_L7,53.107563637622576,53.107563637622576,53.107563637622576,PASS
+estados L6_L7: 1 By pass e LC / LC,retirada_cond_corr_ltp@L1_L3,53.93641212842863,53.93641212842863,53.93641212842863,PASS
+estados L6_L7: 1 By pass e LC / LC,retirada_cond_corr_ltp@L4_L5,53.63907810868153,53.63907810868153,53.63907810868153,PASS
+estados L6_L7: 1 By pass e LC / LC,retirada_cond_corr_ltp@L6_L7,52.87525472002136,52.87525472002136,52.87525472002136,PASS
+estados L6_L7: 1 By pass e LC / LC,retirada_condensado_grupo@L1_L3,136.91636029938087,136.91636029938087,136.91636029938087,PASS
+estados L6_L7: 1 By pass e LC / LC,retirada_condensado_grupo@L4_L5,90.4949026618612,90.4949026618612,90.4949026618612,PASS
+estados L6_L7: 1 By pass e LC / LC,retirada_condensado_grupo@L6_L7,79.53448911953525,79.53448911953525,79.53448911953525,PASS
+estados L6_L7: 1 By pass e LC / LC,retirada_condensado_linha@L1,41.489806151327535,41.489806151327535,41.489806151327535,PASS
+estados L6_L7: 1 By pass e LC / LC,retirada_condensado_linha@L2,45.63878676646029,45.63878676646029,45.63878676646029,PASS
+estados L6_L7: 1 By pass e LC / LC,retirada_condensado_linha@L3,49.78776738159305,49.78776738159305,49.78776738159305,PASS
+estados L6_L7: 1 By pass e LC / LC,retirada_condensado_linha@L4,41.98217133797685,41.98217133797685,41.98217133797685,PASS
+estados L6_L7: 1 By pass e LC / LC,retirada_condensado_linha@L5,48.51273132388436,48.51273132388436,48.51273132388436,PASS
+estados L6_L7: 1 By pass e LC / LC,retirada_condensado_linha@L6,36.15204050887966,36.15204050887966,36.15204050887966,PASS
+estados L6_L7: 1 By pass e LC / LC,retirada_condensado_linha@L7,43.38244861065559,43.38244861065559,43.38244861065559,PASS
+estados L6_L7: 1 By pass e LC / LC,retirada_condensado_total@L1_L7,306.9457520807773,306.9457520807773,306.9457520807773,PASS
+estados L6_L7: 1 By pass e LC / Overhaul/Parada,lth_grupo@L1_L3,1100.0,1100.0,1100.0,PASS
+estados L6_L7: 1 By pass e LC / Overhaul/Parada,lth_grupo@L4_L5,970.0,970.0,970.0,PASS
+estados L6_L7: 1 By pass e LC / Overhaul/Parada,lth_grupo@L6_L7,1100.0,1100.0,1100.0,PASS
+estados L6_L7: 1 By pass e LC / Overhaul/Parada,retirada_cond_corr_lth@L1_L3,52.241865561555585,52.241865561555585,52.241865561555585,PASS
+estados L6_L7: 1 By pass e LC / Overhaul/Parada,retirada_cond_corr_lth@L4_L5,48.88652943961213,48.88652943961213,48.88652943961213,PASS
+estados L6_L7: 1 By pass e LC / Overhaul/Parada,retirada_cond_corr_lth@L6_L7,53.107563637622576,53.107563637622576,53.107563637622576,PASS
+estados L6_L7: 1 By pass e LC / Overhaul/Parada,retirada_cond_corr_ltp@L1_L3,53.93641212842863,53.93641212842863,53.93641212842863,PASS
+estados L6_L7: 1 By pass e LC / Overhaul/Parada,retirada_cond_corr_ltp@L4_L5,53.63907810868153,53.63907810868153,53.63907810868153,PASS
+estados L6_L7: 1 By pass e LC / Overhaul/Parada,retirada_cond_corr_ltp@L6_L7,52.87525472002136,52.87525472002136,52.87525472002136,PASS
+estados L6_L7: 1 By pass e LC / Overhaul/Parada,retirada_condensado_grupo@L1_L3,136.91636029938087,136.91636029938087,136.91636029938087,PASS
+estados L6_L7: 1 By pass e LC / Overhaul/Parada,retirada_condensado_grupo@L4_L5,90.4949026618612,90.4949026618612,90.4949026618612,PASS
+estados L6_L7: 1 By pass e LC / Overhaul/Parada,retirada_condensado_grupo@L6_L7,50.46461783520243,50.46461783520243,50.46461783520243,PASS
+estados L6_L7: 1 By pass e LC / Overhaul/Parada,retirada_condensado_linha@L1,41.489806151327535,41.489806151327535,41.489806151327535,PASS
+estados L6_L7: 1 By pass e LC / Overhaul/Parada,retirada_condensado_linha@L2,45.63878676646029,45.63878676646029,45.63878676646029,PASS
+estados L6_L7: 1 By pass e LC / Overhaul/Parada,retirada_condensado_linha@L3,49.78776738159305,49.78776738159305,49.78776738159305,PASS
+estados L6_L7: 1 By pass e LC / Overhaul/Parada,retirada_condensado_linha@L4,41.98217133797685,41.98217133797685,41.98217133797685,PASS
+estados L6_L7: 1 By pass e LC / Overhaul/Parada,retirada_condensado_linha@L5,48.51273132388436,48.51273132388436,48.51273132388436,PASS
+estados L6_L7: 1 By pass e LC / Overhaul/Parada,retirada_condensado_linha@L6,22.93846265236474,22.93846265236474,22.93846265236474,PASS
+estados L6_L7: 1 By pass e LC / Overhaul/Parada,retirada_condensado_linha@L7,27.52615518283769,27.52615518283769,27.52615518283769,PASS
+estados L6_L7: 1 By pass e LC / Overhaul/Parada,retirada_condensado_total@L1_L7,277.8758807964445,277.8758807964445,277.8758807964445,PASS
+estados L6_L7: 1 By pass e LC / 1 By pass,lth_grupo@L1_L3,1100.0,1100.0,1100.0,PASS
+estados L6_L7: 1 By pass e LC / 1 By pass,lth_grupo@L4_L5,970.0,970.0,970.0,PASS
+estados L6_L7: 1 By pass e LC / 1 By pass,lth_grupo@L6_L7,1100.0,1100.0,1100.0,PASS
+estados L6_L7: 1 By pass e LC / 1 By pass,retirada_cond_corr_lth@L1_L3,52.241865561555585,52.241865561555585,52.241865561555585,PASS
+estados L6_L7: 1 By pass e LC / 1 By pass,retirada_cond_corr_lth@L4_L5,48.88652943961213,48.88652943961213,48.88652943961213,PASS
+estados L6_L7: 1 By pass e LC / 1 By pass,retirada_cond_corr_lth@L6_L7,53.107563637622576,53.107563637622576,53.107563637622576,PASS
+estados L6_L7: 1 By pass e LC / 1 By pass,retirada_cond_corr_ltp@L1_L3,53.93641212842863,53.93641212842863,53.93641212842863,PASS
+estados L6_L7: 1 By pass e LC / 1 By pass,retirada_cond_corr_ltp@L4_L5,53.63907810868153,53.63907810868153,53.63907810868153,PASS
+estados L6_L7: 1 By pass e LC / 1 By pass,retirada_cond_corr_ltp@L6_L7,52.87525472002136,52.87525472002136,52.87525472002136,PASS
+estados L6_L7: 1 By pass e LC / 1 By pass,retirada_condensado_grupo@L1_L3,136.91636029938087,136.91636029938087,136.91636029938087,PASS
+estados L6_L7: 1 By pass e LC / 1 By pass,retirada_condensado_grupo@L4_L5,90.4949026618612,90.4949026618612,90.4949026618612,PASS
+estados L6_L7: 1 By pass e LC / 1 By pass,retirada_condensado_grupo@L6_L7,94.46461783520243,94.46461783520243,94.46461783520243,PASS
+estados L6_L7: 1 By pass e LC / 1 By pass,retirada_condensado_linha@L1,41.489806151327535,41.489806151327535,41.489806151327535,PASS
+estados L6_L7: 1 By pass e LC / 1 By pass,retirada_condensado_linha@L2,45.63878676646029,45.63878676646029,45.63878676646029,PASS
+estados L6_L7: 1 By pass e LC / 1 By pass,retirada_condensado_linha@L3,49.78776738159305,49.78776738159305,49.78776738159305,PASS
+estados L6_L7: 1 By pass e LC / 1 By pass,retirada_condensado_linha@L4,41.98217133797685,41.98217133797685,41.98217133797685,PASS
+estados L6_L7: 1 By pass e LC / 1 By pass,retirada_condensado_linha@L5,48.51273132388436,48.51273132388436,48.51273132388436,PASS
+estados L6_L7: 1 By pass e LC / 1 By pass,retirada_condensado_linha@L6,42.93846265236474,42.93846265236474,42.93846265236474,PASS
+estados L6_L7: 1 By pass e LC / 1 By pass,retirada_condensado_linha@L7,51.52615518283769,51.52615518283769,51.52615518283769,PASS
+estados L6_L7: 1 By pass e LC / 1 By pass,retirada_condensado_total@L1_L7,321.8758807964445,321.8758807964445,321.8758807964445,PASS
+estados L6_L7: 1 By pass e LC / 1 By pass e LC,lth_grupo@L1_L3,1100.0,1100.0,1100.0,PASS
+estados L6_L7: 1 By pass e LC / 1 By pass e LC,lth_grupo@L4_L5,970.0,970.0,970.0,PASS
+estados L6_L7: 1 By pass e LC / 1 By pass e LC,lth_grupo@L6_L7,1100.0,1100.0,1100.0,PASS
+estados L6_L7: 1 By pass e LC / 1 By pass e LC,retirada_cond_corr_lth@L1_L3,52.241865561555585,52.241865561555585,52.241865561555585,PASS
+estados L6_L7: 1 By pass e LC / 1 By pass e LC,retirada_cond_corr_lth@L4_L5,48.88652943961213,48.88652943961213,48.88652943961213,PASS
+estados L6_L7: 1 By pass e LC / 1 By pass e LC,retirada_cond_corr_lth@L6_L7,53.107563637622576,53.107563637622576,53.107563637622576,PASS
+estados L6_L7: 1 By pass e LC / 1 By pass e LC,retirada_cond_corr_ltp@L1_L3,53.93641212842863,53.93641212842863,53.93641212842863,PASS
+estados L6_L7: 1 By pass e LC / 1 By pass e LC,retirada_cond_corr_ltp@L4_L5,53.63907810868153,53.63907810868153,53.63907810868153,PASS
+estados L6_L7: 1 By pass e LC / 1 By pass e LC,retirada_cond_corr_ltp@L6_L7,52.87525472002136,52.87525472002136,52.87525472002136,PASS
+estados L6_L7: 1 By pass e LC / 1 By pass e LC,retirada_condensado_grupo@L1_L3,136.91636029938087,136.91636029938087,136.91636029938087,PASS
+estados L6_L7: 1 By pass e LC / 1 By pass e LC,retirada_condensado_grupo@L4_L5,90.4949026618612,90.4949026618612,90.4949026618612,PASS
+estados L6_L7: 1 By pass e LC / 1 By pass e LC,retirada_condensado_grupo@L6_L7,78.28448911953525,78.28448911953525,78.28448911953525,PASS
+estados L6_L7: 1 By pass e LC / 1 By pass e LC,retirada_condensado_linha@L1,41.489806151327535,41.489806151327535,41.489806151327535,PASS
+estados L6_L7: 1 By pass e LC / 1 By pass e LC,retirada_condensado_linha@L2,45.63878676646029,45.63878676646029,45.63878676646029,PASS
+estados L6_L7: 1 By pass e LC / 1 By pass e LC,retirada_condensado_linha@L3,49.78776738159305,49.78776738159305,49.78776738159305,PASS
+estados L6_L7: 1 By pass e LC / 1 By pass e LC,retirada_condensado_linha@L4,41.98217133797685,41.98217133797685,41.98217133797685,PASS
+estados L6_L7: 1 By pass e LC / 1 By pass e LC,retirada_condensado_linha@L5,48.51273132388436,48.51273132388436,48.51273132388436,PASS
+estados L6_L7: 1 By pass e LC / 1 By pass e LC,retirada_condensado_linha@L6,35.583858690697845,35.583858690697845,35.583858690697845,PASS
+estados L6_L7: 1 By pass e LC / 1 By pass e LC,retirada_condensado_linha@L7,42.70063042883741,42.70063042883741,42.70063042883741,PASS
+estados L6_L7: 1 By pass e LC / 1 By pass e LC,retirada_condensado_total@L1_L7,305.6957520807773,305.6957520807773,305.6957520807773,PASS
+estados L6_L7: Overhaul / Normal,lth_grupo@L1_L3,1100.0,1100.0,1100.0,PASS
+estados L6_L7: Overhaul / Normal,lth_grupo@L4_L5,970.0,970.0,970.0,PASS
+estados L6_L7: Overhaul / Normal,lth_grupo@L6_L7,1100.0,1100.0,1100.0,PASS
+estados L6_L7: Overhaul / Normal,retirada_cond_corr_lth@L1_L3,52.241865561555585,52.241865561555585,52.241865561555585,PASS
+estados L6_L7: Overhaul / Normal,retirada_cond_corr_lth@L4_L5,48.88652943961213,48.88652943961213,48.88652943961213,PASS
+estados L6_L7: Overhaul / Normal,retirada_cond_corr_lth@L6_L7,53.107563637622576,53.107563637622576,53.107563637622576,PASS
+estados L6_L7: Overhaul / Normal,retirada_cond_corr_ltp@L1_L3,53.93641212842863,53.93641212842863,53.93641212842863,PASS
+estados L6_L7: Overhaul / Normal,retirada_cond_corr_ltp@L4_L5,53.63907810868153,53.63907810868153,53.63907810868153,PASS
+estados L6_L7: Overhaul / Normal,retirada_cond_corr_ltp@L6_L7,52.87525472002136,52.87525472002136,52.87525472002136,PASS
+estados L6_L7: Overhaul / Normal,retirada_condensado_grupo@L1_L3,136.91636029938087,136.91636029938087,136.91636029938087,PASS
+estados L6_L7: Overhaul / Normal,retirada_condensado_grupo@L4_L5,90.4949026618612,90.4949026618612,90.4949026618612,PASS
+estados L6_L7: Overhaul / Normal,retirada_condensado_grupo@L6_L7,F,F,F,PASS
+estados L6_L7: Overhaul / Normal,retirada_condensado_linha@L1,41.489806151327535,41.489806151327535,41.489806151327535,PASS
+estados L6_L7: Overhaul / Normal,retirada_condensado_linha@L2,45.63878676646029,45.63878676646029,45.63878676646029,PASS
+estados L6_L7: Overhaul / Normal,retirada_condensado_linha@L3,49.78776738159305,49.78776738159305,49.78776738159305,PASS
+estados L6_L7: Overhaul / Normal,retirada_condensado_linha@L4,41.98217133797685,41.98217133797685,41.98217133797685,PASS
+estados L6_L7: Overhaul / Normal,retirada_condensado_linha@L5,48.51273132388436,48.51273132388436,48.51273132388436,PASS
+estados L6_L7: Overhaul / Normal,retirada_condensado_linha@L6,F,<falha: consumo de F>,,PASS
+estados L6_L7: Overhaul / Normal,retirada_condensado_linha@L7,F,<falha: consumo de F>,,PASS
+estados L6_L7: Overhaul / Normal,retirada_condensado_total@L1_L7,F,<falha: consumo de F>,,PASS
+estados L6_L7: Overhaul / LC,lth_grupo@L1_L3,1100.0,1100.0,1100.0,PASS
+estados L6_L7: Overhaul / LC,lth_grupo@L4_L5,970.0,970.0,970.0,PASS
+estados L6_L7: Overhaul / LC,lth_grupo@L6_L7,1100.0,1100.0,1100.0,PASS
+estados L6_L7: Overhaul / LC,retirada_cond_corr_lth@L1_L3,52.241865561555585,52.241865561555585,52.241865561555585,PASS
+estados L6_L7: Overhaul / LC,retirada_cond_corr_lth@L4_L5,48.88652943961213,48.88652943961213,48.88652943961213,PASS
+estados L6_L7: Overhaul / LC,retirada_cond_corr_lth@L6_L7,53.107563637622576,53.107563637622576,53.107563637622576,PASS
+estados L6_L7: Overhaul / LC,retirada_cond_corr_ltp@L1_L3,53.93641212842863,53.93641212842863,53.93641212842863,PASS
+estados L6_L7: Overhaul / LC,retirada_cond_corr_ltp@L4_L5,53.63907810868153,53.63907810868153,53.63907810868153,PASS
+estados L6_L7: Overhaul / LC,retirada_cond_corr_ltp@L6_L7,52.87525472002136,52.87525472002136,52.87525472002136,PASS
+estados L6_L7: Overhaul / LC,retirada_condensado_grupo@L1_L3,136.91636029938087,136.91636029938087,136.91636029938087,PASS
+estados L6_L7: Overhaul / LC,retirada_condensado_grupo@L4_L5,90.4949026618612,90.4949026618612,90.4949026618612,PASS
+estados L6_L7: Overhaul / LC,retirada_condensado_grupo@L6_L7,79.53448911953525,79.53448911953525,79.53448911953525,PASS
+estados L6_L7: Overhaul / LC,retirada_condensado_linha@L1,41.489806151327535,41.489806151327535,41.489806151327535,PASS
+estados L6_L7: Overhaul / LC,retirada_condensado_linha@L2,45.63878676646029,45.63878676646029,45.63878676646029,PASS
+estados L6_L7: Overhaul / LC,retirada_condensado_linha@L3,49.78776738159305,49.78776738159305,49.78776738159305,PASS
+estados L6_L7: Overhaul / LC,retirada_condensado_linha@L4,41.98217133797685,41.98217133797685,41.98217133797685,PASS
+estados L6_L7: Overhaul / LC,retirada_condensado_linha@L5,48.51273132388436,48.51273132388436,48.51273132388436,PASS
+estados L6_L7: Overhaul / LC,retirada_condensado_linha@L6,36.15204050887966,36.15204050887966,36.15204050887966,PASS
+estados L6_L7: Overhaul / LC,retirada_condensado_linha@L7,43.38244861065559,43.38244861065559,43.38244861065559,PASS
+estados L6_L7: Overhaul / LC,retirada_condensado_total@L1_L7,306.9457520807773,306.9457520807773,306.9457520807773,PASS
+estados L6_L7: Overhaul / Overhaul/Parada,lth_grupo@L1_L3,1100.0,1100.0,1100.0,PASS
+estados L6_L7: Overhaul / Overhaul/Parada,lth_grupo@L4_L5,970.0,970.0,970.0,PASS
+estados L6_L7: Overhaul / Overhaul/Parada,lth_grupo@L6_L7,1100.0,1100.0,1100.0,PASS
+estados L6_L7: Overhaul / Overhaul/Parada,retirada_cond_corr_lth@L1_L3,52.241865561555585,52.241865561555585,52.241865561555585,PASS
+estados L6_L7: Overhaul / Overhaul/Parada,retirada_cond_corr_lth@L4_L5,48.88652943961213,48.88652943961213,48.88652943961213,PASS
+estados L6_L7: Overhaul / Overhaul/Parada,retirada_cond_corr_lth@L6_L7,53.107563637622576,53.107563637622576,53.107563637622576,PASS
+estados L6_L7: Overhaul / Overhaul/Parada,retirada_cond_corr_ltp@L1_L3,53.93641212842863,53.93641212842863,53.93641212842863,PASS
+estados L6_L7: Overhaul / Overhaul/Parada,retirada_cond_corr_ltp@L4_L5,53.63907810868153,53.63907810868153,53.63907810868153,PASS
+estados L6_L7: Overhaul / Overhaul/Parada,retirada_cond_corr_ltp@L6_L7,52.87525472002136,52.87525472002136,52.87525472002136,PASS
+estados L6_L7: Overhaul / Overhaul/Parada,retirada_condensado_grupo@L1_L3,136.91636029938087,136.91636029938087,136.91636029938087,PASS
+estados L6_L7: Overhaul / Overhaul/Parada,retirada_condensado_grupo@L4_L5,90.4949026618612,90.4949026618612,90.4949026618612,PASS
+estados L6_L7: Overhaul / Overhaul/Parada,retirada_condensado_grupo@L6_L7,50.46461783520243,50.46461783520243,50.46461783520243,PASS
+estados L6_L7: Overhaul / Overhaul/Parada,retirada_condensado_linha@L1,41.489806151327535,41.489806151327535,41.489806151327535,PASS
+estados L6_L7: Overhaul / Overhaul/Parada,retirada_condensado_linha@L2,45.63878676646029,45.63878676646029,45.63878676646029,PASS
+estados L6_L7: Overhaul / Overhaul/Parada,retirada_condensado_linha@L3,49.78776738159305,49.78776738159305,49.78776738159305,PASS
+estados L6_L7: Overhaul / Overhaul/Parada,retirada_condensado_linha@L4,41.98217133797685,41.98217133797685,41.98217133797685,PASS
+estados L6_L7: Overhaul / Overhaul/Parada,retirada_condensado_linha@L5,48.51273132388436,48.51273132388436,48.51273132388436,PASS
+estados L6_L7: Overhaul / Overhaul/Parada,retirada_condensado_linha@L6,22.93846265236474,22.93846265236474,22.93846265236474,PASS
+estados L6_L7: Overhaul / Overhaul/Parada,retirada_condensado_linha@L7,27.52615518283769,27.52615518283769,27.52615518283769,PASS
+estados L6_L7: Overhaul / Overhaul/Parada,retirada_condensado_total@L1_L7,277.8758807964445,277.8758807964445,277.8758807964445,PASS
+estados L6_L7: Overhaul / 1 By pass,lth_grupo@L1_L3,1100.0,1100.0,1100.0,PASS
+estados L6_L7: Overhaul / 1 By pass,lth_grupo@L4_L5,970.0,970.0,970.0,PASS
+estados L6_L7: Overhaul / 1 By pass,lth_grupo@L6_L7,1100.0,1100.0,1100.0,PASS
+estados L6_L7: Overhaul / 1 By pass,retirada_cond_corr_lth@L1_L3,52.241865561555585,52.241865561555585,52.241865561555585,PASS
+estados L6_L7: Overhaul / 1 By pass,retirada_cond_corr_lth@L4_L5,48.88652943961213,48.88652943961213,48.88652943961213,PASS
+estados L6_L7: Overhaul / 1 By pass,retirada_cond_corr_lth@L6_L7,53.107563637622576,53.107563637622576,53.107563637622576,PASS
+estados L6_L7: Overhaul / 1 By pass,retirada_cond_corr_ltp@L1_L3,53.93641212842863,53.93641212842863,53.93641212842863,PASS
+estados L6_L7: Overhaul / 1 By pass,retirada_cond_corr_ltp@L4_L5,53.63907810868153,53.63907810868153,53.63907810868153,PASS
+estados L6_L7: Overhaul / 1 By pass,retirada_cond_corr_ltp@L6_L7,52.87525472002136,52.87525472002136,52.87525472002136,PASS
+estados L6_L7: Overhaul / 1 By pass,retirada_condensado_grupo@L1_L3,136.91636029938087,136.91636029938087,136.91636029938087,PASS
+estados L6_L7: Overhaul / 1 By pass,retirada_condensado_grupo@L4_L5,90.4949026618612,90.4949026618612,90.4949026618612,PASS
+estados L6_L7: Overhaul / 1 By pass,retirada_condensado_grupo@L6_L7,94.46461783520243,94.46461783520243,94.46461783520243,PASS
+estados L6_L7: Overhaul / 1 By pass,retirada_condensado_linha@L1,41.489806151327535,41.489806151327535,41.489806151327535,PASS
+estados L6_L7: Overhaul / 1 By pass,retirada_condensado_linha@L2,45.63878676646029,45.63878676646029,45.63878676646029,PASS
+estados L6_L7: Overhaul / 1 By pass,retirada_condensado_linha@L3,49.78776738159305,49.78776738159305,49.78776738159305,PASS
+estados L6_L7: Overhaul / 1 By pass,retirada_condensado_linha@L4,41.98217133797685,41.98217133797685,41.98217133797685,PASS
+estados L6_L7: Overhaul / 1 By pass,retirada_condensado_linha@L5,48.51273132388436,48.51273132388436,48.51273132388436,PASS
+estados L6_L7: Overhaul / 1 By pass,retirada_condensado_linha@L6,42.93846265236474,42.93846265236474,42.93846265236474,PASS
+estados L6_L7: Overhaul / 1 By pass,retirada_condensado_linha@L7,51.52615518283769,51.52615518283769,51.52615518283769,PASS
+estados L6_L7: Overhaul / 1 By pass,retirada_condensado_total@L1_L7,321.8758807964445,321.8758807964445,321.8758807964445,PASS
+estados L6_L7: Overhaul / 1 By pass e LC,lth_grupo@L1_L3,1100.0,1100.0,1100.0,PASS
+estados L6_L7: Overhaul / 1 By pass e LC,lth_grupo@L4_L5,970.0,970.0,970.0,PASS
+estados L6_L7: Overhaul / 1 By pass e LC,lth_grupo@L6_L7,1100.0,1100.0,1100.0,PASS
+estados L6_L7: Overhaul / 1 By pass e LC,retirada_cond_corr_lth@L1_L3,52.241865561555585,52.241865561555585,52.241865561555585,PASS
+estados L6_L7: Overhaul / 1 By pass e LC,retirada_cond_corr_lth@L4_L5,48.88652943961213,48.88652943961213,48.88652943961213,PASS
+estados L6_L7: Overhaul / 1 By pass e LC,retirada_cond_corr_lth@L6_L7,53.107563637622576,53.107563637622576,53.107563637622576,PASS
+estados L6_L7: Overhaul / 1 By pass e LC,retirada_cond_corr_ltp@L1_L3,53.93641212842863,53.93641212842863,53.93641212842863,PASS
+estados L6_L7: Overhaul / 1 By pass e LC,retirada_cond_corr_ltp@L4_L5,53.63907810868153,53.63907810868153,53.63907810868153,PASS
+estados L6_L7: Overhaul / 1 By pass e LC,retirada_cond_corr_ltp@L6_L7,52.87525472002136,52.87525472002136,52.87525472002136,PASS
+estados L6_L7: Overhaul / 1 By pass e LC,retirada_condensado_grupo@L1_L3,136.91636029938087,136.91636029938087,136.91636029938087,PASS
+estados L6_L7: Overhaul / 1 By pass e LC,retirada_condensado_grupo@L4_L5,90.4949026618612,90.4949026618612,90.4949026618612,PASS
+estados L6_L7: Overhaul / 1 By pass e LC,retirada_condensado_grupo@L6_L7,F,F,F,PASS
+estados L6_L7: Overhaul / 1 By pass e LC,retirada_condensado_linha@L1,41.489806151327535,41.489806151327535,41.489806151327535,PASS
+estados L6_L7: Overhaul / 1 By pass e LC,retirada_condensado_linha@L2,45.63878676646029,45.63878676646029,45.63878676646029,PASS
+estados L6_L7: Overhaul / 1 By pass e LC,retirada_condensado_linha@L3,49.78776738159305,49.78776738159305,49.78776738159305,PASS
+estados L6_L7: Overhaul / 1 By pass e LC,retirada_condensado_linha@L4,41.98217133797685,41.98217133797685,41.98217133797685,PASS
+estados L6_L7: Overhaul / 1 By pass e LC,retirada_condensado_linha@L5,48.51273132388436,48.51273132388436,48.51273132388436,PASS
+estados L6_L7: Overhaul / 1 By pass e LC,retirada_condensado_linha@L6,F,<falha: consumo de F>,,PASS
+estados L6_L7: Overhaul / 1 By pass e LC,retirada_condensado_linha@L7,F,<falha: consumo de F>,,PASS
+estados L6_L7: Overhaul / 1 By pass e LC,retirada_condensado_total@L1_L7,F,<falha: consumo de F>,,PASS

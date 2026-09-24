@@ -1,0 +1,96 @@
+timestamp 2026-09-24T20:30:27Z
+cmd: python3 audit/area_41_v6_third_audit/third_audit_a41_v6.py
+PASS [identidade] sha256 v3
+PASS [identidade] sha256 v4
+PASS [identidade] sha256 v5_input
+PASS [identidade] sha256 v5_validado
+PASS [identidade] sha256 v6_recebido
+PASS [identidade] sha256 v6_validado
+PASS [identidade] 1 aba A41
+PASS [integridade] sem fórmulas Excel
+PASS [integridade] valores em cache == valores armazenados
+PASS [integridade] cabeçalho = 15 colunas históricas + value_type
+PASS [integridade] merged ranges históricos preservados
+PASS [integridade] nenhuma linha com conteúdo sem name
+PASS [integridade] nenhuma célula preenchida após a última entidade
+PASS [proveniência] todas as alterações da cadeia são previstas
+PASS [proveniência] v6_validado = v5_validado + K30,K31
+PASS [proveniência] v6_recebido = v5_input + K30,K31
+PASS [identidade] dimensões/merged/cabeçalho iguais entre v5_validado e v6_validado
+PASS [inventário] 54 entidades (17 entradas, 20 equações, 10 agregações, 7 parâmetros)
+PASS [inventário] identidades únicas
+PASS [inventário] mesmo conjunto de identidades de v5_validado
+PASS [inventário] descrições não vazias
+PASS [inventário] escopos válidos
+PASS [value_type] value_type correto em todas as entidades
+PASS [value_type] variable_type e value_type não são sinônimos (conjuntos de valores disjuntos)
+PASS [value_type] variáveis comparadas a texto são exatamente as categóricas
+PASS [value_type] estados usados nas equações = 5 estados previstos
+PASS [A019] todas as referências resolvem para exatamente 1 produtor
+PASS [A019] resolução independente == resolvedor central da plataforma
+PASS [A019] nenhum produtor mais fino que o consumidor (só mesma frequência ou mais grossa)
+PASS [A019] resolução independente invariante à ordem das entidades
+PASS [@grupo] L1,L2,L3->L1_L3; L4,L5->L4_L5; L6,L7->L6_L7
+PASS [@grupo] total referencia os três grupos explicitamente
+PASS [@grupo] toda referência explícita lê exatamente o escopo declarado
+PASS [dependências] DAG acíclico
+PASS [dependências] entradas/parâmetros não consumidos = só os 7 parâmetros documentados como não utilizados
+PASS [dependências] toda equação diária produz valor consumido ou agregado
+PASS [segurança DSL] nenhuma construção proibida; só ln/1 argumento; parser da plataforma aceita as 20 equações
+PASS [ln] 6 ocorrências de ln, todas com 1 argumento
+PASS [ln] ln(1)=0, ln(e)=1, ln(0)/ln(<0)->MathDomainError, ln(categorical)->ExpressionTypeError, allowlist fechada
+PASS [equações] spec == texto == runtime (diferentes)
+PASS [rateio] Σ linhas == grupo (diferentes)
+PASS [total] total == Σ grupos (diferentes)
+PASS [equações] spec == texto == runtime (iguais)
+PASS [rateio] Σ linhas == grupo (iguais)
+PASS [total] total == Σ grupos (iguais)
+PASS [equações] spec == texto == runtime (assimetricos)
+PASS [rateio] Σ linhas == grupo (assimetricos)
+PASS [total] total == Σ grupos (assimetricos)
+PASS [equações] spec == texto == runtime (proximos_de_zero)
+PASS [rateio] Σ linhas == grupo (proximos_de_zero)
+PASS [total] total == Σ grupos (proximos_de_zero)
+PASS [equações] spec == texto == runtime (enunciado_21)
+PASS [rateio] Σ linhas == grupo (enunciado_21)
+PASS [total] total == Σ grupos (enunciado_21)
+PASS [A020] lth_grupo = 20/50/50 (média, não soma)
+PASS [texto/booleano] 30 combinações de estados L4_L5: spec == texto == runtime (inclui F)
+PASS [texto/booleano] 30 combinações de estados L6_L7: spec == texto == runtime (inclui F)
+PASS [texto/booleano] precedência LC / Overhaul/Parada -> LC
+PASS [texto/booleano] precedência Overhaul/Parada / 1 By pass -> Overhaul
+PASS [texto/booleano] precedência 1 By pass / 1 By pass e LC -> By pass
+PASS [texto/booleano] precedência LC / 1 By pass e LC -> LC
+PASS [texto/booleano] precedência Normal / 1 By pass e LC -> F
+PASS ["F"] grupo L4_L5 grava exatamente o texto "F" (não 0/False/None/"0")
+PASS ["F"] consumidores falham com ConditionalFailureError (erro contratual)
+PASS ["F"] saídas não calculadas sob F ⊇ dependentes do grupo em falha
+PASS ["F"] "F"+1 e "F"==0 falham; "F"=="F" é a única leitura
+PASS [A021] retirada_condensado_grupo mensal linha_grupo/L1_L3: 1 instâncias esperadas
+PASS [A021] retirada_condensado_grupo anual linha_grupo/L1_L3: 1 instâncias esperadas
+PASS [A021] retirada_condensado_grupo mensal linha_grupo/L4_L5: 1 instâncias esperadas
+PASS [A021] retirada_condensado_grupo anual linha_grupo/L4_L5: 1 instâncias esperadas
+PASS [A021] retirada_condensado_grupo mensal linha_grupo/L6_L7: 1 instâncias esperadas
+PASS [A021] retirada_condensado_grupo anual linha_grupo/L6_L7: 1 instâncias esperadas
+PASS [A021] retirada_condensado_linha mensal linha/L1_L7: 7 instâncias esperadas
+PASS [A021] retirada_condensado_linha anual linha/L1_L7: 7 instâncias esperadas
+PASS [A021] retirada_condensado_total mensal linha_grupo/L1_L7: 1 instâncias esperadas
+PASS [A021] retirada_condensado_total anual linha_grupo/L1_L7: 1 instâncias esperadas
+PASS [agregações] todas as 22 instâncias = média independente dos diários (AVERAGE, sem fator)
+PASS [agregações] total mensal/anual == Σ médias dos grupos (mesmos dias)
+PASS [/h gate] A41: nenhuma SUM; unidade origem == destino em todas as agregações
+PASS ["F"] média mensal com um dia F falha com AggregationFailureError(['2026-03-02'])
+PASS [ordem] resultados idênticos em 5 ordens × 2 cenários
+PASS [perturbação] 11 perturbações: afetados observados == descendentes do DAG independente
+PASS [perturbação] desconto com ramo inativo não altera resultados
+PASS [isolamento] perturbar lth de uma linha só altera o próprio grupo, suas linhas e o total
+PASS [rateio] Σ lth = 0 no grupo: falha explícita (nunca valor silencioso)
+PASS [unidades] nenhuma soma incompatível; unidade calculada == declarada
+PASS [41c/41d] desconto_retirada_41c@L4_L5 = Forecast A41!C26 (decisão do usuário)
+PASS [41c/41d] desconto_retirada_41c@L6_L7 = Forecast A41!C28 (decisão do usuário)
+PASS [41c/41d] desconto_retirada_41d@L4_L5 = Forecast A41!C27 (decisão do usuário)
+PASS [41c/41d] exatamente 3 descontos; sem 41d@L6_L7; nenhuma célula compartilhada
+PASS [max_ht] identificação: 34 SUMs /h -> /mês|/ano; nenhum fator aplicado nos seeds
+
+91 PASS / 0 FAIL
+exit=0

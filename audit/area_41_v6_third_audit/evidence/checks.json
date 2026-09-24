@@ -1,0 +1,718 @@
+{
+ "identity": {
+  "audited": "audit/area_41_v6/descritivo_das_variáveis_A41_v6.xlsx",
+  "sha256": "4b0c41aef6c56a5b655faa543cf96f33f270cdfad8ecd2b4c6a5e1a09144a352",
+  "size": 19569,
+  "sheets": [
+   "A41"
+  ],
+  "dims": [
+   308,
+   16
+  ],
+  "merged": [
+   "A1:D1",
+   "E1:F1",
+   "G1:H1",
+   "I1:L1"
+  ],
+  "formulas": [],
+  "cached_values_differ": [],
+  "entities": 54,
+  "last_entity_row": 56
+ },
+ "unused_inputs_and_parameters": [
+  "retirada_manobra_linha_41a",
+  "retirada_meta_41a",
+  "retirada_meta_41b",
+  "retirada_meta_41c",
+  "retirada_meta_41d",
+  "retirada_meta_41x",
+  "retirada_performance_41c"
+ ],
+ "ln_calls": [
+  [
+   6,
+   "ln(vazao_ltp)"
+  ],
+  [
+   7,
+   "ln(vazao_ltp)"
+  ],
+  [
+   8,
+   "ln(vazao_ltp)"
+  ],
+  [
+   16,
+   "ln(lth_grupo * fator_retirada_cond_corr_lth)"
+  ],
+  [
+   17,
+   "ln(lth_grupo * fator_retirada_cond_corr_lth)"
+  ],
+  [
+   18,
+   "ln(lth_grupo * fator_retirada_cond_corr_lth)"
+  ]
+ ],
+ "precedence": {
+  "LC / Overhaul/Parada": {
+   "ramo_esperado": "LC",
+   "runtime": 71.64179794064012
+  },
+  "Overhaul/Parada / 1 By pass": {
+   "ramo_esperado": "Overhaul",
+   "runtime": 40.494902661861204
+  },
+  "1 By pass / 1 By pass e LC": {
+   "ramo_esperado": "By pass",
+   "runtime": 86.4949026618612
+  },
+  "LC / 1 By pass e LC": {
+   "ramo_esperado": "LC",
+   "runtime": 71.64179794064012
+  },
+  "Normal / 1 By pass e LC": {
+   "ramo_esperado": "F",
+   "runtime": "F"
+  }
+ },
+ "F_fail_fast": {
+  "computed": [
+   "lth_grupo@L1_L3",
+   "lth_grupo@L4_L5",
+   "lth_grupo@L6_L7",
+   "retirada_cond_corr_lth@L1_L3",
+   "retirada_cond_corr_lth@L4_L5",
+   "retirada_cond_corr_lth@L6_L7",
+   "retirada_cond_corr_ltp@L1_L3",
+   "retirada_cond_corr_ltp@L4_L5",
+   "retirada_cond_corr_ltp@L6_L7",
+   "retirada_condensado_grupo@L1_L3",
+   "retirada_condensado_grupo@L4_L5",
+   "retirada_condensado_grupo@L6_L7",
+   "retirada_condensado_linha@L1",
+   "retirada_condensado_linha@L2",
+   "retirada_condensado_linha@L3"
+  ],
+  "not_computed": [
+   "retirada_condensado_linha@L4",
+   "retirada_condensado_linha@L5",
+   "retirada_condensado_linha@L6",
+   "retirada_condensado_linha@L7",
+   "retirada_condensado_total@L1_L7"
+  ],
+  "dependents_of_failed_group": [
+   "retirada_condensado_linha@L4",
+   "retirada_condensado_linha@L5",
+   "retirada_condensado_total@L1_L7"
+  ],
+  "collateral_not_computed_independent_of_failure": [
+   "retirada_condensado_linha@L6",
+   "retirada_condensado_linha@L7"
+  ]
+ },
+ "failfast_not_computed": [
+  "retirada_condensado_linha@L6",
+  "retirada_condensado_linha@L7"
+ ],
+ "denominador_zero_L4_L5": "MathDomainError",
+ "forecast_param_rows": {
+  "23": "41a",
+  "24": "41b",
+  "25": "41x",
+  "26": "41c",
+  "27": "41d"
+ },
+ "max_ht": {
+  "affected_rules": [
+   "AGR-MAX_HT-A13_L123-GRUPO-L1_L3-ANUAL-SUM",
+   "AGR-MAX_HT-A13_L123-GRUPO-L1_L3-MENSAL-SUM",
+   "AGR-MAX_HT-A13_L45-GRUPO-L4_L5-ANUAL-SUM",
+   "AGR-MAX_HT-A13_L45-GRUPO-L4_L5-MENSAL-SUM",
+   "AGR-MAX_HT-A13_L67-GRUPO-L6_L7-ANUAL-SUM",
+   "AGR-MAX_HT-A13_L67-GRUPO-L6_L7-MENSAL-SUM",
+   "AGR-MAX_HT-A18_A13_L123-GRUPO-L1_L3-ANUAL-SUM",
+   "AGR-MAX_HT-A18_A13_L123-GRUPO-L1_L3-MENSAL-SUM",
+   "AGR-MAX_HT-A18_A13_L45-GRUPO-L4_L5-ANUAL-SUM",
+   "AGR-MAX_HT-A18_A13_L45-GRUPO-L4_L5-MENSAL-SUM",
+   "AGR-MAX_HT-A18_A13_L67-GRUPO-L6_L7-ANUAL-SUM",
+   "AGR-MAX_HT-A18_A13_L67-GRUPO-L6_L7-MENSAL-SUM",
+   "AGR-MAX_HT-A18_L123-GRUPO-L1_L3-ANUAL-SUM",
+   "AGR-MAX_HT-A18_L123-GRUPO-L1_L3-MENSAL-SUM",
+   "AGR-MAX_HT-A18_L45-GRUPO-L4_L5-ANUAL-SUM",
+   "AGR-MAX_HT-A18_L45-GRUPO-L4_L5-MENSAL-SUM",
+   "AGR-MAX_HT-A18_L67-GRUPO-L6_L7-ANUAL-SUM",
+   "AGR-MAX_HT-A18_L67-GRUPO-L6_L7-MENSAL-SUM",
+   "AGR-MAX_HT-ALIMENTAÇÃO_EVAP-LINHA-L1_L7-ANUAL-SUM",
+   "AGR-MAX_HT-ALIMENTAÇÃO_EVAP-LINHA-L1_L7-MENSAL-SUM",
+   "AGR-MAX_HT-ALIMENTAÇÃO_EVAP_TOTAL-GRUPO-L1_L7-ANUAL-SUM",
+   "AGR-MAX_HT-ALIMENTAÇÃO_EVAP_TOTAL-GRUPO-L1_L7-MENSAL-SUM",
+   "AGR-MAX_HT-FLUXO_PARA_A18_LINHA-LINHA-L1_L7-ANUAL-SUM",
+   "AGR-MAX_HT-FLUXO_PARA_A18_LINHA-LINHA-L1_L7-MENSAL-SUM",
+   "AGR-MAX_HT-FLUXO_PARA_A18_LINHA_TOTAL-GRUPO-L1_L7-ANUAL-SUM",
+   "AGR-MAX_HT-FLUXO_PARA_A18_LINHA_TOTAL-GRUPO-L1_L7-MENSAL-SUM",
+   "AGR-MAX_HT-FLUXO_PARA_EVAP-LINHA-L1_L7-ANUAL-SUM",
+   "AGR-MAX_HT-FLUXO_PARA_EVAP-LINHA-L1_L7-MENSAL-SUM",
+   "AGR-MAX_HT-FLUXO_PARA_EVAP_TOTAL-GRUPO-L1_L7-ANUAL-SUM",
+   "AGR-MAX_HT-FLUXO_PARA_EVAP_TOTAL-GRUPO-L1_L7-MENSAL-SUM",
+   "AGR-MAX_HT-LTH-LINHA-L1_L7-ANUAL-SUM",
+   "AGR-MAX_HT-LTH-LINHA-L1_L7-MENSAL-SUM",
+   "AGR-MAX_HT-LTH_TOTAL-GRUPO-L1_L7-ANUAL-SUM",
+   "AGR-MAX_HT-LTH_TOTAL-GRUPO-L1_L7-MENSAL-SUM"
+  ],
+  "count": 34,
+  "integration_factors_in_seeds": [
+   1.0
+  ]
+ },
+ "checks": [
+  {
+   "gate": "identidade",
+   "check": "sha256 v3",
+   "result": "PASS",
+   "detail": "audit/area_41_v6_third_audit/evidence/provenance/A41_v3.xlsx 59f82304f13895c0fb45306f260388d650c5a7daec897bfa633d706d07fcfd85"
+  },
+  {
+   "gate": "identidade",
+   "check": "sha256 v4",
+   "result": "PASS",
+   "detail": "audit/area_41_v6_third_audit/evidence/provenance/A41_v4.xlsx 383c462b60c9d9806ac93531477533486fb8779350a4808ae9abb676d7282a4c"
+  },
+  {
+   "gate": "identidade",
+   "check": "sha256 v5_input",
+   "result": "PASS",
+   "detail": "audit/area_41_v6_third_audit/evidence/provenance/A41_v5_input.xlsx ea3d2e51863376c34c91c1e3fc55f1ad320b2d715f668634ed586625f9152188"
+  },
+  {
+   "gate": "identidade",
+   "check": "sha256 v5_validado",
+   "result": "PASS",
+   "detail": "audit/area_41_v5/descritivo_das_variáveis_A41_v5.xlsx c8be0a3c70bb04682163ebc489b83a1bc6af58c8105a7bb58c63381c2f915125"
+  },
+  {
+   "gate": "identidade",
+   "check": "sha256 v6_recebido",
+   "result": "PASS",
+   "detail": "audit/area_41_v6/descritivo_das_variáveis_A41_v6_recebido.xlsx aad9b3069069bff47e51ddcd40722a7c3d6ba40a6ccb53fdb732e0bc9613231f"
+  },
+  {
+   "gate": "identidade",
+   "check": "sha256 v6_validado",
+   "result": "PASS",
+   "detail": "audit/area_41_v6/descritivo_das_variáveis_A41_v6.xlsx 4b0c41aef6c56a5b655faa543cf96f33f270cdfad8ecd2b4c6a5e1a09144a352"
+  },
+  {
+   "gate": "identidade",
+   "check": "1 aba A41",
+   "result": "PASS",
+   "detail": ""
+  },
+  {
+   "gate": "integridade",
+   "check": "sem fórmulas Excel",
+   "result": "PASS",
+   "detail": ""
+  },
+  {
+   "gate": "integridade",
+   "check": "valores em cache == valores armazenados",
+   "result": "PASS",
+   "detail": ""
+  },
+  {
+   "gate": "integridade",
+   "check": "cabeçalho = 15 colunas históricas + value_type",
+   "result": "PASS",
+   "detail": "['Type', 'name', 'description', 'unit', 'value', 'version', 'variable_type', 'frequency', 'scope_type', 'scope_value', 'source_reference', 'status', 'expression', 'fonte', 'OBS', 'value_type']"
+  },
+  {
+   "gate": "integridade",
+   "check": "merged ranges históricos preservados",
+   "result": "PASS",
+   "detail": "['A1:D1', 'E1:F1', 'G1:H1', 'I1:L1']"
+  },
+  {
+   "gate": "integridade",
+   "check": "nenhuma linha com conteúdo sem name",
+   "result": "PASS",
+   "detail": ""
+  },
+  {
+   "gate": "integridade",
+   "check": "nenhuma célula preenchida após a última entidade",
+   "result": "PASS",
+   "detail": ""
+  },
+  {
+   "gate": "proveniência",
+   "check": "todas as alterações da cadeia são previstas",
+   "result": "PASS",
+   "detail": "0 não previstas"
+  },
+  {
+   "gate": "proveniência",
+   "check": "v6_validado = v5_validado + K30,K31",
+   "result": "PASS",
+   "detail": "['K30', 'K31']"
+  },
+  {
+   "gate": "proveniência",
+   "check": "v6_recebido = v5_input + K30,K31",
+   "result": "PASS",
+   "detail": ""
+  },
+  {
+   "gate": "identidade",
+   "check": "dimensões/merged/cabeçalho iguais entre v5_validado e v6_validado",
+   "result": "PASS",
+   "detail": ""
+  },
+  {
+   "gate": "inventário",
+   "check": "54 entidades (17 entradas, 20 equações, 10 agregações, 7 parâmetros)",
+   "result": "PASS",
+   "detail": ""
+  },
+  {
+   "gate": "inventário",
+   "check": "identidades únicas",
+   "result": "PASS",
+   "detail": ""
+  },
+  {
+   "gate": "inventário",
+   "check": "mesmo conjunto de identidades de v5_validado",
+   "result": "PASS",
+   "detail": ""
+  },
+  {
+   "gate": "inventário",
+   "check": "descrições não vazias",
+   "result": "PASS",
+   "detail": ""
+  },
+  {
+   "gate": "inventário",
+   "check": "escopos válidos",
+   "result": "PASS",
+   "detail": "[]"
+  },
+  {
+   "gate": "value_type",
+   "check": "value_type correto em todas as entidades",
+   "result": "PASS",
+   "detail": ""
+  },
+  {
+   "gate": "value_type",
+   "check": "variable_type e value_type não são sinônimos (conjuntos de valores disjuntos)",
+   "result": "PASS",
+   "detail": ""
+  },
+  {
+   "gate": "value_type",
+   "check": "variáveis comparadas a texto são exatamente as categóricas",
+   "result": "PASS",
+   "detail": "['hes_l4', 'hes_l5', 'hes_l6', 'hes_l7']"
+  },
+  {
+   "gate": "value_type",
+   "check": "estados usados nas equações = 5 estados previstos",
+   "result": "PASS",
+   "detail": "['1 By pass', '1 By pass e LC', 'LC', 'Normal', 'Overhaul/Parada']"
+  },
+  {
+   "gate": "A019",
+   "check": "todas as referências resolvem para exatamente 1 produtor",
+   "result": "PASS",
+   "detail": "59 referências"
+  },
+  {
+   "gate": "A019",
+   "check": "resolução independente == resolvedor central da plataforma",
+   "result": "PASS",
+   "detail": ""
+  },
+  {
+   "gate": "A019",
+   "check": "nenhum produtor mais fino que o consumidor (só mesma frequência ou mais grossa)",
+   "result": "PASS",
+   "detail": ""
+  },
+  {
+   "gate": "A019",
+   "check": "resolução independente invariante à ordem das entidades",
+   "result": "PASS",
+   "detail": ""
+  },
+  {
+   "gate": "@grupo",
+   "check": "L1,L2,L3->L1_L3; L4,L5->L4_L5; L6,L7->L6_L7",
+   "result": "PASS",
+   "detail": ""
+  },
+  {
+   "gate": "@grupo",
+   "check": "total referencia os três grupos explicitamente",
+   "result": "PASS",
+   "detail": ""
+  },
+  {
+   "gate": "@grupo",
+   "check": "toda referência explícita lê exatamente o escopo declarado",
+   "result": "PASS",
+   "detail": "41 explícitas"
+  },
+  {
+   "gate": "dependências",
+   "check": "DAG acíclico",
+   "result": "PASS",
+   "detail": ""
+  },
+  {
+   "gate": "dependências",
+   "check": "entradas/parâmetros não consumidos = só os 7 parâmetros documentados como não utilizados",
+   "result": "PASS",
+   "detail": "['retirada_manobra_linha_41a', 'retirada_meta_41a', 'retirada_meta_41b', 'retirada_meta_41c', 'retirada_meta_41d', 'retirada_meta_41x', 'retirada_performance_41c']"
+  },
+  {
+   "gate": "dependências",
+   "check": "toda equação diária produz valor consumido ou agregado",
+   "result": "PASS",
+   "detail": ""
+  },
+  {
+   "gate": "segurança DSL",
+   "check": "nenhuma construção proibida; só ln/1 argumento; parser da plataforma aceita as 20 equações",
+   "result": "PASS",
+   "detail": "[]"
+  },
+  {
+   "gate": "ln",
+   "check": "6 ocorrências de ln, todas com 1 argumento",
+   "result": "PASS",
+   "detail": "[(6, 'ln(vazao_ltp)'), (7, 'ln(vazao_ltp)'), (8, 'ln(vazao_ltp)'), (16, 'ln(lth_grupo * fator_retirada_cond_corr_lth)'), (17, 'ln(lth_grupo * fator_retirada_cond_corr_lth)'), (18, 'ln(lth_grupo * fator_retirada_cond_corr_lth)')]"
+  },
+  {
+   "gate": "ln",
+   "check": "ln(1)=0, ln(e)=1, ln(0)/ln(<0)->MathDomainError, ln(categorical)->ExpressionTypeError, allowlist fechada",
+   "result": "PASS",
+   "detail": "[]"
+  },
+  {
+   "gate": "equações",
+   "check": "spec == texto == runtime (diferentes)",
+   "result": "PASS",
+   "detail": "None"
+  },
+  {
+   "gate": "rateio",
+   "check": "Σ linhas == grupo (diferentes)",
+   "result": "PASS",
+   "detail": ""
+  },
+  {
+   "gate": "total",
+   "check": "total == Σ grupos (diferentes)",
+   "result": "PASS",
+   "detail": ""
+  },
+  {
+   "gate": "equações",
+   "check": "spec == texto == runtime (iguais)",
+   "result": "PASS",
+   "detail": "None"
+  },
+  {
+   "gate": "rateio",
+   "check": "Σ linhas == grupo (iguais)",
+   "result": "PASS",
+   "detail": ""
+  },
+  {
+   "gate": "total",
+   "check": "total == Σ grupos (iguais)",
+   "result": "PASS",
+   "detail": ""
+  },
+  {
+   "gate": "equações",
+   "check": "spec == texto == runtime (assimetricos)",
+   "result": "PASS",
+   "detail": "None"
+  },
+  {
+   "gate": "rateio",
+   "check": "Σ linhas == grupo (assimetricos)",
+   "result": "PASS",
+   "detail": ""
+  },
+  {
+   "gate": "total",
+   "check": "total == Σ grupos (assimetricos)",
+   "result": "PASS",
+   "detail": ""
+  },
+  {
+   "gate": "equações",
+   "check": "spec == texto == runtime (proximos_de_zero)",
+   "result": "PASS",
+   "detail": "None"
+  },
+  {
+   "gate": "rateio",
+   "check": "Σ linhas == grupo (proximos_de_zero)",
+   "result": "PASS",
+   "detail": ""
+  },
+  {
+   "gate": "total",
+   "check": "total == Σ grupos (proximos_de_zero)",
+   "result": "PASS",
+   "detail": ""
+  },
+  {
+   "gate": "equações",
+   "check": "spec == texto == runtime (enunciado_21)",
+   "result": "PASS",
+   "detail": "None"
+  },
+  {
+   "gate": "rateio",
+   "check": "Σ linhas == grupo (enunciado_21)",
+   "result": "PASS",
+   "detail": ""
+  },
+  {
+   "gate": "total",
+   "check": "total == Σ grupos (enunciado_21)",
+   "result": "PASS",
+   "detail": ""
+  },
+  {
+   "gate": "A020",
+   "check": "lth_grupo = 20/50/50 (média, não soma)",
+   "result": "PASS",
+   "detail": ""
+  },
+  {
+   "gate": "texto/booleano",
+   "check": "30 combinações de estados L4_L5: spec == texto == runtime (inclui F)",
+   "result": "PASS",
+   "detail": ""
+  },
+  {
+   "gate": "texto/booleano",
+   "check": "30 combinações de estados L6_L7: spec == texto == runtime (inclui F)",
+   "result": "PASS",
+   "detail": ""
+  },
+  {
+   "gate": "texto/booleano",
+   "check": "precedência LC / Overhaul/Parada -> LC",
+   "result": "PASS",
+   "detail": ""
+  },
+  {
+   "gate": "texto/booleano",
+   "check": "precedência Overhaul/Parada / 1 By pass -> Overhaul",
+   "result": "PASS",
+   "detail": ""
+  },
+  {
+   "gate": "texto/booleano",
+   "check": "precedência 1 By pass / 1 By pass e LC -> By pass",
+   "result": "PASS",
+   "detail": ""
+  },
+  {
+   "gate": "texto/booleano",
+   "check": "precedência LC / 1 By pass e LC -> LC",
+   "result": "PASS",
+   "detail": ""
+  },
+  {
+   "gate": "texto/booleano",
+   "check": "precedência Normal / 1 By pass e LC -> F",
+   "result": "PASS",
+   "detail": ""
+  },
+  {
+   "gate": "\"F\"",
+   "check": "grupo L4_L5 grava exatamente o texto \"F\" (não 0/False/None/\"0\")",
+   "result": "PASS",
+   "detail": ""
+  },
+  {
+   "gate": "\"F\"",
+   "check": "consumidores falham com ConditionalFailureError (erro contratual)",
+   "result": "PASS",
+   "detail": ""
+  },
+  {
+   "gate": "\"F\"",
+   "check": "saídas não calculadas sob F ⊇ dependentes do grupo em falha",
+   "result": "PASS",
+   "detail": ""
+  },
+  {
+   "gate": "\"F\"",
+   "check": "\"F\"+1 e \"F\"==0 falham; \"F\"==\"F\" é a única leitura",
+   "result": "PASS",
+   "detail": ""
+  },
+  {
+   "gate": "A021",
+   "check": "retirada_condensado_grupo mensal linha_grupo/L1_L3: 1 instâncias esperadas",
+   "result": "PASS",
+   "detail": "['L1_L3']"
+  },
+  {
+   "gate": "A021",
+   "check": "retirada_condensado_grupo anual linha_grupo/L1_L3: 1 instâncias esperadas",
+   "result": "PASS",
+   "detail": "['L1_L3']"
+  },
+  {
+   "gate": "A021",
+   "check": "retirada_condensado_grupo mensal linha_grupo/L4_L5: 1 instâncias esperadas",
+   "result": "PASS",
+   "detail": "['L4_L5']"
+  },
+  {
+   "gate": "A021",
+   "check": "retirada_condensado_grupo anual linha_grupo/L4_L5: 1 instâncias esperadas",
+   "result": "PASS",
+   "detail": "['L4_L5']"
+  },
+  {
+   "gate": "A021",
+   "check": "retirada_condensado_grupo mensal linha_grupo/L6_L7: 1 instâncias esperadas",
+   "result": "PASS",
+   "detail": "['L6_L7']"
+  },
+  {
+   "gate": "A021",
+   "check": "retirada_condensado_grupo anual linha_grupo/L6_L7: 1 instâncias esperadas",
+   "result": "PASS",
+   "detail": "['L6_L7']"
+  },
+  {
+   "gate": "A021",
+   "check": "retirada_condensado_linha mensal linha/L1_L7: 7 instâncias esperadas",
+   "result": "PASS",
+   "detail": "['L1', 'L2', 'L3', 'L4', 'L5', 'L6', 'L7']"
+  },
+  {
+   "gate": "A021",
+   "check": "retirada_condensado_linha anual linha/L1_L7: 7 instâncias esperadas",
+   "result": "PASS",
+   "detail": "['L1', 'L2', 'L3', 'L4', 'L5', 'L6', 'L7']"
+  },
+  {
+   "gate": "A021",
+   "check": "retirada_condensado_total mensal linha_grupo/L1_L7: 1 instâncias esperadas",
+   "result": "PASS",
+   "detail": "['L1_L7']"
+  },
+  {
+   "gate": "A021",
+   "check": "retirada_condensado_total anual linha_grupo/L1_L7: 1 instâncias esperadas",
+   "result": "PASS",
+   "detail": "['L1_L7']"
+  },
+  {
+   "gate": "agregações",
+   "check": "todas as 22 instâncias = média independente dos diários (AVERAGE, sem fator)",
+   "result": "PASS",
+   "detail": ""
+  },
+  {
+   "gate": "agregações",
+   "check": "total mensal/anual == Σ médias dos grupos (mesmos dias)",
+   "result": "PASS",
+   "detail": ""
+  },
+  {
+   "gate": "/h gate",
+   "check": "A41: nenhuma SUM; unidade origem == destino em todas as agregações",
+   "result": "PASS",
+   "detail": ""
+  },
+  {
+   "gate": "\"F\"",
+   "check": "média mensal com um dia F falha com AggregationFailureError(['2026-03-02'])",
+   "result": "PASS",
+   "detail": "['2026-03-02']"
+  },
+  {
+   "gate": "ordem",
+   "check": "resultados idênticos em 5 ordens × 2 cenários",
+   "result": "PASS",
+   "detail": ""
+  },
+  {
+   "gate": "perturbação",
+   "check": "11 perturbações: afetados observados == descendentes do DAG independente",
+   "result": "PASS",
+   "detail": ""
+  },
+  {
+   "gate": "perturbação",
+   "check": "desconto com ramo inativo não altera resultados",
+   "result": "PASS",
+   "detail": ""
+  },
+  {
+   "gate": "isolamento",
+   "check": "perturbar lth de uma linha só altera o próprio grupo, suas linhas e o total",
+   "result": "PASS",
+   "detail": ""
+  },
+  {
+   "gate": "rateio",
+   "check": "Σ lth = 0 no grupo: falha explícita (nunca valor silencioso)",
+   "result": "PASS",
+   "detail": "MathDomainError"
+  },
+  {
+   "gate": "unidades",
+   "check": "nenhuma soma incompatível; unidade calculada == declarada",
+   "result": "PASS",
+   "detail": ""
+  },
+  {
+   "gate": "41c/41d",
+   "check": "desconto_retirada_41c@L4_L5 = Forecast A41!C26 (decisão do usuário)",
+   "result": "PASS",
+   "detail": ""
+  },
+  {
+   "gate": "41c/41d",
+   "check": "desconto_retirada_41c@L6_L7 = Forecast A41!C28 (decisão do usuário)",
+   "result": "PASS",
+   "detail": ""
+  },
+  {
+   "gate": "41c/41d",
+   "check": "desconto_retirada_41d@L4_L5 = Forecast A41!C27 (decisão do usuário)",
+   "result": "PASS",
+   "detail": ""
+  },
+  {
+   "gate": "41c/41d",
+   "check": "exatamente 3 descontos; sem 41d@L6_L7; nenhuma célula compartilhada",
+   "result": "PASS",
+   "detail": ""
+  },
+  {
+   "gate": "max_ht",
+   "check": "identificação: 34 SUMs /h -> /mês|/ano; nenhum fator aplicado nos seeds",
+   "result": "PASS",
+   "detail": ""
+  }
+ ]
+}

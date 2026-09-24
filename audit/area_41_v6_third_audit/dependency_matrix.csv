@@ -1,0 +1,82 @@
+produtor,papel_produtor,consumidor,referencia,modo
+vazao_ltp@L1_L3,input,retirada_cond_corr_ltp@L1_L3,vazao_ltp,implícita
+vazao_ltp@L4_L5,input,retirada_cond_corr_ltp@L4_L5,vazao_ltp,implícita
+vazao_ltp@L6_L7,input,retirada_cond_corr_ltp@L6_L7,vazao_ltp,implícita
+lth@L1,input,lth_grupo@L1_L3,lth@L1,explícita
+lth@L2,input,lth_grupo@L1_L3,lth@L2,explícita
+lth@L3,input,lth_grupo@L1_L3,lth@L3,explícita
+lth@L4,input,lth_grupo@L4_L5,lth@L4,explícita
+lth@L5,input,lth_grupo@L4_L5,lth@L5,explícita
+lth@L6,input,lth_grupo@L6_L7,lth@L6,explícita
+lth@L7,input,lth_grupo@L6_L7,lth@L7,explícita
+lth_grupo@L1_L3,equation,retirada_cond_corr_lth@L1_L3,lth_grupo,implícita
+fator_retirada_cond_corr_lth@L1_L3,input,retirada_cond_corr_lth@L1_L3,fator_retirada_cond_corr_lth,implícita
+lth_grupo@L4_L5,equation,retirada_cond_corr_lth@L4_L5,lth_grupo,implícita
+fator_retirada_cond_corr_lth@L4_L5,input,retirada_cond_corr_lth@L4_L5,fator_retirada_cond_corr_lth,implícita
+lth_grupo@L6_L7,equation,retirada_cond_corr_lth@L6_L7,lth_grupo,implícita
+fator_retirada_cond_corr_lth@L6_L7,input,retirada_cond_corr_lth@L6_L7,fator_retirada_cond_corr_lth,implícita
+valor_retirada@L1,input,retirada_condensado_grupo@L1_L3,valor_retirada@L1,explícita
+valor_retirada@L2,input,retirada_condensado_grupo@L1_L3,valor_retirada@L2,explícita
+valor_retirada@L3,input,retirada_condensado_grupo@L1_L3,valor_retirada@L3,explícita
+retirada_cond_corr_ltp@L1_L3,equation,retirada_condensado_grupo@L1_L3,retirada_cond_corr_ltp,implícita
+retirada_cond_corr_lth@L1_L3,equation,retirada_condensado_grupo@L1_L3,retirada_cond_corr_lth,implícita
+retirada_cond_corr_ltp@L4_L5,equation,retirada_condensado_grupo@L4_L5,retirada_cond_corr_ltp,implícita
+retirada_cond_corr_lth@L4_L5,equation,retirada_condensado_grupo@L4_L5,retirada_cond_corr_lth,implícita
+hes_l4@L4,input,retirada_condensado_grupo@L4_L5,hes_l4@L4,explícita
+hes_l5@L5,input,retirada_condensado_grupo@L4_L5,hes_l5@L5,explícita
+desconto_retirada_41d@L4_L5,input,retirada_condensado_grupo@L4_L5,desconto_retirada_41d,implícita
+desconto_retirada_41c@L4_L5,input,retirada_condensado_grupo@L4_L5,desconto_retirada_41c,implícita
+retirada_cond_corr_ltp@L6_L7,equation,retirada_condensado_grupo@L6_L7,retirada_cond_corr_ltp,implícita
+retirada_cond_corr_lth@L6_L7,equation,retirada_condensado_grupo@L6_L7,retirada_cond_corr_lth,implícita
+hes_l6@L6,input,retirada_condensado_grupo@L6_L7,hes_l6@L6,explícita
+hes_l7@L7,input,retirada_condensado_grupo@L6_L7,hes_l7@L7,explícita
+desconto_retirada_41c@L6_L7,input,retirada_condensado_grupo@L6_L7,desconto_retirada_41c,implícita
+retirada_condensado_grupo@L1_L3,equation,retirada_condensado_linha@L1,retirada_condensado_grupo@L1_L3,explícita
+lth@L1,input,retirada_condensado_linha@L1,lth@L1,explícita
+lth@L2,input,retirada_condensado_linha@L1,lth@L2,explícita
+lth@L3,input,retirada_condensado_linha@L1,lth@L3,explícita
+retirada_condensado_grupo@L1_L3,equation,retirada_condensado_linha@L2,retirada_condensado_grupo@L1_L3,explícita
+lth@L2,input,retirada_condensado_linha@L2,lth@L2,explícita
+lth@L1,input,retirada_condensado_linha@L2,lth@L1,explícita
+lth@L3,input,retirada_condensado_linha@L2,lth@L3,explícita
+retirada_condensado_grupo@L1_L3,equation,retirada_condensado_linha@L3,retirada_condensado_grupo@L1_L3,explícita
+lth@L3,input,retirada_condensado_linha@L3,lth@L3,explícita
+lth@L1,input,retirada_condensado_linha@L3,lth@L1,explícita
+lth@L2,input,retirada_condensado_linha@L3,lth@L2,explícita
+retirada_condensado_grupo@L4_L5,equation,retirada_condensado_linha@L4,retirada_condensado_grupo@L4_L5,explícita
+lth@L4,input,retirada_condensado_linha@L4,lth@L4,explícita
+lth@L5,input,retirada_condensado_linha@L4,lth@L5,explícita
+retirada_condensado_grupo@L4_L5,equation,retirada_condensado_linha@L5,retirada_condensado_grupo@L4_L5,explícita
+lth@L5,input,retirada_condensado_linha@L5,lth@L5,explícita
+lth@L4,input,retirada_condensado_linha@L5,lth@L4,explícita
+retirada_condensado_grupo@L6_L7,equation,retirada_condensado_linha@L6,retirada_condensado_grupo@L6_L7,explícita
+lth@L6,input,retirada_condensado_linha@L6,lth@L6,explícita
+lth@L7,input,retirada_condensado_linha@L6,lth@L7,explícita
+retirada_condensado_grupo@L6_L7,equation,retirada_condensado_linha@L7,retirada_condensado_grupo@L6_L7,explícita
+lth@L7,input,retirada_condensado_linha@L7,lth@L7,explícita
+lth@L6,input,retirada_condensado_linha@L7,lth@L6,explícita
+retirada_condensado_grupo@L1_L3,equation,retirada_condensado_total@L1_L7,retirada_condensado_grupo@L1_L3,explícita
+retirada_condensado_grupo@L4_L5,equation,retirada_condensado_total@L1_L7,retirada_condensado_grupo@L4_L5,explícita
+retirada_condensado_grupo@L6_L7,equation,retirada_condensado_total@L1_L7,retirada_condensado_grupo@L6_L7,explícita
+retirada_condensado_grupo@L1_L3 (diário),equation,retirada_condensado_grupo@L1_L3 (mensal),retirada_condensado_grupo,agregação Média
+retirada_condensado_grupo@L1_L3 (diário),equation,retirada_condensado_grupo@L1_L3 (anual),retirada_condensado_grupo,agregação Média
+retirada_condensado_grupo@L4_L5 (diário),equation,retirada_condensado_grupo@L4_L5 (mensal),retirada_condensado_grupo,agregação Média
+retirada_condensado_grupo@L4_L5 (diário),equation,retirada_condensado_grupo@L4_L5 (anual),retirada_condensado_grupo,agregação Média
+retirada_condensado_grupo@L6_L7 (diário),equation,retirada_condensado_grupo@L6_L7 (mensal),retirada_condensado_grupo,agregação Média
+retirada_condensado_grupo@L6_L7 (diário),equation,retirada_condensado_grupo@L6_L7 (anual),retirada_condensado_grupo,agregação Média
+retirada_condensado_linha@L1 (diário),equation,retirada_condensado_linha@L1 (mensal),retirada_condensado_linha,agregação Média
+retirada_condensado_linha@L2 (diário),equation,retirada_condensado_linha@L2 (mensal),retirada_condensado_linha,agregação Média
+retirada_condensado_linha@L3 (diário),equation,retirada_condensado_linha@L3 (mensal),retirada_condensado_linha,agregação Média
+retirada_condensado_linha@L4 (diário),equation,retirada_condensado_linha@L4 (mensal),retirada_condensado_linha,agregação Média
+retirada_condensado_linha@L5 (diário),equation,retirada_condensado_linha@L5 (mensal),retirada_condensado_linha,agregação Média
+retirada_condensado_linha@L6 (diário),equation,retirada_condensado_linha@L6 (mensal),retirada_condensado_linha,agregação Média
+retirada_condensado_linha@L7 (diário),equation,retirada_condensado_linha@L7 (mensal),retirada_condensado_linha,agregação Média
+retirada_condensado_linha@L1 (diário),equation,retirada_condensado_linha@L1 (anual),retirada_condensado_linha,agregação Média
+retirada_condensado_linha@L2 (diário),equation,retirada_condensado_linha@L2 (anual),retirada_condensado_linha,agregação Média
+retirada_condensado_linha@L3 (diário),equation,retirada_condensado_linha@L3 (anual),retirada_condensado_linha,agregação Média
+retirada_condensado_linha@L4 (diário),equation,retirada_condensado_linha@L4 (anual),retirada_condensado_linha,agregação Média
+retirada_condensado_linha@L5 (diário),equation,retirada_condensado_linha@L5 (anual),retirada_condensado_linha,agregação Média
+retirada_condensado_linha@L6 (diário),equation,retirada_condensado_linha@L6 (anual),retirada_condensado_linha,agregação Média
+retirada_condensado_linha@L7 (diário),equation,retirada_condensado_linha@L7 (anual),retirada_condensado_linha,agregação Média
+retirada_condensado_total@L1_L7 (diário),equation,retirada_condensado_total@L1_L7 (mensal),retirada_condensado_total,agregação Média
+retirada_condensado_total@L1_L7 (diário),equation,retirada_condensado_total@L1_L7 (anual),retirada_condensado_total,agregação Média

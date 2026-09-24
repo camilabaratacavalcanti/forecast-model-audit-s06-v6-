@@ -1,0 +1,11 @@
+ordem,cenario,valores_calculados,erro,igual_a_original
+original,valores diferentes,20,,sim
+original,falha F L4_L5,15,ConditionalFailureError,sim
+reversa,valores diferentes,20,,sim
+reversa,falha F L4_L5,15,ConditionalFailureError,sim
+aleatória seed=7,valores diferentes,20,,sim
+aleatória seed=7,falha F L4_L5,15,ConditionalFailureError,sim
+aleatória seed=41,valores diferentes,20,,sim
+aleatória seed=41,falha F L4_L5,15,ConditionalFailureError,sim
+aleatória seed=2026,valores diferentes,20,,sim
+aleatória seed=2026,falha F L4_L5,15,ConditionalFailureError,sim

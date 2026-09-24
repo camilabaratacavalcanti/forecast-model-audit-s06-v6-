@@ -1,0 +1,43 @@
+entidade,unidade_declarada,unidade_calculada,observacoes,compativel
+retirada_cond_corr_ltp@L1_L3,m³/h,(adimensional/constante),,sim
+retirada_cond_corr_ltp@L4_L5,m³/h,(adimensional/constante),,sim
+retirada_cond_corr_ltp@L6_L7,m³/h,(adimensional/constante),,sim
+lth_grupo@L1_L3,m³/h,"{""m³"": 1, ""h"": -1}",,sim
+lth_grupo@L4_L5,m³/h,"{""m³"": 1, ""h"": -1}",,sim
+lth_grupo@L6_L7,m³/h,"{""m³"": 1, ""h"": -1}",,sim
+retirada_cond_corr_lth@L1_L3,m³/h,(adimensional/constante),"ln de grandeza dimensional {'m³': 1, 'h': -1} (coeficientes de regressão em m³/h)",sim
+retirada_cond_corr_lth@L4_L5,m³/h,(adimensional/constante),"ln de grandeza dimensional {'m³': 1, 'h': -1} (coeficientes de regressão em m³/h)",sim
+retirada_cond_corr_lth@L6_L7,m³/h,(adimensional/constante),"ln de grandeza dimensional {'m³': 1, 'h': -1} (coeficientes de regressão em m³/h)",sim
+retirada_condensado_grupo@L1_L3,m³/h,"{""m³"": 1, ""h"": -1}",,sim
+retirada_condensado_grupo@L4_L5,m³/h,"{""m³"": 1, ""h"": -1}",constante somada a grandeza (unidade implícita da constante),sim
+retirada_condensado_grupo@L6_L7,m³/h,"{""m³"": 1, ""h"": -1}",constante somada a grandeza (unidade implícita da constante),sim
+retirada_condensado_linha@L1,m³/h,"{""m³"": 1, ""h"": -1}",,sim
+retirada_condensado_linha@L2,m³/h,"{""m³"": 1, ""h"": -1}",,sim
+retirada_condensado_linha@L3,m³/h,"{""m³"": 1, ""h"": -1}",,sim
+retirada_condensado_linha@L4,m³/h,"{""m³"": 1, ""h"": -1}",,sim
+retirada_condensado_linha@L5,m³/h,"{""m³"": 1, ""h"": -1}",,sim
+retirada_condensado_linha@L6,m³/h,"{""m³"": 1, ""h"": -1}",,sim
+retirada_condensado_linha@L7,m³/h,"{""m³"": 1, ""h"": -1}",,sim
+retirada_condensado_total@L1_L7,m³/h,"{""m³"": 1, ""h"": -1}",,sim
+retirada_condensado_grupo@L1_L3 (mensal),m³/h,m³/h,AVERAGE de taxa preserva a unidade,sim
+retirada_condensado_grupo@L1_L3 (anual),m³/h,m³/h,AVERAGE de taxa preserva a unidade,sim
+retirada_condensado_grupo@L4_L5 (mensal),m³/h,m³/h,AVERAGE de taxa preserva a unidade,sim
+retirada_condensado_grupo@L4_L5 (anual),m³/h,m³/h,AVERAGE de taxa preserva a unidade,sim
+retirada_condensado_grupo@L6_L7 (mensal),m³/h,m³/h,AVERAGE de taxa preserva a unidade,sim
+retirada_condensado_grupo@L6_L7 (anual),m³/h,m³/h,AVERAGE de taxa preserva a unidade,sim
+retirada_condensado_linha@L1 (mensal),m³/h,m³/h,AVERAGE de taxa preserva a unidade,sim
+retirada_condensado_linha@L2 (mensal),m³/h,m³/h,AVERAGE de taxa preserva a unidade,sim
+retirada_condensado_linha@L3 (mensal),m³/h,m³/h,AVERAGE de taxa preserva a unidade,sim
+retirada_condensado_linha@L4 (mensal),m³/h,m³/h,AVERAGE de taxa preserva a unidade,sim
+retirada_condensado_linha@L5 (mensal),m³/h,m³/h,AVERAGE de taxa preserva a unidade,sim
+retirada_condensado_linha@L6 (mensal),m³/h,m³/h,AVERAGE de taxa preserva a unidade,sim
+retirada_condensado_linha@L7 (mensal),m³/h,m³/h,AVERAGE de taxa preserva a unidade,sim
+retirada_condensado_linha@L1 (anual),m³/h,m³/h,AVERAGE de taxa preserva a unidade,sim
+retirada_condensado_linha@L2 (anual),m³/h,m³/h,AVERAGE de taxa preserva a unidade,sim
+retirada_condensado_linha@L3 (anual),m³/h,m³/h,AVERAGE de taxa preserva a unidade,sim
+retirada_condensado_linha@L4 (anual),m³/h,m³/h,AVERAGE de taxa preserva a unidade,sim
+retirada_condensado_linha@L5 (anual),m³/h,m³/h,AVERAGE de taxa preserva a unidade,sim
+retirada_condensado_linha@L6 (anual),m³/h,m³/h,AVERAGE de taxa preserva a unidade,sim
+retirada_condensado_linha@L7 (anual),m³/h,m³/h,AVERAGE de taxa preserva a unidade,sim
+retirada_condensado_total@L1_L7 (mensal),m³/h,m³/h,AVERAGE de taxa preserva a unidade,sim
+retirada_condensado_total@L1_L7 (anual),m³/h,m³/h,AVERAGE de taxa preserva a unidade,sim
