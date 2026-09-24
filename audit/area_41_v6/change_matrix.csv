@@ -1,0 +1,294 @@
+cell,entity,v5,v6_recebido,v6_validado,natureza,classificacao,justificativa
+P1,(cabeçalho),Variables,,Variables,value_type (D1),inesperada no v6 recebido; reaplicada,"O v6 recebido deriva do input do v5 e perdeu a coluna value_type exigida pelo contrato da Etapa 1; reaplicada sem alteração de valor (correção mínima, §4)."
+P2,(cabeçalho),value_type,,value_type,value_type (D1),inesperada no v6 recebido; reaplicada,"O v6 recebido deriva do input do v5 e perdeu a coluna value_type exigida pelo contrato da Etapa 1; reaplicada sem alteração de valor (correção mínima, §4)."
+P3,vazao_ltp@L1_L3,numeric,,numeric,value_type (D1),inesperada no v6 recebido; reaplicada,"O v6 recebido deriva do input do v5 e perdeu a coluna value_type exigida pelo contrato da Etapa 1; reaplicada sem alteração de valor (correção mínima, §4)."
+P4,vazao_ltp@L4_L5,numeric,,numeric,value_type (D1),inesperada no v6 recebido; reaplicada,"O v6 recebido deriva do input do v5 e perdeu a coluna value_type exigida pelo contrato da Etapa 1; reaplicada sem alteração de valor (correção mínima, §4)."
+P5,vazao_ltp@L6_L7,numeric,,numeric,value_type (D1),inesperada no v6 recebido; reaplicada,"O v6 recebido deriva do input do v5 e perdeu a coluna value_type exigida pelo contrato da Etapa 1; reaplicada sem alteração de valor (correção mínima, §4)."
+P6,retirada_cond_corr_ltp@L1_L3,numeric,,numeric,value_type (D1),inesperada no v6 recebido; reaplicada,"O v6 recebido deriva do input do v5 e perdeu a coluna value_type exigida pelo contrato da Etapa 1; reaplicada sem alteração de valor (correção mínima, §4)."
+P7,retirada_cond_corr_ltp@L4_L5,numeric,,numeric,value_type (D1),inesperada no v6 recebido; reaplicada,"O v6 recebido deriva do input do v5 e perdeu a coluna value_type exigida pelo contrato da Etapa 1; reaplicada sem alteração de valor (correção mínima, §4)."
+P8,retirada_cond_corr_ltp@L6_L7,numeric,,numeric,value_type (D1),inesperada no v6 recebido; reaplicada,"O v6 recebido deriva do input do v5 e perdeu a coluna value_type exigida pelo contrato da Etapa 1; reaplicada sem alteração de valor (correção mínima, §4)."
+P9,lth@L1_L7,numeric,,numeric,value_type (D1),inesperada no v6 recebido; reaplicada,"O v6 recebido deriva do input do v5 e perdeu a coluna value_type exigida pelo contrato da Etapa 1; reaplicada sem alteração de valor (correção mínima, §4)."
+P10,lth_grupo@L1_L3,numeric,,numeric,value_type (D1),inesperada no v6 recebido; reaplicada,"O v6 recebido deriva do input do v5 e perdeu a coluna value_type exigida pelo contrato da Etapa 1; reaplicada sem alteração de valor (correção mínima, §4)."
+P11,lth_grupo@L4_L5,numeric,,numeric,value_type (D1),inesperada no v6 recebido; reaplicada,"O v6 recebido deriva do input do v5 e perdeu a coluna value_type exigida pelo contrato da Etapa 1; reaplicada sem alteração de valor (correção mínima, §4)."
+P12,lth_grupo@L6_L7,numeric,,numeric,value_type (D1),inesperada no v6 recebido; reaplicada,"O v6 recebido deriva do input do v5 e perdeu a coluna value_type exigida pelo contrato da Etapa 1; reaplicada sem alteração de valor (correção mínima, §4)."
+P13,fator_retirada_cond_corr_lth@L1_L3,numeric,,numeric,value_type (D1),inesperada no v6 recebido; reaplicada,"O v6 recebido deriva do input do v5 e perdeu a coluna value_type exigida pelo contrato da Etapa 1; reaplicada sem alteração de valor (correção mínima, §4)."
+P14,fator_retirada_cond_corr_lth@L4_L5,numeric,,numeric,value_type (D1),inesperada no v6 recebido; reaplicada,"O v6 recebido deriva do input do v5 e perdeu a coluna value_type exigida pelo contrato da Etapa 1; reaplicada sem alteração de valor (correção mínima, §4)."
+P15,fator_retirada_cond_corr_lth@L6_L7,numeric,,numeric,value_type (D1),inesperada no v6 recebido; reaplicada,"O v6 recebido deriva do input do v5 e perdeu a coluna value_type exigida pelo contrato da Etapa 1; reaplicada sem alteração de valor (correção mínima, §4)."
+P16,retirada_cond_corr_lth@L1_L3,numeric,,numeric,value_type (D1),inesperada no v6 recebido; reaplicada,"O v6 recebido deriva do input do v5 e perdeu a coluna value_type exigida pelo contrato da Etapa 1; reaplicada sem alteração de valor (correção mínima, §4)."
+P17,retirada_cond_corr_lth@L4_L5,numeric,,numeric,value_type (D1),inesperada no v6 recebido; reaplicada,"O v6 recebido deriva do input do v5 e perdeu a coluna value_type exigida pelo contrato da Etapa 1; reaplicada sem alteração de valor (correção mínima, §4)."
+P18,retirada_cond_corr_lth@L6_L7,numeric,,numeric,value_type (D1),inesperada no v6 recebido; reaplicada,"O v6 recebido deriva do input do v5 e perdeu a coluna value_type exigida pelo contrato da Etapa 1; reaplicada sem alteração de valor (correção mínima, §4)."
+P19,valor_retirada@L1,numeric,,numeric,value_type (D1),inesperada no v6 recebido; reaplicada,"O v6 recebido deriva do input do v5 e perdeu a coluna value_type exigida pelo contrato da Etapa 1; reaplicada sem alteração de valor (correção mínima, §4)."
+P20,valor_retirada@L2,numeric,,numeric,value_type (D1),inesperada no v6 recebido; reaplicada,"O v6 recebido deriva do input do v5 e perdeu a coluna value_type exigida pelo contrato da Etapa 1; reaplicada sem alteração de valor (correção mínima, §4)."
+P21,valor_retirada@L3,numeric,,numeric,value_type (D1),inesperada no v6 recebido; reaplicada,"O v6 recebido deriva do input do v5 e perdeu a coluna value_type exigida pelo contrato da Etapa 1; reaplicada sem alteração de valor (correção mínima, §4)."
+P22,retirada_condensado_grupo@L1_L3,numeric,,numeric,value_type (D1),inesperada no v6 recebido; reaplicada,"O v6 recebido deriva do input do v5 e perdeu a coluna value_type exigida pelo contrato da Etapa 1; reaplicada sem alteração de valor (correção mínima, §4)."
+P23,retirada_condensado_grupo@L1_L3,numeric,,numeric,value_type (D1),inesperada no v6 recebido; reaplicada,"O v6 recebido deriva do input do v5 e perdeu a coluna value_type exigida pelo contrato da Etapa 1; reaplicada sem alteração de valor (correção mínima, §4)."
+P24,retirada_condensado_grupo@L1_L3,numeric,,numeric,value_type (D1),inesperada no v6 recebido; reaplicada,"O v6 recebido deriva do input do v5 e perdeu a coluna value_type exigida pelo contrato da Etapa 1; reaplicada sem alteração de valor (correção mínima, §4)."
+P25,hes_l4@L4,categorical,,categorical,value_type (D1),inesperada no v6 recebido; reaplicada,"O v6 recebido deriva do input do v5 e perdeu a coluna value_type exigida pelo contrato da Etapa 1; reaplicada sem alteração de valor (correção mínima, §4)."
+P26,hes_l5@L5,categorical,,categorical,value_type (D1),inesperada no v6 recebido; reaplicada,"O v6 recebido deriva do input do v5 e perdeu a coluna value_type exigida pelo contrato da Etapa 1; reaplicada sem alteração de valor (correção mínima, §4)."
+P27,hes_l6@L6,categorical,,categorical,value_type (D1),inesperada no v6 recebido; reaplicada,"O v6 recebido deriva do input do v5 e perdeu a coluna value_type exigida pelo contrato da Etapa 1; reaplicada sem alteração de valor (correção mínima, §4)."
+P28,hes_l7@L7,categorical,,categorical,value_type (D1),inesperada no v6 recebido; reaplicada,"O v6 recebido deriva do input do v5 e perdeu a coluna value_type exigida pelo contrato da Etapa 1; reaplicada sem alteração de valor (correção mínima, §4)."
+P29,desconto_retirada_41c@L4_L5,numeric,,numeric,value_type (D1),inesperada no v6 recebido; reaplicada,"O v6 recebido deriva do input do v5 e perdeu a coluna value_type exigida pelo contrato da Etapa 1; reaplicada sem alteração de valor (correção mínima, §4)."
+K30,desconto_retirada_41c@L6_L7,Forecast A41!C27,Forecast A41!C28,Forecast A41!C28,source_reference,esperada,"Decisão semântica do usuário 41c/41d (C26->41c@L4_L5, C28->41c@L6_L7, C27->41d@L4_L5)."
+P30,desconto_retirada_41c@L6_L7,numeric,,numeric,value_type (D1),inesperada no v6 recebido; reaplicada,"O v6 recebido deriva do input do v5 e perdeu a coluna value_type exigida pelo contrato da Etapa 1; reaplicada sem alteração de valor (correção mínima, §4)."
+K31,desconto_retirada_41d@L4_L5,Forecast A41!C26,Forecast A41!C27,Forecast A41!C27,source_reference,esperada,"Decisão semântica do usuário 41c/41d (C26->41c@L4_L5, C28->41c@L6_L7, C27->41d@L4_L5)."
+P31,desconto_retirada_41d@L4_L5,numeric,,numeric,value_type (D1),inesperada no v6 recebido; reaplicada,"O v6 recebido deriva do input do v5 e perdeu a coluna value_type exigida pelo contrato da Etapa 1; reaplicada sem alteração de valor (correção mínima, §4)."
+M39,retirada_condensado_grupo@L4_L5,"(
+    (100 - ((retirada_cond_corr_ltp - retirada_cond_corr_lth) * 2))
+    if hes_l4@L4 == ""Normal"" and hes_l5@L5 == ""Normal""
+    else (
+        (
+            (
+                (100 - ((retirada_cond_corr_ltp - retirada_cond_corr_lth) * 2)) * 14
+                + (
+                    (100 - ((retirada_cond_corr_ltp - retirada_cond_corr_lth) * 2)) / 2
+                ) * 10
+            ) / 24
+        )
+        if hes_l4@L4 == ""LC"" or hes_l5@L5 == ""LC""
+        else (
+            50 - ((retirada_cond_corr_ltp - retirada_cond_corr_lth) * 2)
+        )
+        if hes_l4@L4 == ""Overhaul/Parada"" or hes_l5@L5 == ""Overhaul/Parada""
+        else (
+            100
+            - ((retirada_cond_corr_ltp - retirada_cond_corr_lth) * 2)
+            - desconto_retirada_41d
+        )
+        if hes_l4@L4 == ""1 By pass"" or hes_l5@L5 == ""1 By pass""
+        else (
+            (
+                (
+                    (100 - ((retirada_cond_corr_ltp - retirada_cond_corr_lth) * 2)) * 14
+                    + (
+                        (
+                            (100 - ((retirada_cond_corr_ltp - retirada_cond_corr_lth) * 2))
+                            - desconto_retirada_41c
+                        ) / 2
+                    ) * 10
+                ) / 24
+            )
+            if hes_l4@L4 == ""1 By pass e LC""
+            and hes_l5@L5 == ""1 By pass e LC""
+            else ""F""
+        )
+    )
+)","(
+    (100 - ((retirada_cond_corr_ltp - retirada_cond_corr_lth) * 2))
+    if hes_l4 == ""Normal"" and hes_l5 == ""Normal""
+    else (
+        (
+            (
+                (100 - ((retirada_cond_corr_ltp - retirada_cond_corr_lth) * 2)) * 14
+                + (
+                    (100 - ((retirada_cond_corr_ltp - retirada_cond_corr_lth) * 2)) / 2
+                ) * 10
+            ) / 24
+        )
+        if hes_l4 == ""LC"" or hes_l5 == ""LC""
+        else (
+            50 - ((retirada_cond_corr_ltp - retirada_cond_corr_lth) * 2)
+        )
+        if hes_l4 == ""Overhaul/Parada"" or hes_l5 == ""Overhaul/Parada""
+        else (
+            100
+            - ((retirada_cond_corr_ltp - retirada_cond_corr_lth) * 2)
+            - desconto_retirada_41d
+        )
+        if hes_l4 == ""1 By pass"" or hes_l5 == ""1 By pass""
+        else (
+            (
+                (
+                    (100 - ((retirada_cond_corr_ltp - retirada_cond_corr_lth) * 2)) * 14
+                    + (
+                        (
+                            (100 - ((retirada_cond_corr_ltp - retirada_cond_corr_lth) * 2))
+                            - desconto_retirada_41c
+                        ) / 2
+                    ) * 10
+                ) / 24
+            )
+            if hes_l4 == ""1 By pass e LC""
+            and hes_l5 == ""1 By pass e LC""
+            else ""F""
+        )
+    )
+)","(
+    (100 - ((retirada_cond_corr_ltp - retirada_cond_corr_lth) * 2))
+    if hes_l4@L4 == ""Normal"" and hes_l5@L5 == ""Normal""
+    else (
+        (
+            (
+                (100 - ((retirada_cond_corr_ltp - retirada_cond_corr_lth) * 2)) * 14
+                + (
+                    (100 - ((retirada_cond_corr_ltp - retirada_cond_corr_lth) * 2)) / 2
+                ) * 10
+            ) / 24
+        )
+        if hes_l4@L4 == ""LC"" or hes_l5@L5 == ""LC""
+        else (
+            50 - ((retirada_cond_corr_ltp - retirada_cond_corr_lth) * 2)
+        )
+        if hes_l4@L4 == ""Overhaul/Parada"" or hes_l5@L5 == ""Overhaul/Parada""
+        else (
+            100
+            - ((retirada_cond_corr_ltp - retirada_cond_corr_lth) * 2)
+            - desconto_retirada_41d
+        )
+        if hes_l4@L4 == ""1 By pass"" or hes_l5@L5 == ""1 By pass""
+        else (
+            (
+                (
+                    (100 - ((retirada_cond_corr_ltp - retirada_cond_corr_lth) * 2)) * 14
+                    + (
+                        (
+                            (100 - ((retirada_cond_corr_ltp - retirada_cond_corr_lth) * 2))
+                            - desconto_retirada_41c
+                        ) / 2
+                    ) * 10
+                ) / 24
+            )
+            if hes_l4@L4 == ""1 By pass e LC""
+            and hes_l5@L5 == ""1 By pass e LC""
+            else ""F""
+        )
+    )
+)",expression (D2),inesperada no v6 recebido; reaplicada,"hes_lN sem @LN não é alcançável a partir do grupo (referência implícita nunca desce do grupo para a linha); reaplicado hes_lN@LN, única mudança na célula."
+P39,retirada_condensado_grupo@L4_L5,numeric,,numeric,value_type (D1),inesperada no v6 recebido; reaplicada,"O v6 recebido deriva do input do v5 e perdeu a coluna value_type exigida pelo contrato da Etapa 1; reaplicada sem alteração de valor (correção mínima, §4)."
+P40,retirada_condensado_grupo@L4_L5,numeric,,numeric,value_type (D1),inesperada no v6 recebido; reaplicada,"O v6 recebido deriva do input do v5 e perdeu a coluna value_type exigida pelo contrato da Etapa 1; reaplicada sem alteração de valor (correção mínima, §4)."
+P41,retirada_condensado_grupo@L4_L5,numeric,,numeric,value_type (D1),inesperada no v6 recebido; reaplicada,"O v6 recebido deriva do input do v5 e perdeu a coluna value_type exigida pelo contrato da Etapa 1; reaplicada sem alteração de valor (correção mínima, §4)."
+M42,retirada_condensado_grupo@L6_L7,"(
+    (100 - ((retirada_cond_corr_ltp - retirada_cond_corr_lth) * 2))
+    if hes_l6@L6 == ""Normal"" and hes_l7@L7 == ""Normal""
+    else (
+        (
+            (
+                (100 - ((retirada_cond_corr_ltp - retirada_cond_corr_lth) * 2)) * 14
+                + (
+                    (100 - ((retirada_cond_corr_ltp - retirada_cond_corr_lth) * 2)) / 2
+                ) * 10
+            ) / 24
+        )
+        if hes_l6@L6 == ""LC"" or hes_l7@L7 == ""LC""
+        else (
+            50 - ((retirada_cond_corr_ltp - retirada_cond_corr_lth) * 2)
+        )
+        if hes_l6@L6 == ""Overhaul/Parada"" or hes_l7@L7 == ""Overhaul/Parada""
+        else (
+            100
+            - ((retirada_cond_corr_ltp - retirada_cond_corr_lth) * 2)
+            - desconto_retirada_41c
+        )
+        if hes_l6@L6 == ""1 By pass"" or hes_l7@L7 == ""1 By pass""
+        else (
+            (
+                (
+                    (100 - ((retirada_cond_corr_ltp - retirada_cond_corr_lth) * 2)) * 14
+                    + (
+                        (
+                            (100 - ((retirada_cond_corr_ltp - retirada_cond_corr_lth) * 2))
+                            - desconto_retirada_41c
+                        ) / 2
+                    ) * 10
+                ) / 24
+            )
+            if hes_l6@L6 == ""1 By pass e LC""
+            and hes_l7@L7 == ""1 By pass e LC""
+            else ""F""
+        )
+    )
+)","(
+    (100 - ((retirada_cond_corr_ltp - retirada_cond_corr_lth) * 2))
+    if hes_l6 == ""Normal"" and hes_l7 == ""Normal""
+    else (
+        (
+            (
+                (100 - ((retirada_cond_corr_ltp - retirada_cond_corr_lth) * 2)) * 14
+                + (
+                    (100 - ((retirada_cond_corr_ltp - retirada_cond_corr_lth) * 2)) / 2
+                ) * 10
+            ) / 24
+        )
+        if hes_l6 == ""LC"" or hes_l7 == ""LC""
+        else (
+            50 - ((retirada_cond_corr_ltp - retirada_cond_corr_lth) * 2)
+        )
+        if hes_l6 == ""Overhaul/Parada"" or hes_l7 == ""Overhaul/Parada""
+        else (
+            100
+            - ((retirada_cond_corr_ltp - retirada_cond_corr_lth) * 2)
+            - desconto_retirada_41c
+        )
+        if hes_l6 == ""1 By pass"" or hes_l7 == ""1 By pass""
+        else (
+            (
+                (
+                    (100 - ((retirada_cond_corr_ltp - retirada_cond_corr_lth) * 2)) * 14
+                    + (
+                        (
+                            (100 - ((retirada_cond_corr_ltp - retirada_cond_corr_lth) * 2))
+                            - desconto_retirada_41c
+                        ) / 2
+                    ) * 10
+                ) / 24
+            )
+            if hes_l6 == ""1 By pass e LC""
+            and hes_l7 == ""1 By pass e LC""
+            else ""F""
+        )
+    )
+)","(
+    (100 - ((retirada_cond_corr_ltp - retirada_cond_corr_lth) * 2))
+    if hes_l6@L6 == ""Normal"" and hes_l7@L7 == ""Normal""
+    else (
+        (
+            (
+                (100 - ((retirada_cond_corr_ltp - retirada_cond_corr_lth) * 2)) * 14
+                + (
+                    (100 - ((retirada_cond_corr_ltp - retirada_cond_corr_lth) * 2)) / 2
+                ) * 10
+            ) / 24
+        )
+        if hes_l6@L6 == ""LC"" or hes_l7@L7 == ""LC""
+        else (
+            50 - ((retirada_cond_corr_ltp - retirada_cond_corr_lth) * 2)
+        )
+        if hes_l6@L6 == ""Overhaul/Parada"" or hes_l7@L7 == ""Overhaul/Parada""
+        else (
+            100
+            - ((retirada_cond_corr_ltp - retirada_cond_corr_lth) * 2)
+            - desconto_retirada_41c
+        )
+        if hes_l6@L6 == ""1 By pass"" or hes_l7@L7 == ""1 By pass""
+        else (
+            (
+                (
+                    (100 - ((retirada_cond_corr_ltp - retirada_cond_corr_lth) * 2)) * 14
+                    + (
+                        (
+                            (100 - ((retirada_cond_corr_ltp - retirada_cond_corr_lth) * 2))
+                            - desconto_retirada_41c
+                        ) / 2
+                    ) * 10
+                ) / 24
+            )
+            if hes_l6@L6 == ""1 By pass e LC""
+            and hes_l7@L7 == ""1 By pass e LC""
+            else ""F""
+        )
+    )
+)",expression (D2),inesperada no v6 recebido; reaplicada,"hes_lN sem @LN não é alcançável a partir do grupo (referência implícita nunca desce do grupo para a linha); reaplicado hes_lN@LN, única mudança na célula."
+P42,retirada_condensado_grupo@L6_L7,numeric,,numeric,value_type (D1),inesperada no v6 recebido; reaplicada,"O v6 recebido deriva do input do v5 e perdeu a coluna value_type exigida pelo contrato da Etapa 1; reaplicada sem alteração de valor (correção mínima, §4)."
+P43,retirada_condensado_grupo@L6_L7,numeric,,numeric,value_type (D1),inesperada no v6 recebido; reaplicada,"O v6 recebido deriva do input do v5 e perdeu a coluna value_type exigida pelo contrato da Etapa 1; reaplicada sem alteração de valor (correção mínima, §4)."
+P44,retirada_condensado_grupo@L6_L7,numeric,,numeric,value_type (D1),inesperada no v6 recebido; reaplicada,"O v6 recebido deriva do input do v5 e perdeu a coluna value_type exigida pelo contrato da Etapa 1; reaplicada sem alteração de valor (correção mínima, §4)."
+P45,retirada_condensado_linha@L1,numeric,,numeric,value_type (D1),inesperada no v6 recebido; reaplicada,"O v6 recebido deriva do input do v5 e perdeu a coluna value_type exigida pelo contrato da Etapa 1; reaplicada sem alteração de valor (correção mínima, §4)."
+P46,retirada_condensado_linha@L2,numeric,,numeric,value_type (D1),inesperada no v6 recebido; reaplicada,"O v6 recebido deriva do input do v5 e perdeu a coluna value_type exigida pelo contrato da Etapa 1; reaplicada sem alteração de valor (correção mínima, §4)."
+P47,retirada_condensado_linha@L3,numeric,,numeric,value_type (D1),inesperada no v6 recebido; reaplicada,"O v6 recebido deriva do input do v5 e perdeu a coluna value_type exigida pelo contrato da Etapa 1; reaplicada sem alteração de valor (correção mínima, §4)."
+P48,retirada_condensado_linha@L4,numeric,,numeric,value_type (D1),inesperada no v6 recebido; reaplicada,"O v6 recebido deriva do input do v5 e perdeu a coluna value_type exigida pelo contrato da Etapa 1; reaplicada sem alteração de valor (correção mínima, §4)."
+P49,retirada_condensado_linha@L5,numeric,,numeric,value_type (D1),inesperada no v6 recebido; reaplicada,"O v6 recebido deriva do input do v5 e perdeu a coluna value_type exigida pelo contrato da Etapa 1; reaplicada sem alteração de valor (correção mínima, §4)."
+P50,retirada_condensado_linha@L6,numeric,,numeric,value_type (D1),inesperada no v6 recebido; reaplicada,"O v6 recebido deriva do input do v5 e perdeu a coluna value_type exigida pelo contrato da Etapa 1; reaplicada sem alteração de valor (correção mínima, §4)."
+P51,retirada_condensado_linha@L7,numeric,,numeric,value_type (D1),inesperada no v6 recebido; reaplicada,"O v6 recebido deriva do input do v5 e perdeu a coluna value_type exigida pelo contrato da Etapa 1; reaplicada sem alteração de valor (correção mínima, §4)."
+P52,retirada_condensado_linha@L1_L7,numeric,,numeric,value_type (D1),inesperada no v6 recebido; reaplicada,"O v6 recebido deriva do input do v5 e perdeu a coluna value_type exigida pelo contrato da Etapa 1; reaplicada sem alteração de valor (correção mínima, §4)."
+P53,retirada_condensado_linha@L1_L7,numeric,,numeric,value_type (D1),inesperada no v6 recebido; reaplicada,"O v6 recebido deriva do input do v5 e perdeu a coluna value_type exigida pelo contrato da Etapa 1; reaplicada sem alteração de valor (correção mínima, §4)."
+P54,retirada_condensado_total@L1_L7,numeric,,numeric,value_type (D1),inesperada no v6 recebido; reaplicada,"O v6 recebido deriva do input do v5 e perdeu a coluna value_type exigida pelo contrato da Etapa 1; reaplicada sem alteração de valor (correção mínima, §4)."
+P55,retirada_condensado_total@L1_L7,numeric,,numeric,value_type (D1),inesperada no v6 recebido; reaplicada,"O v6 recebido deriva do input do v5 e perdeu a coluna value_type exigida pelo contrato da Etapa 1; reaplicada sem alteração de valor (correção mínima, §4)."
+P56,retirada_condensado_total@L1_L7,numeric,,numeric,value_type (D1),inesperada no v6 recebido; reaplicada,"O v6 recebido deriva do input do v5 e perdeu a coluna value_type exigida pelo contrato da Etapa 1; reaplicada sem alteração de valor (correção mínima, §4)."
