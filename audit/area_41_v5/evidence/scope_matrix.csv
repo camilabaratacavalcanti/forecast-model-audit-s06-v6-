@@ -1,0 +1,60 @@
+consumer,consumer_row,consumer_scope,reference,reference_scope,relationship,expected_resolution,result
+retirada_cond_corr_ltp,6,linha_grupo/L1_L3,vazao_ltp,"linha_grupo/L1_L3 (mensal, linha 3)",implícita-mesmo-escopo,valor alcançável a partir de cada instância,PASS
+retirada_cond_corr_ltp,7,linha_grupo/L4_L5,vazao_ltp,"linha_grupo/L4_L5 (mensal, linha 4)",implícita-mesmo-escopo,valor alcançável a partir de cada instância,PASS
+retirada_cond_corr_ltp,8,linha_grupo/L6_L7,vazao_ltp,"linha_grupo/L6_L7 (mensal, linha 5)",implícita-mesmo-escopo,valor alcançável a partir de cada instância,PASS
+lth_grupo,10,linha_grupo/L1_L3,lth@L1,"linha/L1_L7 (diário, linha 9)",explícita-linha,lth@L1,PASS
+lth_grupo,10,linha_grupo/L1_L3,lth@L2,"linha/L1_L7 (diário, linha 9)",explícita-linha,lth@L2,PASS
+lth_grupo,10,linha_grupo/L1_L3,lth@L3,"linha/L1_L7 (diário, linha 9)",explícita-linha,lth@L3,PASS
+lth_grupo,11,linha_grupo/L4_L5,lth@L4,"linha/L1_L7 (diário, linha 9)",explícita-linha,lth@L4,PASS
+lth_grupo,11,linha_grupo/L4_L5,lth@L5,"linha/L1_L7 (diário, linha 9)",explícita-linha,lth@L5,PASS
+lth_grupo,12,linha_grupo/L6_L7,lth@L6,"linha/L1_L7 (diário, linha 9)",explícita-linha,lth@L6,PASS
+lth_grupo,12,linha_grupo/L6_L7,lth@L7,"linha/L1_L7 (diário, linha 9)",explícita-linha,lth@L7,PASS
+retirada_cond_corr_lth,16,linha_grupo/L1_L3,lth_grupo,"linha_grupo/L1_L3 (diário, linha 10)",implícita-mesmo-escopo,valor alcançável a partir de cada instância,PASS
+retirada_cond_corr_lth,16,linha_grupo/L1_L3,fator_retirada_cond_corr_lth,"linha_grupo/L1_L3 (mensal, linha 13)",implícita-mesmo-escopo,valor alcançável a partir de cada instância,PASS
+retirada_cond_corr_lth,17,linha_grupo/L4_L5,lth_grupo,"linha_grupo/L4_L5 (diário, linha 11)",implícita-mesmo-escopo,valor alcançável a partir de cada instância,PASS
+retirada_cond_corr_lth,17,linha_grupo/L4_L5,fator_retirada_cond_corr_lth,"linha_grupo/L4_L5 (mensal, linha 14)",implícita-mesmo-escopo,valor alcançável a partir de cada instância,PASS
+retirada_cond_corr_lth,18,linha_grupo/L6_L7,lth_grupo,"linha_grupo/L6_L7 (diário, linha 12)",implícita-mesmo-escopo,valor alcançável a partir de cada instância,PASS
+retirada_cond_corr_lth,18,linha_grupo/L6_L7,fator_retirada_cond_corr_lth,"linha_grupo/L6_L7 (mensal, linha 15)",implícita-mesmo-escopo,valor alcançável a partir de cada instância,PASS
+retirada_condensado_grupo,22,linha_grupo/L1_L3,valor_retirada@L1,"linha/L1 (diário, linha 19)",explícita-linha,valor_retirada@L1,PASS
+retirada_condensado_grupo,22,linha_grupo/L1_L3,valor_retirada@L2,"linha/L2 (diário, linha 20)",explícita-linha,valor_retirada@L2,PASS
+retirada_condensado_grupo,22,linha_grupo/L1_L3,valor_retirada@L3,"linha/L3 (diário, linha 21)",explícita-linha,valor_retirada@L3,PASS
+retirada_condensado_grupo,22,linha_grupo/L1_L3,retirada_cond_corr_ltp,"linha_grupo/L1_L3 (diário, linha 6)",implícita-mesmo-escopo,valor alcançável a partir de cada instância,PASS
+retirada_condensado_grupo,22,linha_grupo/L1_L3,retirada_cond_corr_lth,"linha_grupo/L1_L3 (diário, linha 16)",implícita-mesmo-escopo,valor alcançável a partir de cada instância,PASS
+retirada_condensado_grupo,39,linha_grupo/L4_L5,retirada_cond_corr_ltp,"linha_grupo/L4_L5 (diário, linha 7)",implícita-mesmo-escopo,valor alcançável a partir de cada instância,PASS
+retirada_condensado_grupo,39,linha_grupo/L4_L5,retirada_cond_corr_lth,"linha_grupo/L4_L5 (diário, linha 17)",implícita-mesmo-escopo,valor alcançável a partir de cada instância,PASS
+retirada_condensado_grupo,39,linha_grupo/L4_L5,hes_l4@L4,"linha/L4 (diário, linha 25)",explícita-linha,hes_l4@L4,PASS
+retirada_condensado_grupo,39,linha_grupo/L4_L5,hes_l5@L5,"linha/L5 (diário, linha 26)",explícita-linha,hes_l5@L5,PASS
+retirada_condensado_grupo,39,linha_grupo/L4_L5,desconto_retirada_41d,"linha_grupo/L4_L5 (diário, linha 31)",implícita-mesmo-escopo,valor alcançável a partir de cada instância,PASS
+retirada_condensado_grupo,39,linha_grupo/L4_L5,desconto_retirada_41c,"linha_grupo/L4_L5 (diário, linha 29)",implícita-mesmo-escopo,valor alcançável a partir de cada instância,PASS
+retirada_condensado_grupo,42,linha_grupo/L6_L7,retirada_cond_corr_ltp,"linha_grupo/L6_L7 (diário, linha 8)",implícita-mesmo-escopo,valor alcançável a partir de cada instância,PASS
+retirada_condensado_grupo,42,linha_grupo/L6_L7,retirada_cond_corr_lth,"linha_grupo/L6_L7 (diário, linha 18)",implícita-mesmo-escopo,valor alcançável a partir de cada instância,PASS
+retirada_condensado_grupo,42,linha_grupo/L6_L7,hes_l6@L6,"linha/L6 (diário, linha 27)",explícita-linha,hes_l6@L6,PASS
+retirada_condensado_grupo,42,linha_grupo/L6_L7,hes_l7@L7,"linha/L7 (diário, linha 28)",explícita-linha,hes_l7@L7,PASS
+retirada_condensado_grupo,42,linha_grupo/L6_L7,desconto_retirada_41c,"linha_grupo/L6_L7 (diário, linha 30)",implícita-mesmo-escopo,valor alcançável a partir de cada instância,PASS
+retirada_condensado_linha,45,linha/L1,retirada_condensado_grupo@L1_L3,"linha_grupo/L1_L3 (diário, linha 22)",explícita-grupo,retirada_condensado_grupo@L1_L3,PASS
+retirada_condensado_linha,45,linha/L1,lth@L1,"linha/L1_L7 (diário, linha 9)",explícita-linha,lth@L1,PASS
+retirada_condensado_linha,45,linha/L1,lth@L2,"linha/L1_L7 (diário, linha 9)",explícita-linha,lth@L2,PASS
+retirada_condensado_linha,45,linha/L1,lth@L3,"linha/L1_L7 (diário, linha 9)",explícita-linha,lth@L3,PASS
+retirada_condensado_linha,46,linha/L2,retirada_condensado_grupo@L1_L3,"linha_grupo/L1_L3 (diário, linha 22)",explícita-grupo,retirada_condensado_grupo@L1_L3,PASS
+retirada_condensado_linha,46,linha/L2,lth@L2,"linha/L1_L7 (diário, linha 9)",explícita-linha,lth@L2,PASS
+retirada_condensado_linha,46,linha/L2,lth@L1,"linha/L1_L7 (diário, linha 9)",explícita-linha,lth@L1,PASS
+retirada_condensado_linha,46,linha/L2,lth@L3,"linha/L1_L7 (diário, linha 9)",explícita-linha,lth@L3,PASS
+retirada_condensado_linha,47,linha/L3,retirada_condensado_grupo@L1_L3,"linha_grupo/L1_L3 (diário, linha 22)",explícita-grupo,retirada_condensado_grupo@L1_L3,PASS
+retirada_condensado_linha,47,linha/L3,lth@L3,"linha/L1_L7 (diário, linha 9)",explícita-linha,lth@L3,PASS
+retirada_condensado_linha,47,linha/L3,lth@L1,"linha/L1_L7 (diário, linha 9)",explícita-linha,lth@L1,PASS
+retirada_condensado_linha,47,linha/L3,lth@L2,"linha/L1_L7 (diário, linha 9)",explícita-linha,lth@L2,PASS
+retirada_condensado_linha,48,linha/L4,retirada_condensado_grupo@L4_L5,"linha_grupo/L4_L5 (diário, linha 39)",explícita-grupo,retirada_condensado_grupo@L4_L5,PASS
+retirada_condensado_linha,48,linha/L4,lth@L4,"linha/L1_L7 (diário, linha 9)",explícita-linha,lth@L4,PASS
+retirada_condensado_linha,48,linha/L4,lth@L5,"linha/L1_L7 (diário, linha 9)",explícita-linha,lth@L5,PASS
+retirada_condensado_linha,49,linha/L5,retirada_condensado_grupo@L4_L5,"linha_grupo/L4_L5 (diário, linha 39)",explícita-grupo,retirada_condensado_grupo@L4_L5,PASS
+retirada_condensado_linha,49,linha/L5,lth@L5,"linha/L1_L7 (diário, linha 9)",explícita-linha,lth@L5,PASS
+retirada_condensado_linha,49,linha/L5,lth@L4,"linha/L1_L7 (diário, linha 9)",explícita-linha,lth@L4,PASS
+retirada_condensado_linha,50,linha/L6,retirada_condensado_grupo@L6_L7,"linha_grupo/L6_L7 (diário, linha 42)",explícita-grupo,retirada_condensado_grupo@L6_L7,PASS
+retirada_condensado_linha,50,linha/L6,lth@L6,"linha/L1_L7 (diário, linha 9)",explícita-linha,lth@L6,PASS
+retirada_condensado_linha,50,linha/L6,lth@L7,"linha/L1_L7 (diário, linha 9)",explícita-linha,lth@L7,PASS
+retirada_condensado_linha,51,linha/L7,retirada_condensado_grupo@L6_L7,"linha_grupo/L6_L7 (diário, linha 42)",explícita-grupo,retirada_condensado_grupo@L6_L7,PASS
+retirada_condensado_linha,51,linha/L7,lth@L7,"linha/L1_L7 (diário, linha 9)",explícita-linha,lth@L7,PASS
+retirada_condensado_linha,51,linha/L7,lth@L6,"linha/L1_L7 (diário, linha 9)",explícita-linha,lth@L6,PASS
+retirada_condensado_total,54,linha_grupo/L1_L7,retirada_condensado_grupo@L1_L3,"linha_grupo/L1_L3 (diário, linha 22)",explícita-grupo,retirada_condensado_grupo@L1_L3,PASS
+retirada_condensado_total,54,linha_grupo/L1_L7,retirada_condensado_grupo@L4_L5,"linha_grupo/L4_L5 (diário, linha 39)",explícita-grupo,retirada_condensado_grupo@L4_L5,PASS
+retirada_condensado_total,54,linha_grupo/L1_L7,retirada_condensado_grupo@L6_L7,"linha_grupo/L6_L7 (diário, linha 42)",explícita-grupo,retirada_condensado_grupo@L6_L7,PASS

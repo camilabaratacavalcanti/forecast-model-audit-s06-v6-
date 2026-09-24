@@ -1,0 +1,55 @@
+row,entity,frequency,scope,value_type,semantic_role,source_reference,source_sheet,source_cell,dependencies,aggregation,validation_status
+3,vazao_ltp@L1_L3,mensal,linha_grupo/L1_L3,numeric,input,Forecast A41!B31,Forecast A41,B31,,,PASS
+4,vazao_ltp@L4_L5,mensal,linha_grupo/L4_L5,numeric,input,Forecast A41!B31,Forecast A41,B31,,,PASS
+5,vazao_ltp@L6_L7,mensal,linha_grupo/L6_L7,numeric,input,Forecast A41!B31,Forecast A41,B31,,,PASS
+6,retirada_cond_corr_ltp@L1_L3,diário,linha_grupo/L1_L3,numeric,equation,Forecast A41!B42,Forecast A41,B42,vazao_ltp,,PASS
+7,retirada_cond_corr_ltp@L4_L5,diário,linha_grupo/L4_L5,numeric,equation,Forecast A41!B51,Forecast A41,B51,vazao_ltp,,PASS
+8,retirada_cond_corr_ltp@L6_L7,diário,linha_grupo/L6_L7,numeric,equation,Forecast A41!B60,Forecast A41,B60,vazao_ltp,,PASS
+9,lth@L1_L7,diário,linha/L1_L7,numeric,input,Forecast A41!B35,Forecast A41,B35,,,PASS
+10,lth_grupo@L1_L3,diário,linha_grupo/L1_L3,numeric,equation,Forecast A41!B41,Forecast A41,B41,lth@L1 lth@L2 lth@L3,,PASS
+11,lth_grupo@L4_L5,diário,linha_grupo/L4_L5,numeric,equation,Forecast A41!B50,Forecast A41,B50,lth@L4 lth@L5,,PASS
+12,lth_grupo@L6_L7,diário,linha_grupo/L6_L7,numeric,equation,Forecast A41!B59,Forecast A41,B59,lth@L6 lth@L7,,PASS
+13,fator_retirada_cond_corr_lth@L1_L3,mensal,linha_grupo/L1_L3,numeric,input,Forecast A41!D32,Forecast A41,D32,,,PASS
+14,fator_retirada_cond_corr_lth@L4_L5,mensal,linha_grupo/L4_L5,numeric,input,Forecast A41!D32,Forecast A41,D32,,,PASS
+15,fator_retirada_cond_corr_lth@L6_L7,mensal,linha_grupo/L6_L7,numeric,input,Forecast A41!D32,Forecast A41,D32,,,PASS
+16,retirada_cond_corr_lth@L1_L3,diário,linha_grupo/L1_L3,numeric,equation,Forecast A41!B43,Forecast A41,B43,fator_retirada_cond_corr_lth lth_grupo,,PASS
+17,retirada_cond_corr_lth@L4_L5,diário,linha_grupo/L4_L5,numeric,equation,Forecast A41!B52,Forecast A41,B52,fator_retirada_cond_corr_lth lth_grupo,,PASS
+18,retirada_cond_corr_lth@L6_L7,diário,linha_grupo/L6_L7,numeric,equation,Forecast A41!B61,Forecast A41,B61,fator_retirada_cond_corr_lth lth_grupo,,PASS
+19,valor_retirada@L1,diário,linha/L1,numeric,input,Forecast A41!A11,Forecast A41,A11,,,PASS
+20,valor_retirada@L2,diário,linha/L2,numeric,input,Forecast A41!A11,Forecast A41,A11,,,PASS
+21,valor_retirada@L3,diário,linha/L3,numeric,input,Forecast A41!A11,Forecast A41,A11,,,PASS
+22,retirada_condensado_grupo@L1_L3,diário,linha_grupo/L1_L3,numeric,equation,Forecast A41!A11,Forecast A41,A11,retirada_cond_corr_lth retirada_cond_corr_ltp valor_retirada@L1 valor_retirada@L2 valor_retirada@L3,,PASS
+23,retirada_condensado_grupo@L1_L3,mensal,linha_grupo/L1_L3,numeric,aggregation,Forecast A41!A11,Forecast A41,A11,retirada_condensado_grupo,AVERAGE mensal de retirada_condensado_grupo diário -> 1 instância(s): L1_L3,PASS
+24,retirada_condensado_grupo@L1_L3,anual,linha_grupo/L1_L3,numeric,aggregation,Forecast A41!A11,Forecast A41,A11,retirada_condensado_grupo,AVERAGE anual de retirada_condensado_grupo diário -> 1 instância(s): L1_L3,PASS
+25,hes_l4@L4,diário,linha/L4,categorical,input,Forecast A41!A16,Forecast A41,A16,,,PASS
+26,hes_l5@L5,diário,linha/L5,categorical,input,Forecast A41!A17,Forecast A41,A17,,,PASS
+27,hes_l6@L6,diário,linha/L6,categorical,input,Forecast A41!A18,Forecast A41,A18,,,PASS
+28,hes_l7@L7,diário,linha/L7,categorical,input,Forecast A41!A19,Forecast A41,A19,,,PASS
+29,desconto_retirada_41c@L4_L5,diário,linha_grupo/L4_L5,numeric,input,Forecast A41!C26,Forecast A41,C26,,,BLOCKING (41c/41d fonte)
+30,desconto_retirada_41c@L6_L7,diário,linha_grupo/L6_L7,numeric,input,Forecast A41!C27,Forecast A41,C27,,,BLOCKING (41c/41d fonte)
+31,desconto_retirada_41d@L4_L5,diário,linha_grupo/L4_L5,numeric,input,Forecast A41!C26,Forecast A41,C26,,,BLOCKING (41c/41d fonte)
+32,retirada_meta_41a@PLANTA,,planta/PLANTA,,parameter,Forecast A41!B23,Forecast A41,B23,,,PASS
+33,retirada_meta_41b@PLANTA,,planta/PLANTA,,parameter,Forecast A41!B24,Forecast A41,B24,,,PASS
+34,retirada_meta_41x@PLANTA,,planta/PLANTA,,parameter,Forecast A41!B25,Forecast A41,B25,,,PASS
+35,retirada_meta_41c@PLANTA,,planta/PLANTA,,parameter,Forecast A41!B26,Forecast A41,B26,,,PASS
+36,retirada_meta_41d@PLANTA,,planta/PLANTA,,parameter,Forecast A41!B27,Forecast A41,B27,,,PASS
+37,retirada_performance_41c@PLANTA,,planta/PLANTA,,parameter,Forecast A41!F26,Forecast A41,F26,,,PASS
+38,retirada_manobra_linha_41a@PLANTA,,planta/PLANTA,,parameter,Forecast A41!I23,Forecast A41,I23,,,PASS
+39,retirada_condensado_grupo@L4_L5,diário,linha_grupo/L4_L5,numeric,equation,Forecast A41!A12,Forecast A41,A12,desconto_retirada_41c desconto_retirada_41d hes_l4@L4 hes_l5@L5 retirada_cond_corr_lth retirada_cond_corr_ltp,,PASS (consome 41c/41d BLOCKING)
+40,retirada_condensado_grupo@L4_L5,mensal,linha_grupo/L4_L5,numeric,aggregation,Forecast A41!A12,Forecast A41,A12,retirada_condensado_grupo,AVERAGE mensal de retirada_condensado_grupo diário -> 1 instância(s): L4_L5,PASS
+41,retirada_condensado_grupo@L4_L5,anual,linha_grupo/L4_L5,numeric,aggregation,Forecast A41!A12,Forecast A41,A12,retirada_condensado_grupo,AVERAGE anual de retirada_condensado_grupo diário -> 1 instância(s): L4_L5,PASS
+42,retirada_condensado_grupo@L6_L7,diário,linha_grupo/L6_L7,numeric,equation,Forecast A41!A13,Forecast A41,A13,desconto_retirada_41c hes_l6@L6 hes_l7@L7 retirada_cond_corr_lth retirada_cond_corr_ltp,,PASS (consome 41c/41d BLOCKING)
+43,retirada_condensado_grupo@L6_L7,mensal,linha_grupo/L6_L7,numeric,aggregation,Forecast A41!A13,Forecast A41,A13,retirada_condensado_grupo,AVERAGE mensal de retirada_condensado_grupo diário -> 1 instância(s): L6_L7,PASS
+44,retirada_condensado_grupo@L6_L7,anual,linha_grupo/L6_L7,numeric,aggregation,Forecast A41!A13,Forecast A41,A13,retirada_condensado_grupo,AVERAGE anual de retirada_condensado_grupo diário -> 1 instância(s): L6_L7,PASS
+45,retirada_condensado_linha@L1,diário,linha/L1,numeric,equation,Forecast A41!A3,Forecast A41,A3,lth@L1 lth@L2 lth@L3 retirada_condensado_grupo@L1_L3,,PASS
+46,retirada_condensado_linha@L2,diário,linha/L2,numeric,equation,Forecast A41!A4,Forecast A41,A4,lth@L1 lth@L2 lth@L3 retirada_condensado_grupo@L1_L3,,PASS
+47,retirada_condensado_linha@L3,diário,linha/L3,numeric,equation,Forecast A41!A5,Forecast A41,A5,lth@L1 lth@L2 lth@L3 retirada_condensado_grupo@L1_L3,,PASS
+48,retirada_condensado_linha@L4,diário,linha/L4,numeric,equation,Forecast A41!A6,Forecast A41,A6,lth@L4 lth@L5 retirada_condensado_grupo@L4_L5,,PASS
+49,retirada_condensado_linha@L5,diário,linha/L5,numeric,equation,Forecast A41!A7,Forecast A41,A7,lth@L4 lth@L5 retirada_condensado_grupo@L4_L5,,PASS
+50,retirada_condensado_linha@L6,diário,linha/L6,numeric,equation,Forecast A41!A8,Forecast A41,A8,lth@L6 lth@L7 retirada_condensado_grupo@L6_L7,,PASS
+51,retirada_condensado_linha@L7,diário,linha/L7,numeric,equation,Forecast A41!A9,Forecast A41,A9,lth@L6 lth@L7 retirada_condensado_grupo@L6_L7,,PASS
+52,retirada_condensado_linha@L1_L7,mensal,linha/L1_L7,numeric,aggregation,Forecast A41!A3:A9,Forecast A41,A3:A9,retirada_condensado_linha,AVERAGE mensal de retirada_condensado_linha diário -> 7 instância(s): L1 L2 L3 L4 L5 L6 L7,PASS
+53,retirada_condensado_linha@L1_L7,anual,linha/L1_L7,numeric,aggregation,Forecast A41!A3:A9,Forecast A41,A3:A9,retirada_condensado_linha,AVERAGE anual de retirada_condensado_linha diário -> 7 instância(s): L1 L2 L3 L4 L5 L6 L7,PASS
+54,retirada_condensado_total@L1_L7,diário,linha_grupo/L1_L7,numeric,equation,Forecast A41!A10,Forecast A41,A10,retirada_condensado_grupo@L1_L3 retirada_condensado_grupo@L4_L5 retirada_condensado_grupo@L6_L7,,PASS
+55,retirada_condensado_total@L1_L7,mensal,linha_grupo/L1_L7,numeric,aggregation,Forecast A41!A10,Forecast A41,A10,retirada_condensado_total,AVERAGE mensal de retirada_condensado_total diário -> 1 instância(s): L1_L7,PASS
+56,retirada_condensado_total@L1_L7,anual,linha_grupo/L1_L7,numeric,aggregation,Forecast A41!A10,Forecast A41,A10,retirada_condensado_total,AVERAGE anual de retirada_condensado_total diário -> 1 instância(s): L1_L7,PASS

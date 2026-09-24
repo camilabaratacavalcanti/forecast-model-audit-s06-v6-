@@ -1,0 +1,873 @@
+{
+ "workbook": "descritivo_das_variáveis_A41_v5.xlsx",
+ "sha256": "c8be0a3c70bb04682163ebc489b83a1bc6af58c8105a7bb58c63381c2f915125",
+ "entities": 54,
+ "roles": {
+  "input": 17,
+  "equation": 20,
+  "aggregation": 10,
+  "parameter": 7
+ },
+ "scope_matrix": [
+  {
+   "consumer": "retirada_cond_corr_ltp",
+   "consumer_row": 6,
+   "consumer_scope": "linha_grupo/L1_L3",
+   "reference": "vazao_ltp",
+   "reference_scope": "linha_grupo/L1_L3 (mensal, linha 3)",
+   "relationship": "implícita-mesmo-escopo",
+   "expected_resolution": "valor alcançável a partir de cada instância",
+   "result": "PASS"
+  },
+  {
+   "consumer": "retirada_cond_corr_ltp",
+   "consumer_row": 7,
+   "consumer_scope": "linha_grupo/L4_L5",
+   "reference": "vazao_ltp",
+   "reference_scope": "linha_grupo/L4_L5 (mensal, linha 4)",
+   "relationship": "implícita-mesmo-escopo",
+   "expected_resolution": "valor alcançável a partir de cada instância",
+   "result": "PASS"
+  },
+  {
+   "consumer": "retirada_cond_corr_ltp",
+   "consumer_row": 8,
+   "consumer_scope": "linha_grupo/L6_L7",
+   "reference": "vazao_ltp",
+   "reference_scope": "linha_grupo/L6_L7 (mensal, linha 5)",
+   "relationship": "implícita-mesmo-escopo",
+   "expected_resolution": "valor alcançável a partir de cada instância",
+   "result": "PASS"
+  },
+  {
+   "consumer": "lth_grupo",
+   "consumer_row": 10,
+   "consumer_scope": "linha_grupo/L1_L3",
+   "reference": "lth@L1",
+   "reference_scope": "linha/L1_L7 (diário, linha 9)",
+   "relationship": "explícita-linha",
+   "expected_resolution": "lth@L1",
+   "result": "PASS"
+  },
+  {
+   "consumer": "lth_grupo",
+   "consumer_row": 10,
+   "consumer_scope": "linha_grupo/L1_L3",
+   "reference": "lth@L2",
+   "reference_scope": "linha/L1_L7 (diário, linha 9)",
+   "relationship": "explícita-linha",
+   "expected_resolution": "lth@L2",
+   "result": "PASS"
+  },
+  {
+   "consumer": "lth_grupo",
+   "consumer_row": 10,
+   "consumer_scope": "linha_grupo/L1_L3",
+   "reference": "lth@L3",
+   "reference_scope": "linha/L1_L7 (diário, linha 9)",
+   "relationship": "explícita-linha",
+   "expected_resolution": "lth@L3",
+   "result": "PASS"
+  },
+  {
+   "consumer": "lth_grupo",
+   "consumer_row": 11,
+   "consumer_scope": "linha_grupo/L4_L5",
+   "reference": "lth@L4",
+   "reference_scope": "linha/L1_L7 (diário, linha 9)",
+   "relationship": "explícita-linha",
+   "expected_resolution": "lth@L4",
+   "result": "PASS"
+  },
+  {
+   "consumer": "lth_grupo",
+   "consumer_row": 11,
+   "consumer_scope": "linha_grupo/L4_L5",
+   "reference": "lth@L5",
+   "reference_scope": "linha/L1_L7 (diário, linha 9)",
+   "relationship": "explícita-linha",
+   "expected_resolution": "lth@L5",
+   "result": "PASS"
+  },
+  {
+   "consumer": "lth_grupo",
+   "consumer_row": 12,
+   "consumer_scope": "linha_grupo/L6_L7",
+   "reference": "lth@L6",
+   "reference_scope": "linha/L1_L7 (diário, linha 9)",
+   "relationship": "explícita-linha",
+   "expected_resolution": "lth@L6",
+   "result": "PASS"
+  },
+  {
+   "consumer": "lth_grupo",
+   "consumer_row": 12,
+   "consumer_scope": "linha_grupo/L6_L7",
+   "reference": "lth@L7",
+   "reference_scope": "linha/L1_L7 (diário, linha 9)",
+   "relationship": "explícita-linha",
+   "expected_resolution": "lth@L7",
+   "result": "PASS"
+  },
+  {
+   "consumer": "retirada_cond_corr_lth",
+   "consumer_row": 16,
+   "consumer_scope": "linha_grupo/L1_L3",
+   "reference": "lth_grupo",
+   "reference_scope": "linha_grupo/L1_L3 (diário, linha 10)",
+   "relationship": "implícita-mesmo-escopo",
+   "expected_resolution": "valor alcançável a partir de cada instância",
+   "result": "PASS"
+  },
+  {
+   "consumer": "retirada_cond_corr_lth",
+   "consumer_row": 16,
+   "consumer_scope": "linha_grupo/L1_L3",
+   "reference": "fator_retirada_cond_corr_lth",
+   "reference_scope": "linha_grupo/L1_L3 (mensal, linha 13)",
+   "relationship": "implícita-mesmo-escopo",
+   "expected_resolution": "valor alcançável a partir de cada instância",
+   "result": "PASS"
+  },
+  {
+   "consumer": "retirada_cond_corr_lth",
+   "consumer_row": 17,
+   "consumer_scope": "linha_grupo/L4_L5",
+   "reference": "lth_grupo",
+   "reference_scope": "linha_grupo/L4_L5 (diário, linha 11)",
+   "relationship": "implícita-mesmo-escopo",
+   "expected_resolution": "valor alcançável a partir de cada instância",
+   "result": "PASS"
+  },
+  {
+   "consumer": "retirada_cond_corr_lth",
+   "consumer_row": 17,
+   "consumer_scope": "linha_grupo/L4_L5",
+   "reference": "fator_retirada_cond_corr_lth",
+   "reference_scope": "linha_grupo/L4_L5 (mensal, linha 14)",
+   "relationship": "implícita-mesmo-escopo",
+   "expected_resolution": "valor alcançável a partir de cada instância",
+   "result": "PASS"
+  },
+  {
+   "consumer": "retirada_cond_corr_lth",
+   "consumer_row": 18,
+   "consumer_scope": "linha_grupo/L6_L7",
+   "reference": "lth_grupo",
+   "reference_scope": "linha_grupo/L6_L7 (diário, linha 12)",
+   "relationship": "implícita-mesmo-escopo",
+   "expected_resolution": "valor alcançável a partir de cada instância",
+   "result": "PASS"
+  },
+  {
+   "consumer": "retirada_cond_corr_lth",
+   "consumer_row": 18,
+   "consumer_scope": "linha_grupo/L6_L7",
+   "reference": "fator_retirada_cond_corr_lth",
+   "reference_scope": "linha_grupo/L6_L7 (mensal, linha 15)",
+   "relationship": "implícita-mesmo-escopo",
+   "expected_resolution": "valor alcançável a partir de cada instância",
+   "result": "PASS"
+  },
+  {
+   "consumer": "retirada_condensado_grupo",
+   "consumer_row": 22,
+   "consumer_scope": "linha_grupo/L1_L3",
+   "reference": "valor_retirada@L1",
+   "reference_scope": "linha/L1 (diário, linha 19)",
+   "relationship": "explícita-linha",
+   "expected_resolution": "valor_retirada@L1",
+   "result": "PASS"
+  },
+  {
+   "consumer": "retirada_condensado_grupo",
+   "consumer_row": 22,
+   "consumer_scope": "linha_grupo/L1_L3",
+   "reference": "valor_retirada@L2",
+   "reference_scope": "linha/L2 (diário, linha 20)",
+   "relationship": "explícita-linha",
+   "expected_resolution": "valor_retirada@L2",
+   "result": "PASS"
+  },
+  {
+   "consumer": "retirada_condensado_grupo",
+   "consumer_row": 22,
+   "consumer_scope": "linha_grupo/L1_L3",
+   "reference": "valor_retirada@L3",
+   "reference_scope": "linha/L3 (diário, linha 21)",
+   "relationship": "explícita-linha",
+   "expected_resolution": "valor_retirada@L3",
+   "result": "PASS"
+  },
+  {
+   "consumer": "retirada_condensado_grupo",
+   "consumer_row": 22,
+   "consumer_scope": "linha_grupo/L1_L3",
+   "reference": "retirada_cond_corr_ltp",
+   "reference_scope": "linha_grupo/L1_L3 (diário, linha 6)",
+   "relationship": "implícita-mesmo-escopo",
+   "expected_resolution": "valor alcançável a partir de cada instância",
+   "result": "PASS"
+  },
+  {
+   "consumer": "retirada_condensado_grupo",
+   "consumer_row": 22,
+   "consumer_scope": "linha_grupo/L1_L3",
+   "reference": "retirada_cond_corr_lth",
+   "reference_scope": "linha_grupo/L1_L3 (diário, linha 16)",
+   "relationship": "implícita-mesmo-escopo",
+   "expected_resolution": "valor alcançável a partir de cada instância",
+   "result": "PASS"
+  },
+  {
+   "consumer": "retirada_condensado_grupo",
+   "consumer_row": 39,
+   "consumer_scope": "linha_grupo/L4_L5",
+   "reference": "retirada_cond_corr_ltp",
+   "reference_scope": "linha_grupo/L4_L5 (diário, linha 7)",
+   "relationship": "implícita-mesmo-escopo",
+   "expected_resolution": "valor alcançável a partir de cada instância",
+   "result": "PASS"
+  },
+  {
+   "consumer": "retirada_condensado_grupo",
+   "consumer_row": 39,
+   "consumer_scope": "linha_grupo/L4_L5",
+   "reference": "retirada_cond_corr_lth",
+   "reference_scope": "linha_grupo/L4_L5 (diário, linha 17)",
+   "relationship": "implícita-mesmo-escopo",
+   "expected_resolution": "valor alcançável a partir de cada instância",
+   "result": "PASS"
+  },
+  {
+   "consumer": "retirada_condensado_grupo",
+   "consumer_row": 39,
+   "consumer_scope": "linha_grupo/L4_L5",
+   "reference": "hes_l4@L4",
+   "reference_scope": "linha/L4 (diário, linha 25)",
+   "relationship": "explícita-linha",
+   "expected_resolution": "hes_l4@L4",
+   "result": "PASS"
+  },
+  {
+   "consumer": "retirada_condensado_grupo",
+   "consumer_row": 39,
+   "consumer_scope": "linha_grupo/L4_L5",
+   "reference": "hes_l5@L5",
+   "reference_scope": "linha/L5 (diário, linha 26)",
+   "relationship": "explícita-linha",
+   "expected_resolution": "hes_l5@L5",
+   "result": "PASS"
+  },
+  {
+   "consumer": "retirada_condensado_grupo",
+   "consumer_row": 39,
+   "consumer_scope": "linha_grupo/L4_L5",
+   "reference": "desconto_retirada_41d",
+   "reference_scope": "linha_grupo/L4_L5 (diário, linha 31)",
+   "relationship": "implícita-mesmo-escopo",
+   "expected_resolution": "valor alcançável a partir de cada instância",
+   "result": "PASS"
+  },
+  {
+   "consumer": "retirada_condensado_grupo",
+   "consumer_row": 39,
+   "consumer_scope": "linha_grupo/L4_L5",
+   "reference": "desconto_retirada_41c",
+   "reference_scope": "linha_grupo/L4_L5 (diário, linha 29)",
+   "relationship": "implícita-mesmo-escopo",
+   "expected_resolution": "valor alcançável a partir de cada instância",
+   "result": "PASS"
+  },
+  {
+   "consumer": "retirada_condensado_grupo",
+   "consumer_row": 42,
+   "consumer_scope": "linha_grupo/L6_L7",
+   "reference": "retirada_cond_corr_ltp",
+   "reference_scope": "linha_grupo/L6_L7 (diário, linha 8)",
+   "relationship": "implícita-mesmo-escopo",
+   "expected_resolution": "valor alcançável a partir de cada instância",
+   "result": "PASS"
+  },
+  {
+   "consumer": "retirada_condensado_grupo",
+   "consumer_row": 42,
+   "consumer_scope": "linha_grupo/L6_L7",
+   "reference": "retirada_cond_corr_lth",
+   "reference_scope": "linha_grupo/L6_L7 (diário, linha 18)",
+   "relationship": "implícita-mesmo-escopo",
+   "expected_resolution": "valor alcançável a partir de cada instância",
+   "result": "PASS"
+  },
+  {
+   "consumer": "retirada_condensado_grupo",
+   "consumer_row": 42,
+   "consumer_scope": "linha_grupo/L6_L7",
+   "reference": "hes_l6@L6",
+   "reference_scope": "linha/L6 (diário, linha 27)",
+   "relationship": "explícita-linha",
+   "expected_resolution": "hes_l6@L6",
+   "result": "PASS"
+  },
+  {
+   "consumer": "retirada_condensado_grupo",
+   "consumer_row": 42,
+   "consumer_scope": "linha_grupo/L6_L7",
+   "reference": "hes_l7@L7",
+   "reference_scope": "linha/L7 (diário, linha 28)",
+   "relationship": "explícita-linha",
+   "expected_resolution": "hes_l7@L7",
+   "result": "PASS"
+  },
+  {
+   "consumer": "retirada_condensado_grupo",
+   "consumer_row": 42,
+   "consumer_scope": "linha_grupo/L6_L7",
+   "reference": "desconto_retirada_41c",
+   "reference_scope": "linha_grupo/L6_L7 (diário, linha 30)",
+   "relationship": "implícita-mesmo-escopo",
+   "expected_resolution": "valor alcançável a partir de cada instância",
+   "result": "PASS"
+  },
+  {
+   "consumer": "retirada_condensado_linha",
+   "consumer_row": 45,
+   "consumer_scope": "linha/L1",
+   "reference": "retirada_condensado_grupo@L1_L3",
+   "reference_scope": "linha_grupo/L1_L3 (diário, linha 22)",
+   "relationship": "explícita-grupo",
+   "expected_resolution": "retirada_condensado_grupo@L1_L3",
+   "result": "PASS"
+  },
+  {
+   "consumer": "retirada_condensado_linha",
+   "consumer_row": 45,
+   "consumer_scope": "linha/L1",
+   "reference": "lth@L1",
+   "reference_scope": "linha/L1_L7 (diário, linha 9)",
+   "relationship": "explícita-linha",
+   "expected_resolution": "lth@L1",
+   "result": "PASS"
+  },
+  {
+   "consumer": "retirada_condensado_linha",
+   "consumer_row": 45,
+   "consumer_scope": "linha/L1",
+   "reference": "lth@L2",
+   "reference_scope": "linha/L1_L7 (diário, linha 9)",
+   "relationship": "explícita-linha",
+   "expected_resolution": "lth@L2",
+   "result": "PASS"
+  },
+  {
+   "consumer": "retirada_condensado_linha",
+   "consumer_row": 45,
+   "consumer_scope": "linha/L1",
+   "reference": "lth@L3",
+   "reference_scope": "linha/L1_L7 (diário, linha 9)",
+   "relationship": "explícita-linha",
+   "expected_resolution": "lth@L3",
+   "result": "PASS"
+  },
+  {
+   "consumer": "retirada_condensado_linha",
+   "consumer_row": 46,
+   "consumer_scope": "linha/L2",
+   "reference": "retirada_condensado_grupo@L1_L3",
+   "reference_scope": "linha_grupo/L1_L3 (diário, linha 22)",
+   "relationship": "explícita-grupo",
+   "expected_resolution": "retirada_condensado_grupo@L1_L3",
+   "result": "PASS"
+  },
+  {
+   "consumer": "retirada_condensado_linha",
+   "consumer_row": 46,
+   "consumer_scope": "linha/L2",
+   "reference": "lth@L2",
+   "reference_scope": "linha/L1_L7 (diário, linha 9)",
+   "relationship": "explícita-linha",
+   "expected_resolution": "lth@L2",
+   "result": "PASS"
+  },
+  {
+   "consumer": "retirada_condensado_linha",
+   "consumer_row": 46,
+   "consumer_scope": "linha/L2",
+   "reference": "lth@L1",
+   "reference_scope": "linha/L1_L7 (diário, linha 9)",
+   "relationship": "explícita-linha",
+   "expected_resolution": "lth@L1",
+   "result": "PASS"
+  },
+  {
+   "consumer": "retirada_condensado_linha",
+   "consumer_row": 46,
+   "consumer_scope": "linha/L2",
+   "reference": "lth@L3",
+   "reference_scope": "linha/L1_L7 (diário, linha 9)",
+   "relationship": "explícita-linha",
+   "expected_resolution": "lth@L3",
+   "result": "PASS"
+  },
+  {
+   "consumer": "retirada_condensado_linha",
+   "consumer_row": 47,
+   "consumer_scope": "linha/L3",
+   "reference": "retirada_condensado_grupo@L1_L3",
+   "reference_scope": "linha_grupo/L1_L3 (diário, linha 22)",
+   "relationship": "explícita-grupo",
+   "expected_resolution": "retirada_condensado_grupo@L1_L3",
+   "result": "PASS"
+  },
+  {
+   "consumer": "retirada_condensado_linha",
+   "consumer_row": 47,
+   "consumer_scope": "linha/L3",
+   "reference": "lth@L3",
+   "reference_scope": "linha/L1_L7 (diário, linha 9)",
+   "relationship": "explícita-linha",
+   "expected_resolution": "lth@L3",
+   "result": "PASS"
+  },
+  {
+   "consumer": "retirada_condensado_linha",
+   "consumer_row": 47,
+   "consumer_scope": "linha/L3",
+   "reference": "lth@L1",
+   "reference_scope": "linha/L1_L7 (diário, linha 9)",
+   "relationship": "explícita-linha",
+   "expected_resolution": "lth@L1",
+   "result": "PASS"
+  },
+  {
+   "consumer": "retirada_condensado_linha",
+   "consumer_row": 47,
+   "consumer_scope": "linha/L3",
+   "reference": "lth@L2",
+   "reference_scope": "linha/L1_L7 (diário, linha 9)",
+   "relationship": "explícita-linha",
+   "expected_resolution": "lth@L2",
+   "result": "PASS"
+  },
+  {
+   "consumer": "retirada_condensado_linha",
+   "consumer_row": 48,
+   "consumer_scope": "linha/L4",
+   "reference": "retirada_condensado_grupo@L4_L5",
+   "reference_scope": "linha_grupo/L4_L5 (diário, linha 39)",
+   "relationship": "explícita-grupo",
+   "expected_resolution": "retirada_condensado_grupo@L4_L5",
+   "result": "PASS"
+  },
+  {
+   "consumer": "retirada_condensado_linha",
+   "consumer_row": 48,
+   "consumer_scope": "linha/L4",
+   "reference": "lth@L4",
+   "reference_scope": "linha/L1_L7 (diário, linha 9)",
+   "relationship": "explícita-linha",
+   "expected_resolution": "lth@L4",
+   "result": "PASS"
+  },
+  {
+   "consumer": "retirada_condensado_linha",
+   "consumer_row": 48,
+   "consumer_scope": "linha/L4",
+   "reference": "lth@L5",
+   "reference_scope": "linha/L1_L7 (diário, linha 9)",
+   "relationship": "explícita-linha",
+   "expected_resolution": "lth@L5",
+   "result": "PASS"
+  },
+  {
+   "consumer": "retirada_condensado_linha",
+   "consumer_row": 49,
+   "consumer_scope": "linha/L5",
+   "reference": "retirada_condensado_grupo@L4_L5",
+   "reference_scope": "linha_grupo/L4_L5 (diário, linha 39)",
+   "relationship": "explícita-grupo",
+   "expected_resolution": "retirada_condensado_grupo@L4_L5",
+   "result": "PASS"
+  },
+  {
+   "consumer": "retirada_condensado_linha",
+   "consumer_row": 49,
+   "consumer_scope": "linha/L5",
+   "reference": "lth@L5",
+   "reference_scope": "linha/L1_L7 (diário, linha 9)",
+   "relationship": "explícita-linha",
+   "expected_resolution": "lth@L5",
+   "result": "PASS"
+  },
+  {
+   "consumer": "retirada_condensado_linha",
+   "consumer_row": 49,
+   "consumer_scope": "linha/L5",
+   "reference": "lth@L4",
+   "reference_scope": "linha/L1_L7 (diário, linha 9)",
+   "relationship": "explícita-linha",
+   "expected_resolution": "lth@L4",
+   "result": "PASS"
+  },
+  {
+   "consumer": "retirada_condensado_linha",
+   "consumer_row": 50,
+   "consumer_scope": "linha/L6",
+   "reference": "retirada_condensado_grupo@L6_L7",
+   "reference_scope": "linha_grupo/L6_L7 (diário, linha 42)",
+   "relationship": "explícita-grupo",
+   "expected_resolution": "retirada_condensado_grupo@L6_L7",
+   "result": "PASS"
+  },
+  {
+   "consumer": "retirada_condensado_linha",
+   "consumer_row": 50,
+   "consumer_scope": "linha/L6",
+   "reference": "lth@L6",
+   "reference_scope": "linha/L1_L7 (diário, linha 9)",
+   "relationship": "explícita-linha",
+   "expected_resolution": "lth@L6",
+   "result": "PASS"
+  },
+  {
+   "consumer": "retirada_condensado_linha",
+   "consumer_row": 50,
+   "consumer_scope": "linha/L6",
+   "reference": "lth@L7",
+   "reference_scope": "linha/L1_L7 (diário, linha 9)",
+   "relationship": "explícita-linha",
+   "expected_resolution": "lth@L7",
+   "result": "PASS"
+  },
+  {
+   "consumer": "retirada_condensado_linha",
+   "consumer_row": 51,
+   "consumer_scope": "linha/L7",
+   "reference": "retirada_condensado_grupo@L6_L7",
+   "reference_scope": "linha_grupo/L6_L7 (diário, linha 42)",
+   "relationship": "explícita-grupo",
+   "expected_resolution": "retirada_condensado_grupo@L6_L7",
+   "result": "PASS"
+  },
+  {
+   "consumer": "retirada_condensado_linha",
+   "consumer_row": 51,
+   "consumer_scope": "linha/L7",
+   "reference": "lth@L7",
+   "reference_scope": "linha/L1_L7 (diário, linha 9)",
+   "relationship": "explícita-linha",
+   "expected_resolution": "lth@L7",
+   "result": "PASS"
+  },
+  {
+   "consumer": "retirada_condensado_linha",
+   "consumer_row": 51,
+   "consumer_scope": "linha/L7",
+   "reference": "lth@L6",
+   "reference_scope": "linha/L1_L7 (diário, linha 9)",
+   "relationship": "explícita-linha",
+   "expected_resolution": "lth@L6",
+   "result": "PASS"
+  },
+  {
+   "consumer": "retirada_condensado_total",
+   "consumer_row": 54,
+   "consumer_scope": "linha_grupo/L1_L7",
+   "reference": "retirada_condensado_grupo@L1_L3",
+   "reference_scope": "linha_grupo/L1_L3 (diário, linha 22)",
+   "relationship": "explícita-grupo",
+   "expected_resolution": "retirada_condensado_grupo@L1_L3",
+   "result": "PASS"
+  },
+  {
+   "consumer": "retirada_condensado_total",
+   "consumer_row": 54,
+   "consumer_scope": "linha_grupo/L1_L7",
+   "reference": "retirada_condensado_grupo@L4_L5",
+   "reference_scope": "linha_grupo/L4_L5 (diário, linha 39)",
+   "relationship": "explícita-grupo",
+   "expected_resolution": "retirada_condensado_grupo@L4_L5",
+   "result": "PASS"
+  },
+  {
+   "consumer": "retirada_condensado_total",
+   "consumer_row": 54,
+   "consumer_scope": "linha_grupo/L1_L7",
+   "reference": "retirada_condensado_grupo@L6_L7",
+   "reference_scope": "linha_grupo/L6_L7 (diário, linha 42)",
+   "relationship": "explícita-grupo",
+   "expected_resolution": "retirada_condensado_grupo@L6_L7",
+   "result": "PASS"
+  }
+ ],
+ "translated_expressions": {
+  "retirada_cond_corr_ltp@L1_L3": "19.475*ln(VAR99001) - 85.999",
+  "retirada_cond_corr_ltp@L4_L5": "19.475*ln(VAR99002) - 85.999",
+  "retirada_cond_corr_ltp@L6_L7": "19.475*ln(VAR99003) - 85.999",
+  "lth_grupo@L1_L3": "( VAR99007@L1 + VAR99007@L2 + VAR99007@L3 ) / 3",
+  "lth_grupo@L4_L5": "( VAR99007@L4 + VAR99007@L5 ) / 2",
+  "lth_grupo@L6_L7": "( VAR99007@L6 + VAR99007@L7 ) /2",
+  "retirada_cond_corr_lth@L1_L3": "19.475*ln(VAR99008 * VAR99011) - 85.999",
+  "retirada_cond_corr_lth@L4_L5": "19.475*ln(VAR99009 * VAR99012) - 85.999",
+  "retirada_cond_corr_lth@L6_L7": "19.475*ln(VAR99010 * VAR99013) - 85.999",
+  "retirada_condensado_grupo@L1_L3": "VAR99017@L1 + VAR99018@L2 + VAR99019@L3 - 3*(VAR99004 - VAR99014)",
+  "retirada_condensado_grupo@L4_L5": "( (100 - ((VAR99005 - VAR99015) * 2)) if VAR99023@L4 == \"Normal\" and VAR99024@L5 == \"Normal\" else ( ( ( (100 - ((VAR99005 - VAR99015) * 2)) * 14 + ( (100 - ((VAR99005 - VAR99015) * 2)) / 2 ) * 10 ) / 24 ) if VAR99023@L4 == \"LC\" or VAR99024@L5 == \"LC\" else ( 50 - ((VAR99005 - VAR99015) * 2) ) if VAR99023@L4 == \"Overhaul/Parada\" or VAR99024@L5 == \"Overhaul/Parada\" else ( 100 - ((VAR99005 - VAR99015) * 2) - VAR99029 ) if VAR99023@L4 == \"1 By pass\" or VAR99024@L5 == \"1 By pass\" else ( ( ( (100 - ((VAR99005 - VAR99015) * 2)) * 14 + ( ( (100 - ((VAR99005 - VAR99015) * 2)) - VAR99027 ) / 2 ) * 10 ) / 24 ) if VAR99023@L4 == \"1 By pass e LC\" and VAR99024@L5 == \"1 By pass e LC\" else \"F\" ) ) )",
+  "retirada_condensado_grupo@L6_L7": "( (100 - ((VAR99006 - VAR99016) * 2)) if VAR99025@L6 == \"Normal\" and VAR99026@L7 == \"Normal\" else ( ( ( (100 - ((VAR99006 - VAR99016) * 2)) * 14 + ( (100 - ((VAR99006 - VAR99016) * 2)) / 2 ) * 10 ) / 24 ) if VAR99025@L6 == \"LC\" or VAR99026@L7 == \"LC\" else ( 50 - ((VAR99006 - VAR99016) * 2) ) if VAR99025@L6 == \"Overhaul/Parada\" or VAR99026@L7 == \"Overhaul/Parada\" else ( 100 - ((VAR99006 - VAR99016) * 2) - VAR99028 ) if VAR99025@L6 == \"1 By pass\" or VAR99026@L7 == \"1 By pass\" else ( ( ( (100 - ((VAR99006 - VAR99016) * 2)) * 14 + ( ( (100 - ((VAR99006 - VAR99016) * 2)) - VAR99028 ) / 2 ) * 10 ) / 24 ) if VAR99025@L6 == \"1 By pass e LC\" and VAR99026@L7 == \"1 By pass e LC\" else \"F\" ) ) )",
+  "retirada_condensado_linha@L1": "( VAR99020@L1_L3 * VAR99007@L1 ) / ( VAR99007@L1 + VAR99007@L2 + VAR99007@L3 )",
+  "retirada_condensado_linha@L2": "( VAR99020@L1_L3 * VAR99007@L2 ) / ( VAR99007@L1 + VAR99007@L2 + VAR99007@L3 )",
+  "retirada_condensado_linha@L3": "( VAR99020@L1_L3 * VAR99007@L3 ) / ( VAR99007@L1 + VAR99007@L2 + VAR99007@L3 )",
+  "retirada_condensado_linha@L4": "( VAR99030@L4_L5 * VAR99007@L4 ) / ( VAR99007@L4 + VAR99007@L5 )",
+  "retirada_condensado_linha@L5": "( VAR99030@L4_L5 * VAR99007@L5 ) / ( VAR99007@L4 + VAR99007@L5 )",
+  "retirada_condensado_linha@L6": "( VAR99033@L6_L7 * VAR99007@L6 ) / ( VAR99007@L6 + VAR99007@L7 )",
+  "retirada_condensado_linha@L7": "( VAR99033@L6_L7 * VAR99007@L7 ) / ( VAR99007@L6 + VAR99007@L7 )",
+  "retirada_condensado_total@L1_L7": "VAR99020@L1_L3 + VAR99030@L4_L5 + VAR99033@L6_L7"
+ },
+ "day_2026_07_01": {
+  "lth_grupo": {
+   "L1_L3": 20.0,
+   "L4_L5": 50.0,
+   "L6_L7": 50.0
+  },
+  "grupo": {
+   "L1_L3": -97.21208104782622,
+   "L4_L5": -25.002483261537378,
+   "L6_L7": -19.931485723103975
+  },
+  "linha": {
+   "L1": -16.20201350797104,
+   "L2": -32.40402701594208,
+   "L3": -48.60604052391311,
+   "L4": -10.000993304614951,
+   "L5": -15.001489956922429,
+   "L6": -13.952040006172783,
+   "L7": -5.979445716931193
+  },
+  "total": -142.14605003246757,
+  "reference": {
+   "lth_grupo": {
+    "L1_L3": 20.0,
+    "L4_L5": 50.0,
+    "L6_L7": 50.0
+   },
+   "ltp": {
+    "L1_L3": 53.93641212842863,
+    "L4_L5": 53.63907810868153,
+    "L6_L7": 52.87525472002136
+   },
+   "corr": {
+    "L1_L3": -25.800948220846784,
+    "L4_L5": -8.862163522087158,
+    "L6_L7": -7.090488141530628
+   },
+   "group": {
+    "L1_L3": -97.21208104782622,
+    "L4_L5": -25.002483261537378,
+    "L6_L7": -19.931485723103975
+   },
+   "line": {
+    "L1": -16.20201350797104,
+    "L2": -32.40402701594208,
+    "L3": -48.60604052391311,
+    "L4": -10.000993304614951,
+    "L5": -15.001489956922429,
+    "L6": -13.952040006172783,
+    "L7": -5.979445716931193
+   },
+   "total": -142.14605003246757
+  }
+ },
+ "aggregation_instances": [
+  {
+   "target": "retirada_condensado_grupo mensal linha_grupo/L1_L3 (linha 23)",
+   "type": "AVERAGE",
+   "instances": [
+    "linha_grupo/L1_L3"
+   ]
+  },
+  {
+   "target": "retirada_condensado_grupo anual linha_grupo/L1_L3 (linha 24)",
+   "type": "AVERAGE",
+   "instances": [
+    "linha_grupo/L1_L3"
+   ]
+  },
+  {
+   "target": "retirada_condensado_grupo mensal linha_grupo/L4_L5 (linha 40)",
+   "type": "AVERAGE",
+   "instances": [
+    "linha_grupo/L4_L5"
+   ]
+  },
+  {
+   "target": "retirada_condensado_grupo anual linha_grupo/L4_L5 (linha 41)",
+   "type": "AVERAGE",
+   "instances": [
+    "linha_grupo/L4_L5"
+   ]
+  },
+  {
+   "target": "retirada_condensado_grupo mensal linha_grupo/L6_L7 (linha 43)",
+   "type": "AVERAGE",
+   "instances": [
+    "linha_grupo/L6_L7"
+   ]
+  },
+  {
+   "target": "retirada_condensado_grupo anual linha_grupo/L6_L7 (linha 44)",
+   "type": "AVERAGE",
+   "instances": [
+    "linha_grupo/L6_L7"
+   ]
+  },
+  {
+   "target": "retirada_condensado_linha mensal linha/L1_L7 (linha 52)",
+   "type": "AVERAGE",
+   "instances": [
+    "linha/L1"
+   ]
+  },
+  {
+   "target": "retirada_condensado_linha mensal linha/L1_L7 (linha 52)",
+   "type": "AVERAGE",
+   "instances": [
+    "linha/L2"
+   ]
+  },
+  {
+   "target": "retirada_condensado_linha mensal linha/L1_L7 (linha 52)",
+   "type": "AVERAGE",
+   "instances": [
+    "linha/L3"
+   ]
+  },
+  {
+   "target": "retirada_condensado_linha mensal linha/L1_L7 (linha 52)",
+   "type": "AVERAGE",
+   "instances": [
+    "linha/L4"
+   ]
+  },
+  {
+   "target": "retirada_condensado_linha mensal linha/L1_L7 (linha 52)",
+   "type": "AVERAGE",
+   "instances": [
+    "linha/L5"
+   ]
+  },
+  {
+   "target": "retirada_condensado_linha mensal linha/L1_L7 (linha 52)",
+   "type": "AVERAGE",
+   "instances": [
+    "linha/L6"
+   ]
+  },
+  {
+   "target": "retirada_condensado_linha mensal linha/L1_L7 (linha 52)",
+   "type": "AVERAGE",
+   "instances": [
+    "linha/L7"
+   ]
+  },
+  {
+   "target": "retirada_condensado_linha anual linha/L1_L7 (linha 53)",
+   "type": "AVERAGE",
+   "instances": [
+    "linha/L1"
+   ]
+  },
+  {
+   "target": "retirada_condensado_linha anual linha/L1_L7 (linha 53)",
+   "type": "AVERAGE",
+   "instances": [
+    "linha/L2"
+   ]
+  },
+  {
+   "target": "retirada_condensado_linha anual linha/L1_L7 (linha 53)",
+   "type": "AVERAGE",
+   "instances": [
+    "linha/L3"
+   ]
+  },
+  {
+   "target": "retirada_condensado_linha anual linha/L1_L7 (linha 53)",
+   "type": "AVERAGE",
+   "instances": [
+    "linha/L4"
+   ]
+  },
+  {
+   "target": "retirada_condensado_linha anual linha/L1_L7 (linha 53)",
+   "type": "AVERAGE",
+   "instances": [
+    "linha/L5"
+   ]
+  },
+  {
+   "target": "retirada_condensado_linha anual linha/L1_L7 (linha 53)",
+   "type": "AVERAGE",
+   "instances": [
+    "linha/L6"
+   ]
+  },
+  {
+   "target": "retirada_condensado_linha anual linha/L1_L7 (linha 53)",
+   "type": "AVERAGE",
+   "instances": [
+    "linha/L7"
+   ]
+  },
+  {
+   "target": "retirada_condensado_total mensal linha_grupo/L1_L7 (linha 55)",
+   "type": "AVERAGE",
+   "instances": [
+    "linha_grupo/L1_L7"
+   ]
+  },
+  {
+   "target": "retirada_condensado_total anual linha_grupo/L1_L7 (linha 56)",
+   "type": "AVERAGE",
+   "instances": [
+    "linha_grupo/L1_L7"
+   ]
+  }
+ ],
+ "discount_41c_41d": {
+  "condition_by_row": {
+   "23": "41a",
+   "24": "41b",
+   "25": "41x",
+   "26": "41c",
+   "27": "41d"
+  },
+  "findings": [
+   {
+    "entity": "desconto_retirada_41c@L4_L5",
+    "workbook_row": 29,
+    "source_reference": "Forecast A41!C26",
+    "condition_of_source_row": "41c",
+    "consistent": true
+   },
+   {
+    "entity": "desconto_retirada_41c@L6_L7",
+    "workbook_row": 30,
+    "source_reference": "Forecast A41!C27",
+    "condition_of_source_row": "41d",
+    "consistent": false
+   },
+   {
+    "entity": "desconto_retirada_41d@L4_L5",
+    "workbook_row": 31,
+    "source_reference": "Forecast A41!C26",
+    "condition_of_source_row": "41c",
+    "consistent": false
+   }
+  ],
+  "shared_cells": {
+   "Forecast A41!C26": [
+    "desconto_retirada_41c@L4_L5",
+    "desconto_retirada_41d@L4_L5"
+   ]
+  }
+ }
+}
