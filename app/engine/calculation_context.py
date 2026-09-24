@@ -11,7 +11,13 @@ Responsabilidades:
     - armazenar valores contextualizados por scope e period;
     - armazenar e recuperar valores a partir de VariableInstance;
     - armazenar e recuperar valores a partir de ParameterInstance;
-    - validar que os valores utilizados nos cálculos sejam numéricos.
+    - validar o tipo dos valores (ver app.domain.values):
+        * parâmetros são sempre numéricos;
+        * variáveis são numéricas, exceto as declaradas categóricas
+          (value_type="categorical"), que aceitam texto;
+        * o marcador de falha condicional "F" é aceito como valor de
+          qualquer variável (resultado de uma rotina IF que falhou),
+          sem conversão — consumi-lo em um cálculo é erro explícito.
 
 Arquitetura:
     VariableDefinition
@@ -41,8 +47,14 @@ EquationInstances. A execução das equações pertence ao EquationEngine.
 """
 
 from dataclasses import dataclass
-from typing import Mapping
+from typing import Iterable, Mapping
 
+from app.domain.values import (
+    NumericValue,
+    ScalarValue,
+    is_conditional_failure,
+    is_numeric,
+)
 from app.engine.exceptions import (
     CalculationValueError,
     ParameterNotFoundError,
@@ -107,31 +119,53 @@ class CalculationContext:
 
     def __init__(
         self,
-        variables: Mapping[str, int | float] | None = None,
-        parameters: Mapping[str, int | float] | None = None,
+        variables: Mapping[str, ScalarValue] | None = None,
+        parameters: Mapping[str, NumericValue] | None = None,
+        categorical_variable_ids: Iterable[str] | None = None,
     ):
+        self._categorical_variable_ids: set[str] = set(
+            categorical_variable_ids or ()
+        )
+
         self._variables = dict(variables or {})
         self._parameters = dict(parameters or {})
 
         self._scoped_variables: dict[
             CalculationKey,
-            int | float,
+            ScalarValue,
         ] = {}
 
         self._scoped_parameters: dict[
             CalculationKey,
-            int | float,
+            NumericValue,
         ] = {}
 
-        self._validate_values(
-            self._variables,
-            "variável",
-        )
+        for variable_id, value in self._variables.items():
+            self._validate_variable_value(variable_id, value)
 
         self._validate_values(
             self._parameters,
             "parâmetro",
         )
+
+    # ========================================================
+    # TIPOS DE VALOR
+    # ========================================================
+
+    def declare_categorical_variables(
+        self,
+        variable_ids: Iterable[str],
+    ) -> None:
+        """
+        Declara variáveis cujo valor é texto (value_type
+        "categorical"). Somente elas aceitam texto além do marcador
+        de falha condicional.
+        """
+
+        self._categorical_variable_ids.update(variable_ids)
+
+    def is_categorical_variable(self, variable_id: str) -> bool:
+        return variable_id in self._categorical_variable_ids
 
     # ========================================================
     # API LEGADA — VARIÁVEIS
@@ -140,7 +174,7 @@ class CalculationContext:
     def get_variable(
         self,
         variable_id: str,
-    ) -> int | float:
+    ) -> ScalarValue:
         """
         Retorna o valor legado de uma variável.
         """
@@ -156,16 +190,13 @@ class CalculationContext:
     def set_variable(
         self,
         variable_id: str,
-        value: int | float,
+        value: ScalarValue,
     ) -> None:
         """
         Define ou atualiza o valor legado de uma variável.
         """
 
-        self._validate_single_value(
-            value,
-            f"variável {variable_id}",
-        )
+        self._validate_variable_value(variable_id, value)
 
         self._variables[variable_id] = value
 
@@ -176,7 +207,7 @@ class CalculationContext:
     def get_parameter(
         self,
         parameter_id: str,
-    ) -> int | float:
+    ) -> NumericValue:
         """
         Retorna o valor legado de um parâmetro.
         """
@@ -192,7 +223,7 @@ class CalculationContext:
     def set_parameter(
         self,
         parameter_id: str,
-        value: int | float,
+        value: NumericValue,
     ) -> None:
         """
         Define ou atualiza o valor legado de um parâmetro.
@@ -215,7 +246,7 @@ class CalculationContext:
         scope_type: str | None = None,
         scope_value: str | None = None,
         period_id: str | None = None,
-    ) -> int | float:
+    ) -> ScalarValue:
         """
         Retorna o valor contextualizado de uma variável.
         """
@@ -241,7 +272,7 @@ class CalculationContext:
     def set_variable_value(
         self,
         variable_id: str,
-        value: int | float,
+        value: ScalarValue,
         scope_type: str | None = None,
         scope_value: str | None = None,
         period_id: str | None = None,
@@ -250,10 +281,7 @@ class CalculationContext:
         Define ou atualiza um valor contextualizado de variável.
         """
 
-        self._validate_single_value(
-            value,
-            f"variável {variable_id}",
-        )
+        self._validate_variable_value(variable_id, value)
 
         key = CalculationKey(
             entity_id=variable_id,
@@ -274,7 +302,7 @@ class CalculationContext:
         scope_type: str | None = None,
         scope_value: str | None = None,
         period_id: str | None = None,
-    ) -> int | float:
+    ) -> NumericValue:
         """
         Retorna o valor contextualizado de um parâmetro.
         """
@@ -300,7 +328,7 @@ class CalculationContext:
     def set_parameter_value(
         self,
         parameter_id: str,
-        value: int | float,
+        value: NumericValue,
         scope_type: str | None = None,
         scope_value: str | None = None,
         period_id: str | None = None,
@@ -331,7 +359,7 @@ class CalculationContext:
         self,
         instance,
         period_id: str | None = None,
-    ) -> int | float:
+    ) -> ScalarValue:
         """
         Retorna o valor de uma VariableInstance.
 
@@ -355,7 +383,7 @@ class CalculationContext:
     def set_variable_instance_value(
         self,
         instance,
-        value: int | float,
+        value: ScalarValue,
         period_id: str | None = None,
     ) -> None:
         """
@@ -386,7 +414,7 @@ class CalculationContext:
         self,
         instance,
         period_id: str | None = None,
-    ) -> int | float:
+    ) -> NumericValue:
         """
         Retorna o valor de uma ParameterInstance.
 
@@ -406,7 +434,7 @@ class CalculationContext:
     def set_parameter_instance_value(
         self,
         instance,
-        value: int | float,
+        value: NumericValue,
         period_id: str | None = None,
     ) -> None:
         """
@@ -433,9 +461,53 @@ class CalculationContext:
     # VALIDAÇÃO
     # ========================================================
 
+    def _validate_variable_value(
+        self,
+        variable_id: str,
+        value: ScalarValue,
+    ) -> None:
+        """
+        Número: sempre aceito. Texto: aceito para variáveis
+        declaradas categóricas (não vazio) e, para qualquer variável,
+        o marcador de falha condicional "F". Nenhum texto é convertido
+        em número.
+        """
+
+        if isinstance(value, bool):
+            raise CalculationValueError(
+                f"O valor da variável {variable_id} não pode ser "
+                "booleano."
+            )
+
+        if is_numeric(value):
+            return
+
+        if is_conditional_failure(value):
+            return
+
+        if isinstance(value, str):
+            if variable_id not in self._categorical_variable_ids:
+                raise CalculationValueError(
+                    f"O valor da variável {variable_id} deve ser "
+                    "numérico: a variável não é declarada categórica."
+                )
+
+            if not value.strip():
+                raise CalculationValueError(
+                    f"O valor categórico da variável {variable_id} "
+                    "não pode ser vazio."
+                )
+
+            return
+
+        raise CalculationValueError(
+            f"O valor da variável {variable_id} deve ser numérico "
+            "ou texto categórico."
+        )
+
     @staticmethod
     def _validate_values(
-        values: Mapping[str, int | float],
+        values: Mapping[str, NumericValue],
         value_type: str,
     ) -> None:
         for identifier, value in values.items():
@@ -446,7 +518,7 @@ class CalculationContext:
 
     @staticmethod
     def _validate_single_value(
-        value: int | float,
+        value: NumericValue,
         description: str,
     ) -> None:
         if isinstance(value, bool):

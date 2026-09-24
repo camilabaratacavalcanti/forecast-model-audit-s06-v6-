@@ -70,6 +70,37 @@ class DivisionByZeroError(EvaluationError):
         )
 
 
+class ExpressionTypeError(EvaluationError):
+    """
+    Operação com tipos incompatíveis: aritmética ou função com texto,
+    comparação entre número e texto, ordenação de textos, operando de
+    and/or que não é booleano, ou resultado final booleano.
+    """
+
+
+class MathDomainError(EvaluationError):
+    """
+    Argumento fora do domínio de uma função matemática permitida
+    (ex.: ln(x) com x <= 0).
+    """
+
+    def __init__(self, function_name: str, argument):
+        self.function_name = function_name
+        self.argument = argument
+
+        super().__init__(
+            f"{function_name}({argument!r}) fora do domínio da função."
+        )
+
+
+class ConditionalFailureError(EvaluationError):
+    """
+    Um operando vale o marcador de falha condicional ("F"): o valor
+    de origem é uma rotina condicional que falhou. A falha não é
+    convertida em número; ela interrompe o cálculo consumidor.
+    """
+
+
 class EquationEvaluationError(EvaluationError):
     """
     Erro de avaliação de uma Equation, enriquecido com o contexto
@@ -188,6 +219,40 @@ class EmptyAggregationWindowError(TemporalAggregationError):
     """
     Nenhum valor de origem foi encontrado dentro da janela temporal
     da agregação (janela vazia de dados, não de erro de leitura).
+    """
+
+
+class AggregationScopeMismatchError(TemporalAggregationError):
+    """
+    Uma AggregationRule não tem nenhuma instância espacial aplicável:
+    a origem (ou o peso) não existe em nenhum escopo concreto do alvo.
+    O serviço de agregação lê a origem exatamente no escopo do alvo,
+    então a regra não teria onde ser executada.
+    """
+
+
+class AggregationFailureError(TemporalAggregationError):
+    """
+    A série de origem contém o marcador de falha condicional ("F").
+    A agregação não produz um número a partir de uma falha: a falha
+    é preservada e reportada com os períodos afetados.
+    """
+
+    def __init__(self, rule_id: str, failed_period_ids: list[str]):
+        self.rule_id = rule_id
+        self.failed_period_ids = list(failed_period_ids)
+
+        super().__init__(
+            f"Regra {rule_id}: a série de origem contém falha "
+            f"condicional ('F') nos períodos {self.failed_period_ids}; "
+            "a agregação não pode produzir um valor numérico."
+        )
+
+
+class NonNumericAggregationError(TemporalAggregationError):
+    """
+    A série de origem contém valores categóricos (texto), que não
+    podem ser somados nem ponderados.
     """
 
 

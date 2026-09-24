@@ -32,8 +32,9 @@ A aba `Planilha1` é auxiliar (descrições propostas) e NÃO gera entidades.
 from __future__ import annotations
 
 import json
-import re
 from pathlib import Path
+
+from app.engine import reference_resolver
 
 
 SHEET_NAME = "energy"
@@ -155,103 +156,36 @@ def build_canonical_model(rows: list[dict]) -> dict:
 # ============================================================
 # 3. Resolução de nomes -> IDs
 # ============================================================
+#
+# A resolução é a da plataforma (nome + frequência + escopo, ver
+# app/engine/reference_resolver.py) — este builder não mantém uma
+# lógica própria de vínculo.
+
 
 def build_name_index(entities: list[dict]) -> dict:
-    """
-    Indexa as entidades por nome. Um mesmo `name` pode aparecer em
-    várias linhas (frequências e/ou escopos diferentes) — por isso o
-    índice guarda a LISTA de entidades, nunca uma só. Colapsar aqui
-    produziria vínculos silenciosamente errados.
-    """
-
-    index: dict[str, list[dict]] = {}
-
-    for entity in entities:
-        index.setdefault(entity["name"], []).append(entity)
-
-    return index
+    return reference_resolver.build_name_index(entities)
 
 
 def resolve_reference(
     name: str,
     index: dict,
     frequency: str,
+    consumer_scope: tuple[str, str | None] | None = None,
 ) -> str:
-    """
-    Resolve um nome referenciado por uma equação para o ID da entidade
-    correspondente.
-
-    O vínculo é feito por ID — nunca por nome — e a frequência da
-    equação é decisiva: `energia_bayer` diário deve consumir os IDs
-    diários de `energia_digestao`/`energia_evaporacao`, e
-    `energia_media_frct` (mensal) deve consumir os IDs mensais.
-    """
-
-    candidates = index.get(name)
-
-    if not candidates:
-        raise KeyError(f"Referência não encontrada na planilha: {name}")
-
-    parameters = [
-        entity
-        for entity in candidates
-        if entity["kind"] == "parameter"
-    ]
-
-    if parameters:
-        if len(parameters) > 1:
-            raise ValueError(
-                f"Parâmetro ambíguo: {name}"
-            )
-
-        return parameters[0]["entity_id"]
-
-    same_frequency = [
-        entity
-        for entity in candidates
-        if entity["frequency"] == frequency
-    ]
-
-    pool = same_frequency or candidates
-
-    if len(pool) > 1:
-        raise ValueError(
-            "Referência ambígua "
-            f"({name}, frequência {frequency}): "
-            + ", ".join(entity["entity_id"] for entity in pool)
-        )
-
-    return pool[0]["entity_id"]
+    return reference_resolver.resolve_reference(
+        name, index, frequency, consumer_scope=consumer_scope,
+    )
 
 
 def translate_expression(
     expression: str,
     index: dict,
     frequency: str,
+    consumer_scope: tuple[str, str | None] | None = None,
 ) -> str:
-    """
-    Reescreve a expressão da planilha (escrita em nomes) para a
-    expressão do seed (escrita em IDs), preservando a sintaxe `@Lx`.
-
-    Os nomes são substituídos do mais longo para o mais curto para que
-    `lth_total` não seja quebrado pela substituição de `lth`, e
-    `economicidade_evaporacao_ref` não seja quebrado por
-    `economicidade_evaporacao`.
-    """
-
-    translated = expression
-
-    for name in sorted(index, key=len, reverse=True):
-        pattern = re.compile(rf"(?<![\w@]){re.escape(name)}\b")
-
-        if not pattern.search(translated):
-            continue
-
-        entity_id = resolve_reference(name, index, frequency)
-
-        translated = pattern.sub(entity_id, translated)
-
-    return re.sub(r"\s+", " ", translated).strip()
+    return reference_resolver.translate_expression(
+        expression, index, frequency, consumer_scope=consumer_scope,
+    )
 
 
 # ============================================================
@@ -323,6 +257,10 @@ def build_equations(entities: list[dict]) -> list[dict]:
                     entity["expression"],
                     index,
                     entity["frequency"],
+                    consumer_scope=(
+                        entity["scope_type"],
+                        entity["scope_value"],
+                    ),
                 ),
                 "source_reference": SOURCE_REFERENCE,
                 "status": "PUBLISHED",

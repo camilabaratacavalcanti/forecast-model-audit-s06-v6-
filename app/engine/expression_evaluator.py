@@ -2,15 +2,45 @@
 Executa a AST já validada pelo parser. Resolve VAR... e PARAM... no
 CalculationContext e aplica as operações matemáticas permitidas.
 Também trata erros de avaliação.
+
+Regras de tipo (valores numéricos ou categóricos, ver app.domain.values):
+
+    aritmética / unário / ln   somente números
+    <, <=, >, >=               somente número com número
+    ==, !=                     número com número ou texto com texto
+                               (número com texto é erro, nunca False)
+    and / or                   somente condições (bool), com curto-
+                               circuito: `a and b` avalia b só se a é
+                               verdadeira; `a or b` só se a é falsa;
+                               precedência de Python (and antes de or)
+    condição de IF             bool, ou número (legado: != 0)
+    resultado final            número ou texto (bool é erro)
+
+Falha condicional ("F"): consumir o marcador em qualquer operação
+levanta ConditionalFailureError; a única leitura permitida é `== "F"`
+/ `!= "F"` contra o literal "F" (verdadeiro/falso conforme o valor
+seja a falha; um número nunca é a falha). Um ramo de IF que devolve
+"F" apenas o repassa.
 """
 
 import ast
+import math
 import operator
 
+from app.domain.values import (
+    CONDITIONAL_FAILURE,
+    ScalarValue,
+    is_conditional_failure,
+    is_numeric,
+)
+from app.engine import scoped_reference
 from app.engine.calculation_context import CalculationContext
 from app.engine.exceptions import (
+    ConditionalFailureError,
     DivisionByZeroError,
     EvaluationError,
+    ExpressionTypeError,
+    MathDomainError,
     ParameterNotFoundError,
     VariableNotFoundError,
 )
@@ -59,6 +89,21 @@ COMPARE_OPERATORS = {
     ast.LtE: operator.le,
     ast.Eq: operator.eq,
     ast.NotEq: operator.ne,
+}
+
+
+EQUALITY_OPERATORS = {ast.Eq, ast.NotEq}
+
+
+def _natural_log(value: int | float) -> float:
+    if value <= 0:
+        raise MathDomainError("ln", value)
+
+    return math.log(value)
+
+
+FUNCTIONS = {
+    "ln": _natural_log,
 }
 
 
@@ -318,13 +363,25 @@ class ExpressionEvaluator:
     def evaluate(
         self,
         tree: ast.Expression,
-    ) -> int | float:
+    ) -> ScalarValue:
         """
         Avalia a AST utilizando os valores do CalculationContext.
+
+        O resultado é um número ou um texto (categórico ou "F"); uma
+        expressão cujo resultado final é uma condição (bool) é um
+        erro de tipo, não um número 0/1.
         """
 
         try:
-            return self._evaluate_node(tree.body)
+            result = self._evaluate_node(tree.body)
+
+            if isinstance(result, bool):
+                raise ExpressionTypeError(
+                    "O resultado da expressão é uma condição "
+                    "(verdadeiro/falso), não um valor."
+                )
+
+            return result
 
         except EvaluationError:
             raise
@@ -345,10 +402,101 @@ class ExpressionEvaluator:
                 "Erro durante a avaliação da expressão."
             ) from exc
 
+    @staticmethod
+    def _require_numeric(value, operation: str) -> int | float:
+        """
+        Garante que `value` seja um operando numérico. O marcador "F"
+        nunca é convertido: consumi-lo é uma falha explícita.
+        """
+
+        if is_conditional_failure(value):
+            raise ConditionalFailureError(
+                f"Operação '{operation}' sobre falha condicional "
+                f"({CONDITIONAL_FAILURE!r})."
+            )
+
+        if not is_numeric(value):
+            raise ExpressionTypeError(
+                f"Operação '{operation}' exige valor numérico; "
+                f"recebeu {value!r}."
+            )
+
+        return value
+
+    @staticmethod
+    def _require_condition(value, operation: str) -> bool:
+        if isinstance(value, bool):
+            return value
+
+        if is_conditional_failure(value):
+            raise ConditionalFailureError(
+                f"Operação '{operation}' sobre falha condicional "
+                f"({CONDITIONAL_FAILURE!r})."
+            )
+
+        raise ExpressionTypeError(
+            f"Operandos de '{operation}' devem ser condições; "
+            f"recebeu {value!r}."
+        )
+
+    def _compare(
+        self,
+        op: ast.cmpop,
+        left,
+        right,
+        is_failure_check: bool = False,
+    ) -> bool:
+        operation = COMPARE_OPERATORS.get(type(op))
+
+        if operation is None:
+            raise EvaluationError(
+                "Operador de comparação não suportado: "
+                f"{type(op).__name__}"
+            )
+
+        symbol = type(op).__name__
+
+        if type(op) in EQUALITY_OPERATORS:
+            # Detecção explícita da falha: comparar com o literal "F"
+            # (`x == "F"`) é verdadeiro somente quando x é a falha; um
+            # número nunca é a falha.
+            if is_failure_check:
+                return operation(left, right)
+
+            # Qualquer outra igualdade envolvendo uma falha
+            # (`x == 0`, `x == "ABERTO"`) consome a falha: erro, nunca
+            # um False silencioso.
+            if is_conditional_failure(left) or is_conditional_failure(
+                right
+            ):
+                raise ConditionalFailureError(
+                    f"Comparação '{symbol}' sobre falha condicional "
+                    f"({CONDITIONAL_FAILURE!r}); use == \"F\" para "
+                    "detectá-la."
+                )
+
+            if isinstance(left, str) and isinstance(right, str):
+                return operation(left, right)
+
+            if is_numeric(left) and is_numeric(right):
+                return operation(left, right)
+
+            # Número x texto categórico nunca é silenciosamente
+            # "diferente": é um erro de tipo.
+            raise ExpressionTypeError(
+                f"Comparação '{symbol}' entre número e texto: "
+                f"{left!r} e {right!r}."
+            )
+
+        self._require_numeric(left, symbol)
+        self._require_numeric(right, symbol)
+
+        return operation(left, right)
+
     def _evaluate_node(
         self,
         node: ast.AST,
-    ) -> int | float:
+    ) -> ScalarValue | bool:
 
         if isinstance(node, ast.Constant):
             return node.value
@@ -357,9 +505,6 @@ class ExpressionEvaluator:
             return self._resolve_name(node.id)
 
         if isinstance(node, ast.BinOp):
-
-            left = self._evaluate_node(node.left)
-            right = self._evaluate_node(node.right)
 
             operation = BINARY_OPERATORS.get(
                 type(node.op)
@@ -371,15 +516,22 @@ class ExpressionEvaluator:
                     f"{type(node.op).__name__}"
                 )
 
+            symbol = BINARY_OPERATOR_SYMBOLS.get(
+                type(node.op),
+                type(node.op).__name__,
+            )
+
+            left = self._require_numeric(
+                self._evaluate_node(node.left), symbol
+            )
+            right = self._require_numeric(
+                self._evaluate_node(node.right), symbol
+            )
+
             try:
                 return operation(left, right)
 
             except ZeroDivisionError as exc:
-                symbol = BINARY_OPERATOR_SYMBOLS.get(
-                    type(node.op),
-                    type(node.op).__name__,
-                )
-
                 raise DivisionByZeroError(
                     operation=symbol,
                     left_value=left,
@@ -387,8 +539,6 @@ class ExpressionEvaluator:
                 ) from exc
 
         if isinstance(node, ast.UnaryOp):
-
-            value = self._evaluate_node(node.operand)
 
             operation = UNARY_OPERATORS.get(
                 type(node.op)
@@ -400,35 +550,83 @@ class ExpressionEvaluator:
                     f"{type(node.op).__name__}"
                 )
 
+            value = self._require_numeric(
+                self._evaluate_node(node.operand),
+                type(node.op).__name__,
+            )
+
             return operation(value)
+
+        if isinstance(node, ast.Call):
+
+            function_name = node.func.id
+            function = FUNCTIONS.get(function_name)
+
+            if function is None:
+                raise EvaluationError(
+                    f"Função não suportada: {function_name}"
+                )
+
+            arguments = [
+                self._require_numeric(
+                    self._evaluate_node(argument), function_name
+                )
+                for argument in node.args
+            ]
+
+            return function(*arguments)
 
         if isinstance(node, ast.Compare):
 
-            left = self._evaluate_node(node.left)
+            left_node = node.left
+            left = self._evaluate_node(left_node)
 
             for op, comparator in zip(
                 node.ops, node.comparators
             ):
                 right = self._evaluate_node(comparator)
 
-                operation = COMPARE_OPERATORS.get(type(op))
+                is_failure_check = any(
+                    isinstance(operand, ast.Constant)
+                    and is_conditional_failure(operand.value)
+                    for operand in (left_node, comparator)
+                )
 
-                if operation is None:
-                    raise EvaluationError(
-                        "Operador de comparação não suportado: "
-                        f"{type(op).__name__}"
-                    )
-
-                if not operation(left, right):
+                if not self._compare(
+                    op, left, right, is_failure_check
+                ):
                     return False
 
-                left = right
+                left_node, left = comparator, right
 
             return True
+
+        if isinstance(node, ast.BoolOp):
+
+            is_and = isinstance(node.op, ast.And)
+            symbol = "and" if is_and else "or"
+
+            for operand in node.values:
+                value = self._require_condition(
+                    self._evaluate_node(operand), symbol
+                )
+
+                if is_and and not value:
+                    return False
+
+                if not is_and and value:
+                    return True
+
+            return is_and
 
         if isinstance(node, ast.IfExp):
 
             condition = self._evaluate_node(node.test)
+
+            if not isinstance(condition, bool):
+                condition = self._require_numeric(
+                    condition, "if"
+                )
 
             if condition:
                 return self._evaluate_node(node.body)
@@ -467,6 +665,12 @@ class ExpressionEvaluator:
             scope_type = linha
             scope_value = L4
 
+        Um grupo explícito (VAR11001@L1_L3, internamente
+        VAR11001__L1_L3) é resolvido como scope_type = linha_grupo,
+        scope_value = L1_L3. Uma referência explícita usa apenas o
+        próprio escopo (com fallback somente temporal): nunca é
+        projetada para outro escopo.
+
         ou:
 
             parameter_id = PARAM11001
@@ -474,20 +678,17 @@ class ExpressionEvaluator:
             scope_value = L4
         """
 
-        if "__L" in name:
+        identifier, scope_type, scope_value = (
+            scoped_reference.split_internal(name)
+        )
 
-            identifier, scope = name.split(
-                "__L",
-                maxsplit=1,
-            )
-
-            scope_value = f"L{scope}"
+        if scope_type is not None:
 
             if identifier.startswith("VAR"):
 
                 return self._get_variable_with_period_fallback(
                     identifier,
-                    scope_type="linha",
+                    scope_type=scope_type,
                     scope_value=scope_value,
                 )
 
@@ -495,7 +696,7 @@ class ExpressionEvaluator:
 
                 return self._get_parameter_with_period_fallback(
                     identifier,
-                    scope_type="linha",
+                    scope_type=scope_type,
                     scope_value=scope_value,
                 )
 

@@ -55,9 +55,13 @@ Não é responsabilidade deste componente:
 from datetime import date
 
 from app.domain.equations.registry import EquationDefinitionRegistry
-from app.domain.forecast.aggregation import AggregationRule
+from app.domain.forecast.aggregation import (
+    AggregationRule,
+    AggregationRuleInstance,
+)
 from app.domain.forecast.execution import Execution
 from app.domain.forecast.models import ForecastValue
+from app.domain.values import ScalarValue
 from app.domain.variables.registry import VariableDefinitionRegistry
 from app.engine.calculation_context import CalculationContext
 from app.engine.forecast_engine import ForecastEngine
@@ -159,7 +163,7 @@ class TemporalForecastOrchestrator:
         variable_definition_registry: VariableDefinitionRegistry,
         calculation_context: CalculationContext,
         run_date: date,
-    ) -> dict[str, int | float]:
+    ) -> dict[str, ScalarValue]:
         """
         Executa um snapshot DIRECT para `run_date`: delega
         integralmente a `ForecastEngine.calculate_from_definition_registry`,
@@ -181,7 +185,7 @@ class TemporalForecastOrchestrator:
         variable_definition_registry: VariableDefinitionRegistry,
         calculation_context: CalculationContext,
         run_date: date,
-    ) -> dict[date, dict[str, int | float]]:
+    ) -> dict[date, dict[str, ScalarValue]]:
         """
         Executa `run_direct` para cada dia disponível desde o início
         do ForecastYear de `run_date` até `run_date` (o cenário
@@ -195,7 +199,7 @@ class TemporalForecastOrchestrator:
         como uma chamada manual dia-a-dia produziria.
         """
 
-        results_by_day: dict[date, dict[str, int | float]] = {}
+        results_by_day: dict[date, dict[str, ScalarValue]] = {}
 
         for period in self.available_periods("diário", run_date):
             day = period.start_date
@@ -314,6 +318,29 @@ class TemporalForecastOrchestrator:
             execution_id=(
                 execution.execution_id if execution else None
             ),
+        )
+
+    def run_aggregation_instance(
+        self,
+        instance: AggregationRuleInstance,
+        calculation_context: CalculationContext,
+        run_date: date,
+        execution: Execution | None = None,
+    ) -> ForecastValue:
+        """
+        Executa uma AggregationRuleInstance no escopo que ela própria
+        carrega (materializado pelo ScopeResolver) — o chamador não
+        escolhe escopo, então 7 instâncias de uma regra linha/L1_L7 são
+        7 séries independentes, cada uma lida e gravada no seu escopo.
+        """
+
+        return self.run_aggregation(
+            rule=instance.rule,
+            calculation_context=calculation_context,
+            scope_type=instance.scope_type,
+            scope_value=instance.scope_value,
+            run_date=run_date,
+            execution=execution,
         )
 
     @staticmethod

@@ -24,6 +24,7 @@ from typing import Mapping
 from app.domain.equations.models import EquationInstance
 from app.domain.parameters.models import ParameterInstance
 from app.domain.variables.models import VariableInstance
+from app.engine.exceptions import AggregationScopeMismatchError
 
 
 class ScopeResolver:
@@ -142,6 +143,86 @@ class ScopeResolver:
         return [
             EquationInstance.create(
                 definition=definition,
+                scope_type=scope_type,
+                scope_value=scope_value,
+            )
+            for scope_type, scope_value in scopes
+        ]
+
+    def resolve_aggregation_rule(
+        self,
+        rule,
+        target_definition,
+        source_definition,
+        weight_definition=None,
+    ) -> list:
+        """
+        Materializa uma AggregationRule em uma AggregationRuleInstance
+        por escopo concreto do alvo.
+
+        O TemporalAggregationService lê a origem (e o peso) exatamente
+        no escopo em que grava o alvo, então a regra só se aplica aos
+        escopos concretos em que alvo, origem e peso existem. Isso
+        cobre os dois arranjos da plataforma:
+
+            - origem e alvo linha/L1_L7 -> 7 instâncias (L1..L7);
+            - uma origem por linha (linha/L1, linha/L2, ...) e um alvo
+              linha/L1_L7 com uma regra por origem -> cada regra
+              materializa exatamente o escopo da sua origem.
+
+        Uma regra sem nenhum escopo aplicável é um erro de modelagem,
+        não uma regra vazia silenciosa.
+        """
+
+        # Import local: app.domain.forecast.aggregation importa
+        # app.engine.exceptions, cujo pacote carrega este módulo.
+        from app.domain.forecast.aggregation import (
+            AggregationRuleInstance,
+        )
+
+        target_scopes = self.resolve_scopes(
+            target_definition.scope_type,
+            target_definition.scope_value,
+        )
+
+        available = set(
+            self.resolve_scopes(
+                source_definition.scope_type,
+                source_definition.scope_value,
+            )
+        )
+
+        if weight_definition is not None:
+            available &= set(
+                self.resolve_scopes(
+                    weight_definition.scope_type,
+                    weight_definition.scope_value,
+                )
+            )
+
+        scopes = [scope for scope in target_scopes if scope in available]
+
+        if not scopes:
+            raise AggregationScopeMismatchError(
+                f"AggregationRule {rule.aggregation_rule_id}: nenhum "
+                "escopo concreto do alvo "
+                f"({target_definition.scope_type}/"
+                f"{target_definition.scope_value}) existe na origem "
+                f"({source_definition.scope_type}/"
+                f"{source_definition.scope_value})"
+                + (
+                    " e no peso "
+                    f"({weight_definition.scope_type}/"
+                    f"{weight_definition.scope_value})"
+                    if weight_definition is not None
+                    else ""
+                )
+                + "."
+            )
+
+        return [
+            AggregationRuleInstance.create(
+                rule=rule,
                 scope_type=scope_type,
                 scope_value=scope_value,
             )

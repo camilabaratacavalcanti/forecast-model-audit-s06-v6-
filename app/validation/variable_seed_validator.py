@@ -1,6 +1,8 @@
 import json
 from pathlib import Path
 
+from app.domain.values import VALUE_TYPES
+
 
 # ============================================================
 # REGRAS DO VARIABLE REGISTRY
@@ -211,6 +213,8 @@ ENUM_FIELDS = {
     "unit": ALLOWED_UNITS,
     "scope_type": ALLOWED_SCOPE_TYPES,
     "scope_value": ALLOWED_SCOPE_VALUES,
+    # Opcional: ausente = "numeric" (ver app.domain.values).
+    "value_type": VALUE_TYPES,
 }
 
 

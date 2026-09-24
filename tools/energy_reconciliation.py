@@ -35,7 +35,7 @@ SNAPSHOT_PATH = (
     REPO_ROOT / "data" / "reference" / "energy" / "energy_v2_extract.json"
 )
 
-ID_PATTERN = re.compile(r"\b((?:VAR|PARAM)\d{5})(@L[1-7])?\b")
+ID_PATTERN = re.compile(r"\b((?:VAR|PARAM)\d{5})(@L[1-7](?:_L[1-7])?)?\b")
 
 QUOTED_NAME = re.compile(r"'([a-z0-9_]+)'")
 WEIGHTED_CALL = re.compile(

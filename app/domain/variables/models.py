@@ -14,6 +14,8 @@ Objetivo:
 
 from dataclasses import dataclass
 
+from app.domain.values import NUMERIC, VALUE_TYPES
+
 
 @dataclass
 class Variable:
@@ -34,6 +36,9 @@ class Variable:
     scope_value: str | None
     source_reference: str
     status: str
+    # Tipo do valor (app.domain.values): "numeric" (padrão, todas as
+    # variáveis existentes) ou "categorical" (texto).
+    value_type: str = NUMERIC
 
 
 @dataclass(frozen=True)
@@ -57,6 +62,9 @@ class VariableDefinition:
     scope_value: str | None
     source_reference: str
     status: str
+    # Tipo do valor (app.domain.values): "numeric" (padrão, todas as
+    # variáveis existentes) ou "categorical" (texto).
+    value_type: str = NUMERIC
 
     @classmethod
     def from_variable(cls, variable: Variable) -> "VariableDefinition":
@@ -71,7 +79,19 @@ class VariableDefinition:
             scope_value=variable.scope_value,
             source_reference=variable.source_reference,
             status=variable.status,
+            value_type=variable.value_type,
         )
+
+    def __post_init__(self) -> None:
+        if self.value_type not in VALUE_TYPES:
+            raise ValueError(
+                f"value_type inválido para {self.variable_definition_id}: "
+                f"{self.value_type!r} (permitidos: {sorted(VALUE_TYPES)})"
+            )
+
+    @property
+    def is_categorical(self) -> bool:
+        return self.value_type != NUMERIC
 
 
 @dataclass(frozen=True)

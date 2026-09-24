@@ -41,7 +41,7 @@ SNAPSHOT_PATH = (
     REPO_ROOT / "data" / "reference" / "max_ht" / "max_ht_v5_extract.json"
 )
 
-ID_PATTERN = re.compile(r"\b((?:VAR|PARAM)\d{5})(@L[1-7])?\b")
+ID_PATTERN = re.compile(r"\b((?:VAR|PARAM)\d{5})(@L[1-7](?:_L[1-7])?)?\b")
 
 
 def _normalize(expression: str) -> str:

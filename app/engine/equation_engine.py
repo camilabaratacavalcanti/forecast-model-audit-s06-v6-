@@ -6,6 +6,7 @@ o contexto para resolver valores e o evaluator para calcular o resultado.
 """
 
 from app.domain.equations.models import Equation
+from app.domain.values import ScalarValue
 
 from app.engine.calculation_context import CalculationContext
 from app.engine.exceptions import (
@@ -34,7 +35,7 @@ class EquationEngine:
         self,
         equation: Equation,
         calculation_context: CalculationContext,
-    ) -> int | float:
+    ) -> ScalarValue:
         """
         Executa uma equação utilizando os valores fornecidos
         no CalculationContext.
@@ -71,7 +72,7 @@ class EquationEngine:
         definition,
         calculation_context: CalculationContext,
         period_id: str | None = None,
-    ) -> int | float:
+    ) -> ScalarValue:
         """
         Executa uma EquationInstance utilizando a expressão
         pertencente à EquationDefinition.

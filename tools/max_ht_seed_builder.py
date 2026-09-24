@@ -39,6 +39,8 @@ import json
 import re
 from pathlib import Path
 
+from app.engine import reference_resolver
+
 
 SHEET_NAME = "MaxHT"
 HEADER_ROW = 2
@@ -177,92 +179,60 @@ def build_canonical_model(rows: list[dict]) -> dict:
 # ============================================================
 # 3. Resolução de nomes -> IDs
 # ============================================================
+#
+# A resolução é a da plataforma (nome + frequência + escopo, ver
+# app/engine/reference_resolver.py). Este builder contribui apenas com
+# a política de desempate abaixo, específica do workbook max_ht.
+
+
+def prefer_sum_variant(pool: list[dict]) -> dict | None:
+    """
+    Famílias mensal/anual do max_ht têm DUAS variantes na mesma
+    frequência e escopo: a de Somatório (total do período) e a de Média
+    (taxa média do período). Como AVERAGE = SUM / N para a MESMA janela
+    em ambos os operandos de uma razão, SUM/SUM e AVG/AVG produzem o
+    MESMO resultado numérico (o N cancela) -- portanto a escolha entre
+    as duas não altera o valor calculado. Para tornar a tradução
+    determinística, prefere-se a variante SUM (o "total do período").
+    """
+
+    sums = [c for c in pool if c.get("dsl") and c["dsl"][0] == "SUM"]
+
+    return sums[0] if len(sums) == 1 else None
+
 
 def build_name_index(entities: list[dict]) -> dict:
-    """
-    Indexa as entidades por nome. Um mesmo `name` pode aparecer em
-    várias linhas (frequências diferentes) -- por isso o índice guarda
-    a LISTA de entidades, nunca uma só.
-    """
-
-    index: dict[str, list[dict]] = {}
-
-    for entity in entities:
-        index.setdefault(entity["name"], []).append(entity)
-
-    return index
+    return reference_resolver.build_name_index(entities)
 
 
-def resolve_reference(name: str, index: dict, frequency: str) -> str:
-    """
-    Resolve um nome referenciado por uma equação para o ID da entidade
-    correspondente, igual ao energy_seed_builder: o vínculo é feito por
-    ID, nunca por nome, e a frequência da equação é decisiva.
-    """
-
-    candidates = index.get(name)
-
-    if not candidates:
-        raise KeyError(f"Referência não encontrada na planilha: {name}")
-
-    parameters = [c for c in candidates if c["kind"] == "parameter"]
-
-    if parameters:
-        if len(parameters) > 1:
-            raise ValueError(f"Parâmetro ambíguo: {name}")
-
-        return parameters[0]["entity_id"]
-
-    same_frequency = [c for c in candidates if c["frequency"] == frequency]
-
-    pool = same_frequency or candidates
-
-    if len(pool) > 1:
-        # Famílias mensal/anual do max_ht têm DUAS variantes na mesma
-        # frequência: a de Somatório (total do período) e a de Média
-        # (taxa média do período). Como AVERAGE = SUM / N para a MESMA
-        # janela em ambos os operandos de uma razão, SUM/SUM e AVG/AVG
-        # produzem o MESMO resultado numérico (o N cancela) -- portanto
-        # a escolha entre as duas não altera o valor calculado. Para
-        # tornar a tradução determinística, prefere-se a variante SUM
-        # (o "total do período"), por ser a leitura mais direta de uma
-        # razão período-a-período (ex.: massa total / produção total).
-        sums = [c for c in pool if c.get("dsl") and c["dsl"][0] == "SUM"]
-
-        if len(sums) == 1:
-            return sums[0]["entity_id"]
-
-        raise ValueError(
-            f"Referência ambígua ({name}, frequência {frequency}): "
-            + ", ".join(entity["entity_id"] for entity in pool)
-        )
-
-    return pool[0]["entity_id"]
+def resolve_reference(
+    name: str,
+    index: dict,
+    frequency: str,
+    consumer_scope: tuple[str, str | None] | None = None,
+) -> str:
+    return reference_resolver.resolve_reference(
+        name,
+        index,
+        frequency,
+        consumer_scope=consumer_scope,
+        tie_breaker=prefer_sum_variant,
+    )
 
 
-def translate_expression(expression: str, index: dict, frequency: str) -> str:
-    """
-    Reescreve a expressão da planilha (escrita em nomes) para a
-    expressão do seed (escrita em IDs), preservando a sintaxe `@Lx`.
-
-    Os nomes são substituídos do mais longo para o mais curto para que
-    `a18_l123` não seja quebrado pela substituição de `a18` (não
-    existente aqui, mas a mesma proteção do energy_seed_builder).
-    """
-
-    translated = expression
-
-    for name in sorted(index, key=len, reverse=True):
-        pattern = re.compile(rf"(?<![\w@]){re.escape(name)}\b")
-
-        if not pattern.search(translated):
-            continue
-
-        entity_id = resolve_reference(name, index, frequency)
-
-        translated = pattern.sub(entity_id, translated)
-
-    return re.sub(r"\s+", " ", translated).strip()
+def translate_expression(
+    expression: str,
+    index: dict,
+    frequency: str,
+    consumer_scope: tuple[str, str | None] | None = None,
+) -> str:
+    return reference_resolver.translate_expression(
+        expression,
+        index,
+        frequency,
+        consumer_scope=consumer_scope,
+        tie_breaker=prefer_sum_variant,
+    )
 
 
 # ============================================================
@@ -340,6 +310,10 @@ def build_equations(entities: list[dict]) -> list[dict]:
                     entity["expression"],
                     index,
                     entity["frequency"],
+                    consumer_scope=(
+                        entity["scope_type"],
+                        entity["scope_value"],
+                    ),
                 ),
                 "source_reference": SOURCE_REFERENCE,
                 "status": "PUBLISHED",
@@ -375,7 +349,12 @@ def build_aggregation_rules(entities: list[dict]) -> list[dict]:
             entity["frequency"],
         )
 
-        source_id = resolve_reference(source_name, index, "diário")
+        source_id = resolve_reference(
+            source_name,
+            index,
+            "diário",
+            consumer_scope=(entity["scope_type"], entity["scope_value"]),
+        )
 
         scope_label = (
             "GRUPO" if entity["scope_type"] == "linha_grupo" else "LINHA"

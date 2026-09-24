@@ -198,12 +198,32 @@ def test_parser_accepts_all_relational_operators(
     assert isinstance(tree.body.test, ast.Compare)
 
 
-def test_parser_rejects_boolean_operators(parser):
+def test_parser_accepts_boolean_operators_in_if_condition(parser):
+    # Contrato alterado intencionalmente (correções estruturais,
+    # Fase F): and/or entre condições, na condição de um IF, são
+    # aceitos. Fora dessa posição continuam rejeitados.
+    tree = parser.parse(
+        "VAR12001 if VAR12001 > 0 and VAR12002 > 0 "
+        "else VAR12002"
+    )
+
+    assert isinstance(tree.body.test, ast.BoolOp)
+
+
+@pytest.mark.parametrize(
+    "expression",
+    [
+        "VAR12001 or VAR12002",
+        "(VAR12001 > 0) and (VAR12002 > 0)",
+        "VAR12001 + (VAR12001 > 0 and VAR12002 > 0)",
+        "VAR12001 if not VAR12001 > 0 else VAR12002",
+    ],
+)
+def test_parser_rejects_boolean_operators_outside_contract(
+    parser, expression
+):
     with pytest.raises(UnsafeExpressionError):
-        parser.parse(
-            "VAR12001 if VAR12001 > 0 and VAR12002 > 0 "
-            "else VAR12002"
-        )
+        parser.parse(expression)
 
 
 def test_parser_rejects_function_call_inside_if_expression(parser):

@@ -1,6 +1,8 @@
 from dataclasses import dataclass
 from datetime import date
 
+from app.domain.values import ScalarValue
+
 
 @dataclass(frozen=True)
 class ForecastValue:
@@ -45,7 +47,10 @@ class ForecastValue:
     frequency: str
     forecast_year: int
     period_id: str
-    value: int | float
+    # Numérico no caso geral; texto quando a variável é categórica ou
+    # quando o resultado DIRECT é a falha condicional "F" (repassada
+    # sem conversão). Agregações só produzem números.
+    value: ScalarValue
     execution_id: str | None = None
     aggregation_rule_id: str | None = None
     run_date: date | None = None

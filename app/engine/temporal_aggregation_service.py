@@ -37,9 +37,17 @@ from datetime import date, timedelta
 
 from app.domain.forecast.aggregation import AggregationRule
 from app.domain.forecast.models import ForecastValue
+from app.domain.values import (
+    NumericValue,
+    ScalarValue,
+    is_conditional_failure,
+    is_numeric,
+)
 from app.engine.calculation_context import CalculationContext
 from app.engine.exceptions import (
+    AggregationFailureError,
     EmptyAggregationWindowError,
+    NonNumericAggregationError,
     ZeroWeightSumError,
 )
 from app.engine.time_period_resolver import TimePeriodResolver
@@ -106,6 +114,10 @@ class TemporalAggregationService:
                 f"(regra {rule.aggregation_rule_id})."
             )
 
+        self._require_numeric_series(
+            rule, rule.source_variable_id, source_period_ids, values
+        )
+
         if rule.aggregation_type == "WEIGHTED_AVERAGE":
             result = self._weighted_average(
                 rule=rule,
@@ -116,7 +128,12 @@ class TemporalAggregationService:
                 values=values,
             )
         elif rule.aggregation_type == "SUM":
-            result = sum(values)
+            if rule.integration_factor == 1:
+                result = sum(values)
+            else:
+                result = sum(
+                    value * rule.integration_factor for value in values
+                )
         else:
             # AVERAGE e MOVING_AVERAGE: mesma aritmética (média
             # simples), distintas apenas pela origem da janela —
@@ -241,14 +258,52 @@ class TemporalAggregationService:
         return period_ids
 
     @staticmethod
+    def _require_numeric_series(
+        rule: AggregationRule,
+        variable_id: str,
+        period_ids: list[str],
+        values: list[ScalarValue],
+    ) -> None:
+        """
+        Uma agregação só opera sobre números. Um período com falha
+        condicional ("F") não é ignorado nem tratado como 0: a
+        agregação inteira falha, listando os períodos afetados. Texto
+        categórico também não é agregável.
+        """
+
+        failed = [
+            period_id
+            for period_id, value in zip(period_ids, values)
+            if is_conditional_failure(value)
+        ]
+
+        if failed:
+            raise AggregationFailureError(
+                rule.aggregation_rule_id, failed
+            )
+
+        non_numeric = [
+            period_id
+            for period_id, value in zip(period_ids, values)
+            if not is_numeric(value)
+        ]
+
+        if non_numeric:
+            raise NonNumericAggregationError(
+                f"Regra {rule.aggregation_rule_id}: {variable_id} tem "
+                f"valores não numéricos nos períodos {non_numeric}; "
+                "texto categórico não é agregável."
+            )
+
+    @staticmethod
     def _weighted_average(
         rule: AggregationRule,
         calculation_context: CalculationContext,
         scope_type: str | None,
         scope_value: str | None,
         source_period_ids: list[str],
-        values: list[int | float],
-    ) -> int | float:
+        values: list[NumericValue],
+    ) -> NumericValue:
         weights = [
             calculation_context.get_variable_value(
                 rule.weight_variable_id,
@@ -258,6 +313,10 @@ class TemporalAggregationService:
             )
             for period_id in source_period_ids
         ]
+
+        TemporalAggregationService._require_numeric_series(
+            rule, rule.weight_variable_id, source_period_ids, weights
+        )
 
         weight_sum = sum(weights)
 

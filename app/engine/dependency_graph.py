@@ -12,6 +12,7 @@ from app.domain.equations.models import (
     EquationDefinition,
     EquationInstance,
 )
+from app.engine import scoped_reference
 from app.engine.dependency_extractor import DependencyExtractor
 
 
@@ -297,15 +298,16 @@ class DependencyGraph:
             return producer_id
 
         if "@" in matched_reference:
-            _base_reference, explicit_line = matched_reference.split(
-                "@",
-                1,
-            )
+            (
+                _base_reference,
+                explicit_scope_type,
+                explicit_scope_value,
+            ) = scoped_reference.split_domain(matched_reference)
 
             return cls._build_node_id(
                 producer_id,
-                "linha",
-                explicit_line,
+                explicit_scope_type,
+                explicit_scope_value,
             )
 
         return cls._build_node_id(

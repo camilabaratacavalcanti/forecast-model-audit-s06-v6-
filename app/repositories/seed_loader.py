@@ -30,6 +30,7 @@ from app.domain.equations.models import (
 )
 from app.domain.forecast.aggregation import (
     AggregationRule,
+    AggregationRuleInstanceRegistry,
     AggregationRuleRegistry,
 )
 from app.domain.equations.registry import (
@@ -694,3 +695,57 @@ class SeedLoader:
                 registry.add(rule)
 
         return registry
+
+    def load_aggregation_rule_instances(
+        self,
+        variable_definition_registry: VariableDefinitionRegistry | None = None,
+        rule_registry: AggregationRuleRegistry | None = None,
+        instance_registry: AggregationRuleInstanceRegistry | None = None,
+    ) -> AggregationRuleInstanceRegistry:
+        """
+        Materializa cada AggregationRule em AggregationRuleInstances,
+        uma por escopo concreto (mesmo fluxo de Variable/Equation):
+
+            AggregationRule
+                ↓
+            VariableDefinitions (alvo, origem, peso)
+                ↓
+            ScopeResolver
+                ↓
+            AggregationRuleInstanceRegistry
+
+        Uma regra que referencia uma variável inexistente, ou que não
+        tem nenhum escopo aplicável, falha explicitamente.
+        """
+
+        if variable_definition_registry is None:
+            variable_definition_registry = self.load_variable_definitions()
+
+        if rule_registry is None:
+            rule_registry = self.load_aggregation_rules()
+
+        if instance_registry is None:
+            instance_registry = AggregationRuleInstanceRegistry()
+
+        for rule in rule_registry.all():
+            weight_definition = (
+                variable_definition_registry.get(rule.weight_variable_id)
+                if rule.weight_variable_id
+                else None
+            )
+
+            instances = self.scope_resolver.resolve_aggregation_rule(
+                rule=rule,
+                target_definition=variable_definition_registry.get(
+                    rule.target_variable_id
+                ),
+                source_definition=variable_definition_registry.get(
+                    rule.source_variable_id
+                ),
+                weight_definition=weight_definition,
+            )
+
+            for instance in instances:
+                instance_registry.add(instance)
+
+        return instance_registry

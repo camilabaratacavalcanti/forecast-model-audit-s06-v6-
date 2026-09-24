@@ -52,12 +52,37 @@ class AggregationRule:
     weight_variable_id: str | None = None
     window_start_date: date | None = None
     window_end_date: date | None = None
+    # Conversão dimensional de uma SUM de taxas (ver app.domain.units):
+    # cada valor diário é multiplicado pelo fator antes da soma (ex.:
+    # 24 para kg/h -> kg/mês). 1.0 (padrão) mantém a soma simples de
+    # todas as regras existentes. Só SUM pode declarar outro valor.
+    integration_factor: float = 1.0
 
     def __post_init__(self) -> None:
         if self.aggregation_type not in AGGREGATION_TYPES:
             raise InvalidAggregationRuleError(
                 "Tipo de agregação não suportado: "
                 f"{self.aggregation_type}"
+            )
+
+        if (
+            isinstance(self.integration_factor, bool)
+            or not isinstance(self.integration_factor, (int, float))
+            or not self.integration_factor > 0
+        ):
+            raise InvalidAggregationRuleError(
+                "integration_factor deve ser um número positivo: "
+                f"{self.integration_factor!r}"
+            )
+
+        if (
+            self.integration_factor != 1
+            and self.aggregation_type != "SUM"
+        ):
+            raise InvalidAggregationRuleError(
+                "integration_factor só se aplica a SUM "
+                f"(regra {self.aggregation_rule_id} é "
+                f"{self.aggregation_type})."
             )
 
         if (
@@ -86,6 +111,80 @@ class AggregationRule:
                 "window_start_date deve ser anterior ou igual a "
                 "window_end_date."
             )
+
+
+@dataclass(frozen=True)
+class AggregationRuleInstance:
+    """
+    Aplicação concreta de uma AggregationRule em UM escopo resolvido.
+
+    A AggregationRule é lógica (não carrega escopo). Uma definição
+    `linha/L1_L7` materializa 7 VariableInstances; a regra que a agrega
+    materializa, pelo mesmo ScopeResolver, uma AggregationRuleInstance
+    por escopo concreto — 7 séries independentes, cada uma com seu
+    próprio escopo, em vez de uma regra única cujo escopo dependeria
+    de quem a chama.
+    """
+
+    aggregation_rule_instance_id: str
+    rule: AggregationRule
+    scope_type: str | None
+    scope_value: str | None
+
+    @classmethod
+    def create(
+        cls,
+        rule: AggregationRule,
+        scope_type: str | None,
+        scope_value: str | None,
+    ) -> "AggregationRuleInstance":
+        instance_id = (
+            f"{rule.aggregation_rule_id}@{scope_value}"
+            if scope_value
+            else rule.aggregation_rule_id
+        )
+
+        return cls(
+            aggregation_rule_instance_id=instance_id,
+            rule=rule,
+            scope_type=scope_type,
+            scope_value=scope_value,
+        )
+
+
+class AggregationRuleInstanceRegistry:
+    """Registry em memória de AggregationRuleInstance."""
+
+    def __init__(self):
+        self._instances: dict[str, AggregationRuleInstance] = {}
+
+    def add(self, instance: AggregationRuleInstance) -> None:
+        if instance.aggregation_rule_instance_id in self._instances:
+            raise ValueError(
+                "aggregation_rule_instance_id já cadastrado: "
+                f"{instance.aggregation_rule_instance_id}"
+            )
+
+        self._instances[instance.aggregation_rule_instance_id] = instance
+
+    def get(self, aggregation_rule_instance_id: str) -> AggregationRuleInstance:
+        return self._instances[aggregation_rule_instance_id]
+
+    def all(self) -> list[AggregationRuleInstance]:
+        return list(self._instances.values())
+
+    def for_rule(self, aggregation_rule_id: str) -> list[AggregationRuleInstance]:
+        return [
+            instance
+            for instance in self._instances.values()
+            if instance.rule.aggregation_rule_id == aggregation_rule_id
+        ]
+
+    def __len__(self) -> int:
+        return len(self._instances)
+
+    def __iter__(self):
+        return iter(self._instances.values())
 
 
 class AggregationRuleRegistry:

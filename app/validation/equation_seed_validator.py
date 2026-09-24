@@ -714,7 +714,8 @@ def validate_expression_syntax(equations):
     Valida se o campo 'expression' de cada equação é uma expressão
     matemática sintaticamente válida e seguro para o
     ExpressionParser/ExpressionEvaluator (VAR#####/PARAM##### com ou
-    sem sufixo "@Lx", operadores aritméticos, parênteses).
+    sem sufixo "@Lx"/"@<grupo>", operadores aritméticos, parênteses,
+    IF, and/or, ln() e constantes de texto nas posições permitidas).
 
     Esta validação é deliberadamente NÃO incluída em validate_seed():
     seeds legados/fixtures de teste usam expressões textuais

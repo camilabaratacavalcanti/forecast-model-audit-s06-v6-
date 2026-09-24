@@ -12,6 +12,7 @@ Objetivo:
 from datetime import date
 
 from app.domain.equations.models import Equation
+from app.domain.values import ScalarValue
 from app.domain.parameters.registry import ParameterRegistry
 from app.domain.variables.registry import (
     VariableDefinitionRegistry,
@@ -118,7 +119,7 @@ class ForecastEngine:
         equations: list[Equation],
         variable_producers: dict[str, str],
         calculation_context: CalculationContext,
-    ) -> dict[str, int | float]:
+    ) -> dict[str, ScalarValue]:
         """
         Executa as equações respeitando a ordem
         determinada pelas dependências.
@@ -154,7 +155,7 @@ class ForecastEngine:
             for equation in equations
         }
 
-        results: dict[str, int | float] = {}
+        results: dict[str, ScalarValue] = {}
 
         for equation_id in execution_order:
             equation = equations_by_id[equation_id]
@@ -215,7 +216,7 @@ class ForecastEngine:
         variable_registry: VariableRegistry,
         parameter_registry: ParameterRegistry,
         calculation_context: CalculationContext,
-    ) -> dict[str, int | float]:
+    ) -> dict[str, ScalarValue]:
         """
         Valida os Registries e executa as equações cadastradas
         no EquationRegistry.
@@ -258,7 +259,7 @@ class ForecastEngine:
             VariableDefinitionRegistry | None
         ) = None,
         run_date: date | None = None,
-    ) -> dict[str, int | float]:
+    ) -> dict[str, ScalarValue]:
         """
         Executa as EquationDefinitions cadastradas no
         EquationDefinitionRegistry.
@@ -306,6 +307,15 @@ class ForecastEngine:
             if definition.status
             in EquationSelector.ACTIVE_STATUSES
         ]
+
+        # value_type vem da VariableDefinition: as categóricas passam
+        # a aceitar texto no contexto (inputs e resultados).
+        if variable_definition_registry is not None:
+            calculation_context.declare_categorical_variables(
+                definition.variable_definition_id
+                for definition in variable_definition_registry.all()
+                if definition.is_categorical
+            )
 
         instances: list[EquationInstance] = []
 
@@ -360,7 +370,7 @@ class ForecastEngine:
             for instance in instances
         }
 
-        results: dict[str, int | float] = {}
+        results: dict[str, ScalarValue] = {}
 
         for node_id in execution_order:
             instance = instances_by_node_id.get(node_id)
@@ -450,6 +460,10 @@ class ForecastEngine:
             VAR11001@L4
                 →
             EQ11001@linha:L4
+
+            VAR11050@L1_L3 (e VAR11050)
+                →
+            EQ11050@linha_grupo:L1_L3
         """
 
         variable_producers: dict[str, str] = {}
@@ -478,6 +492,17 @@ class ForecastEngine:
             variable_producers[variable_id] = (
                 self._build_instance_node_id(instance)
             )
+
+            # Um grupo também pode ser referenciado explicitamente
+            # (VAR11001@L1_L3): a chave escopada aponta para o mesmo
+            # nó, para que o grafo ordene o consumidor depois do
+            # produtor do grupo. A chave sem escopo é mantida
+            # (referências implícitas continuam como antes).
+            if instance.scope_type == "linha_grupo":
+                variable_producers[
+                    f"{instance.target_variable_id}"
+                    f"@{instance.scope_value}"
+                ] = self._build_instance_node_id(instance)
 
         return variable_producers
 

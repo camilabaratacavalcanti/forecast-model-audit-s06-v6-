@@ -1,6 +1,7 @@
 import ast
 from dataclasses import dataclass
 
+from app.engine import scoped_reference
 from app.engine.expression_parser import ExpressionParser
 
 
@@ -56,8 +57,19 @@ class DependencyExtractor:
         variables: set[str] = set()
         parameters: set[str] = set()
 
+        # Nomes de função (ex.: "ln" em ln(VAR11001)) não são
+        # dependências: só o argumento é.
+        function_name_nodes = {
+            id(node.func)
+            for node in ast.walk(tree)
+            if isinstance(node, ast.Call)
+        }
+
         for node in ast.walk(tree):
             if not isinstance(node, ast.Name):
+                continue
+
+            if id(node) in function_name_nodes:
                 continue
 
             name = self._restore_scoped_reference(node.id)
@@ -79,26 +91,14 @@ class DependencyExtractor:
         Converte a representação interna segura utilizada pelo AST:
 
             VAR11001__L4
+            VAR11001__L1_L3
             PARAM11001__L4
 
         para a representação contextualizada do domínio:
 
             VAR11001@L4
+            VAR11001@L1_L3
             PARAM11001@L4
         """
 
-        if "__L" not in name:
-            return name
-
-        identifier, scope = name.split(
-            "__L",
-            maxsplit=1,
-        )
-
-        if (
-            identifier.startswith("VAR")
-            or identifier.startswith("PARAM")
-        ):
-            return f"{identifier}@L{scope}"
-
-        return name
+        return scoped_reference.to_domain(name)
