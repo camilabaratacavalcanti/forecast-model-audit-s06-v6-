@@ -19,11 +19,38 @@ REQUIRED_PARAMETER_FIELDS = [
 ]
 
 
+# Taxonomia oficial de blocos (29 blocos, faixa continua
+# 10000-38999, 1000 IDs por bloco, sem sobreposicao) --
+# identica, bloco a bloco, a VARIABLE_ID_RANGES (ver
+# app/validation/variable_seed_validator.py): o projeto usa
+# a mesma faixa numerica para VAR/PARAM/EQ dentro de um
+# mesmo bloco, confirmado empiricamente pelos seeds reais
+# (yield, production, energy usam a mesma faixa nos tres
+# registries).
+#
+# "hydrate" e "costs" foram removidos desta taxonomia:
+# "hydrate" foi substituido por "max_ht" na mesma faixa
+# (13000-13999); "costs" foi desmembrado nos tres blocos de
+# custo (budget_cost, budget_forecast_cost, actual_forecast_cost)
+# mais os blocos budget/forecast, cada um com faixa propria.
+#
+# As chaves antes em portugues (fator_residuo, vazao_condensado,
+# meta_volume_cheio, controle_espaco_vazio_meta, lime_dia,
+# floculante_hidrato_2026, floculante_lama_dia,
+# premissas_ppt_mensal, acido, custo_budget, custo_forecast_bdgt,
+# custo_forecast_real) foram renomeadas para ingles (residue_factor,
+# condensate_flow, full_volume_target, empty_space_target_control,
+# lime, hydrated_flocculant, sludge_flocculant,
+# monthly_ppt_assumptions, acid, budget_cost, budget_forecast_cost,
+# actual_forecast_cost), mantendo os mesmos ranges numericos.
+#
+# "budget_vs_forecast" foi introduzido em 37000-37999; "shared"
+# foi realocado de 37000-37999 para 38000-38999.
 PARAMETER_ID_RANGES = {
     "maintenance": (10000, 10999),
     "yield": (11000, 11999),
     "production": (12000, 12999),
-    "hydrate": (13000, 13999),
+    "max_ht": (13000, 13999),
     "alumina": (14000, 14999),
     "temperature_lp": (15000, 15999),
     "area_41": (16000, 16999),
@@ -32,8 +59,23 @@ PARAMETER_ID_RANGES = {
     "boilers": (19000, 19999),
     "volume": (20000, 20999),
     "soda": (21000, 21999),
-    "costs": (22000, 22999),
-    "shared": (23000, 23999),
+    "residue_factor": (22000, 22999),
+    "condensate_flow": (23000, 23999),
+    "forecast_volume": (24000, 24999),
+    "full_volume_target": (25000, 25999),
+    "empty_space_target_control": (26000, 26999),
+    "lime": (27000, 27999),
+    "hydrated_flocculant": (28000, 28999),
+    "sludge_flocculant": (29000, 29999),
+    "monthly_ppt_assumptions": (30000, 30999),
+    "acid": (31000, 31999),
+    "budget_cost": (32000, 32999),
+    "budget_forecast_cost": (33000, 33999),
+    "actual_forecast_cost": (34000, 34999),
+    "budget": (35000, 35999),
+    "forecast": (36000, 36999),
+    "budget_vs_forecast": (37000, 37999),
+    "shared": (38000, 38999),
 }
 
 
@@ -71,6 +113,20 @@ ALLOWED_UNITS = {
     "kg/t",
     # Bloco Energy (auditoria descritivo_das_variaveis_energy_v2.xlsx):
     "GJ/t",
+    # Padronizacao de unidades de taxa de massa: "t/h" ja existia;
+    # "t/d" e "t/mês" adicionadas para completar o trio oficial
+    # (toneladas por hora / dia / mes).
+    "t/d",
+    "t/mês",
+    # Bloco MaxHT (auditoria descritivo_das_variáveis_MaxHT_v5.xlsx):
+    "t/ano",
+    "kg/h",
+    "kg/d",
+    "kg/mês",
+    "kg/ano",
+    "m³/mês",
+    "m³/ano",
+    "mg/l",
 }
 
 
