@@ -1,0 +1,7 @@
+produtor,estado,consumidor,profundidade,tipo_consumo,comportamento
+A=VAR95101,F,B=A (referência direta),direto,passthrough,F
+A=VAR95101,F,C=B+1 (aritmético),indireto (via B),aritmético,exceção (rodada abortada)
+A=VAR95101,F,"D=(1 if B==""F"" else 2) (comparação literal)",indireto (via B),detecção explícita de estado,"não calculado (aborta antes de alcançar D, ver ordem topológica)"
+A=VAR95101,F,E=(1 if B>0 else 2) (comparação numérica),indireto (via B),comparação ilegal estado x número,não calculado (aborta antes)
+A=VAR95101,F,F_node=(B if k>0 else 0) (condicional-passthrough),indireto (via B),passthrough condicional,não calculado (aborta antes)
+G=VAR95108 (INDEPENDENTE de A),valor normal,G'=G*10,n/a,aritmético,50.0

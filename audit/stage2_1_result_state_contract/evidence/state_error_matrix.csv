@@ -1,0 +1,9 @@
+situacao,value,state,exception,evidencia
+cálculo válido,sim,VALID (implícito),não,evaluate('2+3')=5.0
+nenhuma regra aplicável (combinação válida sem ramo definido),não,NO_APPLICABLE_RULE,"não — hoje é um VALOR ('F'), não uma exceção, ATÉ ser consumido",d1_1_no_rule_vs_invalid_input() caso A; P04 (Etapa 2)
+"categoria inválida (fora do domínio, ex.: typo)","sim (hoje, incorretamente)",deveria ser INVALID_INPUT; hoje é tratado como VALID,não — nenhuma validação existe,input_domain_gap(); d1_1 caso B
+ln(-10),não,não,sim — MathDomainError,d6_d7_boundary_probes(); testes oficiais
+variável inexistente (sem valor no contexto),não,não,sim — VariableNotFoundError,d6_d7_boundary_probes()
+divisão por zero,não,não,sim — DivisionByZeroError,d6_d7_boundary_probes()
+"consumo aritmético do estado ""F""",não,deveria continuar sendo estado (propagado); hoje VIRA exceção,sim hoje (ConditionalFailureError) — mistura estado de negócio com erro técnico na mesma família EvaluationError,P08 (Etapa 2); T-04 (Etapa 2); d6_d7_boundary_probes()
+"""ERRO!!!"" como saída de fórmula de validação (novo padrão)",depende do value_type declarado (não deveria),deveria ser VALIDATION_FAILED,"sim, mas só se value_type=numeric E o ramo textual executar; se categorical, nem isso — vira uma 'categoria' qualquer",erro_case_study() nesta etapa

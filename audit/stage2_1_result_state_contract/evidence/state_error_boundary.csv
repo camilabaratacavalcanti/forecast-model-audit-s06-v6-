@@ -1,0 +1,9 @@
+situacao,produziu_valor_sem_excecao,resultado_observado,categoria_proposta
+cálculo válido (2+3),sim,5.0,VALID
+"nenhuma regra aplicável (produção de ""F"" por IF)",sim,'F',RESULT_STATE (NO_APPLICABLE_RULE)
+"categoria fora do domínio (aceita, sem erro)",sim,None,AMBIGUOUS (hoje: VALID; deveria ser INVALID_INPUT)
+ln(-10) — domínio matemático,não,MathDomainError: ln(-10.0) fora do domínio da função.,TECHNICAL ERROR (MathDomainError)
+"variável inexistente (ID válido, sem valor no contexto)",não,VariableNotFoundError: Valor da variável não encontrado: VAR95999,TECHNICAL ERROR (VariableNotFoundError)
+divisão por zero,não,DivisionByZeroError: Divisão por zero durante a operação '/': 1.0 / 0.0.,TECHNICAL ERROR (DivisionByZeroError)
+"consumo aritmético de ""F""",não,ConditionalFailureError: Operação '+' sobre falha condicional ('F').,RESULT_STATE consumido -> hoje: TECHNICAL EXCEPTION (ConditionalFailureError); mistura estado com erro
+"""ERRO!!!"" como saída de fórmula futura",sim,'ERRO!!!',RESULT_STATE (VALIDATION_FAILED) — hoje indistinguível de valor/categoria

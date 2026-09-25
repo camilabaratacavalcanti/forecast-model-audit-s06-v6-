@@ -1,0 +1,15 @@
+=== BASELINE — Stage 2.1 ===
+Date: 2026-09-25T15:44:11Z
+Branch: claude/funny-noether-nbcr7b
+HEAD: 196776c682a7ec28546d0f5436de933964cb8779
+Origin HEAD: 196776c682a7ec28546d0f5436de933964cb8779
+Working tree status:
+?? audit/stage2_1_result_state_contract/
+--- Stage 2 artifact SHAs (for reference, read-only) ---
+196776c audit(typing): conceptual audit of value_type and heterogeneous results
+--- pytest ---
+........................................................................ [ 86%]
+........................................................................ [ 91%]
+........................................................................ [ 96%]
+..............................................                           [100%]
+1414 passed in 6.38s

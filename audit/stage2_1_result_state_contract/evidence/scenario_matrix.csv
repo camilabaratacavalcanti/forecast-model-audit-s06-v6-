@@ -1,0 +1,17 @@
+id,cenario,status,evidencia
+C01,numeric + valor válido,SUPPORTED,"evaluate('2+3')=5.0 (probe P07, Etapa 2)"
+C02,categorical + categoria válida,SUPPORTED,"P02, Etapa 2: 'ALTO' armazenado em categorical"
+C03,numeric + estado especial (F),SUPPORTED (mas indistinguível de valor no canal),"P04, Etapa 2: 'F' aceito em variável numeric"
+C04,categorical + estado especial (F),AMBIGUOUS,"P14a, Etapa 2: 'F' como categoria colide com o sentinela — ConditionalFailureError inesperado numa comparação de categoria"
+C05,categorical + categoria inválida (fora do domínio),UNSUPPORTED (não detectado),"input_domain_gap() nesta etapa: aceito silenciosamente, sem allowed_values"
+C06,numeric + string inesperada,SUPPORTED (rejeitado se declarado numeric),"P05a, Etapa 2: CalculationValueError se o ramo executa; P05b: NÃO detectado se o ramo não executa (latente)"
+C07,"technical exception (ln(-10), div/0, ref inexistente)",SUPPORTED,"d6_d7_boundary_probes() nesta etapa + testes oficiais (MathDomainError, DivisionByZeroError, VariableNotFoundError)"
+C08,estado em A + B independente (isolamento),UNSUPPORTED (F-001),"f001_matrix.csv (Etapa 2) + d3_propagation_matrix() nesta etapa: B independente às vezes não calcula, dependendo da ordem topológica"
+C09,estado + consumidor direto (referência/passthrough),SUPPORTED (repassa como valor),d3_propagation_matrix(): B=A repassa 'F' quando alcançado
+C10,estado + consumidor indireto (aritmético/comparação),"PARTIALLY SUPPORTED (aritmético levanta exceção corretamente; mas aborta a rodada, impedindo outros indiretos de serem sequer tentados)",d3_propagation_matrix()
+C11,estado + AVERAGE temporal,SUPPORTED (invalida com períodos reportados),"aggregation_matrix.csv (Etapa 2, P09a/P09b) + d4_temporal_policy_citation() nesta etapa"
+C12,estado + 'agregação espacial' (grupo),N/A — não existe mecanismo de agregação espacial; é equação comum,d4_spatial_vs_temporal_aggregation() nesta etapa
+C13,estado + total (soma de grupos),"UNSUPPORTED (aritmético comum -> exceção, mesma classe de C10)",f001_matrix.csv agregador(A+B)
+C14,categoria 'F' legítima (nome de negócio coincide com o sentinela),UNSUPPORTED (colisão),"P14a, Etapa 2"
+C15,"""F"" como estado reservado (uso atual do A41)","SUPPORTED operacionalmente, mas MAL MODELADO (mistura valor/estado)","F-analysis, Etapa 2 §6"
+C16,"""ERRO!!!"" como saída de fórmula futura",UNSUPPORTED como conceito distinto (hoje colapsa em C03 ou C04 dependendo do value_type declarado),erro_case_study() nesta etapa

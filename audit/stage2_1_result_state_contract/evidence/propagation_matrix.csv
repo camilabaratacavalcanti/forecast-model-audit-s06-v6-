@@ -1,0 +1,9 @@
+produtor,estado,consumidor,comportamento
+A (numeric),F (NO_APPLICABLE_RULE),B = A (referência direta),repassa 'F' como VALOR (passthrough) — B é gravado como 'F'
+A (numeric),F,C = B + 1 (aritmético),levanta ConditionalFailureError -> EquationEvaluationError; ABORTA toda a rodada do dia (não só o nó C)
+A (numeric),F,"D = (1 if B == ""F"" else 2) (comparação literal, detecção explícita)","SE fosse alcançado isoladamente: funciona corretamente (produz 1) — d3_isolated_comparison_consumer(). MAS se um consumidor aritmético (C) for avaliado antes na ordem topológica, a rodada já abortou e D nunca é avaliado"
+A (numeric),F,E = (1 if B > 0 else 2) (comparação numérica),levantaria ExpressionTypeError/ConditionalFailureError se alcançado (comparação ilegal estado-numérico); mesma ressalva de ordem topológica que D
+A (numeric),F,F_node = (B if k > 0 else 0) (passthrough condicional),repassaria 'F' como valor se alcançado (mesmo padrão de B); mesma ressalva de ordem topológica
+grupo_A (linha_grupo),F,"total = grupo_A + grupo_B (soma espacial via @grupo — é uma equação COMUM, não AggregationRule)",idêntico ao caso aritmético (C): ConditionalFailureError aborta a rodada — d4_spatial_vs_temporal_aggregation()
+série diária (numeric),F em 1 dos N dias,AggregationRule AVERAGE/SUM (agregação TEMPORAL real),"AggregationFailureError — invalida TODO o agregado do período, lista os dias afetados; NUNCA ignora nem trata como zero nem produz parcial (aggregation_matrix.csv, Etapa 2; d4_temporal_policy_citation nesta etapa)"
+"G (independente de A, não depende de A em nenhum grau)",valor normal (não afetado),G' = G * 10,"DEPENDE DA ORDEM TOPOLÓGICA: se os nós que consomem o estado de A são avaliados ANTES de G' na ordem de registro/resolução, G' nunca é alcançado mesmo sendo estruturalmente independente — f001_matrix.csv caso 2 (dep_B não calculado) vs caso 3 (dep_A calculado) — comportamento ASSIMÉTRICO, não uma regra determinística de isolamento"

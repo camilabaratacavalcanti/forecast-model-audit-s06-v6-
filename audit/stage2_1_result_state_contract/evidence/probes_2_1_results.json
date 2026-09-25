@@ -1,0 +1,175 @@
+{
+ "environment": {
+  "commit": "196776c682a7ec28546d0f5436de933964cb8779",
+  "python": "3.11.15",
+  "command": "python3 audit/stage2_1_result_state_contract/probes/probes_2_1.py"
+ },
+ "d1_1_no_rule_vs_invalid_input": {
+  "expression_source_cell": "Forecast A41!A12 (workbook M39)",
+  "translated_expression_prefix": "( (100 - ((VAR95801 - VAR95802) * 2)) if VAR95803@L4 == \"Normal\" and VAR95804@L5...",
+  "case_A_valid_uncovered_combo": {
+   "hes_l4": "Normal",
+   "hes_l5": "1 By pass e LC",
+   "description": "Ambas as categorias pertencem ao domínio declarado de hes; nenhum dos 5 ramos do IF cobre esta combinação.",
+   "result": {
+    "kind": "value",
+    "type": "str",
+    "repr": "'F'"
+   }
+  },
+  "case_B_invalid_category": {
+   "hes_l4": "Overhaul (typo de 'Overhaul/Parada')",
+   "hes_l5": "Normal",
+   "description": "'Overhaul' NÃO pertence ao domínio declarado {Normal, LC, Overhaul/Parada, 1 By pass, 1 By pass e LC}.",
+   "result": {
+    "kind": "value",
+    "type": "str",
+    "repr": "'F'"
+   }
+  },
+  "observation": "Ambos os casos produzem exatamente o mesmo resultado observável (\"F\", str) — a expressão (e a plataforma) não distinguem \"nenhuma regra aplicável a uma entrada válida\" de \"entrada fora do domínio declarado\". Ver input_domain_gap() para a causa raiz."
+ },
+ "input_domain_gap": {
+  "typo_accepted": {
+   "kind": "value",
+   "type": "NoneType",
+   "repr": "None",
+   "stored_value": "Overhaul"
+  },
+  "arbitrary_string_accepted": {
+   "kind": "value",
+   "type": "NoneType",
+   "repr": "None",
+   "stored_value": "qualquer_coisa_arbitraria"
+  },
+  "has_allowed_values_field_in_VariableDefinition": false,
+  "evidence": "grep -rn allowed_values app/ tools/ data/ -> só ocorrências de ENUM_FIELDS em *_seed_validator.py, que validam metadados de campo (variable_type, frequency, scope_type), não o valor de uma variável categorical."
+ },
+ "d3_propagation_matrix": {
+  "erro_global": "EquationEvaluationError(ConditionalFailureError)",
+  "valores_produzidos": {
+   "VAR95102": "F",
+   "VAR95109": 50.0
+  },
+  "rows": [
+   {
+    "produtor": "A=VAR95101",
+    "estado": "F",
+    "consumidor": "B=A (referência direta)",
+    "profundidade": "direto",
+    "tipo_consumo": "passthrough",
+    "comportamento": "F"
+   },
+   {
+    "produtor": "A=VAR95101",
+    "estado": "F",
+    "consumidor": "C=B+1 (aritmético)",
+    "profundidade": "indireto (via B)",
+    "tipo_consumo": "aritmético",
+    "comportamento": "exceção (rodada abortada)"
+   },
+   {
+    "produtor": "A=VAR95101",
+    "estado": "F",
+    "consumidor": "D=(1 if B==\"F\" else 2) (comparação literal)",
+    "profundidade": "indireto (via B)",
+    "tipo_consumo": "detecção explícita de estado",
+    "comportamento": "não calculado (aborta antes de alcançar D, ver ordem topológica)"
+   },
+   {
+    "produtor": "A=VAR95101",
+    "estado": "F",
+    "consumidor": "E=(1 if B>0 else 2) (comparação numérica)",
+    "profundidade": "indireto (via B)",
+    "tipo_consumo": "comparação ilegal estado x número",
+    "comportamento": "não calculado (aborta antes)"
+   },
+   {
+    "produtor": "A=VAR95101",
+    "estado": "F",
+    "consumidor": "F_node=(B if k>0 else 0) (condicional-passthrough)",
+    "profundidade": "indireto (via B)",
+    "tipo_consumo": "passthrough condicional",
+    "comportamento": "não calculado (aborta antes)"
+   },
+   {
+    "produtor": "G=VAR95108 (INDEPENDENTE de A)",
+    "estado": "valor normal",
+    "consumidor": "G'=G*10",
+    "profundidade": "n/a",
+    "tipo_consumo": "aritmético",
+    "comportamento": 50.0
+   }
+  ],
+  "observacao": "A rodada aborta na PRIMEIRA exceção encontrada durante a travessia topológica (aqui, em C=B+1, o primeiro consumidor aritmético de B na ordem de registro). D, E e F_node nunca chegam a ser avaliados, MESMO QUE fossem capazes de tratar o estado corretamente (D detectaria == \"F\"; o resultado observado não reflete a capacidade de cada consumidor, e sim a posição na ordem de execução — reafirma F-001/T-02."
+ },
+ "d3_isolated_arithmetic_consumer": {
+  "produced": {
+   "VAR95112": "F"
+  },
+  "error": "EquationEvaluationError(ConditionalFailureError)"
+ },
+ "d3_isolated_comparison_consumer": {
+  "produced": {
+   "VAR95122": "F",
+   "VAR95123": 1
+  },
+  "error": null
+ },
+ "d4_spatial_vs_temporal_aggregation": {
+  "retirada_condensado_total_diario_expression": "retirada_condensado_grupo@L1_L3 + retirada_condensado_grupo@L4_L5 + retirada_condensado_grupo@L6_L7",
+  "is_AggregationRule": false,
+  "is_ordinary_equation_with_grupo_refs": true,
+  "AggregationRule_docstring_first_line": "Regra de agregação temporal de uma Variable de uma frequência de origem para uma frequência de destino.",
+  "implicacao": "Propagação de estado em 'agregação espacial' (grupo/total) segue as MESMAS regras de D3 (equação comum) — não há uma política de agregação espacial separada a definir. Apenas a agregação MENSAL/ANUAL (via AggregationRule real) tem uma política de agregação distinta, já coberta em audit/stage2_typing_contract/aggregation_matrix.csv (P09a/P09b)."
+ },
+ "d4_temporal_policy_citation": {
+  "existing_evidence": "audit/stage2_typing_contract/aggregation_matrix.csv (P09a AVERAGE, P09b SUM com 'F' -> AggregationFailureError)",
+  "source_confirms_policy_B": true,
+  "docstring_excerpt": "Uma agregação só opera sobre números. Um período com falha\n        condicional (\"F\") não é ignorado nem tratado como 0: a\n        agregação inteira falha, listando os períodos afetados. Texto\n        categórico também não é agregável."
+ },
+ "d5_category_domain": {
+  "categories_used_in_equations": [
+   "1 By pass",
+   "1 By pass e LC",
+   "LC",
+   "Normal",
+   "Overhaul/Parada"
+  ],
+  "count": 5,
+  "hes_value_type_declared": {
+   "hes_l4": "categorical",
+   "hes_l5": "categorical",
+   "hes_l6": "categorical",
+   "hes_l7": "categorical"
+  },
+  "allowed_values_field_exists": false,
+  "conclusion": "O domínio de 5 categorias É extraível estaticamente do texto das equações (via grep de comparações == \"...\"), mas NÃO é declarado em nenhum campo estruturado da VariableDefinition. A validação de entrada não pode ocorrer sem essa declaração explícita — hoje ela é apenas implícita nos ramos do IF."
+ },
+ "erro_case_study": {
+  "original_excel_formula": "=SE(ARRED(D595-D601-D616;10)>ARRED(D61;10);\"ERRO!!!\";D595-D601-D616)",
+  "note_on_ARRED": "ARRED (ROUND) não existe na allowlist de funções do parser (só 'ln'); fato estrutural preexistente, não avaliado nesta etapa.",
+  "conceptual_dsl_equivalent": "VAR_saldo if VAR_saldo <= VAR_limite else \"ERRO!!!\"",
+  "parser_accepts_pattern_regardless_of_declared_value_type": true,
+  "numeric_declared__branch_not_hit": {
+   "VAR95203": 3.0
+  },
+  "numeric_declared__branch_hit__ERRO": {
+   "produced": {},
+   "error": "CalculationValueError(CalculationValueError)"
+  },
+  "categorical_declared__branch_hit__ERRO": {
+   "produced": {
+    "VAR95213": "ERRO!!!"
+   },
+   "error": null
+  },
+  "categorical_declared__branch_not_hit__numeric_value_in_categorical_var": {
+   "produced": {
+    "VAR95213": 3.0
+   },
+   "error": null
+  },
+  "interpretation": "(1) Quando a variável é numeric, o ramo 'ERRO!!!' quando executado é REJEITADO pelo storage (CalculationValueError) exatamente como P05a da Etapa 2 -- mas só quando o ramo de fato executa; o outro ramo (numérico) é aceito silenciosamente sem qualquer indício de que a fórmula tem um segundo ramo textual não declarado (T-06). (2) Quando a variável é categorical, o padrão INVERTE o problema: agora é o ramo NUMÉRICO que é aceito sem checagem (pois categorical aceita qualquer texto OU qualquer número — is_numeric() é checado antes de is_categorical em _validate_variable_value), e 'ERRO!!!' também é aceito como se fosse uma categoria de domínio legítima, indistinguível de 'Normal'/'LC'/etc. (3) Em NENHUM dos dois value_types existe uma forma de declarar 'este ramo textual é um estado de validação falha, não um valor nem uma categoria de negócio' — reafirma que o padrão SE(cond;\"ERRO!!!\";valor) é estruturalmente idêntico ao padrão A41 SE(cond;valor;\"F\") e exige a MESMA solução arquitetural (result_state), não um mecanismo próprio."
+ }
+}
