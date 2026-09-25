@@ -1,0 +1,29 @@
+=== BASELINE — Stage 2.2 ===
+Date: 2026-09-25T00:00:00Z (session clock)
+Branch: claude/funny-noether-nbcr7b
+HEAD: cbe58e67ad60a756f7bd6170859bd2b40483f310
+Origin HEAD: cbe58e67ad60a756f7bd6170859bd2b40483f310 (git fetch confirmed same commit, ahead/behind 0/0)
+Working tree status: clean (git status --short empty before this stage's writes)
+Stage 2.1 reference commit: cbe58e6 audit(stage2.1): fecha contrato conceitual de estados, resultados heterogêneos e erros
+
+--- pytest (pre-flight) ---
+........................................................................ [ 86%]
+........................................................................ [ 91%]
+........................................................................ [ 96%]
+..............................................                           [100%]
+1414 passed in 5.93s
+
+--- New code evidence read this stage (read-only) ---
+app/engine/dependency_graph.py: DependencyGraph exposes get_dependencies()
+  (forward edges: node -> its own dependency ids) and as_dict(); NO method
+  computing descendants/dependents (reverse reachability) exists.
+app/engine/dependency_resolver.py: DependencyResolver.resolve() returns only
+  a flat topological order (tuple[str, ...]); it does not retain or expose
+  per-node reachability/descendant sets.
+  => Confirms an ARCHITECTURAL GAP (see REPORT.md D3): the reachability-based
+  isolation model requires deriving a reverse-dependency index from
+  DependencyGraph.as_dict() (technically straightforward by inversion), but
+  this does not exist today. Stage 2.1's phrasing ("a arvore ja conhece os
+  descendentes") is corrected here: the graph knows FORWARD edges only;
+  descendant computation is a new capability for Stage 3, not something
+  already available.
