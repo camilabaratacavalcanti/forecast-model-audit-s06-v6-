@@ -1,0 +1,616 @@
+{
+ "results": [
+  {
+   "id": "N01",
+   "layer": "nomes",
+   "description": "hes@L4 (consumidor grupo L4_L5, diário)",
+   "expected_regex": "VAR97001",
+   "observed": "OK: 'VAR97001'",
+   "status": "CONSISTENT",
+   "code": "app/engine/reference_resolver.py:192"
+  },
+  {
+   "id": "N02",
+   "layer": "nomes",
+   "description": "hes@L5",
+   "expected_regex": "VAR97002",
+   "observed": "OK: 'VAR97002'",
+   "status": "CONSISTENT",
+   "code": "app/engine/reference_resolver.py:192"
+  },
+  {
+   "id": "N03",
+   "layer": "nomes",
+   "description": "hes@L4 com frequência mensal",
+   "expected_regex": "VAR97003",
+   "observed": "OK: 'VAR97003'",
+   "status": "CONSISTENT",
+   "code": "app/engine/reference_resolver.py:192"
+  },
+  {
+   "id": "N04",
+   "layer": "nomes",
+   "description": "hes@L4_L5 (grupo explícito)",
+   "expected_regex": "VAR97004",
+   "observed": "OK: 'VAR97004'",
+   "status": "CONSISTENT",
+   "code": "app/engine/reference_resolver.py:192"
+  },
+  {
+   "id": "N05",
+   "layer": "nomes",
+   "description": "hes implícito do consumidor linha/L4",
+   "expected_regex": "VAR97001",
+   "observed": "OK: 'VAR97001'",
+   "status": "CONSISTENT",
+   "code": "app/engine/reference_resolver.py:192"
+  },
+  {
+   "id": "N06",
+   "layer": "nomes",
+   "description": "hes implícito do consumidor linha/L5",
+   "expected_regex": "VAR97002",
+   "observed": "OK: 'VAR97002'",
+   "status": "CONSISTENT",
+   "code": "app/engine/reference_resolver.py:192"
+  },
+  {
+   "id": "N07",
+   "layer": "nomes",
+   "description": "hes implícito do consumidor grupo L4_L5",
+   "expected_regex": "VAR97004",
+   "observed": "OK: 'VAR97004'",
+   "status": "CONSISTENT",
+   "code": "app/engine/reference_resolver.py:192"
+  },
+  {
+   "id": "N08",
+   "layer": "nomes",
+   "description": "hes implícito do consumidor planta (nenhum candidato alcançável)",
+   "expected_regex": "ReferenceResolutionError.*amb",
+   "observed": "ReferenceResolutionError: Referência ambígua (hes, frequência diário, escopo ('planta', 'PLANTA')): VAR97001[diário, linha/L4], VAR97002[diário, linha/L5], VAR97004[diário, linha_grupo/L",
+   "status": "CONSISTENT",
+   "code": "app/engine/reference_resolver.py:192"
+  },
+  {
+   "id": "N09",
+   "layer": "nomes",
+   "description": "hes sem escopo e sem consumidor (ambíguo)",
+   "expected_regex": "ReferenceResolutionError",
+   "observed": "ReferenceResolutionError: Referência ambígua (hes, frequência diário, escopo None): VAR97001[diário, linha/L4], VAR97002[diário, linha/L5], VAR97004[diário, linha_grupo/L4_L5]",
+   "status": "CONSISTENT",
+   "code": "app/engine/reference_resolver.py:192"
+  },
+  {
+   "id": "N10",
+   "layer": "nomes",
+   "description": "hes@L6 (escopo sem definição)",
+   "expected_regex": "ReferenceResolutionError",
+   "observed": "ReferenceResolutionError: Referência hes@L6: nenhuma definição materializa uma instância nesse escopo (candidatas: VAR97001[diário, linha/L4], VAR97002[diário, linha/L5], VAR97004[diário",
+   "status": "CONSISTENT",
+   "code": "app/engine/reference_resolver.py:192"
+  },
+  {
+   "id": "N11",
+   "layer": "nomes",
+   "description": "hes@L8 (escopo inexistente)",
+   "expected_regex": "Error",
+   "observed": "InvalidScopeReferenceError: Escopo explícito desconhecido: @L8",
+   "status": "CONSISTENT",
+   "code": "app/engine/reference_resolver.py:192"
+  },
+  {
+   "id": "N12",
+   "layer": "nomes",
+   "description": "nome inexistente",
+   "expected_regex": "ReferenceNotFoundError",
+   "observed": "ReferenceNotFoundError: Referência não encontrada na planilha: xyz",
+   "status": "CONSISTENT",
+   "code": "app/engine/reference_resolver.py:192"
+  },
+  {
+   "id": "N13",
+   "layer": "nomes",
+   "description": "consumidor linha/L4_L5 (2 instâncias -> definições diferentes)",
+   "expected_regex": "ReferenceResolutionError.*definições diferentes",
+   "observed": "ReferenceResolutionError: Referência hes: instâncias do consumidor linha/L4_L5 resolvem para definições diferentes (VAR97001[diário, linha/L4] vs VAR97002[diário, linha/L5]). Uma express",
+   "status": "CONSISTENT",
+   "code": "app/engine/reference_resolver.py:192"
+  },
+  {
+   "id": "N14",
+   "layer": "nomes",
+   "description": "hes_l4 e hes coexistem (nomes distintos, mesmo escopo)",
+   "expected_regex": "VAR97005.*VAR97001",
+   "observed": "OK: ('VAR97005', 'VAR97001')",
+   "status": "CONSISTENT",
+   "code": "app/engine/reference_resolver.py:192"
+  },
+  {
+   "id": "N15",
+   "layer": "nomes",
+   "description": "serie@L4_L5 com definição linha/L1_L7 (grupo não agrega linhas)",
+   "expected_regex": "ReferenceResolutionError",
+   "observed": "ReferenceResolutionError: Referência serie@L4_L5: nenhuma definição materializa uma instância nesse escopo (candidatas: VAR97006[diário, linha/L1_L7]).",
+   "status": "CONSISTENT",
+   "code": "app/engine/reference_resolver.py:192"
+  },
+  {
+   "id": "N16",
+   "layer": "nomes",
+   "description": "translate preserva sufixo: hes@L4 + hes@L5",
+   "expected_regex": "VAR97001@L4 \\+ VAR97002@L5",
+   "observed": "OK: 'VAR97001@L4 + VAR97002@L5'",
+   "status": "CONSISTENT",
+   "code": "app/engine/reference_resolver.py:258"
+  },
+  {
+   "id": "N17",
+   "layer": "nomes",
+   "description": "resolução independente da ordem de inserção (5 embaralhamentos)",
+   "expected_regex": "OK: 1$",
+   "observed": "OK: 1",
+   "status": "CONSISTENT",
+   "code": "app/engine/reference_resolver.py:192"
+  },
+  {
+   "id": "P01",
+   "layer": "parser",
+   "description": "hes@L4 (NOME) no parser do runtime",
+   "expected_regex": "UnsafeExpressionError",
+   "observed": "UnsafeExpressionError: Referência espacial inválida na expressão: 'hes@L4'. Use VARxxxxx@Lx ou VARxxxxx@<grupo>, com um escopo existente.",
+   "status": "CONSISTENT",
+   "code": "app/engine/expression_parser.py:90"
+  },
+  {
+   "id": "P02",
+   "layer": "parser",
+   "description": "retirada_condensado_linha@L4 (NOME) no parser",
+   "expected_regex": "UnsafeExpressionError",
+   "observed": "UnsafeExpressionError: Referência espacial inválida na expressão: 'retirada_condensado_linha@L4'. Use VARxxxxx@Lx ou VARxxxxx@<grupo>, com um escopo existente.",
+   "status": "CONSISTENT",
+   "code": "app/engine/expression_parser.py:90"
+  },
+  {
+   "id": "P03",
+   "layer": "parser",
+   "description": "VAR97001@L4 (ID) -> nome interno do AST",
+   "expected_regex": "VAR97001__L4",
+   "observed": "OK: 'VAR97001__L4'",
+   "status": "CONSISTENT",
+   "code": "app/engine/scoped_reference.py:70"
+  },
+  {
+   "id": "P04",
+   "layer": "parser",
+   "description": "VAR97001@L5 (ID) -> nome interno do AST",
+   "expected_regex": "VAR97001__L5",
+   "observed": "OK: 'VAR97001__L5'",
+   "status": "CONSISTENT",
+   "code": "app/engine/scoped_reference.py:70"
+  },
+  {
+   "id": "P05",
+   "layer": "parser",
+   "description": "VAR97001@L4_L5 (ID) -> nome interno do AST",
+   "expected_regex": "VAR97001__L4_L5",
+   "observed": "OK: 'VAR97001__L4_L5'",
+   "status": "CONSISTENT",
+   "code": "app/engine/scoped_reference.py:70"
+  },
+  {
+   "id": "P06",
+   "layer": "parser",
+   "description": "VAR97001@L1_L3 (ID) -> nome interno do AST",
+   "expected_regex": "VAR97001__L1_L3",
+   "observed": "OK: 'VAR97001__L1_L3'",
+   "status": "CONSISTENT",
+   "code": "app/engine/scoped_reference.py:70"
+  },
+  {
+   "id": "P07",
+   "layer": "parser",
+   "description": "VAR97001@L6_L7 (ID) -> nome interno do AST",
+   "expected_regex": "VAR97001__L6_L7",
+   "observed": "OK: 'VAR97001__L6_L7'",
+   "status": "CONSISTENT",
+   "code": "app/engine/scoped_reference.py:70"
+  },
+  {
+   "id": "P08",
+   "layer": "parser",
+   "description": "VAR97001@L1_L7 (ID) -> nome interno do AST",
+   "expected_regex": "VAR97001__L1_L7",
+   "observed": "OK: 'VAR97001__L1_L7'",
+   "status": "CONSISTENT",
+   "code": "app/engine/scoped_reference.py:70"
+  },
+  {
+   "id": "P09",
+   "layer": "parser",
+   "description": "VAR97001@L8 (escopo não registrado)",
+   "expected_regex": "UnsafeExpressionError",
+   "observed": "UnsafeExpressionError: Referência espacial inválida na expressão: 'VAR97001@L8'. Use VARxxxxx@Lx ou VARxxxxx@<grupo>, com um escopo existente.",
+   "status": "CONSISTENT",
+   "code": "app/engine/scoped_reference.py:51"
+  },
+  {
+   "id": "P10",
+   "layer": "parser",
+   "description": "VAR97001@L5_L4 (escopo não registrado)",
+   "expected_regex": "UnsafeExpressionError",
+   "observed": "UnsafeExpressionError: Escopo explícito desconhecido: @L5_L4",
+   "status": "CONSISTENT",
+   "code": "app/engine/scoped_reference.py:51"
+  },
+  {
+   "id": "P11",
+   "layer": "parser",
+   "description": "VAR97001@L2_L6 (escopo não registrado)",
+   "expected_regex": "UnsafeExpressionError",
+   "observed": "UnsafeExpressionError: Escopo explícito desconhecido: @L2_L6",
+   "status": "CONSISTENT",
+   "code": "app/engine/scoped_reference.py:51"
+  },
+  {
+   "id": "P12",
+   "layer": "parser",
+   "description": "VAR97001@PLANTA (escopo não registrado)",
+   "expected_regex": "UnsafeExpressionError",
+   "observed": "UnsafeExpressionError: Referência espacial inválida na expressão: 'VAR97001@PLANTA'. Use VARxxxxx@Lx ou VARxxxxx@<grupo>, com um escopo existente.",
+   "status": "CONSISTENT",
+   "code": "app/engine/scoped_reference.py:51"
+  },
+  {
+   "id": "P13",
+   "layer": "parser",
+   "description": "VAR97001@L1_L2 (escopo não registrado)",
+   "expected_regex": "UnsafeExpressionError",
+   "observed": "UnsafeExpressionError: Escopo explícito desconhecido: @L1_L2",
+   "status": "CONSISTENT",
+   "code": "app/engine/scoped_reference.py:51"
+  },
+  {
+   "id": "P14",
+   "layer": "parser",
+   "description": "@ solto (MatMult)",
+   "expected_regex": "UnsafeExpressionError",
+   "observed": "UnsafeExpressionError: Referência espacial inválida na expressão: 'VAR97001 @ VAR97002'. Use VARxxxxx@Lx ou VARxxxxx@<grupo>, com um escopo existente.",
+   "status": "CONSISTENT",
+   "code": "app/engine/scoped_reference.py:70"
+  },
+  {
+   "id": "P15",
+   "layer": "parser",
+   "description": "split_internal de grupo",
+   "expected_regex": "linha_grupo",
+   "observed": "OK: ('VAR97001', 'linha_grupo', 'L4_L5')",
+   "status": "CONSISTENT",
+   "code": "app/engine/scoped_reference.py:94"
+  },
+  {
+   "id": "P16",
+   "layer": "parser",
+   "description": "split_internal de linha",
+   "expected_regex": "'linha', 'L4'",
+   "observed": "OK: ('VAR97001', 'linha', 'L4')",
+   "status": "CONSISTENT",
+   "code": "app/engine/scoped_reference.py:94"
+  },
+  {
+   "id": "R01",
+   "layer": "runtime",
+   "description": "VAR@L4 lê só L4",
+   "expected_regex": "OK: 4\\.0",
+   "observed": "OK: 4.0",
+   "status": "CONSISTENT",
+   "code": "app/engine/expression_evaluator.py:641"
+  },
+  {
+   "id": "R02",
+   "layer": "runtime",
+   "description": "VAR@L5 lê só L5",
+   "expected_regex": "OK: 5\\.0",
+   "observed": "OK: 5.0",
+   "status": "CONSISTENT",
+   "code": "app/engine/expression_evaluator.py:641"
+  },
+  {
+   "id": "R03",
+   "layer": "runtime",
+   "description": "VAR@L4 sem valor em L4 (existe L5): não cai para L5",
+   "expected_regex": "VariableNotFoundError",
+   "observed": "VariableNotFoundError: Valor contextualizado da variável não encontrado: VAR97001, scope_type=linha, scope_value=L4, period_id=None",
+   "status": "CONSISTENT",
+   "code": "app/engine/expression_evaluator.py:641"
+  },
+  {
+   "id": "R04",
+   "layer": "runtime",
+   "description": "VAR@L4 com apenas valor legado sem escopo: não cai para o legado",
+   "expected_regex": "VariableNotFoundError",
+   "observed": "VariableNotFoundError: Valor contextualizado da variável não encontrado: VAR97001, scope_type=linha, scope_value=L4, period_id=None",
+   "status": "CONSISTENT",
+   "code": "app/engine/expression_evaluator.py:641"
+  },
+  {
+   "id": "R05",
+   "layer": "runtime",
+   "description": "VAR implícito (consumidor L4) sem valor em L4/grupos/planta mas com legado sem escopo",
+   "expected_regex": "OK: 99\\.0",
+   "observed": "OK: 99.0",
+   "status": "CONSISTENT",
+   "code": "app/engine/expression_evaluator.py:641"
+  },
+  {
+   "id": "R06",
+   "layer": "runtime",
+   "description": "VAR implícito (consumidor L4) com valor só em L5: não lateraliza",
+   "expected_regex": "VariableNotFoundError",
+   "observed": "VariableNotFoundError: Valor da variável não encontrado: VAR97001",
+   "status": "CONSISTENT",
+   "code": "app/engine/expression_evaluator.py:641"
+  },
+  {
+   "id": "R07",
+   "layer": "runtime",
+   "description": "VAR implícito (consumidor L4) com valor no grupo L4_L5: sobe ao grupo",
+   "expected_regex": "OK: 45\\.0",
+   "observed": "OK: 45.0",
+   "status": "CONSISTENT",
+   "code": "app/engine/expression_evaluator.py:641"
+  },
+  {
+   "id": "R08",
+   "layer": "runtime",
+   "description": "VAR@L4_L5 com valores só em L4 e L5: grupo NÃO é agregado das linhas",
+   "expected_regex": "VariableNotFoundError",
+   "observed": "VariableNotFoundError: Valor contextualizado da variável não encontrado: VAR97001, scope_type=linha_grupo, scope_value=L4_L5, period_id=None",
+   "status": "CONSISTENT",
+   "code": "app/engine/expression_evaluator.py:641"
+  },
+  {
+   "id": "R09",
+   "layer": "runtime",
+   "description": "VAR@L4_L5 em contexto de linha L4",
+   "expected_regex": "OK: 45\\.0",
+   "observed": "OK: 45.0",
+   "status": "CONSISTENT",
+   "code": "app/engine/expression_evaluator.py:641"
+  },
+  {
+   "id": "R10",
+   "layer": "runtime",
+   "description": "VAR implícito do grupo L4_L5 com valor só em linha L4: nunca desce",
+   "expected_regex": "VariableNotFoundError",
+   "observed": "VariableNotFoundError: Valor da variável não encontrado: VAR97001",
+   "status": "CONSISTENT",
+   "code": "app/engine/expression_evaluator.py:641"
+  },
+  {
+   "id": "G01",
+   "layer": "grupos",
+   "description": "linha_grupo/L4_L5 materializa 1 instância (não expande)",
+   "expected_regex": "\\[\\('linha_grupo', 'L4_L5'\\)\\]$",
+   "observed": "OK: [('linha_grupo', 'L4_L5')]",
+   "status": "CONSISTENT",
+   "code": "app/engine/scope_resolver.py:320"
+  },
+  {
+   "id": "G02",
+   "layer": "grupos",
+   "description": "linha/L4_L5 expande em L4, L5",
+   "expected_regex": "\\('linha', 'L4'\\), \\('linha', 'L5'\\)",
+   "observed": "OK: [('linha', 'L4'), ('linha', 'L5')]",
+   "status": "CONSISTENT",
+   "code": "app/engine/scope_resolver.py:296"
+  },
+  {
+   "id": "G03",
+   "layer": "grupos",
+   "description": "linha/L2_L6 (faixa não registrada) aceita pelo ScopeResolver",
+   "expected_regex": "L6",
+   "observed": "OK: [('linha', 'L2'), ('linha', 'L3'), ('linha', 'L4'), ('linha', 'L5'), ('linha', 'L6')]",
+   "status": "CONSISTENT",
+   "code": "app/engine/scope_resolver.py:361"
+  },
+  {
+   "id": "G04",
+   "layer": "grupos",
+   "description": "linha_grupo/L2_L6 (grupo não registrado)",
+   "expected_regex": "ValueError",
+   "observed": "ValueError: Invalid line group scope_value: L2_L6",
+   "status": "CONSISTENT",
+   "code": "app/engine/scope_resolver.py:320"
+  },
+  {
+   "id": "G05",
+   "layer": "grupos",
+   "description": "linha/L1_L8 (membro inexistente)",
+   "expected_regex": "ValueError",
+   "observed": "ValueError: Line range outside supported lines: L1_L8",
+   "status": "CONSISTENT",
+   "code": "app/engine/scope_resolver.py:361"
+  },
+  {
+   "id": "G06",
+   "layer": "grupos",
+   "description": "linha/L5_L4 (ordem invertida)",
+   "expected_regex": "ValueError",
+   "observed": "ValueError: Invalid line range: L5_L4",
+   "status": "CONSISTENT",
+   "code": "app/engine/scope_resolver.py:361"
+  },
+  {
+   "id": "G07",
+   "layer": "grupos",
+   "description": "GROUP_MEMBERS é imutável",
+   "expected_regex": "TypeError.*does not support item assignment",
+   "observed": "TypeError: 'mappingproxy' object does not support item assignment",
+   "status": "CONSISTENT",
+   "code": "app/engine/scope_resolver.py:30"
+  },
+  {
+   "id": "G08",
+   "layer": "grupos",
+   "description": "cadeia espacial de L4",
+   "expected_regex": "L4_L5.*L1_L7.*PLANTA",
+   "observed": "OK: [('linha', 'L4'), ('linha_grupo', 'L4_L5'), ('linha_grupo', 'L1_L7'), ('planta', 'PLANTA')]",
+   "status": "CONSISTENT",
+   "code": "app/engine/spatial_candidate_resolver.py:83"
+  },
+  {
+   "id": "G09",
+   "layer": "grupos",
+   "description": "cadeia espacial do grupo L4_L5",
+   "expected_regex": "L1_L7.*PLANTA",
+   "observed": "OK: [('linha_grupo', 'L4_L5'), ('linha_grupo', 'L1_L7'), ('planta', 'PLANTA')]",
+   "status": "CONSISTENT",
+   "code": "app/engine/spatial_candidate_resolver.py:83"
+  },
+  {
+   "id": "S01",
+   "layer": "armazenamento",
+   "description": "alterar L4 não altera L5 (mesmo ID)",
+   "expected_regex": "OK: \\(40\\.0, 5\\.0\\)",
+   "observed": "OK: (40.0, 5.0)",
+   "status": "CONSISTENT",
+   "code": "app/engine/calculation_context.py:272"
+  },
+  {
+   "id": "S02",
+   "layer": "armazenamento",
+   "description": "mesmo ID e escopo, períodos distintos: chaves distintas",
+   "expected_regex": "OK: \\(1\\.0, 2\\.0\\)",
+   "observed": "OK: (1.0, 2.0)",
+   "status": "CONSISTENT",
+   "code": "app/engine/calculation_context.py:272"
+  },
+  {
+   "id": "S03",
+   "layer": "armazenamento",
+   "description": "API legada (chave só ID) coexiste com a contextual",
+   "expected_regex": "OK: \\(7\\.0, 4\\.0\\)",
+   "observed": "OK: (7.0, 4.0)",
+   "status": "CONSISTENT",
+   "code": "app/engine/calculation_context.py:190"
+  },
+  {
+   "id": "S04",
+   "layer": "armazenamento",
+   "description": "VariableDefinitionRegistry: mesmo ID em 2 escopos",
+   "expected_regex": "ValueError",
+   "observed": "ValueError: Variable definition ID já cadastrado: VAR97001",
+   "status": "CONSISTENT",
+   "code": "app/domain/variables/registry.py:54"
+  },
+  {
+   "id": "S05",
+   "layer": "armazenamento",
+   "description": "ParameterDefinitionRegistry: mesmo ID em 2 escopos",
+   "expected_regex": "OK: 2",
+   "observed": "OK: 2",
+   "status": "CONSISTENT",
+   "code": "app/domain/parameters/registry.py:74"
+  },
+  {
+   "id": "S06",
+   "layer": "armazenamento",
+   "description": "instâncias de uma definição linha/L4_L5",
+   "expected_regex": "VAR97001@L4.*VAR97001@L5",
+   "observed": "OK: ['VAR97001@L4', 'VAR97001@L5']",
+   "status": "CONSISTENT",
+   "code": "app/domain/variables/models.py:116"
+  },
+  {
+   "id": "S07",
+   "layer": "armazenamento",
+   "description": "índice por nome guarda TODAS as ocorrências",
+   "expected_regex": "'hes': 4",
+   "observed": "OK: {'hes': 4, 'hes_l4': 1, 'serie': 1}",
+   "status": "CONSISTENT",
+   "code": "app/engine/reference_resolver.py:59"
+  },
+  {
+   "id": "T01",
+   "layer": "value_type",
+   "description": "value_type 'mixed'",
+   "expected_regex": "ValueError",
+   "observed": "ValueError: value_type inválido para VAR97001: 'mixed' (permitidos: ['categorical', 'numeric'])",
+   "status": "CONSISTENT",
+   "code": "app/domain/variables/models.py:85"
+  },
+  {
+   "id": "T02",
+   "layer": "value_type",
+   "description": "texto em variável numeric",
+   "expected_regex": "CalculationValueError",
+   "observed": "CalculationValueError: O valor da variável VAR97001 deve ser numérico: a variável não é declarada categórica.",
+   "status": "CONSISTENT",
+   "code": "app/engine/calculation_context.py:464"
+  },
+  {
+   "id": "T03",
+   "layer": "value_type",
+   "description": "texto em variável categorical",
+   "expected_regex": "OK: None",
+   "observed": "OK: None",
+   "status": "CONSISTENT",
+   "code": "app/engine/calculation_context.py:464"
+  },
+  {
+   "id": "T04",
+   "layer": "value_type",
+   "description": "\"F\" em variável numeric (sentinela de falha)",
+   "expected_regex": "OK: None",
+   "observed": "OK: None",
+   "status": "CONSISTENT",
+   "code": "app/engine/calculation_context.py:464"
+  },
+  {
+   "id": "T05",
+   "layer": "value_type",
+   "description": "\"F\" em parâmetro",
+   "expected_regex": "CalculationValueError",
+   "observed": "CalculationValueError: O valor da parâmetro PARAM97001 deve ser numérico.",
+   "status": "CONSISTENT",
+   "code": "app/engine/calculation_context.py:223"
+  },
+  {
+   "id": "T06",
+   "layer": "value_type",
+   "description": "consumir \"F\" em aritmética",
+   "expected_regex": "ConditionalFailureError",
+   "observed": "ConditionalFailureError: Operação '+' sobre falha condicional ('F').",
+   "status": "CONSISTENT",
+   "code": "app/engine/expression_evaluator.py:110"
+  },
+  {
+   "id": "T07",
+   "layer": "value_type",
+   "description": "detecção explícita == \"F\"",
+   "expected_regex": "OK: 1",
+   "observed": "OK: 1",
+   "status": "CONSISTENT",
+   "code": "app/engine/expression_evaluator.py:110"
+  },
+  {
+   "id": "T08",
+   "layer": "value_type",
+   "description": "agregação com \"F\"",
+   "expected_regex": "AggregationFailureError",
+   "observed": "AggregationFailureError: Regra R: a série de origem contém falha condicional ('F') nos períodos ['2026-03-02']; a agregação não pode produzir um valor numérico.",
+   "status": "CONSISTENT",
+   "code": "app/engine/temporal_aggregation_service.py:71"
+  },
+  {
+   "id": "T09",
+   "layer": "value_type",
+   "description": "VALUE_TYPES e sentinela",
+   "expected_regex": "\\['categorical', 'numeric'\\], 'F'",
+   "observed": "OK: (['categorical', 'numeric'], 'F')",
+   "status": "CONSISTENT",
+   "code": "app/domain/values.py:37"
+  }
+ ]
+}

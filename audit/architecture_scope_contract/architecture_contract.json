@@ -1,0 +1,146 @@
+{
+ "scope_types": {
+  "validators": [
+   "global",
+   "linha",
+   "linha_grupo",
+   "planta",
+   "área"
+  ],
+  "ScopeResolver": [
+   "linha",
+   "linha_grupo",
+   "planta",
+   "área",
+   "global"
+  ],
+  "validators_enums_identicos": true
+ },
+ "scope_values": {
+  "validators": [
+   "L1",
+   "L1_L3",
+   "L1_L7",
+   "L2",
+   "L3",
+   "L4",
+   "L4_L5",
+   "L5",
+   "L6",
+   "L6_L7",
+   "L7",
+   "PLANTA"
+  ],
+  "group_members": {
+   "L1_L7": [
+    "L1",
+    "L2",
+    "L3",
+    "L4",
+    "L5",
+    "L6",
+    "L7"
+   ],
+   "L1_L3": [
+    "L1",
+    "L2",
+    "L3"
+   ],
+   "L4_L5": [
+    "L4",
+    "L5"
+   ],
+   "L6_L7": [
+    "L6",
+    "L7"
+   ]
+  }
+ },
+ "identity": {
+  "workbook_builder_layer": "name + frequency + (scope_type, scope_value) — reference_resolver.resolve_reference",
+  "runtime_definition": "variable_definition_id (1 escopo declarado por ID)",
+  "runtime_value": "CalculationKey(entity_id, scope_type, scope_value, period_id)",
+  "seed_validation": "variable_id único = ERRO; assinatura (name, unit, variable_type, frequency, scope) duplicada = apenas WARNING"
+ },
+ "reference_syntax": {
+  "runtime_dsl": "ID@Lx | ID@<grupo registrado>; NOMES rejeitados",
+  "builder_layer": "name@Lx | name@<grupo>, traduzido para ID@escopo"
+ },
+ "seed_summary": {
+  "seed:yield": {
+   "variáveis": 240,
+   "nomes": 33,
+   "nomes_em_>1_escopo": 32,
+   "refs_@linha": 924,
+   "refs_@grupo": 0,
+   "nomes_espacializados": 0
+  },
+  "seed:production": {
+   "variáveis": 83,
+   "nomes": 34,
+   "nomes_em_>1_escopo": 6,
+   "refs_@linha": 94,
+   "refs_@grupo": 0,
+   "nomes_espacializados": 0
+  },
+  "seed:energy": {
+   "variáveis": 52,
+   "nomes": 38,
+   "nomes_em_>1_escopo": 1,
+   "refs_@linha": 49,
+   "refs_@grupo": 0,
+   "nomes_espacializados": 0
+  },
+  "seed:max_ht": {
+   "variáveis": 148,
+   "nomes": 36,
+   "nomes_em_>1_escopo": 0,
+   "refs_@linha": 56,
+   "refs_@grupo": 0,
+   "nomes_espacializados": 21
+  },
+  "workbook:a41_v6_validado": {
+   "variáveis": 47,
+   "nomes": 16,
+   "nomes_em_>1_escopo": 9,
+   "refs_@linha": 54,
+   "refs_@grupo": 10,
+   "nomes_espacializados": 4
+  },
+  "workbook:energy_v2": {
+   "variáveis": 52,
+   "nomes": 38,
+   "nomes_em_>1_escopo": 1,
+   "refs_@linha": 49,
+   "refs_@grupo": 0,
+   "nomes_espacializados": 0
+  },
+  "workbook:maxht_v5": {
+   "variáveis": 148,
+   "nomes": 36,
+   "nomes_em_>1_escopo": 0,
+   "refs_@linha": 56,
+   "refs_@grupo": 0,
+   "nomes_espacializados": 21
+  },
+  "workbook:production_v1": {
+   "variáveis": 69,
+   "nomes": 33,
+   "nomes_em_>1_escopo": 5,
+   "refs_@linha": 115,
+   "refs_@grupo": 0,
+   "nomes_espacializados": 0
+  },
+  "workbook:yield_v4": {
+   "variáveis": 245,
+   "nomes": 33,
+   "nomes_em_>1_escopo": 33,
+   "refs_@linha": 924,
+   "refs_@grupo": 0,
+   "nomes_espacializados": 0
+  }
+ },
+ "probes": {
+  "CONSISTENT": 68
+ }
+}

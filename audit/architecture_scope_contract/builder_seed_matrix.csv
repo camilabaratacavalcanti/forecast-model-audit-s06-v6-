@@ -1,0 +1,9 @@
+arquivo,usa_reference_resolver_central,passa_consumer_scope,cria_referencias_@,gera_nomes_espacializados,resolucao_manual_de_escopo,tratamento_especifico_A41,politica_especifica_do_bloco
+tools/energy_reconciliation.py,não,não,não,não encontrado,não,não,
+tools/energy_seed_builder.py,sim,sim,preserva @ do workbook (translate_expression),não encontrado,não,não,
+tools/max_ht_reconciliation.py,não,não,não,não encontrado,não,não,
+tools/max_ht_seed_builder.py,sim,sim,preserva @ do workbook (translate_expression),não encontrado,não,não,prefer_sum_variant (desempate SUM)
+data/seed/yield (seed),seed versionado sem builder,,@linha=924 @grupo=0,0,,,nomes em >1 escopo: 32
+data/seed/production (seed),seed versionado sem builder,,@linha=94 @grupo=0,0,,,nomes em >1 escopo: 6
+data/seed/energy (seed),gerado por builder,,@linha=49 @grupo=0,0,,,nomes em >1 escopo: 1
+data/seed/max_ht (seed),gerado por builder,,@linha=56 @grupo=0,21,,,nomes em >1 escopo: 0

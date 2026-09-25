@@ -1,0 +1,143 @@
+CONSISTENT N01 [nomes] hes@L4 (consumidor grupo L4_L5, diário) -> OK: 'VAR97001'
+CONSISTENT N02 [nomes] hes@L5 -> OK: 'VAR97002'
+CONSISTENT N03 [nomes] hes@L4 com frequência mensal -> OK: 'VAR97003'
+CONSISTENT N04 [nomes] hes@L4_L5 (grupo explícito) -> OK: 'VAR97004'
+CONSISTENT N05 [nomes] hes implícito do consumidor linha/L4 -> OK: 'VAR97001'
+CONSISTENT N06 [nomes] hes implícito do consumidor linha/L5 -> OK: 'VAR97002'
+CONSISTENT N07 [nomes] hes implícito do consumidor grupo L4_L5 -> OK: 'VAR97004'
+CONSISTENT N08 [nomes] hes implícito do consumidor planta (nenhum candidato alcançável) -> ReferenceResolutionError: Referência ambígua (hes, frequência diário, escopo ('planta', 'P
+CONSISTENT N09 [nomes] hes sem escopo e sem consumidor (ambíguo) -> ReferenceResolutionError: Referência ambígua (hes, frequência diário, escopo None): VAR970
+CONSISTENT N10 [nomes] hes@L6 (escopo sem definição) -> ReferenceResolutionError: Referência hes@L6: nenhuma definição materializa uma instância n
+CONSISTENT N11 [nomes] hes@L8 (escopo inexistente) -> InvalidScopeReferenceError: Escopo explícito desconhecido: @L8
+CONSISTENT N12 [nomes] nome inexistente -> ReferenceNotFoundError: Referência não encontrada na planilha: xyz
+CONSISTENT N13 [nomes] consumidor linha/L4_L5 (2 instâncias -> definições diferentes) -> ReferenceResolutionError: Referência hes: instâncias do consumidor linha/L4_L5 resolvem pa
+CONSISTENT N14 [nomes] hes_l4 e hes coexistem (nomes distintos, mesmo escopo) -> OK: ('VAR97005', 'VAR97001')
+CONSISTENT N15 [nomes] serie@L4_L5 com definição linha/L1_L7 (grupo não agrega linhas) -> ReferenceResolutionError: Referência serie@L4_L5: nenhuma definição materializa uma instân
+CONSISTENT N16 [nomes] translate preserva sufixo: hes@L4 + hes@L5 -> OK: 'VAR97001@L4 + VAR97002@L5'
+CONSISTENT N17 [nomes] resolução independente da ordem de inserção (5 embaralhamentos) -> OK: 1
+CONSISTENT P01 [parser] hes@L4 (NOME) no parser do runtime -> UnsafeExpressionError: Referência espacial inválida na expressão: 'hes@L4'. Use VARxxxxx@L
+CONSISTENT P02 [parser] retirada_condensado_linha@L4 (NOME) no parser -> UnsafeExpressionError: Referência espacial inválida na expressão: 'retirada_condensado_lin
+CONSISTENT P03 [parser] VAR97001@L4 (ID) -> nome interno do AST -> OK: 'VAR97001__L4'
+CONSISTENT P04 [parser] VAR97001@L5 (ID) -> nome interno do AST -> OK: 'VAR97001__L5'
+CONSISTENT P05 [parser] VAR97001@L4_L5 (ID) -> nome interno do AST -> OK: 'VAR97001__L4_L5'
+CONSISTENT P06 [parser] VAR97001@L1_L3 (ID) -> nome interno do AST -> OK: 'VAR97001__L1_L3'
+CONSISTENT P07 [parser] VAR97001@L6_L7 (ID) -> nome interno do AST -> OK: 'VAR97001__L6_L7'
+CONSISTENT P08 [parser] VAR97001@L1_L7 (ID) -> nome interno do AST -> OK: 'VAR97001__L1_L7'
+CONSISTENT P09 [parser] VAR97001@L8 (escopo não registrado) -> UnsafeExpressionError: Referência espacial inválida na expressão: 'VAR97001@L8'. Use VARxx
+CONSISTENT P10 [parser] VAR97001@L5_L4 (escopo não registrado) -> UnsafeExpressionError: Escopo explícito desconhecido: @L5_L4
+CONSISTENT P11 [parser] VAR97001@L2_L6 (escopo não registrado) -> UnsafeExpressionError: Escopo explícito desconhecido: @L2_L6
+CONSISTENT P12 [parser] VAR97001@PLANTA (escopo não registrado) -> UnsafeExpressionError: Referência espacial inválida na expressão: 'VAR97001@PLANTA'. Use V
+CONSISTENT P13 [parser] VAR97001@L1_L2 (escopo não registrado) -> UnsafeExpressionError: Escopo explícito desconhecido: @L1_L2
+CONSISTENT P14 [parser] @ solto (MatMult) -> UnsafeExpressionError: Referência espacial inválida na expressão: 'VAR97001 @ VAR97002'. U
+CONSISTENT P15 [parser] split_internal de grupo -> OK: ('VAR97001', 'linha_grupo', 'L4_L5')
+CONSISTENT P16 [parser] split_internal de linha -> OK: ('VAR97001', 'linha', 'L4')
+CONSISTENT R01 [runtime] VAR@L4 lê só L4 -> OK: 4.0
+CONSISTENT R02 [runtime] VAR@L5 lê só L5 -> OK: 5.0
+CONSISTENT R03 [runtime] VAR@L4 sem valor em L4 (existe L5): não cai para L5 -> VariableNotFoundError: Valor contextualizado da variável não encontrado: VAR97001, scope_t
+CONSISTENT R04 [runtime] VAR@L4 com apenas valor legado sem escopo: não cai para o legado -> VariableNotFoundError: Valor contextualizado da variável não encontrado: VAR97001, scope_t
+CONSISTENT R05 [runtime] VAR implícito (consumidor L4) sem valor em L4/grupos/planta mas com legado sem escopo -> OK: 99.0
+CONSISTENT R06 [runtime] VAR implícito (consumidor L4) com valor só em L5: não lateraliza -> VariableNotFoundError: Valor da variável não encontrado: VAR97001
+CONSISTENT R07 [runtime] VAR implícito (consumidor L4) com valor no grupo L4_L5: sobe ao grupo -> OK: 45.0
+CONSISTENT R08 [runtime] VAR@L4_L5 com valores só em L4 e L5: grupo NÃO é agregado das linhas -> VariableNotFoundError: Valor contextualizado da variável não encontrado: VAR97001, scope_t
+CONSISTENT R09 [runtime] VAR@L4_L5 em contexto de linha L4 -> OK: 45.0
+CONSISTENT R10 [runtime] VAR implícito do grupo L4_L5 com valor só em linha L4: nunca desce -> VariableNotFoundError: Valor da variável não encontrado: VAR97001
+CONSISTENT G01 [grupos] linha_grupo/L4_L5 materializa 1 instância (não expande) -> OK: [('linha_grupo', 'L4_L5')]
+CONSISTENT G02 [grupos] linha/L4_L5 expande em L4, L5 -> OK: [('linha', 'L4'), ('linha', 'L5')]
+CONSISTENT G03 [grupos] linha/L2_L6 (faixa não registrada) aceita pelo ScopeResolver -> OK: [('linha', 'L2'), ('linha', 'L3'), ('linha', 'L4'), ('linha', 'L5'), ('linha', 'L6')]
+CONSISTENT G04 [grupos] linha_grupo/L2_L6 (grupo não registrado) -> ValueError: Invalid line group scope_value: L2_L6
+CONSISTENT G05 [grupos] linha/L1_L8 (membro inexistente) -> ValueError: Line range outside supported lines: L1_L8
+CONSISTENT G06 [grupos] linha/L5_L4 (ordem invertida) -> ValueError: Invalid line range: L5_L4
+CONSISTENT G07 [grupos] GROUP_MEMBERS é imutável -> TypeError: 'mappingproxy' object does not support item assignment
+CONSISTENT G08 [grupos] cadeia espacial de L4 -> OK: [('linha', 'L4'), ('linha_grupo', 'L4_L5'), ('linha_grupo', 'L1_L7'), ('planta', 'PLAN
+CONSISTENT G09 [grupos] cadeia espacial do grupo L4_L5 -> OK: [('linha_grupo', 'L4_L5'), ('linha_grupo', 'L1_L7'), ('planta', 'PLANTA')]
+CONSISTENT S01 [armazenamento] alterar L4 não altera L5 (mesmo ID) -> OK: (40.0, 5.0)
+CONSISTENT S02 [armazenamento] mesmo ID e escopo, períodos distintos: chaves distintas -> OK: (1.0, 2.0)
+CONSISTENT S03 [armazenamento] API legada (chave só ID) coexiste com a contextual -> OK: (7.0, 4.0)
+CONSISTENT S04 [armazenamento] VariableDefinitionRegistry: mesmo ID em 2 escopos -> ValueError: Variable definition ID já cadastrado: VAR97001
+CONSISTENT S05 [armazenamento] ParameterDefinitionRegistry: mesmo ID em 2 escopos -> OK: 2
+CONSISTENT S06 [armazenamento] instâncias de uma definição linha/L4_L5 -> OK: ['VAR97001@L4', 'VAR97001@L5']
+CONSISTENT S07 [armazenamento] índice por nome guarda TODAS as ocorrências -> OK: {'hes': 4, 'hes_l4': 1, 'serie': 1}
+CONSISTENT T01 [value_type] value_type 'mixed' -> ValueError: value_type inválido para VAR97001: 'mixed' (permitidos: ['categorical', 'numer
+CONSISTENT T02 [value_type] texto em variável numeric -> CalculationValueError: O valor da variável VAR97001 deve ser numérico: a variável não é de
+CONSISTENT T03 [value_type] texto em variável categorical -> OK: None
+CONSISTENT T04 [value_type] "F" em variável numeric (sentinela de falha) -> OK: None
+CONSISTENT T05 [value_type] "F" em parâmetro -> CalculationValueError: O valor da parâmetro PARAM97001 deve ser numérico.
+CONSISTENT T06 [value_type] consumir "F" em aritmética -> ConditionalFailureError: Operação '+' sobre falha condicional ('F').
+CONSISTENT T07 [value_type] detecção explícita == "F" -> OK: 1
+CONSISTENT T08 [value_type] agregação com "F" -> AggregationFailureError: Regra R: a série de origem contém falha condicional ('F') nos per
+CONSISTENT T09 [value_type] VALUE_TYPES e sentinela -> OK: (['categorical', 'numeric'], 'F')
+{
+ "seed:yield": {
+  "variáveis": 240,
+  "nomes": 33,
+  "nomes_em_>1_escopo": 32,
+  "refs_@linha": 924,
+  "refs_@grupo": 0,
+  "nomes_espacializados": 0
+ },
+ "seed:production": {
+  "variáveis": 83,
+  "nomes": 34,
+  "nomes_em_>1_escopo": 6,
+  "refs_@linha": 94,
+  "refs_@grupo": 0,
+  "nomes_espacializados": 0
+ },
+ "seed:energy": {
+  "variáveis": 52,
+  "nomes": 38,
+  "nomes_em_>1_escopo": 1,
+  "refs_@linha": 49,
+  "refs_@grupo": 0,
+  "nomes_espacializados": 0
+ },
+ "seed:max_ht": {
+  "variáveis": 148,
+  "nomes": 36,
+  "nomes_em_>1_escopo": 0,
+  "refs_@linha": 56,
+  "refs_@grupo": 0,
+  "nomes_espacializados": 21
+ },
+ "workbook:a41_v6_validado": {
+  "variáveis": 47,
+  "nomes": 16,
+  "nomes_em_>1_escopo": 9,
+  "refs_@linha": 54,
+  "refs_@grupo": 10,
+  "nomes_espacializados": 4
+ },
+ "workbook:energy_v2": {
+  "variáveis": 52,
+  "nomes": 38,
+  "nomes_em_>1_escopo": 1,
+  "refs_@linha": 49,
+  "refs_@grupo": 0,
+  "nomes_espacializados": 0
+ },
+ "workbook:maxht_v5": {
+  "variáveis": 148,
+  "nomes": 36,
+  "nomes_em_>1_escopo": 0,
+  "refs_@linha": 56,
+  "refs_@grupo": 0,
+  "nomes_espacializados": 21
+ },
+ "workbook:production_v1": {
+  "variáveis": 69,
+  "nomes": 33,
+  "nomes_em_>1_escopo": 5,
+  "refs_@linha": 115,
+  "refs_@grupo": 0,
+  "nomes_espacializados": 0
+ },
+ "workbook:yield_v4": {
+  "variáveis": 245,
+  "nomes": 33,
+  "nomes_em_>1_escopo": 33,
+  "refs_@linha": 924,
+  "refs_@grupo": 0,
+  "nomes_espacializados": 0
+ }
+}
+enums dos 3 validadores idênticos: True

@@ -1,0 +1,53 @@
+id,layer,description,expected_regex,observed,status,code
+N01,nomes,"hes@L4 (consumidor grupo L4_L5, diário)",VAR97001,OK: 'VAR97001',CONSISTENT,app/engine/reference_resolver.py:192
+N02,nomes,hes@L5,VAR97002,OK: 'VAR97002',CONSISTENT,app/engine/reference_resolver.py:192
+N03,nomes,hes@L4 com frequência mensal,VAR97003,OK: 'VAR97003',CONSISTENT,app/engine/reference_resolver.py:192
+N04,nomes,hes@L4_L5 (grupo explícito),VAR97004,OK: 'VAR97004',CONSISTENT,app/engine/reference_resolver.py:192
+N05,nomes,hes implícito do consumidor linha/L4,VAR97001,OK: 'VAR97001',CONSISTENT,app/engine/reference_resolver.py:192
+N06,nomes,hes implícito do consumidor linha/L5,VAR97002,OK: 'VAR97002',CONSISTENT,app/engine/reference_resolver.py:192
+N07,nomes,hes implícito do consumidor grupo L4_L5,VAR97004,OK: 'VAR97004',CONSISTENT,app/engine/reference_resolver.py:192
+N08,nomes,hes implícito do consumidor planta (nenhum candidato alcançável),ReferenceResolutionError.*amb,"ReferenceResolutionError: Referência ambígua (hes, frequência diário, escopo ('planta', 'PLANTA')): VAR97001[diário, linha/L4], VAR97002[diário, linha/L5], VAR97004[diário, linha_grupo/L",CONSISTENT,app/engine/reference_resolver.py:192
+N09,nomes,hes sem escopo e sem consumidor (ambíguo),ReferenceResolutionError,"ReferenceResolutionError: Referência ambígua (hes, frequência diário, escopo None): VAR97001[diário, linha/L4], VAR97002[diário, linha/L5], VAR97004[diário, linha_grupo/L4_L5]",CONSISTENT,app/engine/reference_resolver.py:192
+N10,nomes,hes@L6 (escopo sem definição),ReferenceResolutionError,"ReferenceResolutionError: Referência hes@L6: nenhuma definição materializa uma instância nesse escopo (candidatas: VAR97001[diário, linha/L4], VAR97002[diário, linha/L5], VAR97004[diário",CONSISTENT,app/engine/reference_resolver.py:192
+N11,nomes,hes@L8 (escopo inexistente),Error,InvalidScopeReferenceError: Escopo explícito desconhecido: @L8,CONSISTENT,app/engine/reference_resolver.py:192
+N12,nomes,nome inexistente,ReferenceNotFoundError,ReferenceNotFoundError: Referência não encontrada na planilha: xyz,CONSISTENT,app/engine/reference_resolver.py:192
+N13,nomes,consumidor linha/L4_L5 (2 instâncias -> definições diferentes),ReferenceResolutionError.*definições diferentes,"ReferenceResolutionError: Referência hes: instâncias do consumidor linha/L4_L5 resolvem para definições diferentes (VAR97001[diário, linha/L4] vs VAR97002[diário, linha/L5]). Uma express",CONSISTENT,app/engine/reference_resolver.py:192
+N14,nomes,"hes_l4 e hes coexistem (nomes distintos, mesmo escopo)",VAR97005.*VAR97001,"OK: ('VAR97005', 'VAR97001')",CONSISTENT,app/engine/reference_resolver.py:192
+N15,nomes,serie@L4_L5 com definição linha/L1_L7 (grupo não agrega linhas),ReferenceResolutionError,"ReferenceResolutionError: Referência serie@L4_L5: nenhuma definição materializa uma instância nesse escopo (candidatas: VAR97006[diário, linha/L1_L7]).",CONSISTENT,app/engine/reference_resolver.py:192
+N16,nomes,translate preserva sufixo: hes@L4 + hes@L5,VAR97001@L4 \+ VAR97002@L5,OK: 'VAR97001@L4 + VAR97002@L5',CONSISTENT,app/engine/reference_resolver.py:258
+N17,nomes,resolução independente da ordem de inserção (5 embaralhamentos),OK: 1$,OK: 1,CONSISTENT,app/engine/reference_resolver.py:192
+P01,parser,hes@L4 (NOME) no parser do runtime,UnsafeExpressionError,"UnsafeExpressionError: Referência espacial inválida na expressão: 'hes@L4'. Use VARxxxxx@Lx ou VARxxxxx@<grupo>, com um escopo existente.",CONSISTENT,app/engine/expression_parser.py:90
+P02,parser,retirada_condensado_linha@L4 (NOME) no parser,UnsafeExpressionError,"UnsafeExpressionError: Referência espacial inválida na expressão: 'retirada_condensado_linha@L4'. Use VARxxxxx@Lx ou VARxxxxx@<grupo>, com um escopo existente.",CONSISTENT,app/engine/expression_parser.py:90
+P03,parser,VAR97001@L4 (ID) -> nome interno do AST,VAR97001__L4,OK: 'VAR97001__L4',CONSISTENT,app/engine/scoped_reference.py:70
+P04,parser,VAR97001@L5 (ID) -> nome interno do AST,VAR97001__L5,OK: 'VAR97001__L5',CONSISTENT,app/engine/scoped_reference.py:70
+P05,parser,VAR97001@L4_L5 (ID) -> nome interno do AST,VAR97001__L4_L5,OK: 'VAR97001__L4_L5',CONSISTENT,app/engine/scoped_reference.py:70
+P06,parser,VAR97001@L1_L3 (ID) -> nome interno do AST,VAR97001__L1_L3,OK: 'VAR97001__L1_L3',CONSISTENT,app/engine/scoped_reference.py:70
+P07,parser,VAR97001@L6_L7 (ID) -> nome interno do AST,VAR97001__L6_L7,OK: 'VAR97001__L6_L7',CONSISTENT,app/engine/scoped_reference.py:70
+P08,parser,VAR97001@L1_L7 (ID) -> nome interno do AST,VAR97001__L1_L7,OK: 'VAR97001__L1_L7',CONSISTENT,app/engine/scoped_reference.py:70
+P09,parser,VAR97001@L8 (escopo não registrado),UnsafeExpressionError,"UnsafeExpressionError: Referência espacial inválida na expressão: 'VAR97001@L8'. Use VARxxxxx@Lx ou VARxxxxx@<grupo>, com um escopo existente.",CONSISTENT,app/engine/scoped_reference.py:51
+P10,parser,VAR97001@L5_L4 (escopo não registrado),UnsafeExpressionError,UnsafeExpressionError: Escopo explícito desconhecido: @L5_L4,CONSISTENT,app/engine/scoped_reference.py:51
+P11,parser,VAR97001@L2_L6 (escopo não registrado),UnsafeExpressionError,UnsafeExpressionError: Escopo explícito desconhecido: @L2_L6,CONSISTENT,app/engine/scoped_reference.py:51
+P12,parser,VAR97001@PLANTA (escopo não registrado),UnsafeExpressionError,"UnsafeExpressionError: Referência espacial inválida na expressão: 'VAR97001@PLANTA'. Use VARxxxxx@Lx ou VARxxxxx@<grupo>, com um escopo existente.",CONSISTENT,app/engine/scoped_reference.py:51
+P13,parser,VAR97001@L1_L2 (escopo não registrado),UnsafeExpressionError,UnsafeExpressionError: Escopo explícito desconhecido: @L1_L2,CONSISTENT,app/engine/scoped_reference.py:51
+P14,parser,@ solto (MatMult),UnsafeExpressionError,"UnsafeExpressionError: Referência espacial inválida na expressão: 'VAR97001 @ VAR97002'. Use VARxxxxx@Lx ou VARxxxxx@<grupo>, com um escopo existente.",CONSISTENT,app/engine/scoped_reference.py:70
+P15,parser,split_internal de grupo,linha_grupo,"OK: ('VAR97001', 'linha_grupo', 'L4_L5')",CONSISTENT,app/engine/scoped_reference.py:94
+P16,parser,split_internal de linha,"'linha', 'L4'","OK: ('VAR97001', 'linha', 'L4')",CONSISTENT,app/engine/scoped_reference.py:94
+R01,runtime,VAR@L4 lê só L4,OK: 4\.0,OK: 4.0,CONSISTENT,app/engine/expression_evaluator.py:641
+R02,runtime,VAR@L5 lê só L5,OK: 5\.0,OK: 5.0,CONSISTENT,app/engine/expression_evaluator.py:641
+R03,runtime,VAR@L4 sem valor em L4 (existe L5): não cai para L5,VariableNotFoundError,"VariableNotFoundError: Valor contextualizado da variável não encontrado: VAR97001, scope_type=linha, scope_value=L4, period_id=None",CONSISTENT,app/engine/expression_evaluator.py:641
+R04,runtime,VAR@L4 com apenas valor legado sem escopo: não cai para o legado,VariableNotFoundError,"VariableNotFoundError: Valor contextualizado da variável não encontrado: VAR97001, scope_type=linha, scope_value=L4, period_id=None",CONSISTENT,app/engine/expression_evaluator.py:641
+R05,runtime,VAR implícito (consumidor L4) sem valor em L4/grupos/planta mas com legado sem escopo,OK: 99\.0,OK: 99.0,CONSISTENT,app/engine/expression_evaluator.py:641
+R06,runtime,VAR implícito (consumidor L4) com valor só em L5: não lateraliza,VariableNotFoundError,VariableNotFoundError: Valor da variável não encontrado: VAR97001,CONSISTENT,app/engine/expression_evaluator.py:641
+R07,runtime,VAR implícito (consumidor L4) com valor no grupo L4_L5: sobe ao grupo,OK: 45\.0,OK: 45.0,CONSISTENT,app/engine/expression_evaluator.py:641
+R08,runtime,VAR@L4_L5 com valores só em L4 e L5: grupo NÃO é agregado das linhas,VariableNotFoundError,"VariableNotFoundError: Valor contextualizado da variável não encontrado: VAR97001, scope_type=linha_grupo, scope_value=L4_L5, period_id=None",CONSISTENT,app/engine/expression_evaluator.py:641
+R09,runtime,VAR@L4_L5 em contexto de linha L4,OK: 45\.0,OK: 45.0,CONSISTENT,app/engine/expression_evaluator.py:641
+R10,runtime,VAR implícito do grupo L4_L5 com valor só em linha L4: nunca desce,VariableNotFoundError,VariableNotFoundError: Valor da variável não encontrado: VAR97001,CONSISTENT,app/engine/expression_evaluator.py:641
+G01,grupos,linha_grupo/L4_L5 materializa 1 instância (não expande),"\[\('linha_grupo', 'L4_L5'\)\]$","OK: [('linha_grupo', 'L4_L5')]",CONSISTENT,app/engine/scope_resolver.py:320
+G02,grupos,"linha/L4_L5 expande em L4, L5","\('linha', 'L4'\), \('linha', 'L5'\)","OK: [('linha', 'L4'), ('linha', 'L5')]",CONSISTENT,app/engine/scope_resolver.py:296
+G03,grupos,linha/L2_L6 (faixa não registrada) aceita pelo ScopeResolver,L6,"OK: [('linha', 'L2'), ('linha', 'L3'), ('linha', 'L4'), ('linha', 'L5'), ('linha', 'L6')]",CONSISTENT,app/engine/scope_resolver.py:361
+G04,grupos,linha_grupo/L2_L6 (grupo não registrado),ValueError,ValueError: Invalid line group scope_value: L2_L6,CONSISTENT,app/engine/scope_resolver.py:320
+G05,grupos,linha/L1_L8 (membro inexistente),ValueError,ValueError: Line range outside supported lines: L1_L8,CONSISTENT,app/engine/scope_resolver.py:361
+G06,grupos,linha/L5_L4 (ordem invertida),ValueError,ValueError: Invalid line range: L5_L4,CONSISTENT,app/engine/scope_resolver.py:361
+G07,grupos,GROUP_MEMBERS é imutável,TypeError.*does not support item assignment,TypeError: 'mappingproxy' object does not support item assignment,CONSISTENT,app/engine/scope_resolver.py:30
+G08,grupos,cadeia espacial de L4,L4_L5.*L1_L7.*PLANTA,"OK: [('linha', 'L4'), ('linha_grupo', 'L4_L5'), ('linha_grupo', 'L1_L7'), ('planta', 'PLANTA')]",CONSISTENT,app/engine/spatial_candidate_resolver.py:83
+G09,grupos,cadeia espacial do grupo L4_L5,L1_L7.*PLANTA,"OK: [('linha_grupo', 'L4_L5'), ('linha_grupo', 'L1_L7'), ('planta', 'PLANTA')]",CONSISTENT,app/engine/spatial_candidate_resolver.py:83

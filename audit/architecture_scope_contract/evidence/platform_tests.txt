@@ -1,0 +1,7 @@
+timestamp 2026-09-25T13:16:17Z
+cmd: python3 -m pytest -q tests/test_scope_resolver.py tests/test_reference_resolver.py tests/test_dsl_structural_contracts.py tests/test_spatial_candidate_resolver.py tests/test_calculation_context.py tests/test_decision_e_spatial_temporal_resolution.py tests/test_fase3a_scope_contract.py tests/test_aggregation_rule_instances.py
+.......................                                                  [100%]
+311 passed in 0.35s
+
+cmd: python3 -m pytest -q (suíte completa)
+1414 passed in 6.51s

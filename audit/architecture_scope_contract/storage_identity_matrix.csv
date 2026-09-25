@@ -1,0 +1,8 @@
+estrutura,chave_efetiva,consequencia,sondas,codigo
+VariableDefinitionRegistry._definitions,variable_definition_id,1 ID = 1 definição = 1 escopo declarado,S04,app/domain/variables/registry.py:54
+VariableInstanceRegistry._instances,variable_instance_id = ID@scope_value,instância por escopo concreto,S06,app/domain/variables/models.py:116
+ParameterDefinitionRegistry._definitions,"(id, version, scope_type, scope_value)",mesmo ID pode ter N escopos (assimetria com variáveis),S05,app/domain/parameters/registry.py:74
+CalculationContext._scoped_variables,"CalculationKey(entity_id, scope_type, scope_value, period_id)",L4 e L5 distintos; período distinto,S01/S02,app/engine/calculation_context.py:272
+CalculationContext._variables (legado),entity_id apenas,sem escopo; usado como fallback de referência IMPLÍCITA,S03/R05,app/engine/calculation_context.py:190
+ForecastEngine producers,"VAR@Lx (linha), VAR@grupo + VAR (linha_grupo), VAR (demais)",produtores por instância,—,app/engine/forecast_engine.py:450
+reference_resolver.build_name_index,name -> lista de TODAS as definições,sem colisão; desambiguação por frequência+escopo,S07,app/engine/reference_resolver.py:59

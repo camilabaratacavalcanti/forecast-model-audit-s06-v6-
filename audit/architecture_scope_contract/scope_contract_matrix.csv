@@ -1,0 +1,23 @@
+scope_type,scope_value,variable_seed_validator,parameter_seed_validator,equation_seed_validator,ScopeResolver.resolve_scopes,DSL_@referencia,significado
+linha,L1,aceita,aceita,aceita,linha/L1,@L1 -> linha,linha de produção; scope_value = linha (L1..L7) ou faixa Lx_Ly EXPANDIDA em uma instância por linha
+linha,L4,aceita,aceita,aceita,linha/L4,@L4 -> linha,linha de produção; scope_value = linha (L1..L7) ou faixa Lx_Ly EXPANDIDA em uma instância por linha
+linha,L7,aceita,aceita,aceita,linha/L7,@L7 -> linha,linha de produção; scope_value = linha (L1..L7) ou faixa Lx_Ly EXPANDIDA em uma instância por linha
+linha,L1_L7,aceita,aceita,aceita,linha/L1; linha/L2; linha/L3; linha/L4; linha/L5; linha/L6; linha/L7,@L1_L7 -> linha_grupo,linha de produção; scope_value = linha (L1..L7) ou faixa Lx_Ly EXPANDIDA em uma instância por linha
+linha,L1_L3,rejeita,rejeita,rejeita,linha/L1; linha/L2; linha/L3,@L1_L3 -> linha_grupo,linha de produção; scope_value = linha (L1..L7) ou faixa Lx_Ly EXPANDIDA em uma instância por linha
+linha,L4_L5,rejeita,rejeita,rejeita,linha/L4; linha/L5,@L4_L5 -> linha_grupo,linha de produção; scope_value = linha (L1..L7) ou faixa Lx_Ly EXPANDIDA em uma instância por linha
+linha,L2_L6,rejeita,rejeita,rejeita,linha/L2; linha/L3; linha/L4; linha/L5; linha/L6,@L2_L6 REJEITADO,linha de produção; scope_value = linha (L1..L7) ou faixa Lx_Ly EXPANDIDA em uma instância por linha
+linha,L8,rejeita,rejeita,rejeita,REJEITA (Invalid line range: L8),@L8 REJEITADO,linha de produção; scope_value = linha (L1..L7) ou faixa Lx_Ly EXPANDIDA em uma instância por linha
+linha,PLANTA,rejeita,rejeita,rejeita,REJEITA (Invalid line range: PLANTA),@PLANTA REJEITADO,linha de produção; scope_value = linha (L1..L7) ou faixa Lx_Ly EXPANDIDA em uma instância por linha
+linha_grupo,L1_L3,aceita,aceita,aceita,linha_grupo/L1_L3,@L1_L3 -> linha_grupo,grupo de linhas tratado como UMA unidade (não expandido); scope_value = grupo registrado em ScopeResolver.LINE_GROUP_SCOPES
+linha_grupo,L4_L5,aceita,aceita,aceita,linha_grupo/L4_L5,@L4_L5 -> linha_grupo,grupo de linhas tratado como UMA unidade (não expandido); scope_value = grupo registrado em ScopeResolver.LINE_GROUP_SCOPES
+linha_grupo,L6_L7,aceita,aceita,aceita,linha_grupo/L6_L7,@L6_L7 -> linha_grupo,grupo de linhas tratado como UMA unidade (não expandido); scope_value = grupo registrado em ScopeResolver.LINE_GROUP_SCOPES
+linha_grupo,L1_L7,aceita,aceita,aceita,linha_grupo/L1_L7,@L1_L7 -> linha_grupo,grupo de linhas tratado como UMA unidade (não expandido); scope_value = grupo registrado em ScopeResolver.LINE_GROUP_SCOPES
+linha_grupo,L2_L6,rejeita,rejeita,rejeita,REJEITA (Invalid line group scope_value: L2_L6),@L2_L6 REJEITADO,grupo de linhas tratado como UMA unidade (não expandido); scope_value = grupo registrado em ScopeResolver.LINE_GROUP_SCOPES
+linha_grupo,L4,rejeita,rejeita,rejeita,REJEITA (Invalid line group scope_value: L4),@L4 -> linha,grupo de linhas tratado como UMA unidade (não expandido); scope_value = grupo registrado em ScopeResolver.LINE_GROUP_SCOPES
+linha_grupo,L5_L4,rejeita,rejeita,rejeita,REJEITA (Invalid line group scope_value: L5_L4),@L5_L4 REJEITADO,grupo de linhas tratado como UMA unidade (não expandido); scope_value = grupo registrado em ScopeResolver.LINE_GROUP_SCOPES
+planta,PLANTA,aceita,aceita,aceita,planta/PLANTA,@PLANTA REJEITADO,planta inteira; scope_value obrigatório = 'PLANTA'
+planta,L1,rejeita,rejeita,rejeita,REJEITA (Invalid plant scope_value: L1),@L1 -> linha,planta inteira; scope_value obrigatório = 'PLANTA'
+área,,aceita,aceita,aceita,área/None,n/a,escopo singular sem materialização; scope_value = None
+área,L1,rejeita,rejeita,rejeita,REJEITA (scope_type 'área' does not accept a concrete scope_value: 'L1'),@L1 -> linha,escopo singular sem materialização; scope_value = None
+global,,aceita,aceita,aceita,global/None,n/a,escopo singular sem materialização; scope_value = None
+setor,X,rejeita,rejeita,rejeita,REJEITA (Unsupported scope_type: setor),@X REJEITADO,não suportado

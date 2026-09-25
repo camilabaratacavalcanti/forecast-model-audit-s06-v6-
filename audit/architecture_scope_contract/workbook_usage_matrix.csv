@@ -1,0 +1,144 @@
+Workbook,Variável,Nome,Scope,Referência,Padrão
+seed:yield,eoc_solids,eoc_solids,linha/L1_L7 | linha_grupo/L1_L3 | linha_grupo/L1_L7 | linha_grupo/L4_L5 | linha_grupo/L6_L7,,mesmo nome em vários escopos (identidade por escopo)
+seed:yield,eoc_solids_base,eoc_solids_base,linha/L1_L7 | linha_grupo/L1_L3 | linha_grupo/L1_L7 | linha_grupo/L4_L5 | linha_grupo/L6_L7,,mesmo nome em vários escopos (identidade por escopo)
+seed:yield,eoc_temp,eoc_temp,linha/L1_L7 | linha_grupo/L1_L3 | linha_grupo/L1_L7 | linha_grupo/L4_L5 | linha_grupo/L6_L7,,mesmo nome em vários escopos (identidade por escopo)
+seed:yield,eoc_temp_base,eoc_temp_base,linha/L1_L7 | linha_grupo/L1_L3 | linha_grupo/L1_L7 | linha_grupo/L4_L5 | linha_grupo/L6_L7,,mesmo nome em vários escopos (identidade por escopo)
+seed:yield,lth,lth,linha/L1_L7 | linha_grupo/L1_L3 | linha_grupo/L1_L7 | linha_grupo/L4_L5 | linha_grupo/L6_L7,,mesmo nome em vários escopos (identidade por escopo)
+seed:yield,lth_base,lth_base,linha/L1_L7 | linha_grupo/L1_L3 | linha_grupo/L1_L7 | linha_grupo/L4_L5 | linha_grupo/L6_L7,,mesmo nome em vários escopos (identidade por escopo)
+seed:yield,(expressões),,L1,@L1 × 132,referência explícita de linha (@linha)
+seed:yield,(expressões),,L2,@L2 × 132,referência explícita de linha (@linha)
+seed:yield,(expressões),,L3,@L3 × 132,referência explícita de linha (@linha)
+seed:yield,(expressões),,L4,@L4 × 132,referência explícita de linha (@linha)
+seed:yield,(expressões),,L5,@L5 × 132,referência explícita de linha (@linha)
+seed:yield,(expressões),,L6,@L6 × 132,referência explícita de linha (@linha)
+seed:yield,(expressões),,L7,@L7 × 132,referência explícita de linha (@linha)
+seed:production,consumo_bauxita,consumo_bauxita,linha/L1_L7 | linha_grupo/L1_L7,,mesmo nome em vários escopos (identidade por escopo)
+seed:production,consumo_cbg,consumo_cbg,linha/L1_L7 | linha_grupo/L1_L7,,mesmo nome em vários escopos (identidade por escopo)
+seed:production,consumo_mpsa,consumo_mpsa,linha/L1_L7 | linha_grupo/L1_L7,,mesmo nome em vários escopos (identidade por escopo)
+seed:production,consumo_mrn,consumo_mrn,linha/L1_L7 | linha_grupo/L1_L7,,mesmo nome em vários escopos (identidade por escopo)
+seed:production,pick_up,pick_up,linha/L1 | linha/L2 | linha/L3 | linha/L4 | linha/L5 | linha/L6 | linha/L7,,mesmo nome em vários escopos (identidade por escopo)
+seed:production,producao,producao,linha/L1 | linha/L2 | linha/L3 | linha/L4 | linha/L5 | linha/L6 | linha/L7,,mesmo nome em vários escopos (identidade por escopo)
+seed:production,(expressões),,L1,@L1 × 14,referência explícita de linha (@linha)
+seed:production,(expressões),,L2,@L2 × 14,referência explícita de linha (@linha)
+seed:production,(expressões),,L3,@L3 × 14,referência explícita de linha (@linha)
+seed:production,(expressões),,L4,@L4 × 13,referência explícita de linha (@linha)
+seed:production,(expressões),,L5,@L5 × 13,referência explícita de linha (@linha)
+seed:production,(expressões),,L6,@L6 × 13,referência explícita de linha (@linha)
+seed:production,(expressões),,L7,@L7 × 13,referência explícita de linha (@linha)
+seed:energy,especifico_vapor_evaporacao,especifico_vapor_evaporacao,linha/L1_L7 | linha_grupo/L1_L3 | linha_grupo/L4_L5 | linha_grupo/L6_L7,,mesmo nome em vários escopos (identidade por escopo)
+seed:energy,(expressões),,L1,@L1 × 7,referência explícita de linha (@linha)
+seed:energy,(expressões),,L2,@L2 × 7,referência explícita de linha (@linha)
+seed:energy,(expressões),,L3,@L3 × 7,referência explícita de linha (@linha)
+seed:energy,(expressões),,L4,@L4 × 7,referência explícita de linha (@linha)
+seed:energy,(expressões),,L5,@L5 × 7,referência explícita de linha (@linha)
+seed:energy,(expressões),,L6,@L6 × 7,referência explícita de linha (@linha)
+seed:energy,(expressões),,L7,@L7 × 7,referência explícita de linha (@linha)
+seed:max_ht,(expressões),,L1,@L1 × 8,referência explícita de linha (@linha)
+seed:max_ht,(expressões),,L2,@L2 × 8,referência explícita de linha (@linha)
+seed:max_ht,(expressões),,L3,@L3 × 8,referência explícita de linha (@linha)
+seed:max_ht,(expressões),,L4,@L4 × 8,referência explícita de linha (@linha)
+seed:max_ht,(expressões),,L5,@L5 × 8,referência explícita de linha (@linha)
+seed:max_ht,(expressões),,L6,@L6 × 8,referência explícita de linha (@linha)
+seed:max_ht,(expressões),,L7,@L7 × 8,referência explícita de linha (@linha)
+seed:max_ht,a13_l123,a13_l123,linha_grupo/L1_L3,,nome artificialmente espacializado
+seed:max_ht,a13_l45,a13_l45,linha_grupo/L4_L5,,nome artificialmente espacializado
+seed:max_ht,a13_l67,a13_l67,linha_grupo/L6_L7,,nome artificialmente espacializado
+seed:max_ht,a18_a13_l123,a18_a13_l123,linha_grupo/L1_L3,,nome artificialmente espacializado
+seed:max_ht,a18_a13_l45,a18_a13_l45,linha_grupo/L4_L5,,nome artificialmente espacializado
+seed:max_ht,a18_a13_l67,a18_a13_l67,linha_grupo/L6_L7,,nome artificialmente espacializado
+seed:max_ht,a18_l123,a18_l123,linha_grupo/L1_L3,,nome artificialmente espacializado
+seed:max_ht,a18_l45,a18_l45,linha_grupo/L4_L5,,nome artificialmente espacializado
+seed:max_ht,a18_l67,a18_l67,linha_grupo/L6_L7,,nome artificialmente espacializado
+seed:max_ht,esp_maxht_l123,esp_maxht_l123,linha_grupo/L1_L3,,nome artificialmente espacializado
+seed:max_ht,esp_maxht_l45,esp_maxht_l45,linha_grupo/L4_L5,,nome artificialmente espacializado
+seed:max_ht,esp_maxht_l67,esp_maxht_l67,linha_grupo/L6_L7,,nome artificialmente espacializado
+seed:max_ht,massa_total_max_ht_l123,massa_total_max_ht_l123,linha_grupo/L1_L3,,nome artificialmente espacializado
+seed:max_ht,massa_total_max_ht_l45,massa_total_max_ht_l45,linha_grupo/L4_L5,,nome artificialmente espacializado
+seed:max_ht,massa_total_max_ht_l67,massa_total_max_ht_l67,linha_grupo/L6_L7,,nome artificialmente espacializado
+seed:max_ht,producao_l123,producao_l123,linha_grupo/L1_L3,,nome artificialmente espacializado
+seed:max_ht,producao_l45,producao_l45,linha_grupo/L4_L5,,nome artificialmente espacializado
+seed:max_ht,producao_l67,producao_l67,linha_grupo/L6_L7,,nome artificialmente espacializado
+seed:max_ht,total_horas_dia_l123,total_horas_dia_l123,linha_grupo/L1_L3,,nome artificialmente espacializado
+seed:max_ht,total_horas_dia_l45,total_horas_dia_l45,linha_grupo/L4_L5,,nome artificialmente espacializado
+seed:max_ht,total_horas_dia_l67,total_horas_dia_l67,linha_grupo/L6_L7,,nome artificialmente espacializado
+workbook:a41_v6_validado,desconto_retirada_41c,desconto_retirada_41c,linha_grupo/L4_L5 | linha_grupo/L6_L7,,mesmo nome em vários escopos (identidade por escopo)
+workbook:a41_v6_validado,fator_retirada_cond_corr_lth,fator_retirada_cond_corr_lth,linha_grupo/L1_L3 | linha_grupo/L4_L5 | linha_grupo/L6_L7,,mesmo nome em vários escopos (identidade por escopo)
+workbook:a41_v6_validado,lth_grupo,lth_grupo,linha_grupo/L1_L3 | linha_grupo/L4_L5 | linha_grupo/L6_L7,,mesmo nome em vários escopos (identidade por escopo)
+workbook:a41_v6_validado,retirada_cond_corr_lth,retirada_cond_corr_lth,linha_grupo/L1_L3 | linha_grupo/L4_L5 | linha_grupo/L6_L7,,mesmo nome em vários escopos (identidade por escopo)
+workbook:a41_v6_validado,retirada_cond_corr_ltp,retirada_cond_corr_ltp,linha_grupo/L1_L3 | linha_grupo/L4_L5 | linha_grupo/L6_L7,,mesmo nome em vários escopos (identidade por escopo)
+workbook:a41_v6_validado,retirada_condensado_grupo,retirada_condensado_grupo,linha_grupo/L1_L3 | linha_grupo/L4_L5 | linha_grupo/L6_L7,,mesmo nome em vários escopos (identidade por escopo)
+workbook:a41_v6_validado,(expressões),,L1,@L1 × 6,referência explícita de linha (@linha)
+workbook:a41_v6_validado,(expressões),,L1_L3,@L1_L3 × 4,referência explícita de grupo (@grupo)
+workbook:a41_v6_validado,(expressões),,L2,@L2 × 6,referência explícita de linha (@linha)
+workbook:a41_v6_validado,(expressões),,L3,@L3 × 6,referência explícita de linha (@linha)
+workbook:a41_v6_validado,(expressões),,L4,@L4 × 9,referência explícita de linha (@linha)
+workbook:a41_v6_validado,(expressões),,L4_L5,@L4_L5 × 3,referência explícita de grupo (@grupo)
+workbook:a41_v6_validado,(expressões),,L5,@L5 × 9,referência explícita de linha (@linha)
+workbook:a41_v6_validado,(expressões),,L6,@L6 × 9,referência explícita de linha (@linha)
+workbook:a41_v6_validado,(expressões),,L6_L7,@L6_L7 × 3,referência explícita de grupo (@grupo)
+workbook:a41_v6_validado,(expressões),,L7,@L7 × 9,referência explícita de linha (@linha)
+workbook:a41_v6_validado,hes_l4,hes_l4,linha/L4,,nome artificialmente espacializado
+workbook:a41_v6_validado,hes_l5,hes_l5,linha/L5,,nome artificialmente espacializado
+workbook:a41_v6_validado,hes_l6,hes_l6,linha/L6,,nome artificialmente espacializado
+workbook:a41_v6_validado,hes_l7,hes_l7,linha/L7,,nome artificialmente espacializado
+workbook:energy_v2,especifico_vapor_evaporacao,especifico_vapor_evaporacao,linha/L1_L7 | linha_grupo/L1_L3 | linha_grupo/L4_L5 | linha_grupo/L6_L7,,mesmo nome em vários escopos (identidade por escopo)
+workbook:energy_v2,(expressões),,L1,@L1 × 7,referência explícita de linha (@linha)
+workbook:energy_v2,(expressões),,L2,@L2 × 7,referência explícita de linha (@linha)
+workbook:energy_v2,(expressões),,L3,@L3 × 7,referência explícita de linha (@linha)
+workbook:energy_v2,(expressões),,L4,@L4 × 7,referência explícita de linha (@linha)
+workbook:energy_v2,(expressões),,L5,@L5 × 7,referência explícita de linha (@linha)
+workbook:energy_v2,(expressões),,L6,@L6 × 7,referência explícita de linha (@linha)
+workbook:energy_v2,(expressões),,L7,@L7 × 7,referência explícita de linha (@linha)
+workbook:maxht_v5,(expressões),,L1,@L1 × 8,referência explícita de linha (@linha)
+workbook:maxht_v5,(expressões),,L2,@L2 × 8,referência explícita de linha (@linha)
+workbook:maxht_v5,(expressões),,L3,@L3 × 8,referência explícita de linha (@linha)
+workbook:maxht_v5,(expressões),,L4,@L4 × 8,referência explícita de linha (@linha)
+workbook:maxht_v5,(expressões),,L5,@L5 × 8,referência explícita de linha (@linha)
+workbook:maxht_v5,(expressões),,L6,@L6 × 8,referência explícita de linha (@linha)
+workbook:maxht_v5,(expressões),,L7,@L7 × 8,referência explícita de linha (@linha)
+workbook:maxht_v5,a13_l123,a13_l123,linha_grupo/L1_L3,,nome artificialmente espacializado
+workbook:maxht_v5,a13_l45,a13_l45,linha_grupo/L4_L5,,nome artificialmente espacializado
+workbook:maxht_v5,a13_l67,a13_l67,linha_grupo/L6_L7,,nome artificialmente espacializado
+workbook:maxht_v5,a18_a13_l123,a18_a13_l123,linha_grupo/L1_L3,,nome artificialmente espacializado
+workbook:maxht_v5,a18_a13_l45,a18_a13_l45,linha_grupo/L4_L5,,nome artificialmente espacializado
+workbook:maxht_v5,a18_a13_l67,a18_a13_l67,linha_grupo/L6_L7,,nome artificialmente espacializado
+workbook:maxht_v5,a18_l123,a18_l123,linha_grupo/L1_L3,,nome artificialmente espacializado
+workbook:maxht_v5,a18_l45,a18_l45,linha_grupo/L4_L5,,nome artificialmente espacializado
+workbook:maxht_v5,a18_l67,a18_l67,linha_grupo/L6_L7,,nome artificialmente espacializado
+workbook:maxht_v5,esp_maxht_l123,esp_maxht_l123,linha_grupo/L1_L3,,nome artificialmente espacializado
+workbook:maxht_v5,esp_maxht_l45,esp_maxht_l45,linha_grupo/L4_L5,,nome artificialmente espacializado
+workbook:maxht_v5,esp_maxht_l67,esp_maxht_l67,linha_grupo/L6_L7,,nome artificialmente espacializado
+workbook:maxht_v5,massa_total_max_ht_l123,massa_total_max_ht_l123,linha_grupo/L1_L3,,nome artificialmente espacializado
+workbook:maxht_v5,massa_total_max_ht_l45,massa_total_max_ht_l45,linha_grupo/L4_L5,,nome artificialmente espacializado
+workbook:maxht_v5,massa_total_max_ht_l67,massa_total_max_ht_l67,linha_grupo/L6_L7,,nome artificialmente espacializado
+workbook:maxht_v5,producao_l123,producao_l123,linha_grupo/L1_L3,,nome artificialmente espacializado
+workbook:maxht_v5,producao_l45,producao_l45,linha_grupo/L4_L5,,nome artificialmente espacializado
+workbook:maxht_v5,producao_l67,producao_l67,linha_grupo/L6_L7,,nome artificialmente espacializado
+workbook:maxht_v5,total_horas_dia_l123,total_horas_dia_l123,linha_grupo/L1_L3,,nome artificialmente espacializado
+workbook:maxht_v5,total_horas_dia_l45,total_horas_dia_l45,linha_grupo/L4_L5,,nome artificialmente espacializado
+workbook:maxht_v5,total_horas_dia_l67,total_horas_dia_l67,linha_grupo/L6_L7,,nome artificialmente espacializado
+workbook:production_v1,consumo_bauxita,consumo_bauxita,linha/L1_L7 | linha_grupo/L1_L7,,mesmo nome em vários escopos (identidade por escopo)
+workbook:production_v1,consumo_cbg,consumo_cbg,linha/L1_L7 | linha_grupo/L1_L7,,mesmo nome em vários escopos (identidade por escopo)
+workbook:production_v1,consumo_mpsa,consumo_mpsa,linha/L1_L7 | linha_grupo/L1_L7,,mesmo nome em vários escopos (identidade por escopo)
+workbook:production_v1,consumo_mrn,consumo_mrn,linha/L1_L7 | linha_grupo/L1_L7,,mesmo nome em vários escopos (identidade por escopo)
+workbook:production_v1,pick_up,pick_up,linha/L1 | linha/L1_L7 | linha/L2 | linha/L3 | linha/L4 | linha/L5 | linha/L6 | linha/L7,,mesmo nome em vários escopos (identidade por escopo)
+workbook:production_v1,(expressões),,L1,@L1 × 17,referência explícita de linha (@linha)
+workbook:production_v1,(expressões),,L2,@L2 × 17,referência explícita de linha (@linha)
+workbook:production_v1,(expressões),,L3,@L3 × 17,referência explícita de linha (@linha)
+workbook:production_v1,(expressões),,L4,@L4 × 16,referência explícita de linha (@linha)
+workbook:production_v1,(expressões),,L5,@L5 × 16,referência explícita de linha (@linha)
+workbook:production_v1,(expressões),,L6,@L6 × 16,referência explícita de linha (@linha)
+workbook:production_v1,(expressões),,L7,@L7 × 16,referência explícita de linha (@linha)
+workbook:yield_v4,eoc_solids,eoc_solids,linha/L1_L7 | linha_grupo/L1_L3 | linha_grupo/L1_L7 | linha_grupo/L4_L5 | linha_grupo/L6_7,,mesmo nome em vários escopos (identidade por escopo)
+workbook:yield_v4,eoc_solids_base,eoc_solids_base,linha/L1_L7 | linha_grupo/L1_L3 | linha_grupo/L1_L7 | linha_grupo/L4_L5 | linha_grupo/L6_7,,mesmo nome em vários escopos (identidade por escopo)
+workbook:yield_v4,eoc_temp,eoc_temp,linha/L1_L7 | linha_grupo/L1_L3 | linha_grupo/L1_L7 | linha_grupo/L4_L5 | linha_grupo/L6_7,,mesmo nome em vários escopos (identidade por escopo)
+workbook:yield_v4,eoc_temp_base,eoc_temp_base,linha/L1_L7 | linha_grupo/L1_L3 | linha_grupo/L1_L7 | linha_grupo/L4_L5 | linha_grupo/L6_7,,mesmo nome em vários escopos (identidade por escopo)
+workbook:yield_v4,lth,lth,linha/L1_L7 | linha_grupo/L1_L3 | linha_grupo/L1_L7 | linha_grupo/L4_L5 | linha_grupo/L6_7,,mesmo nome em vários escopos (identidade por escopo)
+workbook:yield_v4,lth_base,lth_base,linha/L1_L7 | linha_grupo/L1_L3 | linha_grupo/L1_L7 | linha_grupo/L4_L5 | linha_grupo/L6_7,,mesmo nome em vários escopos (identidade por escopo)
+workbook:yield_v4,(expressões),,L1,@L1 × 141,referência explícita de linha (@linha)
+workbook:yield_v4,(expressões),,L2,@L2 × 130,referência explícita de linha (@linha)
+workbook:yield_v4,(expressões),,L3,@L3 × 130,referência explícita de linha (@linha)
+workbook:yield_v4,(expressões),,L4,@L4 × 130,referência explícita de linha (@linha)
+workbook:yield_v4,(expressões),,L5,@L5 × 131,referência explícita de linha (@linha)
+workbook:yield_v4,(expressões),,L6,@L6 × 131,referência explícita de linha (@linha)
+workbook:yield_v4,(expressões),,L7,@L7 × 131,referência explícita de linha (@linha)
