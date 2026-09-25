@@ -1,0 +1,13 @@
+caso,ordem,erro,grupo_A,grupo_B,dep_A (só A),dep_B (só B),agregador(A+B)
+"1: A=num, B=num",original,,1.0,2.0,2.0,4.0,3.0
+"1: A=num, B=num",reversa,,1.0,2.0,2.0,4.0,3.0
+"1: A=num, B=num",aleatória(7),,1.0,2.0,2.0,4.0,3.0
+"2: A=F, B=num",original,EquationEvaluationError(ConditionalFailureError),F,2.0,—,—,—
+"2: A=F, B=num",reversa,EquationEvaluationError(ConditionalFailureError),F,2.0,—,—,—
+"2: A=F, B=num",aleatória(7),EquationEvaluationError(ConditionalFailureError),F,2.0,—,—,—
+"3: A=num, B=F",original,EquationEvaluationError(ConditionalFailureError),1.0,F,2.0,—,—
+"3: A=num, B=F",reversa,EquationEvaluationError(ConditionalFailureError),1.0,F,2.0,—,—
+"3: A=num, B=F",aleatória(7),EquationEvaluationError(ConditionalFailureError),1.0,F,2.0,—,—
+"4: A=F, B=F",original,EquationEvaluationError(ConditionalFailureError),F,F,—,—,—
+"4: A=F, B=F",reversa,EquationEvaluationError(ConditionalFailureError),F,F,—,—,—
+"4: A=F, B=F",aleatória(7),EquationEvaluationError(ConditionalFailureError),F,F,—,—,—

@@ -1,0 +1,7 @@
+Produzido,armazenar em numeric,armazenar em categorical,aritmética,"== ""LC"""
+Numeric,aceito,aceito,2.5,ExpressionTypeError
+Categorical,rejeitado (CalculationValueError),aceito,ExpressionTypeError,1
+Boolean,rejeitado (CalculationValueError),rejeitado (CalculationValueError),VariableNotFoundError,TypeError
+String(erro),rejeitado (CalculationValueError),aceito,ExpressionTypeError,0
+F/Estado,aceito,aceito,ConditionalFailureError,ConditionalFailureError
+None,rejeitado (CalculationValueError),rejeitado (CalculationValueError),VariableNotFoundError,TypeError

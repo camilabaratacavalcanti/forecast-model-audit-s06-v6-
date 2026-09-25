@@ -1,0 +1,15 @@
+id,caso,resultado,classificacao
+NT01,"""F"" convertido implicitamente",ConditionalFailureError: Operação '*' sobre falha condicional ('F').,SAFE
+NT02,string somada,ExpressionTypeError: Operação '+' exige valor numérico; recebeu 'LC'.,SAFE
+NT03,string tratada como zero,ExpressionTypeError: Operação '*' exige valor numérico; recebeu 'LC'.,SAFE
+NT04,bool convertido em número,ExpressionTypeError: Operação '+' exige valor numérico; recebeu True.,SAFE
+NT05,número como condição de IF (legado),1,DEFINED
+NT06,None ignorado,CalculationValueError: O valor da variável VAR96604 deve ser numérico ou texto categórico.,SAFE
+NT07,texto em variável não declarada,CalculationValueError: O valor da variável VAR96605 deve ser numérico: a variável não é declarada categórica.,SAFE
+NT08,número em variável categorical,None,AMBIGUOUS
+NT09,value_type mixed,"ValueError: value_type inválido para VAR96607: 'mixed' (permitidos: ['categorical', 'numeric'])",SAFE
+NT10,value_type string/boolean,"ValueError: value_type inválido para VAR96608: 'string' (permitidos: ['categorical', 'numeric'])",SAFE
+NT11,categorical sem registry (engine chamado sem variable_definition_registry),CalculationValueError: O valor da variável VAR96620 deve ser numérico: a variável não é declarada categórica.,AMBIGUOUS
+NT12,agregação declarada sobre variável categorical (estático),"AggregationRule(aggregation_rule_id='AGG96', source_variable_id='VAR96609', source_frequency='diário', target_variable_id='VAR96610', target_frequency='mensal', aggregation_type='AVERAGE', weight_variable_id=None, window_start_date=None, window_end_date=None, integration_factor=1.0)",AMBIGUOUS
+NT13,"categoria ""F"" colide com o sentinela","ConditionalFailureError: Comparação 'Eq' sobre falha condicional ('F'); use == ""F"" para detectá-la.",UNSAFE
+NT14,erro técnico e estado de negócio na mesma família de exceção,"['EvaluationError', 'EvaluationError']",AMBIGUOUS

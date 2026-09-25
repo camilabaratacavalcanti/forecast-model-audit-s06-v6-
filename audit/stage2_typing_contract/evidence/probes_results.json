@@ -1,0 +1,1057 @@
+{
+ "environment": {
+  "commit": "978c2d0f2d070735d11d2098f11c1cf05bc3eb26",
+  "python": "3.11.15",
+  "command": "python3 audit/stage2_typing_contract/probes_typing_contract.py"
+ },
+ "probes": [
+  {
+   "id": "P01",
+   "title": "numeric -> numeric",
+   "input": "VAR96002 = VAR96001*2 ; VAR96001=5",
+   "expected_behavior": "10 armazenado",
+   "actual_behavior": {
+    "kind": "value",
+    "type": "tuple",
+    "repr": "({'VAR96002': 10.0}, None)"
+   },
+   "interpretation": "Caminho nominal."
+  },
+  {
+   "id": "P02",
+   "title": "categorical -> categorical",
+   "input": "VAR96012 = \"ALTO\" if VAR96011 == \"LC\" else \"BAIXO\" ; VAR96011=\"LC\"",
+   "expected_behavior": "\"ALTO\" armazenado",
+   "actual_behavior": {
+    "kind": "value",
+    "type": "tuple",
+    "repr": "({'VAR96012': 'ALTO'}, None)"
+   },
+   "interpretation": "Texto é valor de domínio quando a variável é declarada categorical."
+  },
+  {
+   "id": "P03a",
+   "title": "boolean como resultado final",
+   "input": "VAR96022 = VAR96021 > 0",
+   "expected_behavior": "rejeitado",
+   "actual_behavior": {
+    "kind": "value",
+    "type": "tuple",
+    "repr": "({}, 'EquationEvaluationError(ExpressionTypeError)')"
+   },
+   "interpretation": "Booleano não é valor armazenável; só existe como condição intermediária."
+  },
+  {
+   "id": "P03b",
+   "title": "boolean como entrada",
+   "input": "set_variable(True)",
+   "expected_behavior": "rejeitado",
+   "actual_behavior": {
+    "kind": "error",
+    "type": "CalculationValueError",
+    "original": null,
+    "repr": "O valor da variável VAR96021 não pode ser booleano."
+   },
+   "interpretation": "Storage rejeita bool."
+  },
+  {
+   "id": "P03c",
+   "title": "literal True/VERDADEIRO na DSL",
+   "input": "VAR96021 + True",
+   "expected_behavior": "rejeitado",
+   "actual_behavior": {
+    "kind": "error",
+    "type": "UnsafeExpressionError",
+    "original": null,
+    "repr": "Valores booleanos não são permitidos."
+   },
+   "interpretation": "Parser rejeita constantes booleanas."
+  },
+  {
+   "id": "P04",
+   "title": "numeric -> \"F\"",
+   "input": "VAR96032 = VAR96031 if VAR96031 > 0 else \"F\" ; VAR96031=-1",
+   "expected_behavior": "\"F\" armazenado em variável numeric",
+   "actual_behavior": {
+    "kind": "value",
+    "type": "tuple",
+    "repr": "({'VAR96032': 'F'}, None)"
+   },
+   "interpretation": "\"F\" atravessa o gate de value_type: é tratado como estado, não como texto."
+  },
+  {
+   "id": "P05a",
+   "title": "numeric -> \"ERRO!!!\" (ramo executado)",
+   "input": "VAR96042 = VAR96041 if VAR96041 > 0 else \"ERRO!!!\" ; VAR96041=-1",
+   "expected_behavior": "rejeitado no armazenamento",
+   "actual_behavior": {
+    "kind": "value",
+    "type": "tuple",
+    "repr": "({}, 'CalculationValueError(CalculationValueError)')"
+   },
+   "interpretation": "Só detectado em runtime, quando o ramo executa."
+  },
+  {
+   "id": "P05b",
+   "title": "numeric -> \"ERRO!!!\" (ramo não executado)",
+   "input": "mesma equação ; VAR96041=3",
+   "expected_behavior": "sem detecção (latente)",
+   "actual_behavior": {
+    "kind": "value",
+    "type": "tuple",
+    "repr": "({'VAR96042': 3.0}, None)"
+   },
+   "interpretation": "Não há verificação estática do tipo dos ramos contra value_type."
+  },
+  {
+   "id": "P05c",
+   "title": "categorical -> \"ERRO!!!\"",
+   "input": "VAR96052 (categorical) = \"OK\" if VAR96051 > 0 else \"ERRO!!!\" ; VAR96051=-1",
+   "expected_behavior": "?",
+   "actual_behavior": {
+    "kind": "value",
+    "type": "tuple",
+    "repr": "({'VAR96052': 'ERRO!!!'}, None)"
+   },
+   "interpretation": "Erro de negócio indistinguível de categoria de domínio."
+  },
+  {
+   "id": "P06a",
+   "title": "numeric -> None na DSL",
+   "input": "VAR96061 if VAR96061 > 0 else None",
+   "expected_behavior": "rejeitado",
+   "actual_behavior": {
+    "kind": "error",
+    "type": "UnsafeExpressionError",
+    "original": null,
+    "repr": "Somente constantes numéricas ou de texto são permitidas."
+   },
+   "interpretation": "None não é expressável."
+  },
+  {
+   "id": "P06b",
+   "title": "None no storage",
+   "input": "set_variable(None)",
+   "expected_behavior": "rejeitado",
+   "actual_behavior": {
+    "kind": "error",
+    "type": "CalculationValueError",
+    "original": null,
+    "repr": "O valor da variável VAR96061 deve ser numérico ou texto categórico."
+   },
+   "interpretation": "Ausência é representada por ausência de chave, nunca por None."
+  },
+  {
+   "id": "P07",
+   "title": "numeric + numeric",
+   "input": "VAR96071 + VAR96072 (2+3)",
+   "expected_behavior": "5",
+   "actual_behavior": {
+    "kind": "value",
+    "type": "float",
+    "repr": "5.0"
+   },
+   "interpretation": "Nominal."
+  },
+  {
+   "id": "P08",
+   "title": "numeric + \"F\"",
+   "input": "VAR96081 + VAR96082 (2 + \"F\")",
+   "expected_behavior": "falha explícita",
+   "actual_behavior": {
+    "kind": "error",
+    "type": "ConditionalFailureError",
+    "original": null,
+    "repr": "Operação '+' sobre falha condicional ('F')."
+   },
+   "interpretation": "Consumo de estado gera exceção, não valor."
+  },
+  {
+   "id": "P09a",
+   "title": "AVERAGE com \"F\"",
+   "input": "[10, F]",
+   "expected_behavior": "falha explícita",
+   "actual_behavior": {
+    "kind": "error",
+    "type": "AggregationFailureError",
+    "original": null,
+    "repr": "Regra AGG96: a série de origem contém falha condicional ('F') nos períodos ['2026-03-02']; a agregação não pode produzir um valor numérico."
+   },
+   "interpretation": "Nunca parcial."
+  },
+  {
+   "id": "P09b",
+   "title": "SUM com \"F\"",
+   "input": "[10, F]",
+   "expected_behavior": "falha explícita",
+   "actual_behavior": {
+    "kind": "error",
+    "type": "AggregationFailureError",
+    "original": null,
+    "repr": "Regra AGG96: a série de origem contém falha condicional ('F') nos períodos ['2026-03-02']; a agregação não pode produzir um valor numérico."
+   },
+   "interpretation": "Nunca parcial."
+  },
+  {
+   "id": "P10a",
+   "title": "IF numeric/numeric",
+   "input": "1 if VAR96101 > 0 else 2",
+   "expected_behavior": "1",
+   "actual_behavior": {
+    "kind": "value",
+    "type": "int",
+    "repr": "1"
+   },
+   "interpretation": "Nominal."
+  },
+  {
+   "id": "P10b",
+   "title": "IF numeric/string (ramo string)",
+   "input": "1 if VAR96101 > 0 else \"X\"",
+   "expected_behavior": "\"X\" (avaliação); rejeitado ao armazenar em numeric",
+   "actual_behavior": {
+    "kind": "value",
+    "type": "str",
+    "repr": "'X'"
+   },
+   "interpretation": "O evaluator não conhece value_type; o tipo do resultado depende do ramo."
+  },
+  {
+   "id": "P10c",
+   "title": "IF string/string",
+   "input": "\"A\" if VAR96101 > 0 else \"B\"",
+   "expected_behavior": "\"B\"",
+   "actual_behavior": {
+    "kind": "value",
+    "type": "str",
+    "repr": "'B'"
+   },
+   "interpretation": "Nominal para categorical."
+  },
+  {
+   "id": "P11a",
+   "title": "propagação aritmética A=\"F\" -> B -> C -> D",
+   "input": "B=A*2; C=B+1; D=C/2",
+   "expected_behavior": "?",
+   "actual_behavior": {
+    "kind": "value",
+    "type": "tuple",
+    "repr": "({}, 'EquationEvaluationError(ConditionalFailureError)')"
+   },
+   "interpretation": "B falha; C e D não são calculados; nenhum recebe \"F\"."
+  },
+  {
+   "id": "P11b",
+   "title": "propagação por referência/IF A=\"F\" -> B=A -> C=(B if k>0 else 0) -> D=C+1",
+   "input": "k=1",
+   "expected_behavior": "?",
+   "actual_behavior": {
+    "kind": "value",
+    "type": "tuple",
+    "repr": "({'VAR96121': 'F', 'VAR96122': 'F'}, 'EquationEvaluationError(ConditionalFailureError)')"
+   },
+   "interpretation": "Referência e ramo de IF repassam \"F\" como VALOR; só a aritmética converte em exceção."
+  },
+  {
+   "id": "P13",
+   "title": "texto de domínio",
+   "input": "VAR96131=\"LC\" (categorical) comparado a \"LC\"",
+   "expected_behavior": "1",
+   "actual_behavior": {
+    "kind": "value",
+    "type": "int",
+    "repr": "1"
+   },
+   "interpretation": "Categoria legítima."
+  },
+  {
+   "id": "P14a",
+   "title": "categoria legítima com código \"F\"",
+   "input": "VAR96141=\"F\" (categorical) == \"A\"",
+   "expected_behavior": "?",
+   "actual_behavior": {
+    "kind": "error",
+    "type": "ConditionalFailureError",
+    "original": null,
+    "repr": "Comparação 'Eq' sobre falha condicional ('F'); use == \"F\" para detectá-la."
+   },
+   "interpretation": "Colisão: um domínio categórico não pode usar o código \"F\"."
+  },
+  {
+   "id": "P14b",
+   "title": "texto de erro em categorical",
+   "input": "VAR96142=\"ERRO!!!\" (categorical)",
+   "expected_behavior": "?",
+   "actual_behavior": {
+    "kind": "value",
+    "type": "int",
+    "repr": "1"
+   },
+   "interpretation": "Erro de negócio armazenado como categoria, sem distinção."
+  }
+ ],
+ "f001": [
+  {
+   "caso": "1: A=num, B=num",
+   "ordem": "original",
+   "erro": "",
+   "grupo_A": 1.0,
+   "grupo_B": 2.0,
+   "dep_A (só A)": 2.0,
+   "dep_B (só B)": 4.0,
+   "agregador(A+B)": 3.0
+  },
+  {
+   "caso": "1: A=num, B=num",
+   "ordem": "reversa",
+   "erro": "",
+   "grupo_A": 1.0,
+   "grupo_B": 2.0,
+   "dep_A (só A)": 2.0,
+   "dep_B (só B)": 4.0,
+   "agregador(A+B)": 3.0
+  },
+  {
+   "caso": "1: A=num, B=num",
+   "ordem": "aleatória(7)",
+   "erro": "",
+   "grupo_A": 1.0,
+   "grupo_B": 2.0,
+   "dep_A (só A)": 2.0,
+   "dep_B (só B)": 4.0,
+   "agregador(A+B)": 3.0
+  },
+  {
+   "caso": "2: A=F, B=num",
+   "ordem": "original",
+   "erro": "EquationEvaluationError(ConditionalFailureError)",
+   "grupo_A": "F",
+   "grupo_B": 2.0,
+   "dep_A (só A)": "—",
+   "dep_B (só B)": "—",
+   "agregador(A+B)": "—"
+  },
+  {
+   "caso": "2: A=F, B=num",
+   "ordem": "reversa",
+   "erro": "EquationEvaluationError(ConditionalFailureError)",
+   "grupo_A": "F",
+   "grupo_B": 2.0,
+   "dep_A (só A)": "—",
+   "dep_B (só B)": "—",
+   "agregador(A+B)": "—"
+  },
+  {
+   "caso": "2: A=F, B=num",
+   "ordem": "aleatória(7)",
+   "erro": "EquationEvaluationError(ConditionalFailureError)",
+   "grupo_A": "F",
+   "grupo_B": 2.0,
+   "dep_A (só A)": "—",
+   "dep_B (só B)": "—",
+   "agregador(A+B)": "—"
+  },
+  {
+   "caso": "3: A=num, B=F",
+   "ordem": "original",
+   "erro": "EquationEvaluationError(ConditionalFailureError)",
+   "grupo_A": 1.0,
+   "grupo_B": "F",
+   "dep_A (só A)": 2.0,
+   "dep_B (só B)": "—",
+   "agregador(A+B)": "—"
+  },
+  {
+   "caso": "3: A=num, B=F",
+   "ordem": "reversa",
+   "erro": "EquationEvaluationError(ConditionalFailureError)",
+   "grupo_A": 1.0,
+   "grupo_B": "F",
+   "dep_A (só A)": 2.0,
+   "dep_B (só B)": "—",
+   "agregador(A+B)": "—"
+  },
+  {
+   "caso": "3: A=num, B=F",
+   "ordem": "aleatória(7)",
+   "erro": "EquationEvaluationError(ConditionalFailureError)",
+   "grupo_A": 1.0,
+   "grupo_B": "F",
+   "dep_A (só A)": 2.0,
+   "dep_B (só B)": "—",
+   "agregador(A+B)": "—"
+  },
+  {
+   "caso": "4: A=F, B=F",
+   "ordem": "original",
+   "erro": "EquationEvaluationError(ConditionalFailureError)",
+   "grupo_A": "F",
+   "grupo_B": "F",
+   "dep_A (só A)": "—",
+   "dep_B (só B)": "—",
+   "agregador(A+B)": "—"
+  },
+  {
+   "caso": "4: A=F, B=F",
+   "ordem": "reversa",
+   "erro": "EquationEvaluationError(ConditionalFailureError)",
+   "grupo_A": "F",
+   "grupo_B": "F",
+   "dep_A (só A)": "—",
+   "dep_B (só B)": "—",
+   "agregador(A+B)": "—"
+  },
+  {
+   "caso": "4: A=F, B=F",
+   "ordem": "aleatória(7)",
+   "erro": "EquationEvaluationError(ConditionalFailureError)",
+   "grupo_A": "F",
+   "grupo_B": "F",
+   "dep_A (só A)": "—",
+   "dep_B (só B)": "—",
+   "agregador(A+B)": "—"
+  }
+ ],
+ "aggregation": [
+  {
+   "serie": "numeric+numeric",
+   "agregacao": "SUM",
+   "resultado": "4.0"
+  },
+  {
+   "serie": "numeric+numeric",
+   "agregacao": "AVERAGE",
+   "resultado": "2.0"
+  },
+  {
+   "serie": "numeric+numeric",
+   "agregacao": "MIN",
+   "resultado": "InvalidAggregationRuleError: Tipo de agregação não suportado: MIN"
+  },
+  {
+   "serie": "numeric+numeric",
+   "agregacao": "MAX",
+   "resultado": "InvalidAggregationRuleError: Tipo de agregação não suportado: MAX"
+  },
+  {
+   "serie": "numeric+\"F\"",
+   "agregacao": "SUM",
+   "resultado": "AggregationFailureError: Regra AGG96: a série de origem contém falha condicional ('F') nos períodos ['2026-03-02'];"
+  },
+  {
+   "serie": "numeric+\"F\"",
+   "agregacao": "AVERAGE",
+   "resultado": "AggregationFailureError: Regra AGG96: a série de origem contém falha condicional ('F') nos períodos ['2026-03-02'];"
+  },
+  {
+   "serie": "numeric+\"F\"",
+   "agregacao": "MIN",
+   "resultado": "InvalidAggregationRuleError: Tipo de agregação não suportado: MIN"
+  },
+  {
+   "serie": "numeric+\"F\"",
+   "agregacao": "MAX",
+   "resultado": "InvalidAggregationRuleError: Tipo de agregação não suportado: MAX"
+  },
+  {
+   "serie": "numeric+string",
+   "agregacao": "SUM",
+   "resultado": "NonNumericAggregationError: Regra AGG96: VAR96301 tem valores não numéricos nos períodos ['2026-03-02']; texto categór"
+  },
+  {
+   "serie": "numeric+string",
+   "agregacao": "AVERAGE",
+   "resultado": "NonNumericAggregationError: Regra AGG96: VAR96301 tem valores não numéricos nos períodos ['2026-03-02']; texto categór"
+  },
+  {
+   "serie": "numeric+string",
+   "agregacao": "MIN",
+   "resultado": "InvalidAggregationRuleError: Tipo de agregação não suportado: MIN"
+  },
+  {
+   "serie": "numeric+string",
+   "agregacao": "MAX",
+   "resultado": "InvalidAggregationRuleError: Tipo de agregação não suportado: MAX"
+  },
+  {
+   "serie": "string+string",
+   "agregacao": "SUM",
+   "resultado": "NonNumericAggregationError: Regra AGG96: VAR96301 tem valores não numéricos nos períodos ['2026-03-01', '2026-03-02'];"
+  },
+  {
+   "serie": "string+string",
+   "agregacao": "AVERAGE",
+   "resultado": "NonNumericAggregationError: Regra AGG96: VAR96301 tem valores não numéricos nos períodos ['2026-03-01', '2026-03-02'];"
+  },
+  {
+   "serie": "string+string",
+   "agregacao": "MIN",
+   "resultado": "InvalidAggregationRuleError: Tipo de agregação não suportado: MIN"
+  },
+  {
+   "serie": "string+string",
+   "agregacao": "MAX",
+   "resultado": "InvalidAggregationRuleError: Tipo de agregação não suportado: MAX"
+  },
+  {
+   "serie": "numeric+ausente",
+   "agregacao": "SUM",
+   "resultado": "VariableNotFoundError: Valor contextualizado da variável não encontrado: VAR96301, scope_type=linha, scope_value="
+  },
+  {
+   "serie": "numeric+ausente",
+   "agregacao": "AVERAGE",
+   "resultado": "VariableNotFoundError: Valor contextualizado da variável não encontrado: VAR96301, scope_type=linha, scope_value="
+  },
+  {
+   "serie": "numeric+ausente",
+   "agregacao": "MIN",
+   "resultado": "InvalidAggregationRuleError: Tipo de agregação não suportado: MIN"
+  },
+  {
+   "serie": "numeric+ausente",
+   "agregacao": "MAX",
+   "resultado": "InvalidAggregationRuleError: Tipo de agregação não suportado: MAX"
+  }
+ ],
+ "compatibility": [
+  {
+   "Produzido": "Numeric",
+   "armazenar em numeric": "aceito",
+   "armazenar em categorical": "aceito",
+   "aritmética": "2.5",
+   "== \"LC\"": "ExpressionTypeError"
+  },
+  {
+   "Produzido": "Categorical",
+   "armazenar em numeric": "rejeitado (CalculationValueError)",
+   "armazenar em categorical": "aceito",
+   "aritmética": "ExpressionTypeError",
+   "== \"LC\"": "1"
+  },
+  {
+   "Produzido": "Boolean",
+   "armazenar em numeric": "rejeitado (CalculationValueError)",
+   "armazenar em categorical": "rejeitado (CalculationValueError)",
+   "aritmética": "VariableNotFoundError",
+   "== \"LC\"": "TypeError"
+  },
+  {
+   "Produzido": "String(erro)",
+   "armazenar em numeric": "rejeitado (CalculationValueError)",
+   "armazenar em categorical": "aceito",
+   "aritmética": "ExpressionTypeError",
+   "== \"LC\"": "0"
+  },
+  {
+   "Produzido": "F/Estado",
+   "armazenar em numeric": "aceito",
+   "armazenar em categorical": "aceito",
+   "aritmética": "ConditionalFailureError",
+   "== \"LC\"": "ConditionalFailureError"
+  },
+  {
+   "Produzido": "None",
+   "armazenar em numeric": "rejeitado (CalculationValueError)",
+   "armazenar em categorical": "rejeitado (CalculationValueError)",
+   "aritmética": "VariableNotFoundError",
+   "== \"LC\"": "TypeError"
+  }
+ ],
+ "propagation": [
+  {
+   "operacao": "comparação (== 0)",
+   "expressao": "1 if VAR96501 == 0 else 2",
+   "resultado": "ConditionalFailureError"
+  },
+  {
+   "operacao": "comparação (== \"F\")",
+   "expressao": "1 if VAR96501 == \"F\" else 2",
+   "resultado": "1"
+  },
+  {
+   "operacao": "comparação (> 0)",
+   "expressao": "1 if VAR96501 > 0 else 2",
+   "resultado": "ConditionalFailureError"
+  },
+  {
+   "operacao": "soma",
+   "expressao": "VAR96501 + VAR96502",
+   "resultado": "ConditionalFailureError"
+  },
+  {
+   "operacao": "multiplicação",
+   "expressao": "VAR96501 * VAR96502",
+   "resultado": "ConditionalFailureError"
+  },
+  {
+   "operacao": "divisão",
+   "expressao": "VAR96501 / VAR96502",
+   "resultado": "ConditionalFailureError"
+  },
+  {
+   "operacao": "ln()",
+   "expressao": "ln(VAR96501)",
+   "resultado": "ConditionalFailureError"
+  },
+  {
+   "operacao": "IF (condição)",
+   "expressao": "1 if VAR96501 else 2",
+   "resultado": "ConditionalFailureError"
+  },
+  {
+   "operacao": "IF (ramo devolvido)",
+   "expressao": "VAR96501 if VAR96502 > 0 else 0",
+   "resultado": "'F'"
+  },
+  {
+   "operacao": "referência",
+   "expressao": "VAR96501",
+   "resultado": "'F'"
+  },
+  {
+   "operacao": "and/or",
+   "expressao": "1 if VAR96501 > 0 and VAR96502 > 0 else 2",
+   "resultado": "ConditionalFailureError"
+  }
+ ],
+ "negative_tests": [
+  {
+   "id": "NT01",
+   "caso": "\"F\" convertido implicitamente",
+   "resultado": "ConditionalFailureError: Operação '*' sobre falha condicional ('F').",
+   "classificacao": "SAFE"
+  },
+  {
+   "id": "NT02",
+   "caso": "string somada",
+   "resultado": "ExpressionTypeError: Operação '+' exige valor numérico; recebeu 'LC'.",
+   "classificacao": "SAFE"
+  },
+  {
+   "id": "NT03",
+   "caso": "string tratada como zero",
+   "resultado": "ExpressionTypeError: Operação '*' exige valor numérico; recebeu 'LC'.",
+   "classificacao": "SAFE"
+  },
+  {
+   "id": "NT04",
+   "caso": "bool convertido em número",
+   "resultado": "ExpressionTypeError: Operação '+' exige valor numérico; recebeu True.",
+   "classificacao": "SAFE"
+  },
+  {
+   "id": "NT05",
+   "caso": "número como condição de IF (legado)",
+   "resultado": "1",
+   "classificacao": "DEFINED"
+  },
+  {
+   "id": "NT06",
+   "caso": "None ignorado",
+   "resultado": "CalculationValueError: O valor da variável VAR96604 deve ser numérico ou texto categórico.",
+   "classificacao": "SAFE"
+  },
+  {
+   "id": "NT07",
+   "caso": "texto em variável não declarada",
+   "resultado": "CalculationValueError: O valor da variável VAR96605 deve ser numérico: a variável não é declarada categórica.",
+   "classificacao": "SAFE"
+  },
+  {
+   "id": "NT08",
+   "caso": "número em variável categorical",
+   "resultado": "None",
+   "classificacao": "AMBIGUOUS"
+  },
+  {
+   "id": "NT09",
+   "caso": "value_type mixed",
+   "resultado": "ValueError: value_type inválido para VAR96607: 'mixed' (permitidos: ['categorical', 'numeric'])",
+   "classificacao": "SAFE"
+  },
+  {
+   "id": "NT10",
+   "caso": "value_type string/boolean",
+   "resultado": "ValueError: value_type inválido para VAR96608: 'string' (permitidos: ['categorical', 'numeric'])",
+   "classificacao": "SAFE"
+  },
+  {
+   "id": "NT11",
+   "caso": "categorical sem registry (engine chamado sem variable_definition_registry)",
+   "resultado": "CalculationValueError: O valor da variável VAR96620 deve ser numérico: a variável não é declarada categórica.",
+   "classificacao": "AMBIGUOUS"
+  },
+  {
+   "id": "NT12",
+   "caso": "agregação declarada sobre variável categorical (estático)",
+   "resultado": "AggregationRule(aggregation_rule_id='AGG96', source_variable_id='VAR96609', source_frequency='diário', target_variable_id='VAR96610', target_frequency='mensal', aggregation_type='AVERAGE', weight_variable_id=None, window_start_date=None, window_end_date=None, integration_factor=1.0)",
+   "classificacao": "AMBIGUOUS"
+  },
+  {
+   "id": "NT13",
+   "caso": "categoria \"F\" colide com o sentinela",
+   "resultado": "ConditionalFailureError: Comparação 'Eq' sobre falha condicional ('F'); use == \"F\" para detectá-la.",
+   "classificacao": "UNSAFE"
+  },
+  {
+   "id": "NT14",
+   "caso": "erro técnico e estado de negócio na mesma família de exceção",
+   "resultado": "['EvaluationError', 'EvaluationError']",
+   "classificacao": "AMBIGUOUS"
+  }
+ ],
+ "mutation_tests": [
+  {
+   "id": "MT00",
+   "mutacao": "baseline (Normal/Normal)",
+   "resultado": "({'VAR96703': 1, 'VAR96704': 10}, None)"
+  },
+  {
+   "id": "MT01",
+   "mutacao": "estados declarados numeric",
+   "resultado": "CalculationValueError: O valor da variável VAR96701 deve ser numérico: a variável não é declarada categórica."
+  },
+  {
+   "id": "MT02",
+   "mutacao": "resultado numérico declarado categorical",
+   "resultado": "({'VAR96703': 1, 'VAR96704': 10}, None)"
+  },
+  {
+   "id": "MT03",
+   "mutacao": "\"F\" trocado por \"ERRO!!!\" (ramo não executado)",
+   "resultado": "({'VAR96703': 1, 'VAR96704': 10}, None)"
+  },
+  {
+   "id": "MT04",
+   "mutacao": "\"F\" trocado por \"ERRO!!!\" (ramo executado)",
+   "resultado": "({}, 'CalculationValueError(CalculationValueError)')"
+  },
+  {
+   "id": "MT05",
+   "mutacao": "value_type mixed",
+   "resultado": "ValueError: value_type inválido para VAR96703: 'mixed' (permitidos: ['categorical', 'numeric'])"
+  },
+  {
+   "id": "MT06",
+   "mutacao": "resultado booleano",
+   "resultado": "({}, 'EquationEvaluationError(ExpressionTypeError)')"
+  },
+  {
+   "id": "MT07",
+   "mutacao": "ramo numérico vira texto \"100\" em aritmética",
+   "resultado": "UnsafeExpressionError: Constante de texto só é permitida como resultado, ramo de IF ou operando de comparação: '100'"
+  },
+  {
+   "id": "MT08",
+   "mutacao": "estado com erro de digitação (\"Overhaul\")",
+   "resultado": "({'VAR96703': 'F'}, 'EquationEvaluationError(ConditionalFailureError)')"
+  },
+  {
+   "id": "MT09",
+   "mutacao": "estado \"F\" legítimo? (hes=\"F\")",
+   "resultado": "({}, 'EquationEvaluationError(ConditionalFailureError)')"
+  }
+ ],
+ "a41_case_study": {
+  "workbook_sha_prefix": "4b0c41ae",
+  "cell": "M39",
+  "translated": "( (100 - ((VAR96801 - VAR96802) * 2)) if VAR96803@L4 == \"Normal\" and VAR96804@L5 == \"Normal\" else ( ( ( (100 - ((VAR96801 - VAR96802) * 2)) * 14 + ( (100 - ((VAR96801 - VAR96802) * 2)) / 2 ) * 10 ) / 24 ) if VAR96803@L4 == \"LC\" or VAR96804@L5 == \"LC\" else ( 50 - ((VAR96801 - VAR96802) * 2) ) if VAR96803@L4 == \"Overhaul/Parada\" or VAR96804@L5 == \"Overhaul/Parada\" else ( 100 - ((VAR96801 - VAR96802) * 2) - VAR96806 ) if VAR96803@L4 == \"1 By pass\" or VAR96804@L5 == \"1 By pass\" else ( ( ( (100 - ((VAR96801 - VAR96802) * 2)) * 14 + ( ( (100 - ((VAR96801 - VAR96802) * 2)) - VAR96805 ) / 2 ) * 10 ) / 24 ) if VAR96803@L4 == \"1 By pass e LC\" and VAR96804@L5 == \"1 By pass e LC\" else \"F\" ) ) )",
+  "rows": [
+   {
+    "hes_l4": "Normal",
+    "hes_l5": "Normal",
+    "resultado": "90.0",
+    "tipo": "float"
+   },
+   {
+    "hes_l4": "Normal",
+    "hes_l5": "LC",
+    "resultado": "71.25",
+    "tipo": "float"
+   },
+   {
+    "hes_l4": "Normal",
+    "hes_l5": "Overhaul/Parada",
+    "resultado": "40.0",
+    "tipo": "float"
+   },
+   {
+    "hes_l4": "Normal",
+    "hes_l5": "1 By pass",
+    "resultado": "86.0",
+    "tipo": "float"
+   },
+   {
+    "hes_l4": "Normal",
+    "hes_l5": "1 By pass e LC",
+    "resultado": "'F'",
+    "tipo": "str"
+   },
+   {
+    "hes_l4": "Normal",
+    "hes_l5": "Overhaul",
+    "resultado": "'F'",
+    "tipo": "str"
+   },
+   {
+    "hes_l4": "Normal",
+    "hes_l5": "(vazio)",
+    "resultado": "VariableNotFoundError",
+    "tipo": "VariableNotFoundError"
+   },
+   {
+    "hes_l4": "LC",
+    "hes_l5": "Normal",
+    "resultado": "71.25",
+    "tipo": "float"
+   },
+   {
+    "hes_l4": "LC",
+    "hes_l5": "LC",
+    "resultado": "71.25",
+    "tipo": "float"
+   },
+   {
+    "hes_l4": "LC",
+    "hes_l5": "Overhaul/Parada",
+    "resultado": "71.25",
+    "tipo": "float"
+   },
+   {
+    "hes_l4": "LC",
+    "hes_l5": "1 By pass",
+    "resultado": "71.25",
+    "tipo": "float"
+   },
+   {
+    "hes_l4": "LC",
+    "hes_l5": "1 By pass e LC",
+    "resultado": "71.25",
+    "tipo": "float"
+   },
+   {
+    "hes_l4": "LC",
+    "hes_l5": "Overhaul",
+    "resultado": "71.25",
+    "tipo": "float"
+   },
+   {
+    "hes_l4": "LC",
+    "hes_l5": "(vazio)",
+    "resultado": "71.25",
+    "tipo": "float"
+   },
+   {
+    "hes_l4": "Overhaul/Parada",
+    "hes_l5": "Normal",
+    "resultado": "40.0",
+    "tipo": "float"
+   },
+   {
+    "hes_l4": "Overhaul/Parada",
+    "hes_l5": "LC",
+    "resultado": "71.25",
+    "tipo": "float"
+   },
+   {
+    "hes_l4": "Overhaul/Parada",
+    "hes_l5": "Overhaul/Parada",
+    "resultado": "40.0",
+    "tipo": "float"
+   },
+   {
+    "hes_l4": "Overhaul/Parada",
+    "hes_l5": "1 By pass",
+    "resultado": "40.0",
+    "tipo": "float"
+   },
+   {
+    "hes_l4": "Overhaul/Parada",
+    "hes_l5": "1 By pass e LC",
+    "resultado": "40.0",
+    "tipo": "float"
+   },
+   {
+    "hes_l4": "Overhaul/Parada",
+    "hes_l5": "Overhaul",
+    "resultado": "40.0",
+    "tipo": "float"
+   },
+   {
+    "hes_l4": "Overhaul/Parada",
+    "hes_l5": "(vazio)",
+    "resultado": "VariableNotFoundError",
+    "tipo": "VariableNotFoundError"
+   },
+   {
+    "hes_l4": "1 By pass",
+    "hes_l5": "Normal",
+    "resultado": "86.0",
+    "tipo": "float"
+   },
+   {
+    "hes_l4": "1 By pass",
+    "hes_l5": "LC",
+    "resultado": "71.25",
+    "tipo": "float"
+   },
+   {
+    "hes_l4": "1 By pass",
+    "hes_l5": "Overhaul/Parada",
+    "resultado": "40.0",
+    "tipo": "float"
+   },
+   {
+    "hes_l4": "1 By pass",
+    "hes_l5": "1 By pass",
+    "resultado": "86.0",
+    "tipo": "float"
+   },
+   {
+    "hes_l4": "1 By pass",
+    "hes_l5": "1 By pass e LC",
+    "resultado": "86.0",
+    "tipo": "float"
+   },
+   {
+    "hes_l4": "1 By pass",
+    "hes_l5": "Overhaul",
+    "resultado": "86.0",
+    "tipo": "float"
+   },
+   {
+    "hes_l4": "1 By pass",
+    "hes_l5": "(vazio)",
+    "resultado": "VariableNotFoundError",
+    "tipo": "VariableNotFoundError"
+   },
+   {
+    "hes_l4": "1 By pass e LC",
+    "hes_l5": "Normal",
+    "resultado": "'F'",
+    "tipo": "str"
+   },
+   {
+    "hes_l4": "1 By pass e LC",
+    "hes_l5": "LC",
+    "resultado": "71.25",
+    "tipo": "float"
+   },
+   {
+    "hes_l4": "1 By pass e LC",
+    "hes_l5": "Overhaul/Parada",
+    "resultado": "40.0",
+    "tipo": "float"
+   },
+   {
+    "hes_l4": "1 By pass e LC",
+    "hes_l5": "1 By pass",
+    "resultado": "86.0",
+    "tipo": "float"
+   },
+   {
+    "hes_l4": "1 By pass e LC",
+    "hes_l5": "1 By pass e LC",
+    "resultado": "70.20833333333333",
+    "tipo": "float"
+   },
+   {
+    "hes_l4": "1 By pass e LC",
+    "hes_l5": "Overhaul",
+    "resultado": "'F'",
+    "tipo": "str"
+   },
+   {
+    "hes_l4": "1 By pass e LC",
+    "hes_l5": "(vazio)",
+    "resultado": "VariableNotFoundError",
+    "tipo": "VariableNotFoundError"
+   },
+   {
+    "hes_l4": "Overhaul",
+    "hes_l5": "Normal",
+    "resultado": "'F'",
+    "tipo": "str"
+   },
+   {
+    "hes_l4": "Overhaul",
+    "hes_l5": "LC",
+    "resultado": "71.25",
+    "tipo": "float"
+   },
+   {
+    "hes_l4": "Overhaul",
+    "hes_l5": "Overhaul/Parada",
+    "resultado": "40.0",
+    "tipo": "float"
+   },
+   {
+    "hes_l4": "Overhaul",
+    "hes_l5": "1 By pass",
+    "resultado": "86.0",
+    "tipo": "float"
+   },
+   {
+    "hes_l4": "Overhaul",
+    "hes_l5": "1 By pass e LC",
+    "resultado": "'F'",
+    "tipo": "str"
+   },
+   {
+    "hes_l4": "Overhaul",
+    "hes_l5": "Overhaul",
+    "resultado": "'F'",
+    "tipo": "str"
+   },
+   {
+    "hes_l4": "Overhaul",
+    "hes_l5": "(vazio)",
+    "resultado": "VariableNotFoundError",
+    "tipo": "VariableNotFoundError"
+   },
+   {
+    "hes_l4": "(vazio)",
+    "hes_l5": "Normal",
+    "resultado": "VariableNotFoundError",
+    "tipo": "VariableNotFoundError"
+   },
+   {
+    "hes_l4": "(vazio)",
+    "hes_l5": "LC",
+    "resultado": "VariableNotFoundError",
+    "tipo": "VariableNotFoundError"
+   },
+   {
+    "hes_l4": "(vazio)",
+    "hes_l5": "Overhaul/Parada",
+    "resultado": "VariableNotFoundError",
+    "tipo": "VariableNotFoundError"
+   },
+   {
+    "hes_l4": "(vazio)",
+    "hes_l5": "1 By pass",
+    "resultado": "VariableNotFoundError",
+    "tipo": "VariableNotFoundError"
+   },
+   {
+    "hes_l4": "(vazio)",
+    "hes_l5": "1 By pass e LC",
+    "resultado": "VariableNotFoundError",
+    "tipo": "VariableNotFoundError"
+   },
+   {
+    "hes_l4": "(vazio)",
+    "hes_l5": "Overhaul",
+    "resultado": "VariableNotFoundError",
+    "tipo": "VariableNotFoundError"
+   },
+   {
+    "hes_l4": "(vazio)",
+    "hes_l5": "(vazio)",
+    "resultado": "VariableNotFoundError",
+    "tipo": "VariableNotFoundError"
+   }
+  ]
+ }
+}

@@ -1,0 +1,21 @@
+serie,agregacao,resultado
+numeric+numeric,SUM,4.0
+numeric+numeric,AVERAGE,2.0
+numeric+numeric,MIN,InvalidAggregationRuleError: Tipo de agregação não suportado: MIN
+numeric+numeric,MAX,InvalidAggregationRuleError: Tipo de agregação não suportado: MAX
+"numeric+""F""",SUM,AggregationFailureError: Regra AGG96: a série de origem contém falha condicional ('F') nos períodos ['2026-03-02'];
+"numeric+""F""",AVERAGE,AggregationFailureError: Regra AGG96: a série de origem contém falha condicional ('F') nos períodos ['2026-03-02'];
+"numeric+""F""",MIN,InvalidAggregationRuleError: Tipo de agregação não suportado: MIN
+"numeric+""F""",MAX,InvalidAggregationRuleError: Tipo de agregação não suportado: MAX
+numeric+string,SUM,NonNumericAggregationError: Regra AGG96: VAR96301 tem valores não numéricos nos períodos ['2026-03-02']; texto categór
+numeric+string,AVERAGE,NonNumericAggregationError: Regra AGG96: VAR96301 tem valores não numéricos nos períodos ['2026-03-02']; texto categór
+numeric+string,MIN,InvalidAggregationRuleError: Tipo de agregação não suportado: MIN
+numeric+string,MAX,InvalidAggregationRuleError: Tipo de agregação não suportado: MAX
+string+string,SUM,"NonNumericAggregationError: Regra AGG96: VAR96301 tem valores não numéricos nos períodos ['2026-03-01', '2026-03-02'];"
+string+string,AVERAGE,"NonNumericAggregationError: Regra AGG96: VAR96301 tem valores não numéricos nos períodos ['2026-03-01', '2026-03-02'];"
+string+string,MIN,InvalidAggregationRuleError: Tipo de agregação não suportado: MIN
+string+string,MAX,InvalidAggregationRuleError: Tipo de agregação não suportado: MAX
+numeric+ausente,SUM,"VariableNotFoundError: Valor contextualizado da variável não encontrado: VAR96301, scope_type=linha, scope_value="
+numeric+ausente,AVERAGE,"VariableNotFoundError: Valor contextualizado da variável não encontrado: VAR96301, scope_type=linha, scope_value="
+numeric+ausente,MIN,InvalidAggregationRuleError: Tipo de agregação não suportado: MIN
+numeric+ausente,MAX,InvalidAggregationRuleError: Tipo de agregação não suportado: MAX

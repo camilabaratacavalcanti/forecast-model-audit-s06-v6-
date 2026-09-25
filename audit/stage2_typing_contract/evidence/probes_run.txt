@@ -1,0 +1,26 @@
+timestamp 2026-09-25T14:38:43Z
+commit 978c2d0f2d070735d11d2098f11c1cf05bc3eb26
+cmd: python3 audit/stage2_typing_contract/probes_typing_contract.py
+P01   numeric -> numeric                            -> tuple: ({'VAR96002': 10.0}, None)
+P02   categorical -> categorical                    -> tuple: ({'VAR96012': 'ALTO'}, None)
+P03a  boolean como resultado final                  -> tuple: ({}, 'EquationEvaluationError(ExpressionTypeError)')
+P03b  boolean como entrada                          -> CalculationValueError: O valor da variável VAR96021 não pode ser booleano.
+P03c  literal True/VERDADEIRO na DSL                -> UnsafeExpressionError: Valores booleanos não são permitidos.
+P04   numeric -> "F"                                -> tuple: ({'VAR96032': 'F'}, None)
+P05a  numeric -> "ERRO!!!" (ramo executado)         -> tuple: ({}, 'CalculationValueError(CalculationValueError)')
+P05b  numeric -> "ERRO!!!" (ramo não executado)     -> tuple: ({'VAR96042': 3.0}, None)
+P05c  categorical -> "ERRO!!!"                      -> tuple: ({'VAR96052': 'ERRO!!!'}, None)
+P06a  numeric -> None na DSL                        -> UnsafeExpressionError: Somente constantes numéricas ou de texto são permitidas.
+P06b  None no storage                               -> CalculationValueError: O valor da variável VAR96061 deve ser numérico ou texto categórico.
+P07   numeric + numeric                             -> float: 5.0
+P08   numeric + "F"                                 -> ConditionalFailureError: Operação '+' sobre falha condicional ('F').
+P09a  AVERAGE com "F"                               -> AggregationFailureError: Regra AGG96: a série de origem contém falha condicional ('F') nos períodos ['2026-03-02']; a agregação não pod
+P09b  SUM com "F"                                   -> AggregationFailureError: Regra AGG96: a série de origem contém falha condicional ('F') nos períodos ['2026-03-02']; a agregação não pod
+P10a  IF numeric/numeric                            -> int: 1
+P10b  IF numeric/string (ramo string)               -> str: 'X'
+P10c  IF string/string                              -> str: 'B'
+P11a  propagação aritmética A="F" -> B -> C -> D    -> tuple: ({}, 'EquationEvaluationError(ConditionalFailureError)')
+P11b  propagação por referência/IF A="F" -> B=A ->  -> tuple: ({'VAR96121': 'F', 'VAR96122': 'F'}, 'EquationEvaluationError(ConditionalFailureError)')
+P13   texto de domínio                              -> int: 1
+P14a  categoria legítima com código "F"             -> ConditionalFailureError: Comparação 'Eq' sobre falha condicional ('F'); use == "F" para detectá-la.
+P14b  texto de erro em categorical                  -> int: 1

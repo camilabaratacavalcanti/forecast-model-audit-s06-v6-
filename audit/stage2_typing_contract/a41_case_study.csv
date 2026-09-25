@@ -1,0 +1,50 @@
+hes_l4,hes_l5,resultado,tipo
+Normal,Normal,90.0,float
+Normal,LC,71.25,float
+Normal,Overhaul/Parada,40.0,float
+Normal,1 By pass,86.0,float
+Normal,1 By pass e LC,'F',str
+Normal,Overhaul,'F',str
+Normal,(vazio),VariableNotFoundError,VariableNotFoundError
+LC,Normal,71.25,float
+LC,LC,71.25,float
+LC,Overhaul/Parada,71.25,float
+LC,1 By pass,71.25,float
+LC,1 By pass e LC,71.25,float
+LC,Overhaul,71.25,float
+LC,(vazio),71.25,float
+Overhaul/Parada,Normal,40.0,float
+Overhaul/Parada,LC,71.25,float
+Overhaul/Parada,Overhaul/Parada,40.0,float
+Overhaul/Parada,1 By pass,40.0,float
+Overhaul/Parada,1 By pass e LC,40.0,float
+Overhaul/Parada,Overhaul,40.0,float
+Overhaul/Parada,(vazio),VariableNotFoundError,VariableNotFoundError
+1 By pass,Normal,86.0,float
+1 By pass,LC,71.25,float
+1 By pass,Overhaul/Parada,40.0,float
+1 By pass,1 By pass,86.0,float
+1 By pass,1 By pass e LC,86.0,float
+1 By pass,Overhaul,86.0,float
+1 By pass,(vazio),VariableNotFoundError,VariableNotFoundError
+1 By pass e LC,Normal,'F',str
+1 By pass e LC,LC,71.25,float
+1 By pass e LC,Overhaul/Parada,40.0,float
+1 By pass e LC,1 By pass,86.0,float
+1 By pass e LC,1 By pass e LC,70.20833333333333,float
+1 By pass e LC,Overhaul,'F',str
+1 By pass e LC,(vazio),VariableNotFoundError,VariableNotFoundError
+Overhaul,Normal,'F',str
+Overhaul,LC,71.25,float
+Overhaul,Overhaul/Parada,40.0,float
+Overhaul,1 By pass,86.0,float
+Overhaul,1 By pass e LC,'F',str
+Overhaul,Overhaul,'F',str
+Overhaul,(vazio),VariableNotFoundError,VariableNotFoundError
+(vazio),Normal,VariableNotFoundError,VariableNotFoundError
+(vazio),LC,VariableNotFoundError,VariableNotFoundError
+(vazio),Overhaul/Parada,VariableNotFoundError,VariableNotFoundError
+(vazio),1 By pass,VariableNotFoundError,VariableNotFoundError
+(vazio),1 By pass e LC,VariableNotFoundError,VariableNotFoundError
+(vazio),Overhaul,VariableNotFoundError,VariableNotFoundError
+(vazio),(vazio),VariableNotFoundError,VariableNotFoundError

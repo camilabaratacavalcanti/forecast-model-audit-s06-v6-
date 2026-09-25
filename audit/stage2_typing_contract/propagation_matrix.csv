@@ -1,0 +1,12 @@
+operacao,expressao,resultado
+comparação (== 0),1 if VAR96501 == 0 else 2,ConditionalFailureError
+"comparação (== ""F"")","1 if VAR96501 == ""F"" else 2",1
+comparação (> 0),1 if VAR96501 > 0 else 2,ConditionalFailureError
+soma,VAR96501 + VAR96502,ConditionalFailureError
+multiplicação,VAR96501 * VAR96502,ConditionalFailureError
+divisão,VAR96501 / VAR96502,ConditionalFailureError
+ln(),ln(VAR96501),ConditionalFailureError
+IF (condição),1 if VAR96501 else 2,ConditionalFailureError
+IF (ramo devolvido),VAR96501 if VAR96502 > 0 else 0,'F'
+referência,VAR96501,'F'
+and/or,1 if VAR96501 > 0 and VAR96502 > 0 else 2,ConditionalFailureError

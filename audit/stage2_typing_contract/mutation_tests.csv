@@ -1,0 +1,11 @@
+id,mutacao,resultado
+MT00,baseline (Normal/Normal),"({'VAR96703': 1, 'VAR96704': 10}, None)"
+MT01,estados declarados numeric,CalculationValueError: O valor da variável VAR96701 deve ser numérico: a variável não é declarada categórica.
+MT02,resultado numérico declarado categorical,"({'VAR96703': 1, 'VAR96704': 10}, None)"
+MT03,"""F"" trocado por ""ERRO!!!"" (ramo não executado)","({'VAR96703': 1, 'VAR96704': 10}, None)"
+MT04,"""F"" trocado por ""ERRO!!!"" (ramo executado)","({}, 'CalculationValueError(CalculationValueError)')"
+MT05,value_type mixed,"ValueError: value_type inválido para VAR96703: 'mixed' (permitidos: ['categorical', 'numeric'])"
+MT06,resultado booleano,"({}, 'EquationEvaluationError(ExpressionTypeError)')"
+MT07,"ramo numérico vira texto ""100"" em aritmética","UnsafeExpressionError: Constante de texto só é permitida como resultado, ramo de IF ou operando de comparação: '100'"
+MT08,"estado com erro de digitação (""Overhaul"")","({'VAR96703': 'F'}, 'EquationEvaluationError(ConditionalFailureError)')"
+MT09,"estado ""F"" legítimo? (hes=""F"")","({}, 'EquationEvaluationError(ConditionalFailureError)')"
