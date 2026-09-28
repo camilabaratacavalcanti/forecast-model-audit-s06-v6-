@@ -1,0 +1,288 @@
+{
+  "baseline": "a126e02",
+  "workbooks": {
+    "area_41": {
+      "file": "descritivo_das_variáveis_A41_v9.xlsx",
+      "sha256": "36bbae135285ad9b3b88d21ef94e2bc9c92f2ef74736412b66bc62de4dcf3f50"
+    },
+    "energy": {
+      "file": "descritivo_das_variáveis_energy_v6.xlsx",
+      "sha256": "cfc46031fc2f3f375b87ebbba58676d23ad92f3ee43fb81b353fe5a8247e1df8"
+    },
+    "max_ht": {
+      "file": "descritivo_das_variáveis_MaxHT_v10.xlsx",
+      "sha256": "3e40aab12ec0ec07918c5e358145b09f138663f635ca9e7fc0990d1b765b683b"
+    },
+    "production": {
+      "file": "descritivo_das_variáveis_production_v10.xlsx",
+      "sha256": "302cf18b92ac22c690b3add9bdd1ded0617bfa60636809696d010b8858d72487"
+    },
+    "yield": {
+      "file": "descritivo_das_variáveis_yield_v11.xlsx",
+      "sha256": "639e8b980f19bc20429cf9763157ac1828d9067bdbabea3bf3db0badbc2df931"
+    }
+  },
+  "production_v9_v10_diff": {
+    "cells": 37,
+    "by_classification": {
+      "D26-03": 2,
+      "UNEXPECTED_OBS_CHANGE": 7,
+      "D26-02": 28
+    }
+  },
+  "lth_meta_obs_alignment": [
+    {
+      "row": 36,
+      "name": "lth",
+      "frequency": "mensal",
+      "scope_value": "L1_L7",
+      "v9_value": null,
+      "v10_OBS": 1050,
+      "aligned": false
+    },
+    {
+      "row": 37,
+      "name": "lth_meta",
+      "frequency": "anual",
+      "scope_value": "L1",
+      "v9_value": 1050,
+      "v10_OBS": 1050,
+      "aligned": true
+    },
+    {
+      "row": 38,
+      "name": "lth_meta",
+      "frequency": "anual",
+      "scope_value": "L2",
+      "v9_value": 1050,
+      "v10_OBS": 1100,
+      "aligned": false
+    },
+    {
+      "row": 39,
+      "name": "lth_meta",
+      "frequency": "anual",
+      "scope_value": "L3",
+      "v9_value": 1100,
+      "v10_OBS": 1100,
+      "aligned": true
+    },
+    {
+      "row": 40,
+      "name": "lth_meta",
+      "frequency": "anual",
+      "scope_value": "L4",
+      "v9_value": 1100,
+      "v10_OBS": 1100,
+      "aligned": true
+    },
+    {
+      "row": 41,
+      "name": "lth_meta",
+      "frequency": "anual",
+      "scope_value": "L5",
+      "v9_value": 1100,
+      "v10_OBS": 1100,
+      "aligned": true
+    },
+    {
+      "row": 42,
+      "name": "lth_meta",
+      "frequency": "anual",
+      "scope_value": "L6",
+      "v9_value": 1100,
+      "v10_OBS": 1100,
+      "aligned": true
+    },
+    {
+      "row": 43,
+      "name": "lth_meta",
+      "frequency": "anual",
+      "scope_value": "L7",
+      "v9_value": 1100,
+      "v10_OBS": null,
+      "aligned": false
+    },
+    {
+      "row": 44,
+      "name": "lth_total",
+      "frequency": "diário",
+      "scope_value": "L1_L7",
+      "v9_value": null,
+      "v10_OBS": null,
+      "aligned": true
+    }
+  ],
+  "taxonomy": [
+    "maintenance",
+    "area_04_13",
+    "forecast_volume",
+    "acido",
+    "yield",
+    "energy",
+    "meta_volume_cheio",
+    "custo_budget",
+    "production",
+    "boilers",
+    "controle_espaco_vazio_meta",
+    "custo_forecast_bdgt",
+    "mx_ht",
+    "volume",
+    "lime_dia",
+    "custo_forecast_real",
+    "alumina",
+    "soda",
+    "floculante_hidrato_2026",
+    "budget",
+    "temperature_lp",
+    "fator_residuo",
+    "floculante_lama_dia",
+    "forecast",
+    "area_41",
+    "vazao_condensado",
+    "premissas_ppt_mensal",
+    "shared"
+  ],
+  "fonte_names": {
+    "alumina": {
+      "in_taxonomy": true,
+      "loaded": false
+    },
+    "area_04_13": {
+      "in_taxonomy": true,
+      "loaded": false
+    },
+    "forecast": {
+      "in_taxonomy": true,
+      "loaded": false
+    },
+    "maintenance": {
+      "in_taxonomy": true,
+      "loaded": false
+    },
+    "production": {
+      "in_taxonomy": true,
+      "loaded": true
+    },
+    "temperature_lp": {
+      "in_taxonomy": true,
+      "loaded": false
+    },
+    "yield": {
+      "in_taxonomy": true,
+      "loaded": true
+    }
+  },
+  "loaded_blocks_in_taxonomy": {
+    "area_41": true,
+    "energy": true,
+    "max_ht": false,
+    "production": true,
+    "yield": true
+  },
+  "mx_ht_max_ht": {
+    "taxonomy_name": "mx_ht",
+    "max_ht_in_taxonomy": false,
+    "workbook_file": "descritivo_das_variáveis_MaxHT_v10.xlsx",
+    "workbook_sheet": "MaxHT",
+    "workbook_declared_block_title": null,
+    "code_block_id": "max_ht",
+    "fonte_using_mx_ht": [],
+    "fonte_using_max_ht": [],
+    "divergent": true
+  },
+  "workbook_titles": {
+    "area_41": {
+      "sheets": [
+        "A41"
+      ],
+      "properties_title": null
+    },
+    "energy": {
+      "sheets": [
+        "energy"
+      ],
+      "properties_title": null
+    },
+    "max_ht": {
+      "sheets": [
+        "MaxHT"
+      ],
+      "properties_title": null
+    },
+    "production": {
+      "sheets": [
+        "production"
+      ],
+      "properties_title": null
+    },
+    "yield": {
+      "sheets": [
+        "yield"
+      ],
+      "properties_title": null
+    }
+  },
+  "fonte_rows": 32,
+  "declared_links_definitions": 29,
+  "links_by_class_definitions": {
+    "SOURCE_BLOCK_NOT_LOADED": 16,
+    "VALID": 13
+  },
+  "links_by_class_rows": {
+    "SOURCE_BLOCK_NOT_LOADED": 19,
+    "VALID": 13
+  },
+  "cycles_overapproximated": [],
+  "independent_vs_builder_divergences": [],
+  "taxonomy_divergences": [],
+  "id_stability": {
+    "area_41": {
+      "renumbered": [],
+      "retired": [],
+      "new": []
+    },
+    "energy": {
+      "renumbered": [],
+      "retired": [],
+      "new": []
+    },
+    "max_ht": {
+      "renumbered": [],
+      "retired": [],
+      "new": []
+    },
+    "production": {
+      "renumbered": [],
+      "retired": [
+        [
+          [
+            "parameter",
+            "lth_meta",
+            "anual",
+            "linha",
+            "L1_L7"
+          ],
+          "PARAM12003"
+        ]
+      ],
+      "new": [
+        [
+          [
+            "variable",
+            "lth_meta",
+            "anual",
+            "linha",
+            "L1_L7"
+          ],
+          "VAR12066"
+        ]
+      ]
+    },
+    "yield": {
+      "renumbered": [],
+      "retired": [],
+      "new": []
+    }
+  }
+}

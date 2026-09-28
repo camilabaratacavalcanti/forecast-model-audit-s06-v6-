@@ -1,0 +1,50 @@
+# baseline: a126e02 | implementação: 5e681dc
+# python -m pytest -p no:cacheprovider -v tests/test_stage2_6b_interblock_closure.py
+============================= test session starts ==============================
+collecting ... collected 33 items
+
+tests/test_stage2_6b_interblock_closure.py::test_taxonomy_is_the_owner_list_exactly PASSED
+tests/test_stage2_6b_interblock_closure.py::test_01_block_in_taxonomy_and_loaded_resolves PASSED
+tests/test_stage2_6b_interblock_closure.py::test_02_block_in_taxonomy_but_not_loaded_is_pending[forecast] PASSED
+tests/test_stage2_6b_interblock_closure.py::test_02_block_in_taxonomy_but_not_loaded_is_pending[maintenance] PASSED
+tests/test_stage2_6b_interblock_closure.py::test_02_block_in_taxonomy_but_not_loaded_is_pending[temperature_lp] PASSED
+tests/test_stage2_6b_interblock_closure.py::test_02_block_in_taxonomy_but_not_loaded_is_pending[area_04_13] PASSED
+tests/test_stage2_6b_interblock_closure.py::test_02_block_in_taxonomy_but_not_loaded_is_pending[alumina] PASSED
+tests/test_stage2_6b_interblock_closure.py::test_03_block_outside_taxonomy_is_an_error[forcast] PASSED
+tests/test_stage2_6b_interblock_closure.py::test_03_block_outside_taxonomy_is_an_error[bloco forecast] PASSED
+tests/test_stage2_6b_interblock_closure.py::test_03_block_outside_taxonomy_is_an_error[Forecast] PASSED
+tests/test_stage2_6b_interblock_closure.py::test_03_block_outside_taxonomy_is_an_error[forecast ] PASSED
+tests/test_stage2_6b_interblock_closure.py::test_03_block_outside_taxonomy_is_an_error[max_ht] PASSED
+tests/test_stage2_6b_interblock_closure.py::test_03_block_outside_taxonomy_is_an_error[hydrate] PASSED
+tests/test_stage2_6b_interblock_closure.py::test_04_missing_producer_in_loaded_workbook PASSED
+tests/test_stage2_6b_interblock_closure.py::test_official_fonte_names_classified_by_taxonomy PASSED
+tests/test_stage2_6b_interblock_closure.py::test_05_d26_02_lth_meta_is_variable_to_variable PASSED
+tests/test_stage2_6b_interblock_closure.py::test_06_entrada_to_entrada_externa_is_not_a_kind_mismatch PASSED
+tests/test_stage2_6b_interblock_closure.py::test_07_08_calculated_factor_has_no_fonte[fator_mpsa-fator_mpsa_kg_t / 1000] PASSED
+tests/test_stage2_6b_interblock_closure.py::test_07_08_calculated_factor_has_no_fonte[fator_mrn-fator_mrn_kg_t / 1000] PASSED
+tests/test_stage2_6b_interblock_closure.py::test_09_10_kg_t_inputs_link_to_forecast[fator_mpsa_kg_t] PASSED
+tests/test_stage2_6b_interblock_closure.py::test_09_10_kg_t_inputs_link_to_forecast[fator_mrn_kg_t] PASSED
+tests/test_stage2_6b_interblock_closure.py::test_11_source_reference_does_not_interfere PASSED
+tests/test_stage2_6b_interblock_closure.py::test_12_no_interblock_fallback PASSED
+tests/test_stage2_6b_interblock_closure.py::test_13_instance_mismatch PASSED
+tests/test_stage2_6b_interblock_closure.py::test_14_ambiguity PASSED
+tests/test_stage2_6b_interblock_closure.py::test_15_cycle PASSED
+tests/test_stage2_6b_interblock_closure.py::test_16_local_identity_preserved PASSED
+tests/test_stage2_6b_interblock_closure.py::test_17_mx_ht_versus_max_ht_is_a_recorded_pending_decision PASSED
+tests/test_stage2_6b_interblock_closure.py::test_18_all_real_links_of_the_five_workbooks PASSED
+tests/test_stage2_6b_interblock_closure.py::test_no_historical_id_was_renumbered PASSED
+tests/test_stage2_6b_interblock_closure.py::test_ledger_retires_ids_and_never_reuses_them PASSED
+tests/test_stage2_6b_interblock_closure.py::test_ledger_assigns_new_identities_after_the_highest_issued_id PASSED
+tests/test_stage2_6b_interblock_closure.py::test_seed_does_not_invent_producers_for_unloaded_blocks PASSED
+
+============================== 33 passed in 1.90s ==============================
+
+# python -m pytest -q -p no:cacheprovider (suíte completa)
+1475 passed in 12.52s
+
+# python -m tools.workbook_seed
+interblock: 29 vínculos declarados em fonte, 13 válidos, 16 pendentes de carregamento, 0 rejeitados
+exit=0
+
+# python audit/stage2_6b_interblock_closure/evidence/analysis_stage2_6b.py (código de saída)
+exit=0
