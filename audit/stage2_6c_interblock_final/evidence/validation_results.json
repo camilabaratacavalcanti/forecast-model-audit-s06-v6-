@@ -1,0 +1,364 @@
+{
+  "baselines": [
+    "a126e02",
+    "eceffd4"
+  ],
+  "workbooks": {
+    "area_41": {
+      "file": "descritivo_das_variáveis_A41_v9.xlsx",
+      "sha256": "36bbae135285ad9b3b88d21ef94e2bc9c92f2ef74736412b66bc62de4dcf3f50"
+    },
+    "energy": {
+      "file": "descritivo_das_variáveis_energy_v6.xlsx",
+      "sha256": "cfc46031fc2f3f375b87ebbba58676d23ad92f3ee43fb81b353fe5a8247e1df8"
+    },
+    "max_ht": {
+      "file": "descritivo_das_variáveis_MaxHT_v10.xlsx",
+      "sha256": "3e40aab12ec0ec07918c5e358145b09f138663f635ca9e7fc0990d1b765b683b"
+    },
+    "production": {
+      "file": "descritivo_das_variáveis_production_v11.xlsx",
+      "sha256": "d946dfd522c8cbb301c0c63caa3c62263b74a849e043d7b2f4bcb0bdb262c922"
+    },
+    "yield": {
+      "file": "descritivo_das_variáveis_yield_v11.xlsx",
+      "sha256": "639e8b980f19bc20429cf9763157ac1828d9067bdbabea3bf3db0badbc2df931"
+    }
+  },
+  "production_v10_v11_diff": {
+    "cells": 3,
+    "by_classification": {
+      "D26B-01": 3
+    },
+    "cells_list": [
+      "R36",
+      "R38",
+      "R43"
+    ]
+  },
+  "production_counts": {
+    "v10": {
+      "rows": 88,
+      "variables": 66,
+      "parameters": 4,
+      "parameter_rows": 10,
+      "expression_rows": 55,
+      "fonte_rows": 11
+    },
+    "v11": {
+      "rows": 88,
+      "variables": 66,
+      "parameters": 4,
+      "parameter_rows": 10,
+      "expression_rows": 55,
+      "fonte_rows": 11
+    }
+  },
+  "lth_meta_obs_alignment": [
+    {
+      "row": 36,
+      "name": "lth",
+      "frequency": "mensal",
+      "scope_value": "L1_L7",
+      "v9_value": null,
+      "v10_OBS": 1050,
+      "v11_OBS": null,
+      "v11_aligned": true
+    },
+    {
+      "row": 37,
+      "name": "lth_meta",
+      "frequency": "anual",
+      "scope_value": "L1",
+      "v9_value": 1050,
+      "v10_OBS": 1050,
+      "v11_OBS": 1050,
+      "v11_aligned": true
+    },
+    {
+      "row": 38,
+      "name": "lth_meta",
+      "frequency": "anual",
+      "scope_value": "L2",
+      "v9_value": 1050,
+      "v10_OBS": 1100,
+      "v11_OBS": 1050,
+      "v11_aligned": true
+    },
+    {
+      "row": 39,
+      "name": "lth_meta",
+      "frequency": "anual",
+      "scope_value": "L3",
+      "v9_value": 1100,
+      "v10_OBS": 1100,
+      "v11_OBS": 1100,
+      "v11_aligned": true
+    },
+    {
+      "row": 40,
+      "name": "lth_meta",
+      "frequency": "anual",
+      "scope_value": "L4",
+      "v9_value": 1100,
+      "v10_OBS": 1100,
+      "v11_OBS": 1100,
+      "v11_aligned": true
+    },
+    {
+      "row": 41,
+      "name": "lth_meta",
+      "frequency": "anual",
+      "scope_value": "L5",
+      "v9_value": 1100,
+      "v10_OBS": 1100,
+      "v11_OBS": 1100,
+      "v11_aligned": true
+    },
+    {
+      "row": 42,
+      "name": "lth_meta",
+      "frequency": "anual",
+      "scope_value": "L6",
+      "v9_value": 1100,
+      "v10_OBS": 1100,
+      "v11_OBS": 1100,
+      "v11_aligned": true
+    },
+    {
+      "row": 43,
+      "name": "lth_meta",
+      "frequency": "anual",
+      "scope_value": "L7",
+      "v9_value": 1100,
+      "v10_OBS": null,
+      "v11_OBS": 1100,
+      "v11_aligned": true
+    },
+    {
+      "row": 44,
+      "name": "lth_total",
+      "frequency": "diário",
+      "scope_value": "L1_L7",
+      "v9_value": null,
+      "v10_OBS": null,
+      "v11_OBS": null,
+      "v11_aligned": true
+    }
+  ],
+  "taxonomy": [
+    "maintenance",
+    "area_04_13",
+    "forecast_volume",
+    "acido",
+    "yield",
+    "energy",
+    "meta_volume_cheio",
+    "custo_budget",
+    "production",
+    "boilers",
+    "controle_espaco_vazio_meta",
+    "custo_forecast_bdgt",
+    "max_ht",
+    "volume",
+    "lime_dia",
+    "custo_forecast_real",
+    "alumina",
+    "soda",
+    "floculante_hidrato_2026",
+    "budget",
+    "temperature_lp",
+    "fator_residuo",
+    "floculante_lama_dia",
+    "forecast",
+    "area_41",
+    "vazao_condensado",
+    "premissas_ppt_mensal",
+    "shared"
+  ],
+  "fonte_names": {
+    "alumina": {
+      "in_taxonomy": true,
+      "loaded": false
+    },
+    "area_04_13": {
+      "in_taxonomy": true,
+      "loaded": false
+    },
+    "forecast": {
+      "in_taxonomy": true,
+      "loaded": false
+    },
+    "maintenance": {
+      "in_taxonomy": true,
+      "loaded": false
+    },
+    "production": {
+      "in_taxonomy": true,
+      "loaded": true
+    },
+    "temperature_lp": {
+      "in_taxonomy": true,
+      "loaded": false
+    },
+    "yield": {
+      "in_taxonomy": true,
+      "loaded": true
+    }
+  },
+  "max_ht": {
+    "max_ht_in_taxonomy": true,
+    "mx_ht_in_taxonomy": false,
+    "loaded_block_ids": [
+      "area_41",
+      "energy",
+      "max_ht",
+      "production",
+      "yield"
+    ],
+    "loaded_blocks_outside_taxonomy": [],
+    "seed_loaded_blocks": [
+      {
+        "block": "area_41",
+        "in_taxonomy": true
+      },
+      {
+        "block": "energy",
+        "in_taxonomy": true
+      },
+      {
+        "block": "max_ht",
+        "in_taxonomy": true
+      },
+      {
+        "block": "production",
+        "in_taxonomy": true
+      },
+      {
+        "block": "yield",
+        "in_taxonomy": true
+      }
+    ],
+    "manifest_block": "max_ht",
+    "fonte_using_max_ht": [],
+    "fonte_using_mx_ht": [],
+    "active_mx_ht_occurrences": [
+      {
+        "file": "tools/workbook_seed/taxonomy.py",
+        "count": 1
+      }
+    ]
+  },
+  "d26_02": {
+    "status": "VALID",
+    "consumer": {
+      "Type": "variable",
+      "variable_type": "entrada",
+      "frequency": "anual",
+      "scope_type": "linha",
+      "scope_value": "L1_L7",
+      "unit": "-",
+      "value_type": "numerico"
+    },
+    "producer": {
+      "Type": "variable",
+      "variable_type": "entrada_externa",
+      "frequency": "anual",
+      "scope_type": "linha",
+      "unit": "-",
+      "value_type": "numerico"
+    },
+    "producer_instances": [
+      "L1",
+      "L2",
+      "L3",
+      "L4",
+      "L5",
+      "L6",
+      "L7"
+    ],
+    "production_lth_meta_parameter_rows": []
+  },
+  "d26_03": {
+    "fator_mpsa": {
+      "Type": "variable / equation",
+      "variable_type": "calculado",
+      "unit": "-",
+      "frequency": "diário",
+      "scope_type": "linha",
+      "scope_value": "L1_L7",
+      "expression": "fator_mpsa_kg_t / 1000",
+      "fonte": null
+    },
+    "fator_mrn": {
+      "Type": "variable / equation",
+      "variable_type": "calculado",
+      "unit": "-",
+      "frequency": "diário",
+      "scope_type": "linha",
+      "scope_value": "L1_L7",
+      "expression": "fator_mrn_kg_t / 1000",
+      "fonte": null
+    },
+    "fator_mpsa_kg_t": {
+      "Type": "variable",
+      "variable_type": "entrada",
+      "unit": "kg/t",
+      "frequency": "diário",
+      "scope_type": "linha_grupo",
+      "scope_value": "L1_L7",
+      "expression": null,
+      "fonte": "forecast"
+    },
+    "fator_mrn_kg_t": {
+      "Type": "variable",
+      "variable_type": "entrada",
+      "unit": "kg/t",
+      "frequency": "diário",
+      "scope_type": "linha_grupo",
+      "scope_value": "L1_L7",
+      "expression": null,
+      "fonte": "forecast"
+    }
+  },
+  "fonte_rows": 32,
+  "declared_links_definitions": 29,
+  "links_by_class_definitions": {
+    "SOURCE_BLOCK_NOT_LOADED": 16,
+    "VALID": 13
+  },
+  "links_by_class_rows": {
+    "SOURCE_BLOCK_NOT_LOADED": 19,
+    "VALID": 13
+  },
+  "cycles_overapproximated": [],
+  "id_ledger": {
+    "totals": {
+      "PRESERVED": 530,
+      "RETIRED": 1,
+      "NEW": 1
+    },
+    "new": [
+      [
+        "production",
+        "lth_meta",
+        "VAR12066"
+      ]
+    ],
+    "retired": [
+      [
+        "production",
+        "lth_meta",
+        "PARAM12003"
+      ]
+    ],
+    "lth_meta_equations": [
+      "EQ12012",
+      "EQ12014",
+      "EQ12015"
+    ],
+    "orphans": []
+  },
+  "independent_vs_builder_divergences": [],
+  "failures": []
+}

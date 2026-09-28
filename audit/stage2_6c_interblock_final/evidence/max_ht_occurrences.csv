@@ -1,0 +1,120 @@
+file,token,occurrences,category,decision
+app/validation/equation_seed_validator.py,max_ht,2,código ativo (runtime/validators),nome canônico — correto
+app/validation/parameter_seed_validator.py,max_ht,2,código ativo (runtime/validators),nome canônico — correto
+app/validation/variable_seed_validator.py,max_ht,2,código ativo (runtime/validators),nome canônico — correto
+audit/stage2_3_closure/DECISION_REFINEMENT_R1_declared_result_states.md,max_ht,1,auditoria histórica,histórico — manter
+audit/stage2_3_closure/REPORT.md,max_ht,8,auditoria histórica,histórico — manter
+audit/stage2_3_closure/REPORT_round2.md,max_ht,4,auditoria histórica,histórico — manter
+audit/stage2_3_closure/REPORT_round3.md,max_ht,1,auditoria histórica,histórico — manter
+audit/stage2_3_closure/evidence/aggregations.csv,max_ht,110,auditoria histórica,histórico — manter
+audit/stage2_3_closure/evidence/coverage_max_ht.csv,max_ht,27,auditoria histórica,histórico — manter
+audit/stage2_3_closure/evidence/cross_workbook.csv,max_ht,3,auditoria histórica,histórico — manter
+audit/stage2_3_closure/evidence/probe_rerun.txt,max_ht,1,auditoria histórica,histórico — manter
+audit/stage2_3_closure/evidence/probes/probe2.py,max_ht,1,auditoria histórica,histórico — manter
+audit/stage2_3_closure/evidence/probes/wbp.py,max_ht,1,auditoria histórica,histórico — manter
+audit/stage2_3_closure/evidence/round2/aggregations.csv,max_ht,110,auditoria histórica,histórico — manter
+audit/stage2_3_closure/evidence/round2/cross_workbook.csv,max_ht,3,auditoria histórica,histórico — manter
+audit/stage2_3_closure/evidence/round2/probe_round2.txt,max_ht,1,auditoria histórica,histórico — manter
+audit/stage2_3_closure/evidence/round2/wbp_round2.py,max_ht,1,auditoria histórica,histórico — manter
+audit/stage2_3_closure/evidence/round3/aggregations.csv,max_ht,110,auditoria histórica,histórico — manter
+audit/stage2_3_closure/evidence/round3/cross_workbook.csv,max_ht,3,auditoria histórica,histórico — manter
+audit/stage2_3_closure/evidence/round3/probe_round3.txt,max_ht,1,auditoria histórica,histórico — manter
+audit/stage2_3_closure/evidence/round3/wbp_round3.py,max_ht,2,auditoria histórica,histórico — manter
+audit/stage2_3_closure/evidence/stage2_3_initial_report.md,max_ht,38,auditoria histórica,histórico — manter
+audit/stage2_3_closure/final/REPORT_stage2_3_final.md,max_ht,3,auditoria histórica,histórico — manter
+audit/stage2_3_closure/final/aggregations.csv,max_ht,110,auditoria histórica,histórico — manter
+audit/stage2_3_closure/final/coverage_MaxHT.csv,max_ht,27,auditoria histórica,histórico — manter
+audit/stage2_3_closure/final/cross_workbook.csv,max_ht,3,auditoria histórica,histórico — manter
+audit/stage2_3_closure/final/probe_final.txt,max_ht,1,auditoria histórica,histórico — manter
+audit/stage2_3_closure/final/wbp_final.py,max_ht,2,auditoria histórica,histórico — manter
+audit/stage2_3_closure/final_round5/REPORT_stage2_3_final.md,max_ht,1,auditoria histórica,histórico — manter
+audit/stage2_3_closure/final_round5/aggregations.csv,max_ht,110,auditoria histórica,histórico — manter
+audit/stage2_3_closure/final_round5/coverage_MaxHT.csv,max_ht,27,auditoria histórica,histórico — manter
+audit/stage2_3_closure/final_round5/cross_workbook.csv,max_ht,3,auditoria histórica,histórico — manter
+audit/stage2_3_closure/final_round5/parameters.csv,max_ht,8,auditoria histórica,histórico — manter
+audit/stage2_3_closure/final_round5/probe_round5.txt,max_ht,1,auditoria histórica,histórico — manter
+audit/stage2_3_closure/final_round5/wbp.py,max_ht,2,auditoria histórica,histórico — manter
+audit/stage2_4_cross_audit/final/REPORT_stage2_4.md,max_ht,18,auditoria histórica,histórico — manter
+audit/stage2_4_cross_audit/final/defect_register.csv,max_ht,14,auditoria histórica,histórico — manter
+audit/stage2_4_cross_audit/final/evidence/consumption_probe.py,max_ht,4,auditoria histórica,histórico — manter
+audit/stage2_4_cross_audit/final/evidence/consumption_probe_out.txt,max_ht,2,auditoria histórica,histórico — manter
+audit/stage2_4_cross_audit/final/evidence/runtime_out.json,max_ht,7,auditoria histórica,histórico — manter
+audit/stage2_4_cross_audit/final/evidence/runtime_probe.py,max_ht,3,auditoria histórica,histórico — manter
+audit/stage2_4_cross_audit/final/evidence/seed_vs_workbook.csv,max_ht,147,auditoria histórica,histórico — manter
+audit/stage2_4_cross_audit/final/test_coverage_matrix.csv,max_ht,4,auditoria histórica,histórico — manter
+audit/stage2_4_cross_audit/final_round2/REPORT_stage2_4_round2.md,max_ht,4,auditoria histórica,histórico — manter
+audit/stage2_4_cross_audit/final_round2/defect_register.csv,max_ht,2,auditoria histórica,histórico — manter
+audit/stage2_4_cross_audit/final_round2/evidence/aggregations.csv,max_ht,110,auditoria histórica,histórico — manter
+audit/stage2_4_cross_audit/final_round2/evidence/audit_round2.py,max_ht,2,auditoria histórica,histórico — manter
+audit/stage2_4_cross_audit/final_round2/evidence/builders.txt,max_ht,1,auditoria histórica,histórico — manter
+audit/stage2_4_cross_audit/final_round2/evidence/cell_audit.csv,max_ht,1345,auditoria histórica,histórico — manter
+audit/stage2_4_cross_audit/final_round2/evidence/cross_workbook.csv,max_ht,2,auditoria histórica,histórico — manter
+audit/stage2_4_cross_audit/final_round2/evidence/pending_contract_decisions.json,max_ht,1,auditoria histórica,histórico — manter
+audit/stage2_4_cross_audit/final_round2/evidence/summary.json,max_ht,2,auditoria histórica,histórico — manter
+audit/stage2_4_cross_audit/final_round2/evidence/t24_tests.txt,max_ht,5,auditoria histórica,histórico — manter
+audit/stage2_4_cross_audit/final_round2/evidence/test_inventory_delta.txt,max_ht,32,auditoria histórica,histórico — manter
+audit/stage2_4_cross_audit/final_round2/evidence/validators.json,max_ht,8,auditoria histórica,histórico — manter
+audit/stage2_4_cross_audit/final_round2/evidence/workbook_sha256.txt,max_ht,1,auditoria histórica,histórico — manter
+audit/stage2_4_cross_audit/final_round2/evidence/workbook_vs_seed.csv,max_ht,147,auditoria histórica,histórico — manter
+audit/stage2_5_contract_closure/REPORT_stage2_5.md,max_ht,4,auditoria histórica,histórico — manter
+audit/stage2_5_contract_closure/contract_decisions.csv,max_ht,2,auditoria histórica,histórico — manter
+audit/stage2_5_contract_closure/evidence/analysis_stage2_5.py,max_ht,2,auditoria histórica,histórico — manter
+audit/stage2_5_contract_closure/evidence/cross_workbook.csv,max_ht,2,auditoria histórica,histórico — manter
+audit/stage2_5_contract_closure/evidence/external_sources_outside_five.csv,max_ht,1,auditoria histórica,histórico — manter
+audit/stage2_5_contract_closure/evidence/identity_repeats_cross_block.csv,max_ht,14,auditoria histórica,histórico — manter
+audit/stage2_5_contract_closure/evidence/summary.json,max_ht,2,auditoria histórica,histórico — manter
+audit/stage2_5_contract_closure/evidence/unreachable_reference_inventory.csv,max_ht,126,auditoria histórica,histórico — manter
+audit/stage2_5_contract_closure/evidence/workbooks_sha256.txt,max_ht,1,auditoria histórica,histórico — manter
+audit/stage2_5b_contract_decision/REPORT_stage2_5b.md,max_ht,3,auditoria histórica,histórico — manter
+audit/stage2_5b_contract_decision/contract_decisions.csv,max_ht,1,auditoria histórica,histórico — manter
+audit/stage2_5b_contract_decision/cross_workbook_evidence.csv,max_ht,7,auditoria histórica,histórico — manter
+audit/stage2_5b_contract_decision/evidence/analysis_stage2_5b.py,max_ht,4,auditoria histórica,histórico — manter
+audit/stage2_5b_contract_decision/evidence/fonte_inventory.csv,max_ht,3,auditoria histórica,histórico — manter
+audit/stage2_5b_contract_decision/evidence/reference_inventory.csv,max_ht,126,auditoria histórica,histórico — manter
+audit/stage2_5b_contract_decision/evidence/workbook_integrity.csv,max_ht,1,auditoria histórica,histórico — manter
+audit/stage2_5b_contract_decision/evidence/workbooks_sha256.txt,max_ht,1,auditoria histórica,histórico — manter
+audit/stage2_5b_contract_decision/unit_evidence.csv,max_ht,21,auditoria histórica,histórico — manter
+audit/stage2_5b_contract_decision/value_version_evidence.csv,max_ht,8,auditoria histórica,histórico — manter
+audit/stage2_6_interblock_contract/REPORT_stage2_6.md,max_ht,5,auditoria histórica,histórico — manter
+audit/stage2_6_interblock_contract/contract_validation.csv,max_ht,14,auditoria histórica,histórico — manter
+audit/stage2_6_interblock_contract/evidence/validation_results.json,max_ht,1,auditoria histórica,histórico — manter
+audit/stage2_6_interblock_contract/evidence/workbook_sha256.txt,max_ht,1,auditoria histórica,histórico — manter
+audit/stage2_6_interblock_contract/interblock_graph.csv,max_ht,9,auditoria histórica,histórico — manter
+audit/stage2_6_interblock_contract/interblock_links.csv,max_ht,7,auditoria histórica,histórico — manter
+audit/stage2_6b_interblock_closure/REPORT_stage2_6b.md,mx_ht,8,auditoria histórica,histórico 2.6B (decisão pendente à época) — manter
+audit/stage2_6b_interblock_closure/REPORT_stage2_6b.md,max_ht,19,auditoria histórica,histórico — manter
+audit/stage2_6b_interblock_closure/contract_decisions.csv,mx_ht,5,auditoria histórica,histórico 2.6B (decisão pendente à época) — manter
+audit/stage2_6b_interblock_closure/contract_decisions.csv,max_ht,5,auditoria histórica,histórico — manter
+audit/stage2_6b_interblock_closure/contract_validation.csv,max_ht,21,auditoria histórica,histórico — manter
+audit/stage2_6b_interblock_closure/evidence/analysis_stage2_6b.py,mx_ht,8,auditoria histórica,histórico 2.6B (decisão pendente à época) — manter
+audit/stage2_6b_interblock_closure/evidence/analysis_stage2_6b.py,max_ht,12,auditoria histórica,histórico — manter
+audit/stage2_6b_interblock_closure/evidence/test_output.txt,mx_ht,1,auditoria histórica,histórico 2.6B (decisão pendente à época) — manter
+audit/stage2_6b_interblock_closure/evidence/test_output.txt,max_ht,2,auditoria histórica,histórico — manter
+audit/stage2_6b_interblock_closure/evidence/validation_results.json,mx_ht,4,auditoria histórica,histórico 2.6B (decisão pendente à época) — manter
+audit/stage2_6b_interblock_closure/evidence/validation_results.json,max_ht,8,auditoria histórica,histórico — manter
+audit/stage2_6b_interblock_closure/evidence/workbook_sha256.txt,max_ht,1,auditoria histórica,histórico — manter
+audit/stage2_6b_interblock_closure/interblock_graph.csv,max_ht,9,auditoria histórica,histórico — manter
+audit/stage2_6b_interblock_closure/interblock_links.csv,max_ht,7,auditoria histórica,histórico — manter
+audit/stage2_6c_interblock_final/evidence/analysis_stage2_6c.py,mx_ht,17,auditoria 2.6C (esta etapa),verificação de ausência / nome não oficial — manter
+audit/stage2_6c_interblock_final/evidence/analysis_stage2_6c.py,max_ht,23,auditoria 2.6C (esta etapa),histórico — manter
+audit/structural_corrections/platform_contracts.md,max_ht,2,auditoria histórica,histórico — manter
+data/id_ledger/max_ht.json,max_ht,28,livro de IDs,nome canônico — correto
+data/seed/interblock_links.json,max_ht,7,seed/manifesto,nome canônico — correto
+data/seed/max_ht/manifest.json,max_ht,28,seed/manifesto,nome canônico — correto
+data/seed/max_ht/parameters.json,max_ht,4,seed/manifesto,nome canônico — correto
+data/seed/max_ht/variables.json,max_ht,23,seed/manifesto,nome canônico — correto
+tests/test_equation_seed_validator.py,max_ht,4,teste ativo,nome canônico — correto
+tests/test_id_ranges_taxonomy_consistency.py,max_ht,1,teste ativo,nome canônico — correto
+tests/test_max_ht_runtime_contract.py,max_ht,9,teste ativo,nome canônico — correto
+tests/test_parameter_seed_validator.py,max_ht,4,teste ativo,nome canônico — correto
+tests/test_stage2_4_workbook_contract.py,max_ht,9,teste ativo,nome canônico — correto
+tests/test_stage2_6_interblock_contract.py,max_ht,4,teste ativo,nome canônico — correto
+tests/test_stage2_6b_interblock_closure.py,mx_ht,11,teste ativo,teste de rejeição de mx_ht (LEGACY/2.6C) — manter
+tests/test_stage2_6b_interblock_closure.py,max_ht,20,teste ativo,nome canônico — correto
+tests/test_stage2_6c_interblock_final.py,mx_ht,7,teste ativo,teste de rejeição de mx_ht (LEGACY/2.6C) — manter
+tests/test_stage2_6c_interblock_final.py,max_ht,9,teste ativo,nome canônico — correto
+tests/test_variable_seed_validator.py,max_ht,4,teste ativo,nome canônico — correto
+tools/max_ht_seed_builder.py,max_ht,4,código ativo,nome canônico — correto
+tools/workbook_seed/blocks.py,max_ht,1,código ativo,nome canônico — correto
+tools/workbook_seed/taxonomy.py,mx_ht,1,código ativo,docstring normativo: declara mx_ht não oficial — manter
+tools/workbook_seed/taxonomy.py,max_ht,2,código ativo,nome canônico — correto

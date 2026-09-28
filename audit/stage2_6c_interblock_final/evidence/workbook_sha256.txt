@@ -1,0 +1,7 @@
+36bbae135285ad9b3b88d21ef94e2bc9c92f2ef74736412b66bc62de4dcf3f50  data/workbooks/descritivo_das_variáveis_A41_v9.xlsx  (oficial: area_41)
+cfc46031fc2f3f375b87ebbba58676d23ad92f3ee43fb81b353fe5a8247e1df8  data/workbooks/descritivo_das_variáveis_energy_v6.xlsx  (oficial: energy)
+3e40aab12ec0ec07918c5e358145b09f138663f635ca9e7fc0990d1b765b683b  data/workbooks/descritivo_das_variáveis_MaxHT_v10.xlsx  (oficial: max_ht)
+d946dfd522c8cbb301c0c63caa3c62263b74a849e043d7b2f4bcb0bdb262c922  data/workbooks/descritivo_das_variáveis_production_v11.xlsx  (oficial: production)
+639e8b980f19bc20429cf9763157ac1828d9067bdbabea3bf3db0badbc2df931  data/workbooks/descritivo_das_variáveis_yield_v11.xlsx  (oficial: yield)
+302cf18b92ac22c690b3add9bdd1ded0617bfa60636809696d010b8858d72487  data/workbooks/descritivo_das_variáveis_production_v10.xlsx  (referência do diff D26B-01; oficial na 2.6B)
+3e3024e564ee6f18b82e9771957e61f4940becd1e80db5705143123377956a28  data/workbooks/descritivo_das_variáveis_production_v9.xlsx  (histórico; oficial na 2.6)

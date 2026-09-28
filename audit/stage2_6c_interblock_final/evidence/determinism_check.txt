@@ -1,0 +1,51 @@
+# Etapa 2.6C — determinismo
+
+## 1. python -m tools.workbook_seed, duas execuções consecutivas no repositório
+arquivos verificados: 31 (data/seed + data/id_ledger)
+agregado antes        : 7bd89ecbd559a6cb0aa4c0b051930624b400fb480cafe9d31ac3855de661e1a7
+agregado execução 1   : 7bd89ecbd559a6cb0aa4c0b051930624b400fb480cafe9d31ac3855de661e1a7 (exit=0; interblock: 29 vínculos declarados em fonte, 13 válidos, 16 pendentes de carregamento, 0 rejeitados)
+agregado execução 2   : 7bd89ecbd559a6cb0aa4c0b051930624b400fb480cafe9d31ac3855de661e1a7 (exit=0; interblock: 29 vínculos declarados em fonte, 13 válidos, 16 pendentes de carregamento, 0 rejeitados)
+byte a byte idênticos: True
+
+## 2. builds isolados (subprocesso, diretório temporário)
+ordem direta, PYTHONHASHSEED=0                arquivos=31 agregado=768d6337a44747cda72c08ec889b9219ba1c4d7419b1c464f3dc93868e938ed9
+ordem direta, PYTHONHASHSEED=0 (repetição)    arquivos=31 agregado=768d6337a44747cda72c08ec889b9219ba1c4d7419b1c464f3dc93868e938ed9
+ordem direta, PYTHONHASHSEED=987654321        arquivos=31 agregado=768d6337a44747cda72c08ec889b9219ba1c4d7419b1c464f3dc93868e938ed9
+ordem invertida, PYTHONHASHSEED=12345         arquivos=31 agregado=768d6337a44747cda72c08ec889b9219ba1c4d7419b1c464f3dc93868e938ed9
+agregado dos arquivos versionados equivalentes: 768d6337a44747cda72c08ec889b9219ba1c4d7419b1c464f3dc93868e938ed9
+todos idênticos entre si e aos versionados: True
+
+## 3. SHA-256 por arquivo (versionados)
+79a1f57b0a0df2312172dcab69bda310fa90c62cf034bb360ead50a15956ac2e  data/id_ledger/area_41.json
+1e2b00186e4bcc4ce72e704d6d3d2ddc47e49131e29d9515e9c58e7565c94b5c  data/id_ledger/energy.json
+927d54b9709aaf5b5ea939fa18950365330fc87561f764e50addd3a1506cdd73  data/id_ledger/max_ht.json
+b42da2824e9b359fe8b5b35f4304def2d68670437620e1d2aded6a7d3e43940a  data/id_ledger/production.json
+074d79e17cf5132e3e1c90e024931947aba639cff9bf76455900c8c98db81fcd  data/id_ledger/yield.json
+5a74c76570ca4dc010f9fc40438014cf3b4bd016a5a4ff3cbb4cf31b1881e5cd  data/seed/area_41/aggregation_rules.json
+1fe6cac440d400e1a0d61b9ca75c7f5c7317b16fa6fae919eb7caf20d31adaf2  data/seed/area_41/equations.json
+34869eaad510b726fa27c7e29401d71879fd60bab181b1c7618c65bcfdd4366b  data/seed/area_41/manifest.json
+c7fbf4a90f456cb82cfdc6fec34b7c6cbd8e4231764be233270cb74fe71438e9  data/seed/area_41/parameters.json
+5878c33ae39aba04e4c53e204c0f1515b376aed1fd72df417647957bb40e92c7  data/seed/area_41/variables.json
+b9d75bbb5d61ebdead961b669c6a19f255e72b2afde45b460b1a3d70915fcd67  data/seed/energy/aggregation_rules.json
+3fe205254af62daad22c5363c159ecb25ece6789106e8df825018de870024c00  data/seed/energy/equations.json
+4355ca62f807cb4074b518c5495523198c902cfd38eeda2591e813d64580e878  data/seed/energy/manifest.json
+20cd6dbe99c3c78db4790f974e6b87904156141e25e69db137769db89413e4a3  data/seed/energy/parameters.json
+76e283f6e326aac483edc369ed6f08c7984c13e32dc84756e261b96ab5c293a3  data/seed/energy/variables.json
+e96ff4890cb77fe4a1a05169bd2692b37e88f0bee50b6395453e141609b0b697  data/seed/interblock_links.json
+c603d641f930c263f0d469bb51214293574f8b96758a62dee5f43f059fef6a01  data/seed/max_ht/aggregation_rules.json
+27141c2644524582eac422f440dad5eec9ba5459058f888339acf62277babf8b  data/seed/max_ht/equations.json
+9869d7406906f1e2b34183bcaae1a7b69347b5c584acfc4f4b77fc6ee5bcde91  data/seed/max_ht/manifest.json
+af57ccbc6a729812e8d43956f34805284046a89b8f8913aeb642ab93398ea8f3  data/seed/max_ht/parameters.json
+ea9a71d5befb252af86ec8957b9b889c6425253a160cf2b67012e9ee166aeeb5  data/seed/max_ht/variables.json
+372e4c11583a9aab21c9f1605a8e99638366520cc35e36532a7f34bd8ab781b7  data/seed/production/aggregation_rules.json
+527e80bede30604e8e03d50746e1b5f39f55ffb244a697d3c0967ee366f52ba8  data/seed/production/equations.json
+67da2525a2b61a7752b90ddfb8e5a7d7d65bb4c0e28122391b976e128f9591b4  data/seed/production/manifest.json
+b92cc7300e8d88b724f39b83fb68e908118a3628369b27764be0947414921fbc  data/seed/production/parameters.json
+69988b94917850f75e2ed8466caa63fa27eb2e1cb9c2da6b5fd4871eefcfd05b  data/seed/production/variables.json
+fe245bed8f11b34f4f83b0fe0b516f9e790a5581fe8ec27412793d3ca44712b9  data/seed/yield/aggregation_rules.json
+c84f508901943f3a6a2efdd0bd7a2ae62b083c9bb39ed49ebfb6a9118a259c94  data/seed/yield/equations.json
+ee26c9523c0a2027f4cc6036c62cd82bd2fd224780b9a2041107521cc548a8ca  data/seed/yield/manifest.json
+7d45f9cf5668d64a61be54bc275f3e2575f540e81f9cd45c5833d62902069893  data/seed/yield/parameters.json
+3b5de059643b0a84d3eddfa55b50b8f3e9a660079508d000296a98b5c07d277f  data/seed/yield/variables.json
+
+RESULTADO: DETERMINISTIC

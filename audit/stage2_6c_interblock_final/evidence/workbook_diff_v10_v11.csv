@@ -1,0 +1,4 @@
+cell,row,column,name,frequency,scope_value,v10,v11,expected_v11,classification
+R36,36,OBS,lth,mensal,L1_L7,1050,,,D26B-01
+R38,38,OBS,lth_meta,anual,L2,1100,1050,1050,D26B-01
+R43,43,OBS,lth_meta,anual,L7,,1100,1100,D26B-01

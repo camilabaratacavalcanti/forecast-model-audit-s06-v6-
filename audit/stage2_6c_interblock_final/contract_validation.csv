@@ -1,0 +1,147 @@
+consumer_block,consumer_rows,consumer_name,fonte,dimension,consumer_value,producer_value,result,is_contract_dimension
+area_41,9,lth,yield,kind,variable,variable,OK,True
+area_41,9,lth,yield,name,lth,lth,OK,True
+area_41,9,lth,yield,unit,m³/h,m³/h,OK,True
+area_41,9,lth,yield,value_type,numerico,numerico,OK,True
+area_41,9,lth,yield,allowed_values,,,OK,True
+area_41,9,lth,yield,declared_result_states,,,OK,True
+area_41,9,lth,yield,frequency,diário,diário,OK,True
+area_41,9,lth,yield,scope_type,linha,linha,OK,True
+area_41,9,lth,yield,instances,"['L1', 'L2', 'L3', 'L4', 'L5', 'L6', 'L7']","['L1', 'L2', 'L3', 'L4', 'L5', 'L6', 'L7']",OK,True
+area_41,9,lth,yield,variable_type,entrada,entrada,OK,False
+area_41,"25,26,27,28",hes,maintenance,source_block,maintenance,workbook não carregado,SOURCE_BLOCK_NOT_LOADED,True
+energy,3,producao,production,kind,variable,variable,OK,True
+energy,3,producao,production,name,producao,producao,OK,True
+energy,3,producao,production,unit,t/d,t/d,OK,True
+energy,3,producao,production,value_type,numerico,numerico,OK,True
+energy,3,producao,production,allowed_values,,,OK,True
+energy,3,producao,production,declared_result_states,,,OK,True
+energy,3,producao,production,frequency,diário,diário,OK,True
+energy,3,producao,production,scope_type,linha,linha,OK,True
+energy,3,producao,production,instances,"['L1', 'L2', 'L3', 'L4', 'L5', 'L6', 'L7']","['L1', 'L2', 'L3', 'L4', 'L5', 'L6', 'L7']",OK,True
+energy,3,producao,production,variable_type,entrada,calculado,DIFFERENT (não é dimensão do contrato),False
+energy,7,pick_up,production,kind,variable,variable,OK,True
+energy,7,pick_up,production,name,pick_up,pick_up,OK,True
+energy,7,pick_up,production,unit,g/l,g/l,OK,True
+energy,7,pick_up,production,value_type,numerico,numerico,OK,True
+energy,7,pick_up,production,allowed_values,,,OK,True
+energy,7,pick_up,production,declared_result_states,,,OK,True
+energy,7,pick_up,production,frequency,diário,diário,OK,True
+energy,7,pick_up,production,scope_type,linha,linha,OK,True
+energy,7,pick_up,production,instances,"['L1', 'L2', 'L3', 'L4', 'L5', 'L6', 'L7']","['L1', 'L2', 'L3', 'L4', 'L5', 'L6', 'L7']",OK,True
+energy,7,pick_up,production,variable_type,entrada,calculado,DIFFERENT (não é dimensão do contrato),False
+energy,8,pick_up_total,production,kind,variable,variable,OK,True
+energy,8,pick_up_total,production,name,pick_up_total,pick_up_total,OK,True
+energy,8,pick_up_total,production,unit,g/l,g/l,OK,True
+energy,8,pick_up_total,production,value_type,numerico,numerico,OK,True
+energy,8,pick_up_total,production,allowed_values,,,OK,True
+energy,8,pick_up_total,production,declared_result_states,,,OK,True
+energy,8,pick_up_total,production,frequency,diário,diário,OK,True
+energy,8,pick_up_total,production,scope_type,linha_grupo,linha_grupo,OK,True
+energy,8,pick_up_total,production,instances,['L1_L7'],['L1_L7'],OK,True
+energy,8,pick_up_total,production,variable_type,entrada,calculado,DIFFERENT (não é dimensão do contrato),False
+energy,9,pick_up_total,production,kind,variable,variable,OK,True
+energy,9,pick_up_total,production,name,pick_up_total,pick_up_total,OK,True
+energy,9,pick_up_total,production,unit,g/l,g/l,OK,True
+energy,9,pick_up_total,production,value_type,numerico,numerico,OK,True
+energy,9,pick_up_total,production,allowed_values,,,OK,True
+energy,9,pick_up_total,production,declared_result_states,,,OK,True
+energy,9,pick_up_total,production,frequency,mensal,mensal,OK,True
+energy,9,pick_up_total,production,scope_type,linha_grupo,linha_grupo,OK,True
+energy,9,pick_up_total,production,instances,['L1_L7'],['L1_L7'],OK,True
+energy,9,pick_up_total,production,variable_type,entrada,calculado,DIFFERENT (não é dimensão do contrato),False
+energy,10,lth,production,kind,variable,variable,OK,True
+energy,10,lth,production,name,lth,lth,OK,True
+energy,10,lth,production,unit,m³/h,m³/h,OK,True
+energy,10,lth,production,value_type,numerico,numerico,OK,True
+energy,10,lth,production,allowed_values,,,OK,True
+energy,10,lth,production,declared_result_states,,,OK,True
+energy,10,lth,production,frequency,diário,diário,OK,True
+energy,10,lth,production,scope_type,linha,linha,OK,True
+energy,10,lth,production,instances,"['L1', 'L2', 'L3', 'L4', 'L5', 'L6', 'L7']","['L1', 'L2', 'L3', 'L4', 'L5', 'L6', 'L7']",OK,True
+energy,10,lth,production,variable_type,entrada,calculado,DIFFERENT (não é dimensão do contrato),False
+energy,11,lth_total,production,kind,variable,variable,OK,True
+energy,11,lth_total,production,name,lth_total,lth_total,OK,True
+energy,11,lth_total,production,unit,m³/h,m³/h,OK,True
+energy,11,lth_total,production,value_type,numerico,numerico,OK,True
+energy,11,lth_total,production,allowed_values,,,OK,True
+energy,11,lth_total,production,declared_result_states,,,OK,True
+energy,11,lth_total,production,frequency,diário,diário,OK,True
+energy,11,lth_total,production,scope_type,linha_grupo,linha_grupo,OK,True
+energy,11,lth_total,production,instances,['L1_L7'],['L1_L7'],OK,True
+energy,11,lth_total,production,variable_type,entrada,calculado,DIFFERENT (não é dimensão do contrato),False
+energy,12,lth_total,production,kind,variable,variable,OK,True
+energy,12,lth_total,production,name,lth_total,lth_total,OK,True
+energy,12,lth_total,production,unit,m³/h,m³/h,OK,True
+energy,12,lth_total,production,value_type,numerico,numerico,OK,True
+energy,12,lth_total,production,allowed_values,,,OK,True
+energy,12,lth_total,production,declared_result_states,,,OK,True
+energy,12,lth_total,production,frequency,mensal,mensal,OK,True
+energy,12,lth_total,production,scope_type,linha_grupo,linha_grupo,OK,True
+energy,12,lth_total,production,instances,['L1_L7'],['L1_L7'],OK,True
+energy,12,lth_total,production,variable_type,entrada,calculado,DIFFERENT (não é dimensão do contrato),False
+energy,13,lth_meta,production,kind,variable,variable,OK,True
+energy,13,lth_meta,production,name,lth_meta,lth_meta,OK,True
+energy,13,lth_meta,production,unit,-,-,OK,True
+energy,13,lth_meta,production,value_type,numerico,numerico,OK,True
+energy,13,lth_meta,production,allowed_values,,,OK,True
+energy,13,lth_meta,production,declared_result_states,,,OK,True
+energy,13,lth_meta,production,frequency,anual,anual,OK,True
+energy,13,lth_meta,production,scope_type,linha,linha,OK,True
+energy,13,lth_meta,production,instances,"['L1', 'L2', 'L3', 'L4', 'L5', 'L6', 'L7']","['L1', 'L2', 'L3', 'L4', 'L5', 'L6', 'L7']",OK,True
+energy,13,lth_meta,production,variable_type,entrada,entrada_externa,DIFFERENT (não é dimensão do contrato),False
+energy,14,temperatura_lp,temperature_lp,source_block,temperature_lp,workbook não carregado,SOURCE_BLOCK_NOT_LOADED,True
+energy,15,temperatura_lp,temperature_lp,source_block,temperature_lp,workbook não carregado,SOURCE_BLOCK_NOT_LOADED,True
+energy,16,temperatura_lp_media,temperature_lp,source_block,temperature_lp,workbook não carregado,SOURCE_BLOCK_NOT_LOADED,True
+energy,37,evaporado_total_evaporacao,area_04_13,source_block,area_04_13,workbook não carregado,SOURCE_BLOCK_NOT_LOADED,True
+max_ht,5,alimentação_evap,alumina,source_block,alumina,workbook não carregado,SOURCE_BLOCK_NOT_LOADED,True
+max_ht,68,lth,production,kind,variable,variable,OK,True
+max_ht,68,lth,production,name,lth,lth,OK,True
+max_ht,68,lth,production,unit,m³/h,m³/h,OK,True
+max_ht,68,lth,production,value_type,numerico,numerico,OK,True
+max_ht,68,lth,production,allowed_values,,,OK,True
+max_ht,68,lth,production,declared_result_states,,,OK,True
+max_ht,68,lth,production,frequency,diário,diário,OK,True
+max_ht,68,lth,production,scope_type,linha,linha,OK,True
+max_ht,68,lth,production,instances,"['L1', 'L2', 'L3', 'L4', 'L5', 'L6', 'L7']","['L1', 'L2', 'L3', 'L4', 'L5', 'L6', 'L7']",OK,True
+max_ht,68,lth,production,variable_type,entrada,calculado,DIFFERENT (não é dimensão do contrato),False
+max_ht,98,producao,production,kind,variable,variable,OK,True
+max_ht,98,producao,production,name,producao,producao,OK,True
+max_ht,98,producao,production,unit,t/d,t/d,OK,True
+max_ht,98,producao,production,value_type,numerico,numerico,OK,True
+max_ht,98,producao,production,allowed_values,,,OK,True
+max_ht,98,producao,production,declared_result_states,,,OK,True
+max_ht,98,producao,production,frequency,diário,diário,OK,True
+max_ht,98,producao,production,scope_type,linha,linha,OK,True
+max_ht,98,producao,production,instances,"['L1', 'L2', 'L3', 'L4', 'L5', 'L6', 'L7']","['L1', 'L2', 'L3', 'L4', 'L5', 'L6', 'L7']",OK,True
+max_ht,98,producao,production,variable_type,entrada,calculado,DIFFERENT (não é dimensão do contrato),False
+production,31,fator_mpsa_kg_t,forecast,source_block,forecast,workbook não carregado,SOURCE_BLOCK_NOT_LOADED,True
+production,33,fator_mrn_kg_t,forecast,source_block,forecast,workbook não carregado,SOURCE_BLOCK_NOT_LOADED,True
+production,79,reducao_lth_calcinacao,maintenance,source_block,maintenance,workbook não carregado,SOURCE_BLOCK_NOT_LOADED,True
+production,80,reducao_lth_clarificacao,maintenance,source_block,maintenance,workbook não carregado,SOURCE_BLOCK_NOT_LOADED,True
+production,81,reducao_lth_digestao,maintenance,source_block,maintenance,workbook não carregado,SOURCE_BLOCK_NOT_LOADED,True
+production,82,reducao_lth_precipitacao,maintenance,source_block,maintenance,workbook não carregado,SOURCE_BLOCK_NOT_LOADED,True
+production,83,tempo_calcinacao,maintenance,source_block,maintenance,workbook não carregado,SOURCE_BLOCK_NOT_LOADED,True
+production,84,tempo_clarificacao,maintenance,source_block,maintenance,workbook não carregado,SOURCE_BLOCK_NOT_LOADED,True
+production,85,tempo_digestao,maintenance,source_block,maintenance,workbook não carregado,SOURCE_BLOCK_NOT_LOADED,True
+production,86,tempo_precipitacao,maintenance,source_block,maintenance,workbook não carregado,SOURCE_BLOCK_NOT_LOADED,True
+production,87,yield,yield,kind,variable,variable,OK,True
+production,87,yield,yield,name,yield,yield,OK,True
+production,87,yield,yield,unit,g/l,g/l,OK,True
+production,87,yield,yield,value_type,numerico,numerico,OK,True
+production,87,yield,yield,allowed_values,,,OK,True
+production,87,yield,yield,declared_result_states,,,OK,True
+production,87,yield,yield,frequency,diário,diário,OK,True
+production,87,yield,yield,scope_type,linha,linha,OK,True
+production,87,yield,yield,instances,"['L1', 'L2', 'L3', 'L4', 'L5', 'L6', 'L7']","['L1', 'L2', 'L3', 'L4', 'L5', 'L6', 'L7']",OK,True
+production,87,yield,yield,variable_type,entrada,calculado,DIFFERENT (não é dimensão do contrato),False
+yield,32,lth,production,kind,variable,variable,OK,True
+yield,32,lth,production,name,lth,lth,OK,True
+yield,32,lth,production,unit,m³/h,m³/h,OK,True
+yield,32,lth,production,value_type,numerico,numerico,OK,True
+yield,32,lth,production,allowed_values,,,OK,True
+yield,32,lth,production,declared_result_states,,,OK,True
+yield,32,lth,production,frequency,diário,diário,OK,True
+yield,32,lth,production,scope_type,linha,linha,OK,True
+yield,32,lth,production,instances,"['L1', 'L2', 'L3', 'L4', 'L5', 'L6', 'L7']","['L1', 'L2', 'L3', 'L4', 'L5', 'L6', 'L7']",OK,True
+yield,32,lth,production,variable_type,entrada,calculado,DIFFERENT (não é dimensão do contrato),False

@@ -1,0 +1,40 @@
+# baseline: eceffd4 | implementação: 68cb5a1 | branch: feature/area-41-block
+# python -m pytest -p no:cacheprovider -v tests/test_stage2_6c_interblock_final.py
+============================= test session starts ==============================
+collecting ... collected 20 items
+
+tests/test_stage2_6c_interblock_final.py::test_01_production_v11_differs_from_v10_only_in_the_obs_correction PASSED
+tests/test_stage2_6c_interblock_final.py::test_01b_obs_is_not_part_of_the_seed PASSED
+tests/test_stage2_6c_interblock_final.py::test_02_taxonomy_contains_max_ht PASSED
+tests/test_stage2_6c_interblock_final.py::test_03_taxonomy_does_not_contain_mx_ht PASSED
+tests/test_stage2_6c_interblock_final.py::test_04_fonte_max_ht_resolves_when_the_producer_exists PASSED
+tests/test_stage2_6c_interblock_final.py::test_05_fonte_mx_ht_is_rejected_as_unknown_block PASSED
+tests/test_stage2_6c_interblock_final.py::test_06_lth_meta_variable_to_variable PASSED
+tests/test_stage2_6c_interblock_final.py::test_07_entrada_to_entrada_externa_is_not_a_mismatch PASSED
+tests/test_stage2_6c_interblock_final.py::test_08_09_calculated_factor_without_fonte[fator_mpsa] PASSED
+tests/test_stage2_6c_interblock_final.py::test_08_09_calculated_factor_without_fonte[fator_mrn] PASSED
+tests/test_stage2_6c_interblock_final.py::test_10_11_kg_t_input_links_to_forecast[fator_mpsa_kg_t] PASSED
+tests/test_stage2_6c_interblock_final.py::test_10_11_kg_t_input_links_to_forecast[fator_mrn_kg_t] PASSED
+tests/test_stage2_6c_interblock_final.py::test_12_ids_are_stable_against_baselines[a126e02] PASSED
+tests/test_stage2_6c_interblock_final.py::test_12_ids_are_stable_against_baselines[eceffd4] PASSED
+tests/test_stage2_6c_interblock_final.py::test_13_retired_ids_are_recorded_and_never_reused PASSED
+tests/test_stage2_6c_interblock_final.py::test_14_repeated_builds_are_byte_identical_and_order_independent PASSED
+tests/test_stage2_6c_interblock_final.py::test_15_no_cycle PASSED
+tests/test_stage2_6c_interblock_final.py::test_16_no_orphan_link_or_reference PASSED
+tests/test_stage2_6c_interblock_final.py::test_17_independent_analysis_matches_the_builder PASSED
+tests/test_stage2_6c_interblock_final.py::test_official_classification_counts PASSED
+
+============================== 20 passed in 4.99s ==============================
+
+# python -m pytest -q -p no:cacheprovider (suíte completa)
+1496 passed in 17.07s
+
+# python -m tools.workbook_seed
+interblock: 29 vínculos declarados em fonte, 13 válidos, 16 pendentes de carregamento, 0 rejeitados
+exit=0
+
+# python audit/stage2_6c_interblock_final/evidence/analysis_stage2_6c.py --no-write
+exit=0
+
+# python audit/stage2_6c_interblock_final/evidence/determinism_check.py
+RESULTADO: DETERMINISTIC
