@@ -1,0 +1,8 @@
+# Etapa 3.2 — determinismo
+PYTHONHASHSEED=0 exit=0 sha256(resumo)=d8167a89ec46fdd72eb1ab9059bf18286706e89e6328164768bf0c57d160f827
+PYTHONHASHSEED=424242 exit=0 sha256(resumo)=d8167a89ec46fdd72eb1ab9059bf18286706e89e6328164768bf0c57d160f827
+PYTHONHASHSEED=7 exit=0 sha256(resumo)=d8167a89ec46fdd72eb1ab9059bf18286706e89e6328164768bf0c57d160f827
+# a própria análise compara a sonda real_derived com PYTHONHASHSEED 0 x 424242 (deterministic_across_hash_seeds)
+ "deterministic_across_hash_seeds": true,
+# pytest 17..20
+4 passed, 33 deselected in 0.83s

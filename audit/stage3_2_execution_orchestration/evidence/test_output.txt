@@ -1,0 +1,81 @@
+# baseline: 8ca9d01 | HEAD: 2cfc52a | branch: feature/area-41-block
+# python -m pytest -p no:cacheprovider -v tests/test_stage3_2_execution_orchestration.py
+============================= test session starts ==============================
+collecting ... collected 37 items
+
+tests/test_stage3_2_execution_orchestration.py::test_01_03_producer_runs_before_consumer_transfer_between_and_value_received PASSED
+tests/test_stage3_2_execution_orchestration.py::test_04_three_block_chain_without_shortcut PASSED
+tests/test_stage3_2_execution_orchestration.py::test_05_broken_chain_fails PASSED
+tests/test_stage3_2_execution_orchestration.py::test_06_producer_not_executed_fails PASSED
+tests/test_stage3_2_execution_orchestration.py::test_07_pending_link_fails_before_any_execution PASSED
+tests/test_stage3_2_execution_orchestration.py::test_08_daily_to_daily PASSED
+tests/test_stage3_2_execution_orchestration.py::test_09_monthly_to_monthly PASSED
+tests/test_stage3_2_execution_orchestration.py::test_10_annual_to_annual PASSED
+tests/test_stage3_2_execution_orchestration.py::test_11_incompatible_frequency_link_is_rejected PASSED
+tests/test_stage3_2_execution_orchestration.py::test_12_incompatible_period_fails_without_fallback PASSED
+tests/test_stage3_2_execution_orchestration.py::test_13_same_instance PASSED
+tests/test_stage3_2_execution_orchestration.py::test_14_unknown_instance_fails PASSED
+tests/test_stage3_2_execution_orchestration.py::test_15_l3_does_not_substitute_l1 PASSED
+tests/test_stage3_2_execution_orchestration.py::test_16_linha_does_not_substitute_linha_grupo PASSED
+tests/test_stage3_2_execution_orchestration.py::test_17_same_input_same_result PASSED
+tests/test_stage3_2_execution_orchestration.py::test_18_block_order_does_not_matter PASSED
+tests/test_stage3_2_execution_orchestration.py::test_19_link_order_does_not_matter PASSED
+tests/test_stage3_2_execution_orchestration.py::test_20_hash_seed_does_not_matter PASSED
+tests/test_stage3_2_execution_orchestration.py::test_21_one_block_does_not_contaminate_another PASSED
+tests/test_stage3_2_execution_orchestration.py::test_22_periods_stay_isolated PASSED
+tests/test_stage3_2_execution_orchestration.py::test_23_repeated_execution_does_not_duplicate_transfer PASSED
+tests/test_stage3_2_execution_orchestration.py::test_cycle_fails_with_the_full_cycle PASSED
+tests/test_stage3_2_execution_orchestration.py::test_24_27_isolated_block_behaves_as_the_existing_engine[production-VAR12031] PASSED
+tests/test_stage3_2_execution_orchestration.py::test_24_27_isolated_block_behaves_as_the_existing_engine[yield-VAR11226] PASSED
+tests/test_stage3_2_execution_orchestration.py::test_24_27_isolated_block_behaves_as_the_existing_engine[energy-VAR18002] PASSED
+tests/test_stage3_2_execution_orchestration.py::test_24_27_isolated_block_behaves_as_the_existing_engine[max_ht-VAR13039] PASSED
+tests/test_stage3_2_execution_orchestration.py::test_24_27_official_block_plans_report_the_pending_boundary PASSED
+tests/test_stage3_2_execution_orchestration.py::test_yield_official_execution_matches_existing_engine PASSED
+tests/test_stage3_2_execution_orchestration.py::test_28_official_real_chain_production_yield_area_41_is_blocked_by_maintenance PASSED
+tests/test_stage3_2_execution_orchestration.py::test_28_real_derived_chain_production_yield_area_41 PASSED
+tests/test_stage3_2_execution_orchestration.py::test_29_real_derived_chain_production_energy PASSED
+tests/test_stage3_2_execution_orchestration.py::test_29_official_chain_production_lth_meta_to_energy PASSED
+tests/test_stage3_2_execution_orchestration.py::test_30_real_derived_chain_production_max_ht PASSED
+tests/test_stage3_2_execution_orchestration.py::test_30_official_max_ht_is_blocked_by_maintenance PASSED
+tests/test_stage3_2_execution_orchestration.py::test_orchestrator_uses_only_canonical_artifacts PASSED
+tests/test_stage3_2_execution_orchestration.py::test_pending_boundary_is_never_filled PASSED
+tests/test_stage3_2_execution_orchestration.py::test_progressive_period_rerun_in_same_context_is_an_explicit_conflict PASSED
+
+============================== 37 passed in 1.16s ==============================
+
+# python -m pytest -q -p no:cacheprovider (suíte completa)
+1570 passed in 18.03s
+
+# python audit/stage3_2_execution_orchestration/evidence/analysis_stage3_2.py
+{
+ "targets_planned": 446,
+ "targets_executable_official": 159,
+ "targets_blocked_official": 287,
+ "blocked_by_block": {
+  "maintenance": 259,
+  "forecast": 23,
+  "alumina": 61,
+  "temperature_lp": 30,
+  "area_04_13": 18
+ },
+ "blocked_executions_checked": 19,
+ "executions_checked": {
+  "official": 1,
+  "real_derived": 16
+ },
+ "transfer_events_checked": 200,
+ "deterministic_across_hash_seeds": true,
+ "divergências": 0,
+ "transferências fora do contrato": 0,
+ "atalhos": 0,
+ "execuções fora da ordem": 0,
+ "valores fictícios": 0,
+ "problems": []
+}
+exit=0
+
+# git diff --stat 8ca9d01 HEAD (fora de audit/)
+ app/engine/exceptions.py                       |  23 +
+ app/engine/interblock_orchestrator.py          | 555 +++++++++++++++++
+ tests/test_stage3_2_execution_orchestration.py | 790 +++++++++++++++++++++++++
+ 3 files changed, 1368 insertions(+)
