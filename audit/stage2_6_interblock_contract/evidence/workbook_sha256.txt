@@ -1,0 +1,5 @@
+36bbae135285ad9b3b88d21ef94e2bc9c92f2ef74736412b66bc62de4dcf3f50  data/workbooks/descritivo_das_variáveis_A41_v9.xlsx  (area_41 v9)
+cfc46031fc2f3f375b87ebbba58676d23ad92f3ee43fb81b353fe5a8247e1df8  data/workbooks/descritivo_das_variáveis_energy_v6.xlsx  (energy v6)
+3e40aab12ec0ec07918c5e358145b09f138663f635ca9e7fc0990d1b765b683b  data/workbooks/descritivo_das_variáveis_MaxHT_v10.xlsx  (max_ht v10)
+3e3024e564ee6f18b82e9771957e61f4940becd1e80db5705143123377956a28  data/workbooks/descritivo_das_variáveis_production_v9.xlsx  (production v9)
+639e8b980f19bc20429cf9763157ac1828d9067bdbabea3bf3db0badbc2df931  data/workbooks/descritivo_das_variáveis_yield_v11.xlsx  (yield v11)

@@ -1,0 +1,43 @@
+level,consumer,consumer_definition,producer,producer_definition,edges,valid_edges,status,note
+definition,area_41.lth[diário linha/L1_L7],VAR16007,yield.lth[diário linha/L1_L7],VAR11031,1,1,VALID,area_41.lth → yield.lth → production.lth (VALID)
+definition,area_41.hes[diário linha/L4_L7],VAR16021,maintenance.?,,1,0,SOURCE_NOT_FOUND,area_41.hes → maintenance.? (BROKEN_AT:area_41.hes)
+definition,energy.producao[diário linha/L1_L7],VAR18001,production.producao[diário linha/L1_L7],VAR12046,1,1,VALID,energy.producao → production.producao (VALID)
+definition,energy.pick_up[diário linha/L1_L7],VAR18005,production.pick_up[diário linha/L1_L7],VAR12041,1,1,VALID,energy.pick_up → production.pick_up (VALID)
+definition,energy.pick_up_total[diário linha_grupo/L1_L7],VAR18006,production.pick_up_total[diário linha_grupo/L1_L7],VAR12043,1,1,VALID,energy.pick_up_total → production.pick_up_total (VALID)
+definition,energy.pick_up_total[mensal linha_grupo/L1_L7],VAR18007,production.pick_up_total[mensal linha_grupo/L1_L7],VAR12044,1,1,VALID,energy.pick_up_total → production.pick_up_total (VALID)
+definition,energy.lth[diário linha/L1_L7],VAR18008,production.lth[diário linha/L1_L7],VAR12031,1,1,VALID,energy.lth → production.lth (VALID)
+definition,energy.lth_total[diário linha_grupo/L1_L7],VAR18009,production.lth_total[diário linha_grupo/L1_L7],VAR12033,1,1,VALID,energy.lth_total → production.lth_total (VALID)
+definition,energy.lth_total[mensal linha_grupo/L1_L7],VAR18010,production.lth_total[mensal linha_grupo/L1_L7],VAR12034,1,1,VALID,energy.lth_total → production.lth_total (VALID)
+definition,energy.lth_meta[anual linha/L1_L7],VAR18011,production.lth_meta[anual linha/L1_L7],PARAM12003,1,0,CONTRACT_MISMATCH,energy.lth_meta → production.lth_meta (BROKEN_AT:energy.lth_meta)
+definition,energy.temperatura_lp[diário linha/L1_L7],VAR18012,temperature_lp.?,,1,0,SOURCE_NOT_FOUND,energy.temperatura_lp → temperature_lp.? (BROKEN_AT:energy.temperatura_lp)
+definition,energy.temperatura_lp[mensal linha/L1_L7],VAR18013,temperature_lp.?,,1,0,SOURCE_NOT_FOUND,energy.temperatura_lp → temperature_lp.? (BROKEN_AT:energy.temperatura_lp)
+definition,energy.temperatura_lp_media[mensal linha_grupo/L1_L7],VAR18014,temperature_lp.?,,1,0,SOURCE_NOT_FOUND,energy.temperatura_lp_media → temperature_lp.? (BROKEN_AT:energy.temperatura_lp_media)
+definition,energy.evaporado_total_evaporacao[diário linha/L1_L7],VAR18031,area_04_13.?,,1,0,SOURCE_NOT_FOUND,energy.evaporado_total_evaporacao → area_04_13.? (BROKEN_AT:energy.evaporado_total_evaporacao)
+definition,max_ht.alimentação_evap[diário linha/L1_L7],VAR13003,alumina.?,,1,0,SOURCE_NOT_FOUND,max_ht.alimentação_evap → alumina.? (BROKEN_AT:max_ht.alimentação_evap)
+definition,max_ht.lth[diário linha/L1_L7],VAR13062,production.lth[diário linha/L1_L7],VAR12031,1,1,VALID,max_ht.lth → production.lth (VALID)
+definition,max_ht.producao[diário linha/L1_L7],VAR13092,production.producao[diário linha/L1_L7],VAR12046,1,1,VALID,max_ht.producao → production.producao (VALID)
+definition,production.fator_mpsa[diário linha/L1_L7],VAR12027,forecast.?,,1,0,CONTRACT_MISMATCH,production.fator_mpsa → forecast.? (BROKEN_AT:production.fator_mpsa)
+definition,production.fator_mpsa_kg_t[diário linha_grupo/L1_L7],VAR12028,forecast.?,,1,0,SOURCE_NOT_FOUND,production.fator_mpsa_kg_t → forecast.? (BROKEN_AT:production.fator_mpsa_kg_t)
+definition,production.fator_mrn[diário linha/L1_L7],VAR12029,forecast.?,,1,0,CONTRACT_MISMATCH,production.fator_mrn → forecast.? (BROKEN_AT:production.fator_mrn)
+definition,production.fator_mrn_kg_t[diário linha_grupo/L1_L7],VAR12030,forecast.?,,1,0,SOURCE_NOT_FOUND,production.fator_mrn_kg_t → forecast.? (BROKEN_AT:production.fator_mrn_kg_t)
+definition,production.reducao_lth_calcinacao[diário linha/L1_L7],VAR12054,maintenance.?,,1,0,SOURCE_NOT_FOUND,production.reducao_lth_calcinacao → maintenance.? (BROKEN_AT:production.reducao_lth_calcinacao)
+definition,production.reducao_lth_clarificacao[diário linha/L1_L7],VAR12055,maintenance.?,,1,0,SOURCE_NOT_FOUND,production.reducao_lth_clarificacao → maintenance.? (BROKEN_AT:production.reducao_lth_clarificacao)
+definition,production.reducao_lth_digestao[diário linha/L1_L7],VAR12056,maintenance.?,,1,0,SOURCE_NOT_FOUND,production.reducao_lth_digestao → maintenance.? (BROKEN_AT:production.reducao_lth_digestao)
+definition,production.reducao_lth_precipitacao[diário linha/L1_L7],VAR12057,maintenance.?,,1,0,SOURCE_NOT_FOUND,production.reducao_lth_precipitacao → maintenance.? (BROKEN_AT:production.reducao_lth_precipitacao)
+definition,production.tempo_calcinacao[diário linha/L1_L7],VAR12058,maintenance.?,,1,0,SOURCE_NOT_FOUND,production.tempo_calcinacao → maintenance.? (BROKEN_AT:production.tempo_calcinacao)
+definition,production.tempo_clarificacao[diário linha/L1_L7],VAR12059,maintenance.?,,1,0,SOURCE_NOT_FOUND,production.tempo_clarificacao → maintenance.? (BROKEN_AT:production.tempo_clarificacao)
+definition,production.tempo_digestao[diário linha/L1_L7],VAR12060,maintenance.?,,1,0,SOURCE_NOT_FOUND,production.tempo_digestao → maintenance.? (BROKEN_AT:production.tempo_digestao)
+definition,production.tempo_precipitacao[diário linha/L1_L7],VAR12061,maintenance.?,,1,0,SOURCE_NOT_FOUND,production.tempo_precipitacao → maintenance.? (BROKEN_AT:production.tempo_precipitacao)
+definition,production.yield[diário linha/L1_L7],VAR12062,yield.yield[diário linha/L1_L7],VAR11226,1,1,VALID,production.yield → yield.yield (VALID)
+definition,yield.lth[diário linha/L1_L7],VAR11031,production.lth[diário linha/L1_L7],VAR12031,1,1,VALID,yield.lth → production.lth (VALID)
+block,area_41,,maintenance,,1,0,SOURCE_BLOCK_NOT_LOADED,
+block,area_41,,yield,,1,1,LOADED,
+block,energy,,area_04_13,,1,0,SOURCE_BLOCK_NOT_LOADED,
+block,energy,,production,,8,7,LOADED,
+block,energy,,temperature_lp,,3,0,SOURCE_BLOCK_NOT_LOADED,
+block,max_ht,,alumina,,1,0,SOURCE_BLOCK_NOT_LOADED,
+block,max_ht,,production,,2,2,LOADED,
+block,production,,forecast,,4,0,SOURCE_BLOCK_NOT_LOADED,
+block,production,,maintenance,,8,0,SOURCE_BLOCK_NOT_LOADED,
+block,production,,yield,,1,1,LOADED,dependência mútua entre blocos; no nível de definição (vínculos + equações + agregações) não há ciclo
+block,yield,,production,,1,1,LOADED,dependência mútua entre blocos; no nível de definição (vínculos + equações + agregações) não há ciclo

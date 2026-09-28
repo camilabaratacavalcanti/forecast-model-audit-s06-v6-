@@ -1,0 +1,48 @@
+# git HEAD: 3c75a907de8dfe9ff22c28be46c91511b078dce3 (implementation commit)
+# python -m pytest -q -p no:cacheprovider tests/test_stage2_6_interblock_contract.py -v
+============================= test session starts ==============================
+collecting ... collected 32 items
+
+tests/test_stage2_6_interblock_contract.py::test_01_empty_fonte_creates_no_link PASSED
+tests/test_stage2_6_interblock_contract.py::test_02_valid_fonte_creates_a_validated_link PASSED
+tests/test_stage2_6_interblock_contract.py::test_03_nonexistent_source_block_is_an_error[maintenance-bloco da taxonomia oficial sem workbook carregado] PASSED
+tests/test_stage2_6_interblock_contract.py::test_03_nonexistent_source_block_is_an_error[bloco production-bloco inexistente na taxonomia oficial] PASSED
+tests/test_stage2_6_interblock_contract.py::test_03_nonexistent_source_block_is_an_error[production -bloco inexistente na taxonomia oficial] PASSED
+tests/test_stage2_6_interblock_contract.py::test_03_nonexistent_source_block_is_an_error[Production-bloco inexistente na taxonomia oficial] PASSED
+tests/test_stage2_6_interblock_contract.py::test_03b_missing_definition_in_source_block_is_an_error PASSED
+tests/test_stage2_6_interblock_contract.py::test_03c_no_temporal_or_spatial_fallback PASSED
+tests/test_stage2_6_interblock_contract.py::test_04_ambiguous_source_is_an_error PASSED
+tests/test_stage2_6_interblock_contract.py::test_05_unit_mismatch_is_an_error_without_conversion PASSED
+tests/test_stage2_6_interblock_contract.py::test_06_value_type_mismatch_is_an_error PASSED
+tests/test_stage2_6_interblock_contract.py::test_06b_allowed_values_and_declared_states_must_match PASSED
+tests/test_stage2_6_interblock_contract.py::test_06c_parameter_producer_for_variable_consumer_is_a_contract_mismatch PASSED
+tests/test_stage2_6_interblock_contract.py::test_07_missing_instance_is_an_error_and_never_substituted PASSED
+tests/test_stage2_6_interblock_contract.py::test_07b_instance_of_a_grouped_producer_resolves_by_exact_scope_value PASSED
+tests/test_stage2_6_interblock_contract.py::test_07c_instances_split_across_producer_definitions_is_ambiguous PASSED
+tests/test_stage2_6_interblock_contract.py::test_08_source_reference_has_no_influence PASSED
+tests/test_stage2_6_interblock_contract.py::test_09_local_identity_is_preserved PASSED
+tests/test_stage2_6_interblock_contract.py::test_10_cycle_is_an_error_with_the_full_cycle PASSED
+tests/test_stage2_6_interblock_contract.py::test_10b_cycle_through_intra_block_dependencies_is_detected PASSED
+tests/test_stage2_6_interblock_contract.py::test_11_chain_a_b_c PASSED
+tests/test_stage2_6_interblock_contract.py::test_11b_chain_is_broken_by_an_invalid_upstream_hop PASSED
+tests/test_stage2_6_interblock_contract.py::test_12_same_name_without_fonte_creates_no_link PASSED
+tests/test_stage2_6_interblock_contract.py::test_13_changing_fonte_changes_the_producer PASSED
+tests/test_stage2_6_interblock_contract.py::test_14_fonte_in_an_invalid_context_is_an_error PASSED
+tests/test_stage2_6_interblock_contract.py::test_15_every_real_fonte_is_classified PASSED
+tests/test_stage2_6_interblock_contract.py::test_16_no_link_is_resolved_by_unit_conversion PASSED
+tests/test_stage2_6_interblock_contract.py::test_17_resolution_does_not_depend_on_historical_ids PASSED
+tests/test_stage2_6_interblock_contract.py::test_interblock_seed_is_the_builder_output PASSED
+tests/test_stage2_6_interblock_contract.py::test_manifest_records_canonical_source_block PASSED
+tests/test_stage2_6_interblock_contract.py::test_source_block_is_not_a_seed_or_domain_field PASSED
+tests/test_stage2_6_interblock_contract.py::test_builder_main_fails_while_links_are_rejected PASSED
+
+============================== 32 passed in 2.16s ==============================
+
+# python -m pytest -q -p no:cacheprovider (suíte completa)
+........................................................................ [ 99%]
+.                                                                        [100%]
+1441 passed in 9.39s
+
+# python -m tools.workbook_seed (exit code e resumo)
+interblock: 31 vínculos declarados em fonte, 12 válidos, 19 rejeitados
+exit=1

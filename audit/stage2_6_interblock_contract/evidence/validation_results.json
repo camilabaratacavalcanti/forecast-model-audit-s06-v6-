@@ -1,0 +1,73 @@
+{
+  "workbooks": {
+    "area_41": {
+      "file": "descritivo_das_variáveis_A41_v9.xlsx",
+      "version": "v9",
+      "sha256": "36bbae135285ad9b3b88d21ef94e2bc9c92f2ef74736412b66bc62de4dcf3f50"
+    },
+    "energy": {
+      "file": "descritivo_das_variáveis_energy_v6.xlsx",
+      "version": "v6",
+      "sha256": "cfc46031fc2f3f375b87ebbba58676d23ad92f3ee43fb81b353fe5a8247e1df8"
+    },
+    "max_ht": {
+      "file": "descritivo_das_variáveis_MaxHT_v10.xlsx",
+      "version": "v10",
+      "sha256": "3e40aab12ec0ec07918c5e358145b09f138663f635ca9e7fc0990d1b765b683b"
+    },
+    "production": {
+      "file": "descritivo_das_variáveis_production_v9.xlsx",
+      "version": "v9",
+      "sha256": "3e3024e564ee6f18b82e9771957e61f4940becd1e80db5705143123377956a28"
+    },
+    "yield": {
+      "file": "descritivo_das_variáveis_yield_v11.xlsx",
+      "version": "v11",
+      "sha256": "639e8b980f19bc20429cf9763157ac1828d9067bdbabea3bf3db0badbc2df931"
+    }
+  },
+  "fonte_rows": 34,
+  "declared_links_definitions": 31,
+  "valid_links_definitions": 12,
+  "valid_links_rows": 12,
+  "rejected_links_definitions": 19,
+  "rejected_links_rows": 22,
+  "links_by_class_definitions": {
+    "CONTRACT_MISMATCH": 3,
+    "SOURCE_NOT_FOUND": 16,
+    "VALID": 12
+  },
+  "links_by_class_rows": {
+    "CONTRACT_MISMATCH": 3,
+    "SOURCE_NOT_FOUND": 19,
+    "VALID": 12
+  },
+  "findings_total": 21,
+  "findings_by_code": {
+    "INTERBLOCK_CONTRACT_MISMATCH": 3,
+    "INTERBLOCK_SOURCE_NOT_FOUND": 18
+  },
+  "findings_by_class": {
+    "CONTRACT_MISMATCH": 3,
+    "SOURCE_NOT_FOUND": 18
+  },
+  "links_to_unloaded_taxonomy_blocks": [
+    "alumina",
+    "area_04_13",
+    "forecast",
+    "maintenance",
+    "temperature_lp"
+  ],
+  "links_to_unloaded_blocks_definitions": 18,
+  "links_to_loaded_blocks_definitions": 13,
+  "fonte_outside_taxonomy": [],
+  "cycles": [],
+  "block_level_mutual_dependencies": [
+    [
+      "production",
+      "yield"
+    ]
+  ],
+  "independent_check_divergences": [],
+  "interblock_seed_matches_builder": true
+}
