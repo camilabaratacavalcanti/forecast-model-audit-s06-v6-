@@ -1,0 +1,19 @@
+test_id,workbook,behavior,current_coverage
+T24-01,energy/max_ht/yield/production/A41,"builder(workbook aprovado) == seed versionado (todas as entidades, todos os campos)",NÃO EXISTE (reconciliação usa snapshots v2/v5)
+T24-02,yield/production/A41,"builder lê o workbook aprovado (cabeçalho explícito, 254/88/54 linhas)",NÃO EXISTE (sem builder)
+T24-03,production,"lth r35 / oee r48 → lth_meta: 1 ID, instância@Lk usa lth_meta@Lk (L1=1050, L3=1100); associação cruzada falha",PARCIAL: runtime provado só no probe P2 (EQ12004); nenhum teste
+T24-04,yield,n_ppt r107: tanque@Lk e tanque_base@Lk por instância (14/14/16/18/18/18/18),NÃO EXISTE
+T24-05,production/A41,"agregação mensal/anual e producao r71 sobre 1 definição por-linha (pick_up, retirada_condensado_linha)",NÃO EXISTE
+T24-06,max_ht,janela de linhas: nenhuma linha vazia lida; linha sem name → erro explícito,NÃO EXISTE
+T24-07,todos,value_type da célula chega a VariableDefinition (numerico/categorico),PARCIAL: domínio/validator testados; caminho workbook→runtime não
+T24-08,A41,hes L4..L7 categorico aceita texto e rejeita número; ausência de value_type = erro,NÃO EXISTE
+T24-09,A41,allowed_values transportado; valor fora da lista rejeitado,NÃO EXISTE
+T24-10,A41,"declared_result_states (R1) transportado; NO_APPLICABLE_RULE → ""F"" em r39/r42","NÃO EXISTE (""F"" testado só no avaliador)"
+T24-11,yield,ltp_tc_base = 274 (v9),NÃO EXISTE (teste v4 fixa 273)
+T24-12,todos,identidade duplicada no mesmo bloco = erro,NÃO EXISTE (só warning)
+T24-13,energy,"regras de agregação derivadas do texto (11), resistentes a deslocamento de linhas",PARCIAL: reconciliação contra snapshot
+T24-14,energy/max_ht,source_reference do registro = arquivo efetivamente lido,NÃO EXISTE
+T24-15,cross,os 13 vínculos resolvem para o produtor definido pelo contrato,PARCIAL: só production←yield (test_yield_production_runtime_contract)
+T24-16,yield,value em Type=variable tratado por regra explícita,NÃO EXISTE
+T24-17,engine,falha de um nó não impede nós independentes (Etapa 3),NÃO EXISTE
+T24-18,max_ht,valor de parâmetro não é coagido,NÃO EXISTE

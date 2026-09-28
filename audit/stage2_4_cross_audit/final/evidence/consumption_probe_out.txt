@@ -1,0 +1,23 @@
+== energy_seed_builder on energy v5
+  rows read 56 empty 0
+  columns present but NOT consumed: ['OBS', 'allowed_values', 'declared_result_states', 'source_reference', 'value_type']
+  canonical entity keys: ['description', 'entity_id', 'excel_type', 'expression', 'fonte', 'frequency', 'is_aggregation', 'kind', 'name', 'row', 'scope_type', 'scope_value', 'status', 'unit', 'value', 'variable_type', 'version']
+  variables: generated=52 seed=52 equal=False
+  parameters: generated=4 seed=4 equal=True
+  equations: generated=24 seed=24 equal=True
+  aggregation_rules: generated=11 seed=11 equal=True
+  variable diff VAR18001 unit 'tpd' -> 't/d'
+  generated variable keys: ['description', 'frequency', 'scope_type', 'scope_value', 'source_reference', 'status', 'unit', 'variable_id', 'variable_name', 'variable_type']
+  value_type values in workbook rows: Counter({'numerico': 56})
+  SOURCE_REFERENCE constant: descritivo_das_variáveis_energy_v2.xlsx
+== max_ht_seed_builder on MaxHT v9 (as-is)
+  LAST_DATA_ROW 154 rows read 152 empty rows read 32 [123, 124, 125] ... [154]
+  build_seeds FAILED: TypeError: object of type 'NoneType' has no len() @ reference_resolver.py:308 _translate_code_segment
+== max_ht diagnostic: LAST_DATA_ROW=122 in memory only
+  variables: generated=116 seed=148 equal=False
+  parameters: generated=4 seed=4 equal=False
+  equations: generated=29 seed=29 equal=False
+  aggregation_rules: generated=78 seed=110 equal=False
+  DSL aggregations recognized: Counter({'AVERAGE': 58, 'SUM': 20})
+  identity collisions in v9 entities: 0
+  SOURCE_REFERENCE constant: descritivo_das_variáveis_MaxHT_v5.xlsx

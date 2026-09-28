@@ -1,0 +1,1500 @@
+{
+ "P1_A019_builder_path": [
+  {
+   "block": "production",
+   "row": 35,
+   "consumer": "lth",
+   "consumer_scope": "linha/L1_L7",
+   "consumer_frequency": "diário",
+   "reference": "lth_meta",
+   "lookup_frequency": "diário",
+   "candidates": [
+    [
+     37,
+     "anual",
+     "linha",
+     "L1"
+    ],
+    [
+     38,
+     "anual",
+     "linha",
+     "L2"
+    ],
+    [
+     39,
+     "anual",
+     "linha",
+     "L3"
+    ],
+    [
+     40,
+     "anual",
+     "linha",
+     "L4"
+    ],
+    [
+     41,
+     "anual",
+     "linha",
+     "L5"
+    ],
+    [
+     42,
+     "anual",
+     "linha",
+     "L6"
+    ],
+    [
+     43,
+     "anual",
+     "linha",
+     "L7"
+    ]
+   ],
+   "outcome": "ReferenceResolutionError: Referência lth_meta: instâncias do consumidor linha/L1_L7 resolvem para definições diferentes (production:37[anual, linha/L1] vs production:38[anual, linha/L2]). Uma expressão grava um único ID: use escopo explícito (@) ou divida a definição consumidora por es"
+  },
+  {
+   "block": "production",
+   "row": 48,
+   "consumer": "oee",
+   "consumer_scope": "linha/L1_L7",
+   "consumer_frequency": "diário",
+   "reference": "lth_meta",
+   "lookup_frequency": "diário",
+   "candidates": [
+    [
+     37,
+     "anual",
+     "linha",
+     "L1"
+    ],
+    [
+     38,
+     "anual",
+     "linha",
+     "L2"
+    ],
+    [
+     39,
+     "anual",
+     "linha",
+     "L3"
+    ],
+    [
+     40,
+     "anual",
+     "linha",
+     "L4"
+    ],
+    [
+     41,
+     "anual",
+     "linha",
+     "L5"
+    ],
+    [
+     42,
+     "anual",
+     "linha",
+     "L6"
+    ],
+    [
+     43,
+     "anual",
+     "linha",
+     "L7"
+    ]
+   ],
+   "outcome": "ReferenceResolutionError: Referência lth_meta: instâncias do consumidor linha/L1_L7 resolvem para definições diferentes (production:37[anual, linha/L1] vs production:38[anual, linha/L2]). Uma expressão grava um único ID: use escopo explícito (@) ou divida a definição consumidora por es"
+  },
+  {
+   "block": "production",
+   "row": 71,
+   "consumer": "producao",
+   "consumer_scope": "linha/L1_L7",
+   "consumer_frequency": "diário",
+   "reference": "pick_up",
+   "lookup_frequency": "diário",
+   "candidates": [
+    [
+     53,
+     "diário",
+     "linha",
+     "L1"
+    ],
+    [
+     54,
+     "diário",
+     "linha",
+     "L2"
+    ],
+    [
+     55,
+     "diário",
+     "linha",
+     "L3"
+    ],
+    [
+     56,
+     "diário",
+     "linha",
+     "L4"
+    ],
+    [
+     57,
+     "diário",
+     "linha",
+     "L5"
+    ],
+    [
+     58,
+     "diário",
+     "linha",
+     "L6"
+    ],
+    [
+     59,
+     "diário",
+     "linha",
+     "L7"
+    ],
+    [
+     60,
+     "mensal",
+     "linha",
+     "L1_L7"
+    ]
+   ],
+   "outcome": "ReferenceResolutionError: Referência pick_up: instâncias do consumidor linha/L1_L7 resolvem para definições diferentes (production:53[diário, linha/L1] vs production:54[diário, linha/L2]). Uma expressão grava um único ID: use escopo explícito (@) ou divida a definição consumidora por e"
+  },
+  {
+   "block": "yield",
+   "row": 107,
+   "consumer": "n_ppt",
+   "consumer_scope": "linha/L1_L7",
+   "consumer_frequency": "diário",
+   "reference": "tanque",
+   "lookup_frequency": "diário",
+   "candidates": [
+    [
+     227,
+     "diário",
+     "linha",
+     "L1"
+    ],
+    [
+     228,
+     "diário",
+     "linha",
+     "L2"
+    ],
+    [
+     229,
+     "diário",
+     "linha",
+     "L3"
+    ],
+    [
+     230,
+     "diário",
+     "linha",
+     "L4"
+    ],
+    [
+     231,
+     "diário",
+     "linha",
+     "L5"
+    ],
+    [
+     232,
+     "diário",
+     "linha",
+     "L6"
+    ],
+    [
+     233,
+     "diário",
+     "linha",
+     "L7"
+    ]
+   ],
+   "outcome": "ReferenceResolutionError: Referência tanque: instâncias do consumidor linha/L1_L7 resolvem para definições diferentes (yield:227[diário, linha/L1] vs yield:228[diário, linha/L2]). Uma expressão grava um único ID: use escopo explícito (@) ou divida a definição consumidora por escopo."
+  },
+  {
+   "block": "yield",
+   "row": 107,
+   "consumer": "n_ppt",
+   "consumer_scope": "linha/L1_L7",
+   "consumer_frequency": "diário",
+   "reference": "tanque_base",
+   "lookup_frequency": "diário",
+   "candidates": [
+    [
+     234,
+     "anual",
+     "linha",
+     "L1"
+    ],
+    [
+     235,
+     "anual",
+     "linha",
+     "L2"
+    ],
+    [
+     236,
+     "anual",
+     "linha",
+     "L3"
+    ],
+    [
+     237,
+     "anual",
+     "linha",
+     "L4"
+    ],
+    [
+     238,
+     "anual",
+     "linha",
+     "L5"
+    ],
+    [
+     239,
+     "anual",
+     "linha",
+     "L6"
+    ],
+    [
+     240,
+     "anual",
+     "linha",
+     "L7"
+    ]
+   ],
+   "outcome": "ReferenceResolutionError: Referência tanque_base: instâncias do consumidor linha/L1_L7 resolvem para definições diferentes (yield:234[anual, linha/L1] vs yield:235[anual, linha/L2]). Uma expressão grava um único ID: use escopo explícito (@) ou divida a definição consumidora por escopo."
+  },
+  {
+   "block": "area_41",
+   "row": 52,
+   "consumer": "retirada_condensado_linha",
+   "consumer_scope": "linha/L1_L7",
+   "consumer_frequency": "mensal",
+   "reference": "retirada_condensado_linha",
+   "lookup_frequency": "diário",
+   "candidates": [
+    [
+     45,
+     "diário",
+     "linha",
+     "L1"
+    ],
+    [
+     46,
+     "diário",
+     "linha",
+     "L2"
+    ],
+    [
+     47,
+     "diário",
+     "linha",
+     "L3"
+    ],
+    [
+     48,
+     "diário",
+     "linha",
+     "L4"
+    ],
+    [
+     49,
+     "diário",
+     "linha",
+     "L5"
+    ],
+    [
+     50,
+     "diário",
+     "linha",
+     "L6"
+    ],
+    [
+     51,
+     "diário",
+     "linha",
+     "L7"
+    ],
+    [
+     52,
+     "mensal",
+     "linha",
+     "L1_L7"
+    ],
+    [
+     53,
+     "anual",
+     "linha",
+     "L1_L7"
+    ]
+   ],
+   "outcome": "ReferenceResolutionError: Referência retirada_condensado_linha: instâncias do consumidor linha/L1_L7 resolvem para definições diferentes (area_41:45[diário, linha/L1] vs area_41:46[diário, linha/L2]). Uma expressão grava um único ID: use escopo explícito (@) ou divida a definição consu"
+  },
+  {
+   "block": "area_41",
+   "row": 53,
+   "consumer": "retirada_condensado_linha",
+   "consumer_scope": "linha/L1_L7",
+   "consumer_frequency": "anual",
+   "reference": "retirada_condensado_linha",
+   "lookup_frequency": "diário",
+   "candidates": [
+    [
+     45,
+     "diário",
+     "linha",
+     "L1"
+    ],
+    [
+     46,
+     "diário",
+     "linha",
+     "L2"
+    ],
+    [
+     47,
+     "diário",
+     "linha",
+     "L3"
+    ],
+    [
+     48,
+     "diário",
+     "linha",
+     "L4"
+    ],
+    [
+     49,
+     "diário",
+     "linha",
+     "L5"
+    ],
+    [
+     50,
+     "diário",
+     "linha",
+     "L6"
+    ],
+    [
+     51,
+     "diário",
+     "linha",
+     "L7"
+    ],
+    [
+     52,
+     "mensal",
+     "linha",
+     "L1_L7"
+    ],
+    [
+     53,
+     "anual",
+     "linha",
+     "L1_L7"
+    ]
+   ],
+   "outcome": "ReferenceResolutionError: Referência retirada_condensado_linha: instâncias do consumidor linha/L1_L7 resolvem para definições diferentes (area_41:45[diário, linha/L1] vs area_41:46[diário, linha/L2]). Uma expressão grava um único ID: use escopo explícito (@) ou divida a definição consu"
+  },
+  {
+   "block": "production",
+   "row": 60,
+   "consumer": "pick_up",
+   "consumer_scope": "linha/L1_L7",
+   "consumer_frequency": "mensal",
+   "reference": "pick_up",
+   "lookup_frequency": "diário",
+   "candidates": [
+    [
+     53,
+     "diário",
+     "linha",
+     "L1"
+    ],
+    [
+     54,
+     "diário",
+     "linha",
+     "L2"
+    ],
+    [
+     55,
+     "diário",
+     "linha",
+     "L3"
+    ],
+    [
+     56,
+     "diário",
+     "linha",
+     "L4"
+    ],
+    [
+     57,
+     "diário",
+     "linha",
+     "L5"
+    ],
+    [
+     58,
+     "diário",
+     "linha",
+     "L6"
+    ],
+    [
+     59,
+     "diário",
+     "linha",
+     "L7"
+    ],
+    [
+     60,
+     "mensal",
+     "linha",
+     "L1_L7"
+    ]
+   ],
+   "outcome": "ReferenceResolutionError: Referência pick_up: instâncias do consumidor linha/L1_L7 resolvem para definições diferentes (production:53[diário, linha/L1] vs production:54[diário, linha/L2]). Uma expressão grava um único ID: use escopo explícito (@) ou divida a definição consumidora por e"
+  }
+ ],
+ "P2_A019_runtime_per_instance": {
+  "equation": "EQ12004 oee = VAR12016 / PARAM12001 (linha/L1_L7)",
+  "rows": [
+   {
+    "line": "L1",
+    "lth": 913.0,
+    "lth_meta": 1050,
+    "oee": 0.8695238095238095,
+    "expected": 0.8695238095238095,
+    "ok": true,
+    "cross_assoc_value": 0.83,
+    "cross_assoc_detected": true
+   },
+   {
+    "line": "L2",
+    "lth": 926.0,
+    "lth_meta": 1050,
+    "oee": 0.8819047619047619,
+    "expected": 0.8819047619047619,
+    "ok": true,
+    "cross_assoc_value": 0.8418181818181818,
+    "cross_assoc_detected": true
+   },
+   {
+    "line": "L3",
+    "lth": 939.0,
+    "lth_meta": 1100,
+    "oee": 0.8536363636363636,
+    "expected": 0.8536363636363636,
+    "ok": true,
+    "cross_assoc_value": 0.8942857142857142,
+    "cross_assoc_detected": true
+   },
+   {
+    "line": "L4",
+    "lth": 952.0,
+    "lth_meta": 1100,
+    "oee": 0.8654545454545455,
+    "expected": 0.8654545454545455,
+    "ok": true,
+    "cross_assoc_value": 0.9066666666666666,
+    "cross_assoc_detected": true
+   },
+   {
+    "line": "L5",
+    "lth": 965.0,
+    "lth_meta": 1100,
+    "oee": 0.8772727272727273,
+    "expected": 0.8772727272727273,
+    "ok": true,
+    "cross_assoc_value": 0.919047619047619,
+    "cross_assoc_detected": true
+   },
+   {
+    "line": "L6",
+    "lth": 978.0,
+    "lth_meta": 1100,
+    "oee": 0.889090909090909,
+    "expected": 0.889090909090909,
+    "ok": true,
+    "cross_assoc_value": 0.9314285714285714,
+    "cross_assoc_detected": true
+   },
+   {
+    "line": "L7",
+    "lth": 991.0,
+    "lth_meta": 1100,
+    "oee": 0.9009090909090909,
+    "expected": 0.9009090909090909,
+    "ok": true,
+    "cross_assoc_value": 0.9438095238095238,
+    "cross_assoc_detected": true
+   }
+  ],
+  "negative_control_missing_L3": "ParameterNotFoundError: Valor do parâmetro não encontrado: PARAM12001",
+  "param_defs_get_without_scope": "ValueError: Mais de uma ParameterDefinition encontrada para 'PARAM12001'. Informe version, scope_type e scope_value.",
+  "param12001_instances": 7
+ },
+ "P3_value_type_states_loader": {
+  "baseline_no_value_type": "LOADED value_type='numerico'",
+  "value_type=numerico": "LOADED value_type='numerico'",
+  "value_type=categorico": "LOADED value_type='categorico'",
+  "value_type=numeric": "ValueError: Variable seed validation failed:\n- Invalid value 'numeric' for field 'value_type' in energy/variables.json for variable VAR18001: allowed values: categorico, numerico",
+  "value_type=categorical": "ValueError: Variable seed validation failed:\n- Invalid value 'categorical' for field 'value_type' in energy/variables.json for variable VAR18001: allowed values: categorico, numerico",
+  "allowed_values=[...]": "TypeError: Variable.__init__() got an unexpected keyword argument 'allowed_values'",
+  "declared_result_states=[...]": "TypeError: Variable.__init__() got an unexpected keyword argument 'declared_result_states'",
+  "seed_field_presence": {
+   "energy": {
+    "total": 52,
+    "with_value_type": 0,
+    "with_allowed_values": 0,
+    "with_declared_result_states": 0
+   },
+   "max_ht": {
+    "total": 148,
+    "with_value_type": 0,
+    "with_allowed_values": 0,
+    "with_declared_result_states": 0
+   },
+   "production": {
+    "total": 83,
+    "with_value_type": 0,
+    "with_allowed_values": 0,
+    "with_declared_result_states": 0
+   },
+   "yield": {
+    "total": 240,
+    "with_value_type": 0,
+    "with_allowed_values": 0,
+    "with_declared_result_states": 0
+   }
+  },
+  "workbook_field_presence": {
+   "area_41": {
+    "rows": 54,
+    "categorico": 4,
+    "allowed_values": 4,
+    "declared_result_states": 2
+   },
+   "energy": {
+    "rows": 56,
+    "categorico": 0,
+    "allowed_values": 0,
+    "declared_result_states": 0
+   },
+   "max_ht": {
+    "rows": 120,
+    "categorico": 0,
+    "allowed_values": 0,
+    "declared_result_states": 0
+   },
+   "production": {
+    "rows": 88,
+    "categorico": 0,
+    "allowed_values": 0,
+    "declared_result_states": 0
+   },
+   "yield": {
+    "rows": 254,
+    "categorico": 0,
+    "allowed_values": 0,
+    "declared_result_states": 0
+   }
+  }
+ },
+ "P4_F_and_abort": {
+  "F_arith": "EquationEvaluationError (original=ConditionalFailureError)",
+  "independent_VX2_after_failure": "NOT COMPUTED (VariableNotFoundError)",
+  "F_propagated_by_comparison": "'F'",
+  "symbol:EvaluationResult": [],
+  "symbol:BLOCKED_BY_UPSTREAM_ERROR": [],
+  "symbol:NO_APPLICABLE_RULE": [],
+  "symbol:allowed_values": [
+   "app/validation/variable_seed_validator.py",
+   "app/validation/parameter_seed_validator.py",
+   "app/validation/__pycache__/variable_seed_validator.cpython-311.pyc",
+   "app/validation/__pycache__/seed_validator.cpython-314.pyc",
+   "app/validation/__pycache__/equation_seed_validator.cpython-314.pyc",
+   "app/validation/__pycache__/parameter_seed_validator.cpython-314.pyc",
+   "app/validation/__pycache__/parameter_seed_validator.cpython-311.pyc",
+   "app/validation/__pycache__/equation_seed_validator.cpython-311.pyc",
+   "app/validation/__pycache__/variable_seed_validator.cpython-314.pyc",
+   "app/validation/equation_seed_validator.py"
+  ],
+  "symbol:declared_result_states": []
+ },
+ "P5_identity_seeds": {
+  "energy": {
+   "names": 38,
+   "names_with_multiple_definitions": 12,
+   "identity_collisions": {},
+   "per_line_split_names": []
+  },
+  "max_ht": {
+   "names": 36,
+   "names_with_multiple_definitions": 30,
+   "identity_collisions": {
+    "producao": [
+     [
+      "VAR13001",
+      "diário",
+      "linha",
+      "L1_L7"
+     ],
+     [
+      "VAR13002",
+      "mensal",
+      "linha",
+      "L1_L7"
+     ],
+     [
+      "VAR13003",
+      "anual",
+      "linha",
+      "L1_L7"
+     ],
+     [
+      "VAR13004",
+      "mensal",
+      "linha",
+      "L1_L7"
+     ],
+     [
+      "VAR13005",
+      "anual",
+      "linha",
+      "L1_L7"
+     ]
+    ],
+    "refinery": [
+     [
+      "VAR13006",
+      "diário",
+      "linha_grupo",
+      "L1_L7"
+     ],
+     [
+      "VAR13007",
+      "mensal",
+      "linha_grupo",
+      "L1_L7"
+     ],
+     [
+      "VAR13008",
+      "anual",
+      "linha_grupo",
+      "L1_L7"
+     ],
+     [
+      "VAR13009",
+      "mensal",
+      "linha_grupo",
+      "L1_L7"
+     ],
+     [
+      "VAR13010",
+      "anual",
+      "linha_grupo",
+      "L1_L7"
+     ]
+    ],
+    "alimentação_evap": [
+     [
+      "VAR13011",
+      "diário",
+      "linha",
+      "L1_L7"
+     ],
+     [
+      "VAR13012",
+      "mensal",
+      "linha",
+      "L1_L7"
+     ],
+     [
+      "VAR13013",
+      "anual",
+      "linha",
+      "L1_L7"
+     ],
+     [
+      "VAR13014",
+      "mensal",
+      "linha",
+      "L1_L7"
+     ],
+     [
+      "VAR13015",
+      "anual",
+      "linha",
+      "L1_L7"
+     ]
+    ],
+    "alimentação_evap_total": [
+     [
+      "VAR13016",
+      "diário",
+      "linha_grupo",
+      "L1_L7"
+     ],
+     [
+      "VAR13017",
+      "mensal",
+      "linha_grupo",
+      "L1_L7"
+     ],
+     [
+      "VAR13018",
+      "anual",
+      "linha_grupo",
+      "L1_L7"
+     ],
+     [
+      "VAR13019",
+      "mensal",
+      "linha_grupo",
+      "L1_L7"
+     ],
+     [
+      "VAR13020",
+      "anual",
+      "linha_grupo",
+      "L1_L7"
+     ]
+    ],
+    "lth": [
+     [
+      "VAR13021",
+      "diário",
+      "linha",
+      "L1_L7"
+     ],
+     [
+      "VAR13022",
+      "mensal",
+      "linha",
+      "L1_L7"
+     ],
+     [
+      "VAR13023",
+      "anual",
+      "linha",
+      "L1_L7"
+     ],
+     [
+      "VAR13024",
+      "mensal",
+      "linha",
+      "L1_L7"
+     ],
+     [
+      "VAR13025",
+      "anual",
+      "linha",
+      "L1_L7"
+     ]
+    ],
+    "lth_total": [
+     [
+      "VAR13026",
+      "diário",
+      "linha_grupo",
+      "L1_L7"
+     ],
+     [
+      "VAR13027",
+      "mensal",
+      "linha_grupo",
+      "L1_L7"
+     ],
+     [
+      "VAR13028",
+      "anual",
+      "linha_grupo",
+      "L1_L7"
+     ],
+     [
+      "VAR13029",
+      "mensal",
+      "linha_grupo",
+      "L1_L7"
+     ],
+     [
+      "VAR13030",
+      "anual",
+      "linha_grupo",
+      "L1_L7"
+     ]
+    ],
+    "fluxo_para_evap": [
+     [
+      "VAR13032",
+      "diário",
+      "linha",
+      "L1_L7"
+     ],
+     [
+      "VAR13033",
+      "mensal",
+      "linha",
+      "L1_L7"
+     ],
+     [
+      "VAR13034",
+      "anual",
+      "linha",
+      "L1_L7"
+     ],
+     [
+      "VAR13035",
+      "mensal",
+      "linha",
+      "L1_L7"
+     ],
+     [
+      "VAR13036",
+      "anual",
+      "linha",
+      "L1_L7"
+     ]
+    ],
+    "fluxo_para_evap_total": [
+     [
+      "VAR13037",
+      "diário",
+      "linha_grupo",
+      "L1_L7"
+     ],
+     [
+      "VAR13038",
+      "mensal",
+      "linha_grupo",
+      "L1_L7"
+     ],
+     [
+      "VAR13039",
+      "anual",
+      "linha_grupo",
+      "L1_L7"
+     ],
+     [
+      "VAR13040",
+      "mensal",
+      "linha_grupo",
+      "L1_L7"
+     ],
+     [
+      "VAR13041",
+      "anual",
+      "linha_grupo",
+      "L1_L7"
+     ]
+    ],
+    "fluxo_para_a18_linha": [
+     [
+      "VAR13043",
+      "diário",
+      "linha",
+      "L1_L7"
+     ],
+     [
+      "VAR13044",
+      "mensal",
+      "linha",
+      "L1_L7"
+     ],
+     [
+      "VAR13045",
+      "anual",
+      "linha",
+      "L1_L7"
+     ],
+     [
+      "VAR13046",
+      "mensal",
+      "linha",
+      "L1_L7"
+     ],
+     [
+      "VAR13047",
+      "anual",
+      "linha",
+      "L1_L7"
+     ]
+    ],
+    "fluxo_para_a18_linha_total": [
+     [
+      "VAR13048",
+      "diário",
+      "linha_grupo",
+      "L1_L7"
+     ],
+     [
+      "VAR13049",
+      "mensal",
+      "linha_grupo",
+      "L1_L7"
+     ],
+     [
+      "VAR13050",
+      "anual",
+      "linha_grupo",
+      "L1_L7"
+     ],
+     [
+      "VAR13051",
+      "mensal",
+      "linha_grupo",
+      "L1_L7"
+     ],
+     [
+      "VAR13052",
+      "anual",
+      "linha_grupo",
+      "L1_L7"
+     ]
+    ],
+    "a18_l123": [
+     [
+      "VAR13053",
+      "diário",
+      "linha_grupo",
+      "L1_L3"
+     ],
+     [
+      "VAR13054",
+      "mensal",
+      "linha_grupo",
+      "L1_L3"
+     ],
+     [
+      "VAR13055",
+      "anual",
+      "linha_grupo",
+      "L1_L3"
+     ],
+     [
+      "VAR13056",
+      "mensal",
+      "linha_grupo",
+      "L1_L3"
+     ],
+     [
+      "VAR13057",
+      "anual",
+      "linha_grupo",
+      "L1_L3"
+     ]
+    ],
+    "a13_l123": [
+     [
+      "VAR13058",
+      "diário",
+      "linha_grupo",
+      "L1_L3"
+     ],
+     [
+      "VAR13059",
+      "mensal",
+      "linha_grupo",
+      "L1_L3"
+     ],
+     [
+      "VAR13060",
+      "anual",
+      "linha_grupo",
+      "L1_L3"
+     ],
+     [
+      "VAR13061",
+      "mensal",
+      "linha_grupo",
+      "L1_L3"
+     ],
+     [
+      "VAR13062",
+      "anual",
+      "linha_grupo",
+      "L1_L3"
+     ]
+    ],
+    "a18_a13_l123": [
+     [
+      "VAR13063",
+      "diário",
+      "linha_grupo",
+      "L1_L3"
+     ],
+     [
+      "VAR13064",
+      "mensal",
+      "linha_grupo",
+      "L1_L3"
+     ],
+     [
+      "VAR13065",
+      "anual",
+      "linha_grupo",
+      "L1_L3"
+     ],
+     [
+      "VAR13066",
+      "mensal",
+      "linha_grupo",
+      "L1_L3"
+     ],
+     [
+      "VAR13067",
+      "anual",
+      "linha_grupo",
+      "L1_L3"
+     ]
+    ],
+    "massa_total_max_ht_l123": [
+     [
+      "VAR13069",
+      "diário",
+      "linha_grupo",
+      "L1_L3"
+     ],
+     [
+      "VAR13070",
+      "mensal",
+      "linha_grupo",
+      "L1_L3"
+     ],
+     [
+      "VAR13071",
+      "anual",
+      "linha_grupo",
+      "L1_L3"
+     ],
+     [
+      "VAR13072",
+      "mensal",
+      "linha_grupo",
+      "L1_L3"
+     ],
+     [
+      "VAR13073",
+      "anual",
+      "linha_grupo",
+      "L1_L3"
+     ]
+    ],
+    "producao_l123": [
+     [
+      "VAR13074",
+      "diário",
+      "linha_grupo",
+      "L1_L3"
+     ],
+     [
+      "VAR13075",
+      "mensal",
+      "linha_grupo",
+      "L1_L3"
+     ],
+     [
+      "VAR13076",
+      "anual",
+      "linha_grupo",
+      "L1_L3"
+     ],
+     [
+      "VAR13077",
+      "mensal",
+      "linha_grupo",
+      "L1_L3"
+     ],
+     [
+      "VAR13078",
+      "anual",
+      "linha_grupo",
+      "L1_L3"
+     ]
+    ],
+    "a18_l45": [
+     [
+      "VAR13082",
+      "diário",
+      "linha_grupo",
+      "L4_L5"
+     ],
+     [
+      "VAR13083",
+      "mensal",
+      "linha_grupo",
+      "L4_L5"
+     ],
+     [
+      "VAR13084",
+      "anual",
+      "linha_grupo",
+      "L4_L5"
+     ],
+     [
+      "VAR13085",
+      "mensal",
+      "linha_grupo",
+      "L4_L5"
+     ],
+     [
+      "VAR13086",
+      "anual",
+      "linha_grupo",
+      "L4_L5"
+     ]
+    ],
+    "a13_l45": [
+     [
+      "VAR13087",
+      "diário",
+      "linha_grupo",
+      "L4_L5"
+     ],
+     [
+      "VAR13088",
+      "mensal",
+      "linha_grupo",
+      "L4_L5"
+     ],
+     [
+      "VAR13089",
+      "anual",
+      "linha_grupo",
+      "L4_L5"
+     ],
+     [
+      "VAR13090",
+      "mensal",
+      "linha_grupo",
+      "L4_L5"
+     ],
+     [
+      "VAR13091",
+      "anual",
+      "linha_grupo",
+      "L4_L5"
+     ]
+    ],
+    "a18_a13_l45": [
+     [
+      "VAR13092",
+      "diário",
+      "linha_grupo",
+      "L4_L5"
+     ],
+     [
+      "VAR13093",
+      "mensal",
+      "linha_grupo",
+      "L4_L5"
+     ],
+     [
+      "VAR13094",
+      "anual",
+      "linha_grupo",
+      "L4_L5"
+     ],
+     [
+      "VAR13095",
+      "mensal",
+      "linha_grupo",
+      "L4_L5"
+     ],
+     [
+      "VAR13096",
+      "anual",
+      "linha_grupo",
+      "L4_L5"
+     ]
+    ],
+    "massa_total_max_ht_l45": [
+     [
+      "VAR13098",
+      "diário",
+      "linha_grupo",
+      "L4_L5"
+     ],
+     [
+      "VAR13099",
+      "mensal",
+      "linha_grupo",
+      "L4_L5"
+     ],
+     [
+      "VAR13100",
+      "anual",
+      "linha_grupo",
+      "L4_L5"
+     ],
+     [
+      "VAR13101",
+      "mensal",
+      "linha_grupo",
+      "L4_L5"
+     ],
+     [
+      "VAR13102",
+      "anual",
+      "linha_grupo",
+      "L4_L5"
+     ]
+    ],
+    "producao_l45": [
+     [
+      "VAR13103",
+      "diário",
+      "linha_grupo",
+      "L4_L5"
+     ],
+     [
+      "VAR13104",
+      "mensal",
+      "linha_grupo",
+      "L4_L5"
+     ],
+     [
+      "VAR13105",
+      "anual",
+      "linha_grupo",
+      "L4_L5"
+     ],
+     [
+      "VAR13106",
+      "mensal",
+      "linha_grupo",
+      "L4_L5"
+     ],
+     [
+      "VAR13107",
+      "anual",
+      "linha_grupo",
+      "L4_L5"
+     ]
+    ],
+    "a18_l67": [
+     [
+      "VAR13111",
+      "diário",
+      "linha_grupo",
+      "L6_L7"
+     ],
+     [
+      "VAR13112",
+      "mensal",
+      "linha_grupo",
+      "L6_L7"
+     ],
+     [
+      "VAR13113",
+      "anual",
+      "linha_grupo",
+      "L6_L7"
+     ],
+     [
+      "VAR13114",
+      "mensal",
+      "linha_grupo",
+      "L6_L7"
+     ],
+     [
+      "VAR13115",
+      "anual",
+      "linha_grupo",
+      "L6_L7"
+     ]
+    ],
+    "a13_l67": [
+     [
+      "VAR13116",
+      "diário",
+      "linha_grupo",
+      "L6_L7"
+     ],
+     [
+      "VAR13117",
+      "mensal",
+      "linha_grupo",
+      "L6_L7"
+     ],
+     [
+      "VAR13118",
+      "anual",
+      "linha_grupo",
+      "L6_L7"
+     ],
+     [
+      "VAR13119",
+      "mensal",
+      "linha_grupo",
+      "L6_L7"
+     ],
+     [
+      "VAR13120",
+      "anual",
+      "linha_grupo",
+      "L6_L7"
+     ]
+    ],
+    "a18_a13_l67": [
+     [
+      "VAR13121",
+      "diário",
+      "linha_grupo",
+      "L6_L7"
+     ],
+     [
+      "VAR13122",
+      "mensal",
+      "linha_grupo",
+      "L6_L7"
+     ],
+     [
+      "VAR13123",
+      "anual",
+      "linha_grupo",
+      "L6_L7"
+     ],
+     [
+      "VAR13124",
+      "mensal",
+      "linha_grupo",
+      "L6_L7"
+     ],
+     [
+      "VAR13125",
+      "anual",
+      "linha_grupo",
+      "L6_L7"
+     ]
+    ],
+    "massa_total_max_ht_l67": [
+     [
+      "VAR13127",
+      "diário",
+      "linha_grupo",
+      "L6_L7"
+     ],
+     [
+      "VAR13128",
+      "mensal",
+      "linha_grupo",
+      "L6_L7"
+     ],
+     [
+      "VAR13129",
+      "anual",
+      "linha_grupo",
+      "L6_L7"
+     ],
+     [
+      "VAR13130",
+      "mensal",
+      "linha_grupo",
+      "L6_L7"
+     ],
+     [
+      "VAR13131",
+      "anual",
+      "linha_grupo",
+      "L6_L7"
+     ]
+    ],
+    "producao_l67": [
+     [
+      "VAR13132",
+      "diário",
+      "linha_grupo",
+      "L6_L7"
+     ],
+     [
+      "VAR13133",
+      "mensal",
+      "linha_grupo",
+      "L6_L7"
+     ],
+     [
+      "VAR13134",
+      "anual",
+      "linha_grupo",
+      "L6_L7"
+     ],
+     [
+      "VAR13135",
+      "mensal",
+      "linha_grupo",
+      "L6_L7"
+     ],
+     [
+      "VAR13136",
+      "anual",
+      "linha_grupo",
+      "L6_L7"
+     ]
+    ],
+    "massa_total_max_ht_total": [
+     [
+      "VAR13141",
+      "diário",
+      "linha_grupo",
+      "L1_L7"
+     ],
+     [
+      "VAR13142",
+      "mensal",
+      "linha_grupo",
+      "L1_L7"
+     ],
+     [
+      "VAR13143",
+      "anual",
+      "linha_grupo",
+      "L1_L7"
+     ],
+     [
+      "VAR13144",
+      "mensal",
+      "linha_grupo",
+      "L1_L7"
+     ],
+     [
+      "VAR13145",
+      "anual",
+      "linha_grupo",
+      "L1_L7"
+     ]
+    ]
+   },
+   "per_line_split_names": []
+  },
+  "production": {
+   "names": 34,
+   "names_with_multiple_definitions": 13,
+   "identity_collisions": {},
+   "per_line_split_names": [
+    "pick_up",
+    "producao"
+   ]
+  },
+  "yield": {
+   "names": 33,
+   "names_with_multiple_definitions": 32,
+   "identity_collisions": {},
+   "per_line_split_names": []
+  }
+ }
+}
