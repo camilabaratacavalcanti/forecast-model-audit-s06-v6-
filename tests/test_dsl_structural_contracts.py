@@ -61,7 +61,7 @@ def _evaluate(expression, context, scope=(None, None), period_id=None):
     ).evaluate(tree)
 
 
-def _variable_definition(variable_id, scope_type, scope_value, value_type="numeric"):
+def _variable_definition(variable_id, scope_type, scope_value, value_type="numerico"):
     return VariableDefinition(
         variable_id, f"v_{variable_id}", "-", "-", "calculada",
         "diário", scope_type, scope_value, "test", "ativo",
@@ -327,13 +327,18 @@ def test_parameters_remain_numeric_only():
 
 
 def test_value_type_is_declared_on_definition():
-    assert _variable_definition("VAR90032", "linha", "L1").value_type == "numeric"
+    assert _variable_definition("VAR90032", "linha", "L1").value_type == "numerico"
 
-    definition = _variable_definition("VAR90032", "linha", "L1", "categorical")
+    definition = _variable_definition("VAR90032", "linha", "L1", "categorico")
     assert definition.is_categorical
 
     with pytest.raises(ValueError):
         _variable_definition("VAR90032", "linha", "L1", "texto")
+
+    # Vocabulário único: os rótulos antigos não são aliases.
+    for legacy in ("numeric", "categorical"):
+        with pytest.raises(ValueError):
+            _variable_definition("VAR90032", "linha", "L1", legacy)
 
 
 def test_value_type_defaults_to_numeric_in_legacy_model():
@@ -342,7 +347,7 @@ def test_value_type_defaults_to_numeric_in_legacy_model():
         "linha", "L1", "test", "ativo",
     )
 
-    assert VariableDefinition.from_variable(variable).value_type == "numeric"
+    assert VariableDefinition.from_variable(variable).value_type == "numerico"
 
 
 def test_seed_validator_checks_value_type_enum():
@@ -355,16 +360,20 @@ def test_seed_validator_checks_value_type_enum():
 
     assert variable_seed_validator.validate_enum_values([base]) == []
     assert variable_seed_validator.validate_enum_values(
-        [{**base, "value_type": "categorical"}]
+        [{**base, "value_type": "categorico"}]
     ) == []
     assert variable_seed_validator.validate_enum_values(
         [{**base, "value_type": "texto"}]
     )
+    for legacy in ("numeric", "categorical"):
+        assert variable_seed_validator.validate_enum_values(
+            [{**base, "value_type": legacy}]
+        )
 
 
 def test_engine_declares_categorical_variables_from_definitions():
     variables = VariableDefinitionRegistry()
-    variables.add(_variable_definition("VAR90035", "linha", "L1", "categorical"))
+    variables.add(_variable_definition("VAR90035", "linha", "L1", "categorico"))
     variables.add(_variable_definition("VAR90036", "linha", "L1"))
 
     equations = EquationDefinitionRegistry()

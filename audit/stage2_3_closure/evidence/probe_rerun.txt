@@ -1,0 +1,25 @@
+===== area_41 54
+  cls: {'none': 24, 'A-arithmetic+ln': 6, 'C-scoped': 12, 'D-aggregation-description': 10, 'B-cond+text': 2}
+  a019: {'resolved': 20}
+  field issues: {}
+  decimal comma: []
+===== energy 56
+  cls: {'none': 21, 'A-arithmetic': 16, 'C-scoped': 7, 'D-aggregation-description': 11, 'B-conditional': 1}
+  a019: {'resolved': 24}
+  field issues: {}
+  decimal comma: []
+===== max_ht 120
+  cls: {'none': 13, 'D-aggregation-description': 78, 'C-scoped': 14, 'A-arithmetic': 12, '?': 3}
+  a019: {'resolved': 26, 'AMBIGUOUS/INVALID': 3}
+  field issues: {'identity_collision': 40}
+  decimal comma: []
+===== production 88
+  cls: {'none': 33, 'C-scoped': 13, 'D-aggregation-description': 28, '?': 4, 'G-not-executable': 1, 'A-arithmetic': 9}
+  a019: {'resolved': 23, 'AMBIGUOUS/INVALID': 4}
+  field issues: {'identity_collision': 10, 'scope_value_not_allowed': 1, 'scope_resolver_rejects': 1}
+  decimal comma: [52]
+===== yield 254
+  cls: {'A-arithmetic': 9, 'none': 36, '?': 1, 'C-scoped': 128, 'D-aggregation-description': 80}
+  a019: {'resolved': 137, 'AMBIGUOUS/INVALID': 1}
+  field issues: {'scope_value_not_allowed': 48, 'scope_resolver_rejects': 48, 'unit_not_allowed': 7}
+  decimal comma: [2, 10, 17, 82, 97]

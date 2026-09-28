@@ -36,8 +36,8 @@ class Variable:
     scope_value: str | None
     source_reference: str
     status: str
-    # Tipo do valor (app.domain.values): "numeric" (padrão, todas as
-    # variáveis existentes) ou "categorical" (texto).
+    # Tipo do valor (app.domain.values): "numerico" (padrão, todas as
+    # variáveis existentes) ou "categorico" (texto).
     value_type: str = NUMERIC
 
 
@@ -62,8 +62,8 @@ class VariableDefinition:
     scope_value: str | None
     source_reference: str
     status: str
-    # Tipo do valor (app.domain.values): "numeric" (padrão, todas as
-    # variáveis existentes) ou "categorical" (texto).
+    # Tipo do valor (app.domain.values): "numerico" (padrão, todas as
+    # variáveis existentes) ou "categorico" (texto).
     value_type: str = NUMERIC
 
     @classmethod

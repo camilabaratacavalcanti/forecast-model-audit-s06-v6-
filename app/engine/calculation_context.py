@@ -14,7 +14,7 @@ Responsabilidades:
     - validar o tipo dos valores (ver app.domain.values):
         * parâmetros são sempre numéricos;
         * variáveis são numéricas, exceto as declaradas categóricas
-          (value_type="categorical"), que aceitam texto;
+          (value_type="categorico"), que aceitam texto;
         * o marcador de falha condicional "F" é aceito como valor de
           qualquer variável (resultado de uma rotina IF que falhou),
           sem conversão — consumi-lo em um cálculo é erro explícito.
@@ -158,7 +158,7 @@ class CalculationContext:
     ) -> None:
         """
         Declara variáveis cujo valor é texto (value_type
-        "categorical"). Somente elas aceitam texto além do marcador
+        "categorico"). Somente elas aceitam texto além do marcador
         de falha condicional.
         """
 

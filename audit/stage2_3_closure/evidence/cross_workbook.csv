@@ -1,0 +1,35 @@
+consumidor,row,name,frequency,scope,unit,value_type,fonte,produtor,status
+area_41,9,lth,diário,linha/L1_L7,m³/h,numerico,bloco yield,yield,OK
+area_41,25,hes,diário,linha/L4,-,categorico,bloco maintenance,,PRODUTOR FORA DOS 5 WORKBOOKS
+area_41,26,hes,diário,linha/L5,-,categorico,bloco maintenance,,PRODUTOR FORA DOS 5 WORKBOOKS
+area_41,27,hes,diário,linha/L6,-,categorico,bloco maintenance,,PRODUTOR FORA DOS 5 WORKBOOKS
+area_41,28,hes,diário,linha/L7,-,categorico,bloco maintenance,,PRODUTOR FORA DOS 5 WORKBOOKS
+energy,3,producao,diário,linha/L1_L7,tpd,numerico,bloco production,production,OK
+energy,7,pick_up,diário,linha/L1_L7,g/l,numerico,bloco production,production,IDENTIDADE DIVERGENTE: produtor tem diário/linha/L1/g/l; diário/linha/L2/g/l; diário/linha/L3/g/l; diário/linha/L4/g/l; diário/linha/L5/g/l; diário/linha/L6/g/l; diário/linha/L7/g/l; mensal/linha/L1_L7/g/l
+energy,8,pick_up_total,diário,linha_grupo/L1_L7,g/l,numerico,bloco production,production,OK
+energy,9,pick_up_total,mensal,linha_grupo/L1_L7,g/l,numerico,bloco production,production,OK
+energy,10,lth,diário,linha/L1_L7,m³/h,numerico,bloco production,production,OK
+energy,11,lth_total,diário,linha_grupo/L1_L7,m³/h,numerico,bloco production,production,OK
+energy,12,lth_total,mensal,linha_grupo/L1_L7,m³/h,numerico,bloco production,production,OK
+energy,13,lth_meta,anual,linha/L1_L7,-,numerico,bloco production,production,IDENTIDADE DIVERGENTE: produtor tem anual/linha/L1/-; anual/linha/L2/-; anual/linha/L3/-; anual/linha/L4/-; anual/linha/L5/-; anual/linha/L6/-; anual/linha/L7/-
+energy,14,temperatura_lp,diário,linha/L1_L7,°C,numerico,bloco temperature_lp,,PRODUTOR FORA DOS 5 WORKBOOKS
+energy,15,temperatura_lp,mensal,linha/L1_L7,°C,numerico,bloco temperature_lp,,PRODUTOR FORA DOS 5 WORKBOOKS
+energy,16,temperatura_lp_media,mensal,linha_grupo/L1_L7,°C,numerico,bloco temperature_lp,,PRODUTOR FORA DOS 5 WORKBOOKS
+energy,37,evaporado_total_evaporacao,diário,linha/L1_L7,t/h,numerico,bloco area_04_13 (Forecast A4 e A13),,PRODUTOR FORA DOS 5 WORKBOOKS
+max_ht,3,producao,diário,linha/L1_L7,t/d,numerico,bloco production,production,OK identidade; unit difere (t/d vs tpd)
+max_ht,13,alimentação_evap,diário,linha/L1_L7,m³/h,numerico,bloco alumina,,PRODUTOR FORA DOS 5 WORKBOOKS
+max_ht,19,lth,diário,linha/L1_L7,m³/h,numerico,bloco production,production,OK
+production,3,yield,diário,linha/L1_L7,g/l,numerico,bloco yield,yield,OK
+production,15,reducao_lth_digestao,diário,linha/L1_L7,m³/h,numerico,bloco maintenance_plan,,PRODUTOR FORA DOS 5 WORKBOOKS
+production,16,tempo_digestao,diário,linha/L1_L7,h,numerico,bloco maintenance_plan,,PRODUTOR FORA DOS 5 WORKBOOKS
+production,17,reducao_lth_clarificacao,diário,linha/L1_L7,m³/h,numerico,bloco maintenance_plan,,PRODUTOR FORA DOS 5 WORKBOOKS
+production,18,tempo_clarificacao,diário,linha/L1_L7,h,numerico,bloco maintenance_plan,,PRODUTOR FORA DOS 5 WORKBOOKS
+production,19,reducao_lth_precipitacao,diário,linha/L1_L7,m³/h,numerico,bloco maintenance_plan,,PRODUTOR FORA DOS 5 WORKBOOKS
+production,20,tempo_precipitacao,diário,linha/L1_L7,h,numerico,bloco maintenance_plan,,PRODUTOR FORA DOS 5 WORKBOOKS
+production,21,reducao_lth_calcinacao,diário,linha/L1_L7,m³/h,numerico,bloco maintenance_plan,,PRODUTOR FORA DOS 5 WORKBOOKS
+production,22,tempo_calcinacao,diário,linha/L1_L7,h,numerico,bloco maintenance_plan,,PRODUTOR FORA DOS 5 WORKBOOKS
+production,61,fator_mrn_kg_t,diário,linha_grupo/L1_L7,kg/t,numerico,bloco forecast,,PRODUTOR FORA DOS 5 WORKBOOKS
+production,62,fator_mpsa_kg_t,diário,linha_grupo/L1_L7,kg/t,numerico,bloco forecast,,PRODUTOR FORA DOS 5 WORKBOOKS
+production,63,fator_mrn,diário,linha/L1_L7,-,numerico,bloco forecast,,PRODUTOR FORA DOS 5 WORKBOOKS
+production,64,fator_mpsa,diário,linha/L1_L7,-,numerico,bloco forecast,,PRODUTOR FORA DOS 5 WORKBOOKS
+yield,4,lth,diário,linha/L1_L7,m³/h,numerico,bloco production,production,OK

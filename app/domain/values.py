@@ -5,8 +5,8 @@ Um valor de cálculo é numérico (o caso geral) ou categórico (texto).
 Não existe um terceiro tipo aberto (`Any`): todo ponto que armazena,
 lê ou avalia um valor aceita exatamente `ScalarValue`.
 
-    numeric      int | float (bool nunca é aceito)
-    categorical  str
+    numerico     int | float (bool nunca é aceito)
+    categorico   str
 
 O marcador de falha condicional `CONDITIONAL_FAILURE` ("F") é o
 resultado de uma rotina condicional (IF) que falhou. Ele é um texto,
@@ -22,8 +22,8 @@ NumericValue = int | float
 CategoricalValue = str
 ScalarValue = NumericValue | CategoricalValue
 
-NUMERIC = "numeric"
-CATEGORICAL = "categorical"
+NUMERIC = "numerico"
+CATEGORICAL = "categorico"
 
 VALUE_TYPES = frozenset({NUMERIC, CATEGORICAL})
 

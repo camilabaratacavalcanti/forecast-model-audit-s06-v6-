@@ -1,0 +1,89 @@
+linha,type,name,frequency,scope_type,scope_value,unit,value_type,allowed_values,declared_result_states,classe_expressao,A019,auditada,contratos_verificados,achados
+3,variable,yield,diário,linha,L1_L7,g/l,numerico,,,none,,sim,identity;scope;frequency;unit;value_type,WB-AUD-09
+4,variable / equation,yield_lth_total,diário,linha_grupo,L1_L7,g/l,numerico,,,C-scoped,resolved,sim,identity;scope;frequency;unit;value_type;A019;parser,WB-AUD-09
+5,variable / equation,yield_lth_total,mensal,linha_grupo,L1_L7,g/l,numerico,,,D-aggregation-description,,sim,identity;scope;frequency;unit;value_type;aggregation,WB-AUD-09
+6,variable / equation,yield_lth_total,anual,linha_grupo,L1_L7,g/l,numerico,,,D-aggregation-description,,sim,identity;scope;frequency;unit;value_type;aggregation,WB-AUD-09
+7,parameter,lth_meta,anual,linha,L1,-,numerico,,,none,,sim,identity;scope;frequency;unit;value_type,WB-AUD-09
+8,parameter,lth_meta,anual,linha,L2,-,numerico,,,none,,sim,identity;scope;frequency;unit;value_type,WB-AUD-09
+9,parameter,lth_meta,anual,linha,L3,-,numerico,,,none,,sim,identity;scope;frequency;unit;value_type,WB-AUD-09
+10,parameter,lth_meta,anual,linha,L4,-,numerico,,,none,,sim,identity;scope;frequency;unit;value_type,WB-AUD-09
+11,parameter,lth_meta,anual,linha,L5,-,numerico,,,none,,sim,identity;scope;frequency;unit;value_type,WB-AUD-09
+12,parameter,lth_meta,anual,linha,L6,-,numerico,,,none,,sim,identity;scope;frequency;unit;value_type,WB-AUD-09
+13,parameter,lth_meta,anual,linha,L7,-,numerico,,,none,,sim,identity;scope;frequency;unit;value_type,WB-AUD-09
+14,variable,fator_ajuste_lth,mensal,linha,L1_L7,-,numerico,,,none,,sim,identity;scope;frequency;unit;value_type,WB-AUD-09
+15,variable,reducao_lth_digestao,diário,linha,L1_L7,m³/h,numerico,,,none,,sim,identity;scope;frequency;unit;value_type,WB-AUD-09
+16,variable,tempo_digestao,diário,linha,L1_L7,h,numerico,,,none,,sim,identity;scope;frequency;unit;value_type,WB-AUD-09
+17,variable,reducao_lth_clarificacao,diário,linha,L1_L7,m³/h,numerico,,,none,,sim,identity;scope;frequency;unit;value_type,WB-AUD-09
+18,variable,tempo_clarificacao,diário,linha,L1_L7,h,numerico,,,none,,sim,identity;scope;frequency;unit;value_type,WB-AUD-09
+19,variable,reducao_lth_precipitacao,diário,linha,L1_L7,m³/h,numerico,,,none,,sim,identity;scope;frequency;unit;value_type,WB-AUD-09
+20,variable,tempo_precipitacao,diário,linha,L1_L7,h,numerico,,,none,,sim,identity;scope;frequency;unit;value_type,WB-AUD-09
+21,variable,reducao_lth_calcinacao,diário,linha,L1_L7,m³/h,numerico,,,none,,sim,identity;scope;frequency;unit;value_type,WB-AUD-09
+22,variable,tempo_calcinacao,diário,linha,L1_L7,h,numerico,,,none,,sim,identity;scope;frequency;unit;value_type,WB-AUD-09
+23,variable / equation,lth,diário,linha,L1_L7,m³/h,numerico,,,?,AMBIGUOUS/INVALID,sim,identity;scope;frequency;unit;value_type;A019;parser,"WB-AUD-09,WB-AUD-12"
+24,variable / equation,lth,mensal,linha,L1_L7,m³/h,numerico,,,D-aggregation-description,,sim,identity;scope;frequency;unit;value_type;aggregation,WB-AUD-09
+25,variable / equation,lth_total,diário,linha_grupo,L1_L7,m³/h,numerico,,,C-scoped,resolved,sim,identity;scope;frequency;unit;value_type;A019;parser,WB-AUD-09
+26,variable / equation,lth_total,mensal,linha_grupo,L1_L7,m³/h,numerico,,,D-aggregation-description,,sim,identity;scope;frequency;unit;value_type;aggregation,WB-AUD-09
+27,variable / equation,lth_total,anual,linha_grupo,L1_L7,m³/h,numerico,,,D-aggregation-description,,sim,identity;scope;frequency;unit;value_type;aggregation,WB-AUD-09
+28,variable / equation,oee,diário,linha,L1_L7,%,numerico,,,?,AMBIGUOUS/INVALID,sim,identity;scope;frequency;unit;value_type;A019;parser,"WB-AUD-09,WB-AUD-12"
+29,variable / equation,oee,mensal,linha,L1_L7,%,numerico,,,D-aggregation-description,,sim,identity;scope;frequency;unit;value_type;aggregation,WB-AUD-09
+30,variable / equation,oee_total,diário,linha_grupo,L1_L7,%,numerico,,,?,AMBIGUOUS/INVALID,sim,identity;scope;frequency;unit;value_type;A019;parser,"WB-AUD-04,WB-AUD-09"
+31,variable / equation,oee_total,mensal,linha_grupo,L1_L7,%,numerico,,,D-aggregation-description,,sim,identity;scope;frequency;unit;value_type;aggregation,WB-AUD-09
+32,variable / equation,oee_total,anual,linha_grupo,L1_L7,%,numerico,,,D-aggregation-description,,sim,identity;scope;frequency;unit;value_type;aggregation,WB-AUD-09
+33,parameter,pick_up_yield,anual,linha,L1,g/l,numerico,,,none,,sim,identity;scope;frequency;unit;value_type,WB-AUD-09
+34,parameter,pick_up_yield,anual,linha,L2,g/l,numerico,,,none,,sim,identity;scope;frequency;unit;value_type,WB-AUD-09
+35,parameter,pick_up_yield,anual,linha,L3,g/l,numerico,,,none,,sim,identity;scope;frequency;unit;value_type,WB-AUD-09
+36,parameter,pick_up_yield,anual,linha,L4,g/l,numerico,,,none,,sim,identity;scope;frequency;unit;value_type,WB-AUD-09
+37,parameter,pick_up_yield,anual,linha,L5,g/l,numerico,,,none,,sim,identity;scope;frequency;unit;value_type,WB-AUD-09
+38,parameter,pick_up_yield,anual,linha,L6,g/l,numerico,,,none,,sim,identity;scope;frequency;unit;value_type,WB-AUD-09
+39,parameter,pick_up_yield,anual,linha,L7,g/l,numerico,,,none,,sim,identity;scope;frequency;unit;value_type,WB-AUD-09
+40,variable / equation,pick_up,diário,linha,L1,g/l,numerico,,,C-scoped,resolved,sim,identity;scope;frequency;unit;value_type;A019;parser,WB-AUD-09
+41,variable / equation,pick_up,diário,linha,L2,g/l,numerico,,,C-scoped,resolved,sim,identity;scope;frequency;unit;value_type;A019;parser,WB-AUD-09
+42,variable / equation,pick_up,diário,linha,L3,g/l,numerico,,,C-scoped,resolved,sim,identity;scope;frequency;unit;value_type;A019;parser,WB-AUD-09
+43,variable / equation,pick_up,diário,linha,L4,g/l,numerico,,,C-scoped,resolved,sim,identity;scope;frequency;unit;value_type;A019;parser,WB-AUD-09
+44,variable / equation,pick_up,diário,linha,L5,g/l,numerico,,,C-scoped,resolved,sim,identity;scope;frequency;unit;value_type;A019;parser,WB-AUD-09
+45,variable / equation,pick_up,diário,linha,L6,g/l,numerico,,,C-scoped,resolved,sim,identity;scope;frequency;unit;value_type;A019;parser,WB-AUD-09
+46,variable / equation,pick_up,diário,linha,L7,g/l,numerico,,,C-scoped,resolved,sim,identity;scope;frequency;unit;value_type;A019;parser,WB-AUD-09
+47,variable / equation,pick_up,mensal,linha,L1_L7,g/l,numerico,,,D-aggregation-description,,sim,identity;scope;frequency;unit;value_type;aggregation,WB-AUD-09
+48,variable / equation,pick_up_total,diário,linha_grupo,L1_L7,g/l,numerico,,,G-not-executable,resolved,sim,identity;scope;frequency;unit;value_type;A019;parser,"WB-AUD-04,WB-AUD-09"
+49,variable / equation,pick_up_total,mensal,linha_grupo,L1_L7,g/l,numerico,,,D-aggregation-description,,sim,identity;scope;frequency;unit;value_type;aggregation,WB-AUD-09
+50,variable / equation,pick_up_total,anual,linha_grupo,L1_L7,g/l,numerico,,,D-aggregation-description,,sim,identity;scope;frequency;unit;value_type;aggregation,WB-AUD-09
+51,parameter,fator_producao,anual,linha,L1_L7,-,numerico,,,none,,sim,identity;scope;frequency;unit;value_type,WB-AUD-09
+52,variable / equation,producao,diário,linha,L1_L7,tpd,numerico,,,?,AMBIGUOUS/INVALID,sim,identity;scope;frequency;unit;value_type;A019;parser,"WB-AUD-09,WB-AUD-10,WB-AUD-12"
+53,variable / equation,producao,mensal,linha,L1_L7,tpd,numerico,,,D-aggregation-description,,sim,identity;scope;frequency;unit;value_type;aggregation,WB-AUD-09
+54,variable / equation,producao_planta,diário,linha_grupo,L1_L7,tpd,numerico,,,C-scoped,resolved,sim,identity;scope;frequency;unit;value_type;A019;parser,WB-AUD-09
+55,variable / equation,producao_planta,mensal,linha_grupo,L1_L7,tpd,numerico,,,D-aggregation-description,,sim,identity;scope;frequency;unit;value_type;aggregation,"WB-AUD-03,WB-AUD-09"
+56,variable / equation,producao_planta,mensal,linha_grupo,L1_L7,tpd,numerico,,,D-aggregation-description,,sim,identity;scope;frequency;unit;value_type;aggregation,"WB-AUD-03,WB-AUD-05,WB-AUD-09"
+57,variable / equation,producao_planta,anual,linha_grupo,L1_L7,tpd,numerico,,,D-aggregation-description,,sim,identity;scope;frequency;unit;value_type;aggregation,"WB-AUD-05,WB-AUD-09"
+58,variable / equation,producao_planta_movel,diário,linha_grupo,L1_L7,tpd,numerico,,,D-aggregation-description,,sim,identity;scope;frequency;unit;value_type;aggregation,WB-AUD-09
+59,parameter,n_dias_ano,anual,linha_grupo,L1_L7,dias,numerico,,,none,,sim,identity;scope;frequency;unit;value_type,WB-AUD-09
+60,variable / equation,producao_planta_mtpy,diário,linha_grupo,L1_L7,Mtpy,numerico,,,A-arithmetic,resolved,sim,identity;scope;frequency;unit;value_type;A019;parser,WB-AUD-09
+61,variable,fator_mrn_kg_t,diário,linha_grupo,L1_L7,kg/t,numerico,,,none,,sim,identity;scope;frequency;unit;value_type,WB-AUD-09
+62,variable,fator_mpsa_kg_t,diário,linha_grupo,L1_L7,kg/t,numerico,,,none,,sim,identity;scope;frequency;unit;value_type,WB-AUD-09
+63,variable / equation,fator_mrn,diário,linha,L1_L7,-,numerico,,,A-arithmetic,resolved,sim,identity;scope;frequency;unit;value_type;A019;parser,WB-AUD-09
+64,variable / equation,fator_mpsa,diário,linha,L1_L7,-,numerico,,,A-arithmetic,resolved,sim,identity;scope;frequency;unit;value_type;A019;parser,WB-AUD-09
+65,variable / equation,fator_cbg,diário,linha,L1_L7,-,numerico,,,A-arithmetic,resolved,sim,identity;scope;frequency;unit;value_type;A019;parser,WB-AUD-09
+66,variable,consumo_mrn_percentual,diário,linha,L1_L7,%,numerico,,,none,,sim,identity;scope;frequency;unit;value_type,WB-AUD-09
+67,variable,consumo_mpsa_percentual,diário,linha,L1_L7,%,numerico,,,none,,sim,identity;scope;frequency;unit;value_type,WB-AUD-09
+68,variable,consumo_cbg_percentual,diário,linha,L1_L7,%,numerico,,,none,,sim,identity;scope;frequency;unit;value_type,WB-AUD-09
+69,variable,fator_ajuste_mrn,diário,linha,L1_L7,-,numerico,,,none,,sim,identity;scope;frequency;unit;value_type,WB-AUD-09
+70,variable / equation,consumo_mrn,diário,linha,L1_L7,tpd,numerico,,,A-arithmetic,resolved,sim,identity;scope;frequency;unit;value_type;A019;parser,WB-AUD-09
+71,variable / equation,consumo_mpsa,diário,linha,L1_L7,tpd,numerico,,,A-arithmetic,resolved,sim,identity;scope;frequency;unit;value_type;A019;parser,WB-AUD-09
+72,variable / equation,consumo_cbg,diário,linha,L1_L7,tpd,numerico,,,A-arithmetic,resolved,sim,identity;scope;frequency;unit;value_type;A019;parser,WB-AUD-09
+73,variable / equation,consumo_mrn,diário,linha_grupo,L1_L7,tpd,numerico,,,C-scoped,resolved,sim,identity;scope;frequency;unit;value_type;A019;parser,WB-AUD-09
+74,variable / equation,consumo_mpsa,diário,linha_grupo,L1_L7,tpd,numerico,,,C-scoped,resolved,sim,identity;scope;frequency;unit;value_type;A019;parser,WB-AUD-09
+75,variable / equation,consumo_cbg,diário,linha_grupo,L1_L7,tpd,numerico,,,C-scoped,resolved,sim,identity;scope;frequency;unit;value_type;A019;parser,WB-AUD-09
+76,variable / equation,consumo_bauxita,diário,linha,L1_L7,tpd,numerico,,,A-arithmetic,resolved,sim,identity;scope;frequency;unit;value_type;A019;parser,WB-AUD-09
+77,variable / equation,consumo_mrn,mensal,linha_grupo,L1_L7,tpd,numerico,,,D-aggregation-description,,sim,identity;scope;frequency;unit;value_type;aggregation,"WB-AUD-03,WB-AUD-09"
+78,variable / equation,consumo_mrn,mensal,linha_grupo,L1_L7,tpd,numerico,,,D-aggregation-description,,sim,identity;scope;frequency;unit;value_type;aggregation,"WB-AUD-03,WB-AUD-05,WB-AUD-09"
+79,variable / equation,consumo_mpsa,mensal,linha_grupo,L1_L7,tpd,numerico,,,D-aggregation-description,,sim,identity;scope;frequency;unit;value_type;aggregation,"WB-AUD-03,WB-AUD-09"
+80,variable / equation,consumo_mpsa,mensal,linha_grupo,L1_L7,tpd,numerico,,,D-aggregation-description,,sim,identity;scope;frequency;unit;value_type;aggregation,"WB-AUD-03,WB-AUD-05,WB-AUD-09"
+81,variable / equation,consumo_cbg,mensal,linha_grupo,L1_L7,tpd,numerico,,,D-aggregation-description,,sim,identity;scope;frequency;unit;value_type;aggregation,"WB-AUD-03,WB-AUD-09"
+82,variable / equation,consumo_cbg,mensal,linha_grupo,L1_L7,tpd,numerico,,,D-aggregation-description,,sim,identity;scope;frequency;unit;value_type;aggregation,"WB-AUD-03,WB-AUD-05,WB-AUD-09"
+83,variable / equation,consumo_bauxita,mensal,linha_grupo,L1_L7,tpd,numerico,,,D-aggregation-description,,sim,identity;scope;frequency;unit;value_type;aggregation,"WB-AUD-03,WB-AUD-06,WB-AUD-09"
+84,variable / equation,consumo_bauxita,mensal,linha_grupo,L1_L7,tpd,numerico,,,D-aggregation-description,,sim,identity;scope;frequency;unit;value_type;aggregation,"WB-AUD-03,WB-AUD-05,WB-AUD-06,WB-AUD-09"
+85,variable / equation,consumo_mrn,anual,linha_grupo,L1_L7,tpd,numerico,,,D-aggregation-description,,sim,identity;scope;frequency;unit;value_type;aggregation,"WB-AUD-05,WB-AUD-09"
+86,variable / equation,consumo_mpsa,anual,linha_grupo,L1_L7,tpd,numerico,,,D-aggregation-description,,sim,identity;scope;frequency;unit;value_type;aggregation,"WB-AUD-05,WB-AUD-09"
+87,variable / equation,consumo_cbg,anual,linha_grupo,L1_L7,tpd,numerico,,,D-aggregation-description,,sim,identity;scope;frequency;unit;value_type;aggregation,"WB-AUD-05,WB-AUD-09"
+88,variable / equation,consumo_bauxita,anual,linha_grupo,L1_L7,tpd,numerico,,,D-aggregation-description,,sim,identity;scope;frequency;unit;value_type;aggregation,"WB-AUD-05,WB-AUD-06,WB-AUD-09"
+89,parameter,desaguamento_produtividade,anual,planta,planta,t/h,numerico,,,none,,sim,identity;scope;frequency;unit;value_type,"WB-AUD-08,WB-AUD-09"
+90,variable / equation,desaguamento_oee,anual,linha_grupo,L1_L7,%,numerico,,,A-arithmetic,resolved,sim,identity;scope;frequency;unit;value_type;A019;parser,WB-AUD-09

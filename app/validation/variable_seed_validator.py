@@ -213,7 +213,7 @@ ENUM_FIELDS = {
     "unit": ALLOWED_UNITS,
     "scope_type": ALLOWED_SCOPE_TYPES,
     "scope_value": ALLOWED_SCOPE_VALUES,
-    # Opcional: ausente = "numeric" (ver app.domain.values).
+    # Opcional: ausente = "numerico" (ver app.domain.values).
     "value_type": VALUE_TYPES,
 }
 

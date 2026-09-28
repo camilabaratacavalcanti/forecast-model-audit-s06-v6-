@@ -1,0 +1,57 @@
+linha,type,name,frequency,scope_type,scope_value,unit,value_type,allowed_values,declared_result_states,classe_expressao,A019,auditada,contratos_verificados,achados
+3,variable,producao,diário,linha,L1_L7,tpd,numerico,,,none,,sim,identity;scope;frequency;unit;value_type,"WB-AUD-09,WB-AUD-16"
+4,variable / equation,producao_t_h,diário,linha,L1_L7,t/h,numerico,,,A-arithmetic,resolved,sim,identity;scope;frequency;unit;value_type;A019;parser,WB-AUD-09
+5,variable / equation,producao_planta_t_h,diário,linha_grupo,L1_L7,t/h,numerico,,,C-scoped,resolved,sim,identity;scope;frequency;unit;value_type;A019;parser,WB-AUD-09
+6,variable / equation,producao_planta_t_h_media_movel,diário,linha_grupo,L1_L7,t/h,numerico,,,D-aggregation-description,,sim,identity;scope;frequency;unit;value_type;aggregation,"WB-AUD-09,WB-AUD-15"
+7,variable,pick_up,diário,linha,L1_L7,g/l,numerico,,,none,,sim,identity;scope;frequency;unit;value_type,"WB-AUD-09,WB-AUD-12"
+8,variable,pick_up_total,diário,linha_grupo,L1_L7,g/l,numerico,,,none,,sim,identity;scope;frequency;unit;value_type,WB-AUD-09
+9,variable,pick_up_total,mensal,linha_grupo,L1_L7,g/l,numerico,,,none,,sim,identity;scope;frequency;unit;value_type,WB-AUD-09
+10,variable,lth,diário,linha,L1_L7,m³/h,numerico,,,none,,sim,identity;scope;frequency;unit;value_type,WB-AUD-09
+11,variable,lth_total,diário,linha_grupo,L1_L7,m³/h,numerico,,,none,,sim,identity;scope;frequency;unit;value_type,WB-AUD-09
+12,variable,lth_total,mensal,linha_grupo,L1_L7,m³/h,numerico,,,none,,sim,identity;scope;frequency;unit;value_type,WB-AUD-09
+13,variable,lth_meta,anual,linha,L1_L7,-,numerico,,,none,,sim,identity;scope;frequency;unit;value_type,"WB-AUD-09,WB-AUD-12"
+14,variable,temperatura_lp,diário,linha,L1_L7,°C,numerico,,,none,,sim,identity;scope;frequency;unit;value_type,WB-AUD-09
+15,variable,temperatura_lp,mensal,linha,L1_L7,°C,numerico,,,none,,sim,identity;scope;frequency;unit;value_type,WB-AUD-09
+16,variable,temperatura_lp_media,mensal,linha_grupo,L1_L7,°C,numerico,,,none,,sim,identity;scope;frequency;unit;value_type,WB-AUD-09
+17,parameter,temperatura_lp_referencia,,linha,L1_L7,°C,numerico,,,none,,sim,identity;scope;frequency;unit;value_type,WB-AUD-09
+18,parameter,fator_ajuste_delta_t_reg,,linha,L1_L7,°C,numerico,,,none,,sim,identity;scope;frequency;unit;value_type,WB-AUD-09
+19,variable,temperatura_lp_ref_inferior,mensal,linha,L1_L7,°C,numerico,,,none,,sim,identity;scope;frequency;unit;value_type,WB-AUD-09
+20,variable,temperatura_lp_ref_superior,mensal,linha,L1_L7,°C,numerico,,,none,,sim,identity;scope;frequency;unit;value_type,WB-AUD-09
+21,variable / equation,delta_t_regenerativo,diário,linha,L1_L7,°C,numerico,,,B-conditional,resolved,sim,identity;scope;frequency;unit;value_type;A019;parser,WB-AUD-09
+22,variable,temperatura_lth_saida_he6,diário,linha,L1_L7,°C,numerico,,,none,,sim,identity;scope;frequency;unit;value_type,WB-AUD-09
+23,parameter,fator_ajuste_delta_t_vapor_vivo,,linha,L1_L7,°C,numerico,,,none,,sim,identity;scope;frequency;unit;value_type,WB-AUD-09
+24,variable / equation,delta_t_vapor_vivo,diário,linha,L1_L7,°C,numerico,,,A-arithmetic,resolved,sim,identity;scope;frequency;unit;value_type;A019;parser,WB-AUD-09
+25,parameter,delta_t_vapor_vivo_maximo,,linha_grupo,L1_L7,°C,numerico,,,none,,sim,identity;scope;frequency;unit;value_type,WB-AUD-09
+26,variable / equation,vazao_vapor_digestao,diário,linha,L1_L7,t/h,numerico,,,A-arithmetic,resolved,sim,identity;scope;frequency;unit;value_type;A019;parser,WB-AUD-09
+27,variable / equation,vazao_vapor_digestao,mensal,linha,L1_L7,t/h,numerico,,,D-aggregation-description,,sim,identity;scope;frequency;unit;value_type;aggregation,WB-AUD-09
+28,variable / equation,vazao_vapor_digestao_total,diário,linha_grupo,L1_L7,t/h,numerico,,,C-scoped,resolved,sim,identity;scope;frequency;unit;value_type;A019;parser,WB-AUD-09
+29,variable / equation,vazao_vapor_digestao_total,mensal,linha_grupo,L1_L7,t/h,numerico,,,D-aggregation-description,,sim,identity;scope;frequency;unit;value_type;aggregation,WB-AUD-09
+30,variable / equation,especifico_vapor_digestao,diário,linha,L1_L7,-,numerico,,,A-arithmetic,resolved,sim,identity;scope;frequency;unit;value_type;A019;parser,WB-AUD-09
+31,variable / equation,especifico_vapor_digestao_medio,diário,linha_grupo,L1_L7,-,numerico,,,C-scoped,resolved,sim,identity;scope;frequency;unit;value_type;A019;parser,WB-AUD-09
+32,variable / equation,especifico_vapor_digestao_medio,mensal,linha_grupo,L1_L7,-,numerico,,,D-aggregation-description,,sim,identity;scope;frequency;unit;value_type;aggregation,WB-AUD-09
+33,variable / equation,energia_digestao,diário,linha_grupo,L1_L7,GJ/t,numerico,,,A-arithmetic,resolved,sim,identity;scope;frequency;unit;value_type;A019;parser,WB-AUD-09
+34,variable / equation,energia_digestao,mensal,linha_grupo,L1_L7,GJ/t,numerico,,,D-aggregation-description,,sim,identity;scope;frequency;unit;value_type;aggregation,WB-AUD-09
+35,variable,economicidade_evaporacao_ref,mensal,linha,L1_L7,-,numerico,,,none,,sim,identity;scope;frequency;unit;value_type,WB-AUD-09
+36,variable / equation,economicidade_evaporacao,diário,linha,L1_L7,-,numerico,,,A-arithmetic,resolved,sim,identity;scope;frequency;unit;value_type;A019;parser,WB-AUD-09
+37,variable,evaporado_total_evaporacao,diário,linha,L1_L7,t/h,numerico,,,none,,sim,identity;scope;frequency;unit;value_type,WB-AUD-09
+38,variable / equation,consumo_vapor_evaporadores,diário,linha,L1_L7,t/h,numerico,,,A-arithmetic,resolved,sim,identity;scope;frequency;unit;value_type;A019;parser,WB-AUD-09
+39,variable / equation,consumo_vapor_evaporadores_total,diário,linha_grupo,L1_L7,t/h,numerico,,,C-scoped,resolved,sim,identity;scope;frequency;unit;value_type;A019;parser,WB-AUD-09
+40,variable / equation,especifico_vapor_evaporacao,diário,linha,L1_L7,-,numerico,,,A-arithmetic,resolved,sim,identity;scope;frequency;unit;value_type;A019;parser,WB-AUD-09
+41,variable / equation,especifico_vapor_evaporacao,diário,linha_grupo,L1_L3,-,numerico,,,C-scoped,resolved,sim,identity;scope;frequency;unit;value_type;A019;parser,WB-AUD-09
+42,variable / equation,especifico_vapor_evaporacao,diário,linha_grupo,L4_L5,-,numerico,,,C-scoped,resolved,sim,identity;scope;frequency;unit;value_type;A019;parser,WB-AUD-09
+43,variable / equation,especifico_vapor_evaporacao,diário,linha_grupo,L6_L7,-,numerico,,,C-scoped,resolved,sim,identity;scope;frequency;unit;value_type;A019;parser,WB-AUD-09
+44,variable / equation,especifico_vapor_evaporacao_total,diário,linha_grupo,L1_L7,-,numerico,,,A-arithmetic,resolved,sim,identity;scope;frequency;unit;value_type;A019;parser,WB-AUD-09
+45,variable / equation,especifico_vapor_evaporacao_total,mensal,linha_grupo,L1_L7,-,numerico,,,D-aggregation-description,,sim,identity;scope;frequency;unit;value_type;aggregation,WB-AUD-09
+46,variable / equation,energia_evaporacao,diário,linha_grupo,L1_L7,GJ/t,numerico,,,A-arithmetic,resolved,sim,identity;scope;frequency;unit;value_type;A019;parser,WB-AUD-09
+47,variable / equation,energia_evaporacao,mensal,linha_grupo,L1_L7,GJ/t,numerico,,,D-aggregation-description,,sim,identity;scope;frequency;unit;value_type;aggregation,WB-AUD-09
+48,variable / equation,energia_bayer,diário,linha_grupo,L1_L7,GJ/t,numerico,,,A-arithmetic,resolved,sim,identity;scope;frequency;unit;value_type;A019;parser,WB-AUD-09
+49,variable / equation,energia_bayer,mensal,linha_grupo,L1_L7,GJ/t,numerico,,,D-aggregation-description,,sim,identity;scope;frequency;unit;value_type;aggregation,WB-AUD-09
+50,variable / equation,energia_media_frct,mensal,linha_grupo,L1_L7,GJ/t,numerico,,,A-arithmetic,resolved,sim,identity;scope;frequency;unit;value_type;A019;parser,WB-AUD-09
+51,variable / equation,consumo_total_vapor,diário,linha_grupo,L1_L7,t/h,numerico,,,A-arithmetic,resolved,sim,identity;scope;frequency;unit;value_type;A019;parser,WB-AUD-09
+52,variable,consumo_vapor_outros,diário,linha_grupo,L1_L7,t/h,numerico,,,none,,sim,identity;scope;frequency;unit;value_type,WB-AUD-09
+53,variable / equation,especifico_vapor_outros,diário,linha_grupo,L1_L7,-,numerico,,,A-arithmetic,resolved,sim,identity;scope;frequency;unit;value_type;A019;parser,WB-AUD-09
+54,variable / equation,especifico_vapor_outros,mensal,linha_grupo,L1_L7,-,numerico,,,D-aggregation-description,,sim,identity;scope;frequency;unit;value_type;aggregation,WB-AUD-09
+55,variable / equation,demanda_bayer,diário,linha_grupo,L1_L7,t/h,numerico,,,A-arithmetic,resolved,sim,identity;scope;frequency;unit;value_type;A019;parser,WB-AUD-09
+56,variable / equation,especifico_demanda_bayer,diário,linha_grupo,L1_L7,-,numerico,,,A-arithmetic,resolved,sim,identity;scope;frequency;unit;value_type;A019;parser,WB-AUD-09
+57,variable / equation,especifico_demanda_bayer_medio,mensal,linha_grupo,L1_L7,-,numerico,,,D-aggregation-description,,sim,identity;scope;frequency;unit;value_type;aggregation,WB-AUD-09
+58,variable / equation,especifico_demanda_bayer_media_ponderada,mensal,linha_grupo,L1_L7,-,numerico,,,D-aggregation-description,,sim,identity;scope;frequency;unit;value_type;aggregation,WB-AUD-09
