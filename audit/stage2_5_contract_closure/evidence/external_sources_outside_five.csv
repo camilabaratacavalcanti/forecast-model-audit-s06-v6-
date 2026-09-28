@@ -1,0 +1,19 @@
+consumer_block,name,frequency,scope,fonte
+area_41,hes,diário,linha/L4_L7,bloco maintenance
+energy,temperatura_lp,diário,linha/L1_L7,bloco temperature_lp
+energy,temperatura_lp,mensal,linha/L1_L7,bloco temperature_lp
+energy,temperatura_lp_media,mensal,linha_grupo/L1_L7,bloco temperature_lp
+energy,evaporado_total_evaporacao,diário,linha/L1_L7,bloco area_04_13 (Forecast A4 e A13)
+max_ht,alimentação_evap,diário,linha/L1_L7,bloco alumina
+production,fator_mpsa,diário,linha/L1_L7,bloco forecast
+production,fator_mpsa_kg_t,diário,linha_grupo/L1_L7,bloco forecast
+production,fator_mrn,diário,linha/L1_L7,bloco forecast
+production,fator_mrn_kg_t,diário,linha_grupo/L1_L7,bloco forecast
+production,reducao_lth_calcinacao,diário,linha/L1_L7,bloco maintenance_plan
+production,reducao_lth_clarificacao,diário,linha/L1_L7,bloco maintenance_plan
+production,reducao_lth_digestao,diário,linha/L1_L7,bloco maintenance_plan
+production,reducao_lth_precipitacao,diário,linha/L1_L7,bloco maintenance_plan
+production,tempo_calcinacao,diário,linha/L1_L7,bloco maintenance_plan
+production,tempo_clarificacao,diário,linha/L1_L7,bloco maintenance_plan
+production,tempo_digestao,diário,linha/L1_L7,bloco maintenance_plan
+production,tempo_precipitacao,diário,linha/L1_L7,bloco maintenance_plan

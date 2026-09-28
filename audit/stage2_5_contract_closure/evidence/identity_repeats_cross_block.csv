@@ -1,0 +1,19 @@
+identity,blocks,fontes,units,class,in_fonte_inventory
+lth|diário|linha|L1_L7,area_41:VAR16007:input energy:VAR18008:input max_ht:VAR13062:input production:VAR12031:equation yield:VAR11031:input,area_41:bloco yield | energy:bloco production | max_ht:bloco production | production:- | yield:bloco production,m³/h,LIGAÇÃO DECLARADA POR fonte,True
+lth|mensal|linha|L1_L7,max_ht:VAR13061:aggregation production:VAR12032:aggregation yield:VAR11032:aggregation,max_ht:- | production:- | yield:-,m³/h,IDENTIDADE CALCULADA EM MAIS DE UM BLOCO,False
+lth_grupo|diário|linha_grupo|L1_L3,area_41:VAR16008:equation yield:VAR11033:equation,area_41:- | yield:-,m³/h,IDENTIDADE CALCULADA EM MAIS DE UM BLOCO,False
+lth_grupo|diário|linha_grupo|L4_L5,area_41:VAR16009:equation yield:VAR11034:equation,area_41:- | yield:-,m³/h,IDENTIDADE CALCULADA EM MAIS DE UM BLOCO,False
+lth_grupo|diário|linha_grupo|L6_L7,area_41:VAR16010:equation yield:VAR11035:equation,area_41:- | yield:-,m³/h,IDENTIDADE CALCULADA EM MAIS DE UM BLOCO,False
+lth_total|anual|linha_grupo|L1_L7,max_ht:VAR13064:aggregation production:VAR12035:aggregation,max_ht:- | production:-,m³/h,IDENTIDADE CALCULADA EM MAIS DE UM BLOCO,False
+lth_total|diário|linha_grupo|L1_L7,energy:VAR18009:input max_ht:VAR13063:equation production:VAR12033:equation yield:VAR11036:equation,energy:bloco production | max_ht:- | production:- | yield:-,m³/h,IDENTIDADE CALCULADA EM MAIS DE UM BLOCO,True
+lth_total|mensal|linha_grupo|L1_L7,energy:VAR18010:input max_ht:VAR13065:aggregation production:VAR12034:aggregation yield:VAR11040:aggregation,energy:bloco production | max_ht:- | production:- | yield:-,m³/h,IDENTIDADE CALCULADA EM MAIS DE UM BLOCO,True
+oee|diário|linha|L1_L7,production:VAR12036:equation yield:VAR11120:input,production:- | yield:-,% -,ENTRADA SEM fonte PARA IDENTIDADE PRODUZIDA EM OUTRO BLOCO,False
+oee|mensal|linha|L1_L7,production:VAR12037:aggregation yield:VAR11121:aggregation,production:- | yield:-,% -,IDENTIDADE CALCULADA EM MAIS DE UM BLOCO,False
+oee_total|diário|linha_grupo|L1_L7,production:VAR12038:equation yield:VAR11125:equation,production:- | yield:-,% -,IDENTIDADE CALCULADA EM MAIS DE UM BLOCO,False
+oee_total|mensal|linha_grupo|L1_L7,production:VAR12039:aggregation yield:VAR11129:aggregation,production:- | yield:-,% -,IDENTIDADE CALCULADA EM MAIS DE UM BLOCO,False
+pick_up|diário|linha|L1_L7,energy:VAR18005:input production:VAR12041:equation,energy:bloco production | production:-,g/l,LIGAÇÃO DECLARADA POR fonte,True
+pick_up_total|diário|linha_grupo|L1_L7,energy:VAR18006:input production:VAR12043:equation,energy:bloco production | production:-,g/l,LIGAÇÃO DECLARADA POR fonte,True
+pick_up_total|mensal|linha_grupo|L1_L7,energy:VAR18007:input production:VAR12044:aggregation,energy:bloco production | production:-,g/l,LIGAÇÃO DECLARADA POR fonte,True
+producao|diário|linha|L1_L7,energy:VAR18001:input max_ht:VAR13092:input production:VAR12046:equation,energy:bloco production | max_ht:bloco production | production:-,t/d,LIGAÇÃO DECLARADA POR fonte,True
+producao|mensal|linha|L1_L7,max_ht:VAR13089:aggregation production:VAR12047:aggregation,max_ht:- | production:-,t/d,IDENTIDADE CALCULADA EM MAIS DE UM BLOCO,False
+yield|diário|linha|L1_L7,production:VAR12062:input yield:VAR11226:equation,production:bloco yield | yield:-,g/l,LIGAÇÃO DECLARADA POR fonte,True

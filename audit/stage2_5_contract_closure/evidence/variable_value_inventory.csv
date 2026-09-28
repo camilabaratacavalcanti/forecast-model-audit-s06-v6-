@@ -1,0 +1,2 @@
+block,workbook,row,type,name,frequency,scope_type,scope_value,value,value_physical_type,version,value_type,variable_type,status,unit,source_reference,has_expression
+yield,descritivo_das_variáveis_yield_v9.xlsx,92,variable,ltp_tc,diário,linha,L1_L7,273,int,1,numerico,entrada_externa,ativo,g/l,Yield!E7:AI7,False

@@ -1,0 +1,6 @@
+be2372b4f4f35f5aea720dcc00c680f3e47e359138995dd35a6dcabd3d603528  descritivo_das_variáveis_A41_v8.xlsx  area_41  APROVADO_2.4 (inalterado)
+34c1c88af318e57026c08c21fd2a1cf308258e575eddbb11d98ba0bba6878047  descritivo_das_variáveis_energy_v5.xlsx  energy  APROVADO_2.4 (inalterado)
+74d5cbb7624d5c7101b5f25ecd76e156c9d019968c7e5f9af2ed04aa50b27004  descritivo_das_variáveis_MaxHT_v9.xlsx  max_ht  APROVADO_2.4 (inalterado)
+49aa5d38a902c3bb46909094472c07e0b99644529a0d05501255e2a632f7a3af  descritivo_das_variáveis_production_v7.xlsx  production  CANDIDATO (novo; substitui production v6 nesta análise)
+1c7b5684cc49d9498edceb520ced2e8a1f673812057d4094846820074098a76b  descritivo_das_variáveis_yield_v9.xlsx  yield  APROVADO_2.4 (inalterado)
+17cb83ca15d92c0b3243a606ddfd194a110dcc4f01fb71bf30511a4c6fb07210  descritivo_das_variáveis_production_v6.xlsx  production  v6 aprovado na 2.4 (referência para o diff)

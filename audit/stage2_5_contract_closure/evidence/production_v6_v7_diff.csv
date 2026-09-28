@@ -1,0 +1,2 @@
+cell,row,column,name,v6,v7
+P25,25,expression,desaguamento_oee,100 * (consumo_mpsa / 24) / (desaguamento_produtividade * 13),100 * (consumo_mpsa_grupo / 24) / (desaguamento_produtividade * 13)

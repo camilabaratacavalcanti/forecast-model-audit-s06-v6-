@@ -1,0 +1,336 @@
+{
+ "production_v6_v7_changed_cells": 1,
+ "production_v7_seed_delta_vs_official_v6": [
+  "variables VAR12001: ['source_reference']",
+  "variables VAR12002: ['source_reference']",
+  "variables VAR12003: ['source_reference']",
+  "variables VAR12004: ['source_reference']",
+  "variables VAR12005: ['source_reference']",
+  "variables VAR12006: ['source_reference']",
+  "variables VAR12007: ['source_reference']",
+  "variables VAR12008: ['source_reference']",
+  "variables VAR12009: ['source_reference']",
+  "variables VAR12010: ['source_reference']",
+  "variables VAR12011: ['source_reference']",
+  "variables VAR12012: ['source_reference']",
+  "variables VAR12013: ['source_reference']",
+  "variables VAR12014: ['source_reference']",
+  "variables VAR12015: ['source_reference']",
+  "variables VAR12016: ['source_reference']",
+  "variables VAR12017: ['source_reference']",
+  "variables VAR12018: ['source_reference']",
+  "variables VAR12019: ['source_reference']",
+  "variables VAR12020: ['source_reference']",
+  "variables VAR12021: ['source_reference']",
+  "variables VAR12022: ['source_reference']",
+  "variables VAR12023: ['source_reference']",
+  "variables VAR12025: ['source_reference']",
+  "variables VAR12026: ['source_reference']",
+  "variables VAR12027: ['source_reference']",
+  "variables VAR12028: ['source_reference']",
+  "variables VAR12029: ['source_reference']",
+  "variables VAR12030: ['source_reference']",
+  "variables VAR12031: ['source_reference']",
+  "variables VAR12032: ['source_reference']",
+  "variables VAR12033: ['source_reference']",
+  "variables VAR12034: ['source_reference']",
+  "variables VAR12035: ['source_reference']",
+  "variables VAR12036: ['source_reference']",
+  "variables VAR12037: ['source_reference']",
+  "variables VAR12038: ['source_reference']",
+  "variables VAR12039: ['source_reference']",
+  "variables VAR12040: ['source_reference']",
+  "variables VAR12041: ['instances', 'source_reference']",
+  "variables VAR12042: ['source_reference']",
+  "variables VAR12043: ['source_reference']",
+  "variables VAR12044: ['source_reference']",
+  "variables VAR12045: ['source_reference']",
+  "variables VAR12046: ['source_reference']",
+  "variables VAR12047: ['source_reference']",
+  "variables VAR12048: ['source_reference']",
+  "variables VAR12049: ['source_reference']",
+  "variables VAR12050: ['source_reference']",
+  "variables VAR12051: ['source_reference']",
+  "variables VAR12052: ['source_reference']",
+  "variables VAR12053: ['source_reference']",
+  "variables VAR12054: ['source_reference']",
+  "variables VAR12055: ['source_reference']",
+  "variables VAR12056: ['source_reference']",
+  "variables VAR12057: ['source_reference']",
+  "variables VAR12058: ['source_reference']",
+  "variables VAR12059: ['source_reference']",
+  "variables VAR12060: ['source_reference']",
+  "variables VAR12061: ['source_reference']",
+  "variables VAR12063: ['source_reference']",
+  "variables VAR12064: ['source_reference']",
+  "variables VAR12065: ['source_reference']",
+  "parameters PARAM12001: ['source_reference']",
+  "parameters PARAM12002: ['source_reference']",
+  "parameters PARAM12003: ['source_reference']",
+  "parameters PARAM12003: ['source_reference']",
+  "parameters PARAM12003: ['source_reference']",
+  "parameters PARAM12003: ['source_reference']",
+  "parameters PARAM12003: ['source_reference']",
+  "parameters PARAM12003: ['source_reference']",
+  "parameters PARAM12003: ['source_reference']",
+  "parameters PARAM12004: ['source_reference']",
+  "parameters PARAM12005: ['source_reference']",
+  "parameters PARAM12005: ['source_reference']",
+  "parameters PARAM12005: ['source_reference']",
+  "parameters PARAM12005: ['source_reference']",
+  "parameters PARAM12005: ['source_reference']",
+  "parameters PARAM12005: ['source_reference']",
+  "parameters PARAM12005: ['source_reference']",
+  "equations EQ12001: ['source_reference']",
+  "equations EQ12002: ['source_reference']",
+  "equations EQ12003: ['source_reference']",
+  "equations EQ12004: ['source_reference']",
+  "equations EQ12005: ['source_reference']",
+  "equations EQ12006: ['source_reference']",
+  "equations EQ12007: ['source_reference']",
+  "equations EQ12008: ['expression', 'source_reference']",
+  "equations EQ12009: ['source_reference']",
+  "equations EQ12010: ['source_reference']",
+  "equations EQ12011: ['source_reference']",
+  "equations EQ12012: ['source_reference']",
+  "equations EQ12013: ['source_reference']",
+  "equations EQ12014: ['source_reference']",
+  "equations EQ12015: ['source_reference']",
+  "equations EQ12016: ['source_reference']",
+  "equations EQ12017: ['source_reference']",
+  "equations EQ12018: ['source_reference']",
+  "equations EQ12019: ['source_reference']",
+  "equations EQ12020: ['source_reference']",
+  "equations EQ12021: ['source_reference']",
+  "equations EQ12022: ['source_reference']",
+  "equations EQ12023: ['source_reference']",
+  "equations EQ12024: ['source_reference']",
+  "equations EQ12025: ['source_reference']",
+  "equations EQ12026: ['source_reference']",
+  "equations EQ12027: ['source_reference']"
+ ],
+ "production_v7_pending_decisions": [],
+ "other_blocks_seed_equal_official": {
+  "area_41": true,
+  "energy": true,
+  "max_ht": true,
+  "yield": true
+ },
+ "counts": {
+  "area_41": {
+   "variables": 36,
+   "parameters": 7,
+   "equations": 20,
+   "aggregation_rules": 10
+  },
+  "energy": {
+   "variables": 52,
+   "parameters": 4,
+   "equations": 24,
+   "aggregation_rules": 11
+  },
+  "max_ht": {
+   "variables": 116,
+   "parameters": 4,
+   "equations": 29,
+   "aggregation_rules": 78
+  },
+  "production": {
+   "variables": 65,
+   "parameters": 17,
+   "equations": 27,
+   "aggregation_rules": 28
+  },
+  "yield": {
+   "variables": 240,
+   "parameters": 8,
+   "equations": 138,
+   "aggregation_rules": 80
+  }
+ },
+ "variable_value_occurrences": 1,
+ "parameters_related_to_value_rows": [
+  [
+   "yield",
+   102,
+   "ltp_tc_base",
+   274,
+   null,
+   "linha",
+   "L1_L7"
+  ]
+ ],
+ "equations_analysed": 238,
+ "references_analysed": 1436,
+ "reference_verdicts": {
+  "RESOLVED_BY_FREQUENCY_FALLBACK": 16,
+  "DIRECT": 1417,
+  "RESOLVED_BY_SPATIAL_PARENT": 3
+ },
+ "unreachable": [],
+ "frequency_fallback": [
+  {
+   "block": "area_41",
+   "row": 6,
+   "consumer": "retirada_cond_corr_ltp",
+   "consumer_frequency": "diário",
+   "reference_name": "vazao_ltp",
+   "reference_frequency": "mensal"
+  },
+  {
+   "block": "area_41",
+   "row": 7,
+   "consumer": "retirada_cond_corr_ltp",
+   "consumer_frequency": "diário",
+   "reference_name": "vazao_ltp",
+   "reference_frequency": "mensal"
+  },
+  {
+   "block": "area_41",
+   "row": 8,
+   "consumer": "retirada_cond_corr_ltp",
+   "consumer_frequency": "diário",
+   "reference_name": "vazao_ltp",
+   "reference_frequency": "mensal"
+  },
+  {
+   "block": "area_41",
+   "row": 16,
+   "consumer": "retirada_cond_corr_lth",
+   "consumer_frequency": "diário",
+   "reference_name": "fator_retirada_cond_corr_lth",
+   "reference_frequency": "mensal"
+  },
+  {
+   "block": "area_41",
+   "row": 17,
+   "consumer": "retirada_cond_corr_lth",
+   "consumer_frequency": "diário",
+   "reference_name": "fator_retirada_cond_corr_lth",
+   "reference_frequency": "mensal"
+  },
+  {
+   "block": "area_41",
+   "row": 18,
+   "consumer": "retirada_cond_corr_lth",
+   "consumer_frequency": "diário",
+   "reference_name": "fator_retirada_cond_corr_lth",
+   "reference_frequency": "mensal"
+  },
+  {
+   "block": "energy",
+   "row": 21,
+   "consumer": "delta_t_regenerativo",
+   "consumer_frequency": "diário",
+   "reference_name": "temperatura_lp_ref_inferior",
+   "reference_frequency": "mensal"
+  },
+  {
+   "block": "energy",
+   "row": 21,
+   "consumer": "delta_t_regenerativo",
+   "consumer_frequency": "diário",
+   "reference_name": "temperatura_lp_ref_superior",
+   "reference_frequency": "mensal"
+  },
+  {
+   "block": "energy",
+   "row": 36,
+   "consumer": "economicidade_evaporacao",
+   "consumer_frequency": "diário",
+   "reference_name": "economicidade_evaporacao_ref",
+   "reference_frequency": "mensal"
+  },
+  {
+   "block": "production",
+   "row": 35,
+   "consumer": "lth",
+   "consumer_frequency": "diário",
+   "reference_name": "fator_ajuste_lth",
+   "reference_frequency": "mensal"
+  },
+  {
+   "block": "yield",
+   "row": 152,
+   "consumer": "ratio_spent",
+   "consumer_frequency": "diário",
+   "reference_name": "ratio_spent_base",
+   "reference_frequency": "anual"
+  },
+  {
+   "block": "yield",
+   "row": 152,
+   "consumer": "ratio_spent",
+   "consumer_frequency": "diário",
+   "reference_name": "n_ppt_base",
+   "reference_frequency": "anual"
+  },
+  {
+   "block": "yield",
+   "row": 152,
+   "consumer": "ratio_spent",
+   "consumer_frequency": "diário",
+   "reference_name": "eoc_temp_base",
+   "reference_frequency": "anual"
+  },
+  {
+   "block": "yield",
+   "row": 152,
+   "consumer": "ratio_spent",
+   "consumer_frequency": "diário",
+   "reference_name": "eoc_solids_base",
+   "reference_frequency": "anual"
+  },
+  {
+   "block": "yield",
+   "row": 152,
+   "consumer": "ratio_spent",
+   "consumer_frequency": "diário",
+   "reference_name": "ltp_base",
+   "reference_frequency": "anual"
+  },
+  {
+   "block": "yield",
+   "row": 152,
+   "consumer": "ratio_spent",
+   "consumer_frequency": "diário",
+   "reference_name": "ssa_media_base",
+   "reference_frequency": "anual"
+  }
+ ],
+ "desaguamento_old_reference_present_in_v7": false,
+ "production_v7_validators": {
+  "variable_errors": [],
+  "variable_warnings": 27,
+  "parameter_errors": [],
+  "equation_errors": [],
+  "production_expression_syntax_errors": []
+ },
+ "desaguamento_runtime": {
+  "consumo_mpsa_grupo_anual (SUM de 3 dias)": 882.0,
+  "esperado": 882.0,
+  "desaguamento_oee": 2.4581939799331103,
+  "esperado_oee": 2.4581939799331103,
+  "ok": true,
+  "registry_integrity": "OK"
+ },
+ "cross_workbook_relations": 13,
+ "cross_workbook_incompatibilities": [
+  [
+   "area_41",
+   "lth|diário|linha/L1_L7",
+   "PRODUTOR_TAMBEM_E_ENTRADA"
+  ],
+  [
+   "energy",
+   "lth_meta|anual|linha/L1_L7",
+   "KIND parameter->variable (mesmas instâncias; produtor declara uma linha por instância, consumidor uma linha L1_L7)"
+  ]
+ ],
+ "external_sources_outside_five": 18,
+ "identity_repeats_cross_block": {
+  "LIGAÇÃO DECLARADA POR fonte": 6,
+  "IDENTIDADE CALCULADA EM MAIS DE UM BLOCO": 11,
+  "ENTRADA SEM fonte PARA IDENTIDADE PRODUZIDA EM OUTRO BLOCO": 1
+ }
+}
