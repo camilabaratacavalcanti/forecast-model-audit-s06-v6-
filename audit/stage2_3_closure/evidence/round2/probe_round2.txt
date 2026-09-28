@@ -1,0 +1,25 @@
+===== area_41 54
+  cls: {'none': 24, 'A-arithmetic+ln': 6, 'C-scoped': 12, 'D-aggregation-description': 10, 'B-cond+text': 2}
+  a019: {'resolved': 20}
+  field issues: {}
+  decimal comma: []
+===== energy 56
+  cls: {'none': 21, 'A-arithmetic': 16, 'C-scoped': 7, 'D-aggregation-description': 11, 'B-conditional': 1}
+  a019: {'resolved': 24}
+  field issues: {}
+  decimal comma: []
+===== max_ht 120
+  cls: {'D-aggregation-description': 78, 'none': 13, 'C-scoped': 15, 'A-arithmetic': 14}
+  a019: {'resolved': 29}
+  field issues: {}
+  decimal comma: []
+===== production 88
+  cls: {'A-arithmetic': 9, 'D-aggregation-description': 28, 'C-scoped': 15, 'none': 33, '?': 3}
+  a019: {'resolved': 24, 'AMBIGUOUS/INVALID': 3}
+  field issues: {'scope_value_not_allowed': 1, 'scope_resolver_rejects': 1}
+  decimal comma: []
+===== yield 254
+  cls: {'none': 36, 'D-aggregation-description': 80, 'C-scoped': 128, 'A-arithmetic': 9, '?': 1}
+  a019: {'resolved': 137, 'AMBIGUOUS/INVALID': 1}
+  field issues: {'unit_not_allowed': 7}
+  decimal comma: []
