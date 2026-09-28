@@ -396,3 +396,26 @@ class InterblockConsumerValueConflictError(InterblockRuntimeError):
     """
 
     code = "INTERBLOCK_CONSUMER_VALUE_CONFLICT"
+
+
+# ============================================================
+# Execução coordenada interbloco (Etapa 3.2)
+# ============================================================
+
+
+class InterblockExecutionPlanError(InterblockRuntimeError):
+    """
+    O plano de execução não pode ser montado sem violar o contrato
+    (variável fora dos blocos carregados, dois produtores).
+    """
+
+    code = "INTERBLOCK_EXECUTION_PLAN_INVALID"
+
+
+class InterblockExecutionCycleError(InterblockExecutionPlanError):
+    """
+    O grafo de execução (equações, agregações, transferências) tem ciclo:
+    nenhuma ordem é escolhida arbitrariamente.
+    """
+
+    code = "INTERBLOCK_EXECUTION_CYCLE"
