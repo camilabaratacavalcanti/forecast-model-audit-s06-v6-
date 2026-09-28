@@ -6,7 +6,7 @@
     "scope_type": "linha_grupo",
     "scope_value": "L1_L7",
     "expression": "VAR12018 + VAR12012 + VAR12006",
-    "source_reference": "descritivo_das_variáveis_production_v10.xlsx",
+    "source_reference": "descritivo_das_variáveis_production_v11.xlsx",
     "status": "PUBLISHED"
   },
   {
@@ -16,7 +16,7 @@
     "scope_type": "linha",
     "scope_value": "L1_L7",
     "expression": "VAR12026 * VAR12010 * VAR12046",
-    "source_reference": "descritivo_das_variáveis_production_v10.xlsx",
+    "source_reference": "descritivo_das_variáveis_production_v11.xlsx",
     "status": "PUBLISHED"
   },
   {
@@ -26,7 +26,7 @@
     "scope_type": "linha_grupo",
     "scope_value": "L1_L7",
     "expression": "VAR12005@L1 + VAR12005@L2 + VAR12005@L3 + VAR12005@L4 + VAR12005@L5 + VAR12005@L6 + VAR12005@L7",
-    "source_reference": "descritivo_das_variáveis_production_v10.xlsx",
+    "source_reference": "descritivo_das_variáveis_production_v11.xlsx",
     "status": "PUBLISHED"
   },
   {
@@ -36,7 +36,7 @@
     "scope_type": "linha",
     "scope_value": "L1_L7",
     "expression": "VAR12027 * VAR12016 * VAR12046",
-    "source_reference": "descritivo_das_variáveis_production_v10.xlsx",
+    "source_reference": "descritivo_das_variáveis_production_v11.xlsx",
     "status": "PUBLISHED"
   },
   {
@@ -46,7 +46,7 @@
     "scope_type": "linha_grupo",
     "scope_value": "L1_L7",
     "expression": "VAR12011@L1 + VAR12011@L2 + VAR12011@L3 + VAR12011@L4 + VAR12011@L5 + VAR12011@L6 + VAR12011@L7",
-    "source_reference": "descritivo_das_variáveis_production_v10.xlsx",
+    "source_reference": "descritivo_das_variáveis_production_v11.xlsx",
     "status": "PUBLISHED"
   },
   {
@@ -56,7 +56,7 @@
     "scope_type": "linha",
     "scope_value": "L1_L7",
     "expression": "( VAR12029 * VAR12022 * VAR12046 ) * VAR12025",
-    "source_reference": "descritivo_das_variáveis_production_v10.xlsx",
+    "source_reference": "descritivo_das_variáveis_production_v11.xlsx",
     "status": "PUBLISHED"
   },
   {
@@ -66,7 +66,7 @@
     "scope_type": "linha_grupo",
     "scope_value": "L1_L7",
     "expression": "VAR12017@L1 + VAR12017@L2 + VAR12017@L3 + VAR12017@L4 + VAR12017@L5 + VAR12017@L6 + VAR12017@L7",
-    "source_reference": "descritivo_das_variáveis_production_v10.xlsx",
+    "source_reference": "descritivo_das_variáveis_production_v11.xlsx",
     "status": "PUBLISHED"
   },
   {
@@ -76,7 +76,7 @@
     "scope_type": "linha_grupo",
     "scope_value": "L1_L7",
     "expression": "100 * (VAR12015 / 24) / (PARAM12001 * 13)",
-    "source_reference": "descritivo_das_variáveis_production_v10.xlsx",
+    "source_reference": "descritivo_das_variáveis_production_v11.xlsx",
     "status": "PUBLISHED"
   },
   {
@@ -86,7 +86,7 @@
     "scope_type": "linha",
     "scope_value": "L1_L7",
     "expression": "VAR12029",
-    "source_reference": "descritivo_das_variáveis_production_v10.xlsx",
+    "source_reference": "descritivo_das_variáveis_production_v11.xlsx",
     "status": "PUBLISHED"
   },
   {
@@ -96,7 +96,7 @@
     "scope_type": "linha",
     "scope_value": "L1_L7",
     "expression": "VAR12028 / 1000",
-    "source_reference": "descritivo_das_variáveis_production_v10.xlsx",
+    "source_reference": "descritivo_das_variáveis_production_v11.xlsx",
     "status": "PUBLISHED"
   },
   {
@@ -106,7 +106,7 @@
     "scope_type": "linha",
     "scope_value": "L1_L7",
     "expression": "VAR12030 / 1000",
-    "source_reference": "descritivo_das_variáveis_production_v10.xlsx",
+    "source_reference": "descritivo_das_variáveis_production_v11.xlsx",
     "status": "PUBLISHED"
   },
   {
@@ -116,7 +116,7 @@
     "scope_type": "linha",
     "scope_value": "L1_L7",
     "expression": "(((((VAR12056 * VAR12060) + (VAR12055 * VAR12059) + (VAR12057 * VAR12061) + (VAR12054 * VAR12058)) + (24 - VAR12060 - VAR12059 - VAR12061 - VAR12058 ) * VAR12066) / 24) * VAR12024 ) if ((((VAR12056 * VAR12060) + (VAR12055 * VAR12059) + (VAR12057 * VAR12061) + (VAR12054 * VAR12058)) + (24 - VAR12060 - VAR12059 - VAR12061 - VAR12058 ) * VAR12066) / 24) >= VAR12066 else ((((VAR12056 * VAR12060) + (VAR12055 * VAR12059) + (VAR12057 * VAR12061) + (VAR12054 * VAR12058)) + (24 - VAR12060 - VAR12059 - VAR12061 - VAR12058 ) * VAR12066) / 24)",
-    "source_reference": "descritivo_das_variáveis_production_v10.xlsx",
+    "source_reference": "descritivo_das_variáveis_production_v11.xlsx",
     "status": "PUBLISHED"
   },
   {
@@ -126,7 +126,7 @@
     "scope_type": "linha_grupo",
     "scope_value": "L1_L7",
     "expression": "VAR12031@L1 + VAR12031@L2 + VAR12031@L3 + VAR12031@L4 + VAR12031@L5 + VAR12031@L6 + VAR12031@L7",
-    "source_reference": "descritivo_das_variáveis_production_v10.xlsx",
+    "source_reference": "descritivo_das_variáveis_production_v11.xlsx",
     "status": "PUBLISHED"
   },
   {
@@ -136,7 +136,7 @@
     "scope_type": "linha",
     "scope_value": "L1_L7",
     "expression": "VAR12031 / VAR12066",
-    "source_reference": "descritivo_das_variáveis_production_v10.xlsx",
+    "source_reference": "descritivo_das_variáveis_production_v11.xlsx",
     "status": "PUBLISHED"
   },
   {
@@ -146,7 +146,7 @@
     "scope_type": "linha_grupo",
     "scope_value": "L1_L7",
     "expression": "( (VAR12036@L1 * VAR12066@L1) + (VAR12036@L2 * VAR12066@L2) + (VAR12036@L3 * VAR12066@L3) + (VAR12036@L4 * VAR12066@L4) + (VAR12036@L5 * VAR12066@L5) + (VAR12036@L6 * VAR12066@L6) + (VAR12036@L7 * VAR12066@L7) ) / ( VAR12066@L1 + VAR12066@L2 + VAR12066@L3 + VAR12066@L4 + VAR12066@L5 + VAR12066@L6 + VAR12066@L7 )",
-    "source_reference": "descritivo_das_variáveis_production_v10.xlsx",
+    "source_reference": "descritivo_das_variáveis_production_v11.xlsx",
     "status": "PUBLISHED"
   },
   {
@@ -156,7 +156,7 @@
     "scope_type": "linha",
     "scope_value": "L1",
     "expression": "((VAR12062@L1 + VAR12062@L2 + VAR12062@L3)/3) + PARAM12005",
-    "source_reference": "descritivo_das_variáveis_production_v10.xlsx",
+    "source_reference": "descritivo_das_variáveis_production_v11.xlsx",
     "status": "PUBLISHED"
   },
   {
@@ -166,7 +166,7 @@
     "scope_type": "linha",
     "scope_value": "L2",
     "expression": "((VAR12062@L1 + VAR12062@L2 + VAR12062@L3)/3) + PARAM12005",
-    "source_reference": "descritivo_das_variáveis_production_v10.xlsx",
+    "source_reference": "descritivo_das_variáveis_production_v11.xlsx",
     "status": "PUBLISHED"
   },
   {
@@ -176,7 +176,7 @@
     "scope_type": "linha",
     "scope_value": "L3",
     "expression": "((VAR12062@L1 + VAR12062@L2 + VAR12062@L3)/3) + PARAM12005",
-    "source_reference": "descritivo_das_variáveis_production_v10.xlsx",
+    "source_reference": "descritivo_das_variáveis_production_v11.xlsx",
     "status": "PUBLISHED"
   },
   {
@@ -186,7 +186,7 @@
     "scope_type": "linha",
     "scope_value": "L4",
     "expression": "((VAR12062@L4 + VAR12062@L5)/2) + PARAM12005",
-    "source_reference": "descritivo_das_variáveis_production_v10.xlsx",
+    "source_reference": "descritivo_das_variáveis_production_v11.xlsx",
     "status": "PUBLISHED"
   },
   {
@@ -196,7 +196,7 @@
     "scope_type": "linha",
     "scope_value": "L5",
     "expression": "((VAR12062@L4 + VAR12062@L5)/2) + PARAM12005",
-    "source_reference": "descritivo_das_variáveis_production_v10.xlsx",
+    "source_reference": "descritivo_das_variáveis_production_v11.xlsx",
     "status": "PUBLISHED"
   },
   {
@@ -206,7 +206,7 @@
     "scope_type": "linha",
     "scope_value": "L6",
     "expression": "((VAR12062@L6 + VAR12062@L7)/2) + PARAM12005",
-    "source_reference": "descritivo_das_variáveis_production_v10.xlsx",
+    "source_reference": "descritivo_das_variáveis_production_v11.xlsx",
     "status": "PUBLISHED"
   },
   {
@@ -216,7 +216,7 @@
     "scope_type": "linha",
     "scope_value": "L7",
     "expression": "((VAR12062@L6 + VAR12062@L7)/2) + PARAM12005",
-    "source_reference": "descritivo_das_variáveis_production_v10.xlsx",
+    "source_reference": "descritivo_das_variáveis_production_v11.xlsx",
     "status": "PUBLISHED"
   },
   {
@@ -226,7 +226,7 @@
     "scope_type": "linha_grupo",
     "scope_value": "L1_L7",
     "expression": "( (VAR12041@L1 * VAR12031@L1) + (VAR12041@L2 * VAR12031@L2) + (VAR12041@L3 * VAR12031@L3) + (VAR12041@L4 * VAR12031@L4) + (VAR12041@L5 * VAR12031@L5) + (VAR12041@L6 * VAR12031@L6) + (VAR12041@L7 * VAR12031@L7) ) / ( VAR12031@L1 + VAR12031@L2 + VAR12031@L3 + VAR12031@L4 + VAR12031@L5 + VAR12031@L6 + VAR12031@L7 )",
-    "source_reference": "descritivo_das_variáveis_production_v10.xlsx",
+    "source_reference": "descritivo_das_variáveis_production_v11.xlsx",
     "status": "PUBLISHED"
   },
   {
@@ -236,7 +236,7 @@
     "scope_type": "linha",
     "scope_value": "L1_L7",
     "expression": "VAR12031 * VAR12041 * PARAM12002 * 1.0902 * 24 / 1000",
-    "source_reference": "descritivo_das_variáveis_production_v10.xlsx",
+    "source_reference": "descritivo_das_variáveis_production_v11.xlsx",
     "status": "PUBLISHED"
   },
   {
@@ -246,7 +246,7 @@
     "scope_type": "linha_grupo",
     "scope_value": "L1_L7",
     "expression": "VAR12046@L1 + VAR12046@L2 + VAR12046@L3 + VAR12046@L4 + VAR12046@L5 + VAR12046@L6 + VAR12046@L7",
-    "source_reference": "descritivo_das_variáveis_production_v10.xlsx",
+    "source_reference": "descritivo_das_variáveis_production_v11.xlsx",
     "status": "PUBLISHED"
   },
   {
@@ -256,7 +256,7 @@
     "scope_type": "linha_grupo",
     "scope_value": "L1_L7",
     "expression": "VAR12048 * PARAM12004 / 1_000_000",
-    "source_reference": "descritivo_das_variáveis_production_v10.xlsx",
+    "source_reference": "descritivo_das_variáveis_production_v11.xlsx",
     "status": "PUBLISHED"
   },
   {
@@ -266,7 +266,7 @@
     "scope_type": "linha_grupo",
     "scope_value": "L1_L7",
     "expression": "( VAR12062@L1 * VAR12031@L1 + VAR12062@L2 * VAR12031@L2 + VAR12062@L3 * VAR12031@L3 + VAR12062@L4 * VAR12031@L4 + VAR12062@L5 * VAR12031@L5 + VAR12062@L6 * VAR12031@L6 + VAR12062@L7 * VAR12031@L7 ) / ( VAR12031@L1 + VAR12031@L2 + VAR12031@L3 + VAR12031@L4 + VAR12031@L5 + VAR12031@L6 + VAR12031@L7 )",
-    "source_reference": "descritivo_das_variáveis_production_v10.xlsx",
+    "source_reference": "descritivo_das_variáveis_production_v11.xlsx",
     "status": "PUBLISHED"
   }
 ]

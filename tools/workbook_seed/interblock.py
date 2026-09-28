@@ -61,7 +61,6 @@ from tools.workbook_seed.canonical import CanonicalEntity, CanonicalModel
 from tools.workbook_seed.taxonomy import (
     BLOCK_TAXONOMY,
     OFFICIAL_BLOCKS,
-    PENDING_NAMING_DECISIONS,
 )
 
 
@@ -305,39 +304,21 @@ def _resolve(
 
     # D26-01: (1) bloco conhecido?  (2) workbook carregado?  (3) produtor?
     if source not in OFFICIAL_BLOCKS:
-        naming = PENDING_NAMING_DECISIONS.get(source)
         _finding(
             link, SOURCE_BLOCK_UNKNOWN_CODE, SOURCE_BLOCK_UNKNOWN, "source_block",
             source, "nome fora da taxonomia oficial de blocos (D26-01)",
-            (
-                f"'{source}' é identificador de código de bloco carregado com "
-                f"nomenclatura pendente ({naming['decision_id']}: taxonomia "
-                f"'{naming['taxonomy_candidate']}'); não é resolvido por alias."
-                if naming
-                else "fonte deve conter exatamente o título oficial do bloco "
-                "(sem prefixo, sem variação de caixa ou espaços)."
-            ),
+            "fonte deve conter exatamente o título oficial do bloco "
+            "(sem prefixo, sem variação de caixa ou espaços, sem alias).",
         )
         link.resolution_status = NOT_FOUND
         return
 
     if source not in models:
-        pending_code = [
-            code for code, d in PENDING_NAMING_DECISIONS.items()
-            if d["taxonomy_candidate"] == source and code in models
-        ]
         _finding(
             link, SOURCE_BLOCK_NOT_LOADED_CODE, SOURCE_BLOCK_NOT_LOADED, "source_block",
             source, "bloco da taxonomia oficial sem workbook carregado",
-            (
-                f"Há bloco carregado com identificador de código "
-                f"{pending_code[0]!r} e nomenclatura pendente "
-                f"({PENDING_NAMING_DECISIONS[pending_code[0]]['decision_id']}); "
-                "não é resolvido por alias."
-                if pending_code
-                else "Vínculo pendente de carregamento: o produtor não é "
-                "inventado nem validado neste build."
-            ),
+            "Vínculo pendente de carregamento: o produtor não é "
+            "inventado nem validado neste build.",
             severity=PENDING,
         )
         link.resolution_status = PENDING_LOAD
@@ -788,15 +769,7 @@ def interblock_seed(models: dict[str, CanonicalModel], result: InterblockResult)
             "decision": "D26-01",
             "official_blocks": list(BLOCK_TAXONOMY),
             "loaded_blocks": [
-                {
-                    "block": block,
-                    "in_taxonomy": block in OFFICIAL_BLOCKS,
-                    **(
-                        {"pending_naming_decision": PENDING_NAMING_DECISIONS[block]}
-                        if block in PENDING_NAMING_DECISIONS
-                        else {}
-                    ),
-                }
+                {"block": block, "in_taxonomy": block in OFFICIAL_BLOCKS}
                 for block in sorted(models)
             ],
         },

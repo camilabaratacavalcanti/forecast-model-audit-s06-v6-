@@ -14,8 +14,8 @@
       "sha256": "3e40aab12ec0ec07918c5e358145b09f138663f635ca9e7fc0990d1b765b683b"
     },
     "production": {
-      "file_name": "descritivo_das_variáveis_production_v10.xlsx",
-      "sha256": "302cf18b92ac22c690b3add9bdd1ded0617bfa60636809696d010b8858d72487"
+      "file_name": "descritivo_das_variáveis_production_v11.xlsx",
+      "sha256": "d946dfd522c8cbb301c0c63caa3c62263b74a849e043d7b2f4bcb0bdb262c922"
     },
     "yield": {
       "file_name": "descritivo_das_variáveis_yield_v11.xlsx",
@@ -37,7 +37,7 @@
       "boilers",
       "controle_espaco_vazio_meta",
       "custo_forecast_bdgt",
-      "mx_ht",
+      "max_ht",
       "volume",
       "lime_dia",
       "custo_forecast_real",
@@ -65,12 +65,7 @@
       },
       {
         "block": "max_ht",
-        "in_taxonomy": false,
-        "pending_naming_decision": {
-          "decision_id": "D26B-02",
-          "taxonomy_candidate": "mx_ht",
-          "reason": "workbook 'descritivo_das_variáveis_MaxHT_v10.xlsx' (aba 'MaxHT'), identificador de código 'max_ht' (BLOCKS, faixas de ID, data/seed/max_ht) e taxonomia oficial 'mx_ht' divergem; nenhum workbook declara título de bloco. Aguardando decisão do proprietário."
-        }
+        "in_taxonomy": true
       },
       {
         "block": "production",

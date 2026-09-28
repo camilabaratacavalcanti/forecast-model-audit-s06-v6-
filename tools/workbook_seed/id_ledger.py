@@ -12,7 +12,12 @@ parameter a variable). O livro fixa o ID de cada identidade já emitida:
 2. Identidade nova -> próximo número acima do maior já emitido para a
    mesma natureza (incluindo aposentados), em ordem de linha.
 3. Identidade que deixa de existir -> o ID é aposentado e nunca é
-   reutilizado.
+   reutilizado. O registro de aposentadoria é permanente: é copiado de
+   um build para o seguinte e nunca é removido do livro.
+4. Determinismo: o livro depende só do livro anterior versionado e do
+   workbook; entradas na ordem das definições do workbook, sem
+   timestamp, sem hash aleatório, sem estado fora do repositório. A
+   ordem de carga dos blocos não influi (cada bloco tem o seu livro).
 
 O livro é um arquivo versionado (`data/id_ledger/<bloco>.json`),
 gravado junto com os seeds. Sem livro, a numeração é a sequencial.

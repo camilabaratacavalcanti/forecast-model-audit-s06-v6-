@@ -48,14 +48,15 @@ from tools.workbook_seed.reader import read_workbook
 from tools.workbook_seed.taxonomy import (
     BLOCK_TAXONOMY,
     OFFICIAL_BLOCKS,
-    PENDING_NAMING_DECISIONS,
 )
 
 
+# LEGACY_TEST_EXPECTATION (Etapa 2.6C, D26B-02): a lista recebida na
+# 2.6B tinha `mx_ht`; o proprietário fixou `max_ht` como nome canônico.
 D26_01_TAXONOMY = (
     "maintenance", "area_04_13", "forecast_volume", "acido", "yield", "energy",
     "meta_volume_cheio", "custo_budget", "production", "boilers",
-    "controle_espaco_vazio_meta", "custo_forecast_bdgt", "mx_ht", "volume",
+    "controle_espaco_vazio_meta", "custo_forecast_bdgt", "max_ht", "volume",
     "lime_dia", "custo_forecast_real", "alumina", "soda",
     "floculante_hidrato_2026", "budget", "temperature_lp", "fator_residuo",
     "floculante_lama_dia", "forecast", "area_41", "vazao_condensado",
@@ -113,7 +114,9 @@ def test_02_block_in_taxonomy_but_not_loaded_is_pending(block):
     assert result.rejected == [] and result.valid == []
 
 
-@pytest.mark.parametrize("fonte", ["forcast", "bloco forecast", "Forecast", "forecast ", "max_ht", "hydrate"])
+# LEGACY_TEST_EXPECTATION (Etapa 2.6C, D26B-02): o caso "max_ht" (fora
+# da taxonomia na 2.6B) foi trocado por "mx_ht", que deixou de ser oficial.
+@pytest.mark.parametrize("fonte", ["forcast", "bloco forecast", "Forecast", "forecast ", "mx_ht", "hydrate"])
 def test_03_block_outside_taxonomy_is_an_error(fonte):
     result = validate_interblock({
         "energy": model("energy", entity("VAR18001", "x", fonte=fonte)),
@@ -283,37 +286,49 @@ def test_16_local_identity_preserved(official):
 
 
 # ------------------------------------------------------------
-# 17 — mx_ht x max_ht
+# 17 — max_ht (D26B-02 resolvida na Etapa 2.6C)
 # ------------------------------------------------------------
 
-def test_17_mx_ht_versus_max_ht_is_a_recorded_pending_decision(official):
+def test_17_max_ht_is_the_canonical_block_name(official):
+    """
+    LEGACY_TEST_EXPECTATION (Etapa 2.6C). Na 2.6B este teste fixava a
+    divergência pendente mx_ht (taxonomia) x max_ht (código). Decisão do
+    proprietário: o nome canônico é `max_ht` em taxonomia, código, seeds
+    e fonte; `mx_ht` não é oficial nem sinônimo.
+    """
+
     spec = BLOCKS["max_ht"]
-    # Divergência factual: código/arquivo/aba x taxonomia.
-    assert "max_ht" in BLOCKS and "max_ht" not in OFFICIAL_BLOCKS
-    assert "mx_ht" in OFFICIAL_BLOCKS and "mx_ht" not in BLOCKS
+    assert "max_ht" in BLOCKS and "max_ht" in OFFICIAL_BLOCKS
+    assert "mx_ht" not in OFFICIAL_BLOCKS and "mx_ht" not in BLOCKS
     assert (spec.sheet, spec.file_name) == ("MaxHT", "descritivo_das_variáveis_MaxHT_v10.xlsx")
-    assert PENDING_NAMING_DECISIONS["max_ht"]["taxonomy_candidate"] == "mx_ht"
-    # Nenhum fonte oficial usa um ou outro.
     assert not {"mx_ht", "max_ht"} & {l.source_block for l in official.interblock.links}
 
-    # Sem alias em nenhum sentido.
+    seed = read_interblock_seed()
+    assert "max_ht" in seed["taxonomy"]["official_blocks"]
+    assert "mx_ht" not in seed["taxonomy"]["official_blocks"]
+    assert all(b["in_taxonomy"] for b in seed["taxonomy"]["loaded_blocks"])
+
+
+def test_17b_fonte_max_ht_resolves_and_mx_ht_is_unknown(official):
     models = {b: r.model for b, r in official.blocks.items()}
     lth = _entity(official, "max_ht", "lth")
-    for fonte, expected in (("mx_ht", SOURCE_BLOCK_NOT_LOADED), ("max_ht", SOURCE_BLOCK_UNKNOWN)):
-        result = validate_interblock({
-            **models,
-            "energy": model("energy", entity("VAR18999", "lth", fonte=fonte)),
-        })
-        link = next(l for l in result.links if l.consumer.entity_id == "VAR18999")
-        assert link.validation_status == expected and link.producer is None
-        assert "D26B-02" in link.findings[0].message
-        # Nunca resolvido para a definição do bloco carregado `max_ht`.
-        assert lth.entity_id not in link.findings[0].message
 
-    seed = read_interblock_seed()
-    [max_ht] = [b for b in seed["taxonomy"]["loaded_blocks"] if b["block"] == "max_ht"]
-    assert max_ht["in_taxonomy"] is False
-    assert max_ht["pending_naming_decision"]["decision_id"] == "D26B-02"
+    result = validate_interblock({
+        **models,
+        "energy": model("energy", entity("VAR18999", "lth", fonte="max_ht")),
+    })
+    link = next(l for l in result.links if l.consumer.entity_id == "VAR18999")
+    assert link.validation_status == VALID
+    assert link.producer is lth
+
+    result = validate_interblock({
+        **models,
+        "energy": model("energy", entity("VAR18999", "lth", fonte="mx_ht")),
+    })
+    link = next(l for l in result.links if l.consumer.entity_id == "VAR18999")
+    assert link.validation_status == SOURCE_BLOCK_UNKNOWN
+    assert link.findings[0].code == SOURCE_BLOCK_UNKNOWN_CODE
+    assert link.is_rejected and link.producer is None
 
 
 # ------------------------------------------------------------

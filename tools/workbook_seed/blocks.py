@@ -91,9 +91,9 @@ BLOCKS: dict[str, BlockSpec] = {
             block="production",
             sheet="production",
             id_base=12000,
-            version="v10",
-            file_name="descritivo_das_variáveis_production_v10.xlsx",
-            sha256="302cf18b92ac22c690b3add9bdd1ded0617bfa60636809696d010b8858d72487",
+            version="v11",
+            file_name="descritivo_das_variáveis_production_v11.xlsx",
+            sha256="d946dfd522c8cbb301c0c63caa3c62263b74a849e043d7b2f4bcb0bdb262c922",
         ),
         BlockSpec(
             block="yield",
@@ -187,15 +187,26 @@ class BuildAllResult:
         )
 
 
-def build_all(paths: dict[str, str | Path] | None = None) -> BuildAllResult:
+def build_all(
+    paths: dict[str, str | Path] | None = None,
+    order: list[str] | tuple[str, ...] | None = None,
+) -> BuildAllResult:
     """
     Os cinco blocos e o contrato interbloco declarado em `fonte`:
     resolução do produtor no bloco indicado e validação de contrato,
     instâncias e ciclos sobre o conjunto completo.
+
+    `order` só altera a ordem de carga (auditoria de independência da
+    ordem, Etapa 2.6C); IDs, vínculos e seeds não dependem dela.
     """
 
     paths = paths or {}
-    blocks = {block: build_block(block, paths.get(block)) for block in BLOCKS}
+    order = list(order) if order is not None else list(BLOCKS)
+
+    if sorted(order) != sorted(BLOCKS):
+        raise ValueError(f"order deve conter exatamente os blocos {sorted(BLOCKS)}.")
+
+    blocks = {block: build_block(block, paths.get(block)) for block in order}
     dependencies = [
         edge
         for block, r in blocks.items()
