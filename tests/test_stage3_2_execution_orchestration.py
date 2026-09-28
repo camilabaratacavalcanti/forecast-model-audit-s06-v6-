@@ -759,3 +759,32 @@ def test_pending_boundary_is_never_filled(official):
     for pending in official.catalog.links.pending():
         with pytest.raises(InterblockSourceNotLoadedError):
             official.plan([pending.consumer_definition_id])
+
+
+def test_progressive_period_rerun_in_same_context_is_an_explicit_conflict():
+    """
+    Comportamento atual registrado (decisão D32-02 do relatório): o valor
+    mensal efetivo muda de um run_date para o seguinte no MESMO period_id
+    ("2026-09"); no mesmo contexto, a nova transferência encontra o valor
+    anterior no consumidor e falha pelo mecanismo da 3.1 — nunca
+    sobrescreve em silêncio. Um contexto por run_date não tem conflito.
+    """
+
+    orchestrator = synthetic()
+    context = CalculationContext()
+    for day in (1, 2):
+        for i, line in enumerate(LINES, start=1):
+            context.set_variable_value("VAR12901", float(day * i), "linha", line, f"2026-09-0{day}")
+    orchestrator.execute(["VAR18901"], context, date(2026, 9, 1))
+    assert context.get_variable_value("VAR18901", "linha", "L1", "2026-09") == 2.0
+    with pytest.raises(InterblockConsumerValueConflictError):
+        orchestrator.execute(["VAR18901"], context, date(2026, 9, 2))
+    assert context.get_variable_value("VAR18901", "linha", "L1", "2026-09") == 2.0
+
+    fresh = CalculationContext()
+    for day in (1, 2):
+        for i, line in enumerate(LINES, start=1):
+            fresh.set_variable_value("VAR12901", float(day * i), "linha", line, f"2026-09-0{day}")
+    orchestrator.execute(["VAR12902"], fresh, date(2026, 9, 1))
+    orchestrator.execute(["VAR18901"], fresh, date(2026, 9, 2))
+    assert fresh.get_variable_value("VAR18901", "linha", "L1", "2026-09") == 3.0
