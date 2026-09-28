@@ -1325,18 +1325,17 @@ def test_desaguamento_oee_expression_uses_factor_100_and_13(
     assert "24" in eq.expression
 
 
-def test_desaguamento_oee_reference_to_consumo_mpsa_is_a_recorded_pending_decision(
+def test_desaguamento_oee_references_annual_consumo_mpsa_grupo(
     production_seed,
 ):
     """
-    O workbook aprovado production v6 escreve `desaguamento_oee` (anual,
-    linha_grupo/L1_L7) como `100 * (consumo_mpsa / 24) / (... * 13)`,
-    mas a única definição chamada `consumo_mpsa` é diária linha/L1_L7
-    (a anual passou a se chamar `consumo_mpsa_grupo`). A resolução
-    nome+frequência+escopo cai nessa definição, que nenhuma instância
-    do consumidor alcança em runtime. O builder não decide qual seria a
-    referência correta: grava a expressão como escrita e registra a
-    decisão pendente R2-A019-UNREACHABLE no manifesto do seed.
+    LEGACY_TEST_EXPECTATION atualizada na Etapa 2.6: o production v6
+    escrevia `100 * (consumo_mpsa / 24) / (... * 13)` e a referência
+    caía na definição diária linha/L1_L7, inalcançável pelo consumidor
+    (pendência R2-A019-UNREACHABLE). Desde o production v7 (R2-01
+    RESOLVED_IN_SOURCE_WORKBOOK) a fórmula cita `consumo_mpsa_grupo`,
+    que a resolução nome+frequência+escopo liga à definição anual
+    linha_grupo/L1_L7 — nenhuma pendência resta no manifesto.
     """
 
     variable_definitions = production_seed[0]
@@ -1349,9 +1348,11 @@ def test_desaguamento_oee_reference_to_consumo_mpsa_is_a_recorded_pending_decisi
     )
     deps = DependencyExtractor().extract(eq.expression)
 
-    consumo_mpsa = variable_id("production", "consumo_mpsa", "diário")
-    assert [v.split("@")[0] for v in deps.variables] == [consumo_mpsa]
-    assert var_by_id[consumo_mpsa].scope_type == "linha"
+    consumo_mpsa_grupo = variable_id(
+        "production", "consumo_mpsa_grupo", "anual", "linha_grupo", "L1_L7"
+    )
+    assert [v.split("@")[0] for v in deps.variables] == [consumo_mpsa_grupo]
+    assert var_by_id[consumo_mpsa_grupo].scope_type == "linha_grupo"
     assert [p.split("@")[0] for p in deps.parameters] == [
         parameter_id("production", "desaguamento_produtividade")
     ]
@@ -1359,13 +1360,10 @@ def test_desaguamento_oee_reference_to_consumo_mpsa_is_a_recorded_pending_decisi
     manifest = json.loads(
         (SEED_ROOT / "production" / "manifest.json").read_text(encoding="utf-8")
     )
-    pending = [
+    assert [
         d for d in manifest["pending_contract_decisions"]
         if d["decision_id"] == "R2-A019-UNREACHABLE"
-    ]
-    assert len(pending) == 1
-    assert pending[0]["fields"]["equation_id"] == eq.equation_definition_id
-    assert pending[0]["fields"]["reference"] == consumo_mpsa
+    ] == []
 
 
 def test_desaguamento_oee_is_target_of_exactly_one_equation(
@@ -1424,7 +1422,9 @@ def test_desaguamento_oee_formula_produces_expected_percentage(
 
     context = CalculationContext()
     context.set_variable_value(
-        variable_id("production", "consumo_mpsa", "diário"),
+        variable_id(
+            "production", "consumo_mpsa_grupo", "anual", "linha_grupo", "L1_L7"
+        ),
         consumo_mpsa_anual, "linha_grupo", "L1_L7",
     )
     context.set_parameter_value(
@@ -1480,7 +1480,9 @@ def test_desaguamento_oee_resolves_cross_scope_reference_via_decision_e(
 
     context = CalculationContext()
     context.set_variable_value(
-        variable_id("production", "consumo_mpsa", "diário"),
+        variable_id(
+            "production", "consumo_mpsa_grupo", "anual", "linha_grupo", "L1_L7"
+        ),
         consumo_mpsa_anual, "linha_grupo", "L1_L7",
     )
     context.set_parameter_value(

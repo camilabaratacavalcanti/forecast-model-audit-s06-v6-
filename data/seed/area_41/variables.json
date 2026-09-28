@@ -285,7 +285,7 @@
     "frequency": "diário",
     "scope_type": "linha",
     "scope_value": "L4_L7",
-    "source_reference": "descritivo_das_variáveis_A41_v8.xlsx",
+    "source_reference": "descritivo_das_variáveis_A41_v9.xlsx",
     "status": "ativo",
     "value_type": "categorico",
     "allowed_values": [
@@ -456,7 +456,7 @@
     "frequency": "diário",
     "scope_type": "linha",
     "scope_value": "L1_L7",
-    "source_reference": "descritivo_das_variáveis_A41_v8.xlsx",
+    "source_reference": "descritivo_das_variáveis_A41_v9.xlsx",
     "status": "ativo",
     "value_type": "numerico",
     "instances": [

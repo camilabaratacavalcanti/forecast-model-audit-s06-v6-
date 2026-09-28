@@ -18,6 +18,12 @@ from dataclasses import dataclass
 from pathlib import Path
 
 from tools.workbook_seed.canonical import CanonicalModel, build_canonical_model
+from tools.workbook_seed.interblock import (
+    InterblockResult,
+    interblock_seed,
+    seed_dependencies,
+    validate_interblock,
+)
 from tools.workbook_seed.reader import WorkbookData, read_workbook, sha256_of
 from tools.workbook_seed.seeds import build_seeds
 
@@ -27,6 +33,7 @@ WORKBOOK_DIR = REPO_ROOT / "data" / "workbooks"
 SEED_ROOT = REPO_ROOT / "data" / "seed"
 
 SEED_FILES = ("variables", "parameters", "equations", "aggregation_rules", "manifest")
+INTERBLOCK_SEED = "interblock_links.json"
 
 
 class UnapprovedWorkbookError(ValueError):
@@ -58,41 +65,41 @@ BLOCKS: dict[str, BlockSpec] = {
             block="area_41",
             sheet="A41",
             id_base=16000,
-            version="v8",
-            file_name="descritivo_das_variáveis_A41_v8.xlsx",
-            sha256="be2372b4f4f35f5aea720dcc00c680f3e47e359138995dd35a6dcabd3d603528",
+            version="v9",
+            file_name="descritivo_das_variáveis_A41_v9.xlsx",
+            sha256="36bbae135285ad9b3b88d21ef94e2bc9c92f2ef74736412b66bc62de4dcf3f50",
         ),
         BlockSpec(
             block="energy",
             sheet="energy",
             id_base=18000,
-            version="v5",
-            file_name="descritivo_das_variáveis_energy_v5.xlsx",
-            sha256="34c1c88af318e57026c08c21fd2a1cf308258e575eddbb11d98ba0bba6878047",
+            version="v6",
+            file_name="descritivo_das_variáveis_energy_v6.xlsx",
+            sha256="cfc46031fc2f3f375b87ebbba58676d23ad92f3ee43fb81b353fe5a8247e1df8",
         ),
         BlockSpec(
             block="max_ht",
             sheet="MaxHT",
             id_base=13000,
-            version="v9",
-            file_name="descritivo_das_variáveis_MaxHT_v9.xlsx",
-            sha256="74d5cbb7624d5c7101b5f25ecd76e156c9d019968c7e5f9af2ed04aa50b27004",
+            version="v10",
+            file_name="descritivo_das_variáveis_MaxHT_v10.xlsx",
+            sha256="3e40aab12ec0ec07918c5e358145b09f138663f635ca9e7fc0990d1b765b683b",
         ),
         BlockSpec(
             block="production",
             sheet="production",
             id_base=12000,
-            version="v6",
-            file_name="descritivo_das_variáveis_production_v6.xlsx",
-            sha256="17cb83ca15d92c0b3243a606ddfd194a110dcc4f01fb71bf30511a4c6fb07210",
+            version="v9",
+            file_name="descritivo_das_variáveis_production_v9.xlsx",
+            sha256="3e3024e564ee6f18b82e9771957e61f4940becd1e80db5705143123377956a28",
         ),
         BlockSpec(
             block="yield",
             sheet="yield",
             id_base=11000,
-            version="v9",
-            file_name="descritivo_das_variáveis_yield_v9.xlsx",
-            sha256="1c7b5684cc49d9498edceb520ced2e8a1f673812057d4094846820074098a76b",
+            version="v11",
+            file_name="descritivo_das_variáveis_yield_v11.xlsx",
+            sha256="639e8b980f19bc20429cf9763157ac1828d9067bdbabea3bf3db0badbc2df931",
         ),
     )
 }
@@ -140,6 +147,53 @@ def write_seeds(result: BuildResult, seed_dir: Path | None = None) -> None:
         (seed_dir / f"{name}.json").write_text(
             seed_json(result.seeds[name]), encoding="utf-8"
         )
+
+
+@dataclass(frozen=True)
+class BuildAllResult:
+    blocks: dict[str, BuildResult]
+    interblock: InterblockResult
+
+    @property
+    def interblock_seed(self) -> dict:
+        return interblock_seed(
+            {block: r.model for block, r in self.blocks.items()}, self.interblock
+        )
+
+
+def build_all(paths: dict[str, str | Path] | None = None) -> BuildAllResult:
+    """
+    Os cinco blocos e o contrato interbloco declarado em `fonte`:
+    resolução do produtor no bloco indicado e validação de contrato,
+    instâncias e ciclos sobre o conjunto completo.
+    """
+
+    paths = paths or {}
+    blocks = {block: build_block(block, paths.get(block)) for block in BLOCKS}
+    dependencies = [
+        edge
+        for block, r in blocks.items()
+        for edge in seed_dependencies(block, r.seeds)
+    ]
+    interblock = validate_interblock(
+        {block: r.model for block, r in blocks.items()}, dependencies
+    )
+
+    return BuildAllResult(blocks=blocks, interblock=interblock)
+
+
+def write_interblock_seed(result: BuildAllResult, seed_root: Path | None = None) -> Path:
+    seed_root = seed_root or SEED_ROOT
+    seed_root.mkdir(parents=True, exist_ok=True)
+    path = seed_root / INTERBLOCK_SEED
+    path.write_text(seed_json(result.interblock_seed), encoding="utf-8")
+
+    return path
+
+
+def read_interblock_seed(seed_root: Path | None = None) -> dict:
+    seed_root = seed_root or SEED_ROOT
+    return json.loads((seed_root / INTERBLOCK_SEED).read_text(encoding="utf-8"))
 
 
 def read_seed_file(block: str, name: str, seed_root: Path | None = None):

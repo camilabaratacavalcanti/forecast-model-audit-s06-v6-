@@ -1,8 +1,8 @@
 {
   "block": "energy",
   "workbook": {
-    "file_name": "descritivo_das_variáveis_energy_v5.xlsx",
-    "sha256": "34c1c88af318e57026c08c21fd2a1cf308258e575eddbb11d98ba0bba6878047",
+    "file_name": "descritivo_das_variáveis_energy_v6.xlsx",
+    "sha256": "cfc46031fc2f3f375b87ebbba58676d23ad92f3ee43fb81b353fe5a8247e1df8",
     "sheet": "energy",
     "header_row": 2,
     "data_rows": 56,
@@ -19,7 +19,8 @@
       "scope_value": "L1_L7",
       "rows": [
         3
-      ]
+      ],
+      "source_block": "production"
     },
     {
       "entity_id": "VAR18002",
@@ -63,7 +64,8 @@
       "scope_value": "L1_L7",
       "rows": [
         7
-      ]
+      ],
+      "source_block": "production"
     },
     {
       "entity_id": "VAR18006",
@@ -74,7 +76,8 @@
       "scope_value": "L1_L7",
       "rows": [
         8
-      ]
+      ],
+      "source_block": "production"
     },
     {
       "entity_id": "VAR18007",
@@ -85,7 +88,8 @@
       "scope_value": "L1_L7",
       "rows": [
         9
-      ]
+      ],
+      "source_block": "production"
     },
     {
       "entity_id": "VAR18008",
@@ -96,7 +100,8 @@
       "scope_value": "L1_L7",
       "rows": [
         10
-      ]
+      ],
+      "source_block": "production"
     },
     {
       "entity_id": "VAR18009",
@@ -107,7 +112,8 @@
       "scope_value": "L1_L7",
       "rows": [
         11
-      ]
+      ],
+      "source_block": "production"
     },
     {
       "entity_id": "VAR18010",
@@ -118,7 +124,8 @@
       "scope_value": "L1_L7",
       "rows": [
         12
-      ]
+      ],
+      "source_block": "production"
     },
     {
       "entity_id": "VAR18011",
@@ -129,7 +136,8 @@
       "scope_value": "L1_L7",
       "rows": [
         13
-      ]
+      ],
+      "source_block": "production"
     },
     {
       "entity_id": "VAR18012",
@@ -140,7 +148,8 @@
       "scope_value": "L1_L7",
       "rows": [
         14
-      ]
+      ],
+      "source_block": "temperature_lp"
     },
     {
       "entity_id": "VAR18013",
@@ -151,7 +160,8 @@
       "scope_value": "L1_L7",
       "rows": [
         15
-      ]
+      ],
+      "source_block": "temperature_lp"
     },
     {
       "entity_id": "VAR18014",
@@ -162,7 +172,8 @@
       "scope_value": "L1_L7",
       "rows": [
         16
-      ]
+      ],
+      "source_block": "temperature_lp"
     },
     {
       "entity_id": "PARAM18001",
@@ -393,7 +404,8 @@
       "scope_value": "L1_L7",
       "rows": [
         37
-      ]
+      ],
+      "source_block": "area_04_13"
     },
     {
       "entity_id": "VAR18032",

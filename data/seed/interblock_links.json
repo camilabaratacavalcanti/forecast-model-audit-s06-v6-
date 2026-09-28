@@ -1,0 +1,1053 @@
+{
+  "contract": "workbook.fonte -> source_block (Etapa 2.6)",
+  "workbooks": {
+    "area_41": {
+      "file_name": "descritivo_das_variáveis_A41_v9.xlsx",
+      "sha256": "36bbae135285ad9b3b88d21ef94e2bc9c92f2ef74736412b66bc62de4dcf3f50"
+    },
+    "energy": {
+      "file_name": "descritivo_das_variáveis_energy_v6.xlsx",
+      "sha256": "cfc46031fc2f3f375b87ebbba58676d23ad92f3ee43fb81b353fe5a8247e1df8"
+    },
+    "max_ht": {
+      "file_name": "descritivo_das_variáveis_MaxHT_v10.xlsx",
+      "sha256": "3e40aab12ec0ec07918c5e358145b09f138663f635ca9e7fc0990d1b765b683b"
+    },
+    "production": {
+      "file_name": "descritivo_das_variáveis_production_v9.xlsx",
+      "sha256": "3e3024e564ee6f18b82e9771957e61f4940becd1e80db5705143123377956a28"
+    },
+    "yield": {
+      "file_name": "descritivo_das_variáveis_yield_v11.xlsx",
+      "sha256": "639e8b980f19bc20429cf9763157ac1828d9067bdbabea3bf3db0badbc2df931"
+    }
+  },
+  "links": [
+    {
+      "consumer_block": "area_41",
+      "consumer_definition": "VAR16007",
+      "consumer_frequency": "diário",
+      "consumer_scope": {
+        "scope_type": "linha",
+        "scope_value": "L1_L7"
+      },
+      "source_block": "yield",
+      "source_definition": "VAR11031",
+      "source_frequency": "diário",
+      "source_scope": {
+        "scope_type": "linha",
+        "scope_value": "L1_L7"
+      },
+      "instances": [
+        {
+          "scope_type": "linha",
+          "scope_value": "L1"
+        },
+        {
+          "scope_type": "linha",
+          "scope_value": "L2"
+        },
+        {
+          "scope_type": "linha",
+          "scope_value": "L3"
+        },
+        {
+          "scope_type": "linha",
+          "scope_value": "L4"
+        },
+        {
+          "scope_type": "linha",
+          "scope_value": "L5"
+        },
+        {
+          "scope_type": "linha",
+          "scope_value": "L6"
+        },
+        {
+          "scope_type": "linha",
+          "scope_value": "L7"
+        }
+      ],
+      "consumer_rows": [
+        9
+      ]
+    },
+    {
+      "consumer_block": "energy",
+      "consumer_definition": "VAR18001",
+      "consumer_frequency": "diário",
+      "consumer_scope": {
+        "scope_type": "linha",
+        "scope_value": "L1_L7"
+      },
+      "source_block": "production",
+      "source_definition": "VAR12046",
+      "source_frequency": "diário",
+      "source_scope": {
+        "scope_type": "linha",
+        "scope_value": "L1_L7"
+      },
+      "instances": [
+        {
+          "scope_type": "linha",
+          "scope_value": "L1"
+        },
+        {
+          "scope_type": "linha",
+          "scope_value": "L2"
+        },
+        {
+          "scope_type": "linha",
+          "scope_value": "L3"
+        },
+        {
+          "scope_type": "linha",
+          "scope_value": "L4"
+        },
+        {
+          "scope_type": "linha",
+          "scope_value": "L5"
+        },
+        {
+          "scope_type": "linha",
+          "scope_value": "L6"
+        },
+        {
+          "scope_type": "linha",
+          "scope_value": "L7"
+        }
+      ],
+      "consumer_rows": [
+        3
+      ]
+    },
+    {
+      "consumer_block": "energy",
+      "consumer_definition": "VAR18005",
+      "consumer_frequency": "diário",
+      "consumer_scope": {
+        "scope_type": "linha",
+        "scope_value": "L1_L7"
+      },
+      "source_block": "production",
+      "source_definition": "VAR12041",
+      "source_frequency": "diário",
+      "source_scope": {
+        "scope_type": "linha",
+        "scope_value": "L1_L7"
+      },
+      "instances": [
+        {
+          "scope_type": "linha",
+          "scope_value": "L1"
+        },
+        {
+          "scope_type": "linha",
+          "scope_value": "L2"
+        },
+        {
+          "scope_type": "linha",
+          "scope_value": "L3"
+        },
+        {
+          "scope_type": "linha",
+          "scope_value": "L4"
+        },
+        {
+          "scope_type": "linha",
+          "scope_value": "L5"
+        },
+        {
+          "scope_type": "linha",
+          "scope_value": "L6"
+        },
+        {
+          "scope_type": "linha",
+          "scope_value": "L7"
+        }
+      ],
+      "consumer_rows": [
+        7
+      ]
+    },
+    {
+      "consumer_block": "energy",
+      "consumer_definition": "VAR18006",
+      "consumer_frequency": "diário",
+      "consumer_scope": {
+        "scope_type": "linha_grupo",
+        "scope_value": "L1_L7"
+      },
+      "source_block": "production",
+      "source_definition": "VAR12043",
+      "source_frequency": "diário",
+      "source_scope": {
+        "scope_type": "linha_grupo",
+        "scope_value": "L1_L7"
+      },
+      "instances": [
+        {
+          "scope_type": "linha_grupo",
+          "scope_value": "L1_L7"
+        }
+      ],
+      "consumer_rows": [
+        8
+      ]
+    },
+    {
+      "consumer_block": "energy",
+      "consumer_definition": "VAR18007",
+      "consumer_frequency": "mensal",
+      "consumer_scope": {
+        "scope_type": "linha_grupo",
+        "scope_value": "L1_L7"
+      },
+      "source_block": "production",
+      "source_definition": "VAR12044",
+      "source_frequency": "mensal",
+      "source_scope": {
+        "scope_type": "linha_grupo",
+        "scope_value": "L1_L7"
+      },
+      "instances": [
+        {
+          "scope_type": "linha_grupo",
+          "scope_value": "L1_L7"
+        }
+      ],
+      "consumer_rows": [
+        9
+      ]
+    },
+    {
+      "consumer_block": "energy",
+      "consumer_definition": "VAR18008",
+      "consumer_frequency": "diário",
+      "consumer_scope": {
+        "scope_type": "linha",
+        "scope_value": "L1_L7"
+      },
+      "source_block": "production",
+      "source_definition": "VAR12031",
+      "source_frequency": "diário",
+      "source_scope": {
+        "scope_type": "linha",
+        "scope_value": "L1_L7"
+      },
+      "instances": [
+        {
+          "scope_type": "linha",
+          "scope_value": "L1"
+        },
+        {
+          "scope_type": "linha",
+          "scope_value": "L2"
+        },
+        {
+          "scope_type": "linha",
+          "scope_value": "L3"
+        },
+        {
+          "scope_type": "linha",
+          "scope_value": "L4"
+        },
+        {
+          "scope_type": "linha",
+          "scope_value": "L5"
+        },
+        {
+          "scope_type": "linha",
+          "scope_value": "L6"
+        },
+        {
+          "scope_type": "linha",
+          "scope_value": "L7"
+        }
+      ],
+      "consumer_rows": [
+        10
+      ]
+    },
+    {
+      "consumer_block": "energy",
+      "consumer_definition": "VAR18009",
+      "consumer_frequency": "diário",
+      "consumer_scope": {
+        "scope_type": "linha_grupo",
+        "scope_value": "L1_L7"
+      },
+      "source_block": "production",
+      "source_definition": "VAR12033",
+      "source_frequency": "diário",
+      "source_scope": {
+        "scope_type": "linha_grupo",
+        "scope_value": "L1_L7"
+      },
+      "instances": [
+        {
+          "scope_type": "linha_grupo",
+          "scope_value": "L1_L7"
+        }
+      ],
+      "consumer_rows": [
+        11
+      ]
+    },
+    {
+      "consumer_block": "energy",
+      "consumer_definition": "VAR18010",
+      "consumer_frequency": "mensal",
+      "consumer_scope": {
+        "scope_type": "linha_grupo",
+        "scope_value": "L1_L7"
+      },
+      "source_block": "production",
+      "source_definition": "VAR12034",
+      "source_frequency": "mensal",
+      "source_scope": {
+        "scope_type": "linha_grupo",
+        "scope_value": "L1_L7"
+      },
+      "instances": [
+        {
+          "scope_type": "linha_grupo",
+          "scope_value": "L1_L7"
+        }
+      ],
+      "consumer_rows": [
+        12
+      ]
+    },
+    {
+      "consumer_block": "max_ht",
+      "consumer_definition": "VAR13062",
+      "consumer_frequency": "diário",
+      "consumer_scope": {
+        "scope_type": "linha",
+        "scope_value": "L1_L7"
+      },
+      "source_block": "production",
+      "source_definition": "VAR12031",
+      "source_frequency": "diário",
+      "source_scope": {
+        "scope_type": "linha",
+        "scope_value": "L1_L7"
+      },
+      "instances": [
+        {
+          "scope_type": "linha",
+          "scope_value": "L1"
+        },
+        {
+          "scope_type": "linha",
+          "scope_value": "L2"
+        },
+        {
+          "scope_type": "linha",
+          "scope_value": "L3"
+        },
+        {
+          "scope_type": "linha",
+          "scope_value": "L4"
+        },
+        {
+          "scope_type": "linha",
+          "scope_value": "L5"
+        },
+        {
+          "scope_type": "linha",
+          "scope_value": "L6"
+        },
+        {
+          "scope_type": "linha",
+          "scope_value": "L7"
+        }
+      ],
+      "consumer_rows": [
+        68
+      ]
+    },
+    {
+      "consumer_block": "max_ht",
+      "consumer_definition": "VAR13092",
+      "consumer_frequency": "diário",
+      "consumer_scope": {
+        "scope_type": "linha",
+        "scope_value": "L1_L7"
+      },
+      "source_block": "production",
+      "source_definition": "VAR12046",
+      "source_frequency": "diário",
+      "source_scope": {
+        "scope_type": "linha",
+        "scope_value": "L1_L7"
+      },
+      "instances": [
+        {
+          "scope_type": "linha",
+          "scope_value": "L1"
+        },
+        {
+          "scope_type": "linha",
+          "scope_value": "L2"
+        },
+        {
+          "scope_type": "linha",
+          "scope_value": "L3"
+        },
+        {
+          "scope_type": "linha",
+          "scope_value": "L4"
+        },
+        {
+          "scope_type": "linha",
+          "scope_value": "L5"
+        },
+        {
+          "scope_type": "linha",
+          "scope_value": "L6"
+        },
+        {
+          "scope_type": "linha",
+          "scope_value": "L7"
+        }
+      ],
+      "consumer_rows": [
+        98
+      ]
+    },
+    {
+      "consumer_block": "production",
+      "consumer_definition": "VAR12062",
+      "consumer_frequency": "diário",
+      "consumer_scope": {
+        "scope_type": "linha",
+        "scope_value": "L1_L7"
+      },
+      "source_block": "yield",
+      "source_definition": "VAR11226",
+      "source_frequency": "diário",
+      "source_scope": {
+        "scope_type": "linha",
+        "scope_value": "L1_L7"
+      },
+      "instances": [
+        {
+          "scope_type": "linha",
+          "scope_value": "L1"
+        },
+        {
+          "scope_type": "linha",
+          "scope_value": "L2"
+        },
+        {
+          "scope_type": "linha",
+          "scope_value": "L3"
+        },
+        {
+          "scope_type": "linha",
+          "scope_value": "L4"
+        },
+        {
+          "scope_type": "linha",
+          "scope_value": "L5"
+        },
+        {
+          "scope_type": "linha",
+          "scope_value": "L6"
+        },
+        {
+          "scope_type": "linha",
+          "scope_value": "L7"
+        }
+      ],
+      "consumer_rows": [
+        87
+      ]
+    },
+    {
+      "consumer_block": "yield",
+      "consumer_definition": "VAR11031",
+      "consumer_frequency": "diário",
+      "consumer_scope": {
+        "scope_type": "linha",
+        "scope_value": "L1_L7"
+      },
+      "source_block": "production",
+      "source_definition": "VAR12031",
+      "source_frequency": "diário",
+      "source_scope": {
+        "scope_type": "linha",
+        "scope_value": "L1_L7"
+      },
+      "instances": [
+        {
+          "scope_type": "linha",
+          "scope_value": "L1"
+        },
+        {
+          "scope_type": "linha",
+          "scope_value": "L2"
+        },
+        {
+          "scope_type": "linha",
+          "scope_value": "L3"
+        },
+        {
+          "scope_type": "linha",
+          "scope_value": "L4"
+        },
+        {
+          "scope_type": "linha",
+          "scope_value": "L5"
+        },
+        {
+          "scope_type": "linha",
+          "scope_value": "L6"
+        },
+        {
+          "scope_type": "linha",
+          "scope_value": "L7"
+        }
+      ],
+      "consumer_rows": [
+        32
+      ]
+    }
+  ],
+  "rejected": [
+    {
+      "consumer_block": "area_41",
+      "consumer_definition": "VAR16021",
+      "consumer_name": "hes",
+      "consumer_frequency": "diário",
+      "consumer_scope": {
+        "scope_type": "linha",
+        "scope_value": "L4_L7"
+      },
+      "consumer_rows": [
+        25,
+        26,
+        27,
+        28
+      ],
+      "source_block": "maintenance",
+      "source_definition": null,
+      "resolution_status": "NOT_FOUND",
+      "validation_status": "SOURCE_NOT_FOUND",
+      "errors": [
+        {
+          "code": "INTERBLOCK_SOURCE_NOT_FOUND",
+          "class": "SOURCE_NOT_FOUND",
+          "dimension": "source_block",
+          "consumer_value": "maintenance",
+          "producer_value": "bloco da taxonomia oficial sem workbook carregado",
+          "message": "INTERBLOCK_SOURCE_NOT_FOUND: consumidor area_41 linha 25,26,27,28 'hes' (diário linha/L4_L7), fonte='maintenance': dimensão 'source_block' — consumidor 'maintenance', produtor 'bloco da taxonomia oficial sem workbook carregado'. O produtor não pode ser resolvido nem validado neste build."
+        }
+      ]
+    },
+    {
+      "consumer_block": "energy",
+      "consumer_definition": "VAR18011",
+      "consumer_name": "lth_meta",
+      "consumer_frequency": "anual",
+      "consumer_scope": {
+        "scope_type": "linha",
+        "scope_value": "L1_L7"
+      },
+      "consumer_rows": [
+        13
+      ],
+      "source_block": "production",
+      "source_definition": "PARAM12003",
+      "resolution_status": "RESOLVED",
+      "validation_status": "CONTRACT_MISMATCH",
+      "errors": [
+        {
+          "code": "INTERBLOCK_CONTRACT_MISMATCH",
+          "class": "CONTRACT_MISMATCH",
+          "dimension": "kind",
+          "consumer_value": "variable",
+          "producer_value": "parameter (PARAM12003)",
+          "message": "INTERBLOCK_CONTRACT_MISMATCH: consumidor energy linha 13 'lth_meta' (anual linha/L1_L7), fonte='production': dimensão 'kind' — consumidor 'variable', produtor 'parameter (PARAM12003)'. consumidor e produtor têm naturezas diferentes; nenhuma conversão entre parâmetro e variável é feita."
+        }
+      ]
+    },
+    {
+      "consumer_block": "energy",
+      "consumer_definition": "VAR18012",
+      "consumer_name": "temperatura_lp",
+      "consumer_frequency": "diário",
+      "consumer_scope": {
+        "scope_type": "linha",
+        "scope_value": "L1_L7"
+      },
+      "consumer_rows": [
+        14
+      ],
+      "source_block": "temperature_lp",
+      "source_definition": null,
+      "resolution_status": "NOT_FOUND",
+      "validation_status": "SOURCE_NOT_FOUND",
+      "errors": [
+        {
+          "code": "INTERBLOCK_SOURCE_NOT_FOUND",
+          "class": "SOURCE_NOT_FOUND",
+          "dimension": "source_block",
+          "consumer_value": "temperature_lp",
+          "producer_value": "bloco da taxonomia oficial sem workbook carregado",
+          "message": "INTERBLOCK_SOURCE_NOT_FOUND: consumidor energy linha 14 'temperatura_lp' (diário linha/L1_L7), fonte='temperature_lp': dimensão 'source_block' — consumidor 'temperature_lp', produtor 'bloco da taxonomia oficial sem workbook carregado'. O produtor não pode ser resolvido nem validado neste build."
+        }
+      ]
+    },
+    {
+      "consumer_block": "energy",
+      "consumer_definition": "VAR18013",
+      "consumer_name": "temperatura_lp",
+      "consumer_frequency": "mensal",
+      "consumer_scope": {
+        "scope_type": "linha",
+        "scope_value": "L1_L7"
+      },
+      "consumer_rows": [
+        15
+      ],
+      "source_block": "temperature_lp",
+      "source_definition": null,
+      "resolution_status": "NOT_FOUND",
+      "validation_status": "SOURCE_NOT_FOUND",
+      "errors": [
+        {
+          "code": "INTERBLOCK_SOURCE_NOT_FOUND",
+          "class": "SOURCE_NOT_FOUND",
+          "dimension": "source_block",
+          "consumer_value": "temperature_lp",
+          "producer_value": "bloco da taxonomia oficial sem workbook carregado",
+          "message": "INTERBLOCK_SOURCE_NOT_FOUND: consumidor energy linha 15 'temperatura_lp' (mensal linha/L1_L7), fonte='temperature_lp': dimensão 'source_block' — consumidor 'temperature_lp', produtor 'bloco da taxonomia oficial sem workbook carregado'. O produtor não pode ser resolvido nem validado neste build."
+        }
+      ]
+    },
+    {
+      "consumer_block": "energy",
+      "consumer_definition": "VAR18014",
+      "consumer_name": "temperatura_lp_media",
+      "consumer_frequency": "mensal",
+      "consumer_scope": {
+        "scope_type": "linha_grupo",
+        "scope_value": "L1_L7"
+      },
+      "consumer_rows": [
+        16
+      ],
+      "source_block": "temperature_lp",
+      "source_definition": null,
+      "resolution_status": "NOT_FOUND",
+      "validation_status": "SOURCE_NOT_FOUND",
+      "errors": [
+        {
+          "code": "INTERBLOCK_SOURCE_NOT_FOUND",
+          "class": "SOURCE_NOT_FOUND",
+          "dimension": "source_block",
+          "consumer_value": "temperature_lp",
+          "producer_value": "bloco da taxonomia oficial sem workbook carregado",
+          "message": "INTERBLOCK_SOURCE_NOT_FOUND: consumidor energy linha 16 'temperatura_lp_media' (mensal linha_grupo/L1_L7), fonte='temperature_lp': dimensão 'source_block' — consumidor 'temperature_lp', produtor 'bloco da taxonomia oficial sem workbook carregado'. O produtor não pode ser resolvido nem validado neste build."
+        }
+      ]
+    },
+    {
+      "consumer_block": "energy",
+      "consumer_definition": "VAR18031",
+      "consumer_name": "evaporado_total_evaporacao",
+      "consumer_frequency": "diário",
+      "consumer_scope": {
+        "scope_type": "linha",
+        "scope_value": "L1_L7"
+      },
+      "consumer_rows": [
+        37
+      ],
+      "source_block": "area_04_13",
+      "source_definition": null,
+      "resolution_status": "NOT_FOUND",
+      "validation_status": "SOURCE_NOT_FOUND",
+      "errors": [
+        {
+          "code": "INTERBLOCK_SOURCE_NOT_FOUND",
+          "class": "SOURCE_NOT_FOUND",
+          "dimension": "source_block",
+          "consumer_value": "area_04_13",
+          "producer_value": "bloco da taxonomia oficial sem workbook carregado",
+          "message": "INTERBLOCK_SOURCE_NOT_FOUND: consumidor energy linha 37 'evaporado_total_evaporacao' (diário linha/L1_L7), fonte='area_04_13': dimensão 'source_block' — consumidor 'area_04_13', produtor 'bloco da taxonomia oficial sem workbook carregado'. O produtor não pode ser resolvido nem validado neste build."
+        }
+      ]
+    },
+    {
+      "consumer_block": "max_ht",
+      "consumer_definition": "VAR13003",
+      "consumer_name": "alimentação_evap",
+      "consumer_frequency": "diário",
+      "consumer_scope": {
+        "scope_type": "linha",
+        "scope_value": "L1_L7"
+      },
+      "consumer_rows": [
+        5
+      ],
+      "source_block": "alumina",
+      "source_definition": null,
+      "resolution_status": "NOT_FOUND",
+      "validation_status": "SOURCE_NOT_FOUND",
+      "errors": [
+        {
+          "code": "INTERBLOCK_SOURCE_NOT_FOUND",
+          "class": "SOURCE_NOT_FOUND",
+          "dimension": "source_block",
+          "consumer_value": "alumina",
+          "producer_value": "bloco da taxonomia oficial sem workbook carregado",
+          "message": "INTERBLOCK_SOURCE_NOT_FOUND: consumidor max_ht linha 5 'alimentação_evap' (diário linha/L1_L7), fonte='alumina': dimensão 'source_block' — consumidor 'alumina', produtor 'bloco da taxonomia oficial sem workbook carregado'. O produtor não pode ser resolvido nem validado neste build."
+        }
+      ]
+    },
+    {
+      "consumer_block": "production",
+      "consumer_definition": "VAR12027",
+      "consumer_name": "fator_mpsa",
+      "consumer_frequency": "diário",
+      "consumer_scope": {
+        "scope_type": "linha",
+        "scope_value": "L1_L7"
+      },
+      "consumer_rows": [
+        30
+      ],
+      "source_block": "forecast",
+      "source_definition": null,
+      "resolution_status": "NOT_FOUND",
+      "validation_status": "CONTRACT_MISMATCH",
+      "errors": [
+        {
+          "code": "INTERBLOCK_CONTRACT_MISMATCH",
+          "class": "CONTRACT_MISMATCH",
+          "dimension": "consumer_context",
+          "consumer_value": "variable_type=calculado; expressão='fator_mpsa_kg_t / 1000'",
+          "producer_value": "variable sem expressão",
+          "message": "INTERBLOCK_CONTRACT_MISMATCH: consumidor production linha 30 'fator_mpsa' (diário linha/L1_L7), fonte='forecast': dimensão 'consumer_context' — consumidor \"variable_type=calculado; expressão='fator_mpsa_kg_t / 1000'\", produtor 'variable sem expressão'. a linha calcula o próprio valor e também o declara vindo de outro bloco: dois produtores para a mesma definição."
+        },
+        {
+          "code": "INTERBLOCK_SOURCE_NOT_FOUND",
+          "class": "SOURCE_NOT_FOUND",
+          "dimension": "source_block",
+          "consumer_value": "forecast",
+          "producer_value": "bloco da taxonomia oficial sem workbook carregado",
+          "message": "INTERBLOCK_SOURCE_NOT_FOUND: consumidor production linha 30 'fator_mpsa' (diário linha/L1_L7), fonte='forecast': dimensão 'source_block' — consumidor 'forecast', produtor 'bloco da taxonomia oficial sem workbook carregado'. O produtor não pode ser resolvido nem validado neste build."
+        }
+      ]
+    },
+    {
+      "consumer_block": "production",
+      "consumer_definition": "VAR12028",
+      "consumer_name": "fator_mpsa_kg_t",
+      "consumer_frequency": "diário",
+      "consumer_scope": {
+        "scope_type": "linha_grupo",
+        "scope_value": "L1_L7"
+      },
+      "consumer_rows": [
+        31
+      ],
+      "source_block": "forecast",
+      "source_definition": null,
+      "resolution_status": "NOT_FOUND",
+      "validation_status": "SOURCE_NOT_FOUND",
+      "errors": [
+        {
+          "code": "INTERBLOCK_SOURCE_NOT_FOUND",
+          "class": "SOURCE_NOT_FOUND",
+          "dimension": "source_block",
+          "consumer_value": "forecast",
+          "producer_value": "bloco da taxonomia oficial sem workbook carregado",
+          "message": "INTERBLOCK_SOURCE_NOT_FOUND: consumidor production linha 31 'fator_mpsa_kg_t' (diário linha_grupo/L1_L7), fonte='forecast': dimensão 'source_block' — consumidor 'forecast', produtor 'bloco da taxonomia oficial sem workbook carregado'. O produtor não pode ser resolvido nem validado neste build."
+        }
+      ]
+    },
+    {
+      "consumer_block": "production",
+      "consumer_definition": "VAR12029",
+      "consumer_name": "fator_mrn",
+      "consumer_frequency": "diário",
+      "consumer_scope": {
+        "scope_type": "linha",
+        "scope_value": "L1_L7"
+      },
+      "consumer_rows": [
+        32
+      ],
+      "source_block": "forecast",
+      "source_definition": null,
+      "resolution_status": "NOT_FOUND",
+      "validation_status": "CONTRACT_MISMATCH",
+      "errors": [
+        {
+          "code": "INTERBLOCK_CONTRACT_MISMATCH",
+          "class": "CONTRACT_MISMATCH",
+          "dimension": "consumer_context",
+          "consumer_value": "variable_type=calculado; expressão='fator_mrn_kg_t / 1000'",
+          "producer_value": "variable sem expressão",
+          "message": "INTERBLOCK_CONTRACT_MISMATCH: consumidor production linha 32 'fator_mrn' (diário linha/L1_L7), fonte='forecast': dimensão 'consumer_context' — consumidor \"variable_type=calculado; expressão='fator_mrn_kg_t / 1000'\", produtor 'variable sem expressão'. a linha calcula o próprio valor e também o declara vindo de outro bloco: dois produtores para a mesma definição."
+        },
+        {
+          "code": "INTERBLOCK_SOURCE_NOT_FOUND",
+          "class": "SOURCE_NOT_FOUND",
+          "dimension": "source_block",
+          "consumer_value": "forecast",
+          "producer_value": "bloco da taxonomia oficial sem workbook carregado",
+          "message": "INTERBLOCK_SOURCE_NOT_FOUND: consumidor production linha 32 'fator_mrn' (diário linha/L1_L7), fonte='forecast': dimensão 'source_block' — consumidor 'forecast', produtor 'bloco da taxonomia oficial sem workbook carregado'. O produtor não pode ser resolvido nem validado neste build."
+        }
+      ]
+    },
+    {
+      "consumer_block": "production",
+      "consumer_definition": "VAR12030",
+      "consumer_name": "fator_mrn_kg_t",
+      "consumer_frequency": "diário",
+      "consumer_scope": {
+        "scope_type": "linha_grupo",
+        "scope_value": "L1_L7"
+      },
+      "consumer_rows": [
+        33
+      ],
+      "source_block": "forecast",
+      "source_definition": null,
+      "resolution_status": "NOT_FOUND",
+      "validation_status": "SOURCE_NOT_FOUND",
+      "errors": [
+        {
+          "code": "INTERBLOCK_SOURCE_NOT_FOUND",
+          "class": "SOURCE_NOT_FOUND",
+          "dimension": "source_block",
+          "consumer_value": "forecast",
+          "producer_value": "bloco da taxonomia oficial sem workbook carregado",
+          "message": "INTERBLOCK_SOURCE_NOT_FOUND: consumidor production linha 33 'fator_mrn_kg_t' (diário linha_grupo/L1_L7), fonte='forecast': dimensão 'source_block' — consumidor 'forecast', produtor 'bloco da taxonomia oficial sem workbook carregado'. O produtor não pode ser resolvido nem validado neste build."
+        }
+      ]
+    },
+    {
+      "consumer_block": "production",
+      "consumer_definition": "VAR12054",
+      "consumer_name": "reducao_lth_calcinacao",
+      "consumer_frequency": "diário",
+      "consumer_scope": {
+        "scope_type": "linha",
+        "scope_value": "L1_L7"
+      },
+      "consumer_rows": [
+        79
+      ],
+      "source_block": "maintenance",
+      "source_definition": null,
+      "resolution_status": "NOT_FOUND",
+      "validation_status": "SOURCE_NOT_FOUND",
+      "errors": [
+        {
+          "code": "INTERBLOCK_SOURCE_NOT_FOUND",
+          "class": "SOURCE_NOT_FOUND",
+          "dimension": "source_block",
+          "consumer_value": "maintenance",
+          "producer_value": "bloco da taxonomia oficial sem workbook carregado",
+          "message": "INTERBLOCK_SOURCE_NOT_FOUND: consumidor production linha 79 'reducao_lth_calcinacao' (diário linha/L1_L7), fonte='maintenance': dimensão 'source_block' — consumidor 'maintenance', produtor 'bloco da taxonomia oficial sem workbook carregado'. O produtor não pode ser resolvido nem validado neste build."
+        }
+      ]
+    },
+    {
+      "consumer_block": "production",
+      "consumer_definition": "VAR12055",
+      "consumer_name": "reducao_lth_clarificacao",
+      "consumer_frequency": "diário",
+      "consumer_scope": {
+        "scope_type": "linha",
+        "scope_value": "L1_L7"
+      },
+      "consumer_rows": [
+        80
+      ],
+      "source_block": "maintenance",
+      "source_definition": null,
+      "resolution_status": "NOT_FOUND",
+      "validation_status": "SOURCE_NOT_FOUND",
+      "errors": [
+        {
+          "code": "INTERBLOCK_SOURCE_NOT_FOUND",
+          "class": "SOURCE_NOT_FOUND",
+          "dimension": "source_block",
+          "consumer_value": "maintenance",
+          "producer_value": "bloco da taxonomia oficial sem workbook carregado",
+          "message": "INTERBLOCK_SOURCE_NOT_FOUND: consumidor production linha 80 'reducao_lth_clarificacao' (diário linha/L1_L7), fonte='maintenance': dimensão 'source_block' — consumidor 'maintenance', produtor 'bloco da taxonomia oficial sem workbook carregado'. O produtor não pode ser resolvido nem validado neste build."
+        }
+      ]
+    },
+    {
+      "consumer_block": "production",
+      "consumer_definition": "VAR12056",
+      "consumer_name": "reducao_lth_digestao",
+      "consumer_frequency": "diário",
+      "consumer_scope": {
+        "scope_type": "linha",
+        "scope_value": "L1_L7"
+      },
+      "consumer_rows": [
+        81
+      ],
+      "source_block": "maintenance",
+      "source_definition": null,
+      "resolution_status": "NOT_FOUND",
+      "validation_status": "SOURCE_NOT_FOUND",
+      "errors": [
+        {
+          "code": "INTERBLOCK_SOURCE_NOT_FOUND",
+          "class": "SOURCE_NOT_FOUND",
+          "dimension": "source_block",
+          "consumer_value": "maintenance",
+          "producer_value": "bloco da taxonomia oficial sem workbook carregado",
+          "message": "INTERBLOCK_SOURCE_NOT_FOUND: consumidor production linha 81 'reducao_lth_digestao' (diário linha/L1_L7), fonte='maintenance': dimensão 'source_block' — consumidor 'maintenance', produtor 'bloco da taxonomia oficial sem workbook carregado'. O produtor não pode ser resolvido nem validado neste build."
+        }
+      ]
+    },
+    {
+      "consumer_block": "production",
+      "consumer_definition": "VAR12057",
+      "consumer_name": "reducao_lth_precipitacao",
+      "consumer_frequency": "diário",
+      "consumer_scope": {
+        "scope_type": "linha",
+        "scope_value": "L1_L7"
+      },
+      "consumer_rows": [
+        82
+      ],
+      "source_block": "maintenance",
+      "source_definition": null,
+      "resolution_status": "NOT_FOUND",
+      "validation_status": "SOURCE_NOT_FOUND",
+      "errors": [
+        {
+          "code": "INTERBLOCK_SOURCE_NOT_FOUND",
+          "class": "SOURCE_NOT_FOUND",
+          "dimension": "source_block",
+          "consumer_value": "maintenance",
+          "producer_value": "bloco da taxonomia oficial sem workbook carregado",
+          "message": "INTERBLOCK_SOURCE_NOT_FOUND: consumidor production linha 82 'reducao_lth_precipitacao' (diário linha/L1_L7), fonte='maintenance': dimensão 'source_block' — consumidor 'maintenance', produtor 'bloco da taxonomia oficial sem workbook carregado'. O produtor não pode ser resolvido nem validado neste build."
+        }
+      ]
+    },
+    {
+      "consumer_block": "production",
+      "consumer_definition": "VAR12058",
+      "consumer_name": "tempo_calcinacao",
+      "consumer_frequency": "diário",
+      "consumer_scope": {
+        "scope_type": "linha",
+        "scope_value": "L1_L7"
+      },
+      "consumer_rows": [
+        83
+      ],
+      "source_block": "maintenance",
+      "source_definition": null,
+      "resolution_status": "NOT_FOUND",
+      "validation_status": "SOURCE_NOT_FOUND",
+      "errors": [
+        {
+          "code": "INTERBLOCK_SOURCE_NOT_FOUND",
+          "class": "SOURCE_NOT_FOUND",
+          "dimension": "source_block",
+          "consumer_value": "maintenance",
+          "producer_value": "bloco da taxonomia oficial sem workbook carregado",
+          "message": "INTERBLOCK_SOURCE_NOT_FOUND: consumidor production linha 83 'tempo_calcinacao' (diário linha/L1_L7), fonte='maintenance': dimensão 'source_block' — consumidor 'maintenance', produtor 'bloco da taxonomia oficial sem workbook carregado'. O produtor não pode ser resolvido nem validado neste build."
+        }
+      ]
+    },
+    {
+      "consumer_block": "production",
+      "consumer_definition": "VAR12059",
+      "consumer_name": "tempo_clarificacao",
+      "consumer_frequency": "diário",
+      "consumer_scope": {
+        "scope_type": "linha",
+        "scope_value": "L1_L7"
+      },
+      "consumer_rows": [
+        84
+      ],
+      "source_block": "maintenance",
+      "source_definition": null,
+      "resolution_status": "NOT_FOUND",
+      "validation_status": "SOURCE_NOT_FOUND",
+      "errors": [
+        {
+          "code": "INTERBLOCK_SOURCE_NOT_FOUND",
+          "class": "SOURCE_NOT_FOUND",
+          "dimension": "source_block",
+          "consumer_value": "maintenance",
+          "producer_value": "bloco da taxonomia oficial sem workbook carregado",
+          "message": "INTERBLOCK_SOURCE_NOT_FOUND: consumidor production linha 84 'tempo_clarificacao' (diário linha/L1_L7), fonte='maintenance': dimensão 'source_block' — consumidor 'maintenance', produtor 'bloco da taxonomia oficial sem workbook carregado'. O produtor não pode ser resolvido nem validado neste build."
+        }
+      ]
+    },
+    {
+      "consumer_block": "production",
+      "consumer_definition": "VAR12060",
+      "consumer_name": "tempo_digestao",
+      "consumer_frequency": "diário",
+      "consumer_scope": {
+        "scope_type": "linha",
+        "scope_value": "L1_L7"
+      },
+      "consumer_rows": [
+        85
+      ],
+      "source_block": "maintenance",
+      "source_definition": null,
+      "resolution_status": "NOT_FOUND",
+      "validation_status": "SOURCE_NOT_FOUND",
+      "errors": [
+        {
+          "code": "INTERBLOCK_SOURCE_NOT_FOUND",
+          "class": "SOURCE_NOT_FOUND",
+          "dimension": "source_block",
+          "consumer_value": "maintenance",
+          "producer_value": "bloco da taxonomia oficial sem workbook carregado",
+          "message": "INTERBLOCK_SOURCE_NOT_FOUND: consumidor production linha 85 'tempo_digestao' (diário linha/L1_L7), fonte='maintenance': dimensão 'source_block' — consumidor 'maintenance', produtor 'bloco da taxonomia oficial sem workbook carregado'. O produtor não pode ser resolvido nem validado neste build."
+        }
+      ]
+    },
+    {
+      "consumer_block": "production",
+      "consumer_definition": "VAR12061",
+      "consumer_name": "tempo_precipitacao",
+      "consumer_frequency": "diário",
+      "consumer_scope": {
+        "scope_type": "linha",
+        "scope_value": "L1_L7"
+      },
+      "consumer_rows": [
+        86
+      ],
+      "source_block": "maintenance",
+      "source_definition": null,
+      "resolution_status": "NOT_FOUND",
+      "validation_status": "SOURCE_NOT_FOUND",
+      "errors": [
+        {
+          "code": "INTERBLOCK_SOURCE_NOT_FOUND",
+          "class": "SOURCE_NOT_FOUND",
+          "dimension": "source_block",
+          "consumer_value": "maintenance",
+          "producer_value": "bloco da taxonomia oficial sem workbook carregado",
+          "message": "INTERBLOCK_SOURCE_NOT_FOUND: consumidor production linha 86 'tempo_precipitacao' (diário linha/L1_L7), fonte='maintenance': dimensão 'source_block' — consumidor 'maintenance', produtor 'bloco da taxonomia oficial sem workbook carregado'. O produtor não pode ser resolvido nem validado neste build."
+        }
+      ]
+    }
+  ]
+}

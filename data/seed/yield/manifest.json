@@ -1,8 +1,8 @@
 {
   "block": "yield",
   "workbook": {
-    "file_name": "descritivo_das_variáveis_yield_v9.xlsx",
-    "sha256": "1c7b5684cc49d9498edceb520ced2e8a1f673812057d4094846820074098a76b",
+    "file_name": "descritivo_das_variáveis_yield_v11.xlsx",
+    "sha256": "639e8b980f19bc20429cf9763157ac1828d9067bdbabea3bf3db0badbc2df931",
     "sheet": "yield",
     "header_row": 1,
     "data_rows": 254,
@@ -349,7 +349,8 @@
       "scope_value": "L1_L7",
       "rows": [
         32
-      ]
+      ],
+      "source_block": "production"
     },
     {
       "entity_id": "VAR11032",
@@ -3561,16 +3562,5 @@
       "row": 250
     }
   ],
-  "pending_contract_decisions": [
-    {
-      "decision_id": "D24-12",
-      "row": 92,
-      "name": "ltp_tc",
-      "fields": {
-        "value": 273,
-        "version": 1
-      },
-      "reason": "value/version preenchidos em Type=variable: o contrato não define o significado; não transportado para o domínio, aguardando decisão."
-    }
-  ]
+  "pending_contract_decisions": []
 }

@@ -416,6 +416,11 @@ def build_manifest(
                 "scope_type": entity.scope_type,
                 "scope_value": entity.scope_value,
                 "rows": [r.row for r in entity.rows],
+                **(
+                    {"source_block": entity.source_block}
+                    if entity.source_block is not None
+                    else {}
+                ),
             }
             for entity in model.entities
         ],

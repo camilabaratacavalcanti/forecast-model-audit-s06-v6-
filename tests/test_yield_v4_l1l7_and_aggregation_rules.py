@@ -789,7 +789,7 @@ def test_12_audit_all_32_new_equations_target_expected_variables(
         assert e.scope_value == "L1_L7"
         assert e.status == "PUBLISHED"
         assert e.source_reference == (
-            "descritivo_das_variáveis_yield_v9.xlsx"
+            "descritivo_das_variáveis_yield_v11.xlsx"
         )
 
         target = var_by_id[e.target_variable_id]

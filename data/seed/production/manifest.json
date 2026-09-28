@@ -1,8 +1,8 @@
 {
   "block": "production",
   "workbook": {
-    "file_name": "descritivo_das_variáveis_production_v6.xlsx",
-    "sha256": "17cb83ca15d92c0b3243a606ddfd194a110dcc4f01fb71bf30511a4c6fb07210",
+    "file_name": "descritivo_das_variáveis_production_v9.xlsx",
+    "sha256": "3e3024e564ee6f18b82e9771957e61f4940becd1e80db5705143123377956a28",
     "sheet": "production",
     "header_row": 2,
     "data_rows": 88,
@@ -316,7 +316,8 @@
       "scope_value": "L1_L7",
       "rows": [
         30
-      ]
+      ],
+      "source_block": "forecast"
     },
     {
       "entity_id": "VAR12028",
@@ -327,7 +328,8 @@
       "scope_value": "L1_L7",
       "rows": [
         31
-      ]
+      ],
+      "source_block": "forecast"
     },
     {
       "entity_id": "VAR12029",
@@ -338,7 +340,8 @@
       "scope_value": "L1_L7",
       "rows": [
         32
-      ]
+      ],
+      "source_block": "forecast"
     },
     {
       "entity_id": "VAR12030",
@@ -349,7 +352,8 @@
       "scope_value": "L1_L7",
       "rows": [
         33
-      ]
+      ],
+      "source_block": "forecast"
     },
     {
       "entity_id": "PARAM12002",
@@ -675,7 +679,8 @@
       "scope_value": "L1_L7",
       "rows": [
         79
-      ]
+      ],
+      "source_block": "maintenance"
     },
     {
       "entity_id": "VAR12055",
@@ -686,7 +691,8 @@
       "scope_value": "L1_L7",
       "rows": [
         80
-      ]
+      ],
+      "source_block": "maintenance"
     },
     {
       "entity_id": "VAR12056",
@@ -697,7 +703,8 @@
       "scope_value": "L1_L7",
       "rows": [
         81
-      ]
+      ],
+      "source_block": "maintenance"
     },
     {
       "entity_id": "VAR12057",
@@ -708,7 +715,8 @@
       "scope_value": "L1_L7",
       "rows": [
         82
-      ]
+      ],
+      "source_block": "maintenance"
     },
     {
       "entity_id": "VAR12058",
@@ -719,7 +727,8 @@
       "scope_value": "L1_L7",
       "rows": [
         83
-      ]
+      ],
+      "source_block": "maintenance"
     },
     {
       "entity_id": "VAR12059",
@@ -730,7 +739,8 @@
       "scope_value": "L1_L7",
       "rows": [
         84
-      ]
+      ],
+      "source_block": "maintenance"
     },
     {
       "entity_id": "VAR12060",
@@ -741,7 +751,8 @@
       "scope_value": "L1_L7",
       "rows": [
         85
-      ]
+      ],
+      "source_block": "maintenance"
     },
     {
       "entity_id": "VAR12061",
@@ -752,7 +763,8 @@
       "scope_value": "L1_L7",
       "rows": [
         86
-      ]
+      ],
+      "source_block": "maintenance"
     },
     {
       "entity_id": "VAR12062",
@@ -763,7 +775,8 @@
       "scope_value": "L1_L7",
       "rows": [
         87
-      ]
+      ],
+      "source_block": "yield"
     },
     {
       "entity_id": "VAR12063",
@@ -1023,21 +1036,5 @@
       "row": 90
     }
   ],
-  "pending_contract_decisions": [
-    {
-      "decision_id": "R2-A019-UNREACHABLE",
-      "row": 25,
-      "name": "desaguamento_oee",
-      "fields": {
-        "equation_id": "EQ12008",
-        "consumer": "desaguamento_oee anual linha_grupo/L1_L7",
-        "reference": "VAR12011",
-        "name": "consumo_mpsa",
-        "frequency": "diário",
-        "scope": "linha/L1_L7",
-        "consumer_instance": "linha_grupo/L1_L7"
-      },
-      "reason": "a resolução nome+frequência+escopo só encontra uma definição que nenhuma instância do consumidor alcança em runtime; a equação é gravada como escrita no workbook e falha de forma explícita ao ser avaliada. Requer decisão do dono do workbook."
-    }
-  ]
+  "pending_contract_decisions": []
 }

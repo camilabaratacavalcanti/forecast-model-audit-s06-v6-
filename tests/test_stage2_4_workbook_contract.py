@@ -950,21 +950,20 @@ def test_t24_15_cross_workbook_links_are_documented_not_decided():
 
 def test_t24_16_value_on_a_variable_row_is_recorded_not_dropped():
     """
-    DECISÃO PENDENTE (D24-12): yield v9 r92 (`ltp_tc`, variable) traz
-    value=273 e version=1. O contrato não define o significado; o valor
-    não entra no domínio (Variable não tem `value`) e não é descartado
-    em silêncio: fica no manifesto como decisão pendente.
+    D24-12 (fechada na 2.5B: value/version exclusivos de parameter).
+    LEGACY_TEST_EXPECTATION atualizada na Etapa 2.6: o yield v9 r92
+    (`ltp_tc`, variable) trazia value=273/version=1 e o teste fixava a
+    pendência no manifesto; desde o yield v10 a célula está vazia e
+    nenhum workbook oficial preenche value/version numa variável. O
+    mecanismo de registro continua o mesmo (não há rejeição nova nesta
+    etapa); o valor nunca entra no domínio.
     """
 
-    pending = [
-        d for d in read_seed_file("yield", "manifest")["pending_contract_decisions"]
-        if d["decision_id"] == "D24-12"
-    ]
-    assert pending == [{
-        "decision_id": "D24-12", "row": 92, "name": "ltp_tc",
-        "fields": {"value": 273, "version": 1},
-        "reason": pending[0]["reason"],
-    }]
+    for block in BLOCKS:
+        assert [
+            d for d in read_seed_file(block, "manifest")["pending_contract_decisions"]
+            if d["decision_id"] == "D24-12"
+        ] == [], block
     assert "value" not in Variable.__dataclass_fields__
     ltp_tc = variable_id("yield", "ltp_tc", "diário")
     assert "value" not in next(v for v in read_seed_file("yield", "variables") if v["variable_id"] == ltp_tc)

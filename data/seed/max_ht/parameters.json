@@ -9,7 +9,7 @@
     "frequency": "anual",
     "scope_type": "linha_grupo",
     "scope_value": "L1_L3",
-    "source_reference": "descritivo_das_variáveis_MaxHT_v9.xlsx",
+    "source_reference": "descritivo_das_variáveis_MaxHT_v10.xlsx",
     "status": "ativo",
     "value_type": "numerico"
   },
@@ -23,7 +23,7 @@
     "frequency": "anual",
     "scope_type": "linha_grupo",
     "scope_value": "L4_L5",
-    "source_reference": "descritivo_das_variáveis_MaxHT_v9.xlsx",
+    "source_reference": "descritivo_das_variáveis_MaxHT_v10.xlsx",
     "status": "ativo",
     "value_type": "numerico"
   },
@@ -37,7 +37,7 @@
     "frequency": "anual",
     "scope_type": "linha_grupo",
     "scope_value": "L6_L7",
-    "source_reference": "descritivo_das_variáveis_MaxHT_v9.xlsx",
+    "source_reference": "descritivo_das_variáveis_MaxHT_v10.xlsx",
     "status": "ativo",
     "value_type": "numerico"
   },
@@ -51,7 +51,7 @@
     "frequency": "anual",
     "scope_type": "linha_grupo",
     "scope_value": "L1_L7",
-    "source_reference": "descritivo_das_variáveis_MaxHT_v9.xlsx",
+    "source_reference": "descritivo_das_variáveis_MaxHT_v10.xlsx",
     "status": "ativo",
     "value_type": "numerico"
   }

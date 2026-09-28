@@ -1,8 +1,8 @@
 {
   "block": "max_ht",
   "workbook": {
-    "file_name": "descritivo_das_variáveis_MaxHT_v9.xlsx",
-    "sha256": "74d5cbb7624d5c7101b5f25ecd76e156c9d019968c7e5f9af2ed04aa50b27004",
+    "file_name": "descritivo_das_variáveis_MaxHT_v10.xlsx",
+    "sha256": "3e40aab12ec0ec07918c5e358145b09f138663f635ca9e7fc0990d1b765b683b",
     "sheet": "MaxHT",
     "header_row": 2,
     "data_rows": 120,
@@ -41,7 +41,8 @@
       "scope_value": "L1_L7",
       "rows": [
         5
-      ]
+      ],
+      "source_block": "alumina"
     },
     {
       "entity_id": "VAR13004",
@@ -734,7 +735,8 @@
       "scope_value": "L1_L7",
       "rows": [
         68
-      ]
+      ],
+      "source_block": "production"
     },
     {
       "entity_id": "VAR13063",
@@ -1064,7 +1066,8 @@
       "scope_value": "L1_L7",
       "rows": [
         98
-      ]
+      ],
+      "source_block": "production"
     },
     {
       "entity_id": "VAR13093",

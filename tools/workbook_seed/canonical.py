@@ -129,6 +129,16 @@ class CanonicalEntity:
     def first_row(self) -> int:
         return self.rows[0].row
 
+    @property
+    def source_block(self):
+        """
+        Bloco produtor canônico declarado em `fonte` (Etapa 2.6): o
+        texto da célula, sem strip, prefixo removido ou alias. A
+        resolução e a validação ficam em `tools.workbook_seed.interblock`.
+        """
+
+        return self.fonte
+
     def as_index_entry(self) -> dict:
         return {
             "entity_id": self.entity_id,

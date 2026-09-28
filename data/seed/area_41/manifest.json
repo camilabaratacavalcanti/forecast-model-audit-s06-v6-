@@ -1,8 +1,8 @@
 {
   "block": "area_41",
   "workbook": {
-    "file_name": "descritivo_das_variáveis_A41_v8.xlsx",
-    "sha256": "be2372b4f4f35f5aea720dcc00c680f3e47e359138995dd35a6dcabd3d603528",
+    "file_name": "descritivo_das_variáveis_A41_v9.xlsx",
+    "sha256": "36bbae135285ad9b3b88d21ef94e2bc9c92f2ef74736412b66bc62de4dcf3f50",
     "sheet": "A41",
     "header_row": 2,
     "data_rows": 54,
@@ -85,7 +85,8 @@
       "scope_value": "L1_L7",
       "rows": [
         9
-      ]
+      ],
+      "source_block": "yield"
     },
     {
       "entity_id": "VAR16008",
@@ -244,7 +245,8 @@
         26,
         27,
         28
-      ]
+      ],
+      "source_block": "maintenance"
     },
     {
       "entity_id": "VAR16022",
