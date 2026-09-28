@@ -1,0 +1,33 @@
+check,block,row,Type,name,frequency,scope,unit,variable_type,expression,verdict
+oee/oee_total,production,48,variable / equation,oee,diário,linha/L1_L7,-,calculado,lth / lth_meta,OK unit='-'
+oee/oee_total,production,49,variable / equation,oee,mensal,linha/L1_L7,-,calculado,Média mensal de todos os resultados diários de 'oee',OK unit='-'
+oee/oee_total,production,50,variable / equation,oee_total,diário,linha_grupo/L1_L7,-,calculado,( (oee@L1 * lth_meta@L1) + (oee@L2 * lth_meta@L2) + (oee@L3 * lth_meta@L3) + (oee@L4 * lth_meta@L4) + (oee@L5 * lth_meta@L5) + (oee@L6 * lth_meta@L6) + (oee@L7 * lth_meta@L7) ) / ( lth_meta@L1 + lth_meta@L2 + lth_meta@L3 + lth_meta@L4 + lth_meta@L5 + lth_meta@L6 + lth_meta@L7 ),OK unit='-'
+oee/oee_total,production,51,variable / equation,oee_total,mensal,linha_grupo/L1_L7,-,calculado,Média mensal de todos os resultados diários de 'oee_total',OK unit='-'
+oee/oee_total,production,52,variable / equation,oee_total,anual,linha_grupo/L1_L7,-,calculado,Média anual de todos os resultados diários de 'oee_total',OK unit='-'
+oee/oee_total,yield,37,variable / equation,lth_total,diário,linha_grupo/L1_L7,m³/h,calculado,( lth@L1*oee@L1 + lth@L2*oee@L2 + lth@L3*oee@L3 + lth@L4*oee@L4 + lth@L5*oee@L5 + lth@L6*oee@L6 + lth@L7*oee@L7 ) / ( oee@L1 + oee@L2 + oee@L3 + oee@L4 + oee@L5 + oee@L6 + oee@L7),CONSUMIDOR (verificar escala na fórmula)
+oee/oee_total,yield,122,variable,oee,diário,linha/L1_L7,-,entrada_externa,,OK unit='-'
+oee/oee_total,yield,123,variable / equation,oee,mensal,linha/L1_L7,-,calculado,Média mensal de todos os resultados diários de 'oee',OK unit='-'
+oee/oee_total,yield,124,variable / equation,oee_grupo,diário,linha_grupo/L1_L3,-,calculado, ( oee@L1 + oee@L2 + oee@L3 ) / 3,CONSUMIDOR (verificar escala na fórmula)
+oee/oee_total,yield,125,variable / equation,oee_grupo,diário,linha_grupo/L4_L5,-,calculado,( oee@L4 + oee@L5 ) / 2,CONSUMIDOR (verificar escala na fórmula)
+oee/oee_total,yield,126,variable / equation,oee_grupo,diário,linha_grupo/L6_L7,-,calculado,( oee@L6 + oee@L7 ) / 2,CONSUMIDOR (verificar escala na fórmula)
+oee/oee_total,yield,127,variable / equation,oee_total,diário,linha_grupo/L1_L7,-,calculado,( oee@L1*ltp_lth@L1 + oee@L2*ltp_lth@L2 + oee@L3*ltp_lth@L3 + oee@L4*ltp_lth@L4 + oee@L5*ltp_lth@L5 + oee@L6*ltp_lth@L6 + oee@L7*ltp_lth@L7) / ( ltp_lth@L1 + ltp_lth@L2 + ltp_lth@L3 +  ltp_lth@L4 +  ltp_lth@L5 +  ltp_lth@L6 +  ltp_lth@L7),OK unit='-'
+oee/oee_total,yield,131,variable / equation,oee_total,mensal,linha_grupo/L1_L7,-,calculado,Média mensal de todos os resultados diários de 'oee_total',OK unit='-'
+identidade repetida entre blocos,area_41 energy max_ht production yield,,variable variable variable variable variable,lth,diário,linha/L1_L7,area_41:m³/h | energy:m³/h | max_ht:m³/h | production:m³/h | yield:m³/h,area_41:entrada | energy:entrada | max_ht:entrada | production:calculado | yield:entrada,,OK (unidades iguais)
+identidade repetida entre blocos,max_ht production yield,,variable variable variable,lth,mensal,linha/L1_L7,max_ht:m³/h | production:m³/h | yield:m³/h,max_ht:calculado | production:calculado | yield:calculado,,OK (unidades iguais)
+identidade repetida entre blocos,area_41 yield,,variable variable,lth_grupo,diário,linha_grupo/L1_L3,area_41:m³/h | yield:m³/h,area_41:calculado | yield:calculado,,OK (unidades iguais)
+identidade repetida entre blocos,area_41 yield,,variable variable,lth_grupo,diário,linha_grupo/L4_L5,area_41:m³/h | yield:m³/h,area_41:calculado | yield:calculado,,OK (unidades iguais)
+identidade repetida entre blocos,area_41 yield,,variable variable,lth_grupo,diário,linha_grupo/L6_L7,area_41:m³/h | yield:m³/h,area_41:calculado | yield:calculado,,OK (unidades iguais)
+identidade repetida entre blocos,energy production,,variable parameter,lth_meta,anual,linha/L1_L7,energy:- | production:-,energy:entrada | production:None,,OK (unidades iguais)
+identidade repetida entre blocos,max_ht production,,variable variable,lth_total,anual,linha_grupo/L1_L7,max_ht:m³/h | production:m³/h,max_ht:calculado | production:calculado,,OK (unidades iguais)
+identidade repetida entre blocos,energy max_ht production yield,,variable variable variable variable,lth_total,diário,linha_grupo/L1_L7,energy:m³/h | max_ht:m³/h | production:m³/h | yield:m³/h,energy:entrada | max_ht:calculado | production:calculado | yield:calculado,,OK (unidades iguais)
+identidade repetida entre blocos,energy max_ht production yield,,variable variable variable variable,lth_total,mensal,linha_grupo/L1_L7,energy:m³/h | max_ht:m³/h | production:m³/h | yield:m³/h,energy:entrada | max_ht:calculado | production:calculado | yield:calculado,,OK (unidades iguais)
+identidade repetida entre blocos,production yield,,variable variable,oee,diário,linha/L1_L7,production:- | yield:-,production:calculado | yield:entrada_externa,,OK (unidades iguais)
+identidade repetida entre blocos,production yield,,variable variable,oee,mensal,linha/L1_L7,production:- | yield:-,production:calculado | yield:calculado,,OK (unidades iguais)
+identidade repetida entre blocos,production yield,,variable variable,oee_total,diário,linha_grupo/L1_L7,production:- | yield:-,production:calculado | yield:calculado,,OK (unidades iguais)
+identidade repetida entre blocos,production yield,,variable variable,oee_total,mensal,linha_grupo/L1_L7,production:- | yield:-,production:calculado | yield:calculado,,OK (unidades iguais)
+identidade repetida entre blocos,energy production,,variable variable,pick_up,diário,linha/L1_L7,energy:g/l | production:g/l,energy:entrada | production:calculado,,OK (unidades iguais)
+identidade repetida entre blocos,energy production,,variable variable,pick_up_total,diário,linha_grupo/L1_L7,energy:g/l | production:g/l,energy:entrada | production:calculado,,OK (unidades iguais)
+identidade repetida entre blocos,energy production,,variable variable,pick_up_total,mensal,linha_grupo/L1_L7,energy:g/l | production:g/l,energy:entrada | production:calculado,,OK (unidades iguais)
+identidade repetida entre blocos,energy max_ht production,,variable variable variable,producao,diário,linha/L1_L7,energy:t/d | max_ht:t/d | production:t/d,energy:entrada | max_ht:entrada | production:calculado,,OK (unidades iguais)
+identidade repetida entre blocos,max_ht production,,variable variable,producao,mensal,linha/L1_L7,max_ht:t/d | production:t/d,max_ht:calculado | production:calculado,,OK (unidades iguais)
+identidade repetida entre blocos,production yield,,variable variable,yield,diário,linha/L1_L7,production:g/l | yield:g/l,production:entrada | yield:calculado,,OK (unidades iguais)

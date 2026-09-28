@@ -1,0 +1,6 @@
+block,version,semantic_rows,definitions,variables,parameter_records,equations,aggregations,value_type,allowed_values_rows,declared_result_states_rows,value_filled,version_filled,pending_contract_decisions
+area_41,v8,54,43,36,7,20,10,"{'numerico': 50, 'categorico': 4}",4,2,{'parameter': 7},{'parameter': 7},0
+energy,v5,56,56,52,4,24,11,{'numerico': 56},0,0,{'parameter': 4},{'parameter': 4},0
+max_ht,v9,120,120,116,4,29,78,{'numerico': 120},0,0,{'parameter': 4},{'parameter': 4},0
+production,v8,88,70,65,17,27,28,{'numerico': 88},0,0,{'parameter': 17},{'parameter': 17},0
+yield,v10,254,242,240,8,138,80,{'numerico': 254},0,0,{'parameter': 8},{'parameter': 8},0

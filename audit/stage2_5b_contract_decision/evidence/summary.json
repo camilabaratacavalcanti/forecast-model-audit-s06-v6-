@@ -1,0 +1,69 @@
+{
+ "approved_unchanged": true,
+ "diffs": {
+  "production": 5,
+  "yield": 2
+ },
+ "totals": {
+  "rows": 572,
+  "equations": 238,
+  "aggregations": 207
+ },
+ "validators_with_candidates": {
+  "variable_errors": 0,
+  "variable_warnings": 27,
+  "parameter_errors": 0,
+  "equation_errors": 0,
+  "registry_integrity": "OK"
+ },
+ "value_version": {
+  "OK (parameter)": 40
+ },
+ "units": {
+  "OK unit='-'": 9,
+  "CONSUMIDOR (verificar escala na fórmula)": 4,
+  "OK (unidades iguais)": 19
+ },
+ "references": {
+  "total": 1436,
+  "TEMPORAL_FALLBACK_COARSER (válido)": 16,
+  "DIRECT": 1417,
+  "SPATIAL_PARENT (válido)": 3
+ },
+ "cross_identity_classes": {
+  "entrada local de identidade calculada em outro bloco": 18,
+  "D25-01 cálculo local em vários blocos — fórmula idêntica (réplica textual)": 21,
+  "somente entradas/parâmetros": 2,
+  "D25-01 cálculo local em vários blocos — fórmulas diferentes (cálculo independente)": 6
+ },
+ "fonte_rows": 34,
+ "fonte_by_variable_type": {
+  "entrada|plataforma=True": 13,
+  "entrada|plataforma=False": 18,
+  "entrada_externa|plataforma=False": 1,
+  "calculado|plataforma=False": 2
+ },
+ "d25_04_cases": [
+  [
+   "energy",
+   37,
+   "evaporado_total_evaporacao",
+   "entrada_externa",
+   "bloco area_04_13 (Forecast A4 e A13)"
+  ],
+  [
+   "production",
+   30,
+   "fator_mpsa",
+   "calculado",
+   "bloco forecast"
+  ],
+  [
+   "production",
+   32,
+   "fator_mrn",
+   "calculado",
+   "bloco forecast"
+  ]
+ ]
+}
