@@ -29,6 +29,15 @@ VALUE_TYPES = frozenset({NUMERIC, CATEGORICAL})
 
 CONDITIONAL_FAILURE = "F"
 
+# Taxonomia global de estados de resultado (D2). Uma variável declara,
+# em `declared_result_states`, apenas os estados que a sua própria regra
+# produz (R1), cada um com o literal textual que o representa na
+# fórmula (ex.: NO_APPLICABLE_RULE → "F"). A propagação e o estado
+# efetivo em execução pertencem à Etapa 3.
+RESULT_STATE_TAXONOMY = frozenset(
+    {"NO_APPLICABLE_RULE", "INVALID_INPUT", "VALIDATION_FAILED"}
+)
+
 
 def is_numeric(value) -> bool:
     return isinstance(value, (int, float)) and not isinstance(value, bool)

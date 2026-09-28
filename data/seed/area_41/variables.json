@@ -1,0 +1,565 @@
+[
+  {
+    "variable_id": "VAR16001",
+    "variable_name": "vazao_ltp",
+    "description": "Vazão de LTP do grupo de linhas L1 a L3.",
+    "unit": "m³/h",
+    "variable_type": "entrada_externa",
+    "frequency": "mensal",
+    "scope_type": "linha_grupo",
+    "scope_value": "L1_L3",
+    "source_reference": "Forecast A41!B31",
+    "status": "ativo",
+    "value_type": "numerico"
+  },
+  {
+    "variable_id": "VAR16002",
+    "variable_name": "vazao_ltp",
+    "description": "Vazão de LTP do grupo de linhas L4 a L5.",
+    "unit": "m³/h",
+    "variable_type": "entrada_externa",
+    "frequency": "mensal",
+    "scope_type": "linha_grupo",
+    "scope_value": "L4_L5",
+    "source_reference": "Forecast A41!B31",
+    "status": "ativo",
+    "value_type": "numerico"
+  },
+  {
+    "variable_id": "VAR16003",
+    "variable_name": "vazao_ltp",
+    "description": "Vazão de LTP do grupo de linhas L6 a L7.",
+    "unit": "m³/h",
+    "variable_type": "entrada_externa",
+    "frequency": "mensal",
+    "scope_type": "linha_grupo",
+    "scope_value": "L6_L7",
+    "source_reference": "Forecast A41!B31",
+    "status": "ativo",
+    "value_type": "numerico"
+  },
+  {
+    "variable_id": "VAR16004",
+    "variable_name": "retirada_cond_corr_ltp",
+    "description": "Retirada de condensado corrigida em função da vazão de LTP para o grupo de linhas L1 a L3.",
+    "unit": "m³/h",
+    "variable_type": "calculado",
+    "frequency": "diário",
+    "scope_type": "linha_grupo",
+    "scope_value": "L1_L3",
+    "source_reference": "Forecast A41!B42",
+    "status": "ativo",
+    "value_type": "numerico"
+  },
+  {
+    "variable_id": "VAR16005",
+    "variable_name": "retirada_cond_corr_ltp",
+    "description": "Retirada de condensado corrigida em função da vazão de LTP para o grupo de linhas L4 a L5.",
+    "unit": "m³/h",
+    "variable_type": "calculado",
+    "frequency": "diário",
+    "scope_type": "linha_grupo",
+    "scope_value": "L4_L5",
+    "source_reference": "Forecast A41!B51",
+    "status": "ativo",
+    "value_type": "numerico"
+  },
+  {
+    "variable_id": "VAR16006",
+    "variable_name": "retirada_cond_corr_ltp",
+    "description": "Retirada de condensado corrigida em função da vazão de LTP para o grupo de linhas L6 a L7.",
+    "unit": "m³/h",
+    "variable_type": "calculado",
+    "frequency": "diário",
+    "scope_type": "linha_grupo",
+    "scope_value": "L6_L7",
+    "source_reference": "Forecast A41!B60",
+    "status": "ativo",
+    "value_type": "numerico"
+  },
+  {
+    "variable_id": "VAR16007",
+    "variable_name": "lth",
+    "description": "LTH de cada linha da área 41, utilizado nos cálculos de retirada de condensado.",
+    "unit": "m³/h",
+    "variable_type": "entrada",
+    "frequency": "diário",
+    "scope_type": "linha",
+    "scope_value": "L1_L7",
+    "source_reference": "Forecast A41!B35",
+    "status": "ativo",
+    "value_type": "numerico"
+  },
+  {
+    "variable_id": "VAR16008",
+    "variable_name": "lth_grupo",
+    "description": "Média dos valores de LTH das linhas L1, L2 e L3.",
+    "unit": "m³/h",
+    "variable_type": "calculado",
+    "frequency": "diário",
+    "scope_type": "linha_grupo",
+    "scope_value": "L1_L3",
+    "source_reference": "Forecast A41!B41",
+    "status": "ativo",
+    "value_type": "numerico"
+  },
+  {
+    "variable_id": "VAR16009",
+    "variable_name": "lth_grupo",
+    "description": "Média dos valores de LTH das linhas L4 e L5.",
+    "unit": "m³/h",
+    "variable_type": "calculado",
+    "frequency": "diário",
+    "scope_type": "linha_grupo",
+    "scope_value": "L4_L5",
+    "source_reference": "Forecast A41!B50",
+    "status": "ativo",
+    "value_type": "numerico"
+  },
+  {
+    "variable_id": "VAR16010",
+    "variable_name": "lth_grupo",
+    "description": "Média dos valores de LTH das linhas L6 e L7.",
+    "unit": "m³/h",
+    "variable_type": "calculado",
+    "frequency": "diário",
+    "scope_type": "linha_grupo",
+    "scope_value": "L6_L7",
+    "source_reference": "Forecast A41!B59",
+    "status": "ativo",
+    "value_type": "numerico"
+  },
+  {
+    "variable_id": "VAR16011",
+    "variable_name": "fator_retirada_cond_corr_lth",
+    "description": "Fator de correção da retirada de condensado em função do LTH para o grupo de linhas L1 a L3.",
+    "unit": "-",
+    "variable_type": "entrada_externa",
+    "frequency": "mensal",
+    "scope_type": "linha_grupo",
+    "scope_value": "L1_L3",
+    "source_reference": "Forecast A41!D32",
+    "status": "ativo",
+    "value_type": "numerico"
+  },
+  {
+    "variable_id": "VAR16012",
+    "variable_name": "fator_retirada_cond_corr_lth",
+    "description": "Fator de correção da retirada de condensado em função do LTH para o grupo de linhas L4 a L5.",
+    "unit": "-",
+    "variable_type": "entrada_externa",
+    "frequency": "mensal",
+    "scope_type": "linha_grupo",
+    "scope_value": "L4_L5",
+    "source_reference": "Forecast A41!D32",
+    "status": "ativo",
+    "value_type": "numerico"
+  },
+  {
+    "variable_id": "VAR16013",
+    "variable_name": "fator_retirada_cond_corr_lth",
+    "description": "Fator de correção da retirada de condensado em função do LTH para o grupo de linhas L6 a L7.",
+    "unit": "-",
+    "variable_type": "entrada_externa",
+    "frequency": "mensal",
+    "scope_type": "linha_grupo",
+    "scope_value": "L6_L7",
+    "source_reference": "Forecast A41!D32",
+    "status": "ativo",
+    "value_type": "numerico"
+  },
+  {
+    "variable_id": "VAR16014",
+    "variable_name": "retirada_cond_corr_lth",
+    "description": "Retirada de condensado corrigida em função do LTH para o grupo de linhas L1 a L3.",
+    "unit": "m³/h",
+    "variable_type": "calculado",
+    "frequency": "diário",
+    "scope_type": "linha_grupo",
+    "scope_value": "L1_L3",
+    "source_reference": "Forecast A41!B43",
+    "status": "ativo",
+    "value_type": "numerico"
+  },
+  {
+    "variable_id": "VAR16015",
+    "variable_name": "retirada_cond_corr_lth",
+    "description": "Retirada de condensado corrigida em função do LTH para o grupo de linhas L4 a L5.",
+    "unit": "m³/h",
+    "variable_type": "calculado",
+    "frequency": "diário",
+    "scope_type": "linha_grupo",
+    "scope_value": "L4_L5",
+    "source_reference": "Forecast A41!B52",
+    "status": "ativo",
+    "value_type": "numerico"
+  },
+  {
+    "variable_id": "VAR16016",
+    "variable_name": "retirada_cond_corr_lth",
+    "description": "Retirada de condensado corrigida em função do LTH para o grupo de linhas L6 a L7.",
+    "unit": "m³/h",
+    "variable_type": "calculado",
+    "frequency": "diário",
+    "scope_type": "linha_grupo",
+    "scope_value": "L6_L7",
+    "source_reference": "Forecast A41!B61",
+    "status": "ativo",
+    "value_type": "numerico"
+  },
+  {
+    "variable_id": "VAR16017",
+    "variable_name": "valor_retirada",
+    "description": null,
+    "unit": "m³/h",
+    "variable_type": "entrada_externa",
+    "frequency": "diário",
+    "scope_type": "linha",
+    "scope_value": "L1_L3",
+    "source_reference": "Forecast A41!A11",
+    "status": "ativo",
+    "value_type": "numerico",
+    "instances": [
+      {
+        "scope_value": "L1",
+        "description": "Valor de retirada de condensado da linha L1.",
+        "source_reference": "Forecast A41!A11"
+      },
+      {
+        "scope_value": "L2",
+        "description": "Valor de retirada de condensado da linha L2.",
+        "source_reference": "Forecast A41!A11"
+      },
+      {
+        "scope_value": "L3",
+        "description": "Valor de retirada de condensado da linha L3.",
+        "source_reference": "Forecast A41!A11"
+      }
+    ]
+  },
+  {
+    "variable_id": "VAR16018",
+    "variable_name": "retirada_condensado_grupo",
+    "description": "Retirada de condensado calculada para o grupo de linhas L1 a L3.",
+    "unit": "m³/h",
+    "variable_type": "calculado",
+    "frequency": "diário",
+    "scope_type": "linha_grupo",
+    "scope_value": "L1_L3",
+    "source_reference": "Forecast A41!A11",
+    "status": "ativo",
+    "value_type": "numerico"
+  },
+  {
+    "variable_id": "VAR16019",
+    "variable_name": "retirada_condensado_grupo",
+    "description": "Média mensal da retirada de condensado calculada para o grupo de linhas L1 a L3.",
+    "unit": "m³/h",
+    "variable_type": "calculado",
+    "frequency": "mensal",
+    "scope_type": "linha_grupo",
+    "scope_value": "L1_L3",
+    "source_reference": "Forecast A41!A11",
+    "status": "ativo",
+    "value_type": "numerico"
+  },
+  {
+    "variable_id": "VAR16020",
+    "variable_name": "retirada_condensado_grupo",
+    "description": "Média anual da retirada de condensado calculada para o grupo de linhas L1 a L3.",
+    "unit": "m³/h",
+    "variable_type": "calculado",
+    "frequency": "anual",
+    "scope_type": "linha_grupo",
+    "scope_value": "L1_L3",
+    "source_reference": "Forecast A41!A11",
+    "status": "ativo",
+    "value_type": "numerico"
+  },
+  {
+    "variable_id": "VAR16021",
+    "variable_name": "hes",
+    "description": null,
+    "unit": "-",
+    "variable_type": "entrada",
+    "frequency": "diário",
+    "scope_type": "linha",
+    "scope_value": "L4_L7",
+    "source_reference": "descritivo_das_variáveis_A41_v8.xlsx",
+    "status": "ativo",
+    "value_type": "categorico",
+    "allowed_values": [
+      "Normal",
+      "LC",
+      "Overhaul/Parada",
+      "1 By pass",
+      "1 By pass e LC"
+    ],
+    "instances": [
+      {
+        "scope_value": "L4",
+        "description": "Estado operacional da linha L4.",
+        "source_reference": "Forecast A41!A16"
+      },
+      {
+        "scope_value": "L5",
+        "description": "Estado operacional da linha L5.",
+        "source_reference": "Forecast A41!A17"
+      },
+      {
+        "scope_value": "L6",
+        "description": "Estado operacional da linha L6.",
+        "source_reference": "Forecast A41!A18"
+      },
+      {
+        "scope_value": "L7",
+        "description": "Estado operacional da linha L7.",
+        "source_reference": "Forecast A41!A19"
+      }
+    ]
+  },
+  {
+    "variable_id": "VAR16022",
+    "variable_name": "desconto_retirada_41c",
+    "description": "Desconto de retirada associado à condição 41c para o grupo de linhas L4 e L5.",
+    "unit": "m³/h",
+    "variable_type": "entrada_externa",
+    "frequency": "diário",
+    "scope_type": "linha_grupo",
+    "scope_value": "L4_L5",
+    "source_reference": "Forecast A41!C26",
+    "status": "ativo",
+    "value_type": "numerico"
+  },
+  {
+    "variable_id": "VAR16023",
+    "variable_name": "desconto_retirada_41c",
+    "description": "Desconto de retirada associado à condição 41c para o grupo de linhas L6 e L7.",
+    "unit": "m³/h",
+    "variable_type": "entrada_externa",
+    "frequency": "diário",
+    "scope_type": "linha_grupo",
+    "scope_value": "L6_L7",
+    "source_reference": "Forecast A41!C28",
+    "status": "ativo",
+    "value_type": "numerico"
+  },
+  {
+    "variable_id": "VAR16024",
+    "variable_name": "desconto_retirada_41d",
+    "description": "Desconto de retirada associado à condição 41d para o grupo de linhas L4 e L5.",
+    "unit": "m³/h",
+    "variable_type": "entrada_externa",
+    "frequency": "diário",
+    "scope_type": "linha_grupo",
+    "scope_value": "L4_L5",
+    "source_reference": "Forecast A41!C27",
+    "status": "ativo",
+    "value_type": "numerico"
+  },
+  {
+    "variable_id": "VAR16025",
+    "variable_name": "retirada_condensado_grupo",
+    "description": "Retirada de condensado calculada para o grupo de linhas L4 e L5 conforme os estados operacionais das linhas.",
+    "unit": "m³/h",
+    "variable_type": "calculado",
+    "frequency": "diário",
+    "scope_type": "linha_grupo",
+    "scope_value": "L4_L5",
+    "source_reference": "Forecast A41!A12",
+    "status": "ativo",
+    "value_type": "numerico",
+    "declared_result_states": [
+      {
+        "state": "NO_APPLICABLE_RULE",
+        "literal": "F"
+      }
+    ]
+  },
+  {
+    "variable_id": "VAR16026",
+    "variable_name": "retirada_condensado_grupo",
+    "description": "Média mensal da retirada de condensado calculada para o grupo de linhas L4 e L5.",
+    "unit": "m³/h",
+    "variable_type": "calculado",
+    "frequency": "mensal",
+    "scope_type": "linha_grupo",
+    "scope_value": "L4_L5",
+    "source_reference": "Forecast A41!A12",
+    "status": "ativo",
+    "value_type": "numerico"
+  },
+  {
+    "variable_id": "VAR16027",
+    "variable_name": "retirada_condensado_grupo",
+    "description": "Média anual da retirada de condensado calculada para o grupo de linhas L4 e L5.",
+    "unit": "m³/h",
+    "variable_type": "calculado",
+    "frequency": "anual",
+    "scope_type": "linha_grupo",
+    "scope_value": "L4_L5",
+    "source_reference": "Forecast A41!A12",
+    "status": "ativo",
+    "value_type": "numerico"
+  },
+  {
+    "variable_id": "VAR16028",
+    "variable_name": "retirada_condensado_grupo",
+    "description": "Retirada de condensado calculada para o grupo de linhas L6 e L7 conforme os estados operacionais das linhas.",
+    "unit": "m³/h",
+    "variable_type": "calculado",
+    "frequency": "diário",
+    "scope_type": "linha_grupo",
+    "scope_value": "L6_L7",
+    "source_reference": "Forecast A41!A13",
+    "status": "ativo",
+    "value_type": "numerico",
+    "declared_result_states": [
+      {
+        "state": "NO_APPLICABLE_RULE",
+        "literal": "F"
+      }
+    ]
+  },
+  {
+    "variable_id": "VAR16029",
+    "variable_name": "retirada_condensado_grupo",
+    "description": "Média mensal da retirada de condensado calculada para o grupo de linhas L6 e L7.",
+    "unit": "m³/h",
+    "variable_type": "calculado",
+    "frequency": "mensal",
+    "scope_type": "linha_grupo",
+    "scope_value": "L6_L7",
+    "source_reference": "Forecast A41!A13",
+    "status": "ativo",
+    "value_type": "numerico"
+  },
+  {
+    "variable_id": "VAR16030",
+    "variable_name": "retirada_condensado_grupo",
+    "description": "Média anual da retirada de condensado calculada para o grupo de linhas L6 e L7.",
+    "unit": "m³/h",
+    "variable_type": "calculado",
+    "frequency": "anual",
+    "scope_type": "linha_grupo",
+    "scope_value": "L6_L7",
+    "source_reference": "Forecast A41!A13",
+    "status": "ativo",
+    "value_type": "numerico"
+  },
+  {
+    "variable_id": "VAR16031",
+    "variable_name": "retirada_condensado_linha",
+    "description": null,
+    "unit": "m³/h",
+    "variable_type": "calculado",
+    "frequency": "diário",
+    "scope_type": "linha",
+    "scope_value": "L1_L7",
+    "source_reference": "descritivo_das_variáveis_A41_v8.xlsx",
+    "status": "ativo",
+    "value_type": "numerico",
+    "instances": [
+      {
+        "scope_value": "L1",
+        "description": "Retirada de condensado calculada para a linha L1 a partir da alocação proporcional do resultado do grupo L1 a L3 pelo LTH da linha.",
+        "source_reference": "Forecast A41!A3"
+      },
+      {
+        "scope_value": "L2",
+        "description": "Retirada de condensado calculada para a linha L2 a partir da alocação proporcional do resultado do grupo L1 a L3 pelo LTH da linha.",
+        "source_reference": "Forecast A41!A4"
+      },
+      {
+        "scope_value": "L3",
+        "description": "Retirada de condensado calculada para a linha L3 a partir da alocação proporcional do resultado do grupo L1 a L3 pelo LTH da linha.",
+        "source_reference": "Forecast A41!A5"
+      },
+      {
+        "scope_value": "L4",
+        "description": "Retirada de condensado calculada para a linha L4 a partir da alocação proporcional do resultado do grupo L4 a L5 pelo LTH da linha.",
+        "source_reference": "Forecast A41!A6"
+      },
+      {
+        "scope_value": "L5",
+        "description": "Retirada de condensado calculada para a linha L5 a partir da alocação proporcional do resultado do grupo L4 a L5 pelo LTH da linha.",
+        "source_reference": "Forecast A41!A7"
+      },
+      {
+        "scope_value": "L6",
+        "description": "Retirada de condensado calculada para a linha L6 a partir da alocação proporcional do resultado do grupo L6 a L7 pelo LTH da linha.",
+        "source_reference": "Forecast A41!A8"
+      },
+      {
+        "scope_value": "L7",
+        "description": "Retirada de condensado calculada para a linha L7 a partir da alocação proporcional do resultado do grupo L6 a L7 pelo LTH da linha.",
+        "source_reference": "Forecast A41!A9"
+      }
+    ]
+  },
+  {
+    "variable_id": "VAR16032",
+    "variable_name": "retirada_condensado_linha",
+    "description": "Média mensal da retirada de condensado calculada para cada linha da área 41.",
+    "unit": "m³/h",
+    "variable_type": "calculado",
+    "frequency": "mensal",
+    "scope_type": "linha",
+    "scope_value": "L1_L7",
+    "source_reference": "Forecast A41!A3:A9",
+    "status": "ativo",
+    "value_type": "numerico"
+  },
+  {
+    "variable_id": "VAR16033",
+    "variable_name": "retirada_condensado_linha",
+    "description": "Média anual da retirada de condensado calculada para cada linha da área 41.",
+    "unit": "m³/h",
+    "variable_type": "calculado",
+    "frequency": "anual",
+    "scope_type": "linha",
+    "scope_value": "L1_L7",
+    "source_reference": "Forecast A41!A3:A9",
+    "status": "ativo",
+    "value_type": "numerico"
+  },
+  {
+    "variable_id": "VAR16034",
+    "variable_name": "retirada_condensado_total",
+    "description": "Retirada de condensado total calculada para o conjunto das linhas L1 a L7.",
+    "unit": "m³/h",
+    "variable_type": "calculado",
+    "frequency": "diário",
+    "scope_type": "linha_grupo",
+    "scope_value": "L1_L7",
+    "source_reference": "Forecast A41!A10",
+    "status": "ativo",
+    "value_type": "numerico"
+  },
+  {
+    "variable_id": "VAR16035",
+    "variable_name": "retirada_condensado_total",
+    "description": "Média mensal da retirada de condensado total calculada para o conjunto das linhas L1 a L7.",
+    "unit": "m³/h",
+    "variable_type": "calculado",
+    "frequency": "mensal",
+    "scope_type": "linha_grupo",
+    "scope_value": "L1_L7",
+    "source_reference": "Forecast A41!A10",
+    "status": "ativo",
+    "value_type": "numerico"
+  },
+  {
+    "variable_id": "VAR16036",
+    "variable_name": "retirada_condensado_total",
+    "description": "Média anual da retirada de condensado total calculada para o conjunto das linhas L1 a L7.",
+    "unit": "m³/h",
+    "variable_type": "calculado",
+    "frequency": "anual",
+    "scope_type": "linha_grupo",
+    "scope_value": "L1_L7",
+    "source_reference": "Forecast A41!A10",
+    "status": "ativo",
+    "value_type": "numerico"
+  }
+]

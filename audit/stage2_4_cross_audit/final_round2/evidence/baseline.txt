@@ -1,0 +1,9 @@
+Baseline (antes de qualquer alteração desta execução)
+branch: feature/area-41-block
+HEAD: a519d8a3cd68eb4fef443fe025b1f576793c50ff (= origin/feature/area-41-block)
+working tree: limpa
+workbooks: 5/5 com SHA-256 idêntico à Etapa 2.3 rodada 5 e à Etapa 2.4 (ver workbook_sha256.txt)
+suíte: 1414 passed
+lidos integralmente: audit/stage2_3_closure/final_round5/REPORT_stage2_3_final.md,
+  audit/stage2_4_cross_audit/final/REPORT_stage2_4.md, defect_register.csv, test_coverage_matrix.csv,
+  audit/stage2_3_closure/DECISION_REFINEMENT_R1_declared_result_states.md

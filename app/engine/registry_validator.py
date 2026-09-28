@@ -171,7 +171,9 @@ class RegistryIntegrityValidator:
         Verifica:
         - a variável alvo existe como VariableDefinition;
         - o escopo (scope_type/scope_value) da EquationDefinition é
-          idêntico ao escopo declarado da VariableDefinition alvo;
+          idêntico ao escopo declarado da VariableDefinition alvo, ou
+          é uma das instâncias declaradas da definição alvo (definição
+          com instâncias por linha);
         - toda variável/parâmetro referenciado na expressão existe
           como Definition (a referência é comparada pelo seu ID
           base, ignorando um eventual sufixo "@Lx" explícito).
@@ -251,7 +253,21 @@ class RegistryIntegrityValidator:
             == target_definition.scope_value
         )
 
-        if not scope_matches:
+        # Definição com instâncias por linha declaradas no workbook:
+        # cada linha do workbook tem a sua própria expressão, então
+        # cada equação produz exatamente uma instância declarada da
+        # MESMA definição (uma expressão grava um único ID).
+        produces_declared_instance = (
+            target_definition.instances is not None
+            and definition.scope_type == target_definition.scope_type
+            and definition.scope_value
+            in {
+                instance.scope_value
+                for instance in target_definition.instances
+            }
+        )
+
+        if not (scope_matches or produces_declared_instance):
             raise EquationTargetScopeMismatchError(
                 f"A equação {definition.equation_definition_id} "
                 f"declara escopo "

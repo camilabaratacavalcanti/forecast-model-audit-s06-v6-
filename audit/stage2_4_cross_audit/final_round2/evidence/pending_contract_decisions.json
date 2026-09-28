@@ -1,0 +1,34 @@
+{
+ "area_41": [],
+ "energy": [],
+ "max_ht": [],
+ "production": [
+  {
+   "decision_id": "R2-A019-UNREACHABLE",
+   "row": 25,
+   "name": "desaguamento_oee",
+   "fields": {
+    "equation_id": "EQ12008",
+    "consumer": "desaguamento_oee anual linha_grupo/L1_L7",
+    "reference": "VAR12011",
+    "name": "consumo_mpsa",
+    "frequency": "diário",
+    "scope": "linha/L1_L7",
+    "consumer_instance": "linha_grupo/L1_L7"
+   },
+   "reason": "a resolução nome+frequência+escopo só encontra uma definição que nenhuma instância do consumidor alcança em runtime; a equação é gravada como escrita no workbook e falha de forma explícita ao ser avaliada. Requer decisão do dono do workbook."
+  }
+ ],
+ "yield": [
+  {
+   "decision_id": "D24-12",
+   "row": 92,
+   "name": "ltp_tc",
+   "fields": {
+    "value": 273,
+    "version": 1
+   },
+   "reason": "value/version preenchidos em Type=variable: o contrato não define o significado; não transportado para o domínio, aguardando decisão."
+  }
+ ]
+}

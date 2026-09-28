@@ -43,6 +43,15 @@ from app.engine.temporal_forecast_orchestrator import (
 )
 from app.repositories.seed_loader import SeedLoader
 
+from seed_ids import variable_id
+
+# IDs do seed real do yield localizados pela identidade contratual
+# (name + frequency + scope), não por um ID fixo.
+YIELD_DAILY = variable_id("yield", "yield", "diário")
+N_PPT_DAILY = variable_id("yield", "n_ppt", "diário")
+YIELD_GRUPO_L1_L3 = variable_id("yield", "yield_grupo", "diário", "linha_grupo", "L1_L3")
+
+
 
 # ============================================================
 # C1-C5 — available_periods (diário / mensal / anual, run_date
@@ -148,7 +157,7 @@ def test_c6_year_transition_direct_and_aggregation_do_not_leak():
     variable_definition_registry.add(
         VariableDefinition(
             "VAR30001", "daily_metric", "x", "-", "entrada",
-            "diário", "linha", "L1", "test", "ativo",
+            "diário", "linha", "L1", "test", "ativo", "numerico",
         )
     )
 
@@ -193,13 +202,13 @@ def test_c7_direct_annual_equation_via_orchestrator():
     variable_definition_registry.add(
         VariableDefinition(
             "VAR30100", "yield_base", "x", "-", "calculado",
-            "anual", "linha", "L1_L7", "test", "ativo",
+            "anual", "linha", "L1_L7", "test", "ativo", "numerico",
         )
     )
     variable_definition_registry.add(
         VariableDefinition(
             "VAR30101", "input_a", "x", "-", "entrada",
-            "anual", "linha", "L1_L7", "test", "ativo",
+            "anual", "linha", "L1_L7", "test", "ativo", "numerico",
         )
     )
 
@@ -554,7 +563,7 @@ def test_c15_forecast_value_identity_direct_vs_aggregated_no_collision():
     variable_definition_registry.add(
         VariableDefinition(
             "VAR30600", "metric", "x", "-", "entrada",
-            "diário", "linha", "L1", "test", "ativo",
+            "diário", "linha", "L1", "test", "ativo", "numerico",
         )
     )
 
@@ -822,7 +831,7 @@ def test_c17_yield_real_daily_to_monthly_with_varied_daily_inputs():
     for day_index in range(1, 15):
         run_date = date(2026, 9, day_index)
         daily_yield_l4[run_date] = context.get_variable_value(
-            variable_id="VAR11001",
+            variable_id=YIELD_DAILY,
             scope_type="linha",
             scope_value="L4",
             period_id=run_date.isoformat(),
@@ -834,8 +843,8 @@ def test_c17_yield_real_daily_to_monthly_with_varied_daily_inputs():
 
     rule = AggregationRule(
         "AGR-YIELD-C17-MONTHLY-AVG",
-        source_variable_id="VAR11001", source_frequency="diário",
-        target_variable_id="VAR11001", target_frequency="mensal",
+        source_variable_id=YIELD_DAILY, source_frequency="diário",
+        target_variable_id=YIELD_DAILY, target_frequency="mensal",
         aggregation_type="AVERAGE",
     )
 
@@ -868,7 +877,7 @@ def test_c18_repeated_execution_same_run_date_is_idempotent():
     variable_definition_registry.add(
         VariableDefinition(
             "VAR30800", "metric_direct", "x", "-", "entrada",
-            "diário", "linha", "L1", "test", "ativo",
+            "diário", "linha", "L1", "test", "ativo", "numerico",
         )
     )
 
@@ -896,13 +905,13 @@ def test_c18_run_direct_accumulated_across_multiple_days():
     variable_definition_registry.add(
         VariableDefinition(
             "VAR30801", "target", "x", "-", "calculado",
-            "diário", "linha", "L1_L7", "test", "ativo",
+            "diário", "linha", "L1_L7", "test", "ativo", "numerico",
         )
     )
     variable_definition_registry.add(
         VariableDefinition(
             "VAR30802", "source", "x", "-", "entrada",
-            "diário", "linha", "L1_L7", "test", "ativo",
+            "diário", "linha", "L1_L7", "test", "ativo", "numerico",
         )
     )
 

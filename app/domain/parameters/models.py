@@ -1,5 +1,7 @@
 from dataclasses import dataclass
 
+from app.domain.values import NUMERIC, VALUE_TYPES, is_numeric
+
 
 @dataclass
 class Parameter:
@@ -11,7 +13,7 @@ class Parameter:
 
     parameter_id: str
     parameter_name: str
-    description: str
+    description: str | None
     unit: str
     value: float | int
     version: int
@@ -19,6 +21,12 @@ class Parameter:
     scope_value: str | None
     source_reference: str
     status: str
+    # Obrigatório: parâmetros são numéricos ("numerico"); não existe
+    # valor padrão.
+    value_type: str
+    # Frequência declarada no workbook (pode estar vazia): parte da
+    # identidade name + frequency + scope.
+    frequency: str | None = None
 
 
 @dataclass(frozen=True)
@@ -33,7 +41,7 @@ class ParameterDefinition:
 
     parameter_definition_id: str
     parameter_name: str
-    description: str
+    description: str | None
     unit: str
     value: float | int
     version: int
@@ -41,6 +49,8 @@ class ParameterDefinition:
     scope_value: str | None
     source_reference: str
     status: str
+    value_type: str
+    frequency: str | None = None
 
     @classmethod
     def from_parameter(
@@ -58,7 +68,24 @@ class ParameterDefinition:
             scope_value=parameter.scope_value,
             source_reference=parameter.source_reference,
             status=parameter.status,
+            value_type=parameter.value_type,
+            frequency=parameter.frequency,
         )
+
+    def __post_init__(self) -> None:
+        if self.value_type not in VALUE_TYPES:
+            raise ValueError(
+                f"value_type inválido para {self.parameter_definition_id}: "
+                f"{self.value_type!r} (permitidos: {sorted(VALUE_TYPES)})"
+            )
+
+        if self.value_type != NUMERIC or not is_numeric(self.value):
+            raise ValueError(
+                f"{self.parameter_definition_id}: parâmetro exige value_type "
+                f"'{NUMERIC}' e valor numérico (recebido "
+                f"{self.value_type!r}, {self.value!r}); nenhum valor é "
+                "convertido."
+            )
 
 
 @dataclass(frozen=True)

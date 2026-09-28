@@ -39,6 +39,7 @@ def make_variable_definition(
         scope_value=scope_value,
         source_reference="test",
         status="ativo",
+        value_type="numerico",
     )
 
 
@@ -193,6 +194,7 @@ def test_validate_definition_accepts_parameter_reference_with_multiple_scopes():
                 scope_value=scope_value,
                 source_reference="test",
                 status="ativo",
+                value_type="numerico",
             )
         )
 

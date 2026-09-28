@@ -1,0 +1,4 @@
+# Dependências de desenvolvimento/teste.
+# openpyxl: leitura dos workbooks aprovados (tools/workbook_seed e testes T24).
+openpyxl>=3.1
+pytest>=8

@@ -151,14 +151,45 @@ def _filter_yield_rules(aggregation_rule_registry):
             yield_rules.add(rule)
     return yield_rules
 
+
+from seed_ids import aggregation_rule, equation, parameter_id, variable_id
+
+# yield v9 (workbook aprovado): as entidades L1_L7 de grupo chamam-se
+# `<nome>_total` (v4: `<nome>` linha_grupo/L1_L7). Todos os IDs abaixo
+# são localizados pela identidade contratual.
+YIELD_D = variable_id("yield", "yield", "diário")
+LTP_D = variable_id("yield", "ltp", "diário")
+YIELD_BASE_A = variable_id("yield", "yield_base", "anual")
+LTP_BASE_A = variable_id("yield", "ltp_base", "anual")
+YIELD_GRUPO_L1_L3_D = variable_id("yield", "yield_grupo", "diário", "linha_grupo", "L1_L3")
+YIELD_TOTAL_D = variable_id("yield", "yield_total", "diário", "linha_grupo", "L1_L7")
+LTP_LTH_BASE_A = variable_id("yield", "ltp_lth_base", "anual")
+LTP_TC_BASE = parameter_id("yield", "ltp_tc_base")
+EOC_SOLIDS_BASE_A = variable_id("yield", "eoc_solids_base", "anual")
+PRODUCAO_BASE_PPT_BASE_A = variable_id("yield", "producao_base_ppt_base", "anual")
+LTP_TC_D = variable_id("yield", "ltp_tc", "diário")
+LTP_TC_M = variable_id("yield", "ltp_tc", "mensal")
+LTP_LTH_BASE_TOTAL_EQ = equation(
+    "yield", variable_id("yield", "ltp_lth_base_total", "anual", "linha_grupo", "L1_L7")
+)["equation_id"]
+EOC_SOLIDS_BASE_TOTAL_EQ = equation(
+    "yield", variable_id("yield", "eoc_solids_base_total", "anual", "linha_grupo", "L1_L7")
+)["equation_id"]
+YIELD_MONTHLY_RULE = aggregation_rule("yield", variable_id("yield", "yield", "mensal"))["aggregation_rule_id"]
+YIELD_GRUPO_L1_L3_MONTHLY_RULE = aggregation_rule(
+    "yield", variable_id("yield", "yield_grupo", "mensal", "linha_grupo", "L1_L3")
+)["aggregation_rule_id"]
+LTP_TC_MONTHLY_RULE = aggregation_rule("yield", LTP_TC_M)["aggregation_rule_id"]
+
 LINES = ["L1", "L2", "L3", "L4", "L5", "L6", "L7"]
 
-L1_L7_DAILY_NAMES = {
+L1_L7_CONCEPTS = {
     "yield", "ltp", "lth", "oee", "ltp_lth", "ltp_tc", "ltp_a_c",
     "sl_solids", "ratio_spent", "ssa_sf", "ssa_sg", "ssa_media",
     "n_ppt", "eoc_temp", "eoc_solids", "producao_base_ppt",
 }
-L1_L7_ANNUAL_NAMES = {n + "_base" for n in L1_L7_DAILY_NAMES}
+L1_L7_DAILY_NAMES = {n + "_total" for n in L1_L7_CONCEPTS}
+L1_L7_ANNUAL_NAMES = {n + "_base_total" for n in L1_L7_CONCEPTS}
 
 
 @pytest.fixture(scope="module")
@@ -303,7 +334,7 @@ def test_5_daily_l1_l7_explicit_scope_references_resolve_per_line(
         e for e in equation_definitions.all()
         if e.scope_type == "linha_grupo"
         and e.scope_value == "L1_L7"
-        and var_by_id[e.target_variable_id].variable_name == "yield"
+        and var_by_id[e.target_variable_id].variable_name == "yield_total"
         and var_by_id[e.target_variable_id].frequency == "diário"
     )
 
@@ -319,10 +350,10 @@ def test_5_daily_l1_l7_explicit_scope_references_resolve_per_line(
     context = CalculationContext()
     for line in LINES:
         context.set_variable_value(
-            "VAR11001", yield_values[line], "linha", line,
+            YIELD_D, yield_values[line], "linha", line,
         )
         context.set_variable_value(
-            "VAR11002", ltp_values[line], "linha", line,
+            LTP_D, ltp_values[line], "linha", line,
         )
 
     instance = EquationInstance.create(
@@ -347,7 +378,7 @@ def test_5_daily_l1_l7_explicit_scope_references_resolve_per_line(
 
     # Prova de que L1..L7 não foram resolvidos como o mesmo escopo:
     # alterar SOMENTE o valor de L4 muda o resultado.
-    context.set_variable_value("VAR11001", 999.0, "linha", "L4")
+    context.set_variable_value(YIELD_D, 999.0, "linha", "L4")
     result_changed = engine.calculate_instance(
         instance=instance,
         definition=definition,
@@ -376,7 +407,7 @@ def test_6_annual_l1_l7_base_is_a_direct_calculation(loaded_seed):
         if e.scope_type == "linha_grupo"
         and e.scope_value == "L1_L7"
         and var_by_id[e.target_variable_id].variable_name
-        == "yield_base"
+        == "yield_base_total"
     )
 
     target_variable = var_by_id[definition.target_variable_id]
@@ -396,10 +427,10 @@ def test_6_annual_l1_l7_base_is_a_direct_calculation(loaded_seed):
     context = CalculationContext()
     for line in LINES:
         context.set_variable_value(
-            "VAR11080", yield_base_values[line], "linha", line,
+            YIELD_BASE_A, yield_base_values[line], "linha", line,
         )
         context.set_variable_value(
-            "VAR11081", ltp_base_values[line], "linha", line,
+            LTP_BASE_A, ltp_base_values[line], "linha", line,
         )
 
     instance = EquationInstance.create(
@@ -493,7 +524,7 @@ def test_9_monthly_window_is_progressive_never_includes_future(
     rule = next(
         r for r in aggregation_rules
         if r.aggregation_rule_id
-        == "AGR-YIELD-LINHA-L1_L7-MENSAL-AVERAGE"
+        == YIELD_MONTHLY_RULE
     )
 
     context = CalculationContext()
@@ -546,24 +577,31 @@ def test_9_monthly_window_is_progressive_never_includes_future(
 
 
 def test_10_aggregation_rule_id_keeps_different_scopes_distinct(
-    aggregation_rules,
+    loaded_seed, aggregation_rules,
 ):
+    var_names = {
+        v.variable_definition_id: v.variable_name
+        for v in loaded_seed[0].all()
+    }
+
+    yield_family = {"yield", "yield_grupo", "yield_total"}
     yield_rules = [
         r for r in aggregation_rules.all()
-        if r.aggregation_rule_id.startswith("AGR-YIELD-")
+        if var_names[r.target_variable_id] in yield_family
     ]
 
-    # yield tem 5 regras (uma por grupo de escopo): todas distintas.
+    # yield tem 5 regras (linha/L1_L7, 3 grupos e o total): todas distintas.
     assert len(yield_rules) == 5
+    assert len({r.aggregation_rule_id for r in yield_rules}) == 5
 
     context = CalculationContext()
     for day in range(1, 15):
         context.set_variable_value(
-            "VAR11001", 10.0 + day, "linha", "L1",
+            YIELD_D, 10.0 + day, "linha", "L1",
             period_id=f"2026-09-{day:02d}",
         )
         context.set_variable_value(
-            "VAR11016", 20.0 + day, "linha_grupo", "L1_L3",
+            YIELD_GRUPO_L1_L3_D, 20.0 + day, "linha_grupo", "L1_L3",
             period_id=f"2026-09-{day:02d}",
         )
 
@@ -572,12 +610,12 @@ def test_10_aggregation_rule_id_keeps_different_scopes_distinct(
 
     rule_linha = next(
         r for r in yield_rules
-        if r.aggregation_rule_id == "AGR-YIELD-LINHA-L1_L7-MENSAL-AVERAGE"
+        if r.aggregation_rule_id == YIELD_MONTHLY_RULE
     )
     rule_grupo = next(
         r for r in yield_rules
         if r.aggregation_rule_id
-        == "AGR-YIELD-GRUPO-L1_L3-MENSAL-AVERAGE"
+        == YIELD_GRUPO_L1_L3_MONTHLY_RULE
     )
 
     result_linha = orchestrator.run_aggregation(
@@ -685,7 +723,7 @@ def test_11_full_integration_seed_to_forecast_value_registry(
 
     # Uma equação L1_L7 (yield diário) foi de fato calculada.
     yield_l1l7 = orchestrator.direct_forecast_value(
-        variable_id="VAR11064", scope_type="linha_grupo",
+        variable_id=YIELD_TOTAL_D, scope_type="linha_grupo",
         scope_value="L1_L7",
         variable_definition_registry=variable_definitions,
         calculation_context=context, run_date=date(2026, 9, 14),
@@ -699,7 +737,7 @@ def test_11_full_integration_seed_to_forecast_value_registry(
     rule = next(
         r for r in aggregation_rules
         if r.aggregation_rule_id
-        == "AGR-YIELD-LINHA-L1_L7-MENSAL-AVERAGE"
+        == YIELD_MONTHLY_RULE
     )
 
     monthly_yield = orchestrator.run_aggregation(
@@ -741,7 +779,7 @@ def test_12_audit_all_32_new_equations_target_expected_variables(
 
     new_equations = [
         e for e in equation_definitions.all()
-        if e.equation_definition_id >= "EQ11107"
+        if e.scope_type == "linha_grupo" and e.scope_value == "L1_L7"
     ]
 
     assert len(new_equations) == 32
@@ -751,7 +789,7 @@ def test_12_audit_all_32_new_equations_target_expected_variables(
         assert e.scope_value == "L1_L7"
         assert e.status == "PUBLISHED"
         assert e.source_reference == (
-            "descritivo_das_variáveis_yield_v4.xlsx"
+            "descritivo_das_variáveis_yield_v9.xlsx"
         )
 
         target = var_by_id[e.target_variable_id]
@@ -817,19 +855,19 @@ def test_13_audit_all_80_rules_reference_matching_variable_pairs(
 def test_14_ltp_lth_base_numerator_varies_per_line(loaded_seed):
     _vd, _vi, _pd, _pi, equation_definitions, _ei = loaded_seed
 
-    definition = equation_definitions.get("EQ11127")
+    definition = equation_definitions.get(LTP_LTH_BASE_TOTAL_EQ)
     expression = definition.expression
 
     numerator, denominator = expression.split(") / (")
 
     for line in LINES:
-        assert f"VAR11084@{line}*PARAM11002@{line}" in numerator, (
+        assert f"{LTP_LTH_BASE_A}@{line}*{LTP_TC_BASE}@{line}" in numerator, (
             f"numerador de EQ11127 não usa PARAM11002@{line} no "
             f"termo de {line} (regressão do bug de repetição @L1)"
         )
 
     for line in LINES:
-        assert denominator.count(f"PARAM11002@{line}") == 1
+        assert denominator.count(f"{LTP_TC_BASE}@{line}") == 1
 
     # Prova matemática real: cada linha contribui com seu próprio
     # ltp_tc_base — alterar SOMENTE o parâmetro de L4 muda o
@@ -839,7 +877,7 @@ def test_14_ltp_lth_base_numerator_varies_per_line(loaded_seed):
         v.variable_definition_id: v for v in loaded_seed[0].all()
     }
     assert var_by_id[definition.target_variable_id].variable_name == (
-        "ltp_lth_base"
+        "ltp_lth_base_total"
     )
 
     ltp_lth_values = {
@@ -854,10 +892,10 @@ def test_14_ltp_lth_base_numerator_varies_per_line(loaded_seed):
     context = CalculationContext()
     for line in LINES:
         context.set_variable_value(
-            "VAR11084", ltp_lth_values[line], "linha", line,
+            LTP_LTH_BASE_A, ltp_lth_values[line], "linha", line,
         )
         context.set_parameter_value(
-            "PARAM11002", ltp_tc_base_values[line], "linha", line,
+            LTP_TC_BASE, ltp_tc_base_values[line], "linha", line,
         )
 
     instance = EquationInstance.create(
@@ -896,25 +934,25 @@ def test_15_eoc_solids_base_multiplies_matching_line_terms(
 ):
     _vd, _vi, _pd, _pi, equation_definitions, _ei = loaded_seed
 
-    definition = equation_definitions.get("EQ11137")
+    definition = equation_definitions.get(EOC_SOLIDS_BASE_TOTAL_EQ)
     expression = definition.expression
 
     for line in LINES:
-        assert f"VAR11093@{line}*VAR11094@{line}" in expression, (
-            f"numerador de EQ11137 não multiplica VAR11093@{line} "
-            f"por VAR11094@{line} (regressão de referência cruzada)"
+        assert f"{EOC_SOLIDS_BASE_A}@{line}*{PRODUCAO_BASE_PPT_BASE_A}@{line}" in expression, (
+            f"numerador não multiplica eoc_solids_base@{line} "
+            f"por producao_base_ppt_base@{line} (regressão de referência cruzada)"
         )
 
     for line in LINES:
         assert expression.split(") / (")[1].count(
-            f"VAR11094@{line}"
+            f"{PRODUCAO_BASE_PPT_BASE_A}@{line}"
         ) == 1
 
     var_by_id = {
         v.variable_definition_id: v for v in loaded_seed[0].all()
     }
     assert var_by_id[definition.target_variable_id].variable_name == (
-        "eoc_solids_base"
+        "eoc_solids_base_total"
     )
 
     instance = EquationInstance.create(
@@ -935,10 +973,10 @@ def test_15_eoc_solids_base_multiplies_matching_line_terms(
     context = CalculationContext()
     for line in LINES:
         context.set_variable_value(
-            "VAR11093", eoc_solids_base_values[line], "linha", line,
+            EOC_SOLIDS_BASE_A, eoc_solids_base_values[line], "linha", line,
         )
         context.set_variable_value(
-            "VAR11094", producao_base_ppt_base_values[line],
+            PRODUCAO_BASE_PPT_BASE_A, producao_base_ppt_base_values[line],
             "linha", line,
         )
 
@@ -959,7 +997,7 @@ def test_15_eoc_solids_base_multiplies_matching_line_terms(
     # producao_base_ppt_base@L1 (o bug original) em vez de @L2, o
     # resultado abaixo seria diferente -- perturbar SOMENTE
     # producao_base_ppt_base@L1 não deve afetar o termo de L2.
-    context.set_variable_value("VAR11094", 999.0, "linha", "L1")
+    context.set_variable_value(PRODUCAO_BASE_PPT_BASE_A, 999.0, "linha", "L1")
     result_l1_perturbed = engine.calculate_instance(
         instance=instance, definition=definition,
         calculation_context=context,
@@ -999,7 +1037,7 @@ def test_16_ltp_tc_daily_linha_l1_l7_is_now_a_variable(loaded_seed):
         and v.scope_value == "L1_L7"
     )
 
-    assert ltp_tc_variable.variable_definition_id == "VAR11240"
+    assert ltp_tc_variable.variable_definition_id == LTP_TC_D
     assert ltp_tc_variable.variable_type == "entrada_externa"
     assert ltp_tc_variable.status == "ativo"
     assert not hasattr(ltp_tc_variable, "value")
@@ -1010,14 +1048,14 @@ def test_16_ltp_tc_daily_linha_l1_l7_is_now_a_variable(loaded_seed):
     # ScopeResolver padrão, sem mecanismo especial.
     ltp_tc_instances = [
         i for i in variable_instances.all()
-        if i.variable_definition_id == "VAR11240"
+        if i.variable_definition_id == LTP_TC_D
     ]
     assert len(ltp_tc_instances) == 7
     assert {i.scope_value for i in ltp_tc_instances} == set(LINES)
 
-    # PARAM11001 não existe mais como ParameterDefinition.
+    # ltp_tc diário não existe como ParameterDefinition.
     assert all(
-        p.parameter_definition_id != "PARAM11001"
+        p.parameter_name != "ltp_tc"
         for p in parameter_definitions.all()
     )
 
@@ -1026,7 +1064,9 @@ def test_16_ltp_tc_daily_linha_l1_l7_is_now_a_variable(loaded_seed):
         p for p in parameter_definitions.all()
         if p.parameter_name == "ltp_tc_base"
     )
-    assert ltp_tc_base.parameter_definition_id == "PARAM11002"
+    assert ltp_tc_base.parameter_definition_id == LTP_TC_BASE
+    # T24-11: valor do workbook aprovado yield v9 (r102), não o 273 histórico.
+    assert ltp_tc_base.value == 274
 
 
 # ============================================================
@@ -1037,28 +1077,25 @@ def test_16_ltp_tc_daily_linha_l1_l7_is_now_a_variable(loaded_seed):
 
 
 def test_17_no_equation_references_old_ltp_tc_parameter(loaded_seed):
-    _vd, _vi, _pd, _pi, equation_definitions, _ei = loaded_seed
+    """
+    ltp_tc diário é Variable em todas as equações que o consomem (sem
+    parâmetro residual), e ltp_tc_base continua Parameter com uma
+    referência por linha no numerador de ltp_lth_base_total.
+    """
 
-    for e in equation_definitions.all():
-        assert "PARAM11001" not in e.expression, (
-            f"{e.equation_definition_id} ainda referencia o "
-            "Parameter removido PARAM11001"
-        )
+    _vd, _vi, parameter_definitions, _pi, equation_definitions, _ei = loaded_seed
 
-    migrated_ids = [
-        "EQ11001", "EQ11006", "EQ11018", "EQ11034", "EQ11050",
-        "EQ11111", "EQ11112",
+    parameter_ids = {p.parameter_definition_id for p in parameter_definitions.all()}
+    consumers = [
+        e for e in equation_definitions.all() if LTP_TC_D in e.expression
     ]
-    for eid in migrated_ids:
-        definition = equation_definitions.get(eid)
-        assert "VAR11240" in definition.expression, (
-            f"{eid} deveria referenciar VAR11240 (ltp_tc migrado)"
-        )
 
-    # ltp_tc_base (PARAM11002) não foi tocado pela migração.
-    eq11127 = equation_definitions.get("EQ11127")
+    assert consumers
+    assert LTP_TC_D not in parameter_ids
+
+    ltp_lth_base_total = equation_definitions.get(LTP_LTH_BASE_TOTAL_EQ)
     for line in LINES:
-        assert f"PARAM11002@{line}" in eq11127.expression
+        assert f"{LTP_TC_BASE}@{line}" in ltp_lth_base_total.expression
 
 
 # ============================================================
@@ -1075,12 +1112,10 @@ def test_18_ltp_tc_aggregation_rule_exists_and_is_correct(
         v.variable_definition_id: v for v in variable_definitions.all()
     }
 
-    rule = aggregation_rules.get(
-        "AGR-LTP_TC-LINHA-L1_L7-MENSAL-AVERAGE"
-    )
+    rule = aggregation_rules.get(LTP_TC_MONTHLY_RULE)
 
-    assert rule.source_variable_id == "VAR11240"
-    assert rule.target_variable_id == "VAR11164"
+    assert rule.source_variable_id == LTP_TC_D
+    assert rule.target_variable_id == LTP_TC_M
     assert rule.source_frequency == "diário"
     assert rule.target_frequency == "mensal"
     assert rule.aggregation_type == "AVERAGE"
@@ -1107,7 +1142,7 @@ def test_19_ltp_tc_daily_to_monthly_aggregation_real_flow(
     rule = next(
         r for r in aggregation_rules
         if r.aggregation_rule_id
-        == "AGR-LTP_TC-LINHA-L1_L7-MENSAL-AVERAGE"
+        == LTP_TC_MONTHLY_RULE
     )
 
     context = CalculationContext()

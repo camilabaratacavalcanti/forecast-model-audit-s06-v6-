@@ -1,0 +1,82 @@
+[
+  {
+    "aggregation_rule_id": "AGR-AREA_41-RETIRADA_CONDENSADO_GRUPO-GRUPO-L1_L3-MENSAL-AVERAGE",
+    "source_variable_id": "VAR16018",
+    "source_frequency": "diário",
+    "target_variable_id": "VAR16019",
+    "target_frequency": "mensal",
+    "aggregation_type": "AVERAGE"
+  },
+  {
+    "aggregation_rule_id": "AGR-AREA_41-RETIRADA_CONDENSADO_GRUPO-GRUPO-L1_L3-ANUAL-AVERAGE",
+    "source_variable_id": "VAR16018",
+    "source_frequency": "diário",
+    "target_variable_id": "VAR16020",
+    "target_frequency": "anual",
+    "aggregation_type": "AVERAGE"
+  },
+  {
+    "aggregation_rule_id": "AGR-AREA_41-RETIRADA_CONDENSADO_GRUPO-GRUPO-L4_L5-MENSAL-AVERAGE",
+    "source_variable_id": "VAR16025",
+    "source_frequency": "diário",
+    "target_variable_id": "VAR16026",
+    "target_frequency": "mensal",
+    "aggregation_type": "AVERAGE"
+  },
+  {
+    "aggregation_rule_id": "AGR-AREA_41-RETIRADA_CONDENSADO_GRUPO-GRUPO-L4_L5-ANUAL-AVERAGE",
+    "source_variable_id": "VAR16025",
+    "source_frequency": "diário",
+    "target_variable_id": "VAR16027",
+    "target_frequency": "anual",
+    "aggregation_type": "AVERAGE"
+  },
+  {
+    "aggregation_rule_id": "AGR-AREA_41-RETIRADA_CONDENSADO_GRUPO-GRUPO-L6_L7-MENSAL-AVERAGE",
+    "source_variable_id": "VAR16028",
+    "source_frequency": "diário",
+    "target_variable_id": "VAR16029",
+    "target_frequency": "mensal",
+    "aggregation_type": "AVERAGE"
+  },
+  {
+    "aggregation_rule_id": "AGR-AREA_41-RETIRADA_CONDENSADO_GRUPO-GRUPO-L6_L7-ANUAL-AVERAGE",
+    "source_variable_id": "VAR16028",
+    "source_frequency": "diário",
+    "target_variable_id": "VAR16030",
+    "target_frequency": "anual",
+    "aggregation_type": "AVERAGE"
+  },
+  {
+    "aggregation_rule_id": "AGR-AREA_41-RETIRADA_CONDENSADO_LINHA-LINHA-L1_L7-MENSAL-AVERAGE",
+    "source_variable_id": "VAR16031",
+    "source_frequency": "diário",
+    "target_variable_id": "VAR16032",
+    "target_frequency": "mensal",
+    "aggregation_type": "AVERAGE"
+  },
+  {
+    "aggregation_rule_id": "AGR-AREA_41-RETIRADA_CONDENSADO_LINHA-LINHA-L1_L7-ANUAL-AVERAGE",
+    "source_variable_id": "VAR16031",
+    "source_frequency": "diário",
+    "target_variable_id": "VAR16033",
+    "target_frequency": "anual",
+    "aggregation_type": "AVERAGE"
+  },
+  {
+    "aggregation_rule_id": "AGR-AREA_41-RETIRADA_CONDENSADO_TOTAL-GRUPO-L1_L7-MENSAL-AVERAGE",
+    "source_variable_id": "VAR16034",
+    "source_frequency": "diário",
+    "target_variable_id": "VAR16035",
+    "target_frequency": "mensal",
+    "aggregation_type": "AVERAGE"
+  },
+  {
+    "aggregation_rule_id": "AGR-AREA_41-RETIRADA_CONDENSADO_TOTAL-GRUPO-L1_L7-ANUAL-AVERAGE",
+    "source_variable_id": "VAR16034",
+    "source_frequency": "diário",
+    "target_variable_id": "VAR16036",
+    "target_frequency": "anual",
+    "aggregation_type": "AVERAGE"
+  }
+]

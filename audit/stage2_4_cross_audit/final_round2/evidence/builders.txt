@@ -1,0 +1,15 @@
+area_41: descritivo_das_variáveis_A41_v8.xlsx sheet=A41 header_row=2 data_rows=54 empty_rows_ignored=252 last_sheet_row=308 entities=43 seeds={'variables': 36, 'parameters': 7, 'equations': 20, 'aggregation_rules': 10} builder==seed={'variables': True, 'parameters': True, 'equations': True, 'aggregation_rules': True, 'manifest': True}
+   definições com instâncias por linha: [('valor_retirada', 'diário', 'L1_L3', [19, 20, 21]), ('hes', 'diário', 'L4_L7', [25, 26, 27, 28]), ('retirada_condensado_linha', 'diário', 'L1_L7', [45, 46, 47, 48, 49, 50, 51])]
+   entidades sem name: 0
+energy: descritivo_das_variáveis_energy_v5.xlsx sheet=energy header_row=2 data_rows=56 empty_rows_ignored=249 last_sheet_row=307 entities=56 seeds={'variables': 52, 'parameters': 4, 'equations': 24, 'aggregation_rules': 11} builder==seed={'variables': True, 'parameters': True, 'equations': True, 'aggregation_rules': True, 'manifest': True}
+   definições com instâncias por linha: []
+   entidades sem name: 0
+max_ht: descritivo_das_variáveis_MaxHT_v9.xlsx sheet=MaxHT header_row=2 data_rows=120 empty_rows_ignored=214 last_sheet_row=336 entities=120 seeds={'variables': 116, 'parameters': 4, 'equations': 29, 'aggregation_rules': 78} builder==seed={'variables': True, 'parameters': True, 'equations': True, 'aggregation_rules': True, 'manifest': True}
+   definições com instâncias por linha: []
+   entidades sem name: 0
+production: descritivo_das_variáveis_production_v6.xlsx sheet=production header_row=2 data_rows=88 empty_rows_ignored=212 last_sheet_row=302 entities=70 seeds={'variables': 65, 'parameters': 17, 'equations': 27, 'aggregation_rules': 28} builder==seed={'variables': True, 'parameters': True, 'equations': True, 'aggregation_rules': True, 'manifest': True}
+   definições com instâncias por linha: [('lth_meta', 'anual', 'L1_L7', [37, 38, 39, 40, 41, 42, 43]), ('pick_up', 'diário', 'L1_L7', [53, 54, 55, 56, 57, 58, 59]), ('pick_up_yield', 'anual', 'L1_L7', [64, 65, 66, 67, 68, 69, 70])]
+   entidades sem name: 0
+yield: descritivo_das_variáveis_yield_v9.xlsx sheet=yield header_row=1 data_rows=254 empty_rows_ignored=0 last_sheet_row=255 entities=242 seeds={'variables': 240, 'parameters': 8, 'equations': 138, 'aggregation_rules': 80} builder==seed={'variables': True, 'parameters': True, 'equations': True, 'aggregation_rules': True, 'manifest': True}
+   definições com instâncias por linha: [('tanque', 'diário', 'L1_L7', [227, 228, 229, 230, 231, 232, 233]), ('tanque_base', 'anual', 'L1_L7', [234, 235, 236, 237, 238, 239, 240])]
+   entidades sem name: 0

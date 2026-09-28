@@ -1,0 +1,775 @@
+{
+  "block": "energy",
+  "workbook": {
+    "file_name": "descritivo_das_variáveis_energy_v5.xlsx",
+    "sha256": "34c1c88af318e57026c08c21fd2a1cf308258e575eddbb11d98ba0bba6878047",
+    "sheet": "energy",
+    "header_row": 2,
+    "data_rows": 56,
+    "empty_rows_ignored": 249,
+    "last_sheet_row": 307
+  },
+  "entities": [
+    {
+      "entity_id": "VAR18001",
+      "kind": "variable",
+      "name": "producao",
+      "frequency": "diário",
+      "scope_type": "linha",
+      "scope_value": "L1_L7",
+      "rows": [
+        3
+      ]
+    },
+    {
+      "entity_id": "VAR18002",
+      "kind": "variable",
+      "name": "producao_t_h",
+      "frequency": "diário",
+      "scope_type": "linha",
+      "scope_value": "L1_L7",
+      "rows": [
+        4
+      ]
+    },
+    {
+      "entity_id": "VAR18003",
+      "kind": "variable",
+      "name": "producao_planta_t_h",
+      "frequency": "diário",
+      "scope_type": "linha_grupo",
+      "scope_value": "L1_L7",
+      "rows": [
+        5
+      ]
+    },
+    {
+      "entity_id": "VAR18004",
+      "kind": "variable",
+      "name": "producao_planta_t_h_media_movel",
+      "frequency": "diário",
+      "scope_type": "linha_grupo",
+      "scope_value": "L1_L7",
+      "rows": [
+        6
+      ]
+    },
+    {
+      "entity_id": "VAR18005",
+      "kind": "variable",
+      "name": "pick_up",
+      "frequency": "diário",
+      "scope_type": "linha",
+      "scope_value": "L1_L7",
+      "rows": [
+        7
+      ]
+    },
+    {
+      "entity_id": "VAR18006",
+      "kind": "variable",
+      "name": "pick_up_total",
+      "frequency": "diário",
+      "scope_type": "linha_grupo",
+      "scope_value": "L1_L7",
+      "rows": [
+        8
+      ]
+    },
+    {
+      "entity_id": "VAR18007",
+      "kind": "variable",
+      "name": "pick_up_total",
+      "frequency": "mensal",
+      "scope_type": "linha_grupo",
+      "scope_value": "L1_L7",
+      "rows": [
+        9
+      ]
+    },
+    {
+      "entity_id": "VAR18008",
+      "kind": "variable",
+      "name": "lth",
+      "frequency": "diário",
+      "scope_type": "linha",
+      "scope_value": "L1_L7",
+      "rows": [
+        10
+      ]
+    },
+    {
+      "entity_id": "VAR18009",
+      "kind": "variable",
+      "name": "lth_total",
+      "frequency": "diário",
+      "scope_type": "linha_grupo",
+      "scope_value": "L1_L7",
+      "rows": [
+        11
+      ]
+    },
+    {
+      "entity_id": "VAR18010",
+      "kind": "variable",
+      "name": "lth_total",
+      "frequency": "mensal",
+      "scope_type": "linha_grupo",
+      "scope_value": "L1_L7",
+      "rows": [
+        12
+      ]
+    },
+    {
+      "entity_id": "VAR18011",
+      "kind": "variable",
+      "name": "lth_meta",
+      "frequency": "anual",
+      "scope_type": "linha",
+      "scope_value": "L1_L7",
+      "rows": [
+        13
+      ]
+    },
+    {
+      "entity_id": "VAR18012",
+      "kind": "variable",
+      "name": "temperatura_lp",
+      "frequency": "diário",
+      "scope_type": "linha",
+      "scope_value": "L1_L7",
+      "rows": [
+        14
+      ]
+    },
+    {
+      "entity_id": "VAR18013",
+      "kind": "variable",
+      "name": "temperatura_lp",
+      "frequency": "mensal",
+      "scope_type": "linha",
+      "scope_value": "L1_L7",
+      "rows": [
+        15
+      ]
+    },
+    {
+      "entity_id": "VAR18014",
+      "kind": "variable",
+      "name": "temperatura_lp_media",
+      "frequency": "mensal",
+      "scope_type": "linha_grupo",
+      "scope_value": "L1_L7",
+      "rows": [
+        16
+      ]
+    },
+    {
+      "entity_id": "PARAM18001",
+      "kind": "parameter",
+      "name": "temperatura_lp_referencia",
+      "frequency": null,
+      "scope_type": "linha",
+      "scope_value": "L1_L7",
+      "rows": [
+        17
+      ]
+    },
+    {
+      "entity_id": "PARAM18002",
+      "kind": "parameter",
+      "name": "fator_ajuste_delta_t_reg",
+      "frequency": null,
+      "scope_type": "linha",
+      "scope_value": "L1_L7",
+      "rows": [
+        18
+      ]
+    },
+    {
+      "entity_id": "VAR18015",
+      "kind": "variable",
+      "name": "temperatura_lp_ref_inferior",
+      "frequency": "mensal",
+      "scope_type": "linha",
+      "scope_value": "L1_L7",
+      "rows": [
+        19
+      ]
+    },
+    {
+      "entity_id": "VAR18016",
+      "kind": "variable",
+      "name": "temperatura_lp_ref_superior",
+      "frequency": "mensal",
+      "scope_type": "linha",
+      "scope_value": "L1_L7",
+      "rows": [
+        20
+      ]
+    },
+    {
+      "entity_id": "VAR18017",
+      "kind": "variable",
+      "name": "delta_t_regenerativo",
+      "frequency": "diário",
+      "scope_type": "linha",
+      "scope_value": "L1_L7",
+      "rows": [
+        21
+      ]
+    },
+    {
+      "entity_id": "VAR18018",
+      "kind": "variable",
+      "name": "temperatura_lth_saida_he6",
+      "frequency": "diário",
+      "scope_type": "linha",
+      "scope_value": "L1_L7",
+      "rows": [
+        22
+      ]
+    },
+    {
+      "entity_id": "PARAM18003",
+      "kind": "parameter",
+      "name": "fator_ajuste_delta_t_vapor_vivo",
+      "frequency": null,
+      "scope_type": "linha",
+      "scope_value": "L1_L7",
+      "rows": [
+        23
+      ]
+    },
+    {
+      "entity_id": "VAR18019",
+      "kind": "variable",
+      "name": "delta_t_vapor_vivo",
+      "frequency": "diário",
+      "scope_type": "linha",
+      "scope_value": "L1_L7",
+      "rows": [
+        24
+      ]
+    },
+    {
+      "entity_id": "PARAM18004",
+      "kind": "parameter",
+      "name": "delta_t_vapor_vivo_maximo",
+      "frequency": null,
+      "scope_type": "linha_grupo",
+      "scope_value": "L1_L7",
+      "rows": [
+        25
+      ]
+    },
+    {
+      "entity_id": "VAR18020",
+      "kind": "variable",
+      "name": "vazao_vapor_digestao",
+      "frequency": "diário",
+      "scope_type": "linha",
+      "scope_value": "L1_L7",
+      "rows": [
+        26
+      ]
+    },
+    {
+      "entity_id": "VAR18021",
+      "kind": "variable",
+      "name": "vazao_vapor_digestao",
+      "frequency": "mensal",
+      "scope_type": "linha",
+      "scope_value": "L1_L7",
+      "rows": [
+        27
+      ]
+    },
+    {
+      "entity_id": "VAR18022",
+      "kind": "variable",
+      "name": "vazao_vapor_digestao_total",
+      "frequency": "diário",
+      "scope_type": "linha_grupo",
+      "scope_value": "L1_L7",
+      "rows": [
+        28
+      ]
+    },
+    {
+      "entity_id": "VAR18023",
+      "kind": "variable",
+      "name": "vazao_vapor_digestao_total",
+      "frequency": "mensal",
+      "scope_type": "linha_grupo",
+      "scope_value": "L1_L7",
+      "rows": [
+        29
+      ]
+    },
+    {
+      "entity_id": "VAR18024",
+      "kind": "variable",
+      "name": "especifico_vapor_digestao",
+      "frequency": "diário",
+      "scope_type": "linha",
+      "scope_value": "L1_L7",
+      "rows": [
+        30
+      ]
+    },
+    {
+      "entity_id": "VAR18025",
+      "kind": "variable",
+      "name": "especifico_vapor_digestao_medio",
+      "frequency": "diário",
+      "scope_type": "linha_grupo",
+      "scope_value": "L1_L7",
+      "rows": [
+        31
+      ]
+    },
+    {
+      "entity_id": "VAR18026",
+      "kind": "variable",
+      "name": "especifico_vapor_digestao_medio",
+      "frequency": "mensal",
+      "scope_type": "linha_grupo",
+      "scope_value": "L1_L7",
+      "rows": [
+        32
+      ]
+    },
+    {
+      "entity_id": "VAR18027",
+      "kind": "variable",
+      "name": "energia_digestao",
+      "frequency": "diário",
+      "scope_type": "linha_grupo",
+      "scope_value": "L1_L7",
+      "rows": [
+        33
+      ]
+    },
+    {
+      "entity_id": "VAR18028",
+      "kind": "variable",
+      "name": "energia_digestao",
+      "frequency": "mensal",
+      "scope_type": "linha_grupo",
+      "scope_value": "L1_L7",
+      "rows": [
+        34
+      ]
+    },
+    {
+      "entity_id": "VAR18029",
+      "kind": "variable",
+      "name": "economicidade_evaporacao_ref",
+      "frequency": "mensal",
+      "scope_type": "linha",
+      "scope_value": "L1_L7",
+      "rows": [
+        35
+      ]
+    },
+    {
+      "entity_id": "VAR18030",
+      "kind": "variable",
+      "name": "economicidade_evaporacao",
+      "frequency": "diário",
+      "scope_type": "linha",
+      "scope_value": "L1_L7",
+      "rows": [
+        36
+      ]
+    },
+    {
+      "entity_id": "VAR18031",
+      "kind": "variable",
+      "name": "evaporado_total_evaporacao",
+      "frequency": "diário",
+      "scope_type": "linha",
+      "scope_value": "L1_L7",
+      "rows": [
+        37
+      ]
+    },
+    {
+      "entity_id": "VAR18032",
+      "kind": "variable",
+      "name": "consumo_vapor_evaporadores",
+      "frequency": "diário",
+      "scope_type": "linha",
+      "scope_value": "L1_L7",
+      "rows": [
+        38
+      ]
+    },
+    {
+      "entity_id": "VAR18033",
+      "kind": "variable",
+      "name": "consumo_vapor_evaporadores_total",
+      "frequency": "diário",
+      "scope_type": "linha_grupo",
+      "scope_value": "L1_L7",
+      "rows": [
+        39
+      ]
+    },
+    {
+      "entity_id": "VAR18034",
+      "kind": "variable",
+      "name": "especifico_vapor_evaporacao",
+      "frequency": "diário",
+      "scope_type": "linha",
+      "scope_value": "L1_L7",
+      "rows": [
+        40
+      ]
+    },
+    {
+      "entity_id": "VAR18035",
+      "kind": "variable",
+      "name": "especifico_vapor_evaporacao",
+      "frequency": "diário",
+      "scope_type": "linha_grupo",
+      "scope_value": "L1_L3",
+      "rows": [
+        41
+      ]
+    },
+    {
+      "entity_id": "VAR18036",
+      "kind": "variable",
+      "name": "especifico_vapor_evaporacao",
+      "frequency": "diário",
+      "scope_type": "linha_grupo",
+      "scope_value": "L4_L5",
+      "rows": [
+        42
+      ]
+    },
+    {
+      "entity_id": "VAR18037",
+      "kind": "variable",
+      "name": "especifico_vapor_evaporacao",
+      "frequency": "diário",
+      "scope_type": "linha_grupo",
+      "scope_value": "L6_L7",
+      "rows": [
+        43
+      ]
+    },
+    {
+      "entity_id": "VAR18038",
+      "kind": "variable",
+      "name": "especifico_vapor_evaporacao_total",
+      "frequency": "diário",
+      "scope_type": "linha_grupo",
+      "scope_value": "L1_L7",
+      "rows": [
+        44
+      ]
+    },
+    {
+      "entity_id": "VAR18039",
+      "kind": "variable",
+      "name": "especifico_vapor_evaporacao_total",
+      "frequency": "mensal",
+      "scope_type": "linha_grupo",
+      "scope_value": "L1_L7",
+      "rows": [
+        45
+      ]
+    },
+    {
+      "entity_id": "VAR18040",
+      "kind": "variable",
+      "name": "energia_evaporacao",
+      "frequency": "diário",
+      "scope_type": "linha_grupo",
+      "scope_value": "L1_L7",
+      "rows": [
+        46
+      ]
+    },
+    {
+      "entity_id": "VAR18041",
+      "kind": "variable",
+      "name": "energia_evaporacao",
+      "frequency": "mensal",
+      "scope_type": "linha_grupo",
+      "scope_value": "L1_L7",
+      "rows": [
+        47
+      ]
+    },
+    {
+      "entity_id": "VAR18042",
+      "kind": "variable",
+      "name": "energia_bayer",
+      "frequency": "diário",
+      "scope_type": "linha_grupo",
+      "scope_value": "L1_L7",
+      "rows": [
+        48
+      ]
+    },
+    {
+      "entity_id": "VAR18043",
+      "kind": "variable",
+      "name": "energia_bayer",
+      "frequency": "mensal",
+      "scope_type": "linha_grupo",
+      "scope_value": "L1_L7",
+      "rows": [
+        49
+      ]
+    },
+    {
+      "entity_id": "VAR18044",
+      "kind": "variable",
+      "name": "energia_media_frct",
+      "frequency": "mensal",
+      "scope_type": "linha_grupo",
+      "scope_value": "L1_L7",
+      "rows": [
+        50
+      ]
+    },
+    {
+      "entity_id": "VAR18045",
+      "kind": "variable",
+      "name": "consumo_total_vapor",
+      "frequency": "diário",
+      "scope_type": "linha_grupo",
+      "scope_value": "L1_L7",
+      "rows": [
+        51
+      ]
+    },
+    {
+      "entity_id": "VAR18046",
+      "kind": "variable",
+      "name": "consumo_vapor_outros",
+      "frequency": "diário",
+      "scope_type": "linha_grupo",
+      "scope_value": "L1_L7",
+      "rows": [
+        52
+      ]
+    },
+    {
+      "entity_id": "VAR18047",
+      "kind": "variable",
+      "name": "especifico_vapor_outros",
+      "frequency": "diário",
+      "scope_type": "linha_grupo",
+      "scope_value": "L1_L7",
+      "rows": [
+        53
+      ]
+    },
+    {
+      "entity_id": "VAR18048",
+      "kind": "variable",
+      "name": "especifico_vapor_outros",
+      "frequency": "mensal",
+      "scope_type": "linha_grupo",
+      "scope_value": "L1_L7",
+      "rows": [
+        54
+      ]
+    },
+    {
+      "entity_id": "VAR18049",
+      "kind": "variable",
+      "name": "demanda_bayer",
+      "frequency": "diário",
+      "scope_type": "linha_grupo",
+      "scope_value": "L1_L7",
+      "rows": [
+        55
+      ]
+    },
+    {
+      "entity_id": "VAR18050",
+      "kind": "variable",
+      "name": "especifico_demanda_bayer",
+      "frequency": "diário",
+      "scope_type": "linha_grupo",
+      "scope_value": "L1_L7",
+      "rows": [
+        56
+      ]
+    },
+    {
+      "entity_id": "VAR18051",
+      "kind": "variable",
+      "name": "especifico_demanda_bayer_medio",
+      "frequency": "mensal",
+      "scope_type": "linha_grupo",
+      "scope_value": "L1_L7",
+      "rows": [
+        57
+      ]
+    },
+    {
+      "entity_id": "VAR18052",
+      "kind": "variable",
+      "name": "especifico_demanda_bayer_media_ponderada",
+      "frequency": "mensal",
+      "scope_type": "linha_grupo",
+      "scope_value": "L1_L7",
+      "rows": [
+        58
+      ]
+    }
+  ],
+  "equations": [
+    {
+      "equation_id": "EQ18001",
+      "row": 4
+    },
+    {
+      "equation_id": "EQ18002",
+      "row": 5
+    },
+    {
+      "equation_id": "EQ18003",
+      "row": 21
+    },
+    {
+      "equation_id": "EQ18004",
+      "row": 24
+    },
+    {
+      "equation_id": "EQ18005",
+      "row": 26
+    },
+    {
+      "equation_id": "EQ18006",
+      "row": 28
+    },
+    {
+      "equation_id": "EQ18007",
+      "row": 30
+    },
+    {
+      "equation_id": "EQ18008",
+      "row": 31
+    },
+    {
+      "equation_id": "EQ18009",
+      "row": 33
+    },
+    {
+      "equation_id": "EQ18010",
+      "row": 36
+    },
+    {
+      "equation_id": "EQ18011",
+      "row": 38
+    },
+    {
+      "equation_id": "EQ18012",
+      "row": 39
+    },
+    {
+      "equation_id": "EQ18013",
+      "row": 40
+    },
+    {
+      "equation_id": "EQ18014",
+      "row": 41
+    },
+    {
+      "equation_id": "EQ18015",
+      "row": 42
+    },
+    {
+      "equation_id": "EQ18016",
+      "row": 43
+    },
+    {
+      "equation_id": "EQ18017",
+      "row": 44
+    },
+    {
+      "equation_id": "EQ18018",
+      "row": 46
+    },
+    {
+      "equation_id": "EQ18019",
+      "row": 48
+    },
+    {
+      "equation_id": "EQ18020",
+      "row": 50
+    },
+    {
+      "equation_id": "EQ18021",
+      "row": 51
+    },
+    {
+      "equation_id": "EQ18022",
+      "row": 53
+    },
+    {
+      "equation_id": "EQ18023",
+      "row": 55
+    },
+    {
+      "equation_id": "EQ18024",
+      "row": 56
+    }
+  ],
+  "aggregation_rules": [
+    {
+      "aggregation_rule_id": "AGR-ENERGY-PRODUCAO_PLANTA_T_H_MEDIA_MOVEL-GRUPO-L1_L7-DIARIO-MOVING_AVERAGE",
+      "row": 6
+    },
+    {
+      "aggregation_rule_id": "AGR-ENERGY-VAZAO_VAPOR_DIGESTAO-LINHA-L1_L7-MENSAL-AVERAGE",
+      "row": 27
+    },
+    {
+      "aggregation_rule_id": "AGR-ENERGY-VAZAO_VAPOR_DIGESTAO_TOTAL-GRUPO-L1_L7-MENSAL-AVERAGE",
+      "row": 29
+    },
+    {
+      "aggregation_rule_id": "AGR-ENERGY-ESPECIFICO_VAPOR_DIGESTAO_MEDIO-GRUPO-L1_L7-MENSAL-WEIGHTED_AVERAGE",
+      "row": 32
+    },
+    {
+      "aggregation_rule_id": "AGR-ENERGY-ENERGIA_DIGESTAO-GRUPO-L1_L7-MENSAL-WEIGHTED_AVERAGE",
+      "row": 34
+    },
+    {
+      "aggregation_rule_id": "AGR-ENERGY-ESPECIFICO_VAPOR_EVAPORACAO_TOTAL-GRUPO-L1_L7-MENSAL-WEIGHTED_AVERAGE",
+      "row": 45
+    },
+    {
+      "aggregation_rule_id": "AGR-ENERGY-ENERGIA_EVAPORACAO-GRUPO-L1_L7-MENSAL-WEIGHTED_AVERAGE",
+      "row": 47
+    },
+    {
+      "aggregation_rule_id": "AGR-ENERGY-ENERGIA_BAYER-GRUPO-L1_L7-MENSAL-WEIGHTED_AVERAGE",
+      "row": 49
+    },
+    {
+      "aggregation_rule_id": "AGR-ENERGY-ESPECIFICO_VAPOR_OUTROS-GRUPO-L1_L7-MENSAL-WEIGHTED_AVERAGE",
+      "row": 54
+    },
+    {
+      "aggregation_rule_id": "AGR-ENERGY-ESPECIFICO_DEMANDA_BAYER_MEDIO-GRUPO-L1_L7-MENSAL-AVERAGE",
+      "row": 57
+    },
+    {
+      "aggregation_rule_id": "AGR-ENERGY-ESPECIFICO_DEMANDA_BAYER_MEDIA_PONDERADA-GRUPO-L1_L7-MENSAL-WEIGHTED_AVERAGE",
+      "row": 58
+    }
+  ],
+  "pending_contract_decisions": []
+}

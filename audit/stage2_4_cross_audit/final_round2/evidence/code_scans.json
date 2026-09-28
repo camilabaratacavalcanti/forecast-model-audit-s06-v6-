@@ -1,0 +1,9 @@
+{
+ "value_type aliases (numeric|categorical) em app/, tools/, data/seed": [],
+ "float()/int() de valor em tools/": [],
+ "constantes históricas de workbook (energy_v2|MaxHT_v5|yield_v4|production_v1) em tools/ e data/seed": [],
+ "LAST_DATA_ROW/HEADER_ROW fixos em tools/": [
+  "tools/workbook_seed/reader.py:13:      linhas (ex.: LAST_DATA_ROW=154, que no MaxHT v9 lia 32 linhas"
+ ],
+ "value_type default NUMERIC em app/domain": []
+}

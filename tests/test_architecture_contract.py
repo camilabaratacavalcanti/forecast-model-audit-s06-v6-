@@ -48,6 +48,7 @@ def make_variable(
         "scope_value": "L1",
         "source_reference": "NovoOficial!D152:O152",
         "status": "ativo",
+        "value_type": "numerico",
     }
 
 
@@ -63,6 +64,7 @@ def make_target_variable():
         "scope_value": "L1",
         "source_reference": "NovoOficial!D153:O153",
         "status": "ativo",
+        "value_type": "numerico",
     }
 
 
@@ -82,6 +84,7 @@ def make_parameter(
         "scope_value": "L1",
         "source_reference": "NovoOficial!D152:O152",
         "status": "ativo",
+        "value_type": "numerico",
     }
 
 
@@ -90,6 +93,7 @@ def make_equation(
     version=1,
     expression="VAR12001 * PARAM12001",
     status="PUBLISHED",
+    value_type="numerico",
 ):
     return {
         "equation_id": equation_id,

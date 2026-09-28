@@ -168,78 +168,33 @@ def seed_rules_and_issues():
     return rules, definitions, find_sum_dimension_issues(rules.all(), definitions)
 
 
-def test_existing_rules_keep_default_factor(seed_rules_and_issues):
-    rules, _definitions, _issues = seed_rules_and_issues
-
-    assert {rule.integration_factor for rule in rules} == {1.0}
-
-
-def test_max_ht_hourly_sums_are_the_pinned_pending_set(seed_rules_and_issues):
+def test_sum_factors_follow_the_approved_workbook_units(seed_rules_and_issues):
     """
-    PENDÊNCIA (decisão do dono do bloco max_ht): 34 SUMs somam taxas
-    horárias (kg/h, m³/h) em destinos rotulados kg|m³/mês|ano. O
-    workbook descreve o destino como "soma dos resultados diários";
-    converter exige integration_factor=24 e a premissa de dia de 24 h.
-    Nenhum destino é `saída` nem é consumido por equação.
+    O builder deriva `integration_factor` das unidades aprovadas
+    (app.domain.units.required_sum_factor). Nos workbooks aprovados
+    (Etapa 2.3: 30 SUMs, "fator 1" ou "fator 24"), só as duas SUMs de
+    m³/h do MaxHT v9 exigem 24; as demais somam taxas diárias (fator 1).
     """
 
+    rules, definitions, _issues = seed_rules_and_issues
+
+    sums = [rule for rule in rules.all() if rule.aggregation_type == "SUM"]
+
+    assert len(sums) == 30
+
+    by_factor = {}
+    for rule in sums:
+        source_unit = definitions.get(rule.source_variable_id).unit
+        by_factor.setdefault(rule.integration_factor, set()).add(source_unit)
+
+    assert by_factor == {1.0: {"t/d", "kg/d"}, 24.0: {"m³/h"}}
+    assert sum(1 for rule in sums if rule.integration_factor == 24.0) == 2
+
+    non_sums = [rule for rule in rules.all() if rule.aggregation_type != "SUM"]
+    assert {rule.integration_factor for rule in non_sums} == {1.0}
+
+
+def test_no_seed_rule_has_dimensional_issues(seed_rules_and_issues):
     _rules, _definitions, issues = seed_rules_and_issues
 
-    max_ht = [
-        issue for issue in issues
-        if issue.aggregation_rule_id.startswith("AGR-MAX_HT-")
-    ]
-
-    assert len(max_ht) == 34
-    assert {(i.source_unit, i.target_unit) for i in max_ht} == {
-        ("kg/h", "kg/mês"), ("kg/h", "kg/ano"),
-        ("m³/h", "m³/mês"), ("m³/h", "m³/ano"),
-    }
-
-
-def test_max_ht_pending_set_is_resolved_by_factor_24(seed_rules_and_issues):
-    """A correção está disponível na plataforma (mutação local)."""
-
-    rules, definitions, issues = seed_rules_and_issues
-
-    pending_ids = {
-        issue.aggregation_rule_id
-        for issue in issues
-        if issue.aggregation_rule_id.startswith("AGR-MAX_HT-")
-    }
-
-    corrected = [
-        dataclasses.replace(rule, integration_factor=24.0)
-        for rule in rules
-        if rule.aggregation_rule_id in pending_ids
-    ]
-
-    assert find_sum_dimension_issues(corrected, definitions) == []
-
-
-def test_production_tpd_sums_are_the_pinned_pending_set(seed_rules_and_issues):
-    """
-    PENDÊNCIA (dono do bloco production): 3 SUMs de tpd com destino
-    também rotulado tpd (deveria ser t/mês | t/ano). Problema de
-    rótulo de unidade; o fator exigido seria 1.
-    """
-
-    _rules, _definitions, issues = seed_rules_and_issues
-
-    production = sorted(
-        issue.aggregation_rule_id
-        for issue in issues
-        if issue.aggregation_rule_id.startswith("AGR-PRODUCTION-")
-    )
-
-    assert production == [
-        "AGR-PRODUCTION-CONSUMO_MPSA-GRUPO-L1_L7-ANUAL-SUM",
-        "AGR-PRODUCTION-PRODUCAO_PLANTA-GRUPO-L1_L7-ANUAL-SUM",
-        "AGR-PRODUCTION-PRODUCAO_PLANTA-GRUPO-L1_L7-MENSAL-SUM",
-    ]
-
-
-def test_no_other_block_has_dimensional_issues(seed_rules_and_issues):
-    _rules, _definitions, issues = seed_rules_and_issues
-
-    assert len(issues) == 37
+    assert issues == []

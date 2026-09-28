@@ -54,6 +54,15 @@ from app.engine.run_context import RunContext
 from app.engine.time_period_resolver import TimePeriodResolver
 from app.repositories.seed_loader import SeedLoader
 
+from seed_ids import variable_id
+
+# IDs do seed real do yield localizados pela identidade contratual
+# (name + frequency + scope), não por um ID fixo.
+YIELD_DAILY = variable_id("yield", "yield", "diário")
+N_PPT_DAILY = variable_id("yield", "n_ppt", "diário")
+YIELD_GRUPO_L1_L3 = variable_id("yield", "yield_grupo", "diário", "linha_grupo", "L1_L3")
+
+
 
 # ============================================================
 # 1-3, 4-5 — TimePeriodResolver.effective_window
@@ -416,13 +425,13 @@ def test_9_annual_equation_is_calculated_direct_with_year_period_id():
     variable_definition_registry.add(
         VariableDefinition(
             "VAR10100", "yield_base", "x", "-", "calculado",
-            "anual", "linha", "L1_L7", "test", "ativo",
+            "anual", "linha", "L1_L7", "test", "ativo", "numerico",
         )
     )
     variable_definition_registry.add(
         VariableDefinition(
             "VAR10101", "input_a", "x", "-", "entrada",
-            "anual", "linha", "L1_L7", "test", "ativo",
+            "anual", "linha", "L1_L7", "test", "ativo", "numerico",
         )
     )
 
@@ -514,7 +523,7 @@ def test_calculate_from_definition_registry_without_temporal_args_is_atemporal()
     variable_definition_registry.add(
         VariableDefinition(
             "VAR10200", "x", "x", "-", "calculado",
-            "diário", "linha", "L1", "test", "ativo",
+            "diário", "linha", "L1", "test", "ativo", "numerico",
         )
     )
 
@@ -717,7 +726,7 @@ def test_yield_real_seed_executes_with_temporal_dimension_enabled():
     # n_ppt é diário: seu period_id efetivo deve ser exatamente
     # run_date (2026-09-14), nunca o mês inteiro.
     n_ppt_l4 = context.get_variable_value(
-        variable_id="VAR11012",
+        variable_id=N_PPT_DAILY,
         scope_type="linha",
         scope_value="L4",
         period_id="2026-09-14",
@@ -726,7 +735,7 @@ def test_yield_real_seed_executes_with_temporal_dimension_enabled():
 
     # yield@L4 (diário) deve estar disponível sob o mesmo period_id.
     yield_l4 = context.get_variable_value(
-        variable_id="VAR11001",
+        variable_id=YIELD_DAILY,
         scope_type="linha",
         scope_value="L4",
         period_id="2026-09-14",
@@ -737,7 +746,7 @@ def test_yield_real_seed_executes_with_temporal_dimension_enabled():
     # calculável sob o mesmo period_id, comprovando que a dimensão
     # temporal não quebrou a cadeia de dependências espaciais.
     yield_l1_l3 = context.get_variable_value(
-        variable_id="VAR11016",
+        variable_id=YIELD_GRUPO_L1_L3,
         scope_type="linha_grupo",
         scope_value="L1_L3",
         period_id="2026-09-14",
@@ -786,7 +795,7 @@ def test_yield_real_seed_still_works_without_temporal_dimension():
     assert len(results) == len(equation_instances.all())
 
     assert context.get_variable_value(
-        variable_id="VAR11012",
+        variable_id=N_PPT_DAILY,
         scope_type="linha",
         scope_value="L4",
     ) == pytest.approx(18 - 12.0)

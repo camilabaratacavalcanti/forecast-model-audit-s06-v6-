@@ -1,0 +1,8 @@
+variable_id,name,frequency,scope,value_type,allowed_values,declared_result_states,instances
+VAR16017,valor_retirada,diário,linha/L1_L3,numerico,,,L1 L2 L3
+VAR16021,hes,diário,linha/L4_L7,categorico,Normal|LC|Overhaul/Parada|1 By pass|1 By pass e LC,,L4 L5 L6 L7
+VAR16025,retirada_condensado_grupo,diário,linha_grupo/L4_L5,numerico,,NO_APPLICABLE_RULE->F,
+VAR16028,retirada_condensado_grupo,diário,linha_grupo/L6_L7,numerico,,NO_APPLICABLE_RULE->F,
+VAR16031,retirada_condensado_linha,diário,linha/L1_L7,numerico,,,L1 L2 L3 L4 L5 L6 L7
+VAR12041,pick_up,diário,linha/L1_L7,numerico,,,L1 L2 L3 L4 L5 L6 L7
+VAR11225,tanque,diário,linha/L1_L7,numerico,,,L1 L2 L3 L4 L5 L6 L7

@@ -31,6 +31,7 @@ def test_equation_engine_integrates_with_registries():
             scope_value="L1",
             source_reference="NovoOficial!D152:O152",
             status="ativo",
+            value_type="numerico",
         )
     )
 
@@ -46,6 +47,7 @@ def test_equation_engine_integrates_with_registries():
             scope_value="L1",
             source_reference="NovoOficial!D153:O153",
             status="ativo",
+            value_type="numerico",
         )
     )
 
@@ -63,6 +65,7 @@ def test_equation_engine_integrates_with_registries():
             scope_value="L1",
             source_reference="NovoOficial!D154",
             status="ativo",
+            value_type="numerico",
         )
     )
 

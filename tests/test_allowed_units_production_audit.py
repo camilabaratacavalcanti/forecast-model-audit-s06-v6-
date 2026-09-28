@@ -95,6 +95,7 @@ def test_new_production_units_pass_variable_enum_validation():
                 "scope_value": "L1_L7",
                 "source_reference": "teste",
                 "status": "ativo",
+                "value_type": "numerico",
             }
         ]
 

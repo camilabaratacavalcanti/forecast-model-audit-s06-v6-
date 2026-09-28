@@ -38,6 +38,7 @@ def make_variable(
         "scope_value": "L1",
         "source_reference": "NovoOficial!D152:O152",
         "status": "ativo",
+        "value_type": "numerico",
     }
 
 
@@ -53,6 +54,7 @@ def make_target_variable():
         "scope_value": "L1",
         "source_reference": "NovoOficial!D153:O153",
         "status": "ativo",
+        "value_type": "numerico",
     }
 
 
@@ -68,6 +70,7 @@ def make_parameter(parameter_id="PARAM12001"):
         "scope_value": "L1",
         "source_reference": "NovoOficial!D154",
         "status": "ativo",
+        "value_type": "numerico",
     }
 
 

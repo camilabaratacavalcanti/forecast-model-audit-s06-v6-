@@ -38,6 +38,7 @@ def make_variable(
         "scope_value": "L1",
         "source_reference": "NovoOficial!D152:O152",
         "status": "ativo",
+        "value_type": "numerico",
     }
 
 
@@ -55,6 +56,7 @@ def make_parameter(
         "scope_value": "L1",
         "source_reference": "NovoOficial!D154",
         "status": "ativo",
+        "value_type": "numerico",
     }
 
 
@@ -918,9 +920,11 @@ def test_load_all_preserves_relationships_between_entities(
             make_variable(
                 "VAR12001"
             ),
-            make_variable(
-                "VAR12002"
-            ),
+            {
+                **make_variable("VAR12002"),
+                # Identidade (name+frequency+scope) única no bloco.
+                "variable_name": "production_total_2",
+            },
         ],
     )
 

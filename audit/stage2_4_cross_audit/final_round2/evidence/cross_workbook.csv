@@ -1,0 +1,14 @@
+consumer,name,frequency,scope_type,consumer_id,consumer_variable_type,producer,producer_ids,producer_kind,unit_equal,value_type_equal,linked_by_id,status
+area_41,lth,diário,linha,VAR16007,entrada,yield,VAR11031,variable,True,True,no,PENDING_CONTRACT_DECISION D24-11
+energy,producao,diário,linha,VAR18001,entrada,production,VAR12046,variable,True,True,no,PENDING_CONTRACT_DECISION D24-11
+energy,pick_up,diário,linha,VAR18005,entrada,production,VAR12041,variable,True,True,no,PENDING_CONTRACT_DECISION D24-11
+energy,pick_up_total,diário,linha_grupo,VAR18006,entrada,production,VAR12043,variable,True,True,no,PENDING_CONTRACT_DECISION D24-11
+energy,pick_up_total,mensal,linha_grupo,VAR18007,entrada,production,VAR12044,variable,True,True,no,PENDING_CONTRACT_DECISION D24-11
+energy,lth,diário,linha,VAR18008,entrada,production,VAR12031,variable,True,True,no,PENDING_CONTRACT_DECISION D24-11
+energy,lth_total,diário,linha_grupo,VAR18009,entrada,production,VAR12033,variable,True,True,no,PENDING_CONTRACT_DECISION D24-11
+energy,lth_total,mensal,linha_grupo,VAR18010,entrada,production,VAR12034,variable,True,True,no,PENDING_CONTRACT_DECISION D24-11
+energy,lth_meta,anual,linha,VAR18011,entrada,production,PARAM12003,parameter,True,True,no,PENDING_CONTRACT_DECISION D24-11
+max_ht,lth,diário,linha,VAR13062,entrada,production,VAR12031,variable,True,True,no,PENDING_CONTRACT_DECISION D24-11
+max_ht,producao,diário,linha,VAR13092,entrada,production,VAR12046,variable,True,True,no,PENDING_CONTRACT_DECISION D24-11
+production,yield,diário,linha,VAR12062,entrada,yield,VAR11226,variable,True,True,no,PENDING_CONTRACT_DECISION D24-11
+yield,lth,diário,linha,VAR11031,entrada,production,VAR12031,variable,True,True,no,PENDING_CONTRACT_DECISION D24-11

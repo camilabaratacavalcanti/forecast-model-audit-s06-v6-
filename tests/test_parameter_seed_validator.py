@@ -6,13 +6,12 @@ from pathlib import Path
 
 from app.validation.parameter_seed_validator import (
     PARAMETER_ID_RANGES,
-    build_parameter_signature,
     validate_enum_values,
     validate_field_types,
     validate_non_empty_values,
     validate_parameter_id_ranges,
+    validate_parameter_identity,
     validate_parameter_ids,
-    validate_parameter_signatures,
     validate_required_fields,
     validate_scope_consistency,
     validate_scope_values,
@@ -37,6 +36,7 @@ def valid_parameter():
         "scope_value": "L1_L3",
         "source_reference": "NovoOficial!D180:O180",
         "status": "ativo",
+        "value_type": "numerico",
     }
 
 
@@ -889,36 +889,10 @@ def test_validate_parameter_ids_detects_duplicate_ids(
 
 
 # ============================================================
-# PARAMETER SIGNATURE
+# PARAMETER IDENTITY (D24-07)
 # ============================================================
 
-def test_build_parameter_signature(
-    valid_parameter,
-):
-    signature = build_parameter_signature(valid_parameter)
-
-    assert signature == (
-        "minimum_operating_rate",
-        "%",
-        "linha_grupo",
-        "L1_L3",
-    )
-
-
-def test_parameter_signature_ignores_value(
-    valid_parameter,
-):
-    parameter_2 = valid_parameter.copy()
-
-    parameter_2["value"] = 90.0
-
-    signature_1 = build_parameter_signature(valid_parameter)
-    signature_2 = build_parameter_signature(parameter_2)
-
-    assert signature_1 == signature_2
-
-
-def test_validate_parameter_signatures_accepts_different_parameters(
+def test_validate_parameter_identity_accepts_different_parameters(
     valid_parameter,
     tmp_path,
 ):
@@ -928,22 +902,32 @@ def test_validate_parameter_signatures_accepts_different_parameters(
     parameter_2["parameter_name"] = "maximum_operating_rate"
 
     parameters = [
-        (
-            valid_parameter,
-            tmp_path / "production" / "parameters.json",
-        ),
-        (
-            parameter_2,
-            tmp_path / "production" / "parameters.json",
-        ),
+        (valid_parameter, tmp_path / "production" / "parameters.json"),
+        (parameter_2, tmp_path / "production" / "parameters.json"),
     ]
 
-    warnings = validate_parameter_signatures(parameters)
-
-    assert warnings == []
+    assert validate_parameter_identity(parameters) == ([], [])
 
 
-def test_validate_parameter_signatures_detects_semantic_duplicate(
+def test_validate_parameter_identity_same_id_per_scope_is_one_definition(
+    valid_parameter,
+    tmp_path,
+):
+    """Mesmo parameter_id em escopos distintos: instâncias, não colisão."""
+
+    parameter_2 = valid_parameter.copy()
+    parameter_2["scope_value"] = "L4_L5"
+    parameter_2["value"] = 90.0
+
+    parameters = [
+        (valid_parameter, tmp_path / "production" / "parameters.json"),
+        (parameter_2, tmp_path / "production" / "parameters.json"),
+    ]
+
+    assert validate_parameter_identity(parameters) == ([], [])
+
+
+def test_validate_parameter_identity_same_block_collision_is_an_error(
     valid_parameter,
     tmp_path,
 ):
@@ -953,20 +937,34 @@ def test_validate_parameter_signatures_detects_semantic_duplicate(
     parameter_2["value"] = 90.0
 
     parameters = [
-        (
-            valid_parameter,
-            tmp_path / "production" / "parameters.json",
-        ),
-        (
-            parameter_2,
-            tmp_path / "production" / "parameters.json",
-        ),
+        (valid_parameter, tmp_path / "production" / "parameters.json"),
+        (parameter_2, tmp_path / "production" / "parameters.json"),
     ]
 
-    warnings = validate_parameter_signatures(parameters)
+    errors, warnings = validate_parameter_identity(parameters)
 
+    assert len(errors) == 1
+    assert "PARAM12001" in errors[0] and "PARAM12002" in errors[0]
+    assert warnings == []
+
+
+def test_validate_parameter_identity_cross_block_is_a_pending_decision_warning(
+    valid_parameter,
+    tmp_path,
+):
+    parameter_2 = valid_parameter.copy()
+    parameter_2["parameter_id"] = "PARAM11002"
+
+    parameters = [
+        (valid_parameter, tmp_path / "production" / "parameters.json"),
+        (parameter_2, tmp_path / "yield" / "parameters.json"),
+    ]
+
+    errors, warnings = validate_parameter_identity(parameters)
+
+    assert errors == []
     assert len(warnings) == 1
-    assert "semanticamente duplicado" in warnings[0]
+    assert "D24-11" in warnings[0]
 
 
 # ============================================================
@@ -1089,9 +1087,10 @@ def test_validate_seed_warns_about_semantic_duplicates(
         production_seed_path.parent.parent.parent
     )
 
-    assert errors == []
-    assert len(warnings) == 1
-    assert "semanticamente duplicado" in warnings[0]
+    # D24-07: identidade repetida no mesmo bloco é erro, não aviso.
+    assert len(errors) == 1
+    assert "PARAM12001" in errors[0] and "PARAM12002" in errors[0]
+    assert warnings == []
 
 
 def test_validate_seed_rejects_parameter_outside_block(

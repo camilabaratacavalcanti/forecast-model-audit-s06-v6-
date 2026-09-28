@@ -22,6 +22,7 @@ etapa (ver relatório da tarefa):
       componentes, descoberta nesta implementação.
 """
 
+import json
 from datetime import date, timedelta
 from pathlib import Path
 
@@ -52,6 +53,8 @@ from app.engine.temporal_forecast_orchestrator import (
     TemporalForecastOrchestrator,
 )
 from app.repositories.seed_loader import SeedLoader
+
+from seed_ids import parameter_id, variable_id
 
 SEED_ROOT = Path(__file__).resolve().parent.parent / "data" / "seed"
 
@@ -214,25 +217,37 @@ def test_production_parameter_ids_are_all_in_range_and_scope_unique(
     assert len(scope_keys) == len(set(scope_keys))
 
 
-def test_yield_reused_for_production_not_duplicated(loaded_seed):
+def test_production_declares_its_own_yield_input_pending_d24_11(loaded_seed):
     """
-    BD-01: `yield` não é duplicado -- Production referencia
-    diretamente `VAR11001` (bloco Yield), e nenhuma nova
-    VariableDefinition "yield" existe na faixa 12000-12999.
+    BD-01 (histórico): o seed feito à mão para production v1 reusava
+    `yield` do bloco Yield por ID. O workbook aprovado production v6
+    declara `yield` como linha própria (entrada, fonte "bloco yield");
+    o seed o representa fielmente. Como ligar produtor e consumidor
+    entre workbooks é a decisão contratual pendente D24-11 — este teste
+    documenta o estado, não decide a ligação.
     """
 
     variable_definitions = loaded_seed[0]
 
-    yield_vars = [
-        d for d in variable_definitions.all()
+    yield_vars = sorted(
+        d.variable_definition_id for d in variable_definitions.all()
         if d.variable_name == "yield"
         and d.frequency == "diário"
         and d.scope_type == "linha"
         and d.scope_value == "L1_L7"
-    ]
+    )
 
-    assert len(yield_vars) == 1
-    assert yield_vars[0].variable_definition_id == "VAR11001"
+    assert yield_vars == sorted(
+        [
+            variable_id("yield", "yield", "diário"),
+            variable_id("production", "yield", "diário"),
+        ]
+    )
+    production_yield = next(
+        d for d in variable_definitions.all()
+        if d.variable_definition_id == variable_id("production", "yield", "diário")
+    )
+    assert production_yield.variable_type == "entrada"
 
 
 def test_lth_meta_parameters_have_expected_values(production_seed):
@@ -520,11 +535,9 @@ def test_pick_up_total_bd05_uses_distinct_per_line_values(
     engine = EquationEngine()
 
     variable_definitions = production_seed[0]
-    pick_up_ids = {
-        d.scope_value: d.variable_definition_id
-        for d in variable_definitions.all()
-        if d.variable_name == "pick_up" and d.frequency == "diário"
-    }
+    # pick_up é UMA definição (linha/L1_L7) com 7 instâncias por linha.
+    pick_up_id = variable_id("production", "pick_up", "diário")
+    pick_up_ids = {line: pick_up_id for line in LINES}
     lth_id = next(
         d.variable_definition_id for d in variable_definitions.all()
         if d.variable_name == "lth" and d.frequency == "diário"
@@ -560,10 +573,11 @@ def test_yield_lth_total_weighted_by_lth_not_ltp(production_seed):
         production_seed, "yield_lth_total", "diário", "linha_grupo",
     )
 
+    lth_id = variable_id("production", "lth", "diário")
+    yield_id = variable_id("production", "yield", "diário")
+
     assert "ltp" not in eq.expression
-    assert "lth" in eq.expression or any(
-        f"VAR12016@{l}" in eq.expression for l in LINES
-    )
+    assert all(f"{lth_id}@{l}" in eq.expression for l in LINES)
 
     instance = EquationInstance.create(
         definition=eq, scope_type="linha_grupo", scope_value="L1_L7",
@@ -577,8 +591,8 @@ def test_yield_lth_total_weighted_by_lth_not_ltp(production_seed):
 
     context = CalculationContext()
     for line in LINES:
-        context.set_variable_value("VAR11001", yield_values[line], "linha", line)
-        context.set_variable_value("VAR12016", lth_values[line], "linha", line)
+        context.set_variable_value(yield_id, yield_values[line], "linha", line)
+        context.set_variable_value(lth_id, lth_values[line], "linha", line)
 
     result = engine.calculate_instance(
         instance=instance, definition=eq, calculation_context=context,
@@ -607,8 +621,9 @@ def test_lth_total_sums_all_seven_lines_without_repetition(
     lth_values = {"L1": 1.0, "L2": 2.0, "L3": 3.0, "L4": 4.0,
                   "L5": 5.0, "L6": 6.0, "L7": 7.0}
     context = CalculationContext()
+    lth_id = variable_id("production", "lth", "diário")
     for line in LINES:
-        context.set_variable_value("VAR12016", lth_values[line], "linha", line)
+        context.set_variable_value(lth_id, lth_values[line], "linha", line)
 
     result = engine.calculate_instance(
         instance=instance, definition=eq, calculation_context=context,
@@ -630,11 +645,9 @@ def test_producao_planta_sums_distinct_per_line_producao_values(
     engine = EquationEngine()
 
     variable_definitions = production_seed[0]
-    producao_ids = {
-        d.scope_value: d.variable_definition_id
-        for d in variable_definitions.all()
-        if d.variable_name == "producao" and d.frequency == "diário"
-    }
+    # producao é UMA definição (linha/L1_L7), não 7 (D24-10).
+    producao_id = variable_id("production", "producao", "diário")
+    producao_ids = {line: producao_id for line in LINES}
 
     producao_values = {"L1": 11.0, "L2": 22.0, "L3": 33.0, "L4": 44.0,
                         "L5": 55.0, "L6": 66.0, "L7": 77.0}
@@ -692,11 +705,7 @@ def test_producao_uses_dot_decimal_not_comma(production_seed):
         d.variable_definition_id for d in variable_definitions.all()
         if d.variable_name == "lth" and d.frequency == "diário"
     )
-    pick_up_l1 = next(
-        d.variable_definition_id for d in variable_definitions.all()
-        if d.variable_name == "pick_up" and d.frequency == "diário"
-        and d.scope_value == "L1"
-    )
+    pick_up_l1 = variable_id("production", "pick_up", "diário")
     fator_producao_id = next(
         p.parameter_definition_id for p in production_seed[2].all()
         if p.parameter_name == "fator_producao"
@@ -789,7 +798,8 @@ def test_lth_real_equation_applies_fator_ajuste_only_above_floor(
             vid("tempo_calcinacao"), tempo_values[3], "linha", "L1",
         )
         context.set_variable_value(
-            "VAR12001", fator_ajuste, "linha", "L1", period_id="2026-09",
+            variable_id("production", "fator_ajuste_lth", "mensal"),
+            fator_ajuste, "linha", "L1", period_id="2026-09",
         )
         context.set_parameter_value(
             lth_meta_id, lth_meta_value, "linha", "L1",
@@ -872,16 +882,27 @@ def test_fator_ajuste_lth_monthly_value_consumed_by_daily_lth(
 def test_producao_planta_monthly_has_average_and_sum_coexisting(
     aggregation_rules,
 ):
-    rules = [
-        r for r in aggregation_rules.all()
-        if "PRODUCAO_PLANTA-GRUPO-L1_L7-MENSAL" in r.aggregation_rule_id
-    ]
+    """
+    BD-08 no workbook aprovado production v6: a média mensal é
+    `producao_planta` (AVERAGE) e a soma mensal é a variante
+    `producao_planta_somatorio` (SUM), ambas da MESMA origem diária.
+    """
 
-    types = {r.aggregation_type for r in rules}
+    average = next(
+        r for r in aggregation_rules
+        if r.aggregation_rule_id
+        == "AGR-PRODUCTION-PRODUCAO_PLANTA-GRUPO-L1_L7-MENSAL-AVERAGE"
+    )
+    total = next(
+        r for r in aggregation_rules
+        if r.aggregation_rule_id
+        == "AGR-PRODUCTION-PRODUCAO_PLANTA_SOMATORIO-GRUPO-L1_L7-MENSAL-SUM"
+    )
 
-    assert types == {"AVERAGE", "SUM"}
-    ids = [r.aggregation_rule_id for r in rules]
-    assert len(ids) == len(set(ids))
+    assert average.aggregation_type == "AVERAGE"
+    assert total.aggregation_type == "SUM"
+    assert average.source_variable_id == total.source_variable_id
+    assert average.target_variable_id != total.target_variable_id
 
 
 def test_producao_planta_average_and_sum_produce_different_results(
@@ -895,7 +916,7 @@ def test_producao_planta_average_and_sum_produce_different_results(
     rule_sum = next(
         r for r in aggregation_rules
         if r.aggregation_rule_id
-        == "AGR-PRODUCTION-PRODUCAO_PLANTA-GRUPO-L1_L7-MENSAL-SUM"
+        == "AGR-PRODUCTION-PRODUCAO_PLANTA_SOMATORIO-GRUPO-L1_L7-MENSAL-SUM"
     )
 
     context = CalculationContext()
@@ -998,136 +1019,80 @@ def test_producao_planta_movel_progressive_window(aggregation_rules):
 def test_production_integration_chain_inputs_to_producao_planta(
     loaded_seed,
 ):
+    """
+    Cadeia real do workbook aprovado production v6:
+
+        inputs -> lth -> oee -> pick_up (1 definição, 7 instâncias por
+        linha, cada uma com a expressão da sua linha) -> producao (1
+        definição linha/L1_L7) -> producao_planta (Σ producao@L1..@L7)
+
+    `desaguamento_oee` fica fora: sua referência a `consumo_mpsa` não é
+    alcançável em runtime (decisão pendente R2-A019-UNREACHABLE,
+    registrada no manifesto do seed) e tem teste próprio.
+    """
+
     (
         variable_definitions, _vi, _parameter_definitions,
-        parameter_instances, equation_definitions, equation_instances,
+        parameter_instances, _equation_definitions, _equation_instances,
     ) = loaded_seed
 
-    prod_equation_definitions_all = _filter_production_block(loaded_seed)[4]
-    prod_equation_instances_all = _filter_production_block(loaded_seed)[5]
+    production = _filter_production_block(loaded_seed)
+    desaguamento_oee = variable_id(
+        "production", "desaguamento_oee", "anual", "linha_grupo", "L1_L7"
+    )
 
-    # `desaguamento_oee` está fora do escopo declarado desta cadeia
-    # (inputs -> lth -> oee -> pick_up -> producao -> producao_planta)
-    # e depende de `consumo_mpsa` anual, cuja cadeia diária ainda é
-    # uma pendência documentada (referência cruzada linha_grupo <-
-    # planta/linha, ver relatório da tarefa) -- excluído aqui para
-    # não misturar essa pendência com o que este teste efetivamente
-    # cobre. `desaguamento_oee` tem cobertura própria e dedicada em
-    # outros testes deste arquivo.
     prod_equation_definitions = EquationDefinitionRegistry()
-    for d in prod_equation_definitions_all.all():
-        if d.target_variable_id != "VAR12083":
+    for d in production[4].all():
+        if d.target_variable_id != desaguamento_oee:
             prod_equation_definitions.add(d)
 
-    prod_equation_instances = EquationInstanceRegistry()
-    for i in prod_equation_instances_all.all():
-        if i.target_variable_id != "VAR12083":
-            prod_equation_instances.add(i)
+    prod_equation_instances = [
+        i for i in production[5].all()
+        if i.target_variable_id != desaguamento_oee
+    ]
 
     context = CalculationContext()
 
-    # Filtra para as VariableDefinitions do bloco Production (mais
-    # VAR11001, "yield" reutilizado do Yield via BD-01) -- alguns
-    # nomes (ex.: "lth", "oee") existem também no bloco Yield com a
-    # mesma (frequency, scope_type, scope_value), e usar o registry
-    # completo sem filtrar pegaria a variável errada.
-    var_by_name_scope = {}
-    for d in variable_definitions.all():
-        if not (
-            _is_production_id(d.variable_definition_id)
-            or d.variable_definition_id == "VAR11001"
-        ):
-            continue
-        var_by_name_scope.setdefault(d.variable_name, {})[
-            (d.frequency, d.scope_type, d.scope_value)
-        ] = d
+    daily_line_inputs = {
+        "reducao_lth_digestao": 100.0,
+        "tempo_digestao": 4.0,
+        "reducao_lth_clarificacao": 50.0,
+        "tempo_clarificacao": 2.0,
+        "reducao_lth_precipitacao": 30.0,
+        "tempo_precipitacao": 2.0,
+        "reducao_lth_calcinacao": 20.0,
+        "tempo_calcinacao": 2.0,
+        "consumo_cbg_percentual": 10.0,
+        "consumo_mpsa_percentual": 60.0,
+        "consumo_mrn_percentual": 30.0,
+        "fator_ajuste_mrn": 1.0,
+    }
 
     for line in LINES:
+        for name, value in daily_line_inputs.items():
+            context.set_variable_value(
+                variable_id("production", name, "diário"), value, "linha", line,
+            )
         context.set_variable_value(
-            var_by_name_scope["reducao_lth_digestao"][
-                ("diário", "linha", "L1_L7")
-            ].variable_definition_id,
-            100.0, "linha", line,
-        )
-        context.set_variable_value(
-            var_by_name_scope["tempo_digestao"][
-                ("diário", "linha", "L1_L7")
-            ].variable_definition_id,
-            4.0, "linha", line,
-        )
-        context.set_variable_value(
-            var_by_name_scope["reducao_lth_clarificacao"][
-                ("diário", "linha", "L1_L7")
-            ].variable_definition_id,
-            50.0, "linha", line,
-        )
-        context.set_variable_value(
-            var_by_name_scope["tempo_clarificacao"][
-                ("diário", "linha", "L1_L7")
-            ].variable_definition_id,
-            2.0, "linha", line,
-        )
-        context.set_variable_value(
-            var_by_name_scope["reducao_lth_precipitacao"][
-                ("diário", "linha", "L1_L7")
-            ].variable_definition_id,
-            30.0, "linha", line,
-        )
-        context.set_variable_value(
-            var_by_name_scope["tempo_precipitacao"][
-                ("diário", "linha", "L1_L7")
-            ].variable_definition_id,
-            2.0, "linha", line,
-        )
-        context.set_variable_value(
-            var_by_name_scope["reducao_lth_calcinacao"][
-                ("diário", "linha", "L1_L7")
-            ].variable_definition_id,
-            20.0, "linha", line,
-        )
-        context.set_variable_value(
-            var_by_name_scope["tempo_calcinacao"][
-                ("diário", "linha", "L1_L7")
-            ].variable_definition_id,
-            2.0, "linha", line,
-        )
-        context.set_variable_value(
-            var_by_name_scope["fator_ajuste_lth"][
-                ("mensal", "linha", "L1_L7")
-            ].variable_definition_id,
+            variable_id("production", "fator_ajuste_lth", "mensal"),
             1.05, "linha", line, period_id="2026-09",
         )
-        # yield (bloco Yield, BD-01) -- valores distintos por linha
+        # yield: entrada do production (fonte "bloco yield", D24-11),
+        # valores distintos por linha.
         context.set_variable_value(
-            "VAR11001", 10.0 + int(line[1]), "linha", line,
+            variable_id("production", "yield", "diário"),
+            10.0 + int(line[1]), "linha", line,
         )
 
-    # fator_mrn_kg_t/fator_mpsa_kg_t (BD-10): linha_grupo/L1_L7,
-    # necessários pois run_direct calcula TODAS as EquationInstances
-    # de Production, incluindo fator_mrn/fator_mpsa/fator_cbg.
-    context.set_variable_value(
-        var_by_name_scope["fator_mrn_kg_t"][
-            ("diário", "linha_grupo", "L1_L7")
-        ].variable_definition_id,
-        250.0, "linha_grupo", "L1_L7",
-    )
-    context.set_variable_value(
-        var_by_name_scope["fator_mpsa_kg_t"][
-            ("diário", "linha_grupo", "L1_L7")
-        ].variable_definition_id,
-        125.0, "linha_grupo", "L1_L7",
-    )
+    for name, value in (("fator_mrn_kg_t", 250.0), ("fator_mpsa_kg_t", 125.0)):
+        context.set_variable_value(
+            variable_id("production", name, "diário", "linha_grupo", "L1_L7"),
+            value, "linha_grupo", "L1_L7",
+        )
 
-    for instance in parameter_instances.all():
-        if _is_production_id(instance.parameter_definition_id):
-            context.set_parameter_instance_value(
-                instance,
-                next(
-                    p.value for p in _filter_production_block(loaded_seed)[2].all()
-                    if p.parameter_definition_id
-                    == instance.parameter_definition_id
-                ),
-            )
+    for instance in production[3].all():
+        # Cada ParameterInstance carrega o valor da SUA linha do workbook.
+        context.set_parameter_instance_value(instance, instance.value)
 
     orchestrator = TemporalForecastOrchestrator()
 
@@ -1138,69 +1103,44 @@ def test_production_integration_chain_inputs_to_producao_planta(
         run_date=date(2026, 9, 14),
     )
 
-    assert len(results) == len(prod_equation_instances.all())
+    assert len(results) == len(prod_equation_instances)
+
+    def value(name, line, frequency="diário", scope_type="linha", scope_value="L1_L7"):
+        return context.get_variable_value(
+            variable_id("production", name, frequency, scope_type, scope_value),
+            scope_type=scope_type,
+            scope_value=line,
+            period_id="2026-09-14",
+        )
+
+    yield_by_line = {line: 10.0 + int(line[1]) for line in LINES}
+    pick_up_yield = {
+        p.scope_value: p.value for p in production[2].all()
+        if p.parameter_name == "pick_up_yield"
+    }
 
     for line in LINES:
-        lth_value = context.get_variable_value(
-            var_by_name_scope["lth"][
-                ("diário", "linha", "L1_L7")
-            ].variable_definition_id,
-            scope_type="linha", scope_value=line,
-            period_id="2026-09-14",
-        )
-        assert isinstance(lth_value, (int, float))
+        assert isinstance(value("lth", line), (int, float))
+        assert isinstance(value("oee", line), (int, float))
 
-        oee_value = context.get_variable_value(
-            var_by_name_scope["oee"][
-                ("diário", "linha", "L1_L7")
-            ].variable_definition_id,
-            scope_type="linha", scope_value=line,
-            period_id="2026-09-14",
-        )
-        assert isinstance(oee_value, (int, float))
+    # pick_up: cada instância usa a expressão da SUA linha do workbook
+    # (L1..L3: média de yield L1..L3; L4..L5; L6..L7) + pick_up_yield@Lk.
+    groups = {"L1": "L1 L2 L3", "L2": "L1 L2 L3", "L3": "L1 L2 L3",
+              "L4": "L4 L5", "L5": "L4 L5", "L6": "L6 L7", "L7": "L6 L7"}
+    for line in LINES:
+        members = groups[line].split()
+        expected = sum(yield_by_line[m] for m in members) / len(members)
+        assert value("pick_up", line) == pytest.approx(expected + pick_up_yield[line])
 
-    pick_up_l4 = var_by_name_scope["pick_up"][
-        ("diário", "linha", "L4")
-    ]
-    pick_up_value = context.get_variable_value(
-        pick_up_l4.variable_definition_id,
-        scope_type="linha", scope_value="L4",
-        period_id="2026-09-14",
-    )
-    assert isinstance(pick_up_value, (int, float))
-
-    producao_l4 = var_by_name_scope["producao"][
-        ("diário", "linha", "L4")
-    ]
-    producao_value = context.get_variable_value(
-        producao_l4.variable_definition_id,
-        scope_type="linha", scope_value="L4",
-        period_id="2026-09-14",
-    )
-    assert isinstance(producao_value, (int, float))
+    producao_by_line = {line: value("producao", line) for line in LINES}
+    assert len(set(producao_by_line.values())) > 1
 
     producao_planta_value = context.get_variable_value(
-        var_by_name_scope["producao_planta"][
-            ("diário", "linha_grupo", "L1_L7")
-        ].variable_definition_id,
+        variable_id("production", "producao_planta", "diário", "linha_grupo", "L1_L7"),
         scope_type="linha_grupo", scope_value="L1_L7",
         period_id="2026-09-14",
     )
-    assert isinstance(producao_planta_value, (int, float))
-
-    producao_by_line = {
-        line: context.get_variable_value(
-            var_by_name_scope["producao"][
-                ("diário", "linha", line)
-            ].variable_definition_id,
-            scope_type="linha", scope_value=line,
-            period_id="2026-09-14",
-        )
-        for line in LINES
-    }
-    assert producao_planta_value == pytest.approx(
-        sum(producao_by_line.values())
-    )
+    assert producao_planta_value == pytest.approx(sum(producao_by_line.values()))
 
 
 # ============================================================
@@ -1232,7 +1172,8 @@ def test_desaguamento_produtividade_materializes_one_planta_instance(
 
     instances = [
         i for i in parameter_instances.all()
-        if i.parameter_definition_id == "PARAM12005"
+        if i.parameter_definition_id
+        == parameter_id("production", "desaguamento_produtividade")
     ]
 
     assert len(instances) == 1
@@ -1384,10 +1325,21 @@ def test_desaguamento_oee_expression_uses_factor_100_and_13(
     assert "24" in eq.expression
 
 
-def test_desaguamento_oee_uses_annual_consumo_mpsa(production_seed):
-    variable_definitions, _vi, _pd, _pi, equation_definitions, _ei = (
-        production_seed
-    )
+def test_desaguamento_oee_reference_to_consumo_mpsa_is_a_recorded_pending_decision(
+    production_seed,
+):
+    """
+    O workbook aprovado production v6 escreve `desaguamento_oee` (anual,
+    linha_grupo/L1_L7) como `100 * (consumo_mpsa / 24) / (... * 13)`,
+    mas a única definição chamada `consumo_mpsa` é diária linha/L1_L7
+    (a anual passou a se chamar `consumo_mpsa_grupo`). A resolução
+    nome+frequência+escopo cai nessa definição, que nenhuma instância
+    do consumidor alcança em runtime. O builder não decide qual seria a
+    referência correta: grava a expressão como escrita e registra a
+    decisão pendente R2-A019-UNREACHABLE no manifesto do seed.
+    """
+
+    variable_definitions = production_seed[0]
     var_by_id = {
         d.variable_definition_id: d for d in variable_definitions.all()
     }
@@ -1395,43 +1347,46 @@ def test_desaguamento_oee_uses_annual_consumo_mpsa(production_seed):
     eq = _get_equation_for(
         production_seed, "desaguamento_oee", "anual", "linha_grupo",
     )
-
     deps = DependencyExtractor().extract(eq.expression)
 
-    consumo_mpsa_refs = [
-        v for v in deps.variables
-        if var_by_id[v.split("@")[0]].variable_name == "consumo_mpsa"
+    consumo_mpsa = variable_id("production", "consumo_mpsa", "diário")
+    assert [v.split("@")[0] for v in deps.variables] == [consumo_mpsa]
+    assert var_by_id[consumo_mpsa].scope_type == "linha"
+    assert [p.split("@")[0] for p in deps.parameters] == [
+        parameter_id("production", "desaguamento_produtividade")
     ]
-    assert len(consumo_mpsa_refs) == 1
-    referenced = var_by_id[consumo_mpsa_refs[0].split("@")[0]]
-    assert referenced.frequency == "anual"
-    assert referenced.scope_type == "linha_grupo"
 
-    param_refs = [
-        p for p in deps.parameters
-        if p.split("@")[0] == "PARAM12005"
+    manifest = json.loads(
+        (SEED_ROOT / "production" / "manifest.json").read_text(encoding="utf-8")
+    )
+    pending = [
+        d for d in manifest["pending_contract_decisions"]
+        if d["decision_id"] == "R2-A019-UNREACHABLE"
     ]
-    assert len(param_refs) == 1
+    assert len(pending) == 1
+    assert pending[0]["fields"]["equation_id"] == eq.equation_definition_id
+    assert pending[0]["fields"]["reference"] == consumo_mpsa
 
 
-def test_desaguamento_oee_is_target_of_no_equation_besides_eq12026(
+def test_desaguamento_oee_is_target_of_exactly_one_equation(
     production_seed,
 ):
     equation_definitions = production_seed[4]
 
     matches = [
         eq for eq in equation_definitions.all()
-        if eq.target_variable_id == "VAR12083"
+        if eq.target_variable_id == variable_id(
+            "production", "desaguamento_oee", "anual", "linha_grupo", "L1_L7"
+        )
     ]
     assert len(matches) == 1
-    assert matches[0].equation_definition_id == "EQ12026"
 
 
 def test_consumo_mpsa_annual_aggregation_rule_is_sum(aggregation_rules):
     rule = next(
         r for r in aggregation_rules
         if r.aggregation_rule_id
-        == "AGR-PRODUCTION-CONSUMO_MPSA-GRUPO-L1_L7-ANUAL-SUM"
+        == "AGR-PRODUCTION-CONSUMO_MPSA_GRUPO-GRUPO-L1_L7-ANUAL-SUM"
     )
 
     assert rule.source_frequency == "diário"
@@ -1469,10 +1424,12 @@ def test_desaguamento_oee_formula_produces_expected_percentage(
 
     context = CalculationContext()
     context.set_variable_value(
-        "VAR12075", consumo_mpsa_anual, "linha_grupo", "L1_L7",
+        variable_id("production", "consumo_mpsa", "diário"),
+        consumo_mpsa_anual, "linha_grupo", "L1_L7",
     )
     context.set_parameter_value(
-        "PARAM12005", desaguamento_produtividade, "linha_grupo", "L1_L7",
+        parameter_id("production", "desaguamento_produtividade"),
+        desaguamento_produtividade, "linha_grupo", "L1_L7",
     )
 
     result = engine.calculate_instance(
@@ -1523,10 +1480,12 @@ def test_desaguamento_oee_resolves_cross_scope_reference_via_decision_e(
 
     context = CalculationContext()
     context.set_variable_value(
-        "VAR12075", consumo_mpsa_anual, "linha_grupo", "L1_L7",
+        variable_id("production", "consumo_mpsa", "diário"),
+        consumo_mpsa_anual, "linha_grupo", "L1_L7",
     )
     context.set_parameter_value(
-        "PARAM12005", desaguamento_produtividade, "planta", "PLANTA",
+        parameter_id("production", "desaguamento_produtividade"),
+        desaguamento_produtividade, "planta", "PLANTA",
     )
 
     result = engine.calculate_instance(

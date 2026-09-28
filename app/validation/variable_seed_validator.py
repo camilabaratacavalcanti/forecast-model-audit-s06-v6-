@@ -1,7 +1,8 @@
 import json
 from pathlib import Path
 
-from app.domain.values import VALUE_TYPES
+from app.domain.values import CATEGORICAL, RESULT_STATE_TAXONOMY, VALUE_TYPES
+from app.engine.scope_resolver import ScopeResolver
 
 
 # ============================================================
@@ -19,7 +20,20 @@ REQUIRED_VARIABLE_FIELDS = [
     "scope_value",
     "source_reference",
     "status",
+    "value_type",
 ]
+
+
+# Campos contratuais opcionais (ausentes = não declarados no workbook).
+OPTIONAL_VARIABLE_FIELDS = [
+    "allowed_values",
+    "declared_result_states",
+    "instances",
+]
+
+ALLOWED_VARIABLE_FIELDS = set(REQUIRED_VARIABLE_FIELDS) | set(
+    OPTIONAL_VARIABLE_FIELDS
+)
 
 
 # Taxonomia oficial de blocos (29 blocos, faixa continua
@@ -172,6 +186,15 @@ def normalize_unit(unit):
     return UNIT_ALIASES.get(unit, unit)
 
 
+# Faixas contíguas de linhas (L1_L2 ... L6_L7): escopo declarado de
+# uma definição com instâncias por linha (uma instância por linha do
+# workbook). Só são aceitas com `instances` declaradas, exceto L1_L7.
+LINE_RANGE_VALUES = {
+    f"L{start}_L{end}"
+    for start in range(1, 8)
+    for end in range(start + 1, 8)
+}
+
 ALLOWED_SCOPE_VALUES = {
     "L1",
     "L2",
@@ -185,7 +208,7 @@ ALLOWED_SCOPE_VALUES = {
     "L6_L7",
     "L1_L7",
     "PLANTA",
-}
+} | LINE_RANGE_VALUES
 
 
 # Campos que obrigatoriamente devem conter uma string
@@ -193,7 +216,6 @@ ALLOWED_SCOPE_VALUES = {
 NON_EMPTY_STRING_FIELDS = {
     "variable_id",
     "variable_name",
-    "description",
     "unit",
     "source_reference",
 }
@@ -203,6 +225,9 @@ NON_EMPTY_STRING_FIELDS = {
 OPTIONAL_STRING_FIELDS = {
     "scope_type",
     "scope_value",
+    # A descrição vem do workbook aprovado, onde pode estar vazia
+    # (null); quando preenchida, não pode ser texto vazio.
+    "description",
 }
 
 # Campos que possuem valores controlados por enum.
@@ -213,7 +238,7 @@ ENUM_FIELDS = {
     "unit": ALLOWED_UNITS,
     "scope_type": ALLOWED_SCOPE_TYPES,
     "scope_value": ALLOWED_SCOPE_VALUES,
-    # Opcional: ausente = "numerico" (ver app.domain.values).
+    # Obrigatório (REQUIRED_VARIABLE_FIELDS): sem padrão, sem alias.
     "value_type": VALUE_TYPES,
 }
 
@@ -429,7 +454,7 @@ def validate_non_empty_values(
         block = variable.get("_block", "unknown")
         variable_id = variable.get("variable_id", "unknown")
 
-        for field in NON_EMPTY_STRING_FIELDS:
+        for field in NON_EMPTY_STRING_FIELDS | {"description"}:
             if field not in variable:
                 continue
 
@@ -624,7 +649,14 @@ def validate_scope_type_value_combination(
             continue
 
         if scope_type == "linha":
-            if scope_value not in valid_line_values:
+            # Uma faixa de linhas (ex.: L4_L7) só é escopo de uma
+            # definição com instâncias por linha declaradas.
+            declared_range = (
+                scope_value in LINE_RANGE_VALUES
+                and variable.get("instances") is not None
+            )
+
+            if scope_value not in valid_line_values and not declared_range:
                 errors.append(
                     f"Invalid scope_value '{scope_value}' for "
                     f"scope_type 'linha' in {block}/variables.json "
@@ -725,20 +757,6 @@ def validate_variable_id_ranges(
     return errors
 
 
-def build_variable_signature(
-    variable: dict,
-) -> tuple:
-    """Constrói assinatura usada para detectar possíveis duplicidades."""
-    return (
-        variable["variable_name"],
-        variable["unit"],
-        variable["variable_type"],
-        variable["frequency"],
-        variable["scope_type"],
-        variable["scope_value"],
-    )
-
-
 def validate_variable_ids(
     variables: list[dict],
 ) -> list[str]:
@@ -771,52 +789,262 @@ def validate_variable_ids(
     return errors
 
 
-def validate_variable_signatures(
+def _instance_scopes(variable: dict) -> list[tuple]:
+    scope_type = variable.get("scope_type")
+
+    if scope_type is None:
+        return [(None, None)]
+
+    try:
+        return ScopeResolver().resolve_scopes(
+            scope_type, variable.get("scope_value")
+        )
+    except ValueError:
+        # Escopo inválido já é reportado pelas validações de escopo.
+        return []
+
+
+def validate_variable_identity(
     variables: list[dict],
-) -> list[str]:
-    """Detecta possíveis variáveis duplicadas semanticamente."""
+) -> tuple[list[str], list[str]]:
+    """
+    Identidade contratual = variable_name + frequency + scope_type +
+    scope_value, avaliada por instância concreta (ScopeResolver).
+    unit, variable_type, description e source_reference NÃO fazem parte
+    da identidade.
+
+    Duas definições do MESMO bloco com a mesma identidade: erro.
+    A mesma identidade em blocos diferentes: aviso — o mecanismo de
+    ligação entre workbooks (identidade global x entrada local) é uma
+    decisão contratual pendente (D24-11) e não é decidido aqui.
+    """
+
+    errors = []
     warnings = []
-
-    signatures = {}
-
-    required_fields = [
-        "variable_name",
-        "unit",
-        "variable_type",
-        "frequency",
-        "scope_type",
-        "scope_value",
-        "source_reference",
-    ]
+    seen: dict[tuple, dict] = {}
+    reported_cross_block: set[tuple] = set()
 
     for variable in variables:
         if not all(
             field in variable
-            for field in required_fields
+            for field in ("variable_name", "frequency", "scope_type", "scope_value")
         ):
             continue
 
-        signature = build_variable_signature(variable)
+        for scope in _instance_scopes(variable):
+            key = (variable["variable_name"], variable["frequency"], *scope)
+            previous = seen.get(key)
 
-        if signature in signatures:
-            previous_variable = signatures[signature]
+            if previous is None:
+                seen[key] = variable
+                continue
 
-            warnings.append(
-                "Possible duplicate variable: "
-                f"{previous_variable.get('variable_id', 'unknown')} "
-                f"({previous_variable.get('_block', 'unknown')}/"
-                "variables.json) and "
-                f"{variable.get('variable_id', 'unknown')} "
-                f"({variable.get('_block', 'unknown')}/"
-                "variables.json) | "
-                "source_reference: "
-                f"{previous_variable.get('source_reference')} | "
-                f"{variable.get('source_reference')}"
+            if previous.get("_block") == variable.get("_block"):
+                errors.append(
+                    "Duplicate variable identity "
+                    f"{key} in {variable.get('_block', 'unknown')}/"
+                    "variables.json: "
+                    f"{previous.get('variable_id', 'unknown')} and "
+                    f"{variable.get('variable_id', 'unknown')}"
+                )
+            else:
+                pair = (
+                    variable["variable_name"],
+                    variable["frequency"],
+                    variable.get("scope_type"),
+                    variable.get("scope_value"),
+                    previous.get("_block"),
+                    variable.get("_block"),
+                )
+
+                if pair not in reported_cross_block:
+                    reported_cross_block.add(pair)
+                    warnings.append(
+                        "Cross-block identity (pending contract decision "
+                        f"D24-11): {key[:2]} "
+                        f"{variable.get('scope_type')}/"
+                        f"{variable.get('scope_value')} declared by "
+                        f"{previous.get('variable_id', 'unknown')} "
+                        f"({previous.get('_block', 'unknown')}) and "
+                        f"{variable.get('variable_id', 'unknown')} "
+                        f"({variable.get('_block', 'unknown')})"
+                    )
+
+    return errors, warnings
+
+
+# ============================================================
+# CAMPOS CONTRATUAIS DO WORKBOOK
+# ============================================================
+
+
+def _label(variable: dict) -> str:
+    return (
+        f"{variable.get('_block', 'unknown')}/variables.json for "
+        f"variable {variable.get('variable_id', 'unknown')}"
+    )
+
+
+def validate_unknown_fields(variables: list[dict]) -> list[str]:
+    """Campo fora do contrato do seed é erro, nunca descartado."""
+
+    errors = []
+
+    for variable in variables:
+        unknown = sorted(
+            set(variable) - ALLOWED_VARIABLE_FIELDS - {"_block"}
+        )
+
+        if unknown:
+            errors.append(
+                f"Unknown field(s) {unknown} in {_label(variable)}"
             )
-        else:
-            signatures[signature] = variable
 
-    return warnings
+    return errors
+
+
+def validate_allowed_values(variables: list[dict]) -> list[str]:
+    errors = []
+
+    for variable in variables:
+        if "allowed_values" not in variable:
+            continue
+
+        options = variable["allowed_values"]
+
+        if (
+            not isinstance(options, list)
+            or not options
+            or any(not isinstance(o, str) or not o for o in options)
+            or len(set(options)) != len(options)
+        ):
+            errors.append(
+                "Invalid allowed_values (non-empty list of unique "
+                f"non-empty strings expected) in {_label(variable)}"
+            )
+
+        if variable.get("value_type") != CATEGORICAL:
+            errors.append(
+                f"allowed_values requires value_type '{CATEGORICAL}' "
+                f"in {_label(variable)}"
+            )
+
+    return errors
+
+
+def validate_declared_result_states(variables: list[dict]) -> list[str]:
+    errors = []
+
+    for variable in variables:
+        if "declared_result_states" not in variable:
+            continue
+
+        states = variable["declared_result_states"]
+
+        if not isinstance(states, list) or not states:
+            errors.append(
+                "Invalid declared_result_states (non-empty list expected) "
+                f"in {_label(variable)}"
+            )
+            continue
+
+        names = []
+
+        for state in states:
+            if (
+                not isinstance(state, dict)
+                or set(state) != {"state", "literal"}
+                or state["state"] not in RESULT_STATE_TAXONOMY
+                or not isinstance(state["literal"], str)
+                or not state["literal"]
+            ):
+                errors.append(
+                    f"Invalid declared_result_states entry {state!r} "
+                    f"(state in {sorted(RESULT_STATE_TAXONOMY)} and a "
+                    f"non-empty text literal) in {_label(variable)}"
+                )
+                continue
+
+            names.append(state["state"])
+
+        if len(set(names)) != len(names):
+            errors.append(
+                f"Repeated state in declared_result_states in {_label(variable)}"
+            )
+
+    return errors
+
+
+def validate_instances(variables: list[dict]) -> list[str]:
+    """
+    `instances` declara as instâncias de uma definição com instâncias
+    por linha (uma linha do workbook = uma instância). Quando
+    presentes, cobrem exatamente os escopos concretos da definição. Uma
+    faixa de linhas diferente de L1_L7 só existe como definição com
+    instâncias declaradas.
+    """
+
+    errors = []
+
+    for variable in variables:
+        scope_value = variable.get("scope_value")
+        instances = variable.get("instances")
+
+        if (
+            variable.get("scope_type") == "linha"
+            and scope_value in LINE_RANGE_VALUES
+            and scope_value != "L1_L7"
+            and instances is None
+        ):
+            errors.append(
+                f"Line range '{scope_value}' requires declared instances "
+                f"in {_label(variable)}"
+            )
+
+        if instances is None:
+            continue
+
+        if not isinstance(instances, list) or not instances:
+            errors.append(
+                f"Invalid instances (non-empty list expected) in {_label(variable)}"
+            )
+            continue
+
+        declared = []
+
+        for instance in instances:
+            if (
+                not isinstance(instance, dict)
+                or set(instance) != {"scope_value", "description", "source_reference"}
+                or not isinstance(instance["scope_value"], str)
+                or not isinstance(instance["source_reference"], str)
+                or not instance["source_reference"]
+                or (
+                    instance["description"] is not None
+                    and (
+                        not isinstance(instance["description"], str)
+                        or not instance["description"]
+                    )
+                )
+            ):
+                errors.append(
+                    f"Invalid instance declaration {instance!r} in "
+                    f"{_label(variable)}"
+                )
+                continue
+
+            declared.append(("linha", instance["scope_value"]))
+
+        expected = _instance_scopes(variable)
+
+        if sorted(declared) != sorted(expected):
+            errors.append(
+                f"Declared instances {sorted(d[1] for d in declared)} do not "
+                f"match the definition scopes {sorted(e[1] for e in expected)} "
+                f"in {_label(variable)}"
+            )
+
+    return errors
 
 
 # ============================================================
@@ -912,9 +1140,13 @@ def validate_seed(seed_path: Path) -> dict:
         validate_variable_ids(variables)
     )
 
-    warnings = validate_variable_signatures(
-        variables
-    )
+    errors.extend(validate_unknown_fields(variables))
+    errors.extend(validate_allowed_values(variables))
+    errors.extend(validate_declared_result_states(variables))
+    errors.extend(validate_instances(variables))
+
+    identity_errors, warnings = validate_variable_identity(variables)
+    errors.extend(identity_errors)
 
     return {
         "errors": errors,

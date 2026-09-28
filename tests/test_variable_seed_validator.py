@@ -10,8 +10,8 @@ from app.validation.variable_seed_validator import (
     validate_scope_values,
     validate_seed,
     validate_variable_id_ranges,
+    validate_variable_identity,
     validate_variable_ids,
-    validate_variable_signatures,
 )
 
 
@@ -33,6 +33,7 @@ def make_variable(**overrides):
         "scope_value": "L1_L3",
         "source_reference": "TestSheet!A1",
         "status": "ativo",
+        "value_type": "numerico",
         "_block": "yield",
     }
 
@@ -268,6 +269,7 @@ def test_validate_enum_values_accepts_valid_unit():
             "scope_value": None,
             "source_reference": "NovoOficial!D152:O152",
             "status": "ativo",
+            "value_type": "numerico",
         }
     ]
 
@@ -289,6 +291,7 @@ def test_validate_enum_values_rejects_invalid_unit():
             "scope_value": None,
             "source_reference": "NovoOficial!D152:O152",
             "status": "ativo",
+            "value_type": "numerico",
         }
     ]
 
@@ -312,6 +315,7 @@ def test_validate_enum_values_accepts_valid_scope_value_line():
             "scope_value": "L1",
             "source_reference": "NovoOficial!D152:O152",
             "status": "ativo",
+            "value_type": "numerico",
         }
     ]
 
@@ -333,6 +337,7 @@ def test_validate_enum_values_accepts_valid_scope_value_line_group():
             "scope_value": "L1_L3",
             "source_reference": "NovoOficial!D152:O152",
             "status": "ativo",
+            "value_type": "numerico",
         }
     ]
 
@@ -354,6 +359,7 @@ def test_validate_enum_values_rejects_invalid_scope_value():
             "scope_value": "L1_3",
             "source_reference": "NovoOficial!D152:O152",
             "status": "ativo",
+            "value_type": "numerico",
         }
     ]
 
@@ -377,6 +383,7 @@ def test_validate_enum_values_accepts_null_scope():
             "scope_value": None,
             "source_reference": "NovoOficial!D152:O152",
             "status": "ativo",
+            "value_type": "numerico",
         }
     ]
 
@@ -623,41 +630,70 @@ def test_validate_variable_ids_rejects_duplicate_ids():
 
 
 # ============================================================
-# validate_variable_signatures
+# validate_variable_identity (D24-07)
 # ============================================================
 
 
-def test_validate_variable_signatures_accepts_different_variables():
+def test_validate_variable_identity_accepts_different_variables():
     variables = [
-        make_variable(
-            variable_id="VAR11001",
-            variable_name="yield_a",
-        ),
-        make_variable(
-            variable_id="VAR11002",
-            variable_name="yield_b",
-        ),
+        make_variable(variable_id="VAR11001", variable_name="yield_a"),
+        make_variable(variable_id="VAR11002", variable_name="yield_b"),
     ]
 
-    warnings = validate_variable_signatures(variables)
+    assert validate_variable_identity(variables) == ([], [])
 
+
+def test_validate_variable_identity_same_block_collision_is_an_error():
+    variables = [
+        make_variable(variable_id="VAR11001"),
+        make_variable(variable_id="VAR11002"),
+    ]
+
+    errors, warnings = validate_variable_identity(variables)
+
+    assert len(errors) == 1
+    assert "Duplicate variable identity" in errors[0]
     assert warnings == []
 
 
-def test_validate_variable_signatures_warns_possible_duplicate():
+def test_validate_variable_identity_ignores_unit_and_variable_type():
+    """unit/variable_type não fazem parte da identidade: continua colisão."""
+
     variables = [
-        make_variable(
-            variable_id="VAR11001",
-        ),
-        make_variable(
-            variable_id="VAR11002",
-        ),
+        make_variable(variable_id="VAR11001", unit="t"),
+        make_variable(variable_id="VAR11002", unit="kg", variable_type="calculado"),
     ]
 
-    warnings = validate_variable_signatures(variables)
+    errors, _ = validate_variable_identity(variables)
 
+    assert len(errors) == 1
+
+
+def test_validate_variable_identity_detects_instance_overlap():
+    """linha/L1_L7 e linha/L3 materializam a mesma instância L3."""
+
+    variables = [
+        make_variable(variable_id="VAR11001", scope_type="linha", scope_value="L1_L7"),
+        make_variable(variable_id="VAR11002", scope_type="linha", scope_value="L3"),
+    ]
+
+    errors, _ = validate_variable_identity(variables)
+
+    assert len(errors) == 1
+    assert "'L3'" in errors[0]
+
+
+def test_validate_variable_identity_cross_block_is_a_pending_decision_warning():
+    variables = [
+        make_variable(variable_id="VAR11001", _block="yield"),
+        make_variable(variable_id="VAR12001", _block="production"),
+    ]
+
+    errors, warnings = validate_variable_identity(variables)
+
+    assert errors == []
     assert len(warnings) == 1
-    assert "Possible duplicate variable" in warnings[0]
+    assert "D24-11" in warnings[0]
 
 
 # ============================================================
@@ -683,6 +719,7 @@ def test_validate_seed_accepts_valid_seed(tmp_path):
             "scope_value": "L1_L3",
             "source_reference": "Yield!A1",
             "status": "ativo",
+            "value_type": "numerico",
         }
     ]
 
@@ -717,6 +754,7 @@ def test_validate_seed_rejects_invalid_enum(tmp_path):
             "scope_value": "L1_L3",
             "source_reference": "Yield!A1",
             "status": "ativo",
+            "value_type": "numerico",
         }
     ]
 
@@ -754,6 +792,7 @@ def test_validate_seed_rejects_empty_required_value(tmp_path):
             "scope_value": "L1_L3",
             "source_reference": "Yield!A1",
             "status": "ativo",
+            "value_type": "numerico",
         }
     ]
 
@@ -916,6 +955,7 @@ def test_validate_enum_values_accepts_mass_rate_units(unit):
             "scope_value": "L1_L7",
             "source_reference": "teste",
             "status": "ativo",
+            "value_type": "numerico",
         }
     ]
 
@@ -953,6 +993,7 @@ def test_validate_enum_values_rejects_non_standard_mass_rate_variants(
             "scope_value": "L1_L7",
             "source_reference": "teste",
             "status": "ativo",
+            "value_type": "numerico",
         }
     ]
 

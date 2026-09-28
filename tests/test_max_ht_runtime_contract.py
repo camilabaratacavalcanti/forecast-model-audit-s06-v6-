@@ -65,10 +65,10 @@ def aggregation_rules():
 
 
 def test_entity_counts(variables, parameters, equations, aggregation_rules):
-    assert len(variables) == 148
+    assert len(variables) == 116  # MaxHT v9 (aprovado): 120 linhas, 4 parâmetros
     assert len(parameters) == 4
     assert len(equations) == 29
-    assert len(aggregation_rules) == 110
+    assert len(aggregation_rules) == 78  # AVERAGE 58 + SUM 20 (Etapa 2.3)
 
 
 # ============================================================
@@ -159,7 +159,7 @@ def test_no_unresolved_tokens_in_equations(variables, parameters, equations):
 
 
 # ============================================================
-# DSL temporal: 110/110 AggregationRules válidas
+# DSL temporal: 78/78 AggregationRules válidas
 # ============================================================
 
 
@@ -228,7 +228,7 @@ def test_full_seed_root_loads_without_errors():
         if d.equation_definition_id.startswith("EQ13")
     ]
 
-    assert len(max_ht_var_defs) == 148
+    assert len(max_ht_var_defs) == 116
     assert len(max_ht_eq_defs) == 29
 
     agg = loader.load_aggregation_rules()
@@ -236,4 +236,4 @@ def test_full_seed_root_loads_without_errors():
         r for r in agg.all()
         if r.aggregation_rule_id.startswith("AGR-MAX_HT-")
     ]
-    assert len(max_ht_rules) == 110
+    assert len(max_ht_rules) == 78

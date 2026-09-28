@@ -46,6 +46,16 @@ from app.engine.temporal_forecast_orchestrator import (
 )
 from app.repositories.seed_loader import SeedLoader
 
+from seed_ids import variable_id
+
+# IDs do seed real de production localizados pela identidade contratual.
+YIELD_LTH_TOTAL_D = variable_id("production", "yield_lth_total", "diário", "linha_grupo", "L1_L7")
+YIELD_LTH_TOTAL_M = variable_id("production", "yield_lth_total", "mensal", "linha_grupo", "L1_L7")
+YIELD_LTH_TOTAL_A = variable_id("production", "yield_lth_total", "anual", "linha_grupo", "L1_L7")
+PRODUCAO_PLANTA_D = variable_id("production", "producao_planta", "diário", "linha_grupo", "L1_L7")
+PRODUCAO_PLANTA_MOVEL_D = variable_id("production", "producao_planta_movel", "diário", "linha_grupo", "L1_L7")
+
+
 SEED_ROOT = Path(__file__).resolve().parent.parent / "data" / "seed"
 
 
@@ -90,15 +100,15 @@ def test_level_b_yield_lth_total_weighted_average_rule_shape(
     )
 
     for rule, target_id, target_freq in [
-        (mensal, "VAR12022", "mensal"),
-        (anual, "VAR12023", "anual"),
+        (mensal, YIELD_LTH_TOTAL_M, "mensal"),
+        (anual, YIELD_LTH_TOTAL_A, "anual"),
     ]:
-        assert rule.source_variable_id == "VAR12021"
+        assert rule.source_variable_id == YIELD_LTH_TOTAL_D
         assert rule.source_frequency == "diário"
         assert rule.target_variable_id == target_id
         assert rule.target_frequency == target_freq
         assert rule.aggregation_type == "WEIGHTED_AVERAGE"
-        assert rule.weight_variable_id == "VAR12060"
+        assert rule.weight_variable_id == PRODUCAO_PLANTA_D
         # Sem janela explícita: a janela é derivada de target_frequency
         # (ver Nível A/C abaixo).
         assert rule.window_start_date is None
@@ -113,9 +123,9 @@ def test_level_b_producao_planta_movel_moving_average_rule_shape(
         "AGR-PRODUCTION-PRODUCAO_PLANTA_MOVEL-GRUPO-L1_L7-DIARIO-MOVING_AVERAGE",
     )
 
-    assert rule.source_variable_id == "VAR12060"
+    assert rule.source_variable_id == PRODUCAO_PLANTA_D
     assert rule.source_frequency == "diário"
-    assert rule.target_variable_id == "VAR12063"
+    assert rule.target_variable_id == PRODUCAO_PLANTA_MOVEL_D
     assert rule.target_frequency == "diário"
     assert rule.aggregation_type == "MOVING_AVERAGE"
     assert rule.weight_variable_id is None
@@ -305,7 +315,7 @@ def test_level_c_yield_lth_total_weighted_average_monthly_real_rule(
         f"diff={abs(result.value - expected)}",
     )
 
-    assert result.variable_id == "VAR12022"
+    assert result.variable_id == YIELD_LTH_TOTAL_M
     assert result.period_id == "2026-09"
     assert result.value == pytest.approx(expected, rel=1e-9)
 
@@ -351,7 +361,7 @@ def test_level_c_yield_lth_total_weighted_average_annual_real_rule(
         f"\n  expected={expected} actual={result.value}",
     )
 
-    assert result.variable_id == "VAR12023"
+    assert result.variable_id == YIELD_LTH_TOTAL_A
     assert result.period_id == "2026"
     assert result.value == pytest.approx(expected, rel=1e-9)
 
@@ -513,7 +523,7 @@ def test_level_c_producao_planta_movel_real_rule(
         f"window={window_days} expected={expected} actual={result.value}",
     )
 
-    assert result.variable_id == "VAR12063"
+    assert result.variable_id == PRODUCAO_PLANTA_MOVEL_D
     assert result.period_id == run_date.isoformat()
     assert result.value == pytest.approx(expected, rel=1e-9)
 

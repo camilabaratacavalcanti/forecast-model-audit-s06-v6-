@@ -41,7 +41,7 @@ LINES = ["L1", "L2", "L3", "L4", "L5", "L6", "L7"]
 def _definition(variable_id, frequency, scope_type, scope_value):
     return VariableDefinition(
         variable_id, f"v_{variable_id}", "-", "-", "calculada",
-        frequency, scope_type, scope_value, "test", "ativo",
+        frequency, scope_type, scope_value, "test", "ativo", "numerico",
     )
 
 

@@ -56,6 +56,15 @@ from app.engine.temporal_aggregation_service import (
 )
 from app.repositories.seed_loader import SeedLoader
 
+from seed_ids import variable_id
+
+# IDs do seed real do yield localizados pela identidade contratual
+# (name + frequency + scope), não por um ID fixo.
+YIELD_DAILY = variable_id("yield", "yield", "diário")
+N_PPT_DAILY = variable_id("yield", "n_ppt", "diário")
+YIELD_GRUPO_L1_L3 = variable_id("yield", "yield_grupo", "diário", "linha_grupo", "L1_L3")
+
+
 
 SEED_ROOT = Path(__file__).resolve().parent.parent / "data" / "seed"
 
@@ -735,13 +744,13 @@ def test_a14_direct_annual_equation_still_works_without_aggregation():
     variable_definition_registry.add(
         VariableDefinition(
             "VAR20100", "yield_base", "x", "-", "calculado",
-            "anual", "linha", "L1_L7", "test", "ativo",
+            "anual", "linha", "L1_L7", "test", "ativo", "numerico",
         )
     )
     variable_definition_registry.add(
         VariableDefinition(
             "VAR20101", "input_a", "x", "-", "entrada",
-            "anual", "linha", "L1_L7", "test", "ativo",
+            "anual", "linha", "L1_L7", "test", "ativo", "numerico",
         )
     )
 
@@ -1128,7 +1137,7 @@ def test_yield_real_seed_preserved_and_aggregated_on_top_of_results():
     # yield@L4 (VAR11001) foi calculado e armazenado para cada um
     # dos 14 dias, sob seu próprio period_id diário.
     daily_yield_l4 = context.get_variable_value(
-        variable_id="VAR11001",
+        variable_id=YIELD_DAILY,
         scope_type="linha",
         scope_value="L4",
         period_id="2026-09-14",
@@ -1140,9 +1149,9 @@ def test_yield_real_seed_preserved_and_aggregated_on_top_of_results():
     # nenhuma EquationDefinition participa desta etapa.
     rule = AggregationRule(
         aggregation_rule_id="AGR-YIELD-L4-MONTHLY-AVG",
-        source_variable_id="VAR11001",
+        source_variable_id=YIELD_DAILY,
         source_frequency="diário",
-        target_variable_id="VAR11001",
+        target_variable_id=YIELD_DAILY,
         target_frequency="mensal",
         aggregation_type="AVERAGE",
     )
@@ -1167,7 +1176,7 @@ def test_yield_real_seed_preserved_and_aggregated_on_top_of_results():
     # linha_grupo (produzida por uma das 106 EquationDefinitions
     # reais) continua disponível normalmente, sob o period_id diário.
     yield_l1_l3 = context.get_variable_value(
-        variable_id="VAR11016",
+        variable_id=YIELD_GRUPO_L1_L3,
         scope_type="linha_grupo",
         scope_value="L1_L3",
         period_id="2026-09-14",

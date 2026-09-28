@@ -6,10 +6,12 @@
     "unit": "°C",
     "value": 72,
     "version": 1,
+    "frequency": null,
     "scope_type": "linha",
     "scope_value": "L1_L7",
-    "source_reference": "descritivo_das_variáveis_energy_v2.xlsx",
-    "status": "ativo"
+    "source_reference": "descritivo_das_variáveis_energy_v5.xlsx",
+    "status": "ativo",
+    "value_type": "numerico"
   },
   {
     "parameter_id": "PARAM18002",
@@ -18,10 +20,12 @@
     "unit": "°C",
     "value": 0,
     "version": 1,
+    "frequency": null,
     "scope_type": "linha",
     "scope_value": "L1_L7",
-    "source_reference": "descritivo_das_variáveis_energy_v2.xlsx",
-    "status": "ativo"
+    "source_reference": "descritivo_das_variáveis_energy_v5.xlsx",
+    "status": "ativo",
+    "value_type": "numerico"
   },
   {
     "parameter_id": "PARAM18003",
@@ -30,10 +34,12 @@
     "unit": "°C",
     "value": 0,
     "version": 1,
+    "frequency": null,
     "scope_type": "linha",
     "scope_value": "L1_L7",
-    "source_reference": "descritivo_das_variáveis_energy_v2.xlsx",
-    "status": "ativo"
+    "source_reference": "descritivo_das_variáveis_energy_v5.xlsx",
+    "status": "ativo",
+    "value_type": "numerico"
   },
   {
     "parameter_id": "PARAM18004",
@@ -42,9 +48,11 @@
     "unit": "°C",
     "value": 56,
     "version": 1,
+    "frequency": null,
     "scope_type": "linha_grupo",
     "scope_value": "L1_L7",
-    "source_reference": "descritivo_das_variáveis_energy_v2.xlsx",
-    "status": "ativo"
+    "source_reference": "descritivo_das_variáveis_energy_v5.xlsx",
+    "status": "ativo",
+    "value_type": "numerico"
   }
 ]

@@ -1,0 +1,19 @@
+test_id,behavior,status,tests (tests/test_stage2_4_workbook_contract.py salvo indicação),result
+T24-01,builder(workbook aprovado) == seed; todas as linhas reconciliadas,IMPLEMENTED,test_t24_01_builder_output_equals_versioned_seed[5 blocos]; test_t24_01_every_workbook_row_is_represented_in_the_seed[5 blocos],PASS
+T24-02,builders dos cinco workbooks,IMPLEMENTED,test_t24_02_each_block_builder_consumes_its_approved_workbook[5]; test_t24_02_total_rows_and_equations_match_stage_2_3,PASS
+T24-03,A019 lth/oee -> lth_meta por instância,IMPLEMENTED,test_t24_03_* (4),PASS
+T24-04,"n_ppt por instância (tanque, tanque_base)",IMPLEMENTED,test_t24_04_n_ppt_resolves_tanque_and_tanque_base_per_instance,PASS
+T24-05,A019 20/20; agregações e consumidores sobre definições por linha,IMPLEMENTED,test_t24_05_* (5),PASS
+T24-06,janela de linhas / linhas vazias / cabeçalho,IMPLEMENTED,test_t24_06_* (6),PASS
+T24-07,"value_type obrigatório, sem alias",IMPLEMENTED,test_t24_07_* (6),PASS
+T24-08,hes categorico ponta a ponta,IMPLEMENTED,test_t24_08_* (2),PASS
+T24-09,allowed_values,IMPLEMENTED,test_t24_09_* (3),PASS
+T24-10,"declared_result_states / literal ""F""",IMPLEMENTED,test_t24_10_* (7),PASS
+T24-11,ltp_tc_base = 274,IMPLEMENTED,test_t24_11_ltp_tc_base_is_274; test_yield_v4_l1l7...::test_16,PASS
+T24-12,identidade duplicada = erro,IMPLEMENTED,test_t24_12_* (4); validator identity tests,PASS
+T24-13,agregações derivadas da expressão,IMPLEMENTED,test_t24_13_* (3),PASS
+T24-14,source_reference / proveniência / workbook aprovado,IMPLEMENTED,test_t24_14_* (6),PASS
+T24-15,cross-workbook,DOCUMENTS PENDING DECISION D24-11,test_t24_15_cross_workbook_links_are_documented_not_decided,PASS
+T24-16,value em Type=variable,DOCUMENTS PENDING DECISION D24-12,test_t24_16_value_on_a_variable_row_is_recorded_not_dropped,PASS
+T24-17,isolamento de falha por nó,DOCUMENTS CURRENT BEHAVIOUR (Etapa 3),test_t24_17_first_failure_still_aborts_the_run_explicitly,PASS
+T24-18,sem coerção numérica,IMPLEMENTED,test_t24_18_* (5),PASS

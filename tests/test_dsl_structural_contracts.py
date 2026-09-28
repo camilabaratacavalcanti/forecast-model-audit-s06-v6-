@@ -341,10 +341,18 @@ def test_value_type_is_declared_on_definition():
             _variable_definition("VAR90032", "linha", "L1", legacy)
 
 
-def test_value_type_defaults_to_numeric_in_legacy_model():
+def test_value_type_is_mandatory_in_legacy_model():
+    """D24-04: ausência de value_type é erro, nunca "numerico" implícito."""
+
+    with pytest.raises(TypeError, match="value_type"):
+        Variable(
+            "VAR90033", "v", "-", "-", "calculada", "diário",
+            "linha", "L1", "test", "ativo",
+        )
+
     variable = Variable(
         "VAR90033", "v", "-", "-", "calculada", "diário",
-        "linha", "L1", "test", "ativo",
+        "linha", "L1", "test", "ativo", "numerico",
     )
 
     assert VariableDefinition.from_variable(variable).value_type == "numerico"

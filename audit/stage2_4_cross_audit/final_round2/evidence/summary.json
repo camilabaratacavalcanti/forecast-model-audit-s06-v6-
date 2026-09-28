@@ -1,0 +1,40 @@
+{
+ "workbooks_approved": true,
+ "cells_audited": 6195,
+ "cell_issues": 0,
+ "builder_equals_seed": true,
+ "rows": {
+  "area_41": 54,
+  "energy": 56,
+  "max_ht": 120,
+  "production": 88,
+  "yield": 254
+ },
+ "reconciled_rows": 572,
+ "validator_errors": 0,
+ "a019_resolved": 20,
+ "aggregations": {
+  "area_41": 10,
+  "energy": 11,
+  "max_ht": 78,
+  "production": 28,
+  "yield": 80
+ },
+ "aggregation_types": {
+  "AVERAGE": 166,
+  "MOVING_AVERAGE": 2,
+  "WEIGHTED_AVERAGE": 9,
+  "SUM": 30
+ },
+ "value_type_in_domain": {
+  "numerico": 508,
+  "categorico": 1
+ },
+ "code_scan_hits": {
+  "value_type aliases (numeric|categorical) em app/, tools/, data/seed": 0,
+  "float()/int() de valor em tools/": 0,
+  "constantes históricas de workbook (energy_v2|MaxHT_v5|yield_v4|production_v1) em tools/ e data/seed": 0,
+  "LAST_DATA_ROW/HEADER_ROW fixos em tools/": 1,
+  "value_type default NUMERIC em app/domain": 0
+ }
+}

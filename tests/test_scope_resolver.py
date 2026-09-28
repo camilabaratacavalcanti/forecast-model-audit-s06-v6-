@@ -37,6 +37,7 @@ def make_variable_definition(
         scope_value=scope_value,
         source_reference="test",
         status="ativo",
+        value_type="numerico",
     )
 
 
@@ -55,6 +56,7 @@ def make_parameter_definition(
         scope_value=scope_value,
         source_reference="test",
         status="ativo",
+        value_type="numerico",
     )
 
 

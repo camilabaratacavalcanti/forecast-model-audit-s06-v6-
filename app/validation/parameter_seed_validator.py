@@ -1,6 +1,9 @@
 import json
 from pathlib import Path
 
+from app.domain.values import NUMERIC
+from app.engine.scope_resolver import ScopeResolver
+
 
 # ============================================================
 # REGRAS DO PARAMETER REGISTRY
@@ -16,7 +19,21 @@ REQUIRED_PARAMETER_FIELDS = [
     "scope_value",
     "source_reference",
     "status",
+    "value_type",
 ]
+
+# Campos opcionais: a frequência do parâmetro vem do workbook e pode
+# estar vazia (null).
+OPTIONAL_PARAMETER_FIELDS = [
+    "frequency",
+    "version",
+]
+
+ALLOWED_PARAMETER_FIELDS = set(REQUIRED_PARAMETER_FIELDS) | set(
+    OPTIONAL_PARAMETER_FIELDS
+)
+
+ALLOWED_PARAMETER_FREQUENCIES = {"anual", "mensal", "diário"}
 
 
 # Taxonomia oficial de blocos (29 blocos, faixa continua
@@ -180,7 +197,6 @@ ALLOWED_SCOPE_VALUES = {
 NON_EMPTY_PARAMETER_STRING_FIELDS = {
     "parameter_id",
     "parameter_name",
-    "description",
     "unit",
     "source_reference",
 }
@@ -189,10 +205,14 @@ NON_EMPTY_PARAMETER_STRING_FIELDS = {
 OPTIONAL_PARAMETER_STRING_FIELDS = {
     "scope_type",
     "scope_value",
+    "description",
+    "frequency",
 }
 
 
 ENUM_FIELDS = {
+    "value_type": {NUMERIC},
+    "frequency": ALLOWED_PARAMETER_FREQUENCIES,
     "status": ALLOWED_STATUSES,
     "unit": ALLOWED_UNITS,
     "scope_type": ALLOWED_SCOPE_TYPES,
@@ -380,10 +400,10 @@ def validate_field_types(parameter, file_path):
     string_fields = {
         "parameter_id",
         "parameter_name",
-        "description",
         "unit",
         "source_reference",
         "status",
+        "value_type",
     }
 
     for field in string_fields:
@@ -433,7 +453,7 @@ def validate_non_empty_values(parameter, file_path):
 
     errors = []
 
-    for field in NON_EMPTY_PARAMETER_STRING_FIELDS:
+    for field in NON_EMPTY_PARAMETER_STRING_FIELDS | {"description"}:
         if field not in parameter:
             continue
 
@@ -646,27 +666,6 @@ def validate_parameter_id_ranges(parameter, file_path):
 
 
 # ============================================================
-# ASSINATURA SEMÂNTICA DO PARAMETER
-# ============================================================
-
-def build_parameter_signature(parameter):
-    """
-    Constrói a assinatura semântica de um Parameter.
-
-    O valor atual não participa da assinatura, pois dois registros
-    com o mesmo conceito e valores atuais diferentes representam
-    o mesmo parâmetro conceitual.
-    """
-
-    return (
-        parameter["parameter_name"],
-        parameter["unit"],
-        parameter["scope_type"],
-        parameter["scope_value"],
-    )
-
-
-# ============================================================
 # VALIDAÇÃO DE PARAMETER_IDs
 # ============================================================
 
@@ -722,51 +721,78 @@ def validate_parameter_ids(parameters):
 # VALIDAÇÃO DE ASSINATURAS
 # ============================================================
 
-def validate_parameter_signatures(parameters):
-    """
-    Identifica Parameters semanticamente duplicados.
+def validate_unknown_fields(parameter, file_path):
+    unknown = sorted(set(parameter) - ALLOWED_PARAMETER_FIELDS)
 
-    A duplicidade semântica gera warning, e não error, pois pode
-    representar uma duplicação conceitual que deverá ser avaliada
-    posteriormente.
+    if unknown:
+        return [f"{file_path}: campo(s) fora do contrato: {unknown}."]
+
+    return []
+
+
+def validate_parameter_identity(parameters):
+    """
+    Identidade contratual = parameter_name + frequency + scope_type +
+    scope_value (por instância concreta). O mesmo parameter_id em
+    escopos diferentes é UMA definição com instâncias por escopo; dois
+    parameter_ids distintos com a mesma identidade no mesmo bloco são
+    erro. Em blocos diferentes: aviso (ligação entre workbooks é a
+    decisão contratual pendente D24-11).
+
+    parameters:
+        lista de tuplas (parameter, file_path)
     """
 
+    errors = []
     warnings = []
-    signatures = {}
+    seen = {}
+    resolver = ScopeResolver()
 
     for parameter, file_path in parameters:
-        required_fields = {
-            "parameter_name",
-            "unit",
-            "scope_type",
-            "scope_value",
-        }
-
-        if not required_fields.issubset(parameter):
+        if not {"parameter_id", "parameter_name", "scope_type"} <= set(parameter):
             continue
 
-        signature = build_parameter_signature(parameter)
-
-        if signature in signatures:
-            previous_parameter, previous_file = signatures[signature]
-
-            warnings.append(
-                "Possível Parameter semanticamente duplicado: "
-                f"'{parameter.get('parameter_name')}'. "
-                f"Registros encontrados em "
-                f"{previous_file} e {file_path}. "
-                f"Parameter_IDs: "
-                f"{previous_parameter.get('parameter_id')} e "
-                f"{parameter.get('parameter_id')}."
+        try:
+            scopes = (
+                [(None, None)]
+                if parameter.get("scope_type") is None
+                else resolver.resolve_scopes(
+                    parameter["scope_type"], parameter.get("scope_value")
+                )
             )
+        except ValueError:
+            continue
 
-        else:
-            signatures[signature] = (
-                parameter,
-                file_path,
-            )
+        block = Path(file_path).parent.name
 
-    return warnings
+        for scope in scopes:
+            key = (parameter["parameter_name"], parameter.get("frequency"), *scope)
+            previous = seen.get(key)
+
+            if previous is None:
+                seen[key] = (parameter, block)
+                continue
+
+            previous_parameter, previous_block = previous
+
+            if previous_parameter["parameter_id"] == parameter["parameter_id"]:
+                continue
+
+            if previous_block == block:
+                errors.append(
+                    f"{file_path}: identidade {key} declarada por "
+                    f"{previous_parameter['parameter_id']} e "
+                    f"{parameter['parameter_id']}."
+                )
+            else:
+                warnings.append(
+                    "Identidade repetida entre blocos (decisão contratual "
+                    f"pendente D24-11): {key} em {previous_block} "
+                    f"({previous_parameter['parameter_id']}) e {block} "
+                    f"({parameter['parameter_id']})."
+                )
+
+    return errors, warnings
 
 
 # ============================================================
@@ -830,6 +856,8 @@ def validate_seed(seed_root: Path):
             )
         )
 
+        errors.extend(validate_unknown_fields(parameter, file_path))
+
         errors.extend(
             validate_field_types(
                 parameter,
@@ -880,8 +908,10 @@ def validate_seed(seed_root: Path):
         validate_parameter_ids(parameters)
     )
 
-    warnings.extend(
-        validate_parameter_signatures(parameters)
+    identity_errors, identity_warnings = validate_parameter_identity(
+        parameters
     )
+    errors.extend(identity_errors)
+    warnings.extend(identity_warnings)
 
     return errors, warnings

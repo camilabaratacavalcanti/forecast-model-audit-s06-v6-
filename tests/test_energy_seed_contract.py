@@ -194,7 +194,8 @@ def test_units_are_exactly_the_seven_units_of_the_workbook(energy):
     units = {d.unit for d in energy["var_defs"]}
     units |= {d.unit for d in energy["param_defs"]}
 
-    assert units == {"-", "t/h", "°C", "GJ/t", "g/l", "m³/h", "tpd"}
+    # energy v5 (workbook aprovado) grafa a produção em "t/d" (v2: "tpd").
+    assert units == {"-", "t/h", "°C", "GJ/t", "g/l", "m³/h", "t/d"}
 
 
 def test_every_energy_unit_is_allowed_by_both_validators(energy):

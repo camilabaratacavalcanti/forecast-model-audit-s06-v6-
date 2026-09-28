@@ -42,6 +42,15 @@ from app.validation import equation_seed_validator as esv
 from app.validation import parameter_seed_validator as psv
 from app.validation import variable_seed_validator as vsv
 
+from seed_ids import parameter_id, variable_id
+
+# IDs do seed real do yield localizados pela identidade contratual
+# (name + frequency + scope), não por um ID fixo.
+YIELD_DAILY = variable_id("yield", "yield", "diário")
+N_PPT_DAILY = variable_id("yield", "n_ppt", "diário")
+YIELD_GRUPO_L1_L3 = variable_id("yield", "yield_grupo", "diário", "linha_grupo", "L1_L3")
+
+
 SEED_ROOT = Path(__file__).resolve().parent.parent / "data" / "seed"
 
 
@@ -321,7 +330,7 @@ def test_n_ppt_is_a_single_equation_definition_scoped_linha_l1_l7(
     n_ppt_definitions = [
         d
         for d in equation_definitions.all()
-        if d.target_variable_id == "VAR11012"  # n_ppt (diário)
+        if d.target_variable_id == N_PPT_DAILY  # n_ppt (diário)
     ]
 
     assert len(n_ppt_definitions) == 1
@@ -330,7 +339,12 @@ def test_n_ppt_is_a_single_equation_definition_scoped_linha_l1_l7(
 
     assert definition.scope_type == "linha"
     assert definition.scope_value == "L1_L7"
-    assert definition.expression == "PARAM11003 - VAR11239"
+    # yield v9 r107: "tanque_base - tanque" — tanque_base é UM parâmetro
+    # com 7 instâncias por linha e tanque UMA variável com 7 instâncias.
+    assert definition.expression == (
+        f"{parameter_id('yield', 'tanque_base')} - "
+        f"{variable_id('yield', 'tanque', 'diário')}"
+    )
     assert definition.status == "PUBLISHED"
 
     n_ppt_instances = [
@@ -353,7 +367,7 @@ def test_official_ratio_spent_formula_uses_0_0007_coefficient(
     ratio_spent_daily = [
         d
         for d in equation_definitions.all()
-        if d.target_variable_id == "VAR11008"  # ratio_spent (diário)
+        if d.target_variable_id == variable_id("yield", "ratio_spent", "diário")
     ]
 
     assert len(ratio_spent_daily) == 1
@@ -362,7 +376,10 @@ def test_official_ratio_spent_formula_uses_0_0007_coefficient(
 
     assert "0.0007" in expression
     assert "0.001*" not in expression
-    assert "+ 0.002*(VAR11090 - VAR11011)" in expression
+    # yield v9 grafa o termo de SSA como "- 0.002*( - ssa_media + ssa_media_base)".
+    ssa_media = variable_id("yield", "ssa_media", "diário")
+    ssa_media_base = variable_id("yield", "ssa_media_base", "anual")
+    assert f"- 0.002*( - {ssa_media} + {ssa_media_base})" in expression
 
 
 def test_no_draft_equation_in_real_yield_seed(loaded_seed):
@@ -483,7 +500,7 @@ def test_real_engine_executes_full_yield_seed_without_mocks(
 
     for line in LINES:
         assert context.get_variable_value(
-            variable_id="VAR11012",
+            variable_id=N_PPT_DAILY,
             scope_type="linha",
             scope_value=line,
         ) == expected_n_ppt[line]
@@ -493,7 +510,7 @@ def test_real_engine_executes_full_yield_seed_without_mocks(
     # dependências correta via referências contextuais/sem escopo).
     for line in LINES:
         yield_value = context.get_variable_value(
-            variable_id="VAR11001",
+            variable_id=YIELD_DAILY,
             scope_type="linha",
             scope_value=line,
         )
@@ -502,23 +519,23 @@ def test_real_engine_executes_full_yield_seed_without_mocks(
     # Agregação de linha_grupo (L1_L3) deve ter sido calculada a
     # partir dos valores já calculados por linha.
     yield_l1_l3 = context.get_variable_value(
-        variable_id="VAR11016",
+        variable_id=YIELD_GRUPO_L1_L3,
         scope_type="linha_grupo",
         scope_value="L1_L3",
     )
 
     yield_l1 = context.get_variable_value(
-        variable_id="VAR11001",
+        variable_id=YIELD_DAILY,
         scope_type="linha",
         scope_value="L1",
     )
     yield_l2 = context.get_variable_value(
-        variable_id="VAR11001",
+        variable_id=YIELD_DAILY,
         scope_type="linha",
         scope_value="L2",
     )
     yield_l3 = context.get_variable_value(
-        variable_id="VAR11001",
+        variable_id=YIELD_DAILY,
         scope_type="linha",
         scope_value="L3",
     )

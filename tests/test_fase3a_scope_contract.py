@@ -141,6 +141,7 @@ def test_variable_definition_area_materializes_to_single_instance():
         scope_value=None,
         source_reference="test",
         status="ativo",
+        value_type="numerico",
     )
 
     instances = resolver.resolve_variable(definition)
@@ -164,6 +165,7 @@ def test_parameter_definition_global_materializes_to_single_instance():
         scope_value=None,
         source_reference="test",
         status="ativo",
+        value_type="numerico",
     )
 
     instances = resolver.resolve_parameter(definition)
@@ -212,6 +214,7 @@ def make_variable_dict(scope_type, scope_value):
         "scope_value": scope_value,
         "source_reference": "test",
         "status": "ativo",
+        "value_type": "numerico",
         "_block": "yield",
     }
 
@@ -228,6 +231,7 @@ def make_parameter_dict(scope_type, scope_value):
         "scope_value": scope_value,
         "source_reference": "test",
         "status": "ativo",
+        "value_type": "numerico",
     }
 
 
@@ -332,7 +336,7 @@ def test_f1_linha_to_linha_is_valid():
     variable_registry.add(
         VariableDefinition(
             "VAR11200", "x", "x", "-", "calculado", "diário",
-            "linha", "L1", "test", "ativo",
+            "linha", "L1", "test", "ativo", "numerico",
         )
     )
 
@@ -354,7 +358,7 @@ def test_f2_linha_l1_l7_to_compatible_definition_is_valid():
     variable_registry.add(
         VariableDefinition(
             "VAR11200", "x", "x", "-", "calculado", "diário",
-            "linha", "L1_L7", "test", "ativo",
+            "linha", "L1_L7", "test", "ativo", "numerico",
         )
     )
 
@@ -376,7 +380,7 @@ def test_f3_incompatible_scope_is_rejected():
     variable_registry.add(
         VariableDefinition(
             "VAR11200", "x", "x", "-", "calculado", "diário",
-            "linha_grupo", "L1_L3", "test", "ativo",
+            "linha_grupo", "L1_L3", "test", "ativo", "numerico",
         )
     )
 
@@ -427,7 +431,7 @@ def test_f5_scopeless_target_scope_is_respected(scope_type):
     variable_registry.add(
         VariableDefinition(
             "VAR11200", "x", "x", "-", "calculado", "diário",
-            scope_type, None, "test", "ativo",
+            scope_type, None, "test", "ativo", "numerico",
         )
     )
 
@@ -449,7 +453,7 @@ def test_f5_scopeless_mismatch_between_area_and_global_is_rejected():
     variable_registry.add(
         VariableDefinition(
             "VAR11200", "x", "x", "-", "calculado", "diário",
-            "área", None, "test", "ativo",
+            "área", None, "test", "ativo", "numerico",
         )
     )
 
@@ -475,13 +479,13 @@ def test_f_integration_validate_definition_registry_real_flow():
     variable_registry.add(
         VariableDefinition(
             "VAR11200", "x", "x", "-", "calculado", "diário",
-            "linha", "L1_L7", "test", "ativo",
+            "linha", "L1_L7", "test", "ativo", "numerico",
         )
     )
     variable_registry.add(
         VariableDefinition(
             "VAR11201", "y", "y", "-", "calculado", "diário",
-            "área", None, "test", "ativo",
+            "área", None, "test", "ativo", "numerico",
         )
     )
 
@@ -489,7 +493,7 @@ def test_f_integration_validate_definition_registry_real_flow():
     parameter_registry.add(
         ParameterDefinition(
             "PARAM11200", "p", "p", "-", 1.0, 1,
-            "global", None, "test", "ativo",
+            "global", None, "test", "ativo", "numerico",
         )
     )
 

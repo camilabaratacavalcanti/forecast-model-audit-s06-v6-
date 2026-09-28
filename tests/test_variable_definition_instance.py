@@ -25,6 +25,7 @@ def make_variable(**overrides):
         "scope_value": "L1_L7",
         "source_reference": "Yield",
         "status": "ativo",
+        "value_type": "numerico",
     }
 
     data.update(overrides)

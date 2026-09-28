@@ -31,6 +31,7 @@ def make_variable(variable_id: str) -> Variable:
         scope_value=None,
         source_reference="test",
         status="ACTIVE",
+        value_type="numerico",
     )
 
 
@@ -46,6 +47,7 @@ def make_parameter(parameter_id: str) -> Parameter:
         scope_value=None,
         source_reference="test",
         status="ACTIVE",
+        value_type="numerico",
     )
 
 
