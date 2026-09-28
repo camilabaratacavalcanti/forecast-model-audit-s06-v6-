@@ -36,6 +36,7 @@ Regras (contrato aprovado na Etapa 2.3):
 
 from __future__ import annotations
 
+import dataclasses
 from dataclasses import dataclass, field
 
 from app.domain.values import (
@@ -51,6 +52,7 @@ from tools.workbook_seed.aggregation_dsl import (
     looks_like_aggregation,
     parse_aggregation,
 )
+from tools.workbook_seed.id_ledger import IdLedger, identity_key
 from tools.workbook_seed.reader import WorkbookData, WorkbookRow
 
 
@@ -355,7 +357,12 @@ def _single(values: list, field_name: str, where: str):
     return values[0]
 
 
-def build_canonical_model(block: str, workbook: WorkbookData, id_base: int) -> CanonicalModel:
+def build_canonical_model(
+    block: str,
+    workbook: WorkbookData,
+    id_base: int,
+    id_ledger: IdLedger | None = None,
+) -> CanonicalModel:
     model = CanonicalModel(block=block, workbook=workbook)
 
     for row in workbook.rows:
@@ -461,8 +468,12 @@ def build_canonical_model(block: str, workbook: WorkbookData, id_base: int) -> C
                 "definição por linha não é suportada pelo contrato atual."
             )
 
-        entity_id = f"{prefix[kind]}{next_id[kind]}"
-        next_id[kind] += 1
+        if id_ledger is None:
+            entity_id = f"{prefix[kind]}{next_id[kind]}"
+            next_id[kind] += 1
+        else:
+            # Atribuído depois do laço: livro primeiro, novos em seguida.
+            entity_id = None
 
         model.entities.append(
             CanonicalEntity(
@@ -484,6 +495,9 @@ def build_canonical_model(block: str, workbook: WorkbookData, id_base: int) -> C
             )
         )
 
+    if id_ledger is not None:
+        _assign_ledger_ids(model, id_ledger, id_base, next_id, prefix)
+
     for limit_kind in next_id:
         if next_id[limit_kind] - 1 > id_base + 999:
             raise CanonicalModelError(
@@ -493,6 +507,39 @@ def build_canonical_model(block: str, workbook: WorkbookData, id_base: int) -> C
     check_identity(model)
 
     return model
+
+
+def _assign_ledger_ids(
+    model: CanonicalModel,
+    id_ledger: IdLedger,
+    id_base: int,
+    next_id: dict,
+    prefix: dict,
+) -> None:
+    """
+    IDs do livro para identidades conhecidas; identidades novas recebem,
+    em ordem de linha, o número seguinte ao maior já emitido (ativos ou
+    aposentados) para a mesma natureza. Nada é renumerado.
+    """
+
+    for kind in next_id:
+        next_id[kind] = max(id_base, id_ledger.highest(kind)) + 1
+
+    assigned = []
+
+    for entity in model.entities:
+        key = identity_key(
+            entity.kind, entity.name, entity.frequency, entity.scope_type, entity.scope_value
+        )
+        entity_id = id_ledger.entries.get(key)
+
+        if entity_id is None:
+            entity_id = f"{prefix[entity.kind]}{next_id[entity.kind]}"
+            next_id[entity.kind] += 1
+
+        assigned.append(dataclasses.replace(entity, entity_id=entity_id))
+
+    model.entities[:] = assigned
 
 
 def check_identity(model: CanonicalModel, scope_resolver: ScopeResolver | None = None) -> None:

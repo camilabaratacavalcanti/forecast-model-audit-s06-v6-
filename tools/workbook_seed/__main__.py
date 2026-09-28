@@ -1,6 +1,12 @@
 import sys
 
-from tools.workbook_seed.blocks import BLOCKS, build_all, write_interblock_seed, write_seeds
+from tools.workbook_seed.blocks import (
+    BLOCKS,
+    build_all,
+    write_id_ledger,
+    write_interblock_seed,
+    write_seeds,
+)
 
 
 def main(argv=None) -> int:
@@ -10,6 +16,7 @@ def main(argv=None) -> int:
     for block in blocks:
         built = result.blocks[block]
         write_seeds(built)
+        write_id_ledger(built)
         counts = {
             name: len(built.seeds[name])
             for name in ("variables", "parameters", "equations", "aggregation_rules")
@@ -20,12 +27,14 @@ def main(argv=None) -> int:
     interblock = result.interblock
     print(
         f"interblock: {len(interblock.links)} vínculos declarados em fonte, "
-        f"{len(interblock.valid)} válidos, {len(interblock.rejected)} rejeitados"
+        f"{len(interblock.valid)} válidos, {len(interblock.pending)} pendentes de "
+        f"carregamento, {len(interblock.rejected)} rejeitados"
     )
 
+    for _link, finding in interblock.findings:
+        print(f"[{finding.severity}] {finding.message}", file=sys.stderr)
+
     if interblock.rejected:
-        for _link, finding in interblock.findings:
-            print(finding.message, file=sys.stderr)
         return 1
 
     return 0

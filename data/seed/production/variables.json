@@ -8,7 +8,7 @@
     "frequency": "diário",
     "scope_type": "linha_grupo",
     "scope_value": "L1_L7",
-    "source_reference": "descritivo_das_variáveis_production_v9.xlsx",
+    "source_reference": "descritivo_das_variáveis_production_v10.xlsx",
     "status": "ativo",
     "value_type": "numerico"
   },
@@ -21,7 +21,7 @@
     "frequency": "mensal",
     "scope_type": "linha_grupo",
     "scope_value": "L1_L7",
-    "source_reference": "descritivo_das_variáveis_production_v9.xlsx",
+    "source_reference": "descritivo_das_variáveis_production_v10.xlsx",
     "status": "ativo",
     "value_type": "numerico"
   },
@@ -34,7 +34,7 @@
     "frequency": "mensal",
     "scope_type": "linha_grupo",
     "scope_value": "L1_L7",
-    "source_reference": "descritivo_das_variáveis_production_v9.xlsx",
+    "source_reference": "descritivo_das_variáveis_production_v10.xlsx",
     "status": "ativo",
     "value_type": "numerico"
   },
@@ -47,7 +47,7 @@
     "frequency": "anual",
     "scope_type": "linha_grupo",
     "scope_value": "L1_L7",
-    "source_reference": "descritivo_das_variáveis_production_v9.xlsx",
+    "source_reference": "descritivo_das_variáveis_production_v10.xlsx",
     "status": "ativo",
     "value_type": "numerico"
   },
@@ -60,7 +60,7 @@
     "frequency": "diário",
     "scope_type": "linha",
     "scope_value": "L1_L7",
-    "source_reference": "descritivo_das_variáveis_production_v9.xlsx",
+    "source_reference": "descritivo_das_variáveis_production_v10.xlsx",
     "status": "ativo",
     "value_type": "numerico"
   },
@@ -73,7 +73,7 @@
     "frequency": "diário",
     "scope_type": "linha_grupo",
     "scope_value": "L1_L7",
-    "source_reference": "descritivo_das_variáveis_production_v9.xlsx",
+    "source_reference": "descritivo_das_variáveis_production_v10.xlsx",
     "status": "ativo",
     "value_type": "numerico"
   },
@@ -86,7 +86,7 @@
     "frequency": "mensal",
     "scope_type": "linha_grupo",
     "scope_value": "L1_L7",
-    "source_reference": "descritivo_das_variáveis_production_v9.xlsx",
+    "source_reference": "descritivo_das_variáveis_production_v10.xlsx",
     "status": "ativo",
     "value_type": "numerico"
   },
@@ -99,7 +99,7 @@
     "frequency": "mensal",
     "scope_type": "linha_grupo",
     "scope_value": "L1_L7",
-    "source_reference": "descritivo_das_variáveis_production_v9.xlsx",
+    "source_reference": "descritivo_das_variáveis_production_v10.xlsx",
     "status": "ativo",
     "value_type": "numerico"
   },
@@ -112,7 +112,7 @@
     "frequency": "anual",
     "scope_type": "linha_grupo",
     "scope_value": "L1_L7",
-    "source_reference": "descritivo_das_variáveis_production_v9.xlsx",
+    "source_reference": "descritivo_das_variáveis_production_v10.xlsx",
     "status": "ativo",
     "value_type": "numerico"
   },
@@ -125,7 +125,7 @@
     "frequency": "diário",
     "scope_type": "linha",
     "scope_value": "L1_L7",
-    "source_reference": "descritivo_das_variáveis_production_v9.xlsx",
+    "source_reference": "descritivo_das_variáveis_production_v10.xlsx",
     "status": "ativo",
     "value_type": "numerico"
   },
@@ -138,7 +138,7 @@
     "frequency": "diário",
     "scope_type": "linha",
     "scope_value": "L1_L7",
-    "source_reference": "descritivo_das_variáveis_production_v9.xlsx",
+    "source_reference": "descritivo_das_variáveis_production_v10.xlsx",
     "status": "ativo",
     "value_type": "numerico"
   },
@@ -151,7 +151,7 @@
     "frequency": "diário",
     "scope_type": "linha_grupo",
     "scope_value": "L1_L7",
-    "source_reference": "descritivo_das_variáveis_production_v9.xlsx",
+    "source_reference": "descritivo_das_variáveis_production_v10.xlsx",
     "status": "ativo",
     "value_type": "numerico"
   },
@@ -164,7 +164,7 @@
     "frequency": "mensal",
     "scope_type": "linha_grupo",
     "scope_value": "L1_L7",
-    "source_reference": "descritivo_das_variáveis_production_v9.xlsx",
+    "source_reference": "descritivo_das_variáveis_production_v10.xlsx",
     "status": "ativo",
     "value_type": "numerico"
   },
@@ -177,7 +177,7 @@
     "frequency": "mensal",
     "scope_type": "linha_grupo",
     "scope_value": "L1_L7",
-    "source_reference": "descritivo_das_variáveis_production_v9.xlsx",
+    "source_reference": "descritivo_das_variáveis_production_v10.xlsx",
     "status": "ativo",
     "value_type": "numerico"
   },
@@ -190,7 +190,7 @@
     "frequency": "anual",
     "scope_type": "linha_grupo",
     "scope_value": "L1_L7",
-    "source_reference": "descritivo_das_variáveis_production_v9.xlsx",
+    "source_reference": "descritivo_das_variáveis_production_v10.xlsx",
     "status": "ativo",
     "value_type": "numerico"
   },
@@ -203,7 +203,7 @@
     "frequency": "diário",
     "scope_type": "linha",
     "scope_value": "L1_L7",
-    "source_reference": "descritivo_das_variáveis_production_v9.xlsx",
+    "source_reference": "descritivo_das_variáveis_production_v10.xlsx",
     "status": "ativo",
     "value_type": "numerico"
   },
@@ -216,7 +216,7 @@
     "frequency": "diário",
     "scope_type": "linha",
     "scope_value": "L1_L7",
-    "source_reference": "descritivo_das_variáveis_production_v9.xlsx",
+    "source_reference": "descritivo_das_variáveis_production_v10.xlsx",
     "status": "ativo",
     "value_type": "numerico"
   },
@@ -229,7 +229,7 @@
     "frequency": "diário",
     "scope_type": "linha_grupo",
     "scope_value": "L1_L7",
-    "source_reference": "descritivo_das_variáveis_production_v9.xlsx",
+    "source_reference": "descritivo_das_variáveis_production_v10.xlsx",
     "status": "ativo",
     "value_type": "numerico"
   },
@@ -242,7 +242,7 @@
     "frequency": "mensal",
     "scope_type": "linha_grupo",
     "scope_value": "L1_L7",
-    "source_reference": "descritivo_das_variáveis_production_v9.xlsx",
+    "source_reference": "descritivo_das_variáveis_production_v10.xlsx",
     "status": "ativo",
     "value_type": "numerico"
   },
@@ -255,7 +255,7 @@
     "frequency": "mensal",
     "scope_type": "linha_grupo",
     "scope_value": "L1_L7",
-    "source_reference": "descritivo_das_variáveis_production_v9.xlsx",
+    "source_reference": "descritivo_das_variáveis_production_v10.xlsx",
     "status": "ativo",
     "value_type": "numerico"
   },
@@ -268,7 +268,7 @@
     "frequency": "anual",
     "scope_type": "linha_grupo",
     "scope_value": "L1_L7",
-    "source_reference": "descritivo_das_variáveis_production_v9.xlsx",
+    "source_reference": "descritivo_das_variáveis_production_v10.xlsx",
     "status": "ativo",
     "value_type": "numerico"
   },
@@ -281,7 +281,7 @@
     "frequency": "diário",
     "scope_type": "linha",
     "scope_value": "L1_L7",
-    "source_reference": "descritivo_das_variáveis_production_v9.xlsx",
+    "source_reference": "descritivo_das_variáveis_production_v10.xlsx",
     "status": "ativo",
     "value_type": "numerico"
   },
@@ -294,7 +294,7 @@
     "frequency": "anual",
     "scope_type": "linha_grupo",
     "scope_value": "L1_L7",
-    "source_reference": "descritivo_das_variáveis_production_v9.xlsx",
+    "source_reference": "descritivo_das_variáveis_production_v10.xlsx",
     "status": "ativo",
     "value_type": "numerico"
   },
@@ -320,7 +320,7 @@
     "frequency": "diário",
     "scope_type": "linha",
     "scope_value": "L1_L7",
-    "source_reference": "descritivo_das_variáveis_production_v9.xlsx",
+    "source_reference": "descritivo_das_variáveis_production_v10.xlsx",
     "status": "ativo",
     "value_type": "numerico"
   },
@@ -333,7 +333,7 @@
     "frequency": "diário",
     "scope_type": "linha",
     "scope_value": "L1_L7",
-    "source_reference": "descritivo_das_variáveis_production_v9.xlsx",
+    "source_reference": "descritivo_das_variáveis_production_v10.xlsx",
     "status": "ativo",
     "value_type": "numerico"
   },
@@ -346,7 +346,7 @@
     "frequency": "diário",
     "scope_type": "linha",
     "scope_value": "L1_L7",
-    "source_reference": "descritivo_das_variáveis_production_v9.xlsx",
+    "source_reference": "descritivo_das_variáveis_production_v10.xlsx",
     "status": "ativo",
     "value_type": "numerico"
   },
@@ -359,7 +359,7 @@
     "frequency": "diário",
     "scope_type": "linha_grupo",
     "scope_value": "L1_L7",
-    "source_reference": "descritivo_das_variáveis_production_v9.xlsx",
+    "source_reference": "descritivo_das_variáveis_production_v10.xlsx",
     "status": "ativo",
     "value_type": "numerico"
   },
@@ -372,7 +372,7 @@
     "frequency": "diário",
     "scope_type": "linha",
     "scope_value": "L1_L7",
-    "source_reference": "descritivo_das_variáveis_production_v9.xlsx",
+    "source_reference": "descritivo_das_variáveis_production_v10.xlsx",
     "status": "ativo",
     "value_type": "numerico"
   },
@@ -385,7 +385,7 @@
     "frequency": "diário",
     "scope_type": "linha_grupo",
     "scope_value": "L1_L7",
-    "source_reference": "descritivo_das_variáveis_production_v9.xlsx",
+    "source_reference": "descritivo_das_variáveis_production_v10.xlsx",
     "status": "ativo",
     "value_type": "numerico"
   },
@@ -398,7 +398,7 @@
     "frequency": "diário",
     "scope_type": "linha",
     "scope_value": "L1_L7",
-    "source_reference": "descritivo_das_variáveis_production_v9.xlsx",
+    "source_reference": "descritivo_das_variáveis_production_v10.xlsx",
     "status": "ativo",
     "value_type": "numerico"
   },
@@ -411,9 +411,59 @@
     "frequency": "mensal",
     "scope_type": "linha",
     "scope_value": "L1_L7",
-    "source_reference": "descritivo_das_variáveis_production_v9.xlsx",
+    "source_reference": "descritivo_das_variáveis_production_v10.xlsx",
     "status": "ativo",
     "value_type": "numerico"
+  },
+  {
+    "variable_id": "VAR12066",
+    "variable_name": "lth_meta",
+    "description": null,
+    "unit": "-",
+    "variable_type": "entrada_externa",
+    "frequency": "anual",
+    "scope_type": "linha",
+    "scope_value": "L1_L7",
+    "source_reference": "descritivo_das_variáveis_production_v10.xlsx",
+    "status": "ativo",
+    "value_type": "numerico",
+    "instances": [
+      {
+        "scope_value": "L1",
+        "description": null,
+        "source_reference": "descritivo_das_variáveis_production_v10.xlsx"
+      },
+      {
+        "scope_value": "L2",
+        "description": null,
+        "source_reference": "descritivo_das_variáveis_production_v10.xlsx"
+      },
+      {
+        "scope_value": "L3",
+        "description": null,
+        "source_reference": "descritivo_das_variáveis_production_v10.xlsx"
+      },
+      {
+        "scope_value": "L4",
+        "description": null,
+        "source_reference": "descritivo_das_variáveis_production_v10.xlsx"
+      },
+      {
+        "scope_value": "L5",
+        "description": null,
+        "source_reference": "descritivo_das_variáveis_production_v10.xlsx"
+      },
+      {
+        "scope_value": "L6",
+        "description": null,
+        "source_reference": "descritivo_das_variáveis_production_v10.xlsx"
+      },
+      {
+        "scope_value": "L7",
+        "description": null,
+        "source_reference": "descritivo_das_variáveis_production_v10.xlsx"
+      }
+    ]
   },
   {
     "variable_id": "VAR12033",
@@ -424,7 +474,7 @@
     "frequency": "diário",
     "scope_type": "linha_grupo",
     "scope_value": "L1_L7",
-    "source_reference": "descritivo_das_variáveis_production_v9.xlsx",
+    "source_reference": "descritivo_das_variáveis_production_v10.xlsx",
     "status": "ativo",
     "value_type": "numerico"
   },
@@ -437,7 +487,7 @@
     "frequency": "mensal",
     "scope_type": "linha_grupo",
     "scope_value": "L1_L7",
-    "source_reference": "descritivo_das_variáveis_production_v9.xlsx",
+    "source_reference": "descritivo_das_variáveis_production_v10.xlsx",
     "status": "ativo",
     "value_type": "numerico"
   },
@@ -450,7 +500,7 @@
     "frequency": "anual",
     "scope_type": "linha_grupo",
     "scope_value": "L1_L7",
-    "source_reference": "descritivo_das_variáveis_production_v9.xlsx",
+    "source_reference": "descritivo_das_variáveis_production_v10.xlsx",
     "status": "ativo",
     "value_type": "numerico"
   },
@@ -463,7 +513,7 @@
     "frequency": "diário",
     "scope_type": "linha",
     "scope_value": "L1_L7",
-    "source_reference": "descritivo_das_variáveis_production_v9.xlsx",
+    "source_reference": "descritivo_das_variáveis_production_v10.xlsx",
     "status": "ativo",
     "value_type": "numerico"
   },
@@ -476,7 +526,7 @@
     "frequency": "mensal",
     "scope_type": "linha",
     "scope_value": "L1_L7",
-    "source_reference": "descritivo_das_variáveis_production_v9.xlsx",
+    "source_reference": "descritivo_das_variáveis_production_v10.xlsx",
     "status": "ativo",
     "value_type": "numerico"
   },
@@ -489,7 +539,7 @@
     "frequency": "diário",
     "scope_type": "linha_grupo",
     "scope_value": "L1_L7",
-    "source_reference": "descritivo_das_variáveis_production_v9.xlsx",
+    "source_reference": "descritivo_das_variáveis_production_v10.xlsx",
     "status": "ativo",
     "value_type": "numerico"
   },
@@ -502,7 +552,7 @@
     "frequency": "mensal",
     "scope_type": "linha_grupo",
     "scope_value": "L1_L7",
-    "source_reference": "descritivo_das_variáveis_production_v9.xlsx",
+    "source_reference": "descritivo_das_variáveis_production_v10.xlsx",
     "status": "ativo",
     "value_type": "numerico"
   },
@@ -515,7 +565,7 @@
     "frequency": "anual",
     "scope_type": "linha_grupo",
     "scope_value": "L1_L7",
-    "source_reference": "descritivo_das_variáveis_production_v9.xlsx",
+    "source_reference": "descritivo_das_variáveis_production_v10.xlsx",
     "status": "ativo",
     "value_type": "numerico"
   },
@@ -528,44 +578,44 @@
     "frequency": "diário",
     "scope_type": "linha",
     "scope_value": "L1_L7",
-    "source_reference": "descritivo_das_variáveis_production_v9.xlsx",
+    "source_reference": "descritivo_das_variáveis_production_v10.xlsx",
     "status": "ativo",
     "value_type": "numerico",
     "instances": [
       {
         "scope_value": "L1",
         "description": null,
-        "source_reference": "descritivo_das_variáveis_production_v9.xlsx"
+        "source_reference": "descritivo_das_variáveis_production_v10.xlsx"
       },
       {
         "scope_value": "L2",
         "description": null,
-        "source_reference": "descritivo_das_variáveis_production_v9.xlsx"
+        "source_reference": "descritivo_das_variáveis_production_v10.xlsx"
       },
       {
         "scope_value": "L3",
         "description": null,
-        "source_reference": "descritivo_das_variáveis_production_v9.xlsx"
+        "source_reference": "descritivo_das_variáveis_production_v10.xlsx"
       },
       {
         "scope_value": "L4",
         "description": null,
-        "source_reference": "descritivo_das_variáveis_production_v9.xlsx"
+        "source_reference": "descritivo_das_variáveis_production_v10.xlsx"
       },
       {
         "scope_value": "L5",
         "description": null,
-        "source_reference": "descritivo_das_variáveis_production_v9.xlsx"
+        "source_reference": "descritivo_das_variáveis_production_v10.xlsx"
       },
       {
         "scope_value": "L6",
         "description": null,
-        "source_reference": "descritivo_das_variáveis_production_v9.xlsx"
+        "source_reference": "descritivo_das_variáveis_production_v10.xlsx"
       },
       {
         "scope_value": "L7",
         "description": null,
-        "source_reference": "descritivo_das_variáveis_production_v9.xlsx"
+        "source_reference": "descritivo_das_variáveis_production_v10.xlsx"
       }
     ]
   },
@@ -578,7 +628,7 @@
     "frequency": "mensal",
     "scope_type": "linha",
     "scope_value": "L1_L7",
-    "source_reference": "descritivo_das_variáveis_production_v9.xlsx",
+    "source_reference": "descritivo_das_variáveis_production_v10.xlsx",
     "status": "ativo",
     "value_type": "numerico"
   },
@@ -591,7 +641,7 @@
     "frequency": "diário",
     "scope_type": "linha_grupo",
     "scope_value": "L1_L7",
-    "source_reference": "descritivo_das_variáveis_production_v9.xlsx",
+    "source_reference": "descritivo_das_variáveis_production_v10.xlsx",
     "status": "ativo",
     "value_type": "numerico"
   },
@@ -604,7 +654,7 @@
     "frequency": "mensal",
     "scope_type": "linha_grupo",
     "scope_value": "L1_L7",
-    "source_reference": "descritivo_das_variáveis_production_v9.xlsx",
+    "source_reference": "descritivo_das_variáveis_production_v10.xlsx",
     "status": "ativo",
     "value_type": "numerico"
   },
@@ -617,7 +667,7 @@
     "frequency": "anual",
     "scope_type": "linha_grupo",
     "scope_value": "L1_L7",
-    "source_reference": "descritivo_das_variáveis_production_v9.xlsx",
+    "source_reference": "descritivo_das_variáveis_production_v10.xlsx",
     "status": "ativo",
     "value_type": "numerico"
   },
@@ -630,7 +680,7 @@
     "frequency": "diário",
     "scope_type": "linha",
     "scope_value": "L1_L7",
-    "source_reference": "descritivo_das_variáveis_production_v9.xlsx",
+    "source_reference": "descritivo_das_variáveis_production_v10.xlsx",
     "status": "ativo",
     "value_type": "numerico"
   },
@@ -643,7 +693,7 @@
     "frequency": "mensal",
     "scope_type": "linha",
     "scope_value": "L1_L7",
-    "source_reference": "descritivo_das_variáveis_production_v9.xlsx",
+    "source_reference": "descritivo_das_variáveis_production_v10.xlsx",
     "status": "ativo",
     "value_type": "numerico"
   },
@@ -656,7 +706,7 @@
     "frequency": "diário",
     "scope_type": "linha_grupo",
     "scope_value": "L1_L7",
-    "source_reference": "descritivo_das_variáveis_production_v9.xlsx",
+    "source_reference": "descritivo_das_variáveis_production_v10.xlsx",
     "status": "ativo",
     "value_type": "numerico"
   },
@@ -669,7 +719,7 @@
     "frequency": "mensal",
     "scope_type": "linha_grupo",
     "scope_value": "L1_L7",
-    "source_reference": "descritivo_das_variáveis_production_v9.xlsx",
+    "source_reference": "descritivo_das_variáveis_production_v10.xlsx",
     "status": "ativo",
     "value_type": "numerico"
   },
@@ -682,7 +732,7 @@
     "frequency": "mensal",
     "scope_type": "linha_grupo",
     "scope_value": "L1_L7",
-    "source_reference": "descritivo_das_variáveis_production_v9.xlsx",
+    "source_reference": "descritivo_das_variáveis_production_v10.xlsx",
     "status": "ativo",
     "value_type": "numerico"
   },
@@ -695,7 +745,7 @@
     "frequency": "anual",
     "scope_type": "linha_grupo",
     "scope_value": "L1_L7",
-    "source_reference": "descritivo_das_variáveis_production_v9.xlsx",
+    "source_reference": "descritivo_das_variáveis_production_v10.xlsx",
     "status": "ativo",
     "value_type": "numerico"
   },
@@ -708,7 +758,7 @@
     "frequency": "diário",
     "scope_type": "linha_grupo",
     "scope_value": "L1_L7",
-    "source_reference": "descritivo_das_variáveis_production_v9.xlsx",
+    "source_reference": "descritivo_das_variáveis_production_v10.xlsx",
     "status": "ativo",
     "value_type": "numerico"
   },
@@ -721,7 +771,7 @@
     "frequency": "diário",
     "scope_type": "linha_grupo",
     "scope_value": "L1_L7",
-    "source_reference": "descritivo_das_variáveis_production_v9.xlsx",
+    "source_reference": "descritivo_das_variáveis_production_v10.xlsx",
     "status": "ativo",
     "value_type": "numerico"
   },
@@ -734,7 +784,7 @@
     "frequency": "diário",
     "scope_type": "linha",
     "scope_value": "L1_L7",
-    "source_reference": "descritivo_das_variáveis_production_v9.xlsx",
+    "source_reference": "descritivo_das_variáveis_production_v10.xlsx",
     "status": "ativo",
     "value_type": "numerico"
   },
@@ -747,7 +797,7 @@
     "frequency": "diário",
     "scope_type": "linha",
     "scope_value": "L1_L7",
-    "source_reference": "descritivo_das_variáveis_production_v9.xlsx",
+    "source_reference": "descritivo_das_variáveis_production_v10.xlsx",
     "status": "ativo",
     "value_type": "numerico"
   },
@@ -760,7 +810,7 @@
     "frequency": "diário",
     "scope_type": "linha",
     "scope_value": "L1_L7",
-    "source_reference": "descritivo_das_variáveis_production_v9.xlsx",
+    "source_reference": "descritivo_das_variáveis_production_v10.xlsx",
     "status": "ativo",
     "value_type": "numerico"
   },
@@ -773,7 +823,7 @@
     "frequency": "diário",
     "scope_type": "linha",
     "scope_value": "L1_L7",
-    "source_reference": "descritivo_das_variáveis_production_v9.xlsx",
+    "source_reference": "descritivo_das_variáveis_production_v10.xlsx",
     "status": "ativo",
     "value_type": "numerico"
   },
@@ -786,7 +836,7 @@
     "frequency": "diário",
     "scope_type": "linha",
     "scope_value": "L1_L7",
-    "source_reference": "descritivo_das_variáveis_production_v9.xlsx",
+    "source_reference": "descritivo_das_variáveis_production_v10.xlsx",
     "status": "ativo",
     "value_type": "numerico"
   },
@@ -799,7 +849,7 @@
     "frequency": "diário",
     "scope_type": "linha",
     "scope_value": "L1_L7",
-    "source_reference": "descritivo_das_variáveis_production_v9.xlsx",
+    "source_reference": "descritivo_das_variáveis_production_v10.xlsx",
     "status": "ativo",
     "value_type": "numerico"
   },
@@ -812,7 +862,7 @@
     "frequency": "diário",
     "scope_type": "linha",
     "scope_value": "L1_L7",
-    "source_reference": "descritivo_das_variáveis_production_v9.xlsx",
+    "source_reference": "descritivo_das_variáveis_production_v10.xlsx",
     "status": "ativo",
     "value_type": "numerico"
   },
@@ -825,7 +875,7 @@
     "frequency": "diário",
     "scope_type": "linha",
     "scope_value": "L1_L7",
-    "source_reference": "descritivo_das_variáveis_production_v9.xlsx",
+    "source_reference": "descritivo_das_variáveis_production_v10.xlsx",
     "status": "ativo",
     "value_type": "numerico"
   },
@@ -851,7 +901,7 @@
     "frequency": "diário",
     "scope_type": "linha_grupo",
     "scope_value": "L1_L7",
-    "source_reference": "descritivo_das_variáveis_production_v9.xlsx",
+    "source_reference": "descritivo_das_variáveis_production_v10.xlsx",
     "status": "ativo",
     "value_type": "numerico"
   },
@@ -864,7 +914,7 @@
     "frequency": "mensal",
     "scope_type": "linha_grupo",
     "scope_value": "L1_L7",
-    "source_reference": "descritivo_das_variáveis_production_v9.xlsx",
+    "source_reference": "descritivo_das_variáveis_production_v10.xlsx",
     "status": "ativo",
     "value_type": "numerico"
   },
@@ -877,7 +927,7 @@
     "frequency": "anual",
     "scope_type": "linha_grupo",
     "scope_value": "L1_L7",
-    "source_reference": "descritivo_das_variáveis_production_v9.xlsx",
+    "source_reference": "descritivo_das_variáveis_production_v10.xlsx",
     "status": "ativo",
     "value_type": "numerico"
   }

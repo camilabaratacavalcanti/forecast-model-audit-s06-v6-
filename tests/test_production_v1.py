@@ -250,20 +250,30 @@ def test_production_declares_its_own_yield_input_pending_d24_11(loaded_seed):
     assert production_yield.variable_type == "entrada"
 
 
-def test_lth_meta_parameters_have_expected_values(production_seed):
-    parameter_definitions = production_seed[2]
+def test_lth_meta_is_an_external_input_variable(production_seed):
+    """
+    LEGACY_TEST_EXPECTATION (Etapa 2.6B, D26-02). Antes:
+    `test_lth_meta_parameters_have_expected_values` exigia `lth_meta`
+    como Parameter anual por linha com value 1050/1050/1100x5 (production
+    v1..v9). Desde o production v10, `lth_meta` é Variable
+    `entrada_externa` anual linha/L1_L7, sem value no workbook (o valor
+    é entrada do forecast, não constante do seed); o parâmetro deixou
+    de existir e seu ID (PARAM12003) está aposentado no livro de IDs.
+    """
 
-    lth_meta = {
-        p.scope_value: p.value
-        for p in parameter_definitions.all()
-        if p.parameter_name == "lth_meta"
-    }
+    variable_definitions, _vi, parameter_definitions = production_seed[:3]
 
-    assert lth_meta == {
-        "L1": 1050, "L2": 1050, "L3": 1100, "L4": 1100,
-        "L5": 1100, "L6": 1100, "L7": 1100,
-    }
-    assert lth_meta.keys() == set(LINES)
+    assert not [p for p in parameter_definitions.all() if p.parameter_name == "lth_meta"]
+
+    [lth_meta] = [
+        v for v in variable_definitions.all()
+        if v.variable_name == "lth_meta"
+        and v.variable_definition_id.startswith("VAR12")
+    ]
+    assert (lth_meta.variable_type, lth_meta.frequency) == ("entrada_externa", "anual")
+    assert (lth_meta.scope_type, lth_meta.scope_value) == ("linha", "L1_L7")
+    assert lth_meta.unit == "-"
+    assert {i.scope_value for i in lth_meta.instances} == set(LINES)
 
 
 def test_pick_up_yield_parameters_have_expected_values(production_seed):
@@ -488,10 +498,10 @@ def test_oee_total_bd04_uses_distinct_per_line_values(production_seed):
     engine = EquationEngine()
 
     oee_var_id = eq.expression.split("@L1")[0].split("(")[-1].strip()
-    lth_meta_id = next(
-        p.parameter_definition_id for p in production_seed[2].all()
-        if p.parameter_name == "lth_meta"
-    )
+    # D26-02 (Etapa 2.6B): lth_meta é Variable anual (entrada_externa);
+    # antes era Parameter (LEGACY_TEST_EXPECTATION: valores injetados
+    # como variável anual, fórmula e resultado esperados inalterados).
+    lth_meta_id = variable_id("production", "lth_meta", "anual")
 
     oee_values = {"L1": 0.1, "L2": 0.2, "L3": 0.3, "L4": 0.4,
                   "L5": 0.5, "L6": 0.6, "L7": 0.7}
@@ -501,7 +511,7 @@ def test_oee_total_bd04_uses_distinct_per_line_values(production_seed):
     context = CalculationContext()
     for line in LINES:
         context.set_variable_value(oee_var_id, oee_values[line], "linha", line)
-        context.set_parameter_value(
+        context.set_variable_value(
             lth_meta_id, lth_meta_values[line], "linha", line,
         )
 
@@ -763,10 +773,10 @@ def test_lth_real_equation_applies_fator_ajuste_only_above_floor(
             and d.scope_type == "linha"
         )
 
-    lth_meta_id = next(
-        p.parameter_definition_id for p in production_seed[2].all()
-        if p.parameter_name == "lth_meta"
-    )
+    # D26-02 (Etapa 2.6B): lth_meta é Variable anual (entrada_externa);
+    # antes era Parameter (LEGACY_TEST_EXPECTATION: regra de negócio e
+    # resultados esperados inalterados).
+    lth_meta_id = variable_id("production", "lth_meta", "anual")
 
     from app.engine.expression_evaluator import ExpressionEvaluator
     from app.engine.expression_parser import ExpressionParser
@@ -801,8 +811,8 @@ def test_lth_real_equation_applies_fator_ajuste_only_above_floor(
             variable_id("production", "fator_ajuste_lth", "mensal"),
             fator_ajuste, "linha", "L1", period_id="2026-09",
         )
-        context.set_parameter_value(
-            lth_meta_id, lth_meta_value, "linha", "L1",
+        context.set_variable_value(
+            lth_meta_id, lth_meta_value, "linha", "L1", period_id="2026",
         )
 
         evaluator = ExpressionEvaluator(
@@ -1093,6 +1103,16 @@ def test_production_integration_chain_inputs_to_producao_planta(
     for instance in production[3].all():
         # Cada ParameterInstance carrega o valor da SUA linha do workbook.
         context.set_parameter_instance_value(instance, instance.value)
+
+    # LEGACY_TEST_EXPECTATION (Etapa 2.6B, D26-02): lth_meta deixou de
+    # ser Parameter (valores 1050/1050/1100x5 vinham do workbook) e é
+    # Variable anual entrada_externa; os mesmos valores entram agora
+    # como entrada anual por linha.
+    for line, meta in zip(LINES, (1050, 1050, 1100, 1100, 1100, 1100, 1100)):
+        context.set_variable_value(
+            variable_id("production", "lth_meta", "anual"),
+            meta, "linha", line, period_id="2026",
+        )
 
     orchestrator = TemporalForecastOrchestrator()
 

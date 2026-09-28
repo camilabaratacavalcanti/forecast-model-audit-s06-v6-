@@ -1,25 +1,13 @@
 {
   "block": "production",
-  "workbook": {
-    "file_name": "descritivo_das_variáveis_production_v10.xlsx",
-    "sha256": "302cf18b92ac22c690b3add9bdd1ded0617bfa60636809696d010b8858d72487",
-    "sheet": "production",
-    "header_row": 2,
-    "data_rows": 88,
-    "empty_rows_ignored": 212,
-    "last_sheet_row": 302
-  },
-  "entities": [
+  "entries": [
     {
       "entity_id": "VAR12001",
       "kind": "variable",
       "name": "consumo_bauxita",
       "frequency": "diário",
       "scope_type": "linha_grupo",
-      "scope_value": "L1_L7",
-      "rows": [
-        3
-      ]
+      "scope_value": "L1_L7"
     },
     {
       "entity_id": "VAR12002",
@@ -27,10 +15,7 @@
       "name": "consumo_bauxita",
       "frequency": "mensal",
       "scope_type": "linha_grupo",
-      "scope_value": "L1_L7",
-      "rows": [
-        4
-      ]
+      "scope_value": "L1_L7"
     },
     {
       "entity_id": "VAR12003",
@@ -38,10 +23,7 @@
       "name": "consumo_bauxita_somatorio",
       "frequency": "mensal",
       "scope_type": "linha_grupo",
-      "scope_value": "L1_L7",
-      "rows": [
-        5
-      ]
+      "scope_value": "L1_L7"
     },
     {
       "entity_id": "VAR12004",
@@ -49,10 +31,7 @@
       "name": "consumo_bauxita",
       "frequency": "anual",
       "scope_type": "linha_grupo",
-      "scope_value": "L1_L7",
-      "rows": [
-        6
-      ]
+      "scope_value": "L1_L7"
     },
     {
       "entity_id": "VAR12005",
@@ -60,10 +39,7 @@
       "name": "consumo_cbg",
       "frequency": "diário",
       "scope_type": "linha",
-      "scope_value": "L1_L7",
-      "rows": [
-        7
-      ]
+      "scope_value": "L1_L7"
     },
     {
       "entity_id": "VAR12006",
@@ -71,10 +47,7 @@
       "name": "consumo_cbg_grupo",
       "frequency": "diário",
       "scope_type": "linha_grupo",
-      "scope_value": "L1_L7",
-      "rows": [
-        8
-      ]
+      "scope_value": "L1_L7"
     },
     {
       "entity_id": "VAR12007",
@@ -82,10 +55,7 @@
       "name": "consumo_cbg_grupo",
       "frequency": "mensal",
       "scope_type": "linha_grupo",
-      "scope_value": "L1_L7",
-      "rows": [
-        9
-      ]
+      "scope_value": "L1_L7"
     },
     {
       "entity_id": "VAR12008",
@@ -93,10 +63,7 @@
       "name": "consumo_cbg_grupo_somatorio",
       "frequency": "mensal",
       "scope_type": "linha_grupo",
-      "scope_value": "L1_L7",
-      "rows": [
-        10
-      ]
+      "scope_value": "L1_L7"
     },
     {
       "entity_id": "VAR12009",
@@ -104,10 +71,7 @@
       "name": "consumo_cbg_grupo",
       "frequency": "anual",
       "scope_type": "linha_grupo",
-      "scope_value": "L1_L7",
-      "rows": [
-        11
-      ]
+      "scope_value": "L1_L7"
     },
     {
       "entity_id": "VAR12010",
@@ -115,10 +79,7 @@
       "name": "consumo_cbg_percentual",
       "frequency": "diário",
       "scope_type": "linha",
-      "scope_value": "L1_L7",
-      "rows": [
-        12
-      ]
+      "scope_value": "L1_L7"
     },
     {
       "entity_id": "VAR12011",
@@ -126,10 +87,7 @@
       "name": "consumo_mpsa",
       "frequency": "diário",
       "scope_type": "linha",
-      "scope_value": "L1_L7",
-      "rows": [
-        13
-      ]
+      "scope_value": "L1_L7"
     },
     {
       "entity_id": "VAR12012",
@@ -137,10 +95,7 @@
       "name": "consumo_mpsa_grupo",
       "frequency": "diário",
       "scope_type": "linha_grupo",
-      "scope_value": "L1_L7",
-      "rows": [
-        14
-      ]
+      "scope_value": "L1_L7"
     },
     {
       "entity_id": "VAR12013",
@@ -148,10 +103,7 @@
       "name": "consumo_mpsa_grupo",
       "frequency": "mensal",
       "scope_type": "linha_grupo",
-      "scope_value": "L1_L7",
-      "rows": [
-        15
-      ]
+      "scope_value": "L1_L7"
     },
     {
       "entity_id": "VAR12014",
@@ -159,10 +111,7 @@
       "name": "consumo_mpsa_grupo_somatorio",
       "frequency": "mensal",
       "scope_type": "linha_grupo",
-      "scope_value": "L1_L7",
-      "rows": [
-        16
-      ]
+      "scope_value": "L1_L7"
     },
     {
       "entity_id": "VAR12015",
@@ -170,10 +119,7 @@
       "name": "consumo_mpsa_grupo",
       "frequency": "anual",
       "scope_type": "linha_grupo",
-      "scope_value": "L1_L7",
-      "rows": [
-        17
-      ]
+      "scope_value": "L1_L7"
     },
     {
       "entity_id": "VAR12016",
@@ -181,10 +127,7 @@
       "name": "consumo_mpsa_percentual",
       "frequency": "diário",
       "scope_type": "linha",
-      "scope_value": "L1_L7",
-      "rows": [
-        18
-      ]
+      "scope_value": "L1_L7"
     },
     {
       "entity_id": "VAR12017",
@@ -192,10 +135,7 @@
       "name": "consumo_mrn",
       "frequency": "diário",
       "scope_type": "linha",
-      "scope_value": "L1_L7",
-      "rows": [
-        19
-      ]
+      "scope_value": "L1_L7"
     },
     {
       "entity_id": "VAR12018",
@@ -203,10 +143,7 @@
       "name": "consumo_mrn_grupo",
       "frequency": "diário",
       "scope_type": "linha_grupo",
-      "scope_value": "L1_L7",
-      "rows": [
-        20
-      ]
+      "scope_value": "L1_L7"
     },
     {
       "entity_id": "VAR12019",
@@ -214,10 +151,7 @@
       "name": "consumo_mrn_grupo",
       "frequency": "mensal",
       "scope_type": "linha_grupo",
-      "scope_value": "L1_L7",
-      "rows": [
-        21
-      ]
+      "scope_value": "L1_L7"
     },
     {
       "entity_id": "VAR12020",
@@ -225,10 +159,7 @@
       "name": "consumo_mrn_grupo_somatorio",
       "frequency": "mensal",
       "scope_type": "linha_grupo",
-      "scope_value": "L1_L7",
-      "rows": [
-        22
-      ]
+      "scope_value": "L1_L7"
     },
     {
       "entity_id": "VAR12021",
@@ -236,10 +167,7 @@
       "name": "consumo_mrn_grupo",
       "frequency": "anual",
       "scope_type": "linha_grupo",
-      "scope_value": "L1_L7",
-      "rows": [
-        23
-      ]
+      "scope_value": "L1_L7"
     },
     {
       "entity_id": "VAR12022",
@@ -247,10 +175,7 @@
       "name": "consumo_mrn_percentual",
       "frequency": "diário",
       "scope_type": "linha",
-      "scope_value": "L1_L7",
-      "rows": [
-        24
-      ]
+      "scope_value": "L1_L7"
     },
     {
       "entity_id": "VAR12023",
@@ -258,10 +183,7 @@
       "name": "desaguamento_oee",
       "frequency": "anual",
       "scope_type": "linha_grupo",
-      "scope_value": "L1_L7",
-      "rows": [
-        25
-      ]
+      "scope_value": "L1_L7"
     },
     {
       "entity_id": "PARAM12001",
@@ -269,10 +191,7 @@
       "name": "desaguamento_produtividade",
       "frequency": "anual",
       "scope_type": "planta",
-      "scope_value": "PLANTA",
-      "rows": [
-        26
-      ]
+      "scope_value": "PLANTA"
     },
     {
       "entity_id": "VAR12024",
@@ -280,10 +199,7 @@
       "name": "fator_ajuste_lth",
       "frequency": "mensal",
       "scope_type": "linha",
-      "scope_value": "L1_L7",
-      "rows": [
-        27
-      ]
+      "scope_value": "L1_L7"
     },
     {
       "entity_id": "VAR12025",
@@ -291,10 +207,7 @@
       "name": "fator_ajuste_mrn",
       "frequency": "diário",
       "scope_type": "linha",
-      "scope_value": "L1_L7",
-      "rows": [
-        28
-      ]
+      "scope_value": "L1_L7"
     },
     {
       "entity_id": "VAR12026",
@@ -302,10 +215,7 @@
       "name": "fator_cbg",
       "frequency": "diário",
       "scope_type": "linha",
-      "scope_value": "L1_L7",
-      "rows": [
-        29
-      ]
+      "scope_value": "L1_L7"
     },
     {
       "entity_id": "VAR12027",
@@ -313,10 +223,7 @@
       "name": "fator_mpsa",
       "frequency": "diário",
       "scope_type": "linha",
-      "scope_value": "L1_L7",
-      "rows": [
-        30
-      ]
+      "scope_value": "L1_L7"
     },
     {
       "entity_id": "VAR12028",
@@ -324,11 +231,7 @@
       "name": "fator_mpsa_kg_t",
       "frequency": "diário",
       "scope_type": "linha_grupo",
-      "scope_value": "L1_L7",
-      "rows": [
-        31
-      ],
-      "source_block": "forecast"
+      "scope_value": "L1_L7"
     },
     {
       "entity_id": "VAR12029",
@@ -336,10 +239,7 @@
       "name": "fator_mrn",
       "frequency": "diário",
       "scope_type": "linha",
-      "scope_value": "L1_L7",
-      "rows": [
-        32
-      ]
+      "scope_value": "L1_L7"
     },
     {
       "entity_id": "VAR12030",
@@ -347,11 +247,7 @@
       "name": "fator_mrn_kg_t",
       "frequency": "diário",
       "scope_type": "linha_grupo",
-      "scope_value": "L1_L7",
-      "rows": [
-        33
-      ],
-      "source_block": "forecast"
+      "scope_value": "L1_L7"
     },
     {
       "entity_id": "PARAM12002",
@@ -359,10 +255,7 @@
       "name": "fator_producao",
       "frequency": "anual",
       "scope_type": "linha",
-      "scope_value": "L1_L7",
-      "rows": [
-        34
-      ]
+      "scope_value": "L1_L7"
     },
     {
       "entity_id": "VAR12031",
@@ -370,10 +263,7 @@
       "name": "lth",
       "frequency": "diário",
       "scope_type": "linha",
-      "scope_value": "L1_L7",
-      "rows": [
-        35
-      ]
+      "scope_value": "L1_L7"
     },
     {
       "entity_id": "VAR12032",
@@ -381,10 +271,7 @@
       "name": "lth",
       "frequency": "mensal",
       "scope_type": "linha",
-      "scope_value": "L1_L7",
-      "rows": [
-        36
-      ]
+      "scope_value": "L1_L7"
     },
     {
       "entity_id": "VAR12066",
@@ -392,16 +279,7 @@
       "name": "lth_meta",
       "frequency": "anual",
       "scope_type": "linha",
-      "scope_value": "L1_L7",
-      "rows": [
-        37,
-        38,
-        39,
-        40,
-        41,
-        42,
-        43
-      ]
+      "scope_value": "L1_L7"
     },
     {
       "entity_id": "VAR12033",
@@ -409,10 +287,7 @@
       "name": "lth_total",
       "frequency": "diário",
       "scope_type": "linha_grupo",
-      "scope_value": "L1_L7",
-      "rows": [
-        44
-      ]
+      "scope_value": "L1_L7"
     },
     {
       "entity_id": "VAR12034",
@@ -420,10 +295,7 @@
       "name": "lth_total",
       "frequency": "mensal",
       "scope_type": "linha_grupo",
-      "scope_value": "L1_L7",
-      "rows": [
-        45
-      ]
+      "scope_value": "L1_L7"
     },
     {
       "entity_id": "VAR12035",
@@ -431,10 +303,7 @@
       "name": "lth_total",
       "frequency": "anual",
       "scope_type": "linha_grupo",
-      "scope_value": "L1_L7",
-      "rows": [
-        46
-      ]
+      "scope_value": "L1_L7"
     },
     {
       "entity_id": "PARAM12004",
@@ -442,10 +311,7 @@
       "name": "n_dias_ano",
       "frequency": "anual",
       "scope_type": "linha_grupo",
-      "scope_value": "L1_L7",
-      "rows": [
-        47
-      ]
+      "scope_value": "L1_L7"
     },
     {
       "entity_id": "VAR12036",
@@ -453,10 +319,7 @@
       "name": "oee",
       "frequency": "diário",
       "scope_type": "linha",
-      "scope_value": "L1_L7",
-      "rows": [
-        48
-      ]
+      "scope_value": "L1_L7"
     },
     {
       "entity_id": "VAR12037",
@@ -464,10 +327,7 @@
       "name": "oee",
       "frequency": "mensal",
       "scope_type": "linha",
-      "scope_value": "L1_L7",
-      "rows": [
-        49
-      ]
+      "scope_value": "L1_L7"
     },
     {
       "entity_id": "VAR12038",
@@ -475,10 +335,7 @@
       "name": "oee_total",
       "frequency": "diário",
       "scope_type": "linha_grupo",
-      "scope_value": "L1_L7",
-      "rows": [
-        50
-      ]
+      "scope_value": "L1_L7"
     },
     {
       "entity_id": "VAR12039",
@@ -486,10 +343,7 @@
       "name": "oee_total",
       "frequency": "mensal",
       "scope_type": "linha_grupo",
-      "scope_value": "L1_L7",
-      "rows": [
-        51
-      ]
+      "scope_value": "L1_L7"
     },
     {
       "entity_id": "VAR12040",
@@ -497,10 +351,7 @@
       "name": "oee_total",
       "frequency": "anual",
       "scope_type": "linha_grupo",
-      "scope_value": "L1_L7",
-      "rows": [
-        52
-      ]
+      "scope_value": "L1_L7"
     },
     {
       "entity_id": "VAR12041",
@@ -508,16 +359,7 @@
       "name": "pick_up",
       "frequency": "diário",
       "scope_type": "linha",
-      "scope_value": "L1_L7",
-      "rows": [
-        53,
-        54,
-        55,
-        56,
-        57,
-        58,
-        59
-      ]
+      "scope_value": "L1_L7"
     },
     {
       "entity_id": "VAR12042",
@@ -525,10 +367,7 @@
       "name": "pick_up",
       "frequency": "mensal",
       "scope_type": "linha",
-      "scope_value": "L1_L7",
-      "rows": [
-        60
-      ]
+      "scope_value": "L1_L7"
     },
     {
       "entity_id": "VAR12043",
@@ -536,10 +375,7 @@
       "name": "pick_up_total",
       "frequency": "diário",
       "scope_type": "linha_grupo",
-      "scope_value": "L1_L7",
-      "rows": [
-        61
-      ]
+      "scope_value": "L1_L7"
     },
     {
       "entity_id": "VAR12044",
@@ -547,10 +383,7 @@
       "name": "pick_up_total",
       "frequency": "mensal",
       "scope_type": "linha_grupo",
-      "scope_value": "L1_L7",
-      "rows": [
-        62
-      ]
+      "scope_value": "L1_L7"
     },
     {
       "entity_id": "VAR12045",
@@ -558,10 +391,7 @@
       "name": "pick_up_total",
       "frequency": "anual",
       "scope_type": "linha_grupo",
-      "scope_value": "L1_L7",
-      "rows": [
-        63
-      ]
+      "scope_value": "L1_L7"
     },
     {
       "entity_id": "PARAM12005",
@@ -569,16 +399,7 @@
       "name": "pick_up_yield",
       "frequency": "anual",
       "scope_type": "linha",
-      "scope_value": "L1_L7",
-      "rows": [
-        64,
-        65,
-        66,
-        67,
-        68,
-        69,
-        70
-      ]
+      "scope_value": "L1_L7"
     },
     {
       "entity_id": "VAR12046",
@@ -586,10 +407,7 @@
       "name": "producao",
       "frequency": "diário",
       "scope_type": "linha",
-      "scope_value": "L1_L7",
-      "rows": [
-        71
-      ]
+      "scope_value": "L1_L7"
     },
     {
       "entity_id": "VAR12047",
@@ -597,10 +415,7 @@
       "name": "producao",
       "frequency": "mensal",
       "scope_type": "linha",
-      "scope_value": "L1_L7",
-      "rows": [
-        72
-      ]
+      "scope_value": "L1_L7"
     },
     {
       "entity_id": "VAR12048",
@@ -608,10 +423,7 @@
       "name": "producao_planta",
       "frequency": "diário",
       "scope_type": "linha_grupo",
-      "scope_value": "L1_L7",
-      "rows": [
-        73
-      ]
+      "scope_value": "L1_L7"
     },
     {
       "entity_id": "VAR12049",
@@ -619,10 +431,7 @@
       "name": "producao_planta",
       "frequency": "mensal",
       "scope_type": "linha_grupo",
-      "scope_value": "L1_L7",
-      "rows": [
-        74
-      ]
+      "scope_value": "L1_L7"
     },
     {
       "entity_id": "VAR12050",
@@ -630,10 +439,7 @@
       "name": "producao_planta_somatorio",
       "frequency": "mensal",
       "scope_type": "linha_grupo",
-      "scope_value": "L1_L7",
-      "rows": [
-        75
-      ]
+      "scope_value": "L1_L7"
     },
     {
       "entity_id": "VAR12051",
@@ -641,10 +447,7 @@
       "name": "producao_planta",
       "frequency": "anual",
       "scope_type": "linha_grupo",
-      "scope_value": "L1_L7",
-      "rows": [
-        76
-      ]
+      "scope_value": "L1_L7"
     },
     {
       "entity_id": "VAR12052",
@@ -652,10 +455,7 @@
       "name": "producao_planta_movel",
       "frequency": "diário",
       "scope_type": "linha_grupo",
-      "scope_value": "L1_L7",
-      "rows": [
-        77
-      ]
+      "scope_value": "L1_L7"
     },
     {
       "entity_id": "VAR12053",
@@ -663,10 +463,7 @@
       "name": "producao_planta_mtpy",
       "frequency": "diário",
       "scope_type": "linha_grupo",
-      "scope_value": "L1_L7",
-      "rows": [
-        78
-      ]
+      "scope_value": "L1_L7"
     },
     {
       "entity_id": "VAR12054",
@@ -674,11 +471,7 @@
       "name": "reducao_lth_calcinacao",
       "frequency": "diário",
       "scope_type": "linha",
-      "scope_value": "L1_L7",
-      "rows": [
-        79
-      ],
-      "source_block": "maintenance"
+      "scope_value": "L1_L7"
     },
     {
       "entity_id": "VAR12055",
@@ -686,11 +479,7 @@
       "name": "reducao_lth_clarificacao",
       "frequency": "diário",
       "scope_type": "linha",
-      "scope_value": "L1_L7",
-      "rows": [
-        80
-      ],
-      "source_block": "maintenance"
+      "scope_value": "L1_L7"
     },
     {
       "entity_id": "VAR12056",
@@ -698,11 +487,7 @@
       "name": "reducao_lth_digestao",
       "frequency": "diário",
       "scope_type": "linha",
-      "scope_value": "L1_L7",
-      "rows": [
-        81
-      ],
-      "source_block": "maintenance"
+      "scope_value": "L1_L7"
     },
     {
       "entity_id": "VAR12057",
@@ -710,11 +495,7 @@
       "name": "reducao_lth_precipitacao",
       "frequency": "diário",
       "scope_type": "linha",
-      "scope_value": "L1_L7",
-      "rows": [
-        82
-      ],
-      "source_block": "maintenance"
+      "scope_value": "L1_L7"
     },
     {
       "entity_id": "VAR12058",
@@ -722,11 +503,7 @@
       "name": "tempo_calcinacao",
       "frequency": "diário",
       "scope_type": "linha",
-      "scope_value": "L1_L7",
-      "rows": [
-        83
-      ],
-      "source_block": "maintenance"
+      "scope_value": "L1_L7"
     },
     {
       "entity_id": "VAR12059",
@@ -734,11 +511,7 @@
       "name": "tempo_clarificacao",
       "frequency": "diário",
       "scope_type": "linha",
-      "scope_value": "L1_L7",
-      "rows": [
-        84
-      ],
-      "source_block": "maintenance"
+      "scope_value": "L1_L7"
     },
     {
       "entity_id": "VAR12060",
@@ -746,11 +519,7 @@
       "name": "tempo_digestao",
       "frequency": "diário",
       "scope_type": "linha",
-      "scope_value": "L1_L7",
-      "rows": [
-        85
-      ],
-      "source_block": "maintenance"
+      "scope_value": "L1_L7"
     },
     {
       "entity_id": "VAR12061",
@@ -758,11 +527,7 @@
       "name": "tempo_precipitacao",
       "frequency": "diário",
       "scope_type": "linha",
-      "scope_value": "L1_L7",
-      "rows": [
-        86
-      ],
-      "source_block": "maintenance"
+      "scope_value": "L1_L7"
     },
     {
       "entity_id": "VAR12062",
@@ -770,11 +535,7 @@
       "name": "yield",
       "frequency": "diário",
       "scope_type": "linha",
-      "scope_value": "L1_L7",
-      "rows": [
-        87
-      ],
-      "source_block": "yield"
+      "scope_value": "L1_L7"
     },
     {
       "entity_id": "VAR12063",
@@ -782,10 +543,7 @@
       "name": "yield_lth_total",
       "frequency": "diário",
       "scope_type": "linha_grupo",
-      "scope_value": "L1_L7",
-      "rows": [
-        88
-      ]
+      "scope_value": "L1_L7"
     },
     {
       "entity_id": "VAR12064",
@@ -793,10 +551,7 @@
       "name": "yield_lth_total",
       "frequency": "mensal",
       "scope_type": "linha_grupo",
-      "scope_value": "L1_L7",
-      "rows": [
-        89
-      ]
+      "scope_value": "L1_L7"
     },
     {
       "entity_id": "VAR12065",
@@ -804,235 +559,18 @@
       "name": "yield_lth_total",
       "frequency": "anual",
       "scope_type": "linha_grupo",
+      "scope_value": "L1_L7"
+    }
+  ],
+  "retired": [
+    {
+      "entity_id": "PARAM12003",
+      "kind": "parameter",
+      "name": "lth_meta",
+      "frequency": "anual",
+      "scope_type": "linha",
       "scope_value": "L1_L7",
-      "rows": [
-        90
-      ]
+      "retired_in": "descritivo_das_variáveis_production_v10.xlsx"
     }
-  ],
-  "equations": [
-    {
-      "equation_id": "EQ12001",
-      "row": 3
-    },
-    {
-      "equation_id": "EQ12002",
-      "row": 7
-    },
-    {
-      "equation_id": "EQ12003",
-      "row": 8
-    },
-    {
-      "equation_id": "EQ12004",
-      "row": 13
-    },
-    {
-      "equation_id": "EQ12005",
-      "row": 14
-    },
-    {
-      "equation_id": "EQ12006",
-      "row": 19
-    },
-    {
-      "equation_id": "EQ12007",
-      "row": 20
-    },
-    {
-      "equation_id": "EQ12008",
-      "row": 25
-    },
-    {
-      "equation_id": "EQ12009",
-      "row": 29
-    },
-    {
-      "equation_id": "EQ12010",
-      "row": 30
-    },
-    {
-      "equation_id": "EQ12011",
-      "row": 32
-    },
-    {
-      "equation_id": "EQ12012",
-      "row": 35
-    },
-    {
-      "equation_id": "EQ12013",
-      "row": 44
-    },
-    {
-      "equation_id": "EQ12014",
-      "row": 48
-    },
-    {
-      "equation_id": "EQ12015",
-      "row": 50
-    },
-    {
-      "equation_id": "EQ12016",
-      "row": 53
-    },
-    {
-      "equation_id": "EQ12017",
-      "row": 54
-    },
-    {
-      "equation_id": "EQ12018",
-      "row": 55
-    },
-    {
-      "equation_id": "EQ12019",
-      "row": 56
-    },
-    {
-      "equation_id": "EQ12020",
-      "row": 57
-    },
-    {
-      "equation_id": "EQ12021",
-      "row": 58
-    },
-    {
-      "equation_id": "EQ12022",
-      "row": 59
-    },
-    {
-      "equation_id": "EQ12023",
-      "row": 61
-    },
-    {
-      "equation_id": "EQ12024",
-      "row": 71
-    },
-    {
-      "equation_id": "EQ12025",
-      "row": 73
-    },
-    {
-      "equation_id": "EQ12026",
-      "row": 78
-    },
-    {
-      "equation_id": "EQ12027",
-      "row": 88
-    }
-  ],
-  "aggregation_rules": [
-    {
-      "aggregation_rule_id": "AGR-PRODUCTION-CONSUMO_BAUXITA-GRUPO-L1_L7-MENSAL-AVERAGE",
-      "row": 4
-    },
-    {
-      "aggregation_rule_id": "AGR-PRODUCTION-CONSUMO_BAUXITA_SOMATORIO-GRUPO-L1_L7-MENSAL-SUM",
-      "row": 5
-    },
-    {
-      "aggregation_rule_id": "AGR-PRODUCTION-CONSUMO_BAUXITA-GRUPO-L1_L7-ANUAL-SUM",
-      "row": 6
-    },
-    {
-      "aggregation_rule_id": "AGR-PRODUCTION-CONSUMO_CBG_GRUPO-GRUPO-L1_L7-MENSAL-AVERAGE",
-      "row": 9
-    },
-    {
-      "aggregation_rule_id": "AGR-PRODUCTION-CONSUMO_CBG_GRUPO_SOMATORIO-GRUPO-L1_L7-MENSAL-SUM",
-      "row": 10
-    },
-    {
-      "aggregation_rule_id": "AGR-PRODUCTION-CONSUMO_CBG_GRUPO-GRUPO-L1_L7-ANUAL-SUM",
-      "row": 11
-    },
-    {
-      "aggregation_rule_id": "AGR-PRODUCTION-CONSUMO_MPSA_GRUPO-GRUPO-L1_L7-MENSAL-AVERAGE",
-      "row": 15
-    },
-    {
-      "aggregation_rule_id": "AGR-PRODUCTION-CONSUMO_MPSA_GRUPO_SOMATORIO-GRUPO-L1_L7-MENSAL-SUM",
-      "row": 16
-    },
-    {
-      "aggregation_rule_id": "AGR-PRODUCTION-CONSUMO_MPSA_GRUPO-GRUPO-L1_L7-ANUAL-SUM",
-      "row": 17
-    },
-    {
-      "aggregation_rule_id": "AGR-PRODUCTION-CONSUMO_MRN_GRUPO-GRUPO-L1_L7-MENSAL-AVERAGE",
-      "row": 21
-    },
-    {
-      "aggregation_rule_id": "AGR-PRODUCTION-CONSUMO_MRN_GRUPO_SOMATORIO-GRUPO-L1_L7-MENSAL-SUM",
-      "row": 22
-    },
-    {
-      "aggregation_rule_id": "AGR-PRODUCTION-CONSUMO_MRN_GRUPO-GRUPO-L1_L7-ANUAL-SUM",
-      "row": 23
-    },
-    {
-      "aggregation_rule_id": "AGR-PRODUCTION-LTH-LINHA-L1_L7-MENSAL-AVERAGE",
-      "row": 36
-    },
-    {
-      "aggregation_rule_id": "AGR-PRODUCTION-LTH_TOTAL-GRUPO-L1_L7-MENSAL-AVERAGE",
-      "row": 45
-    },
-    {
-      "aggregation_rule_id": "AGR-PRODUCTION-LTH_TOTAL-GRUPO-L1_L7-ANUAL-AVERAGE",
-      "row": 46
-    },
-    {
-      "aggregation_rule_id": "AGR-PRODUCTION-OEE-LINHA-L1_L7-MENSAL-AVERAGE",
-      "row": 49
-    },
-    {
-      "aggregation_rule_id": "AGR-PRODUCTION-OEE_TOTAL-GRUPO-L1_L7-MENSAL-AVERAGE",
-      "row": 51
-    },
-    {
-      "aggregation_rule_id": "AGR-PRODUCTION-OEE_TOTAL-GRUPO-L1_L7-ANUAL-AVERAGE",
-      "row": 52
-    },
-    {
-      "aggregation_rule_id": "AGR-PRODUCTION-PICK_UP-LINHA-L1_L7-MENSAL-AVERAGE",
-      "row": 60
-    },
-    {
-      "aggregation_rule_id": "AGR-PRODUCTION-PICK_UP_TOTAL-GRUPO-L1_L7-MENSAL-AVERAGE",
-      "row": 62
-    },
-    {
-      "aggregation_rule_id": "AGR-PRODUCTION-PICK_UP_TOTAL-GRUPO-L1_L7-ANUAL-AVERAGE",
-      "row": 63
-    },
-    {
-      "aggregation_rule_id": "AGR-PRODUCTION-PRODUCAO-LINHA-L1_L7-MENSAL-AVERAGE",
-      "row": 72
-    },
-    {
-      "aggregation_rule_id": "AGR-PRODUCTION-PRODUCAO_PLANTA-GRUPO-L1_L7-MENSAL-AVERAGE",
-      "row": 74
-    },
-    {
-      "aggregation_rule_id": "AGR-PRODUCTION-PRODUCAO_PLANTA_SOMATORIO-GRUPO-L1_L7-MENSAL-SUM",
-      "row": 75
-    },
-    {
-      "aggregation_rule_id": "AGR-PRODUCTION-PRODUCAO_PLANTA-GRUPO-L1_L7-ANUAL-SUM",
-      "row": 76
-    },
-    {
-      "aggregation_rule_id": "AGR-PRODUCTION-PRODUCAO_PLANTA_MOVEL-GRUPO-L1_L7-DIARIO-MOVING_AVERAGE",
-      "row": 77
-    },
-    {
-      "aggregation_rule_id": "AGR-PRODUCTION-YIELD_LTH_TOTAL-GRUPO-L1_L7-MENSAL-WEIGHTED_AVERAGE",
-      "row": 89
-    },
-    {
-      "aggregation_rule_id": "AGR-PRODUCTION-YIELD_LTH_TOTAL-GRUPO-L1_L7-ANUAL-WEIGHTED_AVERAGE",
-      "row": 90
-    }
-  ],
-  "pending_contract_decisions": []
+  ]
 }

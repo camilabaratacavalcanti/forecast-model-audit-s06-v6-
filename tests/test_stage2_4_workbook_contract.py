@@ -275,29 +275,48 @@ def test_t24_02_total_rows_and_equations_match_stage_2_3(builds):
 # ============================================================
 
 
+# LEGACY_TEST_EXPECTATION (Etapa 2.6B, D26-02): até production v9 os
+# testes T24-03 fixavam `lth_meta` como Parameter anual por linha com
+# value 1050/1050/1100x5 lido do workbook. Desde production v10,
+# `lth_meta` é Variable `entrada_externa` anual linha/L1_L7 (sem value
+# no workbook). A regra testada — UMA definição com sete instâncias,
+# resolução A019 por instância, instância ausente é erro — não muda; os
+# valores 1050/1100 passam a ser entradas do teste.
+LTH_META_VALUES = {
+    "L1": 1050, "L2": 1050, "L3": 1100, "L4": 1100,
+    "L5": 1100, "L6": 1100, "L7": 1100,
+}
+
+
 def test_t24_03_lth_meta_is_one_definition_with_seven_instances():
-    records = [
+    assert not [
         p for p in read_seed_file("production", "parameters")
         if p["parameter_name"] == "lth_meta"
     ]
+    records = [
+        v for v in read_seed_file("production", "variables")
+        if v["variable_name"] == "lth_meta"
+    ]
 
-    assert {p["parameter_id"] for p in records} == {parameter_id("production", "lth_meta")}
-    assert sorted(p["scope_value"] for p in records) == LINES
-    assert {p["scope_value"]: p["value"] for p in records} == {
-        "L1": 1050, "L2": 1050, "L3": 1100, "L4": 1100,
-        "L5": 1100, "L6": 1100, "L7": 1100,
-    }
+    assert [r["variable_id"] for r in records] == [variable_id("production", "lth_meta", "anual")]
+    [record] = records
+    assert (record["variable_type"], record["frequency"]) == ("entrada_externa", "anual")
+    assert [i["scope_value"] for i in record["instances"]] == LINES
+    assert "value" not in record
 
 
 def test_t24_03_lth_and_oee_reference_the_single_lth_meta_definition():
-    lth_meta = parameter_id("production", "lth_meta")
+    lth_meta = variable_id("production", "lth_meta", "anual")
 
     lth = equation("production", variable_id("production", "lth", "diário"))
     oee = equation("production", variable_id("production", "oee", "diário"))
 
     assert (lth["scope_type"], lth["scope_value"]) == ("linha", "L1_L7")
     assert (oee["scope_type"], oee["scope_value"]) == ("linha", "L1_L7")
-    assert re.findall(r"PARAM\d+", oee["expression"]) == [lth_meta]
+    assert re.findall(r"PARAM\d+", oee["expression"]) == []
+    assert re.findall(r"VAR\d+", oee["expression"]) == [
+        variable_id("production", "lth", "diário"), lth_meta,
+    ]
     assert lth_meta in lth["expression"]
 
 
@@ -309,12 +328,12 @@ def _run_oee(lth_values, lth_meta_values):
     subset.add(eq_defs.get(oee_eq["equation_id"]))
 
     lth = variable_id("production", "lth", "diário")
-    lth_meta = parameter_id("production", "lth_meta")
+    lth_meta = variable_id("production", "lth_meta", "anual")
     context = CalculationContext()
     for line, value in lth_values.items():
         context.set_variable_value(lth, value, "linha", line)
     for line, value in lth_meta_values.items():
-        context.set_parameter_value(lth_meta, value, "linha", line)
+        context.set_variable_value(lth_meta, value, "linha", line)
 
     ForecastEngine().calculate_from_definition_registry(
         equation_definition_registry=subset, calculation_context=context,
@@ -324,8 +343,7 @@ def _run_oee(lth_values, lth_meta_values):
 
 
 def test_t24_03_runtime_each_instance_uses_its_own_line():
-    lth_meta = {p["scope_value"]: p["value"] for p in read_seed_file("production", "parameters")
-                if p["parameter_name"] == "lth_meta"}
+    lth_meta = dict(LTH_META_VALUES)
     lth = {line: 900.0 + 13 * i for i, line in enumerate(LINES, start=1)}
 
     oee = _run_oee(lth, lth_meta)
@@ -338,11 +356,10 @@ def test_t24_03_runtime_each_instance_uses_its_own_line():
 
 
 def test_t24_03_missing_instance_is_an_error_not_a_fallback():
-    lth_meta = {p["scope_value"]: p["value"] for p in read_seed_file("production", "parameters")
-                if p["parameter_name"] == "lth_meta"}
+    lth_meta = dict(LTH_META_VALUES)
     del lth_meta["L3"]
 
-    with pytest.raises(ParameterNotFoundError):
+    with pytest.raises((VariableNotFoundError, EquationEvaluationError)):
         _run_oee({line: 1000.0 for line in LINES}, lth_meta)
 
 
@@ -1014,7 +1031,10 @@ def test_t24_18_physical_types_are_preserved():
         (p["parameter_name"], p["scope_value"]): p["value"]
         for p in read_seed_file("production", "parameters")
     }
-    assert type(values[("lth_meta", "L1")]) is int
+    # LEGACY_TEST_EXPECTATION (Etapa 2.6B, D26-02): o inteiro de
+    # referência era lth_meta@L1 (1050), que deixou de ser parâmetro.
+    assert type(values[("n_dias_ano", "L1_L7")]) is int
+    assert type(values[("desaguamento_produtividade", "PLANTA")]) is int
     assert type(values[("fator_producao", "L1_L7")]) is float
     assert {type(p["value"]) for p in read_seed_file("max_ht", "parameters")} == {float}
 

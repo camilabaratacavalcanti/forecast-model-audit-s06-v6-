@@ -35,11 +35,16 @@ from tools.workbook_seed.interblock import (
     CYCLE_CODE,
     INSTANCE_MISMATCH,
     LINK_CLASSES,
+    SOURCE_BLOCK_NOT_LOADED,
+    SOURCE_BLOCK_NOT_LOADED_CODE,
+    SOURCE_BLOCK_UNKNOWN,
+    SOURCE_BLOCK_UNKNOWN_CODE,
     SOURCE_NOT_FOUND,
     SOURCE_NOT_FOUND_CODE,
     VALID,
     InterblockContractError,
     link_record,
+    require_resolved,
     require_valid,
     validate_interblock,
 )
@@ -165,32 +170,52 @@ def test_02_valid_fonte_creates_a_validated_link():
 
 
 @pytest.mark.parametrize(
-    "fonte, expected_producer_value",
+    "fonte, expected_class, expected_code, expected_producer_value",
     [
-        ("maintenance", "bloco da taxonomia oficial sem workbook carregado"),
-        ("bloco production", "bloco inexistente na taxonomia oficial"),
-        ("production ", "bloco inexistente na taxonomia oficial"),
-        ("Production", "bloco inexistente na taxonomia oficial"),
+        ("maintenance", SOURCE_BLOCK_NOT_LOADED, SOURCE_BLOCK_NOT_LOADED_CODE,
+         "bloco da taxonomia oficial sem workbook carregado"),
+        ("bloco production", SOURCE_BLOCK_UNKNOWN, SOURCE_BLOCK_UNKNOWN_CODE,
+         "nome fora da taxonomia oficial de blocos (D26-01)"),
+        ("production ", SOURCE_BLOCK_UNKNOWN, SOURCE_BLOCK_UNKNOWN_CODE,
+         "nome fora da taxonomia oficial de blocos (D26-01)"),
+        ("Production", SOURCE_BLOCK_UNKNOWN, SOURCE_BLOCK_UNKNOWN_CODE,
+         "nome fora da taxonomia oficial de blocos (D26-01)"),
     ],
 )
-def test_03_nonexistent_source_block_is_an_error(fonte, expected_producer_value):
+def test_03_nonexistent_source_block_is_an_error(
+    fonte, expected_class, expected_code, expected_producer_value,
+):
+    """
+    LEGACY_TEST_EXPECTATION (Etapa 2.6B, D26-01): na 2.6 os quatro casos
+    eram INTERBLOCK_SOURCE_NOT_FOUND. Agora nome fora da taxonomia é
+    SOURCE_BLOCK_UNKNOWN (erro) e bloco oficial sem workbook carregado é
+    SOURCE_BLOCK_NOT_LOADED (pendência, não erro nem vínculo válido).
+    """
+
     result = validate_interblock({
         "energy": model("energy", entity("VAR18001", "lth", fonte=fonte, row=10)),
         "production": model("production", producer()),
     })
 
     link = only_link(result)
-    assert link.validation_status == SOURCE_NOT_FOUND
+    assert link.validation_status == expected_class
     [finding] = link.findings
-    assert finding.code == SOURCE_NOT_FOUND_CODE
+    assert finding.code == expected_code
     assert finding.dimension == "source_block"
     assert finding.producer_value == expected_producer_value
     # Mensagem com bloco, linha, nome, bloco fonte e dimensão.
     for part in ("energy", "linha 10", "'lth'", repr(fonte), "source_block"):
         assert part in finding.message
 
-    with pytest.raises(InterblockContractError, match=SOURCE_NOT_FOUND_CODE):
+    assert not link.is_valid
+    if expected_class == SOURCE_BLOCK_UNKNOWN:
+        with pytest.raises(InterblockContractError, match=expected_code):
+            require_valid(result)
+    else:
+        assert link.is_pending and result.rejected == []
         require_valid(result)
+        with pytest.raises(InterblockContractError, match=expected_code):
+            require_resolved(result)
 
 
 def test_03b_missing_definition_in_source_block_is_an_error():
@@ -394,11 +419,14 @@ def test_09_local_identity_is_preserved():
 
 
 def test_10_cycle_is_an_error_with_the_full_cycle():
+    # LEGACY_TEST_EXPECTATION (Etapa 2.6B, D26-01): os blocos sintéticos
+    # a_block/b_block/c_block ficaram fora da taxonomia oficial; o ciclo
+    # usa agora três blocos oficiais.
     def build(order):
         pieces = {
-            "a": model("a_block", entity("VAR1", "x", fonte="b_block")),
-            "b": model("b_block", entity("VAR2", "x", fonte="c_block")),
-            "c": model("c_block", entity("VAR3", "x", fonte="a_block")),
+            "a": model("energy", entity("VAR1", "x", fonte="production")),
+            "b": model("production", entity("VAR2", "x", fonte="yield")),
+            "c": model("yield", entity("VAR3", "x", fonte="energy")),
         }
         return validate_interblock({pieces[k].block: pieces[k] for k in order})
 
@@ -408,7 +436,7 @@ def test_10_cycle_is_an_error_with_the_full_cycle():
     assert all(link.validation_status == CYCLE for link in first.links)
     assert all(f.code == CYCLE_CODE for _l, f in first.findings)
     message = first.links[0].findings[0].message
-    assert "a_block.x" in message and "b_block.x" in message and "c_block.x" in message
+    assert "energy.x" in message and "production.x" in message and "yield.x" in message
     # Independe da ordem de carga.
     assert first.cycles == second.cycles
     assert [f.message for _l, f in first.findings] == [f.message for _l, f in second.findings]
@@ -535,6 +563,8 @@ EXPECTED_VALID = {
     ("energy", 10, "lth", "production"),
     ("energy", 11, "lth_total", "production"),
     ("energy", 12, "lth_total", "production"),
+    # Etapa 2.6B (D26-02): production v10 corrigiu lth_meta.
+    ("energy", 13, "lth_meta", "production"),
     ("max_ht", 68, "lth", "production"),
     ("max_ht", 98, "producao", "production"),
     ("production", 87, "yield", "yield"),
@@ -562,6 +592,13 @@ def _fonte_rows():
 
 
 def test_15_every_real_fonte_is_classified(official):
+    """
+    LEGACY_TEST_EXPECTATION (Etapa 2.6B). Na 2.6 (production v9): 34
+    linhas, 31 vínculos, 12 VALID / 16 SOURCE_NOT_FOUND / 3
+    CONTRACT_MISMATCH. Com production v10 (D26-02, D26-03) e a taxonomia
+    D26-01: 32 linhas, 29 vínculos, 13 VALID / 16 SOURCE_BLOCK_NOT_LOADED.
+    """
+
     result = official.interblock
     classified = {
         (link.consumer_block, row, link.consumer.name, link.source_block)
@@ -570,8 +607,8 @@ def test_15_every_real_fonte_is_classified(official):
     }
 
     assert sorted(classified) == sorted(set(_fonte_rows()))
-    assert len(_fonte_rows()) == 34
-    assert len(result.links) == 31
+    assert len(_fonte_rows()) == 32
+    assert len(result.links) == 29
     assert all(link.validation_status in LINK_CLASSES for link in result.links)
 
     valid = {
@@ -582,23 +619,15 @@ def test_15_every_real_fonte_is_classified(official):
     assert valid == EXPECTED_VALID
 
     assert Counter(link.validation_status for link in result.links) == {
-        VALID: 12, SOURCE_NOT_FOUND: 16, CONTRACT_MISMATCH: 3,
+        VALID: 13, SOURCE_BLOCK_NOT_LOADED: 16,
     }
-    # 18 definições apontam blocos sem workbook carregado; 2 delas
-    # (production fator_mpsa/fator_mrn) também têm expressão própria e
-    # são classificadas primeiro pelo contexto inválido.
     unloaded = [l for l in result.links if l.source_block not in BLOCKS]
-    assert len(unloaded) == 18
-    assert all(
-        SOURCE_NOT_FOUND_CODE in {f.code for f in l.findings} for l in unloaded
-    )
+    assert len(unloaded) == 16 and all(l.is_pending for l in unloaded)
+    assert result.rejected == []
     assert result.cycles == []
 
     lth_meta = next(l for l in result.links if l.consumer.name == "lth_meta")
-    assert [(f.code, f.dimension) for f in lth_meta.findings] == [
-        (CONTRACT_MISMATCH_CODE, "kind")
-    ]
-    assert lth_meta.producer.kind == "parameter"
+    assert lth_meta.is_valid and lth_meta.producer.kind == "variable"
 
     area_41_lth = next(
         l for l in result.links if (l.consumer_block, l.consumer.name) == ("area_41", "lth")
@@ -606,8 +635,9 @@ def test_15_every_real_fonte_is_classified(official):
     assert area_41_lth.chain == ("area_41.lth", "yield.lth", "production.lth")
     assert area_41_lth.chain_status == VALID
 
-    with pytest.raises(InterblockContractError):
-        require_valid(result)
+    require_valid(result)
+    with pytest.raises(InterblockContractError, match=SOURCE_BLOCK_NOT_LOADED_CODE):
+        require_resolved(result)
 
 
 def test_16_no_link_is_resolved_by_unit_conversion(official):
@@ -660,14 +690,18 @@ def test_interblock_seed_is_the_builder_output(official):
         official.interblock_seed
     )
 
+    # LEGACY_TEST_EXPECTATION (Etapa 2.6B): 12 links / 19 rejected na
+    # 2.6; agora 13 links / 16 pending / 0 rejected.
     seed = read_interblock_seed()
-    assert len(seed["links"]) == 12
-    assert len(seed["rejected"]) == 19
+    assert len(seed["links"]) == 13
+    assert len(seed["pending"]) == 16
+    assert seed["rejected"] == []
     assert set(seed["workbooks"]) == set(BLOCKS)
     for block, spec in BLOCKS.items():
         assert seed["workbooks"][block]["sha256"] == spec.sha256
-    for record in seed["rejected"]:
-        assert record["errors"] and all(e["code"].startswith("INTERBLOCK_") for e in record["errors"])
+    for record in seed["pending"]:
+        assert record["source_definition"] is None
+        assert [e["code"] for e in record["errors"]] == [SOURCE_BLOCK_NOT_LOADED_CODE]
 
 
 def test_manifest_records_canonical_source_block(official):
@@ -693,23 +727,59 @@ def test_source_block_is_not_a_seed_or_domain_field():
             assert "fonte" not in record
 
 
-def test_builder_main_fails_while_links_are_rejected(tmp_path, monkeypatch, capsys):
+def _redirect_main_outputs(tmp_path, monkeypatch):
     import tools.workbook_seed.blocks as blocks
-    from tools.workbook_seed.__main__ import main
 
-    # write_seeds grava em spec.seed_dir: redireciona para tmp_path.
     original = blocks.write_seeds
     monkeypatch.setattr(
         "tools.workbook_seed.__main__.write_seeds",
         lambda result: original(result, tmp_path / result.spec.block),
     )
     monkeypatch.setattr(
+        "tools.workbook_seed.__main__.write_id_ledger",
+        lambda result: blocks.write_id_ledger(result, tmp_path / "id_ledger"),
+    )
+    monkeypatch.setattr(
         "tools.workbook_seed.__main__.write_interblock_seed",
         lambda result: blocks.write_interblock_seed(result, tmp_path),
     )
 
-    assert main([]) == 1
+
+def test_builder_main_fails_while_links_are_rejected(tmp_path, monkeypatch, capsys):
+    """
+    LEGACY_TEST_EXPECTATION (Etapa 2.6B): na 2.6 o build oficial tinha
+    19 vínculos rejeitados. Agora não tem nenhum; a regra (rejeição ->
+    código 1) é exercitada com um resultado sintético rejeitado.
+    """
+
+    import tools.workbook_seed.__main__ as main_module
+    from tools.workbook_seed.blocks import BuildAllResult
+
+    real = build_all()
+    rejected = validate_interblock({
+        **{block: r.model for block, r in real.blocks.items()},
+        "energy": model("energy", entity("VAR18001", "lth", fonte="bloco production")),
+    })
+    monkeypatch.setattr(
+        main_module, "build_all",
+        lambda: BuildAllResult(blocks=real.blocks, interblock=rejected),
+    )
+    _redirect_main_outputs(tmp_path, monkeypatch)
+
+    assert main_module.main([]) == 1
     captured = capsys.readouterr()
-    assert "12 válidos, 19 rejeitados" in captured.out
-    assert "INTERBLOCK_CONTRACT_MISMATCH" in captured.err
+    assert "1 rejeitados" in captured.out
+    assert SOURCE_BLOCK_UNKNOWN_CODE in captured.err
+
+
+def test_builder_main_succeeds_with_only_pending_links(tmp_path, monkeypatch, capsys):
+    from tools.workbook_seed.__main__ import main
+
+    _redirect_main_outputs(tmp_path, monkeypatch)
+
+    assert main([]) == 0
+    captured = capsys.readouterr()
+    assert "13 válidos, 16 pendentes de carregamento, 0 rejeitados" in captured.out
+    assert "[pending] " + SOURCE_BLOCK_NOT_LOADED_CODE in captured.err
     assert (tmp_path / "interblock_links.json").exists()
+    assert (tmp_path / "id_ledger" / "production.json").exists()

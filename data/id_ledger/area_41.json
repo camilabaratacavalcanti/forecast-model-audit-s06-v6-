@@ -1,0 +1,350 @@
+{
+  "block": "area_41",
+  "entries": [
+    {
+      "entity_id": "VAR16001",
+      "kind": "variable",
+      "name": "vazao_ltp",
+      "frequency": "mensal",
+      "scope_type": "linha_grupo",
+      "scope_value": "L1_L3"
+    },
+    {
+      "entity_id": "VAR16002",
+      "kind": "variable",
+      "name": "vazao_ltp",
+      "frequency": "mensal",
+      "scope_type": "linha_grupo",
+      "scope_value": "L4_L5"
+    },
+    {
+      "entity_id": "VAR16003",
+      "kind": "variable",
+      "name": "vazao_ltp",
+      "frequency": "mensal",
+      "scope_type": "linha_grupo",
+      "scope_value": "L6_L7"
+    },
+    {
+      "entity_id": "VAR16004",
+      "kind": "variable",
+      "name": "retirada_cond_corr_ltp",
+      "frequency": "diário",
+      "scope_type": "linha_grupo",
+      "scope_value": "L1_L3"
+    },
+    {
+      "entity_id": "VAR16005",
+      "kind": "variable",
+      "name": "retirada_cond_corr_ltp",
+      "frequency": "diário",
+      "scope_type": "linha_grupo",
+      "scope_value": "L4_L5"
+    },
+    {
+      "entity_id": "VAR16006",
+      "kind": "variable",
+      "name": "retirada_cond_corr_ltp",
+      "frequency": "diário",
+      "scope_type": "linha_grupo",
+      "scope_value": "L6_L7"
+    },
+    {
+      "entity_id": "VAR16007",
+      "kind": "variable",
+      "name": "lth",
+      "frequency": "diário",
+      "scope_type": "linha",
+      "scope_value": "L1_L7"
+    },
+    {
+      "entity_id": "VAR16008",
+      "kind": "variable",
+      "name": "lth_grupo",
+      "frequency": "diário",
+      "scope_type": "linha_grupo",
+      "scope_value": "L1_L3"
+    },
+    {
+      "entity_id": "VAR16009",
+      "kind": "variable",
+      "name": "lth_grupo",
+      "frequency": "diário",
+      "scope_type": "linha_grupo",
+      "scope_value": "L4_L5"
+    },
+    {
+      "entity_id": "VAR16010",
+      "kind": "variable",
+      "name": "lth_grupo",
+      "frequency": "diário",
+      "scope_type": "linha_grupo",
+      "scope_value": "L6_L7"
+    },
+    {
+      "entity_id": "VAR16011",
+      "kind": "variable",
+      "name": "fator_retirada_cond_corr_lth",
+      "frequency": "mensal",
+      "scope_type": "linha_grupo",
+      "scope_value": "L1_L3"
+    },
+    {
+      "entity_id": "VAR16012",
+      "kind": "variable",
+      "name": "fator_retirada_cond_corr_lth",
+      "frequency": "mensal",
+      "scope_type": "linha_grupo",
+      "scope_value": "L4_L5"
+    },
+    {
+      "entity_id": "VAR16013",
+      "kind": "variable",
+      "name": "fator_retirada_cond_corr_lth",
+      "frequency": "mensal",
+      "scope_type": "linha_grupo",
+      "scope_value": "L6_L7"
+    },
+    {
+      "entity_id": "VAR16014",
+      "kind": "variable",
+      "name": "retirada_cond_corr_lth",
+      "frequency": "diário",
+      "scope_type": "linha_grupo",
+      "scope_value": "L1_L3"
+    },
+    {
+      "entity_id": "VAR16015",
+      "kind": "variable",
+      "name": "retirada_cond_corr_lth",
+      "frequency": "diário",
+      "scope_type": "linha_grupo",
+      "scope_value": "L4_L5"
+    },
+    {
+      "entity_id": "VAR16016",
+      "kind": "variable",
+      "name": "retirada_cond_corr_lth",
+      "frequency": "diário",
+      "scope_type": "linha_grupo",
+      "scope_value": "L6_L7"
+    },
+    {
+      "entity_id": "VAR16017",
+      "kind": "variable",
+      "name": "valor_retirada",
+      "frequency": "diário",
+      "scope_type": "linha",
+      "scope_value": "L1_L3"
+    },
+    {
+      "entity_id": "VAR16018",
+      "kind": "variable",
+      "name": "retirada_condensado_grupo",
+      "frequency": "diário",
+      "scope_type": "linha_grupo",
+      "scope_value": "L1_L3"
+    },
+    {
+      "entity_id": "VAR16019",
+      "kind": "variable",
+      "name": "retirada_condensado_grupo",
+      "frequency": "mensal",
+      "scope_type": "linha_grupo",
+      "scope_value": "L1_L3"
+    },
+    {
+      "entity_id": "VAR16020",
+      "kind": "variable",
+      "name": "retirada_condensado_grupo",
+      "frequency": "anual",
+      "scope_type": "linha_grupo",
+      "scope_value": "L1_L3"
+    },
+    {
+      "entity_id": "VAR16021",
+      "kind": "variable",
+      "name": "hes",
+      "frequency": "diário",
+      "scope_type": "linha",
+      "scope_value": "L4_L7"
+    },
+    {
+      "entity_id": "VAR16022",
+      "kind": "variable",
+      "name": "desconto_retirada_41c",
+      "frequency": "diário",
+      "scope_type": "linha_grupo",
+      "scope_value": "L4_L5"
+    },
+    {
+      "entity_id": "VAR16023",
+      "kind": "variable",
+      "name": "desconto_retirada_41c",
+      "frequency": "diário",
+      "scope_type": "linha_grupo",
+      "scope_value": "L6_L7"
+    },
+    {
+      "entity_id": "VAR16024",
+      "kind": "variable",
+      "name": "desconto_retirada_41d",
+      "frequency": "diário",
+      "scope_type": "linha_grupo",
+      "scope_value": "L4_L5"
+    },
+    {
+      "entity_id": "PARAM16001",
+      "kind": "parameter",
+      "name": "retirada_meta_41a",
+      "frequency": null,
+      "scope_type": "planta",
+      "scope_value": "PLANTA"
+    },
+    {
+      "entity_id": "PARAM16002",
+      "kind": "parameter",
+      "name": "retirada_meta_41b",
+      "frequency": null,
+      "scope_type": "planta",
+      "scope_value": "PLANTA"
+    },
+    {
+      "entity_id": "PARAM16003",
+      "kind": "parameter",
+      "name": "retirada_meta_41x",
+      "frequency": null,
+      "scope_type": "planta",
+      "scope_value": "PLANTA"
+    },
+    {
+      "entity_id": "PARAM16004",
+      "kind": "parameter",
+      "name": "retirada_meta_41c",
+      "frequency": null,
+      "scope_type": "planta",
+      "scope_value": "PLANTA"
+    },
+    {
+      "entity_id": "PARAM16005",
+      "kind": "parameter",
+      "name": "retirada_meta_41d",
+      "frequency": null,
+      "scope_type": "planta",
+      "scope_value": "PLANTA"
+    },
+    {
+      "entity_id": "PARAM16006",
+      "kind": "parameter",
+      "name": "retirada_performance_41c",
+      "frequency": null,
+      "scope_type": "planta",
+      "scope_value": "PLANTA"
+    },
+    {
+      "entity_id": "PARAM16007",
+      "kind": "parameter",
+      "name": "retirada_manobra_linha_41a",
+      "frequency": null,
+      "scope_type": "planta",
+      "scope_value": "PLANTA"
+    },
+    {
+      "entity_id": "VAR16025",
+      "kind": "variable",
+      "name": "retirada_condensado_grupo",
+      "frequency": "diário",
+      "scope_type": "linha_grupo",
+      "scope_value": "L4_L5"
+    },
+    {
+      "entity_id": "VAR16026",
+      "kind": "variable",
+      "name": "retirada_condensado_grupo",
+      "frequency": "mensal",
+      "scope_type": "linha_grupo",
+      "scope_value": "L4_L5"
+    },
+    {
+      "entity_id": "VAR16027",
+      "kind": "variable",
+      "name": "retirada_condensado_grupo",
+      "frequency": "anual",
+      "scope_type": "linha_grupo",
+      "scope_value": "L4_L5"
+    },
+    {
+      "entity_id": "VAR16028",
+      "kind": "variable",
+      "name": "retirada_condensado_grupo",
+      "frequency": "diário",
+      "scope_type": "linha_grupo",
+      "scope_value": "L6_L7"
+    },
+    {
+      "entity_id": "VAR16029",
+      "kind": "variable",
+      "name": "retirada_condensado_grupo",
+      "frequency": "mensal",
+      "scope_type": "linha_grupo",
+      "scope_value": "L6_L7"
+    },
+    {
+      "entity_id": "VAR16030",
+      "kind": "variable",
+      "name": "retirada_condensado_grupo",
+      "frequency": "anual",
+      "scope_type": "linha_grupo",
+      "scope_value": "L6_L7"
+    },
+    {
+      "entity_id": "VAR16031",
+      "kind": "variable",
+      "name": "retirada_condensado_linha",
+      "frequency": "diário",
+      "scope_type": "linha",
+      "scope_value": "L1_L7"
+    },
+    {
+      "entity_id": "VAR16032",
+      "kind": "variable",
+      "name": "retirada_condensado_linha",
+      "frequency": "mensal",
+      "scope_type": "linha",
+      "scope_value": "L1_L7"
+    },
+    {
+      "entity_id": "VAR16033",
+      "kind": "variable",
+      "name": "retirada_condensado_linha",
+      "frequency": "anual",
+      "scope_type": "linha",
+      "scope_value": "L1_L7"
+    },
+    {
+      "entity_id": "VAR16034",
+      "kind": "variable",
+      "name": "retirada_condensado_total",
+      "frequency": "diário",
+      "scope_type": "linha_grupo",
+      "scope_value": "L1_L7"
+    },
+    {
+      "entity_id": "VAR16035",
+      "kind": "variable",
+      "name": "retirada_condensado_total",
+      "frequency": "mensal",
+      "scope_type": "linha_grupo",
+      "scope_value": "L1_L7"
+    },
+    {
+      "entity_id": "VAR16036",
+      "kind": "variable",
+      "name": "retirada_condensado_total",
+      "frequency": "anual",
+      "scope_type": "linha_grupo",
+      "scope_value": "L1_L7"
+    }
+  ],
+  "retired": []
+}

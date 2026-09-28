@@ -18,6 +18,7 @@ from dataclasses import dataclass
 from pathlib import Path
 
 from tools.workbook_seed.canonical import CanonicalModel, build_canonical_model
+from tools.workbook_seed.id_ledger import IdLedger, ledger_path, ledger_payload, load_ledger
 from tools.workbook_seed.interblock import (
     InterblockResult,
     interblock_seed,
@@ -31,6 +32,7 @@ from tools.workbook_seed.seeds import build_seeds
 REPO_ROOT = Path(__file__).resolve().parents[2]
 WORKBOOK_DIR = REPO_ROOT / "data" / "workbooks"
 SEED_ROOT = REPO_ROOT / "data" / "seed"
+ID_LEDGER_ROOT = REPO_ROOT / "data" / "id_ledger"
 
 SEED_FILES = ("variables", "parameters", "equations", "aggregation_rules", "manifest")
 INTERBLOCK_SEED = "interblock_links.json"
@@ -89,9 +91,9 @@ BLOCKS: dict[str, BlockSpec] = {
             block="production",
             sheet="production",
             id_base=12000,
-            version="v9",
-            file_name="descritivo_das_variáveis_production_v9.xlsx",
-            sha256="3e3024e564ee6f18b82e9771957e61f4940becd1e80db5705143123377956a28",
+            version="v10",
+            file_name="descritivo_das_variáveis_production_v10.xlsx",
+            sha256="302cf18b92ac22c690b3add9bdd1ded0617bfa60636809696d010b8858d72487",
         ),
         BlockSpec(
             block="yield",
@@ -111,6 +113,7 @@ class BuildResult:
     workbook: WorkbookData
     model: CanonicalModel
     seeds: dict
+    id_ledger: IdLedger | None = None
 
 
 def read_approved_workbook(spec: BlockSpec, path: str | Path | None = None) -> WorkbookData:
@@ -126,13 +129,25 @@ def read_approved_workbook(spec: BlockSpec, path: str | Path | None = None) -> W
     return read_workbook(path, spec.sheet)
 
 
-def build_block(block: str, path: str | Path | None = None) -> BuildResult:
+def build_block(
+    block: str,
+    path: str | Path | None = None,
+    ledger_root: Path | None = None,
+) -> BuildResult:
+    """
+    IDs: o livro `data/id_ledger/<bloco>.json` fixa o ID de toda
+    identidade já emitida (Etapa 2.6B); sem livro, numeração sequencial.
+    """
+
     spec = BLOCKS[block]
     workbook = read_approved_workbook(spec, path)
-    model = build_canonical_model(spec.block, workbook, spec.id_base)
+    id_ledger = load_ledger(ledger_path(ledger_root or ID_LEDGER_ROOT, block))
+    model = build_canonical_model(spec.block, workbook, spec.id_base, id_ledger)
     seeds = build_seeds(model, spec.id_base)
 
-    return BuildResult(spec=spec, workbook=workbook, model=model, seeds=seeds)
+    return BuildResult(
+        spec=spec, workbook=workbook, model=model, seeds=seeds, id_ledger=id_ledger
+    )
 
 
 def seed_json(payload) -> str:
@@ -147,6 +162,17 @@ def write_seeds(result: BuildResult, seed_dir: Path | None = None) -> None:
         (seed_dir / f"{name}.json").write_text(
             seed_json(result.seeds[name]), encoding="utf-8"
         )
+
+
+def write_id_ledger(result: BuildResult, ledger_root: Path | None = None) -> Path:
+    ledger_root = ledger_root or ID_LEDGER_ROOT
+    ledger_root.mkdir(parents=True, exist_ok=True)
+    path = ledger_path(ledger_root, result.spec.block)
+    path.write_text(
+        seed_json(ledger_payload(result.model, result.id_ledger)), encoding="utf-8"
+    )
+
+    return path
 
 
 @dataclass(frozen=True)

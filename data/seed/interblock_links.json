@@ -14,13 +14,73 @@
       "sha256": "3e40aab12ec0ec07918c5e358145b09f138663f635ca9e7fc0990d1b765b683b"
     },
     "production": {
-      "file_name": "descritivo_das_variáveis_production_v9.xlsx",
-      "sha256": "3e3024e564ee6f18b82e9771957e61f4940becd1e80db5705143123377956a28"
+      "file_name": "descritivo_das_variáveis_production_v10.xlsx",
+      "sha256": "302cf18b92ac22c690b3add9bdd1ded0617bfa60636809696d010b8858d72487"
     },
     "yield": {
       "file_name": "descritivo_das_variáveis_yield_v11.xlsx",
       "sha256": "639e8b980f19bc20429cf9763157ac1828d9067bdbabea3bf3db0badbc2df931"
     }
+  },
+  "taxonomy": {
+    "decision": "D26-01",
+    "official_blocks": [
+      "maintenance",
+      "area_04_13",
+      "forecast_volume",
+      "acido",
+      "yield",
+      "energy",
+      "meta_volume_cheio",
+      "custo_budget",
+      "production",
+      "boilers",
+      "controle_espaco_vazio_meta",
+      "custo_forecast_bdgt",
+      "mx_ht",
+      "volume",
+      "lime_dia",
+      "custo_forecast_real",
+      "alumina",
+      "soda",
+      "floculante_hidrato_2026",
+      "budget",
+      "temperature_lp",
+      "fator_residuo",
+      "floculante_lama_dia",
+      "forecast",
+      "area_41",
+      "vazao_condensado",
+      "premissas_ppt_mensal",
+      "shared"
+    ],
+    "loaded_blocks": [
+      {
+        "block": "area_41",
+        "in_taxonomy": true
+      },
+      {
+        "block": "energy",
+        "in_taxonomy": true
+      },
+      {
+        "block": "max_ht",
+        "in_taxonomy": false,
+        "pending_naming_decision": {
+          "decision_id": "D26B-02",
+          "taxonomy_candidate": "mx_ht",
+          "reason": "workbook 'descritivo_das_variáveis_MaxHT_v10.xlsx' (aba 'MaxHT'), identificador de código 'max_ht' (BLOCKS, faixas de ID, data/seed/max_ht) e taxonomia oficial 'mx_ht' divergem; nenhum workbook declara título de bloco. Aguardando decisão do proprietário."
+        }
+      },
+      {
+        "block": "production",
+        "in_taxonomy": true
+      },
+      {
+        "block": "yield",
+        "in_taxonomy": true
+      }
+    ]
   },
   "links": [
     {
@@ -320,6 +380,55 @@
       ]
     },
     {
+      "consumer_block": "energy",
+      "consumer_definition": "VAR18011",
+      "consumer_frequency": "anual",
+      "consumer_scope": {
+        "scope_type": "linha",
+        "scope_value": "L1_L7"
+      },
+      "source_block": "production",
+      "source_definition": "VAR12066",
+      "source_frequency": "anual",
+      "source_scope": {
+        "scope_type": "linha",
+        "scope_value": "L1_L7"
+      },
+      "instances": [
+        {
+          "scope_type": "linha",
+          "scope_value": "L1"
+        },
+        {
+          "scope_type": "linha",
+          "scope_value": "L2"
+        },
+        {
+          "scope_type": "linha",
+          "scope_value": "L3"
+        },
+        {
+          "scope_type": "linha",
+          "scope_value": "L4"
+        },
+        {
+          "scope_type": "linha",
+          "scope_value": "L5"
+        },
+        {
+          "scope_type": "linha",
+          "scope_value": "L6"
+        },
+        {
+          "scope_type": "linha",
+          "scope_value": "L7"
+        }
+      ],
+      "consumer_rows": [
+        13
+      ]
+    },
+    {
       "consumer_block": "max_ht",
       "consumer_definition": "VAR13062",
       "consumer_frequency": "diário",
@@ -516,7 +625,7 @@
       ]
     }
   ],
-  "rejected": [
+  "pending": [
     {
       "consumer_block": "area_41",
       "consumer_definition": "VAR16021",
@@ -534,43 +643,17 @@
       ],
       "source_block": "maintenance",
       "source_definition": null,
-      "resolution_status": "NOT_FOUND",
-      "validation_status": "SOURCE_NOT_FOUND",
+      "resolution_status": "PENDING_LOAD",
+      "validation_status": "SOURCE_BLOCK_NOT_LOADED",
       "errors": [
         {
-          "code": "INTERBLOCK_SOURCE_NOT_FOUND",
-          "class": "SOURCE_NOT_FOUND",
+          "code": "INTERBLOCK_SOURCE_BLOCK_NOT_LOADED",
+          "class": "SOURCE_BLOCK_NOT_LOADED",
+          "severity": "pending",
           "dimension": "source_block",
           "consumer_value": "maintenance",
           "producer_value": "bloco da taxonomia oficial sem workbook carregado",
-          "message": "INTERBLOCK_SOURCE_NOT_FOUND: consumidor area_41 linha 25,26,27,28 'hes' (diário linha/L4_L7), fonte='maintenance': dimensão 'source_block' — consumidor 'maintenance', produtor 'bloco da taxonomia oficial sem workbook carregado'. O produtor não pode ser resolvido nem validado neste build."
-        }
-      ]
-    },
-    {
-      "consumer_block": "energy",
-      "consumer_definition": "VAR18011",
-      "consumer_name": "lth_meta",
-      "consumer_frequency": "anual",
-      "consumer_scope": {
-        "scope_type": "linha",
-        "scope_value": "L1_L7"
-      },
-      "consumer_rows": [
-        13
-      ],
-      "source_block": "production",
-      "source_definition": "PARAM12003",
-      "resolution_status": "RESOLVED",
-      "validation_status": "CONTRACT_MISMATCH",
-      "errors": [
-        {
-          "code": "INTERBLOCK_CONTRACT_MISMATCH",
-          "class": "CONTRACT_MISMATCH",
-          "dimension": "kind",
-          "consumer_value": "variable",
-          "producer_value": "parameter (PARAM12003)",
-          "message": "INTERBLOCK_CONTRACT_MISMATCH: consumidor energy linha 13 'lth_meta' (anual linha/L1_L7), fonte='production': dimensão 'kind' — consumidor 'variable', produtor 'parameter (PARAM12003)'. consumidor e produtor têm naturezas diferentes; nenhuma conversão entre parâmetro e variável é feita."
+          "message": "INTERBLOCK_SOURCE_BLOCK_NOT_LOADED: consumidor area_41 linha 25,26,27,28 'hes' (diário linha/L4_L7), fonte='maintenance': dimensão 'source_block' — consumidor 'maintenance', produtor 'bloco da taxonomia oficial sem workbook carregado'. Vínculo pendente de carregamento: o produtor não é inventado nem validado neste build."
         }
       ]
     },
@@ -588,16 +671,17 @@
       ],
       "source_block": "temperature_lp",
       "source_definition": null,
-      "resolution_status": "NOT_FOUND",
-      "validation_status": "SOURCE_NOT_FOUND",
+      "resolution_status": "PENDING_LOAD",
+      "validation_status": "SOURCE_BLOCK_NOT_LOADED",
       "errors": [
         {
-          "code": "INTERBLOCK_SOURCE_NOT_FOUND",
-          "class": "SOURCE_NOT_FOUND",
+          "code": "INTERBLOCK_SOURCE_BLOCK_NOT_LOADED",
+          "class": "SOURCE_BLOCK_NOT_LOADED",
+          "severity": "pending",
           "dimension": "source_block",
           "consumer_value": "temperature_lp",
           "producer_value": "bloco da taxonomia oficial sem workbook carregado",
-          "message": "INTERBLOCK_SOURCE_NOT_FOUND: consumidor energy linha 14 'temperatura_lp' (diário linha/L1_L7), fonte='temperature_lp': dimensão 'source_block' — consumidor 'temperature_lp', produtor 'bloco da taxonomia oficial sem workbook carregado'. O produtor não pode ser resolvido nem validado neste build."
+          "message": "INTERBLOCK_SOURCE_BLOCK_NOT_LOADED: consumidor energy linha 14 'temperatura_lp' (diário linha/L1_L7), fonte='temperature_lp': dimensão 'source_block' — consumidor 'temperature_lp', produtor 'bloco da taxonomia oficial sem workbook carregado'. Vínculo pendente de carregamento: o produtor não é inventado nem validado neste build."
         }
       ]
     },
@@ -615,16 +699,17 @@
       ],
       "source_block": "temperature_lp",
       "source_definition": null,
-      "resolution_status": "NOT_FOUND",
-      "validation_status": "SOURCE_NOT_FOUND",
+      "resolution_status": "PENDING_LOAD",
+      "validation_status": "SOURCE_BLOCK_NOT_LOADED",
       "errors": [
         {
-          "code": "INTERBLOCK_SOURCE_NOT_FOUND",
-          "class": "SOURCE_NOT_FOUND",
+          "code": "INTERBLOCK_SOURCE_BLOCK_NOT_LOADED",
+          "class": "SOURCE_BLOCK_NOT_LOADED",
+          "severity": "pending",
           "dimension": "source_block",
           "consumer_value": "temperature_lp",
           "producer_value": "bloco da taxonomia oficial sem workbook carregado",
-          "message": "INTERBLOCK_SOURCE_NOT_FOUND: consumidor energy linha 15 'temperatura_lp' (mensal linha/L1_L7), fonte='temperature_lp': dimensão 'source_block' — consumidor 'temperature_lp', produtor 'bloco da taxonomia oficial sem workbook carregado'. O produtor não pode ser resolvido nem validado neste build."
+          "message": "INTERBLOCK_SOURCE_BLOCK_NOT_LOADED: consumidor energy linha 15 'temperatura_lp' (mensal linha/L1_L7), fonte='temperature_lp': dimensão 'source_block' — consumidor 'temperature_lp', produtor 'bloco da taxonomia oficial sem workbook carregado'. Vínculo pendente de carregamento: o produtor não é inventado nem validado neste build."
         }
       ]
     },
@@ -642,16 +727,17 @@
       ],
       "source_block": "temperature_lp",
       "source_definition": null,
-      "resolution_status": "NOT_FOUND",
-      "validation_status": "SOURCE_NOT_FOUND",
+      "resolution_status": "PENDING_LOAD",
+      "validation_status": "SOURCE_BLOCK_NOT_LOADED",
       "errors": [
         {
-          "code": "INTERBLOCK_SOURCE_NOT_FOUND",
-          "class": "SOURCE_NOT_FOUND",
+          "code": "INTERBLOCK_SOURCE_BLOCK_NOT_LOADED",
+          "class": "SOURCE_BLOCK_NOT_LOADED",
+          "severity": "pending",
           "dimension": "source_block",
           "consumer_value": "temperature_lp",
           "producer_value": "bloco da taxonomia oficial sem workbook carregado",
-          "message": "INTERBLOCK_SOURCE_NOT_FOUND: consumidor energy linha 16 'temperatura_lp_media' (mensal linha_grupo/L1_L7), fonte='temperature_lp': dimensão 'source_block' — consumidor 'temperature_lp', produtor 'bloco da taxonomia oficial sem workbook carregado'. O produtor não pode ser resolvido nem validado neste build."
+          "message": "INTERBLOCK_SOURCE_BLOCK_NOT_LOADED: consumidor energy linha 16 'temperatura_lp_media' (mensal linha_grupo/L1_L7), fonte='temperature_lp': dimensão 'source_block' — consumidor 'temperature_lp', produtor 'bloco da taxonomia oficial sem workbook carregado'. Vínculo pendente de carregamento: o produtor não é inventado nem validado neste build."
         }
       ]
     },
@@ -669,16 +755,17 @@
       ],
       "source_block": "area_04_13",
       "source_definition": null,
-      "resolution_status": "NOT_FOUND",
-      "validation_status": "SOURCE_NOT_FOUND",
+      "resolution_status": "PENDING_LOAD",
+      "validation_status": "SOURCE_BLOCK_NOT_LOADED",
       "errors": [
         {
-          "code": "INTERBLOCK_SOURCE_NOT_FOUND",
-          "class": "SOURCE_NOT_FOUND",
+          "code": "INTERBLOCK_SOURCE_BLOCK_NOT_LOADED",
+          "class": "SOURCE_BLOCK_NOT_LOADED",
+          "severity": "pending",
           "dimension": "source_block",
           "consumer_value": "area_04_13",
           "producer_value": "bloco da taxonomia oficial sem workbook carregado",
-          "message": "INTERBLOCK_SOURCE_NOT_FOUND: consumidor energy linha 37 'evaporado_total_evaporacao' (diário linha/L1_L7), fonte='area_04_13': dimensão 'source_block' — consumidor 'area_04_13', produtor 'bloco da taxonomia oficial sem workbook carregado'. O produtor não pode ser resolvido nem validado neste build."
+          "message": "INTERBLOCK_SOURCE_BLOCK_NOT_LOADED: consumidor energy linha 37 'evaporado_total_evaporacao' (diário linha/L1_L7), fonte='area_04_13': dimensão 'source_block' — consumidor 'area_04_13', produtor 'bloco da taxonomia oficial sem workbook carregado'. Vínculo pendente de carregamento: o produtor não é inventado nem validado neste build."
         }
       ]
     },
@@ -696,51 +783,17 @@
       ],
       "source_block": "alumina",
       "source_definition": null,
-      "resolution_status": "NOT_FOUND",
-      "validation_status": "SOURCE_NOT_FOUND",
+      "resolution_status": "PENDING_LOAD",
+      "validation_status": "SOURCE_BLOCK_NOT_LOADED",
       "errors": [
         {
-          "code": "INTERBLOCK_SOURCE_NOT_FOUND",
-          "class": "SOURCE_NOT_FOUND",
+          "code": "INTERBLOCK_SOURCE_BLOCK_NOT_LOADED",
+          "class": "SOURCE_BLOCK_NOT_LOADED",
+          "severity": "pending",
           "dimension": "source_block",
           "consumer_value": "alumina",
           "producer_value": "bloco da taxonomia oficial sem workbook carregado",
-          "message": "INTERBLOCK_SOURCE_NOT_FOUND: consumidor max_ht linha 5 'alimentação_evap' (diário linha/L1_L7), fonte='alumina': dimensão 'source_block' — consumidor 'alumina', produtor 'bloco da taxonomia oficial sem workbook carregado'. O produtor não pode ser resolvido nem validado neste build."
-        }
-      ]
-    },
-    {
-      "consumer_block": "production",
-      "consumer_definition": "VAR12027",
-      "consumer_name": "fator_mpsa",
-      "consumer_frequency": "diário",
-      "consumer_scope": {
-        "scope_type": "linha",
-        "scope_value": "L1_L7"
-      },
-      "consumer_rows": [
-        30
-      ],
-      "source_block": "forecast",
-      "source_definition": null,
-      "resolution_status": "NOT_FOUND",
-      "validation_status": "CONTRACT_MISMATCH",
-      "errors": [
-        {
-          "code": "INTERBLOCK_CONTRACT_MISMATCH",
-          "class": "CONTRACT_MISMATCH",
-          "dimension": "consumer_context",
-          "consumer_value": "variable_type=calculado; expressão='fator_mpsa_kg_t / 1000'",
-          "producer_value": "variable sem expressão",
-          "message": "INTERBLOCK_CONTRACT_MISMATCH: consumidor production linha 30 'fator_mpsa' (diário linha/L1_L7), fonte='forecast': dimensão 'consumer_context' — consumidor \"variable_type=calculado; expressão='fator_mpsa_kg_t / 1000'\", produtor 'variable sem expressão'. a linha calcula o próprio valor e também o declara vindo de outro bloco: dois produtores para a mesma definição."
-        },
-        {
-          "code": "INTERBLOCK_SOURCE_NOT_FOUND",
-          "class": "SOURCE_NOT_FOUND",
-          "dimension": "source_block",
-          "consumer_value": "forecast",
-          "producer_value": "bloco da taxonomia oficial sem workbook carregado",
-          "message": "INTERBLOCK_SOURCE_NOT_FOUND: consumidor production linha 30 'fator_mpsa' (diário linha/L1_L7), fonte='forecast': dimensão 'source_block' — consumidor 'forecast', produtor 'bloco da taxonomia oficial sem workbook carregado'. O produtor não pode ser resolvido nem validado neste build."
+          "message": "INTERBLOCK_SOURCE_BLOCK_NOT_LOADED: consumidor max_ht linha 5 'alimentação_evap' (diário linha/L1_L7), fonte='alumina': dimensão 'source_block' — consumidor 'alumina', produtor 'bloco da taxonomia oficial sem workbook carregado'. Vínculo pendente de carregamento: o produtor não é inventado nem validado neste build."
         }
       ]
     },
@@ -758,51 +811,17 @@
       ],
       "source_block": "forecast",
       "source_definition": null,
-      "resolution_status": "NOT_FOUND",
-      "validation_status": "SOURCE_NOT_FOUND",
+      "resolution_status": "PENDING_LOAD",
+      "validation_status": "SOURCE_BLOCK_NOT_LOADED",
       "errors": [
         {
-          "code": "INTERBLOCK_SOURCE_NOT_FOUND",
-          "class": "SOURCE_NOT_FOUND",
+          "code": "INTERBLOCK_SOURCE_BLOCK_NOT_LOADED",
+          "class": "SOURCE_BLOCK_NOT_LOADED",
+          "severity": "pending",
           "dimension": "source_block",
           "consumer_value": "forecast",
           "producer_value": "bloco da taxonomia oficial sem workbook carregado",
-          "message": "INTERBLOCK_SOURCE_NOT_FOUND: consumidor production linha 31 'fator_mpsa_kg_t' (diário linha_grupo/L1_L7), fonte='forecast': dimensão 'source_block' — consumidor 'forecast', produtor 'bloco da taxonomia oficial sem workbook carregado'. O produtor não pode ser resolvido nem validado neste build."
-        }
-      ]
-    },
-    {
-      "consumer_block": "production",
-      "consumer_definition": "VAR12029",
-      "consumer_name": "fator_mrn",
-      "consumer_frequency": "diário",
-      "consumer_scope": {
-        "scope_type": "linha",
-        "scope_value": "L1_L7"
-      },
-      "consumer_rows": [
-        32
-      ],
-      "source_block": "forecast",
-      "source_definition": null,
-      "resolution_status": "NOT_FOUND",
-      "validation_status": "CONTRACT_MISMATCH",
-      "errors": [
-        {
-          "code": "INTERBLOCK_CONTRACT_MISMATCH",
-          "class": "CONTRACT_MISMATCH",
-          "dimension": "consumer_context",
-          "consumer_value": "variable_type=calculado; expressão='fator_mrn_kg_t / 1000'",
-          "producer_value": "variable sem expressão",
-          "message": "INTERBLOCK_CONTRACT_MISMATCH: consumidor production linha 32 'fator_mrn' (diário linha/L1_L7), fonte='forecast': dimensão 'consumer_context' — consumidor \"variable_type=calculado; expressão='fator_mrn_kg_t / 1000'\", produtor 'variable sem expressão'. a linha calcula o próprio valor e também o declara vindo de outro bloco: dois produtores para a mesma definição."
-        },
-        {
-          "code": "INTERBLOCK_SOURCE_NOT_FOUND",
-          "class": "SOURCE_NOT_FOUND",
-          "dimension": "source_block",
-          "consumer_value": "forecast",
-          "producer_value": "bloco da taxonomia oficial sem workbook carregado",
-          "message": "INTERBLOCK_SOURCE_NOT_FOUND: consumidor production linha 32 'fator_mrn' (diário linha/L1_L7), fonte='forecast': dimensão 'source_block' — consumidor 'forecast', produtor 'bloco da taxonomia oficial sem workbook carregado'. O produtor não pode ser resolvido nem validado neste build."
+          "message": "INTERBLOCK_SOURCE_BLOCK_NOT_LOADED: consumidor production linha 31 'fator_mpsa_kg_t' (diário linha_grupo/L1_L7), fonte='forecast': dimensão 'source_block' — consumidor 'forecast', produtor 'bloco da taxonomia oficial sem workbook carregado'. Vínculo pendente de carregamento: o produtor não é inventado nem validado neste build."
         }
       ]
     },
@@ -820,16 +839,17 @@
       ],
       "source_block": "forecast",
       "source_definition": null,
-      "resolution_status": "NOT_FOUND",
-      "validation_status": "SOURCE_NOT_FOUND",
+      "resolution_status": "PENDING_LOAD",
+      "validation_status": "SOURCE_BLOCK_NOT_LOADED",
       "errors": [
         {
-          "code": "INTERBLOCK_SOURCE_NOT_FOUND",
-          "class": "SOURCE_NOT_FOUND",
+          "code": "INTERBLOCK_SOURCE_BLOCK_NOT_LOADED",
+          "class": "SOURCE_BLOCK_NOT_LOADED",
+          "severity": "pending",
           "dimension": "source_block",
           "consumer_value": "forecast",
           "producer_value": "bloco da taxonomia oficial sem workbook carregado",
-          "message": "INTERBLOCK_SOURCE_NOT_FOUND: consumidor production linha 33 'fator_mrn_kg_t' (diário linha_grupo/L1_L7), fonte='forecast': dimensão 'source_block' — consumidor 'forecast', produtor 'bloco da taxonomia oficial sem workbook carregado'. O produtor não pode ser resolvido nem validado neste build."
+          "message": "INTERBLOCK_SOURCE_BLOCK_NOT_LOADED: consumidor production linha 33 'fator_mrn_kg_t' (diário linha_grupo/L1_L7), fonte='forecast': dimensão 'source_block' — consumidor 'forecast', produtor 'bloco da taxonomia oficial sem workbook carregado'. Vínculo pendente de carregamento: o produtor não é inventado nem validado neste build."
         }
       ]
     },
@@ -847,16 +867,17 @@
       ],
       "source_block": "maintenance",
       "source_definition": null,
-      "resolution_status": "NOT_FOUND",
-      "validation_status": "SOURCE_NOT_FOUND",
+      "resolution_status": "PENDING_LOAD",
+      "validation_status": "SOURCE_BLOCK_NOT_LOADED",
       "errors": [
         {
-          "code": "INTERBLOCK_SOURCE_NOT_FOUND",
-          "class": "SOURCE_NOT_FOUND",
+          "code": "INTERBLOCK_SOURCE_BLOCK_NOT_LOADED",
+          "class": "SOURCE_BLOCK_NOT_LOADED",
+          "severity": "pending",
           "dimension": "source_block",
           "consumer_value": "maintenance",
           "producer_value": "bloco da taxonomia oficial sem workbook carregado",
-          "message": "INTERBLOCK_SOURCE_NOT_FOUND: consumidor production linha 79 'reducao_lth_calcinacao' (diário linha/L1_L7), fonte='maintenance': dimensão 'source_block' — consumidor 'maintenance', produtor 'bloco da taxonomia oficial sem workbook carregado'. O produtor não pode ser resolvido nem validado neste build."
+          "message": "INTERBLOCK_SOURCE_BLOCK_NOT_LOADED: consumidor production linha 79 'reducao_lth_calcinacao' (diário linha/L1_L7), fonte='maintenance': dimensão 'source_block' — consumidor 'maintenance', produtor 'bloco da taxonomia oficial sem workbook carregado'. Vínculo pendente de carregamento: o produtor não é inventado nem validado neste build."
         }
       ]
     },
@@ -874,16 +895,17 @@
       ],
       "source_block": "maintenance",
       "source_definition": null,
-      "resolution_status": "NOT_FOUND",
-      "validation_status": "SOURCE_NOT_FOUND",
+      "resolution_status": "PENDING_LOAD",
+      "validation_status": "SOURCE_BLOCK_NOT_LOADED",
       "errors": [
         {
-          "code": "INTERBLOCK_SOURCE_NOT_FOUND",
-          "class": "SOURCE_NOT_FOUND",
+          "code": "INTERBLOCK_SOURCE_BLOCK_NOT_LOADED",
+          "class": "SOURCE_BLOCK_NOT_LOADED",
+          "severity": "pending",
           "dimension": "source_block",
           "consumer_value": "maintenance",
           "producer_value": "bloco da taxonomia oficial sem workbook carregado",
-          "message": "INTERBLOCK_SOURCE_NOT_FOUND: consumidor production linha 80 'reducao_lth_clarificacao' (diário linha/L1_L7), fonte='maintenance': dimensão 'source_block' — consumidor 'maintenance', produtor 'bloco da taxonomia oficial sem workbook carregado'. O produtor não pode ser resolvido nem validado neste build."
+          "message": "INTERBLOCK_SOURCE_BLOCK_NOT_LOADED: consumidor production linha 80 'reducao_lth_clarificacao' (diário linha/L1_L7), fonte='maintenance': dimensão 'source_block' — consumidor 'maintenance', produtor 'bloco da taxonomia oficial sem workbook carregado'. Vínculo pendente de carregamento: o produtor não é inventado nem validado neste build."
         }
       ]
     },
@@ -901,16 +923,17 @@
       ],
       "source_block": "maintenance",
       "source_definition": null,
-      "resolution_status": "NOT_FOUND",
-      "validation_status": "SOURCE_NOT_FOUND",
+      "resolution_status": "PENDING_LOAD",
+      "validation_status": "SOURCE_BLOCK_NOT_LOADED",
       "errors": [
         {
-          "code": "INTERBLOCK_SOURCE_NOT_FOUND",
-          "class": "SOURCE_NOT_FOUND",
+          "code": "INTERBLOCK_SOURCE_BLOCK_NOT_LOADED",
+          "class": "SOURCE_BLOCK_NOT_LOADED",
+          "severity": "pending",
           "dimension": "source_block",
           "consumer_value": "maintenance",
           "producer_value": "bloco da taxonomia oficial sem workbook carregado",
-          "message": "INTERBLOCK_SOURCE_NOT_FOUND: consumidor production linha 81 'reducao_lth_digestao' (diário linha/L1_L7), fonte='maintenance': dimensão 'source_block' — consumidor 'maintenance', produtor 'bloco da taxonomia oficial sem workbook carregado'. O produtor não pode ser resolvido nem validado neste build."
+          "message": "INTERBLOCK_SOURCE_BLOCK_NOT_LOADED: consumidor production linha 81 'reducao_lth_digestao' (diário linha/L1_L7), fonte='maintenance': dimensão 'source_block' — consumidor 'maintenance', produtor 'bloco da taxonomia oficial sem workbook carregado'. Vínculo pendente de carregamento: o produtor não é inventado nem validado neste build."
         }
       ]
     },
@@ -928,16 +951,17 @@
       ],
       "source_block": "maintenance",
       "source_definition": null,
-      "resolution_status": "NOT_FOUND",
-      "validation_status": "SOURCE_NOT_FOUND",
+      "resolution_status": "PENDING_LOAD",
+      "validation_status": "SOURCE_BLOCK_NOT_LOADED",
       "errors": [
         {
-          "code": "INTERBLOCK_SOURCE_NOT_FOUND",
-          "class": "SOURCE_NOT_FOUND",
+          "code": "INTERBLOCK_SOURCE_BLOCK_NOT_LOADED",
+          "class": "SOURCE_BLOCK_NOT_LOADED",
+          "severity": "pending",
           "dimension": "source_block",
           "consumer_value": "maintenance",
           "producer_value": "bloco da taxonomia oficial sem workbook carregado",
-          "message": "INTERBLOCK_SOURCE_NOT_FOUND: consumidor production linha 82 'reducao_lth_precipitacao' (diário linha/L1_L7), fonte='maintenance': dimensão 'source_block' — consumidor 'maintenance', produtor 'bloco da taxonomia oficial sem workbook carregado'. O produtor não pode ser resolvido nem validado neste build."
+          "message": "INTERBLOCK_SOURCE_BLOCK_NOT_LOADED: consumidor production linha 82 'reducao_lth_precipitacao' (diário linha/L1_L7), fonte='maintenance': dimensão 'source_block' — consumidor 'maintenance', produtor 'bloco da taxonomia oficial sem workbook carregado'. Vínculo pendente de carregamento: o produtor não é inventado nem validado neste build."
         }
       ]
     },
@@ -955,16 +979,17 @@
       ],
       "source_block": "maintenance",
       "source_definition": null,
-      "resolution_status": "NOT_FOUND",
-      "validation_status": "SOURCE_NOT_FOUND",
+      "resolution_status": "PENDING_LOAD",
+      "validation_status": "SOURCE_BLOCK_NOT_LOADED",
       "errors": [
         {
-          "code": "INTERBLOCK_SOURCE_NOT_FOUND",
-          "class": "SOURCE_NOT_FOUND",
+          "code": "INTERBLOCK_SOURCE_BLOCK_NOT_LOADED",
+          "class": "SOURCE_BLOCK_NOT_LOADED",
+          "severity": "pending",
           "dimension": "source_block",
           "consumer_value": "maintenance",
           "producer_value": "bloco da taxonomia oficial sem workbook carregado",
-          "message": "INTERBLOCK_SOURCE_NOT_FOUND: consumidor production linha 83 'tempo_calcinacao' (diário linha/L1_L7), fonte='maintenance': dimensão 'source_block' — consumidor 'maintenance', produtor 'bloco da taxonomia oficial sem workbook carregado'. O produtor não pode ser resolvido nem validado neste build."
+          "message": "INTERBLOCK_SOURCE_BLOCK_NOT_LOADED: consumidor production linha 83 'tempo_calcinacao' (diário linha/L1_L7), fonte='maintenance': dimensão 'source_block' — consumidor 'maintenance', produtor 'bloco da taxonomia oficial sem workbook carregado'. Vínculo pendente de carregamento: o produtor não é inventado nem validado neste build."
         }
       ]
     },
@@ -982,16 +1007,17 @@
       ],
       "source_block": "maintenance",
       "source_definition": null,
-      "resolution_status": "NOT_FOUND",
-      "validation_status": "SOURCE_NOT_FOUND",
+      "resolution_status": "PENDING_LOAD",
+      "validation_status": "SOURCE_BLOCK_NOT_LOADED",
       "errors": [
         {
-          "code": "INTERBLOCK_SOURCE_NOT_FOUND",
-          "class": "SOURCE_NOT_FOUND",
+          "code": "INTERBLOCK_SOURCE_BLOCK_NOT_LOADED",
+          "class": "SOURCE_BLOCK_NOT_LOADED",
+          "severity": "pending",
           "dimension": "source_block",
           "consumer_value": "maintenance",
           "producer_value": "bloco da taxonomia oficial sem workbook carregado",
-          "message": "INTERBLOCK_SOURCE_NOT_FOUND: consumidor production linha 84 'tempo_clarificacao' (diário linha/L1_L7), fonte='maintenance': dimensão 'source_block' — consumidor 'maintenance', produtor 'bloco da taxonomia oficial sem workbook carregado'. O produtor não pode ser resolvido nem validado neste build."
+          "message": "INTERBLOCK_SOURCE_BLOCK_NOT_LOADED: consumidor production linha 84 'tempo_clarificacao' (diário linha/L1_L7), fonte='maintenance': dimensão 'source_block' — consumidor 'maintenance', produtor 'bloco da taxonomia oficial sem workbook carregado'. Vínculo pendente de carregamento: o produtor não é inventado nem validado neste build."
         }
       ]
     },
@@ -1009,16 +1035,17 @@
       ],
       "source_block": "maintenance",
       "source_definition": null,
-      "resolution_status": "NOT_FOUND",
-      "validation_status": "SOURCE_NOT_FOUND",
+      "resolution_status": "PENDING_LOAD",
+      "validation_status": "SOURCE_BLOCK_NOT_LOADED",
       "errors": [
         {
-          "code": "INTERBLOCK_SOURCE_NOT_FOUND",
-          "class": "SOURCE_NOT_FOUND",
+          "code": "INTERBLOCK_SOURCE_BLOCK_NOT_LOADED",
+          "class": "SOURCE_BLOCK_NOT_LOADED",
+          "severity": "pending",
           "dimension": "source_block",
           "consumer_value": "maintenance",
           "producer_value": "bloco da taxonomia oficial sem workbook carregado",
-          "message": "INTERBLOCK_SOURCE_NOT_FOUND: consumidor production linha 85 'tempo_digestao' (diário linha/L1_L7), fonte='maintenance': dimensão 'source_block' — consumidor 'maintenance', produtor 'bloco da taxonomia oficial sem workbook carregado'. O produtor não pode ser resolvido nem validado neste build."
+          "message": "INTERBLOCK_SOURCE_BLOCK_NOT_LOADED: consumidor production linha 85 'tempo_digestao' (diário linha/L1_L7), fonte='maintenance': dimensão 'source_block' — consumidor 'maintenance', produtor 'bloco da taxonomia oficial sem workbook carregado'. Vínculo pendente de carregamento: o produtor não é inventado nem validado neste build."
         }
       ]
     },
@@ -1036,18 +1063,20 @@
       ],
       "source_block": "maintenance",
       "source_definition": null,
-      "resolution_status": "NOT_FOUND",
-      "validation_status": "SOURCE_NOT_FOUND",
+      "resolution_status": "PENDING_LOAD",
+      "validation_status": "SOURCE_BLOCK_NOT_LOADED",
       "errors": [
         {
-          "code": "INTERBLOCK_SOURCE_NOT_FOUND",
-          "class": "SOURCE_NOT_FOUND",
+          "code": "INTERBLOCK_SOURCE_BLOCK_NOT_LOADED",
+          "class": "SOURCE_BLOCK_NOT_LOADED",
+          "severity": "pending",
           "dimension": "source_block",
           "consumer_value": "maintenance",
           "producer_value": "bloco da taxonomia oficial sem workbook carregado",
-          "message": "INTERBLOCK_SOURCE_NOT_FOUND: consumidor production linha 86 'tempo_precipitacao' (diário linha/L1_L7), fonte='maintenance': dimensão 'source_block' — consumidor 'maintenance', produtor 'bloco da taxonomia oficial sem workbook carregado'. O produtor não pode ser resolvido nem validado neste build."
+          "message": "INTERBLOCK_SOURCE_BLOCK_NOT_LOADED: consumidor production linha 86 'tempo_precipitacao' (diário linha/L1_L7), fonte='maintenance': dimensão 'source_block' — consumidor 'maintenance', produtor 'bloco da taxonomia oficial sem workbook carregado'. Vínculo pendente de carregamento: o produtor não é inventado nem validado neste build."
         }
       ]
     }
-  ]
+  ],
+  "rejected": []
 }

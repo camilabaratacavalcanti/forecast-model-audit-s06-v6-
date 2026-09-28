@@ -12,6 +12,13 @@ Regras:
    strip, sem prefixo removido, sem alias. `source_reference` é só
    proveniência e não participa da resolução.
 
+1b. Bloco fonte (D26-01, Etapa 2.6B), três perguntas distintas:
+   - nome fora da taxonomia oficial (`tools.workbook_seed.taxonomy`)
+     -> SOURCE_BLOCK_UNKNOWN (erro);
+   - nome oficial sem workbook carregado -> SOURCE_BLOCK_NOT_LOADED
+     (pendência: não é válido, não é erro, nenhum produtor é inventado);
+   - bloco carregado -> resolução do produtor (itens 2 a 5).
+
 2. Identidade local ao bloco. O produtor é resolvido no bloco indicado
    por name + frequency + scope_type + scope_value do consumidor — o
    `name` e a `unit` são padronizados entre produtor e consumidor. A
@@ -29,7 +36,9 @@ Regras:
 4. O vínculo resolvido é validado dimensão a dimensão: natureza
    (variable/parameter), unit, value_type, allowed_values,
    declared_result_states e instâncias (conjunto concreto de escopos,
-   sem substituir L3 por L1; instância ausente é erro).
+   sem substituir L3 por L1; instância ausente é erro). `variable_type`
+   (entrada, entrada_externa, calculado...) é semântica interna de cada
+   bloco e não é dimensão do contrato (D26-02).
 
 5. Ciclos são detectados no grafo de definições que une os vínculos
    interbloco às dependências intrabloco (equações e agregações),
@@ -47,12 +56,18 @@ import re
 from dataclasses import dataclass, field
 
 from app.engine.scope_resolver import ScopeResolver
-from app.validation.variable_seed_validator import VARIABLE_ID_RANGES
 
 from tools.workbook_seed.canonical import CanonicalEntity, CanonicalModel
+from tools.workbook_seed.taxonomy import (
+    BLOCK_TAXONOMY,
+    OFFICIAL_BLOCKS,
+    PENDING_NAMING_DECISIONS,
+)
 
 
 # Códigos de erro do contrato.
+SOURCE_BLOCK_UNKNOWN_CODE = "INTERBLOCK_SOURCE_BLOCK_UNKNOWN"
+SOURCE_BLOCK_NOT_LOADED_CODE = "INTERBLOCK_SOURCE_BLOCK_NOT_LOADED"
 SOURCE_NOT_FOUND_CODE = "INTERBLOCK_SOURCE_NOT_FOUND"
 AMBIGUOUS_CODE = "INTERBLOCK_SOURCE_AMBIGUOUS"
 CONTRACT_MISMATCH_CODE = "INTERBLOCK_CONTRACT_MISMATCH"
@@ -60,6 +75,8 @@ CYCLE_CODE = "INTERBLOCK_CYCLE"
 
 # Classes de vínculo.
 VALID = "VALID"
+SOURCE_BLOCK_UNKNOWN = "SOURCE_BLOCK_UNKNOWN"
+SOURCE_BLOCK_NOT_LOADED = "SOURCE_BLOCK_NOT_LOADED"
 SOURCE_NOT_FOUND = "SOURCE_NOT_FOUND"
 AMBIGUOUS = "AMBIGUOUS"
 CONTRACT_MISMATCH = "CONTRACT_MISMATCH"
@@ -68,6 +85,8 @@ CYCLE = "CYCLE"
 
 LINK_CLASSES = (
     VALID,
+    SOURCE_BLOCK_UNKNOWN,
+    SOURCE_BLOCK_NOT_LOADED,
     SOURCE_NOT_FOUND,
     AMBIGUOUS,
     CONTRACT_MISMATCH,
@@ -79,8 +98,14 @@ LINK_CLASSES = (
 RESOLVED = "RESOLVED"
 NOT_FOUND = "NOT_FOUND"
 AMBIGUOUS_RESOLUTION = "AMBIGUOUS"
+PENDING_LOAD = "PENDING_LOAD"
 
-OFFICIAL_BLOCKS = frozenset(VARIABLE_ID_RANGES)
+# Severidade: `error` rejeita o vínculo; `pending` é o estado de um
+# vínculo declarado para bloco oficial cujo workbook ainda não está
+# carregado (D26-01) — não é válido, não é erro de contrato, e nenhum
+# produtor é inventado.
+ERROR = "error"
+PENDING = "pending"
 
 _REFERENCE = re.compile(r"\b(VAR\d+|PARAM\d+)")
 
@@ -97,6 +122,7 @@ class InterblockFinding:
     consumer_value: object
     producer_value: object
     message: str
+    severity: str = ERROR
 
 
 @dataclass
@@ -122,6 +148,14 @@ class InterblockLink:
     def is_valid(self) -> bool:
         return not self.findings
 
+    @property
+    def is_pending(self) -> bool:
+        return bool(self.findings) and all(f.severity == PENDING for f in self.findings)
+
+    @property
+    def is_rejected(self) -> bool:
+        return any(f.severity == ERROR for f in self.findings)
+
     def instances(self, scope_resolver: ScopeResolver | None = None) -> list[tuple[str, str]]:
         scope_resolver = scope_resolver or ScopeResolver()
         return scope_resolver.resolve_scopes(
@@ -139,8 +173,12 @@ class InterblockResult:
         return [link for link in self.links if link.is_valid]
 
     @property
+    def pending(self) -> list[InterblockLink]:
+        return [link for link in self.links if link.is_pending]
+
+    @property
     def rejected(self) -> list[InterblockLink]:
-        return [link for link in self.links if not link.is_valid]
+        return [link for link in self.links if link.is_rejected]
 
     @property
     def findings(self) -> list[tuple[InterblockLink, InterblockFinding]]:
@@ -167,6 +205,7 @@ def _finding(
     consumer_value,
     producer_value,
     detail: str = "",
+    severity: str = ERROR,
 ) -> InterblockFinding:
     rows = ",".join(str(r) for r in link.consumer_rows)
     message = (
@@ -187,6 +226,7 @@ def _finding(
         consumer_value=consumer_value,
         producer_value=producer_value,
         message=message,
+        severity=severity,
     )
     link.findings.append(finding)
 
@@ -263,23 +303,44 @@ def _resolve(
         link.resolution_status = NOT_FOUND
         return
 
-    if source not in models:
-        in_taxonomy = source in OFFICIAL_BLOCKS
+    # D26-01: (1) bloco conhecido?  (2) workbook carregado?  (3) produtor?
+    if source not in OFFICIAL_BLOCKS:
+        naming = PENDING_NAMING_DECISIONS.get(source)
         _finding(
-            link, SOURCE_NOT_FOUND_CODE, SOURCE_NOT_FOUND, "source_block",
-            source,
+            link, SOURCE_BLOCK_UNKNOWN_CODE, SOURCE_BLOCK_UNKNOWN, "source_block",
+            source, "nome fora da taxonomia oficial de blocos (D26-01)",
             (
-                "bloco da taxonomia oficial sem workbook carregado"
-                if in_taxonomy
-                else "bloco inexistente na taxonomia oficial"
-            ),
-            (
-                "O produtor não pode ser resolvido nem validado neste build."
-                if in_taxonomy
-                else "fonte deve conter apenas o nome de um bloco oficial."
+                f"'{source}' é identificador de código de bloco carregado com "
+                f"nomenclatura pendente ({naming['decision_id']}: taxonomia "
+                f"'{naming['taxonomy_candidate']}'); não é resolvido por alias."
+                if naming
+                else "fonte deve conter exatamente o título oficial do bloco "
+                "(sem prefixo, sem variação de caixa ou espaços)."
             ),
         )
         link.resolution_status = NOT_FOUND
+        return
+
+    if source not in models:
+        pending_code = [
+            code for code, d in PENDING_NAMING_DECISIONS.items()
+            if d["taxonomy_candidate"] == source and code in models
+        ]
+        _finding(
+            link, SOURCE_BLOCK_NOT_LOADED_CODE, SOURCE_BLOCK_NOT_LOADED, "source_block",
+            source, "bloco da taxonomia oficial sem workbook carregado",
+            (
+                f"Há bloco carregado com identificador de código "
+                f"{pending_code[0]!r} e nomenclatura pendente "
+                f"({PENDING_NAMING_DECISIONS[pending_code[0]]['decision_id']}); "
+                "não é resolvido por alias."
+                if pending_code
+                else "Vínculo pendente de carregamento: o produtor não é "
+                "inventado nem validado neste build."
+            ),
+            severity=PENDING,
+        )
+        link.resolution_status = PENDING_LOAD
         return
 
     consumer = link.consumer
@@ -593,7 +654,11 @@ def _chains(links: list[InterblockLink]) -> None:
             seen.add(key)
 
             if not current.is_valid or current.producer is None:
-                status = f"BROKEN_AT:{current.consumer_block}.{current.consumer.name}"
+                status = (
+                    f"PENDING_AT:{current.consumer_block}.{current.consumer.name}"
+                    if current.is_pending
+                    else f"BROKEN_AT:{current.consumer_block}.{current.consumer.name}"
+                )
                 producer = current.producer.name if current.producer else "?"
                 chain.append(f"{current.source_block}.{producer}")
                 break
@@ -639,7 +704,20 @@ def validate_interblock(
 
 
 def require_valid(result: InterblockResult) -> None:
+    """Erro de contrato em qualquer vínculo (pendências não são erro)."""
+
     if result.rejected:
+        raise InterblockContractError(
+            "\n".join(
+                f.message for _link, f in result.findings if f.severity == ERROR
+            )
+        )
+
+
+def require_resolved(result: InterblockResult) -> None:
+    """Todo vínculo resolvido e válido: nem erro, nem pendência."""
+
+    if len(result.valid) != len(result.links):
         raise InterblockContractError(
             "\n".join(f.message for _link, f in result.findings)
         )
@@ -685,6 +763,7 @@ def rejected_record(link: InterblockLink) -> dict:
             {
                 "code": f.code,
                 "class": f.link_class,
+                "severity": f.severity,
                 "dimension": f.dimension,
                 "consumer_value": f.consumer_value,
                 "producer_value": f.producer_value,
@@ -705,7 +784,24 @@ def interblock_seed(models: dict[str, CanonicalModel], result: InterblockResult)
             }
             for block in sorted(models)
         },
+        "taxonomy": {
+            "decision": "D26-01",
+            "official_blocks": list(BLOCK_TAXONOMY),
+            "loaded_blocks": [
+                {
+                    "block": block,
+                    "in_taxonomy": block in OFFICIAL_BLOCKS,
+                    **(
+                        {"pending_naming_decision": PENDING_NAMING_DECISIONS[block]}
+                        if block in PENDING_NAMING_DECISIONS
+                        else {}
+                    ),
+                }
+                for block in sorted(models)
+            ],
+        },
         "links": [link_record(link) for link in result.valid],
+        "pending": [rejected_record(link) for link in result.pending],
         "rejected": [rejected_record(link) for link in result.rejected],
     }
 
@@ -723,6 +819,12 @@ __all__ = [
     "InterblockLink",
     "InterblockResult",
     "LINK_CLASSES",
+    "ERROR",
+    "PENDING",
+    "SOURCE_BLOCK_NOT_LOADED",
+    "SOURCE_BLOCK_NOT_LOADED_CODE",
+    "SOURCE_BLOCK_UNKNOWN",
+    "SOURCE_BLOCK_UNKNOWN_CODE",
     "SOURCE_NOT_FOUND",
     "SOURCE_NOT_FOUND_CODE",
     "VALID",
@@ -730,6 +832,7 @@ __all__ = [
     "interblock_seed",
     "link_record",
     "rejected_record",
+    "require_resolved",
     "require_valid",
     "seed_dependencies",
     "validate_interblock",
