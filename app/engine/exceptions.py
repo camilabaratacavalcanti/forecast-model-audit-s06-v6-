@@ -296,3 +296,103 @@ class AmbiguousSpatialPrecedenceError(Exception):
             f"'{candidate_a}' e '{candidate_b}' não são "
             f"comparáveis por inclusão de conjuntos."
         )
+
+
+# ============================================================
+# Vínculos interbloco em runtime (Etapa 3.1)
+# ============================================================
+
+
+class InterblockRuntimeError(Exception):
+    """
+    Erro base da resolução interbloco em runtime.
+
+    Todo erro carrega `code` (estável, no padrão INTERBLOCK_* dos
+    contratos da Etapa 2.6) e os dados necessários para identificar o
+    vínculo: bloco consumidor, variável, instância, bloco produtor,
+    frequência e período, quando aplicáveis.
+    """
+
+    code = "INTERBLOCK_RUNTIME_ERROR"
+
+    def __init__(self, message: str, **details):
+        self.details = details
+        super().__init__(f"{self.code}: {message}")
+
+
+class InterblockSeedError(InterblockRuntimeError):
+    """
+    O artefato canônico `interblock_links.json` (ou um registro dele)
+    não satisfaz o contrato: o vínculo não é aceito como válido.
+    """
+
+    code = "INTERBLOCK_SEED_INVALID"
+
+
+class InterblockCycleError(InterblockSeedError):
+    """
+    Os vínculos canônicos formam um ciclo: rejeitado antes da execução.
+    """
+
+    code = "INTERBLOCK_CYCLE"
+
+
+class InterblockLinkNotFoundError(InterblockRuntimeError):
+    """
+    A variável não é consumidora de nenhum vínculo interbloco canônico.
+    """
+
+    code = "INTERBLOCK_LINK_NOT_FOUND"
+
+
+class InterblockSourceNotLoadedError(InterblockRuntimeError):
+    """
+    O vínculo aponta um bloco oficial cujo workbook ainda não está
+    carregado (estado pendente D26-01): não há produtor, não há valor.
+    """
+
+    code = "INTERBLOCK_SOURCE_NOT_LOADED"
+
+
+class InterblockLinkRejectedError(InterblockRuntimeError):
+    """
+    O vínculo foi rejeitado pela validação de build: nunca é consumido.
+    """
+
+    code = "INTERBLOCK_LINK_REJECTED"
+
+
+class InterblockInstanceNotDeclaredError(InterblockRuntimeError):
+    """
+    A instância pedida não pertence às instâncias validadas do vínculo.
+    """
+
+    code = "INTERBLOCK_INSTANCE_NOT_DECLARED"
+
+
+class InterblockPeriodFrequencyMismatchError(InterblockRuntimeError):
+    """
+    O period_id pedido não tem a granularidade da frequência do vínculo
+    (sem conversão diário/mensal/anual entre blocos).
+    """
+
+    code = "INTERBLOCK_PERIOD_FREQUENCY_MISMATCH"
+
+
+class InterblockSourceValueNotFoundError(InterblockRuntimeError):
+    """
+    O produtor não tem valor para exatamente a instância e o período
+    pedidos (sem fallback temporal ou espacial entre blocos).
+    """
+
+    code = "INTERBLOCK_SOURCE_VALUE_NOT_FOUND"
+
+
+class InterblockConsumerValueConflictError(InterblockRuntimeError):
+    """
+    O consumidor já tem, na mesma chave, um valor diferente do valor do
+    produtor: um valor local nunca substitui nem é substituído em
+    silêncio pelo valor do vínculo.
+    """
+
+    code = "INTERBLOCK_CONSUMER_VALUE_CONFLICT"

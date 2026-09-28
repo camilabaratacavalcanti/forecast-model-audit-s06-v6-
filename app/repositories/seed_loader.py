@@ -39,6 +39,7 @@ from app.domain.equations.registry import (
     EquationRegistry,
 )
 
+from app.domain.interblock.registry import InterblockLinkRegistry
 from app.domain.parameters.models import (
     Parameter,
     ParameterDefinition,
@@ -651,6 +652,21 @@ class SeedLoader:
             parameter_instances,
             equation_definitions,
             equation_instances,
+        )
+
+    def load_interblock_links(self) -> InterblockLinkRegistry:
+        """
+        Carrega o artefato canônico `interblock_links.json` (Etapa 3.1)
+        e o confere contra os seeds de variáveis dos blocos carregados.
+
+        Assim como `load_aggregation_rules`, não entra em
+        `load_all_definitions_and_instances()` (tupla posicional usada
+        por chamadores existentes): é chamado explicitamente por quem
+        precisa de vínculos interbloco.
+        """
+
+        return InterblockLinkRegistry.from_seed_root(
+            self.seed_root, self.scope_resolver
         )
 
     def load_aggregation_rules(
