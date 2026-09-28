@@ -1,0 +1,3 @@
+workbook,sheet,cell,row,column,value,physical_type,expected,classification,rule
+yield,yield,E92,92,value,273,int,,NON_BLOCKING,variável com value preenchido (value é campo de parâmetro)
+yield,yield,F92,92,version,1,int,,INFORMATIONAL,variável com version preenchida
