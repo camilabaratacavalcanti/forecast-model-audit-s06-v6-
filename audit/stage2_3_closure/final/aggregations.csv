@@ -1,0 +1,208 @@
+workbook,row,target,target_frequency,target_scope,operation,source,source_frequency,source_scope,weight,weight_status,unit,dimension,status
+area_41,23,retirada_condensado_grupo,mensal,linha_grupo/L1_L3,AVERAGE,retirada_condensado_grupo,diário,linha_grupo/L1_L3,,,m³/h,,OK
+area_41,24,retirada_condensado_grupo,anual,linha_grupo/L1_L3,AVERAGE,retirada_condensado_grupo,diário,linha_grupo/L1_L3,,,m³/h,,OK
+area_41,40,retirada_condensado_grupo,mensal,linha_grupo/L4_L5,AVERAGE,retirada_condensado_grupo,diário,linha_grupo/L4_L5,,,m³/h,,OK
+area_41,41,retirada_condensado_grupo,anual,linha_grupo/L4_L5,AVERAGE,retirada_condensado_grupo,diário,linha_grupo/L4_L5,,,m³/h,,OK
+area_41,43,retirada_condensado_grupo,mensal,linha_grupo/L6_L7,AVERAGE,retirada_condensado_grupo,diário,linha_grupo/L6_L7,,,m³/h,,OK
+area_41,44,retirada_condensado_grupo,anual,linha_grupo/L6_L7,AVERAGE,retirada_condensado_grupo,diário,linha_grupo/L6_L7,,,m³/h,,OK
+area_41,52,retirada_condensado_linha,mensal,linha/L1_L7,AVERAGE,retirada_condensado_linha,diário,linha/L1..L7,,,m³/h,,OK (instâncias por linha → 2.4)
+area_41,53,retirada_condensado_linha,anual,linha/L1_L7,AVERAGE,retirada_condensado_linha,diário,linha/L1..L7,,,m³/h,,OK (instâncias por linha → 2.4)
+area_41,55,retirada_condensado_total,mensal,linha_grupo/L1_L7,AVERAGE,retirada_condensado_total,diário,linha_grupo/L1_L7,,,m³/h,,OK
+area_41,56,retirada_condensado_total,anual,linha_grupo/L1_L7,AVERAGE,retirada_condensado_total,diário,linha_grupo/L1_L7,,,m³/h,,OK
+energy,6,producao_planta_t_h_media_movel,diário,linha_grupo/L1_L7,MOVING_AVERAGE,producao_planta_t_h,diário,linha_grupo/L1_L7,,,t/h,,OK
+energy,27,vazao_vapor_digestao,mensal,linha/L1_L7,AVERAGE,vazao_vapor_digestao,diário,linha/L1_L7,,,t/h,,OK
+energy,29,vazao_vapor_digestao_total,mensal,linha_grupo/L1_L7,AVERAGE,vazao_vapor_digestao_total,diário,linha_grupo/L1_L7,,,t/h,,OK
+energy,32,especifico_vapor_digestao_medio,mensal,linha_grupo/L1_L7,WEIGHTED_AVERAGE,especifico_vapor_digestao_medio,diário,linha_grupo/L1_L7,producao_planta_t_h,peso OK,-,,OK
+energy,34,energia_digestao,mensal,linha_grupo/L1_L7,WEIGHTED_AVERAGE,energia_digestao,diário,linha_grupo/L1_L7,producao_planta_t_h,peso OK,GJ/t,,OK
+energy,45,especifico_vapor_evaporacao_total,mensal,linha_grupo/L1_L7,WEIGHTED_AVERAGE,especifico_vapor_evaporacao_total,diário,linha_grupo/L1_L7,producao_planta_t_h,peso OK,-,,OK
+energy,47,energia_evaporacao,mensal,linha_grupo/L1_L7,WEIGHTED_AVERAGE,energia_evaporacao,diário,linha_grupo/L1_L7,producao_planta_t_h,peso OK,GJ/t,,OK
+energy,49,energia_bayer,mensal,linha_grupo/L1_L7,WEIGHTED_AVERAGE,energia_bayer,diário,linha_grupo/L1_L7,producao_planta_t_h,peso OK,GJ/t,,OK
+energy,54,especifico_vapor_outros,mensal,linha_grupo/L1_L7,WEIGHTED_AVERAGE,especifico_vapor_outros,diário,linha_grupo/L1_L7,producao_planta_t_h,peso OK,-,,OK
+energy,57,especifico_demanda_bayer_medio,mensal,linha_grupo/L1_L7,AVERAGE,especifico_demanda_bayer,diário,linha_grupo/L1_L7,,,-,,OK
+energy,58,especifico_demanda_bayer_media_ponderada,mensal,linha_grupo/L1_L7,WEIGHTED_AVERAGE,especifico_demanda_bayer,diário,linha_grupo/L1_L7,producao_planta_t_h,peso OK,-,,OK
+max_ht,3,alimentação_evap,anual,linha/L1_L7,AVERAGE,alimentação_evap,diário,linha/L1_L7,,,m³/h,,OK
+max_ht,4,alimentação_evap,mensal,linha/L1_L7,AVERAGE,alimentação_evap,diário,linha/L1_L7,,,m³/h,,OK
+max_ht,7,alimentação_evap_total,anual,linha_grupo/L1_L7,AVERAGE,alimentação_evap_total,diário,linha_grupo/L1_L7,,,m³/h,,OK
+max_ht,8,alimentação_evap_total,mensal,linha_grupo/L1_L7,AVERAGE,alimentação_evap_total,diário,linha_grupo/L1_L7,,,m³/h,,OK
+max_ht,17,esp_maxht,anual,linha_grupo/L1_L3,AVERAGE,esp_maxht,diário,linha_grupo/L1_L3,,,kg/t,,OK
+max_ht,18,esp_maxht,anual,linha_grupo/L4_L5,AVERAGE,esp_maxht,diário,linha_grupo/L4_L5,,,kg/t,,OK
+max_ht,19,esp_maxht,anual,linha_grupo/L6_L7,AVERAGE,esp_maxht,diário,linha_grupo/L6_L7,,,kg/t,,OK
+max_ht,20,esp_maxht,mensal,linha_grupo/L1_L3,AVERAGE,esp_maxht,diário,linha_grupo/L1_L3,,,kg/t,,OK
+max_ht,21,esp_maxht,mensal,linha_grupo/L4_L5,AVERAGE,esp_maxht,diário,linha_grupo/L4_L5,,,kg/t,,OK
+max_ht,22,esp_maxht,mensal,linha_grupo/L6_L7,AVERAGE,esp_maxht,diário,linha_grupo/L6_L7,,,kg/t,,OK
+max_ht,30,fluxo_para_a13_linha_grupo,anual,linha_grupo/L1_L3,AVERAGE,fluxo_para_a13_linha_grupo,diário,linha_grupo/L1_L3,,,kg/h,,OK
+max_ht,31,fluxo_para_a13_linha_grupo,anual,linha_grupo/L4_L5,AVERAGE,fluxo_para_a13_linha_grupo,diário,linha_grupo/L4_L5,,,kg/h,,OK
+max_ht,32,fluxo_para_a13_linha_grupo,anual,linha_grupo/L6_L7,AVERAGE,fluxo_para_a13_linha_grupo,diário,linha_grupo/L6_L7,,,kg/h,,OK
+max_ht,33,fluxo_para_a13_linha_grupo,mensal,linha_grupo/L1_L3,AVERAGE,fluxo_para_a13_linha_grupo,diário,linha_grupo/L1_L3,,,kg/h,,OK
+max_ht,34,fluxo_para_a13_linha_grupo,mensal,linha_grupo/L4_L5,AVERAGE,fluxo_para_a13_linha_grupo,diário,linha_grupo/L4_L5,,,kg/h,,OK
+max_ht,35,fluxo_para_a13_linha_grupo,mensal,linha_grupo/L6_L7,AVERAGE,fluxo_para_a13_linha_grupo,diário,linha_grupo/L6_L7,,,kg/h,,OK
+max_ht,39,fluxo_para_a18_a13_linha_grupo,anual,linha_grupo/L1_L3,AVERAGE,fluxo_para_a18_a13_linha_grupo,diário,linha_grupo/L1_L3,,,kg/h,,OK
+max_ht,40,fluxo_para_a18_a13_linha_grupo,anual,linha_grupo/L4_L5,AVERAGE,fluxo_para_a18_a13_linha_grupo,diário,linha_grupo/L4_L5,,,kg/h,,OK
+max_ht,41,fluxo_para_a18_a13_linha_grupo,anual,linha_grupo/L6_L7,AVERAGE,fluxo_para_a18_a13_linha_grupo,diário,linha_grupo/L6_L7,,,kg/h,,OK
+max_ht,42,fluxo_para_a18_a13_linha_grupo,mensal,linha_grupo/L1_L3,AVERAGE,fluxo_para_a18_a13_linha_grupo,diário,linha_grupo/L1_L3,,,kg/h,,OK
+max_ht,43,fluxo_para_a18_a13_linha_grupo,mensal,linha_grupo/L4_L5,AVERAGE,fluxo_para_a18_a13_linha_grupo,diário,linha_grupo/L4_L5,,,kg/h,,OK
+max_ht,44,fluxo_para_a18_a13_linha_grupo,mensal,linha_grupo/L6_L7,AVERAGE,fluxo_para_a18_a13_linha_grupo,diário,linha_grupo/L6_L7,,,kg/h,,OK
+max_ht,46,fluxo_para_a18_linha,anual,linha/L1_L7,AVERAGE,fluxo_para_a18_linha,diário,linha/L1_L7,,,kg/h,,OK
+max_ht,47,fluxo_para_a18_linha,mensal,linha/L1_L7,AVERAGE,fluxo_para_a18_linha,diário,linha/L1_L7,,,kg/h,,OK
+max_ht,51,fluxo_para_a18_linha_grupo,anual,linha_grupo/L1_L3,AVERAGE,fluxo_para_a18_linha_grupo,diário,linha_grupo/L1_L3,,,kg/h,,OK
+max_ht,52,fluxo_para_a18_linha_grupo,anual,linha_grupo/L4_L5,AVERAGE,fluxo_para_a18_linha_grupo,diário,linha_grupo/L4_L5,,,kg/h,,OK
+max_ht,53,fluxo_para_a18_linha_grupo,anual,linha_grupo/L6_L7,AVERAGE,fluxo_para_a18_linha_grupo,diário,linha_grupo/L6_L7,,,kg/h,,OK
+max_ht,54,fluxo_para_a18_linha_grupo,mensal,linha_grupo/L1_L3,AVERAGE,fluxo_para_a18_linha_grupo,diário,linha_grupo/L1_L3,,,kg/h,,OK
+max_ht,55,fluxo_para_a18_linha_grupo,mensal,linha_grupo/L4_L5,AVERAGE,fluxo_para_a18_linha_grupo,diário,linha_grupo/L4_L5,,,kg/h,,OK
+max_ht,56,fluxo_para_a18_linha_grupo,mensal,linha_grupo/L6_L7,AVERAGE,fluxo_para_a18_linha_grupo,diário,linha_grupo/L6_L7,,,kg/h,,OK
+max_ht,58,fluxo_para_a18_linha_total,anual,linha_grupo/L1_L7,AVERAGE,fluxo_para_a18_linha_total,diário,linha_grupo/L1_L7,,,kg/h,,OK
+max_ht,59,fluxo_para_a18_linha_total,mensal,linha_grupo/L1_L7,AVERAGE,fluxo_para_a18_linha_total,diário,linha_grupo/L1_L7,,,kg/h,,OK
+max_ht,61,fluxo_para_evap,anual,linha/L1_L7,AVERAGE,fluxo_para_evap,diário,linha/L1_L7,,,kg/h,,OK
+max_ht,62,fluxo_para_evap,mensal,linha/L1_L7,AVERAGE,fluxo_para_evap,diário,linha/L1_L7,,,kg/h,,OK
+max_ht,64,fluxo_para_evap_total,anual,linha_grupo/L1_L7,AVERAGE,fluxo_para_evap_total,diário,linha_grupo/L1_L7,,,kg/h,,OK
+max_ht,65,fluxo_para_evap_total,mensal,linha_grupo/L1_L7,AVERAGE,fluxo_para_evap_total,diário,linha_grupo/L1_L7,,,kg/h,,OK
+max_ht,66,lth,anual,linha/L1_L7,AVERAGE,lth,diário,linha/L1_L7,,,m³/h,,OK
+max_ht,67,lth,mensal,linha/L1_L7,AVERAGE,lth,diário,linha/L1_L7,,,m³/h,,OK
+max_ht,70,lth_total,anual,linha_grupo/L1_L7,AVERAGE,lth_total,diário,linha_grupo/L1_L7,,,m³/h,,OK
+max_ht,71,lth_total,mensal,linha_grupo/L1_L7,AVERAGE,lth_total,diário,linha_grupo/L1_L7,,,m³/h,,OK
+max_ht,72,lth_total_somatorio,anual,linha_grupo/L1_L7,SUM,lth_total,diário,linha_grupo/L1_L7,,,m³/ano,fator 24,OK
+max_ht,73,lth_total_somatorio,mensal,linha_grupo/L1_L7,SUM,lth_total,diário,linha_grupo/L1_L7,,,m³/mês,fator 24,OK
+max_ht,77,massa_total_max_ht,anual,linha_grupo/L1_L3,AVERAGE,massa_total_max_ht,diário,linha_grupo/L1_L3,,,kg/d,,OK
+max_ht,78,massa_total_max_ht,anual,linha_grupo/L4_L5,AVERAGE,massa_total_max_ht,diário,linha_grupo/L4_L5,,,kg/d,,OK
+max_ht,79,massa_total_max_ht,anual,linha_grupo/L6_L7,AVERAGE,massa_total_max_ht,diário,linha_grupo/L6_L7,,,kg/d,,OK
+max_ht,80,massa_total_max_ht,mensal,linha_grupo/L1_L3,AVERAGE,massa_total_max_ht,diário,linha_grupo/L1_L3,,,kg/d,,OK
+max_ht,81,massa_total_max_ht,mensal,linha_grupo/L4_L5,AVERAGE,massa_total_max_ht,diário,linha_grupo/L4_L5,,,kg/d,,OK
+max_ht,82,massa_total_max_ht,mensal,linha_grupo/L6_L7,AVERAGE,massa_total_max_ht,diário,linha_grupo/L6_L7,,,kg/d,,OK
+max_ht,83,massa_total_max_ht_somatorio,anual,linha_grupo/L1_L3,SUM,massa_total_max_ht,diário,linha_grupo/L1_L3,,,kg/ano,fator 1,OK
+max_ht,84,massa_total_max_ht_somatorio,anual,linha_grupo/L4_L5,SUM,massa_total_max_ht,diário,linha_grupo/L4_L5,,,kg/ano,fator 1,OK
+max_ht,85,massa_total_max_ht_somatorio,anual,linha_grupo/L6_L7,SUM,massa_total_max_ht,diário,linha_grupo/L6_L7,,,kg/ano,fator 1,OK
+max_ht,86,massa_total_max_ht_somatorio,mensal,linha_grupo/L1_L3,SUM,massa_total_max_ht,diário,linha_grupo/L1_L3,,,kg/mês,fator 1,OK
+max_ht,87,massa_total_max_ht_somatorio,mensal,linha_grupo/L4_L5,SUM,massa_total_max_ht,diário,linha_grupo/L4_L5,,,kg/mês,fator 1,OK
+max_ht,88,massa_total_max_ht_somatorio,mensal,linha_grupo/L6_L7,SUM,massa_total_max_ht,diário,linha_grupo/L6_L7,,,kg/mês,fator 1,OK
+max_ht,90,massa_total_max_ht_total,anual,linha_grupo/L1_L7,AVERAGE,massa_total_max_ht_total,diário,linha_grupo/L1_L7,,,kg/d,,OK
+max_ht,91,massa_total_max_ht_total,mensal,linha_grupo/L1_L7,AVERAGE,massa_total_max_ht_total,diário,linha_grupo/L1_L7,,,kg/d,,OK
+max_ht,92,massa_total_max_ht_total_somatorio,anual,linha_grupo/L1_L7,SUM,massa_total_max_ht_total,diário,linha_grupo/L1_L7,,,kg/ano,fator 1,OK
+max_ht,93,massa_total_max_ht_total_somatorio,mensal,linha_grupo/L1_L7,SUM,massa_total_max_ht_total,diário,linha_grupo/L1_L7,,,kg/mês,fator 1,OK
+max_ht,94,producao,anual,linha/L1_L7,AVERAGE,producao,diário,linha/L1_L7,,,t/d,,OK
+max_ht,95,producao,mensal,linha/L1_L7,AVERAGE,producao,diário,linha/L1_L7,,,t/d,,OK
+max_ht,96,producao_somatorio,anual,linha/L1_L7,SUM,producao,diário,linha/L1_L7,,,t/ano,fator 1,OK
+max_ht,97,producao_somatorio,mensal,linha/L1_L7,SUM,producao,diário,linha/L1_L7,,,t/mês,fator 1,OK
+max_ht,99,producao_grupo,anual,linha_grupo/L1_L3,AVERAGE,producao_grupo,diário,linha_grupo/L1_L3,,,t/d,,OK
+max_ht,100,producao_grupo,anual,linha_grupo/L4_L5,AVERAGE,producao_grupo,diário,linha_grupo/L4_L5,,,t/d,,OK
+max_ht,101,producao_grupo,anual,linha_grupo/L6_L7,AVERAGE,producao_grupo,diário,linha_grupo/L6_L7,,,t/d,,OK
+max_ht,102,producao_grupo,mensal,linha_grupo/L1_L3,AVERAGE,producao_grupo,diário,linha_grupo/L1_L3,,,t/d,,OK
+max_ht,103,producao_grupo,mensal,linha_grupo/L4_L5,AVERAGE,producao_grupo,diário,linha_grupo/L4_L5,,,t/d,,OK
+max_ht,104,producao_grupo,mensal,linha_grupo/L6_L7,AVERAGE,producao_grupo,diário,linha_grupo/L6_L7,,,t/d,,OK
+max_ht,108,producao_grupo_somatorio,anual,linha_grupo/L1_L3,SUM,producao_grupo,diário,linha_grupo/L1_L3,,,t/ano,fator 1,OK
+max_ht,109,producao_grupo_somatorio,anual,linha_grupo/L4_L5,SUM,producao_grupo,diário,linha_grupo/L4_L5,,,t/ano,fator 1,OK
+max_ht,110,producao_grupo_somatorio,anual,linha_grupo/L6_L7,SUM,producao_grupo,diário,linha_grupo/L6_L7,,,t/ano,fator 1,OK
+max_ht,111,producao_grupo_somatorio,mensal,linha_grupo/L1_L3,SUM,producao_grupo,diário,linha_grupo/L1_L3,,,t/mês,fator 1,OK
+max_ht,112,producao_grupo_somatorio,mensal,linha_grupo/L4_L5,SUM,producao_grupo,diário,linha_grupo/L4_L5,,,t/mês,fator 1,OK
+max_ht,113,producao_grupo_somatorio,mensal,linha_grupo/L6_L7,SUM,producao_grupo,diário,linha_grupo/L6_L7,,,t/mês,fator 1,OK
+max_ht,114,refinery,anual,linha_grupo/L1_L7,AVERAGE,refinery,diário,linha_grupo/L1_L7,,,t/d,,OK
+max_ht,115,refinery,mensal,linha_grupo/L1_L7,AVERAGE,refinery,diário,linha_grupo/L1_L7,,,t/d,,OK
+max_ht,117,refinery_somatorio,anual,linha_grupo/L1_L7,SUM,refinery,diário,linha_grupo/L1_L7,,,t/ano,fator 1,OK
+max_ht,118,refinery_somatorio,mensal,linha_grupo/L1_L7,SUM,refinery,diário,linha_grupo/L1_L7,,,t/mês,fator 1,OK
+production,4,consumo_bauxita,mensal,linha_grupo/L1_L7,AVERAGE,consumo_bauxita,diário,linha_grupo/L1_L7,,,t/d,,OK
+production,5,consumo_bauxita_somatorio,mensal,linha_grupo/L1_L7,SUM,consumo_bauxita,diário,linha_grupo/L1_L7,,,t/mês,fator 1,OK
+production,6,consumo_bauxita,anual,linha_grupo/L1_L7,SUM,consumo_bauxita,diário,linha_grupo/L1_L7,,,t/ano,fator 1,OK
+production,9,consumo_cbg_grupo,mensal,linha_grupo/L1_L7,AVERAGE,consumo_cbg_grupo,diário,linha_grupo/L1_L7,,,t/d,,OK
+production,10,consumo_cbg_grupo_somatorio,mensal,linha_grupo/L1_L7,SUM,consumo_cbg_grupo,diário,linha_grupo/L1_L7,,,t/mês,fator 1,OK
+production,11,consumo_cbg_grupo,anual,linha_grupo/L1_L7,SUM,consumo_cbg_grupo,diário,linha_grupo/L1_L7,,,t/ano,fator 1,OK
+production,15,consumo_mpsa_grupo,mensal,linha_grupo/L1_L7,AVERAGE,consumo_mpsa_grupo,diário,linha_grupo/L1_L7,,,t/d,,OK
+production,16,consumo_mpsa_grupo_somatorio,mensal,linha_grupo/L1_L7,SUM,consumo_mpsa_grupo,diário,linha_grupo/L1_L7,,,t/mês,fator 1,OK
+production,17,consumo_mpsa_grupo,anual,linha_grupo/L1_L7,SUM,consumo_mpsa_grupo,diário,linha_grupo/L1_L7,,,t/ano,fator 1,OK
+production,21,consumo_mrn_grupo,mensal,linha_grupo/L1_L7,AVERAGE,consumo_mrn_grupo,diário,linha_grupo/L1_L7,,,t/d,,OK
+production,22,consumo_mrn_grupo_somatorio,mensal,linha_grupo/L1_L7,SUM,consumo_mrn_grupo,diário,linha_grupo/L1_L7,,,t/mês,fator 1,OK
+production,23,consumo_mrn_grupo,anual,linha_grupo/L1_L7,SUM,consumo_mrn_grupo,diário,linha_grupo/L1_L7,,,t/ano,fator 1,OK
+production,36,lth,mensal,linha/L1_L7,AVERAGE,lth,diário,linha/L1_L7,,,m³/h,,OK
+production,45,lth_total,mensal,linha_grupo/L1_L7,AVERAGE,lth_total,diário,linha_grupo/L1_L7,,,m³/h,,OK
+production,46,lth_total,anual,linha_grupo/L1_L7,AVERAGE,lth_total,diário,linha_grupo/L1_L7,,,m³/h,,OK
+production,49,oee,mensal,linha/L1_L7,AVERAGE,oee,diário,linha/L1_L7,,,%,,OK
+production,51,oee_total,mensal,linha_grupo/L1_L7,AVERAGE,oee_total,diário,linha_grupo/L1_L7,,,%,,OK
+production,52,oee_total,anual,linha_grupo/L1_L7,AVERAGE,oee_total,diário,linha_grupo/L1_L7,,,%,,OK
+production,60,pick_up,mensal,linha/L1_L7,AVERAGE,pick_up,diário,linha/L1..L7,,,g/l,,OK (instâncias por linha → 2.4)
+production,62,pick_up_total,mensal,linha_grupo/L1_L7,AVERAGE,pick_up_total,diário,linha_grupo/L1_L7,,,g/l,,OK
+production,63,pick_up_total,anual,linha_grupo/L1_L7,AVERAGE,pick_up_total,diário,linha_grupo/L1_L7,,,g/l,,OK
+production,72,producao,mensal,linha/L1_L7,AVERAGE,producao,diário,linha/L1_L7,,,t/d,,OK
+production,74,producao_planta,mensal,linha_grupo/L1_L7,AVERAGE,producao_planta,diário,linha_grupo/L1_L7,,,t/d,,OK
+production,75,producao_planta_somatorio,mensal,linha_grupo/L1_L7,SUM,producao_planta,diário,linha_grupo/L1_L7,,,t/mês,fator 1,OK
+production,76,producao_planta,anual,linha_grupo/L1_L7,SUM,producao_planta,diário,linha_grupo/L1_L7,,,t/ano,fator 1,OK
+production,77,producao_planta_movel,diário,linha_grupo/L1_L7,MOVING_AVERAGE,producao_planta,diário,linha_grupo/L1_L7,,,t/d,,OK
+production,89,yield_lth_total,mensal,linha_grupo/L1_L7,WEIGHTED_AVERAGE,yield_lth_total,diário,linha_grupo/L1_L7,producao_planta,peso OK,g/l,,OK
+production,90,yield_lth_total,anual,linha_grupo/L1_L7,WEIGHTED_AVERAGE,yield_lth_total,diário,linha_grupo/L1_L7,producao_planta,peso OK,g/l,,OK
+yield,3,eoc_solids,mensal,linha/L1_L7,AVERAGE,eoc_solids,diário,linha/L1_L7,,,g/l,,OK
+yield,8,eoc_solids_grupo,mensal,linha_grupo/L1_L3,AVERAGE,eoc_solids_grupo,diário,linha_grupo/L1_L3,,,g/l,,OK
+yield,9,eoc_solids_grupo,mensal,linha_grupo/L4_L5,AVERAGE,eoc_solids_grupo,diário,linha_grupo/L4_L5,,,g/l,,OK
+yield,10,eoc_solids_grupo,mensal,linha_grupo/L6_L7,AVERAGE,eoc_solids_grupo,diário,linha_grupo/L6_L7,,,g/l,,OK
+yield,11,eoc_solids_total,mensal,linha_grupo/L1_L7,AVERAGE,eoc_solids_total,diário,linha_grupo/L1_L7,,,g/l,,OK
+yield,18,eoc_temp,mensal,linha/L1_L7,AVERAGE,eoc_temp,diário,linha/L1_L7,,,°C,,OK
+yield,23,eoc_temp_grupo,mensal,linha_grupo/L1_L3,AVERAGE,eoc_temp_grupo,diário,linha_grupo/L1_L3,,,°C,,OK
+yield,24,eoc_temp_grupo,mensal,linha_grupo/L4_L5,AVERAGE,eoc_temp_grupo,diário,linha_grupo/L4_L5,,,°C,,OK
+yield,25,eoc_temp_grupo,mensal,linha_grupo/L6_L7,AVERAGE,eoc_temp_grupo,diário,linha_grupo/L6_L7,,,°C,,OK
+yield,26,eoc_temp_total,mensal,linha_grupo/L1_L7,AVERAGE,eoc_temp_total,diário,linha_grupo/L1_L7,,,°C,,OK
+yield,33,lth,mensal,linha/L1_L7,AVERAGE,lth,diário,linha/L1_L7,,,m³/h,,OK
+yield,38,lth_grupo,mensal,linha_grupo/L1_L3,AVERAGE,lth_grupo,diário,linha_grupo/L1_L3,,,m³/h,,OK
+yield,39,lth_grupo,mensal,linha_grupo/L4_L5,AVERAGE,lth_grupo,diário,linha_grupo/L4_L5,,,m³/h,,OK
+yield,40,lth_grupo,mensal,linha_grupo/L6_L7,AVERAGE,lth_grupo,diário,linha_grupo/L6_L7,,,m³/h,,OK
+yield,41,lth_total,mensal,linha_grupo/L1_L7,AVERAGE,lth_total,diário,linha_grupo/L1_L7,,,m³/h,,OK
+yield,48,ltp,mensal,linha/L1_L7,AVERAGE,ltp,diário,linha/L1_L7,,,m³/h,,OK
+yield,53,ltp_grupo,mensal,linha_grupo/L1_L3,AVERAGE,ltp_grupo,diário,linha_grupo/L1_L3,,,m³/h,,OK
+yield,54,ltp_grupo,mensal,linha_grupo/L4_L5,AVERAGE,ltp_grupo,diário,linha_grupo/L4_L5,,,m³/h,,OK
+yield,55,ltp_grupo,mensal,linha_grupo/L6_L7,AVERAGE,ltp_grupo,diário,linha_grupo/L6_L7,,,m³/h,,OK
+yield,56,ltp_total,mensal,linha_grupo/L1_L7,AVERAGE,ltp_total,diário,linha_grupo/L1_L7,,,m³/h,,OK
+yield,58,ltp_a_c,mensal,linha/L1_L7,AVERAGE,ltp_a_c,diário,linha/L1_L7,,,-,,OK
+yield,63,ltp_a_c_grupo,mensal,linha_grupo/L1_L3,AVERAGE,ltp_a_c_grupo,diário,linha_grupo/L1_L3,,,-,,OK
+yield,64,ltp_a_c_grupo,mensal,linha_grupo/L4_L5,AVERAGE,ltp_a_c_grupo,diário,linha_grupo/L4_L5,,,-,,OK
+yield,65,ltp_a_c_grupo,mensal,linha_grupo/L6_L7,AVERAGE,ltp_a_c_grupo,diário,linha_grupo/L6_L7,,,-,,OK
+yield,66,ltp_a_c_total,mensal,linha_grupo/L1_L7,AVERAGE,ltp_a_c_total,diário,linha_grupo/L1_L7,,,-,,OK
+yield,78,ltp_lth,mensal,linha/L1_L7,AVERAGE,ltp_lth,diário,linha/L1_L7,,,-,,OK
+yield,83,ltp_lth_grupo,mensal,linha_grupo/L1_L3,AVERAGE,ltp_lth_grupo,diário,linha_grupo/L1_L3,,,-,,OK
+yield,84,ltp_lth_grupo,mensal,linha_grupo/L4_L5,AVERAGE,ltp_lth_grupo,diário,linha_grupo/L4_L5,,,-,,OK
+yield,85,ltp_lth_grupo,mensal,linha_grupo/L6_L7,AVERAGE,ltp_lth_grupo,diário,linha_grupo/L6_L7,,,-,,OK
+yield,86,ltp_lth_total,mensal,linha_grupo/L1_L7,AVERAGE,ltp_lth_total,diário,linha_grupo/L1_L7,,,-,,OK
+yield,93,ltp_tc,mensal,linha/L1_L7,AVERAGE,ltp_tc,diário,linha/L1_L7,,,g/l,,OK
+yield,98,ltp_tc_grupo,mensal,linha_grupo/L1_L3,AVERAGE,ltp_tc_grupo,diário,linha_grupo/L1_L3,,,g/l,,OK
+yield,99,ltp_tc_grupo,mensal,linha_grupo/L4_L5,AVERAGE,ltp_tc_grupo,diário,linha_grupo/L4_L5,,,g/l,,OK
+yield,100,ltp_tc_grupo,mensal,linha_grupo/L6_L7,AVERAGE,ltp_tc_grupo,diário,linha_grupo/L6_L7,,,g/l,,OK
+yield,101,ltp_tc_total,mensal,linha_grupo/L1_L7,AVERAGE,ltp_tc_total,diário,linha_grupo/L1_L7,,,g/l,,OK
+yield,108,n_ppt,mensal,linha/L1_L7,AVERAGE,n_ppt,diário,linha/L1_L7,,,-,,OK
+yield,113,n_ppt_grupo,mensal,linha_grupo/L1_L3,AVERAGE,n_ppt_grupo,diário,linha_grupo/L1_L3,,,-,,OK
+yield,114,n_ppt_grupo,mensal,linha_grupo/L4_L5,AVERAGE,n_ppt_grupo,diário,linha_grupo/L4_L5,,,-,,OK
+yield,115,n_ppt_grupo,mensal,linha_grupo/L6_L7,AVERAGE,n_ppt_grupo,diário,linha_grupo/L6_L7,,,-,,OK
+yield,116,n_ppt_total,mensal,linha_grupo/L1_L7,AVERAGE,n_ppt_total,diário,linha_grupo/L1_L7,,,-,,OK
+yield,123,oee,mensal,linha/L1_L7,AVERAGE,oee,diário,linha/L1_L7,,,-,,OK
+yield,128,oee_grupo,mensal,linha_grupo/L1_L3,AVERAGE,oee_grupo,diário,linha_grupo/L1_L3,,,-,,OK
+yield,129,oee_grupo,mensal,linha_grupo/L4_L5,AVERAGE,oee_grupo,diário,linha_grupo/L4_L5,,,-,,OK
+yield,130,oee_grupo,mensal,linha_grupo/L6_L7,AVERAGE,oee_grupo,diário,linha_grupo/L6_L7,,,-,,OK
+yield,131,oee_total,mensal,linha_grupo/L1_L7,AVERAGE,oee_total,diário,linha_grupo/L1_L7,,,-,,OK
+yield,138,producao_base_ppt,mensal,linha/L1_L7,AVERAGE,producao_base_ppt,diário,linha/L1_L7,,,t,,OK
+yield,143,producao_base_ppt_grupo,mensal,linha_grupo/L1_L3,AVERAGE,producao_base_ppt_grupo,diário,linha_grupo/L1_L3,,,t,,OK
+yield,144,producao_base_ppt_grupo,mensal,linha_grupo/L4_L5,AVERAGE,producao_base_ppt_grupo,diário,linha_grupo/L4_L5,,,t,,OK
+yield,145,producao_base_ppt_grupo,mensal,linha_grupo/L6_L7,AVERAGE,producao_base_ppt_grupo,diário,linha_grupo/L6_L7,,,t,,OK
+yield,146,producao_base_ppt_total,mensal,linha_grupo/L1_L7,AVERAGE,producao_base_ppt_total,diário,linha_grupo/L1_L7,,,t,,OK
+yield,153,ratio_spent,mensal,linha/L1_L7,AVERAGE,ratio_spent,diário,linha/L1_L7,,,-,,OK
+yield,158,ratio_spent_grupo,mensal,linha_grupo/L1_L3,AVERAGE,ratio_spent_grupo,diário,linha_grupo/L1_L3,,,-,,OK
+yield,159,ratio_spent_grupo,mensal,linha_grupo/L4_L5,AVERAGE,ratio_spent_grupo,diário,linha_grupo/L4_L5,,,-,,OK
+yield,160,ratio_spent_grupo,mensal,linha_grupo/L6_L7,AVERAGE,ratio_spent_grupo,diário,linha_grupo/L6_L7,,,-,,OK
+yield,161,ratio_spent_total,mensal,linha_grupo/L1_L7,AVERAGE,ratio_spent_total,diário,linha_grupo/L1_L7,,,-,,OK
+yield,168,sl_solids,mensal,linha/L1_L7,AVERAGE,sl_solids,diário,linha/L1_L7,,,g/l,,OK
+yield,173,sl_solids_grupo,mensal,linha_grupo/L1_L3,AVERAGE,sl_solids_grupo,diário,linha_grupo/L1_L3,,,g/l,,OK
+yield,174,sl_solids_grupo,mensal,linha_grupo/L4_L5,AVERAGE,sl_solids_grupo,diário,linha_grupo/L4_L5,,,g/l,,OK
+yield,175,sl_solids_grupo,mensal,linha_grupo/L6_L7,AVERAGE,sl_solids_grupo,diário,linha_grupo/L6_L7,,,g/l,,OK
+yield,176,sl_solids_total,mensal,linha_grupo/L1_L7,AVERAGE,sl_solids_total,diário,linha_grupo/L1_L7,,,g/l,,OK
+yield,183,ssa_media,mensal,linha/L1_L7,AVERAGE,ssa_media,diário,linha/L1_L7,,,m²/kg,,OK
+yield,188,ssa_media_grupo,mensal,linha_grupo/L1_L3,AVERAGE,ssa_media_grupo,diário,linha_grupo/L1_L3,,,m²/kg,,OK
+yield,189,ssa_media_grupo,mensal,linha_grupo/L4_L5,AVERAGE,ssa_media_grupo,diário,linha_grupo/L4_L5,,,m²/kg,,OK
+yield,190,ssa_media_grupo,mensal,linha_grupo/L6_L7,AVERAGE,ssa_media_grupo,diário,linha_grupo/L6_L7,,,m²/kg,,OK
+yield,191,ssa_media_total,mensal,linha_grupo/L1_L7,AVERAGE,ssa_media_total,diário,linha_grupo/L1_L7,,,m²/kg,,OK
+yield,198,ssa_sf,mensal,linha/L1_L7,AVERAGE,ssa_sf,diário,linha/L1_L7,,,m²/kg,,OK
+yield,203,ssa_sf_grupo,mensal,linha_grupo/L1_L3,AVERAGE,ssa_sf_grupo,diário,linha_grupo/L1_L3,,,m²/kg,,OK
+yield,204,ssa_sf_grupo,mensal,linha_grupo/L4_L5,AVERAGE,ssa_sf_grupo,diário,linha_grupo/L4_L5,,,m²/kg,,OK
+yield,205,ssa_sf_grupo,mensal,linha_grupo/L6_L7,AVERAGE,ssa_sf_grupo,diário,linha_grupo/L6_L7,,,m²/kg,,OK
+yield,206,ssa_sf_total,mensal,linha_grupo/L1_L7,AVERAGE,ssa_sf_total,diário,linha_grupo/L1_L7,,,m²/kg,,OK
+yield,213,ssa_sg,mensal,linha/L1_L7,AVERAGE,ssa_sg,diário,linha/L1_L7,,,m²/kg,,OK
+yield,218,ssa_sg_grupo,mensal,linha_grupo/L1_L3,AVERAGE,ssa_sg_grupo,diário,linha_grupo/L1_L3,,,m²/kg,,OK
+yield,219,ssa_sg_grupo,mensal,linha_grupo/L4_L5,AVERAGE,ssa_sg_grupo,diário,linha_grupo/L4_L5,,,m²/kg,,OK
+yield,220,ssa_sg_grupo,mensal,linha_grupo/L6_L7,AVERAGE,ssa_sg_grupo,diário,linha_grupo/L6_L7,,,m²/kg,,OK
+yield,221,ssa_sg_total,mensal,linha_grupo/L1_L7,AVERAGE,ssa_sg_total,diário,linha_grupo/L1_L7,,,m²/kg,,OK
+yield,242,yield,mensal,linha/L1_L7,AVERAGE,yield,diário,linha/L1_L7,,,g/l,,OK
+yield,247,yield_grupo,mensal,linha_grupo/L1_L3,AVERAGE,yield_grupo,diário,linha_grupo/L1_L3,,,g/l,,OK
+yield,248,yield_grupo,mensal,linha_grupo/L4_L5,AVERAGE,yield_grupo,diário,linha_grupo/L4_L5,,,g/l,,OK
+yield,249,yield_grupo,mensal,linha_grupo/L6_L7,AVERAGE,yield_grupo,diário,linha_grupo/L6_L7,,,g/l,,OK
+yield,250,yield_total,mensal,linha_grupo/L1_L7,AVERAGE,yield_total,diário,linha_grupo/L1_L7,,,g/l,,OK

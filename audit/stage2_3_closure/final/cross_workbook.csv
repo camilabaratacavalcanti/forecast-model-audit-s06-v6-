@@ -1,0 +1,35 @@
+consumer_workbook,row,name,frequency,scope,unit,value_type,producer,status
+area_41,9,lth,diário,linha/L1_L7,m³/h,numerico,yield,OK
+area_41,25,hes,diário,linha/L4,-,categorico,bloco maintenance,produtor fora dos 5 (não verificável)
+area_41,26,hes,diário,linha/L5,-,categorico,bloco maintenance,produtor fora dos 5 (não verificável)
+area_41,27,hes,diário,linha/L6,-,categorico,bloco maintenance,produtor fora dos 5 (não verificável)
+area_41,28,hes,diário,linha/L7,-,categorico,bloco maintenance,produtor fora dos 5 (não verificável)
+energy,3,producao,diário,linha/L1_L7,t/d,numerico,production,OK
+energy,7,pick_up,diário,linha/L1_L7,g/l,numerico,production,OK — diferença representacional (produtor declara as 7 instâncias por linha)
+energy,8,pick_up_total,diário,linha_grupo/L1_L7,g/l,numerico,production,OK
+energy,9,pick_up_total,mensal,linha_grupo/L1_L7,g/l,numerico,production,OK
+energy,10,lth,diário,linha/L1_L7,m³/h,numerico,production,OK
+energy,11,lth_total,diário,linha_grupo/L1_L7,m³/h,numerico,production,OK
+energy,12,lth_total,mensal,linha_grupo/L1_L7,m³/h,numerico,production,OK
+energy,13,lth_meta,anual,linha/L1_L7,-,numerico,production,OK — diferença representacional (produtor declara as 7 instâncias por linha)
+energy,14,temperatura_lp,diário,linha/L1_L7,°C,numerico,bloco temperature_lp,produtor fora dos 5 (não verificável)
+energy,15,temperatura_lp,mensal,linha/L1_L7,°C,numerico,bloco temperature_lp,produtor fora dos 5 (não verificável)
+energy,16,temperatura_lp_media,mensal,linha_grupo/L1_L7,°C,numerico,bloco temperature_lp,produtor fora dos 5 (não verificável)
+energy,37,evaporado_total_evaporacao,diário,linha/L1_L7,t/h,numerico,bloco area_04_13 (Forecast A4 e A13),produtor fora dos 5 (não verificável)
+max_ht,5,alimentação_evap,diário,linha/L1_L7,m³/h,numerico,bloco alumina,produtor fora dos 5 (não verificável)
+max_ht,68,lth,diário,linha/L1_L7,m³/h,numerico,production,OK
+max_ht,98,producao,diário,linha/L1_L7,t/d,numerico,production,OK
+production,30,fator_mpsa,diário,linha/L1_L7,-,numerico,bloco forecast,produtor fora dos 5 (não verificável)
+production,31,fator_mpsa_kg_t,diário,linha_grupo/L1_L7,kg/t,numerico,bloco forecast,produtor fora dos 5 (não verificável)
+production,32,fator_mrn,diário,linha/L1_L7,-,numerico,bloco forecast,produtor fora dos 5 (não verificável)
+production,33,fator_mrn_kg_t,diário,linha_grupo/L1_L7,kg/t,numerico,bloco forecast,produtor fora dos 5 (não verificável)
+production,79,reducao_lth_calcinacao,diário,linha/L1_L7,m³/h,numerico,bloco maintenance_plan,produtor fora dos 5 (não verificável)
+production,80,reducao_lth_clarificacao,diário,linha/L1_L7,m³/h,numerico,bloco maintenance_plan,produtor fora dos 5 (não verificável)
+production,81,reducao_lth_digestao,diário,linha/L1_L7,m³/h,numerico,bloco maintenance_plan,produtor fora dos 5 (não verificável)
+production,82,reducao_lth_precipitacao,diário,linha/L1_L7,m³/h,numerico,bloco maintenance_plan,produtor fora dos 5 (não verificável)
+production,83,tempo_calcinacao,diário,linha/L1_L7,h,numerico,bloco maintenance_plan,produtor fora dos 5 (não verificável)
+production,84,tempo_clarificacao,diário,linha/L1_L7,h,numerico,bloco maintenance_plan,produtor fora dos 5 (não verificável)
+production,85,tempo_digestao,diário,linha/L1_L7,h,numerico,bloco maintenance_plan,produtor fora dos 5 (não verificável)
+production,86,tempo_precipitacao,diário,linha/L1_L7,h,numerico,bloco maintenance_plan,produtor fora dos 5 (não verificável)
+production,87,yield,diário,linha/L1_L7,g/l,numerico,yield,OK
+yield,32,lth,diário,linha/L1_L7,m³/h,numerico,production,OK

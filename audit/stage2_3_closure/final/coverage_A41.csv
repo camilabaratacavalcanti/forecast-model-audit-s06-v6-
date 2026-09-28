@@ -1,0 +1,55 @@
+linha,type,name,frequency,scope_type,scope_value,unit,value_type,allowed_values,declared_result_states,classe_expressao,A019,auditada
+3,variable,vazao_ltp,mensal,linha_grupo,L1_L3,m³/h,numerico,,,none,,sim
+4,variable,vazao_ltp,mensal,linha_grupo,L4_L5,m³/h,numerico,,,none,,sim
+5,variable,vazao_ltp,mensal,linha_grupo,L6_L7,m³/h,numerico,,,none,,sim
+6,variable / equation,retirada_cond_corr_ltp,diário,linha_grupo,L1_L3,m³/h,numerico,,,A-arithmetic+ln,resolved,sim
+7,variable / equation,retirada_cond_corr_ltp,diário,linha_grupo,L4_L5,m³/h,numerico,,,A-arithmetic+ln,resolved,sim
+8,variable / equation,retirada_cond_corr_ltp,diário,linha_grupo,L6_L7,m³/h,numerico,,,A-arithmetic+ln,resolved,sim
+9,variable,lth,diário,linha,L1_L7,m³/h,numerico,,,none,,sim
+10,variable / equation,lth_grupo,diário,linha_grupo,L1_L3,m³/h,numerico,,,C-scoped,resolved,sim
+11,variable / equation,lth_grupo,diário,linha_grupo,L4_L5,m³/h,numerico,,,C-scoped,resolved,sim
+12,variable / equation,lth_grupo,diário,linha_grupo,L6_L7,m³/h,numerico,,,C-scoped,resolved,sim
+13,variable,fator_retirada_cond_corr_lth,mensal,linha_grupo,L1_L3,-,numerico,,,none,,sim
+14,variable,fator_retirada_cond_corr_lth,mensal,linha_grupo,L4_L5,-,numerico,,,none,,sim
+15,variable,fator_retirada_cond_corr_lth,mensal,linha_grupo,L6_L7,-,numerico,,,none,,sim
+16,variable / equation,retirada_cond_corr_lth,diário,linha_grupo,L1_L3,m³/h,numerico,,,A-arithmetic+ln,resolved,sim
+17,variable / equation,retirada_cond_corr_lth,diário,linha_grupo,L4_L5,m³/h,numerico,,,A-arithmetic+ln,resolved,sim
+18,variable / equation,retirada_cond_corr_lth,diário,linha_grupo,L6_L7,m³/h,numerico,,,A-arithmetic+ln,resolved,sim
+19,variable,valor_retirada,diário,linha,L1,m³/h,numerico,,,none,,sim
+20,variable,valor_retirada,diário,linha,L2,m³/h,numerico,,,none,,sim
+21,variable,valor_retirada,diário,linha,L3,m³/h,numerico,,,none,,sim
+22,variable / equation,retirada_condensado_grupo,diário,linha_grupo,L1_L3,m³/h,numerico,,,C-scoped,resolved,sim
+23,variable / equation,retirada_condensado_grupo,mensal,linha_grupo,L1_L3,m³/h,numerico,,,D-aggregation-description,,sim
+24,variable / equation,retirada_condensado_grupo,anual,linha_grupo,L1_L3,m³/h,numerico,,,D-aggregation-description,,sim
+25,variable,hes,diário,linha,L4,-,categorico,Normal|LC|Overhaul/Parada|1 By pass|1 By pass e LC,,none,,sim
+26,variable,hes,diário,linha,L5,-,categorico,Normal|LC|Overhaul/Parada|1 By pass|1 By pass e LC,,none,,sim
+27,variable,hes,diário,linha,L6,-,categorico,Normal|LC|Overhaul/Parada|1 By pass|1 By pass e LC,,none,,sim
+28,variable,hes,diário,linha,L7,-,categorico,Normal|LC|Overhaul/Parada|1 By pass|1 By pass e LC,,none,,sim
+29,variable,desconto_retirada_41c,diário,linha_grupo,L4_L5,m³/h,numerico,,,none,,sim
+30,variable,desconto_retirada_41c,diário,linha_grupo,L6_L7,m³/h,numerico,,,none,,sim
+31,variable,desconto_retirada_41d,diário,linha_grupo,L4_L5,m³/h,numerico,,,none,,sim
+32,parameter,retirada_meta_41a,,planta,PLANTA,m³/h,numerico,,,none,,sim
+33,parameter,retirada_meta_41b,,planta,PLANTA,m³/h,numerico,,,none,,sim
+34,parameter,retirada_meta_41x,,planta,PLANTA,m³/h,numerico,,,none,,sim
+35,parameter,retirada_meta_41c,,planta,PLANTA,m³/h,numerico,,,none,,sim
+36,parameter,retirada_meta_41d,,planta,PLANTA,m³/h,numerico,,,none,,sim
+37,parameter,retirada_performance_41c,,planta,PLANTA,m³/h,numerico,,,none,,sim
+38,parameter,retirada_manobra_linha_41a,,planta,PLANTA,m³/h,numerico,,,none,,sim
+39,variable / equation,retirada_condensado_grupo,diário,linha_grupo,L4_L5,m³/h,numerico,,"NO_APPLICABLE_RULE → ""F""",B-cond+text,resolved,sim
+40,variable / equation,retirada_condensado_grupo,mensal,linha_grupo,L4_L5,m³/h,numerico,,,D-aggregation-description,,sim
+41,variable / equation,retirada_condensado_grupo,anual,linha_grupo,L4_L5,m³/h,numerico,,,D-aggregation-description,,sim
+42,variable / equation,retirada_condensado_grupo,diário,linha_grupo,L6_L7,m³/h,numerico,,"NO_APPLICABLE_RULE → ""F""",B-cond+text,resolved,sim
+43,variable / equation,retirada_condensado_grupo,mensal,linha_grupo,L6_L7,m³/h,numerico,,,D-aggregation-description,,sim
+44,variable / equation,retirada_condensado_grupo,anual,linha_grupo,L6_L7,m³/h,numerico,,,D-aggregation-description,,sim
+45,variable / equation,retirada_condensado_linha,diário,linha,L1,m³/h,numerico,,,C-scoped,resolved,sim
+46,variable / equation,retirada_condensado_linha,diário,linha,L2,m³/h,numerico,,,C-scoped,resolved,sim
+47,variable / equation,retirada_condensado_linha,diário,linha,L3,m³/h,numerico,,,C-scoped,resolved,sim
+48,variable / equation,retirada_condensado_linha,diário,linha,L4,m³/h,numerico,,,C-scoped,resolved,sim
+49,variable / equation,retirada_condensado_linha,diário,linha,L5,m³/h,numerico,,,C-scoped,resolved,sim
+50,variable / equation,retirada_condensado_linha,diário,linha,L6,m³/h,numerico,,,C-scoped,resolved,sim
+51,variable / equation,retirada_condensado_linha,diário,linha,L7,m³/h,numerico,,,C-scoped,resolved,sim
+52,variable / equation,retirada_condensado_linha,mensal,linha,L1_L7,m³/h,numerico,,,D-aggregation-description,,sim
+53,variable / equation,retirada_condensado_linha,anual,linha,L1_L7,m³/h,numerico,,,D-aggregation-description,,sim
+54,variable / equation,retirada_condensado_total,diário,linha_grupo,L1_L7,m³/h,numerico,,,C-scoped,resolved,sim
+55,variable / equation,retirada_condensado_total,mensal,linha_grupo,L1_L7,m³/h,numerico,,,D-aggregation-description,,sim
+56,variable / equation,retirada_condensado_total,anual,linha_grupo,L1_L7,m³/h,numerico,,,D-aggregation-description,,sim

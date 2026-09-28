@@ -1,0 +1,57 @@
+linha,type,name,frequency,scope_type,scope_value,unit,value_type,allowed_values,declared_result_states,classe_expressao,A019,auditada
+3,variable,producao,diário,linha,L1_L7,t/d,numerico,,,none,,sim
+4,variable / equation,producao_t_h,diário,linha,L1_L7,t/h,numerico,,,A-arithmetic,resolved,sim
+5,variable / equation,producao_planta_t_h,diário,linha_grupo,L1_L7,t/h,numerico,,,C-scoped,resolved,sim
+6,variable / equation,producao_planta_t_h_media_movel,diário,linha_grupo,L1_L7,t/h,numerico,,,D-aggregation-description,,sim
+7,variable,pick_up,diário,linha,L1_L7,g/l,numerico,,,none,,sim
+8,variable,pick_up_total,diário,linha_grupo,L1_L7,g/l,numerico,,,none,,sim
+9,variable,pick_up_total,mensal,linha_grupo,L1_L7,g/l,numerico,,,none,,sim
+10,variable,lth,diário,linha,L1_L7,m³/h,numerico,,,none,,sim
+11,variable,lth_total,diário,linha_grupo,L1_L7,m³/h,numerico,,,none,,sim
+12,variable,lth_total,mensal,linha_grupo,L1_L7,m³/h,numerico,,,none,,sim
+13,variable,lth_meta,anual,linha,L1_L7,-,numerico,,,none,,sim
+14,variable,temperatura_lp,diário,linha,L1_L7,°C,numerico,,,none,,sim
+15,variable,temperatura_lp,mensal,linha,L1_L7,°C,numerico,,,none,,sim
+16,variable,temperatura_lp_media,mensal,linha_grupo,L1_L7,°C,numerico,,,none,,sim
+17,parameter,temperatura_lp_referencia,,linha,L1_L7,°C,numerico,,,none,,sim
+18,parameter,fator_ajuste_delta_t_reg,,linha,L1_L7,°C,numerico,,,none,,sim
+19,variable,temperatura_lp_ref_inferior,mensal,linha,L1_L7,°C,numerico,,,none,,sim
+20,variable,temperatura_lp_ref_superior,mensal,linha,L1_L7,°C,numerico,,,none,,sim
+21,variable / equation,delta_t_regenerativo,diário,linha,L1_L7,°C,numerico,,,B-conditional,resolved,sim
+22,variable,temperatura_lth_saida_he6,diário,linha,L1_L7,°C,numerico,,,none,,sim
+23,parameter,fator_ajuste_delta_t_vapor_vivo,,linha,L1_L7,°C,numerico,,,none,,sim
+24,variable / equation,delta_t_vapor_vivo,diário,linha,L1_L7,°C,numerico,,,A-arithmetic,resolved,sim
+25,parameter,delta_t_vapor_vivo_maximo,,linha_grupo,L1_L7,°C,numerico,,,none,,sim
+26,variable / equation,vazao_vapor_digestao,diário,linha,L1_L7,t/h,numerico,,,A-arithmetic,resolved,sim
+27,variable / equation,vazao_vapor_digestao,mensal,linha,L1_L7,t/h,numerico,,,D-aggregation-description,,sim
+28,variable / equation,vazao_vapor_digestao_total,diário,linha_grupo,L1_L7,t/h,numerico,,,C-scoped,resolved,sim
+29,variable / equation,vazao_vapor_digestao_total,mensal,linha_grupo,L1_L7,t/h,numerico,,,D-aggregation-description,,sim
+30,variable / equation,especifico_vapor_digestao,diário,linha,L1_L7,-,numerico,,,A-arithmetic,resolved,sim
+31,variable / equation,especifico_vapor_digestao_medio,diário,linha_grupo,L1_L7,-,numerico,,,C-scoped,resolved,sim
+32,variable / equation,especifico_vapor_digestao_medio,mensal,linha_grupo,L1_L7,-,numerico,,,D-aggregation-description,,sim
+33,variable / equation,energia_digestao,diário,linha_grupo,L1_L7,GJ/t,numerico,,,A-arithmetic,resolved,sim
+34,variable / equation,energia_digestao,mensal,linha_grupo,L1_L7,GJ/t,numerico,,,D-aggregation-description,,sim
+35,variable,economicidade_evaporacao_ref,mensal,linha,L1_L7,-,numerico,,,none,,sim
+36,variable / equation,economicidade_evaporacao,diário,linha,L1_L7,-,numerico,,,A-arithmetic,resolved,sim
+37,variable,evaporado_total_evaporacao,diário,linha,L1_L7,t/h,numerico,,,none,,sim
+38,variable / equation,consumo_vapor_evaporadores,diário,linha,L1_L7,t/h,numerico,,,A-arithmetic,resolved,sim
+39,variable / equation,consumo_vapor_evaporadores_total,diário,linha_grupo,L1_L7,t/h,numerico,,,C-scoped,resolved,sim
+40,variable / equation,especifico_vapor_evaporacao,diário,linha,L1_L7,-,numerico,,,A-arithmetic,resolved,sim
+41,variable / equation,especifico_vapor_evaporacao,diário,linha_grupo,L1_L3,-,numerico,,,C-scoped,resolved,sim
+42,variable / equation,especifico_vapor_evaporacao,diário,linha_grupo,L4_L5,-,numerico,,,C-scoped,resolved,sim
+43,variable / equation,especifico_vapor_evaporacao,diário,linha_grupo,L6_L7,-,numerico,,,C-scoped,resolved,sim
+44,variable / equation,especifico_vapor_evaporacao_total,diário,linha_grupo,L1_L7,-,numerico,,,A-arithmetic,resolved,sim
+45,variable / equation,especifico_vapor_evaporacao_total,mensal,linha_grupo,L1_L7,-,numerico,,,D-aggregation-description,,sim
+46,variable / equation,energia_evaporacao,diário,linha_grupo,L1_L7,GJ/t,numerico,,,A-arithmetic,resolved,sim
+47,variable / equation,energia_evaporacao,mensal,linha_grupo,L1_L7,GJ/t,numerico,,,D-aggregation-description,,sim
+48,variable / equation,energia_bayer,diário,linha_grupo,L1_L7,GJ/t,numerico,,,A-arithmetic,resolved,sim
+49,variable / equation,energia_bayer,mensal,linha_grupo,L1_L7,GJ/t,numerico,,,D-aggregation-description,,sim
+50,variable / equation,energia_media_frct,mensal,linha_grupo,L1_L7,GJ/t,numerico,,,A-arithmetic,resolved,sim
+51,variable / equation,consumo_total_vapor,diário,linha_grupo,L1_L7,t/h,numerico,,,A-arithmetic,resolved,sim
+52,variable,consumo_vapor_outros,diário,linha_grupo,L1_L7,t/h,numerico,,,none,,sim
+53,variable / equation,especifico_vapor_outros,diário,linha_grupo,L1_L7,-,numerico,,,A-arithmetic,resolved,sim
+54,variable / equation,especifico_vapor_outros,mensal,linha_grupo,L1_L7,-,numerico,,,D-aggregation-description,,sim
+55,variable / equation,demanda_bayer,diário,linha_grupo,L1_L7,t/h,numerico,,,A-arithmetic,resolved,sim
+56,variable / equation,especifico_demanda_bayer,diário,linha_grupo,L1_L7,-,numerico,,,A-arithmetic,resolved,sim
+57,variable / equation,especifico_demanda_bayer_medio,mensal,linha_grupo,L1_L7,-,numerico,,,D-aggregation-description,,sim
+58,variable / equation,especifico_demanda_bayer_media_ponderada,mensal,linha_grupo,L1_L7,-,numerico,,,D-aggregation-description,,sim

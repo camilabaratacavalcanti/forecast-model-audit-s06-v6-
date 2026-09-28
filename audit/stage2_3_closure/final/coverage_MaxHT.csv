@@ -1,0 +1,121 @@
+linha,type,name,frequency,scope_type,scope_value,unit,value_type,allowed_values,declared_result_states,classe_expressao,A019,auditada
+3,variable / equation,alimentação_evap,anual,linha,L1_L7,m³/h,numerico,,,D-aggregation-description,,sim
+4,variable / equation,alimentação_evap,mensal,linha,L1_L7,m³/h,numerico,,,D-aggregation-description,,sim
+5,variable,alimentação_evap,diário,linha,L1_L7,m³/h,numerico,,,none,,sim
+6,variable / equation,alimentação_evap_total,diário,linha_grupo,L1_L7,m³/h,numerico,,,C-scoped,resolved,sim
+7,variable / equation,alimentação_evap_total,anual,linha_grupo,L1_L7,m³/h,numerico,,,D-aggregation-description,,sim
+8,variable / equation,alimentação_evap_total,mensal,linha_grupo,L1_L7,m³/h,numerico,,,D-aggregation-description,,sim
+9,variable,dosagem_evap,diário,linha,L1_L7,mg/l,numerico,,,none,,sim
+10,variable,dosagem_lth,diário,linha,L1_L7,mg/l,numerico,,,none,,sim
+11,variable / equation,esp_max_ht_planta,diário,linha_grupo,L1_L7,kg/t,numerico,,,C-scoped,resolved,sim
+12,variable / equation,esp_max_ht_planta,mensal,linha_grupo,L1_L7,kg/t,numerico,,,A-arithmetic,resolved,sim
+13,variable / equation,esp_max_ht_planta,anual,linha_grupo,L1_L7,kg/t,numerico,,,A-arithmetic,resolved,sim
+14,variable / equation,esp_maxht,diário,linha_grupo,L1_L3,kg/t,numerico,,,A-arithmetic,resolved,sim
+15,variable / equation,esp_maxht,diário,linha_grupo,L4_L5,kg/t,numerico,,,A-arithmetic,resolved,sim
+16,variable / equation,esp_maxht,diário,linha_grupo,L6_L7,kg/t,numerico,,,A-arithmetic,resolved,sim
+17,variable / equation,esp_maxht,anual,linha_grupo,L1_L3,kg/t,numerico,,,D-aggregation-description,,sim
+18,variable / equation,esp_maxht,anual,linha_grupo,L4_L5,kg/t,numerico,,,D-aggregation-description,,sim
+19,variable / equation,esp_maxht,anual,linha_grupo,L6_L7,kg/t,numerico,,,D-aggregation-description,,sim
+20,variable / equation,esp_maxht,mensal,linha_grupo,L1_L3,kg/t,numerico,,,D-aggregation-description,,sim
+21,variable / equation,esp_maxht,mensal,linha_grupo,L4_L5,kg/t,numerico,,,D-aggregation-description,,sim
+22,variable / equation,esp_maxht,mensal,linha_grupo,L6_L7,kg/t,numerico,,,D-aggregation-description,,sim
+23,parameter,fator_massa_total_max_ht,anual,linha_grupo,L1_L3,-,numerico,,,none,,sim
+24,parameter,fator_massa_total_max_ht,anual,linha_grupo,L4_L5,-,numerico,,,none,,sim
+25,parameter,fator_massa_total_max_ht,anual,linha_grupo,L6_L7,-,numerico,,,none,,sim
+26,parameter,fator_massa_total_max_ht,anual,linha_grupo,L1_L7,-,numerico,,,none,,sim
+27,variable / equation,fluxo_para_a13_linha_grupo,diário,linha_grupo,L1_L3,kg/h,numerico,,,C-scoped,resolved,sim
+28,variable / equation,fluxo_para_a13_linha_grupo,diário,linha_grupo,L4_L5,kg/h,numerico,,,C-scoped,resolved,sim
+29,variable / equation,fluxo_para_a13_linha_grupo,diário,linha_grupo,L6_L7,kg/h,numerico,,,C-scoped,resolved,sim
+30,variable / equation,fluxo_para_a13_linha_grupo,anual,linha_grupo,L1_L3,kg/h,numerico,,,D-aggregation-description,,sim
+31,variable / equation,fluxo_para_a13_linha_grupo,anual,linha_grupo,L4_L5,kg/h,numerico,,,D-aggregation-description,,sim
+32,variable / equation,fluxo_para_a13_linha_grupo,anual,linha_grupo,L6_L7,kg/h,numerico,,,D-aggregation-description,,sim
+33,variable / equation,fluxo_para_a13_linha_grupo,mensal,linha_grupo,L1_L3,kg/h,numerico,,,D-aggregation-description,,sim
+34,variable / equation,fluxo_para_a13_linha_grupo,mensal,linha_grupo,L4_L5,kg/h,numerico,,,D-aggregation-description,,sim
+35,variable / equation,fluxo_para_a13_linha_grupo,mensal,linha_grupo,L6_L7,kg/h,numerico,,,D-aggregation-description,,sim
+36,variable / equation,fluxo_para_a18_a13_linha_grupo,diário,linha_grupo,L1_L3,kg/h,numerico,,,A-arithmetic,resolved,sim
+37,variable / equation,fluxo_para_a18_a13_linha_grupo,diário,linha_grupo,L4_L5,kg/h,numerico,,,A-arithmetic,resolved,sim
+38,variable / equation,fluxo_para_a18_a13_linha_grupo,diário,linha_grupo,L6_L7,kg/h,numerico,,,A-arithmetic,resolved,sim
+39,variable / equation,fluxo_para_a18_a13_linha_grupo,anual,linha_grupo,L1_L3,kg/h,numerico,,,D-aggregation-description,,sim
+40,variable / equation,fluxo_para_a18_a13_linha_grupo,anual,linha_grupo,L4_L5,kg/h,numerico,,,D-aggregation-description,,sim
+41,variable / equation,fluxo_para_a18_a13_linha_grupo,anual,linha_grupo,L6_L7,kg/h,numerico,,,D-aggregation-description,,sim
+42,variable / equation,fluxo_para_a18_a13_linha_grupo,mensal,linha_grupo,L1_L3,kg/h,numerico,,,D-aggregation-description,,sim
+43,variable / equation,fluxo_para_a18_a13_linha_grupo,mensal,linha_grupo,L4_L5,kg/h,numerico,,,D-aggregation-description,,sim
+44,variable / equation,fluxo_para_a18_a13_linha_grupo,mensal,linha_grupo,L6_L7,kg/h,numerico,,,D-aggregation-description,,sim
+45,variable / equation,fluxo_para_a18_linha,diário,linha,L1_L7,kg/h,numerico,,,A-arithmetic,resolved,sim
+46,variable / equation,fluxo_para_a18_linha,anual,linha,L1_L7,kg/h,numerico,,,D-aggregation-description,,sim
+47,variable / equation,fluxo_para_a18_linha,mensal,linha,L1_L7,kg/h,numerico,,,D-aggregation-description,,sim
+48,variable / equation,fluxo_para_a18_linha_grupo,diário,linha_grupo,L1_L3,kg/h,numerico,,,C-scoped,resolved,sim
+49,variable / equation,fluxo_para_a18_linha_grupo,diário,linha_grupo,L4_L5,kg/h,numerico,,,C-scoped,resolved,sim
+50,variable / equation,fluxo_para_a18_linha_grupo,diário,linha_grupo,L6_L7,kg/h,numerico,,,C-scoped,resolved,sim
+51,variable / equation,fluxo_para_a18_linha_grupo,anual,linha_grupo,L1_L3,kg/h,numerico,,,D-aggregation-description,,sim
+52,variable / equation,fluxo_para_a18_linha_grupo,anual,linha_grupo,L4_L5,kg/h,numerico,,,D-aggregation-description,,sim
+53,variable / equation,fluxo_para_a18_linha_grupo,anual,linha_grupo,L6_L7,kg/h,numerico,,,D-aggregation-description,,sim
+54,variable / equation,fluxo_para_a18_linha_grupo,mensal,linha_grupo,L1_L3,kg/h,numerico,,,D-aggregation-description,,sim
+55,variable / equation,fluxo_para_a18_linha_grupo,mensal,linha_grupo,L4_L5,kg/h,numerico,,,D-aggregation-description,,sim
+56,variable / equation,fluxo_para_a18_linha_grupo,mensal,linha_grupo,L6_L7,kg/h,numerico,,,D-aggregation-description,,sim
+57,variable / equation,fluxo_para_a18_linha_total,diário,linha_grupo,L1_L7,kg/h,numerico,,,C-scoped,resolved,sim
+58,variable / equation,fluxo_para_a18_linha_total,anual,linha_grupo,L1_L7,kg/h,numerico,,,D-aggregation-description,,sim
+59,variable / equation,fluxo_para_a18_linha_total,mensal,linha_grupo,L1_L7,kg/h,numerico,,,D-aggregation-description,,sim
+60,variable / equation,fluxo_para_evap,diário,linha,L1_L7,kg/h,numerico,,,A-arithmetic,resolved,sim
+61,variable / equation,fluxo_para_evap,anual,linha,L1_L7,kg/h,numerico,,,D-aggregation-description,,sim
+62,variable / equation,fluxo_para_evap,mensal,linha,L1_L7,kg/h,numerico,,,D-aggregation-description,,sim
+63,variable / equation,fluxo_para_evap_total,diário,linha_grupo,L1_L7,kg/h,numerico,,,C-scoped,resolved,sim
+64,variable / equation,fluxo_para_evap_total,anual,linha_grupo,L1_L7,kg/h,numerico,,,D-aggregation-description,,sim
+65,variable / equation,fluxo_para_evap_total,mensal,linha_grupo,L1_L7,kg/h,numerico,,,D-aggregation-description,,sim
+66,variable / equation,lth,anual,linha,L1_L7,m³/h,numerico,,,D-aggregation-description,,sim
+67,variable / equation,lth,mensal,linha,L1_L7,m³/h,numerico,,,D-aggregation-description,,sim
+68,variable,lth,diário,linha,L1_L7,m³/h,numerico,,,none,,sim
+69,variable / equation,lth_total,diário,linha_grupo,L1_L7,m³/h,numerico,,,C-scoped,resolved,sim
+70,variable / equation,lth_total,anual,linha_grupo,L1_L7,m³/h,numerico,,,D-aggregation-description,,sim
+71,variable / equation,lth_total,mensal,linha_grupo,L1_L7,m³/h,numerico,,,D-aggregation-description,,sim
+72,variable / equation,lth_total_somatorio,anual,linha_grupo,L1_L7,m³/ano,numerico,,,D-aggregation-description,,sim
+73,variable / equation,lth_total_somatorio,mensal,linha_grupo,L1_L7,m³/mês,numerico,,,D-aggregation-description,,sim
+74,variable / equation,massa_total_max_ht,diário,linha_grupo,L1_L3,kg/d,numerico,,,A-arithmetic,resolved,sim
+75,variable / equation,massa_total_max_ht,diário,linha_grupo,L4_L5,kg/d,numerico,,,A-arithmetic,resolved,sim
+76,variable / equation,massa_total_max_ht,diário,linha_grupo,L6_L7,kg/d,numerico,,,A-arithmetic,resolved,sim
+77,variable / equation,massa_total_max_ht,anual,linha_grupo,L1_L3,kg/d,numerico,,,D-aggregation-description,,sim
+78,variable / equation,massa_total_max_ht,anual,linha_grupo,L4_L5,kg/d,numerico,,,D-aggregation-description,,sim
+79,variable / equation,massa_total_max_ht,anual,linha_grupo,L6_L7,kg/d,numerico,,,D-aggregation-description,,sim
+80,variable / equation,massa_total_max_ht,mensal,linha_grupo,L1_L3,kg/d,numerico,,,D-aggregation-description,,sim
+81,variable / equation,massa_total_max_ht,mensal,linha_grupo,L4_L5,kg/d,numerico,,,D-aggregation-description,,sim
+82,variable / equation,massa_total_max_ht,mensal,linha_grupo,L6_L7,kg/d,numerico,,,D-aggregation-description,,sim
+83,variable / equation,massa_total_max_ht_somatorio,anual,linha_grupo,L1_L3,kg/ano,numerico,,,D-aggregation-description,,sim
+84,variable / equation,massa_total_max_ht_somatorio,anual,linha_grupo,L4_L5,kg/ano,numerico,,,D-aggregation-description,,sim
+85,variable / equation,massa_total_max_ht_somatorio,anual,linha_grupo,L6_L7,kg/ano,numerico,,,D-aggregation-description,,sim
+86,variable / equation,massa_total_max_ht_somatorio,mensal,linha_grupo,L1_L3,kg/mês,numerico,,,D-aggregation-description,,sim
+87,variable / equation,massa_total_max_ht_somatorio,mensal,linha_grupo,L4_L5,kg/mês,numerico,,,D-aggregation-description,,sim
+88,variable / equation,massa_total_max_ht_somatorio,mensal,linha_grupo,L6_L7,kg/mês,numerico,,,D-aggregation-description,,sim
+89,variable / equation,massa_total_max_ht_total,diário,linha_grupo,L1_L7,kg/d,numerico,,,A-arithmetic,resolved,sim
+90,variable / equation,massa_total_max_ht_total,anual,linha_grupo,L1_L7,kg/d,numerico,,,D-aggregation-description,,sim
+91,variable / equation,massa_total_max_ht_total,mensal,linha_grupo,L1_L7,kg/d,numerico,,,D-aggregation-description,,sim
+92,variable / equation,massa_total_max_ht_total_somatorio,anual,linha_grupo,L1_L7,kg/ano,numerico,,,D-aggregation-description,,sim
+93,variable / equation,massa_total_max_ht_total_somatorio,mensal,linha_grupo,L1_L7,kg/mês,numerico,,,D-aggregation-description,,sim
+94,variable / equation,producao,anual,linha,L1_L7,t/d,numerico,,,D-aggregation-description,,sim
+95,variable / equation,producao,mensal,linha,L1_L7,t/d,numerico,,,D-aggregation-description,,sim
+96,variable / equation,producao_somatorio,anual,linha,L1_L7,t/ano,numerico,,,D-aggregation-description,,sim
+97,variable / equation,producao_somatorio,mensal,linha,L1_L7,t/mês,numerico,,,D-aggregation-description,,sim
+98,variable,producao,diário,linha,L1_L7,t/d,numerico,,,none,,sim
+99,variable / equation,producao_grupo,anual,linha_grupo,L1_L3,t/d,numerico,,,D-aggregation-description,,sim
+100,variable / equation,producao_grupo,anual,linha_grupo,L4_L5,t/d,numerico,,,D-aggregation-description,,sim
+101,variable / equation,producao_grupo,anual,linha_grupo,L6_L7,t/d,numerico,,,D-aggregation-description,,sim
+102,variable / equation,producao_grupo,mensal,linha_grupo,L1_L3,t/d,numerico,,,D-aggregation-description,,sim
+103,variable / equation,producao_grupo,mensal,linha_grupo,L4_L5,t/d,numerico,,,D-aggregation-description,,sim
+104,variable / equation,producao_grupo,mensal,linha_grupo,L6_L7,t/d,numerico,,,D-aggregation-description,,sim
+105,variable / equation,producao_grupo,diário,linha_grupo,L1_L3,t/d,numerico,,,C-scoped,resolved,sim
+106,variable / equation,producao_grupo,diário,linha_grupo,L4_L5,t/d,numerico,,,C-scoped,resolved,sim
+107,variable / equation,producao_grupo,diário,linha_grupo,L6_L7,t/d,numerico,,,C-scoped,resolved,sim
+108,variable / equation,producao_grupo_somatorio,anual,linha_grupo,L1_L3,t/ano,numerico,,,D-aggregation-description,,sim
+109,variable / equation,producao_grupo_somatorio,anual,linha_grupo,L4_L5,t/ano,numerico,,,D-aggregation-description,,sim
+110,variable / equation,producao_grupo_somatorio,anual,linha_grupo,L6_L7,t/ano,numerico,,,D-aggregation-description,,sim
+111,variable / equation,producao_grupo_somatorio,mensal,linha_grupo,L1_L3,t/mês,numerico,,,D-aggregation-description,,sim
+112,variable / equation,producao_grupo_somatorio,mensal,linha_grupo,L4_L5,t/mês,numerico,,,D-aggregation-description,,sim
+113,variable / equation,producao_grupo_somatorio,mensal,linha_grupo,L6_L7,t/mês,numerico,,,D-aggregation-description,,sim
+114,variable / equation,refinery,anual,linha_grupo,L1_L7,t/d,numerico,,,D-aggregation-description,,sim
+115,variable / equation,refinery,mensal,linha_grupo,L1_L7,t/d,numerico,,,D-aggregation-description,,sim
+116,variable / equation,refinery,diário,linha_grupo,L1_L7,t/d,numerico,,,C-scoped,resolved,sim
+117,variable / equation,refinery_somatorio,anual,linha_grupo,L1_L7,t/ano,numerico,,,D-aggregation-description,,sim
+118,variable / equation,refinery_somatorio,mensal,linha_grupo,L1_L7,t/mês,numerico,,,D-aggregation-description,,sim
+119,variable,total_horas_dia,diário,linha_grupo,L1_L3,h,numerico,,,none,,sim
+120,variable,total_horas_dia,diário,linha_grupo,L4_L5,h,numerico,,,none,,sim
+121,variable,total_horas_dia,diário,linha_grupo,L6_L7,h,numerico,,,none,,sim
+122,variable,total_horas_dia,diário,linha_grupo,L1_L7,h,numerico,,,none,,sim
