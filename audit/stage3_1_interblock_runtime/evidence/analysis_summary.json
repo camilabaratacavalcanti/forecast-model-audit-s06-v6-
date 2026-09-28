@@ -1,0 +1,14 @@
+{
+  "links_reconstructed": 13,
+  "pending_reconstructed": 16,
+  "instance_transfers_checked": 67,
+  "matches": 67,
+  "decoy_keys_written": 6462,
+  "pending_probed": {
+    "INTERBLOCK_SOURCE_NOT_LOADED": 16
+  },
+  "chains": [
+    "area_41.VAR16007 <- yield.VAR11031 <- production.VAR12031"
+  ],
+  "divergences": []
+}

@@ -1,0 +1,64 @@
+# baseline: 7877551 | implementação: e60af19 | branch: feature/area-41-block
+# python -m pytest -p no:cacheprovider -v tests/test_stage3_1_interblock_runtime.py
+============================= test session starts ==============================
+collecting ... collected 37 items
+
+tests/test_stage3_1_interblock_runtime.py::test_13_1_simple_lookup PASSED
+tests/test_stage3_1_interblock_runtime.py::test_13_2_local_identity_is_preserved PASSED
+tests/test_stage3_1_interblock_runtime.py::test_13_3_instance_is_exact PASSED
+tests/test_stage3_1_interblock_runtime.py::test_13_4_frequency_is_never_substituted PASSED
+tests/test_stage3_1_interblock_runtime.py::test_13_5_chain_a_b_c PASSED
+tests/test_stage3_1_interblock_runtime.py::test_13_6_pending_link_is_an_explicit_error PASSED
+tests/test_stage3_1_interblock_runtime.py::test_13_7_corrupted_seed_is_not_a_valid_link[consumer_both_linked_and_pending] PASSED
+tests/test_stage3_1_interblock_runtime.py::test_13_7_corrupted_seed_is_not_a_valid_link[duplicate_consumer] PASSED
+tests/test_stage3_1_interblock_runtime.py::test_13_7_corrupted_seed_is_not_a_valid_link[frequency_conversion] PASSED
+tests/test_stage3_1_interblock_runtime.py::test_13_7_corrupted_seed_is_not_a_valid_link[frequency_differs_from_definition] PASSED
+tests/test_stage3_1_interblock_runtime.py::test_13_7_corrupted_seed_is_not_a_valid_link[instance_not_in_producer] PASSED
+tests/test_stage3_1_interblock_runtime.py::test_13_7_corrupted_seed_is_not_a_valid_link[missing_field] PASSED
+tests/test_stage3_1_interblock_runtime.py::test_13_7_corrupted_seed_is_not_a_valid_link[no_instances] PASSED
+tests/test_stage3_1_interblock_runtime.py::test_13_7_corrupted_seed_is_not_a_valid_link[no_taxonomy] PASSED
+tests/test_stage3_1_interblock_runtime.py::test_13_7_corrupted_seed_is_not_a_valid_link[pending_outside_taxonomy] PASSED
+tests/test_stage3_1_interblock_runtime.py::test_13_7_corrupted_seed_is_not_a_valid_link[pending_to_loaded_block] PASSED
+tests/test_stage3_1_interblock_runtime.py::test_13_7_corrupted_seed_is_not_a_valid_link[pending_with_fictitious_producer] PASSED
+tests/test_stage3_1_interblock_runtime.py::test_13_7_corrupted_seed_is_not_a_valid_link[producer_in_other_block] PASSED
+tests/test_stage3_1_interblock_runtime.py::test_13_7_corrupted_seed_is_not_a_valid_link[repeated_instance] PASSED
+tests/test_stage3_1_interblock_runtime.py::test_13_7_corrupted_seed_is_not_a_valid_link[same_block] PASSED
+tests/test_stage3_1_interblock_runtime.py::test_13_7_corrupted_seed_is_not_a_valid_link[scope_differs] PASSED
+tests/test_stage3_1_interblock_runtime.py::test_13_7_corrupted_seed_is_not_a_valid_link[unit_conversion] PASSED
+tests/test_stage3_1_interblock_runtime.py::test_13_7_corrupted_seed_is_not_a_valid_link[unknown_consumer_id] PASSED
+tests/test_stage3_1_interblock_runtime.py::test_13_7_corrupted_seed_is_not_a_valid_link[unloaded_source_in_links] PASSED
+tests/test_stage3_1_interblock_runtime.py::test_13_7_corrupted_seed_is_not_a_valid_link[value_type_differs] PASSED
+tests/test_stage3_1_interblock_runtime.py::test_13_7b_unknown_and_rejected_consumers_are_explicit_errors PASSED
+tests/test_stage3_1_interblock_runtime.py::test_13_8_no_unit_conversion PASSED
+tests/test_stage3_1_interblock_runtime.py::test_13_9_same_name_in_two_blocks_stays_two_entities PASSED
+tests/test_stage3_1_interblock_runtime.py::test_13_10_order_does_not_change_the_result PASSED
+tests/test_stage3_1_interblock_runtime.py::test_13_11_cycle_is_rejected_before_execution PASSED
+tests/test_stage3_1_interblock_runtime.py::test_13_12_no_fallback_of_any_kind PASSED
+tests/test_stage3_1_interblock_runtime.py::test_runtime_does_not_read_workbooks_or_fonte PASSED
+tests/test_stage3_1_interblock_runtime.py::test_14_all_13_real_links_are_consumable PASSED
+tests/test_stage3_1_interblock_runtime.py::test_14_real_chain_three_levels PASSED
+tests/test_stage3_1_interblock_runtime.py::test_14_real_pending_links_raise PASSED
+tests/test_stage3_1_interblock_runtime.py::test_14_consumer_equation_runs_on_transferred_value PASSED
+tests/test_stage3_1_interblock_runtime.py::test_14_real_registry_matches_seed_file PASSED
+
+============================== 37 passed in 0.09s ==============================
+
+# python -m pytest -q -p no:cacheprovider (suíte completa)
+1533 passed in 16.94s
+
+# python audit/stage3_1_interblock_runtime/evidence/analysis_stage3_1.py
+{
+ "links_reconstructed": 13,
+ "pending_reconstructed": 16,
+ "instance_transfers_checked": 67,
+ "matches": 67,
+ "decoy_keys_written": 6462,
+ "pending_probed": {
+  "INTERBLOCK_SOURCE_NOT_LOADED": 16
+ },
+ "chains": [
+  "area_41.VAR16007 <- yield.VAR11031 <- production.VAR12031"
+ ],
+ "divergences": []
+}
+exit=0

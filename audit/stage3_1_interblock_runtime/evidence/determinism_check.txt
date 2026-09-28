@@ -1,0 +1,6 @@
+# Etapa 3.1 — determinismo da auditoria/runtime
+PYTHONHASHSEED=0 exit=0 sha256(resumo)=6091aae144fb97255f9d637bf77628b6f46993a5db1a50fc17471cbac9c5cf01
+PYTHONHASHSEED=424242 exit=0 sha256(resumo)=6091aae144fb97255f9d637bf77628b6f46993a5db1a50fc17471cbac9c5cf01
+PYTHONHASHSEED=7 exit=0 sha256(resumo)=6091aae144fb97255f9d637bf77628b6f46993a5db1a50fc17471cbac9c5cf01
+# pytest test_13_10 (ordem de carga embaralhada, 4 sementes)
+1 passed in 0.05s
