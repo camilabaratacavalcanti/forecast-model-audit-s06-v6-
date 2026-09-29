@@ -1,6 +1,6 @@
 M0_NONE: audit_exit=0 detected=False expected_detection=False OK 
 M1_PICK_ONE_OF_TWO_STATES: audit_exit=1 detected=True expected_detection=True OK [códigos] [isolamento]
-M2_PICK_ONE_OF_TWO_DETAILS: audit_exit=1 detected=True expected_detection=True OK [códigos] [determinismo] [isolamento]
+M2_PICK_ONE_OF_TWO_DETAILS: audit_exit=1 detected=True expected_detection=True OK [códigos] [isolamento]
 M3_INACTIVE_BRANCH_PROPAGATES: audit_exit=1 detected=True expected_detection=True OK [IF causal] [códigos] [divergências] [isolamento]
 M4_NO_TEMPORAL_WINDOW: audit_exit=1 detected=True expected_detection=True OK [idempotência] [identidade temporal]
 M5_SILENT_OVERWRITE: audit_exit=1 detected=True expected_detection=True OK [sobrescrita]

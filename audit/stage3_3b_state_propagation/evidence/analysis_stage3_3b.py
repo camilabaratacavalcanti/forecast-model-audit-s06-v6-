@@ -22,7 +22,8 @@ As expectativas vêm de:
         D33B-04  (variável, instância, período, janela efetiva): run_dates
                  diferentes coexistem; reexecução igual é idempotente;
                  resultado diferente na mesma identidade é conflito
-    * fronteira da 3.3C (agregação sobre estado) -> erro explícito;
+    * agregação (Etapa 3.3C, Policy B): o alvo compõe os estados da origem
+      (antes: fronteira STATE_AWARE_AGGREGATION_PENDING_STAGE_3.3C);
     * topologia da Etapa 3.2 (`plan_evidence.csv`).
 
 As dependências executadas são derivadas aqui com o módulo `ast` do
@@ -245,9 +246,23 @@ def simulate(steps, overrides, observed):
                 if source in stated:
                     stated[node] = stated[source]
         elif kind == "AGGREGATION":
-            source = next(r for r in rules if r["aggregation_rule_id"] == node_id)["source_variable_id"]
-            if any(n[0] == source for n in stated):
-                return "STATE_AWARE_AGGREGATION_PENDING_STAGE_3.3C", stated, done, used
+            # LEGACY_TEST_EXPECTATION (Etapa 3.3C): a fronteira
+            # STATE_AWARE_AGGREGATION_PENDING_STAGE_3.3C foi substituída pela
+            # Policy B — o alvo de cada instância compõe os estados das
+            # instâncias de origem da janela (aqui um único dia): estados
+            # diferentes / details diferentes são erro, senão propaga.
+            rule = next(r for r in rules if r["aggregation_rule_id"] == node_id)
+            source_var = variables[rule["source_variable_id"]]
+            for inst in expand(source_var["scope_type"], source_var["scope_value"]):
+                node = (rule["target_variable_id"], *inst)
+                done.add(node)
+                incoming = stated.get((rule["source_variable_id"], *inst), set())
+                if len({st for st, _d in incoming}) > 1:
+                    return "MULTI_STATE_COMBINATION_UNDEFINED", stated, done, used
+                if len(incoming) > 1:
+                    return "MULTI_DETAIL_COMPOSITION_UNDEFINED", stated, done, used
+                if incoming:
+                    stated[node] = incoming
     return None, stated, done, used
 
 

@@ -357,10 +357,12 @@ def test_equation_reading_a_stated_result_is_an_explicit_boundary():
     assert error.value.code == "STATED_RESULT_CONSUMED_AS_VALUE"
 
 
-def test_aggregation_over_a_stated_result_is_an_explicit_boundary():
+def test_aggregation_over_a_stated_result_preserves_state_and_detail():
     # LEGACY_TEST_EXPECTATION (fechamento 3.3B, D33B-03): o resultado com
-    # detail e SEM estado (Result(40.0, None, "nota")) deixou de ser válido;
-    # a fronteira da 3.3C é exercida com detail acompanhado de estado.
+    # detail e SEM estado (Result(40.0, None, "nota")) deixou de ser válido.
+    # LEGACY_TEST_EXPECTATION (Etapa 3.3C, Policy B): a fronteira
+    # STATE_AWARE_AGGREGATION_PENDING_STAGE_3.3C foi substituída pela
+    # agregação consciente de Result — o estado e o detail são preservados.
     orchestrator = synthetic()
     context = CalculationContext()
     inputs(context)
@@ -368,9 +370,12 @@ def test_aggregation_over_a_stated_result_is_an_explicit_boundary():
     context._scoped_results[next(k for k in context._scoped_results if k.entity_id == "VAR12902" and k.scope_value == "L2")] = Result(40.0, "INVALID_INPUT", "nota")
     plan = orchestrator.plan(["VAR12903"])
     only_aggregation = type(plan)(plan.targets, tuple(s for s in plan.steps if s.kind == "AGGREGATION"), ())
-    with pytest.raises(StateAwareAggregationPendingError) as error:
-        orchestrator.execute(only_aggregation, context, RUN)
-    assert error.value.code == "STATE_AWARE_AGGREGATION_PENDING_STAGE_3.3C"
+    trace = orchestrator.execute(only_aggregation, context, RUN)
+    assert context.get_variable_result("VAR12903", "linha", "L2", "2026-09") == \
+        Result(40.0, "INVALID_INPUT", "nota")
+    assert context.get_variable_result("VAR12903", "linha", "L1", "2026-09").is_plain
+    event = [e for e in trace.events if e.scope_value == "L2"][0]
+    assert (event.value, event.state, event.detail) == (40.0, "INVALID_INPUT", "nota")
 
 
 def test_forecast_value_carries_state_and_detail():

@@ -1,0 +1,30 @@
+{
+  "cases": 3679,
+  "chains": {
+    "C1_WINDOWS_PERIODS_RERUN": [
+      null,
+      null,
+      null,
+      null
+    ],
+    "C2_CONFLICT_SAME_IDENTITY": [
+      null,
+      "INTERBLOCK_CONSUMER_VALUE_CONFLICT"
+    ],
+    "C3_MULTI_STATE_IN_WINDOW": [
+      "MULTI_STATE_COMBINATION_UNDEFINED"
+    ],
+    "C4_VALUELESS_COMPONENT": [
+      null
+    ]
+  },
+  "deterministic": true,
+  "order_groups": 825,
+  "probe_sha256": {
+    "0": "3b8cc737500d19d7f0243fe3ccff9ca545224df73375adee1eb14b014b9db2ca",
+    "4242": "3b8cc737500d19d7f0243fe3ccff9ca545224df73375adee1eb14b014b9db2ca"
+  },
+  "problems": {},
+  "protected_touched": [],
+  "rows": 3686
+}

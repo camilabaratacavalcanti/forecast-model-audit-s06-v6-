@@ -512,6 +512,8 @@ def test_hash_seed_determinism():
 
 def test_no_new_states_and_no_policy_b():
     assert set(RESULT_STATE_TAXONOMY) == {NAR, INVALID, VFAIL}
+    # LEGACY_TEST_EXPECTATION (Etapa 3.3C): a Policy B foi implementada; o
+    # serviço de agregação usa a composição central em vez da fronteira.
     source = (REPO / "app/engine/temporal_aggregation_service.py").read_text(encoding="utf-8")
-    assert "require_plain_for_aggregation" in source
+    assert "compose_aggregated_result" in source and "require_plain_for_aggregation" not in source
     assert "BLOCKED_BY_UPSTREAM_ERROR" not in (REPO / "app/domain/values.py").read_text(encoding="utf-8")

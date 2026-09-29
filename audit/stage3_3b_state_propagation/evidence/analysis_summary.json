@@ -9,7 +9,7 @@
     "Normal"
   ],
   "deterministic": true,
-  "evidence_rows": 741,
+  "evidence_rows": 742,
   "f_pair": [
     "Normal",
     "1 By pass e LC"
@@ -105,9 +105,9 @@
       "steps": 4
     },
     "S7_AGGREGATION_3_3C": {
-      "code": "STATE_AWARE_AGGREGATION_PENDING_STAGE_3.3C",
-      "expected_code": "STATE_AWARE_AGGREGATION_PENDING_STAGE_3.3C",
-      "herdado": 9,
+      "code": null,
+      "expected_code": null,
+      "herdado": 10,
       "isolado": 121,
       "steps": 29
     },
@@ -139,9 +139,12 @@
       "audit/stage3_3a_result_contract/evidence/analysis_stage3_3a.py",
       "audit/stage3_3a_result_contract/evidence/result_transfer_evidence.csv",
       "audit/stage3_3b_state_propagation/REPORT_stage3_3B.md",
+      "audit/stage3_3b_state_propagation/REPORT_stage3_3B_closure.md",
       "audit/stage3_3b_state_propagation/evidence/analysis_stage3_3b.py",
       "audit/stage3_3b_state_propagation/evidence/analysis_summary.json",
       "audit/stage3_3b_state_propagation/evidence/determinism_check.txt",
+      "audit/stage3_3b_state_propagation/evidence/mutation_check.py",
+      "audit/stage3_3b_state_propagation/evidence/mutation_results.txt",
       "audit/stage3_3b_state_propagation/evidence/propagation_evidence.csv",
       "audit/stage3_3b_state_propagation/evidence/runtime_probe.py",
       "audit/stage3_3b_state_propagation/evidence/test_output.txt",

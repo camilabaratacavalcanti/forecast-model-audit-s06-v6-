@@ -531,12 +531,14 @@ class InterblockExecutionOrchestrator:
             value = self.temporal_orchestrator.run_aggregation_instance(
                 instance=instance, calculation_context=context, run_date=run_date,
             )
-            context.set_variable_value(
-                value.variable_id, value.value, value.scope_type, value.scope_value, value.period_id,
+            # Etapa 3.3C: grava o Result agregado completo (Policy B).
+            context.set_variable_result(
+                value.variable_id, value.result, value.scope_type, value.scope_value, value.period_id,
             )
             trace.events.append(ExecutionEvent(
                 index, AGGREGATION, node.node_id, node.block, value.variable_id,
                 value.scope_type, value.scope_value, value.period_id, value.value, "WRITTEN",
+                state=value.state, detail=value.detail,
             ))
 
     def _run_transfer(self, index, node, resolver, context, run_date, trace):

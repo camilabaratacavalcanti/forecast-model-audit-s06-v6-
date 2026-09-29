@@ -524,10 +524,15 @@ def test_31_inherited_state_is_stored_on_the_target_period_only():
     assert [k.period_id for k in keys] == [DAY]
 
 
-def test_32_daily_to_monthly_aggregation_over_a_state_fails_with_3_3c_boundary():
-    with pytest.raises(StateAwareAggregationPendingError) as error:
-        run_prop([BM], {(A, "L2"): stated(INVALID)})
-    assert error.value.code == "STATE_AWARE_AGGREGATION_PENDING_STAGE_3.3C"
+def test_32_daily_to_monthly_aggregation_over_a_state_composes_it():
+    """
+    LEGACY_TEST_EXPECTATION (Etapa 3.3C): antes, fronteira
+    STATE_AWARE_AGGREGATION_PENDING_STAGE_3.3C; agora Policy B — o estado
+    herdado (sem value) é preservado no resultado mensal, sem value.
+    """
+    _, context = run_prop([BM], {(A, "L2"): stated(INVALID)})
+    assert res(context, BM, "L2", MONTH) == stated(INVALID)
+    assert res(context, BM, "L1", MONTH) == Result(20.0)
 
 
 def test_33_aggregation_without_state_is_unchanged():
@@ -536,12 +541,11 @@ def test_33_aggregation_without_state_is_unchanged():
     assert {e.period_id for e in trace.of_kind(AGGREGATION)} == {MONTH}
 
 
-def test_34_monthly_consumer_does_not_receive_a_state_through_a_blocked_aggregation():
-    context = CalculationContext()
-    with pytest.raises(StateAwareAggregationPendingError):
-        run_prop([EM], {(A, "L2"): stated(INVALID)}, context=context)
-    with pytest.raises(VariableNotFoundError):
-        res(context, EM, "L2", MONTH)
+def test_34_monthly_consumer_receives_the_aggregated_state():
+    """LEGACY_TEST_EXPECTATION (Etapa 3.3C): o estado agregado atravessa o vínculo mensal."""
+    _, context = run_prop([EM], {(A, "L2"): stated(INVALID, "d")})
+    assert res(context, EM, "L2", MONTH) == stated(INVALID, "d")
+    assert res(context, EM, "L3", MONTH) == Result(60.0)
 
 
 def test_35_annual_state_transfers_on_the_annual_period():

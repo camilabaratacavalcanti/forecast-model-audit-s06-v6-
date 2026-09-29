@@ -25,6 +25,19 @@ Responsabilidades:
       regra que o produziu (aggregation_rule_id), para que múltiplas
       regras sobre a mesma Variable/frequência não colidam.
 
+Policy B (Etapa 3.3C) — agregação consciente de Result:
+    cada sub-período de origem (e cada peso, na WEIGHTED_AVERAGE) é lido
+    como Result UMA vez; a composição semântica é
+    `app.domain.state_propagation.compose_aggregated_result` (núcleo
+    único da 3.3B): estados presentes iguais propagam, None não conflita,
+    estados diferentes -> MULTI_STATE_COMBINATION_UNDEFINED, details
+    diferentes (inclusive None x texto) -> MULTI_DETAIL_COMPOSITION_UNDEFINED.
+    A aritmética de cada agregador é a mesma de antes e só roda quando
+    todo componente tem value; componente com estado e sem value ->
+    value agregado None (com o estado composto). Janela vazia continua
+    EmptyAggregationWindowError; "F" e texto continuam
+    AggregationFailureError / NonNumericAggregationError.
+
 Não é responsabilidade deste componente:
     - persistir o resultado;
     - decidir quais variáveis devem ter regras de agregação;
@@ -37,7 +50,7 @@ from datetime import date, timedelta
 
 from app.domain.forecast.aggregation import AggregationRule
 from app.domain.forecast.models import ForecastValue
-from app.domain.results import require_plain_for_aggregation
+from app.domain.state_propagation import compose_aggregated_result
 from app.domain.values import (
     NumericValue,
     ScalarValue,
@@ -96,8 +109,9 @@ class TemporalAggregationService:
             end_date=window_end,
         )
 
-        values = [
-            self._plain_value(
+        # 1. leitura única dos Results consumidos
+        sources = [
+            self._read_result(
                 calculation_context,
                 rule.source_variable_id,
                 scope_type,
@@ -107,7 +121,7 @@ class TemporalAggregationService:
             for period_id in source_period_ids
         ]
 
-        if not values:
+        if not sources:
             raise EmptyAggregationWindowError(
                 "Nenhum valor de origem encontrado para "
                 f"{rule.source_variable_id} entre "
@@ -116,33 +130,52 @@ class TemporalAggregationService:
                 f"(regra {rule.aggregation_rule_id})."
             )
 
-        self._require_numeric_series(
-            rule, rule.source_variable_id, source_period_ids, values
-        )
-
-        if rule.aggregation_type == "WEIGHTED_AVERAGE":
-            result = self._weighted_average(
-                rule=rule,
-                calculation_context=calculation_context,
-                scope_type=scope_type,
-                scope_value=scope_value,
-                source_period_ids=source_period_ids,
-                values=values,
+        weights = [
+            self._read_result(
+                calculation_context,
+                rule.weight_variable_id,
+                scope_type,
+                scope_value,
+                period_id,
             )
-        elif rule.aggregation_type == "SUM":
-            if rule.integration_factor == 1:
-                result = sum(values)
-            else:
-                result = sum(
+            for period_id in source_period_ids
+        ] if rule.aggregation_type == "WEIGHTED_AVERAGE" else []
+
+        def aggregate_values():
+            # 2. aritmética existente, inalterada
+            values = [result.value for _key, result in sources]
+
+            self._require_numeric_series(
+                rule, rule.source_variable_id, source_period_ids, values
+            )
+
+            if rule.aggregation_type == "WEIGHTED_AVERAGE":
+                return self._weighted_average(
+                    rule=rule,
+                    source_period_ids=source_period_ids,
+                    values=values,
+                    weights=[result.value for _key, result in weights],
+                )
+
+            if rule.aggregation_type == "SUM":
+                if rule.integration_factor == 1:
+                    return sum(values)
+
+                return sum(
                     value * rule.integration_factor for value in values
                 )
-        else:
+
             # AVERAGE e MOVING_AVERAGE: mesma aritmética (média
             # simples), distintas apenas pela origem da janela —
             # calendário derivado da frequência (AVERAGE) ou janela
             # explícita da regra (MOVING_AVERAGE, ver
             # `_resolve_window`).
-            result = sum(values) / len(values)
+            return sum(values) / len(values)
+
+        # 1+2+3: composição semântica (antes da matemática) e Result
+        result = compose_aggregated_result(
+            rule.target_variable_id, sources + weights, aggregate_values
+        )
 
         target_period = self.time_period_resolver.effective_window(
             frequency=rule.target_frequency,
@@ -156,10 +189,12 @@ class TemporalAggregationService:
             frequency=rule.target_frequency,
             forecast_year=run_date.year,
             period_id=target_period.period_id,
-            value=result,
+            value=result.value,
             execution_id=execution_id,
             aggregation_rule_id=rule.aggregation_rule_id,
             run_date=run_date,
+            state=result.state,
+            detail=result.detail,
         )
 
     def _resolve_window(
@@ -260,18 +295,18 @@ class TemporalAggregationService:
         return period_ids
 
     @staticmethod
-    def _plain_value(
+    def _read_result(
         calculation_context: CalculationContext,
         variable_id: str,
         scope_type: str | None,
         scope_value: str | None,
         period_id: str,
-    ) -> ScalarValue:
+    ) -> tuple:
         """
-        Valor de origem de uma agregação. Etapa 3.3A: um resultado com
-        state/detail não é agregado sem a Policy B
-        (STATE_AWARE_AGGREGATION_PENDING_STAGE_3.3C) — erro explícito;
-        resultados sem estado seguem o comportamento numérico existente.
+        Componente de uma agregação: (chave, Result) de um sub-período,
+        lido do armazenamento canônico com a identidade temporal vigente
+        (3.3B). Nada é descartado aqui: state e detail seguem para a
+        composição (Policy B).
         """
 
         result = calculation_context.get_variable_result(
@@ -280,9 +315,8 @@ class TemporalAggregationService:
             scope_value=scope_value,
             period_id=period_id,
         )
-        require_plain_for_aggregation(variable_id, period_id, result)
 
-        return result.value
+        return (variable_id, scope_type, scope_value, period_id), result
 
     @staticmethod
     def _require_numeric_series(
@@ -325,23 +359,10 @@ class TemporalAggregationService:
     @staticmethod
     def _weighted_average(
         rule: AggregationRule,
-        calculation_context: CalculationContext,
-        scope_type: str | None,
-        scope_value: str | None,
         source_period_ids: list[str],
         values: list[NumericValue],
+        weights: list[ScalarValue],
     ) -> NumericValue:
-        weights = [
-            TemporalAggregationService._plain_value(
-                calculation_context,
-                rule.weight_variable_id,
-                scope_type,
-                scope_value,
-                period_id,
-            )
-            for period_id in source_period_ids
-        ]
-
         TemporalAggregationService._require_numeric_series(
             rule, rule.weight_variable_id, source_period_ids, weights
         )

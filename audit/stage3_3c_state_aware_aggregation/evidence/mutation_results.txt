@@ -1,0 +1,18 @@
+M0_NONE: tests_fail=False audit_fail=False OK 
+M1_DROP_STATE: tests_fail=True audit_fail=True DETECTED [divergência]
+M1b_SERVICE_DROPS_STATE: tests_fail=True audit_fail=True DETECTED [divergência]
+M1c_ORCHESTRATOR_WRITES_ONLY_VALUE: tests_fail=True audit_fail=True DETECTED [interbloco/temporal] [sobrescrita]
+M2_FIRST_STATE_WINS: tests_fail=True audit_fail=True DETECTED [divergência]
+M3_LAST_STATE_WINS: tests_fail=True audit_fail=True DETECTED [divergência]
+M4_FIRST_DETAIL_WINS: tests_fail=True audit_fail=True DETECTED [divergência]
+M5_IGNORE_DETAIL_CONFLICT: tests_fail=True audit_fail=True DETECTED [divergência]
+M6_NONE_IS_A_STATE: tests_fail=True audit_fail=True DETECTED [divergência]
+M7_ORDER_DEPENDENT: tests_fail=True audit_fail=True DETECTED [divergência]
+M8_DROP_DETAIL: tests_fail=True audit_fail=True DETECTED [divergência]
+M9a_SEMANTICS_WITHOUT_WEIGHTS: tests_fail=True audit_fail=True DETECTED [divergência]
+M9b_SEMANTICS_ON_LAST_DAY_ONLY: tests_fail=True audit_fail=True DETECTED [divergência]
+M9c_MATH_IGNORES_VALUELESS: tests_fail=True audit_fail=True DETECTED [divergência]
+mutations introduced: 13
+mutations detected: 13
+mutations survived: 0 []
+MUTATION_CHECK: PASS

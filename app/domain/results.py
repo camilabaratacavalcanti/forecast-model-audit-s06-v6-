@@ -53,8 +53,8 @@ Fronteiras explícitas (não implementadas nesta etapa, sem default):
         app.domain.state_propagation; o evaluator direto passa a levantar
         STATED_RESULT_CONSUMED_AS_VALUE.)
     STATE_AWARE_AGGREGATION_PENDING_STAGE_3.3C
-        uma agregação sobre resultados com state/detail não tem regra
-        definida (Policy B) -> erro explícito.
+        (Etapa 3.3A; substituída na 3.3C pela Policy B em
+        app.domain.state_propagation.compose_aggregated_result.)
 """
 
 from __future__ import annotations
@@ -126,7 +126,12 @@ class StatefulResultOnScalarApiError(ResultContractError):
 
 
 class StateAwareAggregationPendingError(ResultContractError):
-    """Agregação sobre resultados com state/detail (Etapa 3.3C)."""
+    """
+    RETIRADA na Etapa 3.3C: a agregação sobre resultados com state/detail
+    é implementada pela Policy B (state_propagation.compose_aggregated_result)
+    e não levanta mais este erro. A classe permanece só para
+    compatibilidade de importação.
+    """
 
     code = "STATE_AWARE_AGGREGATION_PENDING_STAGE_3.3C"
 
@@ -278,16 +283,6 @@ def scalar_of(result: Result, where: str):
     return result.value
 
 
-def require_plain_for_aggregation(variable_id: str, period_id, result: Result) -> None:
-    if not result.is_plain:
-        raise StateAwareAggregationPendingError(
-            f"{StateAwareAggregationPendingError.code}: {variable_id} "
-            f"(period_id={period_id!r}) tem state={result.state!r}, "
-            f"detail={result.detail!r}; agregação state-aware (Policy B) "
-            "pertence à Etapa 3.3C."
-        )
-
-
 __all__ = [
     "AmbiguousResultWindowError",
     "DetailWithoutStateError",
@@ -301,7 +296,6 @@ __all__ = [
     "StatedResultConsumedAsValueError",
     "as_result",
     "check_value_domain",
-    "require_plain_for_aggregation",
     "require_detail_with_state",
     "require_plain_for_calculation",
     "results_equivalent",

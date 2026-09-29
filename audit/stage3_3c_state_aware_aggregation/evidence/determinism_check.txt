@@ -1,0 +1,7 @@
+probe PYTHONHASHSEED=0 sha256=3b8cc737500d19d7f0243fe3ccff9ca545224df73375adee1eb14b014b9db2ca
+probe PYTHONHASHSEED=4242 sha256=3b8cc737500d19d7f0243fe3ccff9ca545224df73375adee1eb14b014b9db2ca
+byte-identical: True
+seed=0 200 passed in 3.72s
+seed=1 200 passed in 3.85s
+seed=4242 200 passed in 3.70s
+seed=987654321 200 passed in 3.87s
