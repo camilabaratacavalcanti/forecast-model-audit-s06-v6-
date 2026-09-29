@@ -4,23 +4,23 @@
     "stated_input": "VAR12022"
   },
   "baseline": "eee88d6c9045f040270bc0d7c99d958485db9fff",
-  "control_choice": {
-    "VAR16021@L4": "Normal",
-    "VAR16021@L5": "Normal",
-    "VAR16021@L6": "Normal",
-    "VAR16021@L7": "Normal"
-  },
+  "control_pair": [
+    "Normal",
+    "Normal"
+  ],
   "deterministic": true,
-  "evidence_rows": 338,
-  "f_branch_choice": {
-    "VAR16021@L4": "Normal",
-    "VAR16021@L5": "1 By pass e LC",
-    "VAR16021@L6": "Normal",
-    "VAR16021@L7": "Normal"
-  },
-  "graph": {
-    "nodes_with_edges": 630,
-    "unresolved_references": 0
+  "evidence_rows": 741,
+  "f_pair": [
+    "Normal",
+    "1 By pass e LC"
+  ],
+  "if_causal": {
+    "active_pair": [
+      "1 By pass e LC",
+      "1 By pass e LC"
+    ],
+    "branch_index": 4,
+    "variable": "VAR16022"
   },
   "literal_mapping": {
     "declared_result_states": {
@@ -49,19 +49,31 @@
   },
   "problems": {},
   "scenarios": {
+    "S10_IF_ACTIVE_BRANCH": {
+      "code": null,
+      "expected_code": null,
+      "herdado": 4,
+      "isolado": 37,
+      "steps": 23
+    },
+    "S11_IF_TWO_STATES_ONE_BRANCH": {
+      "code": null,
+      "expected_code": null,
+      "herdado": 5,
+      "isolado": 36,
+      "steps": 23
+    },
     "S1_A41_F": {
       "code": null,
       "expected_code": null,
       "herdado": 4,
       "isolado": 37,
-      "stated_results": 4,
       "steps": 23
     },
     "S2_A41_CONTROL": {
       "code": null,
       "expected_code": null,
       "isolado": 41,
-      "stated_results": 0,
       "steps": 23
     },
     "S3_LTH_META": {
@@ -69,7 +81,6 @@
       "expected_code": null,
       "herdado": 6,
       "isolado": 30,
-      "stated_results": 7,
       "steps": 6
     },
     "S4_MULTI_STATE": {
@@ -77,7 +88,6 @@
       "expected_code": "MULTI_STATE_COMBINATION_UNDEFINED",
       "herdado": 7,
       "isolado": 33,
-      "stated_results": 8,
       "steps": 23
     },
     "S5_MULTI_DETAIL": {
@@ -85,7 +95,6 @@
       "expected_code": "MULTI_DETAIL_COMPOSITION_UNDEFINED",
       "herdado": 6,
       "isolado": 15,
-      "stated_results": 8,
       "steps": 4
     },
     "S6_SAME_DETAIL": {
@@ -93,7 +102,6 @@
       "expected_code": null,
       "herdado": 7,
       "isolado": 15,
-      "stated_results": 9,
       "steps": 4
     },
     "S7_AGGREGATION_3_3C": {
@@ -101,7 +109,6 @@
       "expected_code": "STATE_AWARE_AGGREGATION_PENDING_STAGE_3.3C",
       "herdado": 9,
       "isolado": 121,
-      "stated_results": 16,
       "steps": 29
     },
     "S8_OFFICIAL_ENERGY": {
@@ -109,8 +116,13 @@
       "expected_code": null,
       "herdado": 1,
       "isolado": 6,
-      "stated_results": 2,
       "steps": 1
+    },
+    "S9_IF_INACTIVE_BRANCH": {
+      "code": null,
+      "expected_code": null,
+      "isolado": 41,
+      "steps": 23
     }
   },
   "static": {
@@ -122,22 +134,71 @@
       "app/engine/equation_engine.py",
       "app/engine/expression_evaluator.py",
       "app/engine/forecast_engine.py",
+      "app/engine/interblock_orchestrator.py",
       "app/engine/interblock_resolver.py",
+      "audit/stage3_3a_result_contract/evidence/analysis_stage3_3a.py",
+      "audit/stage3_3a_result_contract/evidence/result_transfer_evidence.csv",
+      "audit/stage3_3b_state_propagation/REPORT_stage3_3B.md",
+      "audit/stage3_3b_state_propagation/evidence/analysis_stage3_3b.py",
+      "audit/stage3_3b_state_propagation/evidence/analysis_summary.json",
+      "audit/stage3_3b_state_propagation/evidence/determinism_check.txt",
+      "audit/stage3_3b_state_propagation/evidence/propagation_evidence.csv",
+      "audit/stage3_3b_state_propagation/evidence/runtime_probe.py",
+      "audit/stage3_3b_state_propagation/evidence/test_output.txt",
       "tests/test_stage2_4_workbook_contract.py",
+      "tests/test_stage3_2_execution_orchestration.py",
       "tests/test_stage3_3a_result_contract.py",
+      "tests/test_stage3_3b_closure.py",
       "tests/test_stage3_3b_state_propagation.py"
     ],
     "f_constant_holders": [
       "app/domain/values.py"
-    ],
-    "priority_words_in_policy": [
-      "prioridade",
-      "prioridade"
     ],
     "propagation_imports": [
       "__future__",
       "app.domain.results"
     ],
     "protected_touched": []
+  },
+  "temporal": {
+    "order_targets": [
+      "VAR16008",
+      "VAR18011"
+    ],
+    "runs": {
+      "T1_FORWARD": [
+        null,
+        null,
+        null
+      ],
+      "T2_REFERENCE": [
+        null,
+        null
+      ],
+      "T2_RERUN_P1": [
+        null,
+        null,
+        null
+      ],
+      "T3_ORDER_FORWARD": [
+        null,
+        null,
+        null
+      ],
+      "T3_ORDER_SHUFFLED": [
+        null,
+        null,
+        null
+      ],
+      "T4_CONFLICT": [
+        null,
+        "INTERBLOCK_CONSUMER_VALUE_CONFLICT"
+      ]
+    },
+    "targets": [
+      "VAR18010",
+      "VAR16008",
+      "VAR18011"
+    ]
   }
 }

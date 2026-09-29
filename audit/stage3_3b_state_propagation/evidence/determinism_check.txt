@@ -1,2 +1,6 @@
 probe PYTHONHASHSEED=0 sha-equal PYTHONHASHSEED=4242: True
-bytes: 99229
+bytes: 253376
+seed=0 100 passed in 2.90s
+seed=1 100 passed in 3.44s
+seed=4242 100 passed in 3.24s
+seed=987654321 100 passed in 2.94s
