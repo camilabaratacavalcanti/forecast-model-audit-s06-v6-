@@ -1,0 +1,106 @@
+# baseline: a733487 | HEAD: 472949b | branch: feature/area-41-block
+# python -m pytest -p no:cacheprovider -v tests/test_stage3_3a_result_contract.py
+============================= test session starts ==============================
+collecting ... collected 50 items
+
+tests/test_stage3_3a_result_contract.py::test_01_result_with_value_only PASSED
+tests/test_stage3_3a_result_contract.py::test_02_result_with_value_and_state PASSED
+tests/test_stage3_3a_result_contract.py::test_03_result_with_value_state_and_detail PASSED
+tests/test_stage3_3a_result_contract.py::test_04_detail_is_preserved_exactly PASSED
+tests/test_stage3_3a_result_contract.py::test_05_invalid_state_is_rejected[OK] PASSED
+tests/test_stage3_3a_result_contract.py::test_05_invalid_state_is_rejected[no_applicable_rule] PASSED
+tests/test_stage3_3a_result_contract.py::test_05_invalid_state_is_rejected[NO_APPLICABLE_RULE ] PASSED
+tests/test_stage3_3a_result_contract.py::test_05_invalid_state_is_rejected[F] PASSED
+tests/test_stage3_3a_result_contract.py::test_05_invalid_state_is_rejected[] PASSED
+tests/test_stage3_3a_result_contract.py::test_05_invalid_state_is_rejected[ERROR] PASSED
+tests/test_stage3_3a_result_contract.py::test_06_valid_state_is_accepted[INVALID_INPUT] PASSED
+tests/test_stage3_3a_result_contract.py::test_06_valid_state_is_accepted[NO_APPLICABLE_RULE] PASSED
+tests/test_stage3_3a_result_contract.py::test_06_valid_state_is_accepted[VALIDATION_FAILED] PASSED
+tests/test_stage3_3a_result_contract.py::test_06b_structural_values_are_not_converted PASSED
+tests/test_stage3_3a_result_contract.py::test_07_value_in_allowed_values_is_accepted PASSED
+tests/test_stage3_3a_result_contract.py::test_08_value_outside_allowed_values_is_rejected[Parado] PASSED
+tests/test_stage3_3a_result_contract.py::test_08_value_outside_allowed_values_is_rejected[lc] PASSED
+tests/test_stage3_3a_result_contract.py::test_08_value_outside_allowed_values_is_rejected[LC ] PASSED
+tests/test_stage3_3a_result_contract.py::test_08_value_outside_allowed_values_is_rejected[normal] PASSED
+tests/test_stage3_3a_result_contract.py::test_09_no_allowed_values_means_no_artificial_validation PASSED
+tests/test_stage3_3a_result_contract.py::test_10_domain_validation_is_centralized PASSED
+tests/test_stage3_3a_result_contract.py::test_11_two_instances PASSED
+tests/test_stage3_3a_result_contract.py::test_12_two_periods PASSED
+tests/test_stage3_3a_result_contract.py::test_13_two_frequencies PASSED
+tests/test_stage3_3a_result_contract.py::test_14_same_variable_different_identities PASSED
+tests/test_stage3_3a_result_contract.py::test_15_existing_conflict_is_still_detected PASSED
+tests/test_stage3_3a_result_contract.py::test_16_21_transfer_preserves_the_whole_result[result0] PASSED
+tests/test_stage3_3a_result_contract.py::test_16_21_transfer_preserves_the_whole_result[result1] PASSED
+tests/test_stage3_3a_result_contract.py::test_16_21_transfer_preserves_the_whole_result[result2] PASSED
+tests/test_stage3_3a_result_contract.py::test_16_21_transfer_preserves_the_whole_result[result3] PASSED
+tests/test_stage3_3a_result_contract.py::test_16_21_chain_preserves_state_and_detail_through_every_hop PASSED
+tests/test_stage3_3a_result_contract.py::test_16_21_orchestrated_transfer_carries_state_detail_in_trace PASSED
+tests/test_stage3_3a_result_contract.py::test_consumer_domain_is_validated_on_transfer PASSED
+tests/test_stage3_3a_result_contract.py::test_equation_reading_a_stated_result_is_an_explicit_boundary PASSED
+tests/test_stage3_3a_result_contract.py::test_aggregation_over_a_stated_result_is_an_explicit_boundary PASSED
+tests/test_stage3_3a_result_contract.py::test_forecast_value_carries_state_and_detail PASSED
+tests/test_stage3_3a_result_contract.py::test_22_simple_chain_still_works PASSED
+tests/test_stage3_3a_result_contract.py::test_23_production_yield_area_41_same_topology PASSED
+tests/test_stage3_3a_result_contract.py::test_24_production_energy_same_topology PASSED
+tests/test_stage3_3a_result_contract.py::test_25_production_max_ht_same_topology PASSED
+tests/test_stage3_3a_result_contract.py::test_23_25_planning_code_is_unchanged_since_stage_3_2 PASSED
+tests/test_stage3_3a_result_contract.py::test_26_pending_dependency_still_fails PASSED
+tests/test_stage3_3a_result_contract.py::test_28_31_block_results_are_plain_and_identical_to_the_existing_engine[yield-VAR11226] PASSED
+tests/test_stage3_3a_result_contract.py::test_28_31_block_results_are_plain_and_identical_to_the_existing_engine[production-VAR12031] PASSED
+tests/test_stage3_3a_result_contract.py::test_28_31_block_results_are_plain_and_identical_to_the_existing_engine[energy-VAR18002] PASSED
+tests/test_stage3_3a_result_contract.py::test_28_31_block_results_are_plain_and_identical_to_the_existing_engine[max_ht-VAR13039] PASSED
+tests/test_stage3_3a_result_contract.py::test_27_legacy_scalar_view_is_derived_from_the_canonical_store PASSED
+tests/test_stage3_3a_result_contract.py::test_32_load_order_does_not_matter PASSED
+tests/test_stage3_3a_result_contract.py::test_33_hash_seed_does_not_matter PASSED
+tests/test_stage3_3a_result_contract.py::test_34_repeated_execution_is_identical_and_idempotent PASSED
+
+============================== 50 passed in 1.33s ==============================
+
+# python -m pytest -q -p no:cacheprovider (suíte completa)
+1620 passed in 23.35s
+
+# python audit/stage3_3a_result_contract/evidence/analysis_stage3_3a.py
+{
+ "representation_cases": 19,
+ "allowed_values_writes": 10,
+ "identity_reads": 7,
+ "links_checked": 13,
+ "instance_transfers_checked": 67,
+ "decoy_results_written": 156,
+ "pending_checked": 16,
+ "official_plans_compared_with_stage_3_2": 446,
+ "deterministic_across_hash_seeds": true,
+ "divergências": 0,
+ "representação": 0,
+ "allowed_values": 0,
+ "identidade": 0,
+ "transferências com perda": 0,
+ "atalhos": 0,
+ "pendências": 0,
+ "valores fictícios": 0,
+ "topologia": 0,
+ "determinismo": 0,
+ "problems": []
+}
+exit=0
+
+# auditorias anteriores reexecutadas no HEAD (sem gravar)
+stage3_1 exit=0
+stage3_2 exit=0
+stage2_6c exit=0
+
+# git diff --stat a733487 HEAD (fora de audit/)
+ app/domain/forecast/collection.py            |  11 +-
+ app/domain/forecast/models.py                |  25 +-
+ app/domain/results.py                        | 190 ++++++++++
+ app/engine/calculation_context.py            | 120 +++++-
+ app/engine/expression_evaluator.py           |  20 +-
+ app/engine/interblock_orchestrator.py        |  27 +-
+ app/engine/interblock_resolver.py            |  54 ++-
+ app/engine/temporal_aggregation_service.py   |  44 ++-
+ app/engine/temporal_forecast_orchestrator.py |   6 +-
+ tests/test_stage3_3a_result_contract.py      | 543 +++++++++++++++++++++++++++
+ 10 files changed, 1004 insertions(+), 36 deletions(-)
+
+# data/ inalterado desde a733487
+(vazio = nenhuma alteração)

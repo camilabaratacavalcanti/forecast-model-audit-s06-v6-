@@ -1,0 +1,22 @@
+{
+  "representation_cases": 19,
+  "allowed_values_writes": 10,
+  "identity_reads": 7,
+  "links_checked": 13,
+  "instance_transfers_checked": 67,
+  "decoy_results_written": 156,
+  "pending_checked": 16,
+  "official_plans_compared_with_stage_3_2": 446,
+  "deterministic_across_hash_seeds": true,
+  "divergências": 0,
+  "representação": 0,
+  "allowed_values": 0,
+  "identidade": 0,
+  "transferências com perda": 0,
+  "atalhos": 0,
+  "pendências": 0,
+  "valores fictícios": 0,
+  "topologia": 0,
+  "determinismo": 0,
+  "problems": []
+}
