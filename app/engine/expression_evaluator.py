@@ -27,6 +27,10 @@ import ast
 import math
 import operator
 
+from app.domain.results import (
+    ResultContractError,
+    require_plain_for_calculation,
+)
 from app.domain.values import (
     CONDITIONAL_FAILURE,
     ScalarValue,
@@ -231,7 +235,7 @@ class ExpressionEvaluator:
 
         for period_id in candidate_period_ids:
             try:
-                return self.calculation_context.get_variable_value(
+                result = self.calculation_context.get_variable_result(
                     identifier,
                     scope_type=scope_type,
                     scope_value=scope_value,
@@ -239,6 +243,14 @@ class ExpressionEvaluator:
                 )
             except VariableNotFoundError as exc:
                 last_error = exc
+                continue
+
+            # Etapa 3.3A: um resultado com state/detail não é consumido
+            # em cálculo sem a semântica da Etapa 3.3B (erro explícito,
+            # nunca descarte silencioso do estado).
+            require_plain_for_calculation(identifier, result)
+
+            return result.value
 
         raise last_error
 
@@ -390,6 +402,12 @@ class ExpressionEvaluator:
             raise
 
         except ParameterNotFoundError:
+            raise
+
+        except ResultContractError:
+            # Etapa 3.3A: fronteira do contrato de resultado (ex.:
+            # STATE_PROPAGATION_PENDING_STAGE_3.3B) — nunca mascarada
+            # como erro matemático.
             raise
 
         except (OverflowError, ValueError) as exc:

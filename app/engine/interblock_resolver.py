@@ -27,12 +27,21 @@ Regras (contratos 2.4 / 2.5B / 2.6C, sem reabrir nenhum):
     - cadeias (A <- B <- C) são percorridas por transferências
       sucessivas na ordem topológica do registro, cada salto com as
       identidades próprias.
+
+Etapa 3.3A: o que é transportado é o resultado canônico
+(`app.domain.results.Result`: value, state, detail), inteiro e sem
+alteração — nenhum recálculo, conversão, inferência ou descarte de
+state/detail. `resolve`/`transfer` continuam devolvendo o valor
+(compatibilidade 3.1); `resolve_result`/`transfer_result` devolvem o
+resultado completo. O conflito com um valor já presente no consumidor
+compara o resultado completo.
 """
 
 from __future__ import annotations
 
 from app.domain.interblock.models import InterblockLink
 from app.domain.interblock.registry import InterblockLinkRegistry
+from app.domain.results import Result
 from app.domain.values import ScalarValue
 from app.engine.calculation_context import CalculationContext
 from app.engine.exceptions import (
@@ -122,6 +131,22 @@ class InterblockValueResolver:
         Nunca lê o valor do próprio consumidor.
         """
 
+        return self.resolve_result(
+            consumer_definition_id, scope_type, scope_value, period_id
+        ).value
+
+    def resolve_result(
+        self,
+        consumer_definition_id: str,
+        scope_type: str,
+        scope_value: str | None,
+        period_id: str | None = None,
+    ) -> Result:
+        """
+        Resultado canônico do produtor (value, state, detail) para
+        exatamente (instância, período) do consumidor.
+        """
+
         link = self.link_for(consumer_definition_id)
         details = dict(
             consumer_block=link.consumer_block,
@@ -152,7 +177,7 @@ class InterblockValueResolver:
             )
 
         try:
-            return self.calculation_context.get_variable_value(
+            return self.calculation_context.get_variable_result(
                 link.source_definition_id,
                 scope_type=scope_type,
                 scope_value=scope_value,
@@ -175,11 +200,28 @@ class InterblockValueResolver:
         period_id: str | None = None,
     ) -> ScalarValue:
         """
-        Grava no consumidor, na mesma instância e período, o valor do
-        produtor. Um valor local diferente já presente é conflito.
+        Grava no consumidor, na mesma instância e período, o resultado do
+        produtor e devolve o valor. Ver `transfer_result`.
         """
 
-        value = self.resolve(consumer_definition_id, scope_type, scope_value, period_id)
+        return self.transfer_result(
+            consumer_definition_id, scope_type, scope_value, period_id
+        ).value
+
+    def transfer_result(
+        self,
+        consumer_definition_id: str,
+        scope_type: str,
+        scope_value: str | None,
+        period_id: str | None = None,
+    ) -> Result:
+        """
+        Grava no consumidor, na mesma instância e período, o resultado
+        canônico do produtor (value, state, detail), sem alteração. Um
+        resultado local diferente já presente é conflito.
+        """
+
+        value = self.resolve_result(consumer_definition_id, scope_type, scope_value, period_id)
         existing = self._existing(consumer_definition_id, scope_type, scope_value, period_id)
 
         if existing is not _MISSING and existing != value:
@@ -195,7 +237,7 @@ class InterblockValueResolver:
                 period_id=period_id,
             )
 
-        self.calculation_context.set_variable_value(
+        self.calculation_context.set_variable_result(
             consumer_definition_id,
             value,
             scope_type=scope_type,
@@ -243,7 +285,7 @@ class InterblockValueResolver:
 
     def _existing(self, variable_id, scope_type, scope_value, period_id):
         try:
-            return self.calculation_context.get_variable_value(
+            return self.calculation_context.get_variable_result(
                 variable_id,
                 scope_type=scope_type,
                 scope_value=scope_value,

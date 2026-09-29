@@ -51,11 +51,11 @@ Entradas livres (variáveis sem equação, sem agregação e sem vínculo) e
 parâmetros são fornecidos pelo chamador no CalculationContext, como no
 runtime existente; o plano os lista em `required_inputs`.
 
-Extensão futura (Etapa 3.3+): os nós carregam apenas identidade e
-dependências; o resultado de cada passo fica no CalculationContext e o
-rastro (ExecutionTrace) registra eventos. Um valor enriquecido
-(value/state/detail) pode ser introduzido no contexto e no trace sem
-mudar o planejamento nem a ordem.
+Etapa 3.3A: o contexto armazena o resultado canônico (value, state,
+detail); as transferências movem o resultado inteiro e o trace registra
+state/detail de cada gravação. Planejamento, nós e ordem não mudaram.
+Propagação de estados (3.3B) e agregação state-aware (3.3C) são
+fronteiras explícitas em app.domain.results.
 """
 
 from __future__ import annotations
@@ -147,6 +147,9 @@ class ExecutionEvent:
     status: str  # WRITTEN | UNCHANGED
     source_block: str | None = None  # TRANSFER: bloco e variável lidos
     source_variable_id: str | None = None
+    # Etapa 3.3A: estado e detalhe do resultado canônico gravado.
+    state: str | None = None
+    detail: str | None = None
 
 
 @dataclass
@@ -473,6 +476,9 @@ class InterblockExecutionOrchestrator:
 
         trace = ExecutionTrace(run_date=run_date, plan=plan)
         resolver = InterblockValueResolver(self.catalog.links, context)
+        # Etapa 3.3A: o contexto conhece as definições (value_type e
+        # allowed_values) — validação de domínio centralizada no contexto.
+        context.declare_variable_definitions(self.catalog.variable_definitions.all())
 
         for index, node in enumerate(plan.steps):
             if node.kind == EQUATION:
@@ -501,9 +507,13 @@ class InterblockExecutionOrchestrator:
                 i for i in self.forecast_engine.materialize_equation(definition)
                 if i.equation_instance_id == instance_id
             )
+            result = context.get_variable_result(
+                definition.target_variable_id, instance.scope_type, instance.scope_value, period_id,
+            )
             trace.events.append(ExecutionEvent(
                 index, EQUATION, node.node_id, node.block, definition.target_variable_id,
                 instance.scope_type, instance.scope_value, period_id, results[instance_id], "WRITTEN",
+                state=result.state, detail=result.detail,
             ))
 
     def _run_aggregation(self, index, node, context, run_date, trace):
@@ -529,15 +539,16 @@ class InterblockExecutionOrchestrator:
         period_id = self.time_period_resolver.effective_window(link.frequency, run_date).period_id
         for scope_type, scope_value in link.instances:
             try:
-                context.get_variable_value(node.node_id, scope_type, scope_value, period_id)
+                context.get_variable_result(node.node_id, scope_type, scope_value, period_id)
                 present = True
             except VariableNotFoundError:
                 present = False
-            value = resolver.transfer(node.node_id, scope_type, scope_value, period_id)
+            result = resolver.transfer_result(node.node_id, scope_type, scope_value, period_id)
             trace.events.append(ExecutionEvent(
                 index, TRANSFER, node.node_id, node.block, node.node_id,
-                scope_type, scope_value, period_id, value, "UNCHANGED" if present else "WRITTEN",
+                scope_type, scope_value, period_id, result.value, "UNCHANGED" if present else "WRITTEN",
                 link.source_block, link.source_definition_id,
+                state=result.state, detail=result.detail,
             ))
 
 

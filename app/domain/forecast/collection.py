@@ -65,6 +65,9 @@ class ForecastValueHistoryEntry:
     value: int | float
     execution_id: str | None
     run_date: date | None
+    # Etapa 3.3A: estado e detalhe do valor arquivado.
+    state: str | None = None
+    detail: str | None = None
 
     @classmethod
     def from_forecast_value(
@@ -76,6 +79,8 @@ class ForecastValueHistoryEntry:
             value=forecast_value.value,
             execution_id=forecast_value.execution_id,
             run_date=forecast_value.run_date,
+            state=forecast_value.state,
+            detail=forecast_value.detail,
         )
 
 
@@ -128,7 +133,11 @@ class ForecastValueRegistry:
 
         if existing is not None:
             if existing.execution_id == value.execution_id:
-                if existing.value != value.value:
+                # Etapa 3.3A: compara o resultado completo (value,
+                # state, detail), não só o número.
+                if (existing.value, existing.state, existing.detail) != (
+                    value.value, value.state, value.detail
+                ):
                     raise ConflictingForecastValueError(
                         f"A Execution {value.execution_id!r} tentou "
                         "produzir dois valores diferentes para a "

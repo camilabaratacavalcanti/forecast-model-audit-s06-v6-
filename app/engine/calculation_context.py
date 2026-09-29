@@ -44,11 +44,20 @@ Arquitetura:
 
 O CalculationContext não é responsável por armazenar ou executar
 EquationInstances. A execução das equações pertence ao EquationEngine.
+
+Resultado canônico (Etapa 3.3A): cada valor contextualizado de variável
+é armazenado como `app.domain.results.Result` (value, state, detail) na
+mesma chave de antes (CalculationKey). A API por valor
+(`get_variable_value`/`set_variable_value`) continua funcionando: ela
+lê `Result.value` e grava `Result(value)` — a conversão acontece só em
+`as_result`. `get_variable_result`/`set_variable_result` dão acesso ao
+contrato completo. Parâmetros continuam numéricos (não são resultados).
 """
 
 from dataclasses import dataclass
 from typing import Iterable, Mapping
 
+from app.domain.results import Result, as_result, check_value_domain
 from app.domain.values import (
     NumericValue,
     ScalarValue,
@@ -130,10 +139,15 @@ class CalculationContext:
         self._variables = dict(variables or {})
         self._parameters = dict(parameters or {})
 
-        self._scoped_variables: dict[
+        # Armazenamento canônico dos valores contextualizados de variáveis.
+        self._scoped_results: dict[
             CalculationKey,
-            ScalarValue,
+            Result,
         ] = {}
+
+        # allowed_values por variável (domínio do valor categórico),
+        # conhecido quando a definição é declarada ao contexto.
+        self._value_domains: dict[str, tuple[str, ...]] = {}
 
         self._scoped_parameters: dict[
             CalculationKey,
@@ -166,6 +180,51 @@ class CalculationContext:
 
     def is_categorical_variable(self, variable_id: str) -> bool:
         return variable_id in self._categorical_variable_ids
+
+    def declare_variable_definitions(self, definitions: Iterable) -> None:
+        """
+        Declara VariableDefinitions ao contexto: as categóricas passam a
+        aceitar texto e, havendo `allowed_values`, todo valor gravado
+        para a variável é validado contra esse domínio
+        (`check_value_domain`, validação única e centralizada).
+        """
+
+        for definition in definitions:
+            if definition.is_categorical:
+                self._categorical_variable_ids.add(
+                    definition.variable_definition_id
+                )
+
+            if definition.allowed_values is not None:
+                self._value_domains[definition.variable_definition_id] = tuple(
+                    definition.allowed_values
+                )
+
+    # ========================================================
+    # COMPATIBILIDADE — mapa escalar derivado do armazenamento canônico
+    # ========================================================
+
+    @property
+    def _scoped_variables(self) -> dict[CalculationKey, ScalarValue]:
+        """
+        Visão escalar (somente leitura, cópia) do armazenamento canônico,
+        para código que ainda inspeciona o mapa legado chave -> valor.
+        """
+
+        return {
+            key: result.value
+            for key, result in self._scoped_results.items()
+        }
+
+    @_scoped_variables.setter
+    def _scoped_variables(self, values: Mapping[CalculationKey, ScalarValue]) -> None:
+        results = {}
+
+        for key, value in values.items():
+            self._validate_variable_value(key.entity_id, value)
+            results[key] = as_result(value)
+
+        self._scoped_results = results
 
     # ========================================================
     # API LEGADA — VARIÁVEIS
@@ -248,26 +307,13 @@ class CalculationContext:
         period_id: str | None = None,
     ) -> ScalarValue:
         """
-        Retorna o valor contextualizado de uma variável.
+        Retorna o valor contextualizado de uma variável
+        (`Result.value` do resultado canônico).
         """
 
-        key = CalculationKey(
-            entity_id=variable_id,
-            scope_type=scope_type,
-            scope_value=scope_value,
-            period_id=period_id,
-        )
-
-        if key not in self._scoped_variables:
-            raise VariableNotFoundError(
-                "Valor contextualizado da variável não encontrado: "
-                f"{variable_id}, "
-                f"scope_type={scope_type}, "
-                f"scope_value={scope_value}, "
-                f"period_id={period_id}"
-            )
-
-        return self._scoped_variables[key]
+        return self.get_variable_result(
+            variable_id, scope_type, scope_value, period_id
+        ).value
 
     def set_variable_value(
         self,
@@ -278,10 +324,24 @@ class CalculationContext:
         period_id: str | None = None,
     ) -> None:
         """
-        Define ou atualiza um valor contextualizado de variável.
+        Define ou atualiza um valor contextualizado de variável
+        (grava o contrato mínimo `Result(value)`).
         """
 
-        self._validate_variable_value(variable_id, value)
+        self.set_variable_result(
+            variable_id, value, scope_type, scope_value, period_id
+        )
+
+    def get_variable_result(
+        self,
+        variable_id: str,
+        scope_type: str | None = None,
+        scope_value: str | None = None,
+        period_id: str | None = None,
+    ) -> Result:
+        """
+        Retorna o resultado canônico (value, state, detail).
+        """
 
         key = CalculationKey(
             entity_id=variable_id,
@@ -290,7 +350,49 @@ class CalculationContext:
             period_id=period_id,
         )
 
-        self._scoped_variables[key] = value
+        if key not in self._scoped_results:
+            raise VariableNotFoundError(
+                "Valor contextualizado da variável não encontrado: "
+                f"{variable_id}, "
+                f"scope_type={scope_type}, "
+                f"scope_value={scope_value}, "
+                f"period_id={period_id}"
+            )
+
+        return self._scoped_results[key]
+
+    def set_variable_result(
+        self,
+        variable_id: str,
+        result,
+        scope_type: str | None = None,
+        scope_value: str | None = None,
+        period_id: str | None = None,
+    ) -> None:
+        """
+        Define ou atualiza o resultado canônico. Aceita `Result` ou o
+        valor legado (convertido por `as_result`). O valor é validado
+        como antes e, se a definição declarou `allowed_values`, contra
+        esse domínio. state e detail são preservados sem alteração.
+        """
+
+        # Validação existente primeiro (mesmos erros de antes para o
+        # valor legado); só então o valor vira o contrato canônico.
+        value = result.value if isinstance(result, Result) else result
+        self._validate_variable_value(variable_id, value)
+        result = as_result(result)
+        check_value_domain(
+            variable_id, result.value, self._value_domains.get(variable_id)
+        )
+
+        key = CalculationKey(
+            entity_id=variable_id,
+            scope_type=scope_type,
+            scope_value=scope_value,
+            period_id=period_id,
+        )
+
+        self._scoped_results[key] = result
 
     # ========================================================
     # API CONTEXTUALIZADA — PARÂMETROS

@@ -37,6 +37,7 @@ from datetime import date, timedelta
 
 from app.domain.forecast.aggregation import AggregationRule
 from app.domain.forecast.models import ForecastValue
+from app.domain.results import require_plain_for_aggregation
 from app.domain.values import (
     NumericValue,
     ScalarValue,
@@ -96,11 +97,12 @@ class TemporalAggregationService:
         )
 
         values = [
-            calculation_context.get_variable_value(
+            self._plain_value(
+                calculation_context,
                 rule.source_variable_id,
-                scope_type=scope_type,
-                scope_value=scope_value,
-                period_id=period_id,
+                scope_type,
+                scope_value,
+                period_id,
             )
             for period_id in source_period_ids
         ]
@@ -258,6 +260,31 @@ class TemporalAggregationService:
         return period_ids
 
     @staticmethod
+    def _plain_value(
+        calculation_context: CalculationContext,
+        variable_id: str,
+        scope_type: str | None,
+        scope_value: str | None,
+        period_id: str,
+    ) -> ScalarValue:
+        """
+        Valor de origem de uma agregação. Etapa 3.3A: um resultado com
+        state/detail não é agregado sem a Policy B
+        (STATE_AWARE_AGGREGATION_PENDING_STAGE_3.3C) — erro explícito;
+        resultados sem estado seguem o comportamento numérico existente.
+        """
+
+        result = calculation_context.get_variable_result(
+            variable_id,
+            scope_type=scope_type,
+            scope_value=scope_value,
+            period_id=period_id,
+        )
+        require_plain_for_aggregation(variable_id, period_id, result)
+
+        return result.value
+
+    @staticmethod
     def _require_numeric_series(
         rule: AggregationRule,
         variable_id: str,
@@ -305,11 +332,12 @@ class TemporalAggregationService:
         values: list[NumericValue],
     ) -> NumericValue:
         weights = [
-            calculation_context.get_variable_value(
+            TemporalAggregationService._plain_value(
+                calculation_context,
                 rule.weight_variable_id,
-                scope_type=scope_type,
-                scope_value=scope_value,
-                period_id=period_id,
+                scope_type,
+                scope_value,
+                period_id,
             )
             for period_id in source_period_ids
         ]

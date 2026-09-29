@@ -1,7 +1,8 @@
 from dataclasses import dataclass
 from datetime import date
 
-from app.domain.values import ScalarValue
+from app.domain.results import Result, ResultContractError
+from app.domain.values import RESULT_STATE_TAXONOMY, ScalarValue
 
 
 @dataclass(frozen=True)
@@ -54,6 +55,28 @@ class ForecastValue:
     execution_id: str | None = None
     aggregation_rule_id: str | None = None
     run_date: date | None = None
+    # Etapa 3.3A: estado e detalhe do resultado canônico (ver
+    # app.domain.results). Não fazem parte da identidade lógica.
+    state: str | None = None
+    detail: str | None = None
+
+    def __post_init__(self) -> None:
+        if self.state is not None and self.state not in RESULT_STATE_TAXONOMY:
+            raise ResultContractError(
+                f"{ResultContractError.code}: state {self.state!r} fora da "
+                f"taxonomia {sorted(RESULT_STATE_TAXONOMY)}."
+            )
+
+        if self.detail is not None and not isinstance(self.detail, str):
+            raise ResultContractError(
+                f"{ResultContractError.code}: detail deve ser texto ou None."
+            )
+
+    @property
+    def result(self) -> Result:
+        """Resultado canônico (value, state, detail) deste valor."""
+
+        return Result(value=self.value, state=self.state, detail=self.detail)
 
     def identity(
         self,

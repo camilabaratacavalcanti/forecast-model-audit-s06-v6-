@@ -256,7 +256,7 @@ class TemporalForecastOrchestrator:
             run_date=run_date,
         )
 
-        value = calculation_context.get_variable_value(
+        result = calculation_context.get_variable_result(
             variable_id,
             scope_type=scope_type,
             scope_value=scope_value,
@@ -272,12 +272,14 @@ class TemporalForecastOrchestrator:
             frequency=variable_definition.frequency,
             forecast_year=forecast_year,
             period_id=period.period_id,
-            value=value,
+            value=result.value,
             execution_id=(
                 execution.execution_id if execution else None
             ),
             aggregation_rule_id=None,
             run_date=run_date,
+            state=result.state,
+            detail=result.detail,
         )
 
     def run_aggregation(
