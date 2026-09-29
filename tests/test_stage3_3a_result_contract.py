@@ -331,13 +331,30 @@ def test_consumer_domain_is_validated_on_transfer():
 # ============================================================
 
 def test_equation_reading_a_stated_result_is_an_explicit_boundary():
+    """
+    LEGACY_TEST_EXPECTATION (Etapa 3.3B): na 3.3A uma equação que lia um
+    resultado com estado levantava STATE_PROPAGATION_PENDING_STAGE_3.3B.
+    Com a propagação causal (contrato 2.2 D3/§16) o descendente HERDA o
+    estado sem valor; a leitura direta como valor (evaluator sem o
+    EquationEngine) continua sendo erro explícito, com código próprio.
+    """
+
+    from app.domain.results import StatedResultConsumedAsValueError
+    from app.engine.expression_evaluator import ExpressionEvaluator
+    from app.engine.expression_parser import ExpressionParser
+
     orchestrator = synthetic()
     context = CalculationContext()
     inputs(context)
     context.set_variable_result("VAR12901", Result(10.0, "INVALID_INPUT"), "linha", "L1", DAY)
-    with pytest.raises(StatePropagationPendingError) as error:
-        orchestrator.execute(["VAR12902"], context, RUN)
-    assert error.value.code == "STATE_PROPAGATION_PENDING_STAGE_3.3B"
+    orchestrator.execute(["VAR12902"], context, RUN)
+    assert context.get_variable_result("VAR12902", "linha", "L1", DAY) == Result(None, "INVALID_INPUT")
+    assert context.get_variable_result("VAR12902", "linha", "L2", DAY) == Result(40.0)
+
+    evaluator = ExpressionEvaluator(context, "linha", "L1", DAY)
+    with pytest.raises(StatedResultConsumedAsValueError) as error:
+        evaluator.evaluate(ExpressionParser().parse("VAR12901 * 2"))
+    assert error.value.code == "STATED_RESULT_CONSUMED_AS_VALUE"
 
 
 def test_aggregation_over_a_stated_result_is_an_explicit_boundary():

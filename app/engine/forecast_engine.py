@@ -393,16 +393,23 @@ class ForecastEngine:
                 run_date=run_date,
             )
 
-            result = self.equation_engine.calculate_instance(
+            # Etapa 3.3B: resultado canônico — estado herdado das
+            # dependências reais ou traduzido do literal declarado pela
+            # variável alvo (quando a definição é conhecida).
+            result = self.equation_engine.calculate_instance_result(
                 instance=instance,
                 definition=definition,
                 calculation_context=calculation_context,
                 period_id=period_id,
+                target_definition=self._target_definition(
+                    variable_definition_registry,
+                    instance.target_variable_id,
+                ),
             )
 
-            calculation_context.set_variable_value(
+            calculation_context.set_variable_result(
                 variable_id=instance.target_variable_id,
-                value=result,
+                result=result,
                 scope_type=instance.scope_type,
                 scope_value=instance.scope_value,
                 period_id=period_id,
@@ -410,9 +417,19 @@ class ForecastEngine:
 
             results[
                 instance.equation_instance_id
-            ] = result
+            ] = result.value
 
         return results
+
+    @staticmethod
+    def _target_definition(variable_definition_registry, target_variable_id):
+        if variable_definition_registry is None:
+            return None
+
+        try:
+            return variable_definition_registry.get(target_variable_id)
+        except KeyError:
+            return None
 
     def _resolve_instance_period_id(
         self,

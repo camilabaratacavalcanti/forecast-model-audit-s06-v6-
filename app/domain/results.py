@@ -4,7 +4,10 @@ Contrato canônico de resultado (Etapa 3.3A).
     Result
     ├── value    valor calculado: ScalarValue (numerico int|float;
     │            categorico str; o marcador de falha condicional "F").
-    │            Nenhuma conversão: o objeto é preservado.
+    │            Nenhuma conversão: o objeto é preservado. Etapa 3.3B:
+    │            None é permitido SOMENTE com state (contrato D2/§13 da
+    │            Etapa 2.2: "value presente sse result_state == VALID") —
+    │            é o caso de um estado herdado ou traduzido de literal.
     ├── state    None (resultado sem estado declarado) ou um estado da
     │            taxonomia global comprovada RESULT_STATE_TAXONOMY (D2):
     │            NO_APPLICABLE_RULE, INVALID_INPUT, VALIDATION_FAILED.
@@ -37,8 +40,9 @@ marcador "F" não é valor de negócio e não é validado contra o domínio
 Fronteiras explícitas (não implementadas nesta etapa, sem default):
 
     STATE_PROPAGATION_PENDING_STAGE_3.3B
-        uma equação que lê um resultado com state/detail não tem
-        semântica definida -> erro explícito, nunca descarte silencioso.
+        (Etapa 3.3A; substituída na 3.3B pela propagação causal em
+        app.domain.state_propagation; o evaluator direto passa a levantar
+        STATED_RESULT_CONSUMED_AS_VALUE.)
     STATE_AWARE_AGGREGATION_PENDING_STAGE_3.3C
         uma agregação sobre resultados com state/detail não tem regra
         definida (Policy B) -> erro explícito.
@@ -78,6 +82,25 @@ class StatePropagationPendingError(ResultContractError):
     code = "STATE_PROPAGATION_PENDING_STAGE_3.3B"
 
 
+class StatedResultConsumedAsValueError(ResultContractError):
+    """
+    Etapa 3.3B: um resultado com state/detail foi lido como valor por um
+    ponto que não propaga estado (ex.: o evaluator chamado diretamente).
+    A propagação é feita pelo EquationEngine (`calculate_instance_result`).
+    """
+
+    code = "STATED_RESULT_CONSUMED_AS_VALUE"
+
+
+class StatefulResultOnScalarApiError(ResultContractError):
+    """
+    Uma API que devolve só o valor (legada) foi chamada para um resultado
+    com estado e sem valor: o estado não cabe na resposta escalar.
+    """
+
+    code = "STATEFUL_RESULT_ON_SCALAR_API"
+
+
 class StateAwareAggregationPendingError(ResultContractError):
     """Agregação sobre resultados com state/detail (Etapa 3.3C)."""
 
@@ -91,7 +114,9 @@ class Result:
     detail: str | None = None
 
     def __post_init__(self) -> None:
-        if isinstance(self.value, bool) or not (
+        if self.value is None and self.state is not None:
+            pass  # estado sem valor (contrato 2.2 §13)
+        elif isinstance(self.value, bool) or not (
             is_numeric(self.value) or isinstance(self.value, str)
         ):
             raise ResultContractError(
@@ -158,12 +183,31 @@ def check_value_domain(variable_id: str, value, allowed_values) -> None:
 
 
 def require_plain_for_calculation(variable_id: str, result: Result) -> None:
+    """
+    Proteção do evaluator: um resultado com state/detail nunca é usado
+    como número. No caminho do EquationEngine a propagação acontece
+    antes da avaliação (Etapa 3.3B), então esta proteção só dispara para
+    quem avalia expressões diretamente.
+    """
+
     if not result.is_plain:
-        raise StatePropagationPendingError(
-            f"{StatePropagationPendingError.code}: {variable_id} tem "
-            f"state={result.state!r}, detail={result.detail!r}; a semântica de "
-            "consumo de estados em equações pertence à Etapa 3.3B."
+        raise StatedResultConsumedAsValueError(
+            f"{StatedResultConsumedAsValueError.code}: {variable_id} tem "
+            f"state={result.state!r}, detail={result.detail!r}; use o "
+            "EquationEngine (calculate_instance_result), que propaga o estado."
         )
+
+
+def scalar_of(result: Result, where: str):
+    """Valor para APIs escalares legadas; estado sem valor é erro explícito."""
+
+    if result.value is None:
+        raise StatefulResultOnScalarApiError(
+            f"{StatefulResultOnScalarApiError.code}: {where} tem "
+            f"state={result.state!r} e não tem valor; use a API de Result."
+        )
+
+    return result.value
 
 
 def require_plain_for_aggregation(variable_id: str, period_id, result: Result) -> None:
@@ -183,8 +227,11 @@ __all__ = [
     "ResultValueDomainError",
     "StateAwareAggregationPendingError",
     "StatePropagationPendingError",
+    "StatefulResultOnScalarApiError",
+    "StatedResultConsumedAsValueError",
     "as_result",
     "check_value_domain",
     "require_plain_for_aggregation",
     "require_plain_for_calculation",
+    "scalar_of",
 ]

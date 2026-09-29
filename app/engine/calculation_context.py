@@ -57,7 +57,7 @@ contrato completo. Parâmetros continuam numéricos (não são resultados).
 from dataclasses import dataclass
 from typing import Iterable, Mapping
 
-from app.domain.results import Result, as_result, check_value_domain
+from app.domain.results import Result, as_result, check_value_domain, scalar_of
 from app.domain.values import (
     NumericValue,
     ScalarValue,
@@ -311,9 +311,14 @@ class CalculationContext:
         (`Result.value` do resultado canônico).
         """
 
-        return self.get_variable_result(
-            variable_id, scope_type, scope_value, period_id
-        ).value
+        # Etapa 3.3B: um resultado com estado e sem valor não cabe na
+        # resposta escalar -> STATEFUL_RESULT_ON_SCALAR_API (nunca None).
+        return scalar_of(
+            self.get_variable_result(
+                variable_id, scope_type, scope_value, period_id
+            ),
+            f"{variable_id} ({scope_type}/{scope_value}, period_id={period_id})",
+        )
 
     def set_variable_value(
         self,
@@ -379,11 +384,16 @@ class CalculationContext:
         # Validação existente primeiro (mesmos erros de antes para o
         # valor legado); só então o valor vira o contrato canônico.
         value = result.value if isinstance(result, Result) else result
-        self._validate_variable_value(variable_id, value)
+
+        # Etapa 3.3B: estado sem valor (contrato 2.2 §13) não passa pela
+        # validação de valor nem de domínio — não há valor.
+        if not (isinstance(result, Result) and value is None):
+            self._validate_variable_value(variable_id, value)
+            check_value_domain(
+                variable_id, value, self._value_domains.get(variable_id)
+            )
+
         result = as_result(result)
-        check_value_domain(
-            variable_id, result.value, self._value_domains.get(variable_id)
-        )
 
         key = CalculationKey(
             entity_id=variable_id,

@@ -6,6 +6,11 @@ o contexto para resolver valores e o evaluator para calcular o resultado.
 """
 
 from app.domain.equations.models import Equation
+from app.domain.results import Result, scalar_of
+from app.domain.state_propagation import (
+    inherit_from_dependencies,
+    translate_declared_literal,
+)
 from app.domain.values import ScalarValue
 
 from app.engine.calculation_context import CalculationContext
@@ -74,6 +79,31 @@ class EquationEngine:
         period_id: str | None = None,
     ) -> ScalarValue:
         """
+        API legada (valor). Delegada a `calculate_instance_result`: um
+        resultado sem estado devolve o mesmo valor de antes; um resultado
+        com estado não cabe na resposta escalar e é erro explícito
+        (STATEFUL_RESULT_ON_SCALAR_API), nunca um valor inventado.
+        """
+
+        result = self.calculate_instance_result(
+            instance, definition, calculation_context, period_id
+        )
+
+        return scalar_of(
+            result,
+            f"{definition.target_variable_id} "
+            f"({instance.scope_type}/{instance.scope_value}, period_id={period_id})",
+        )
+
+    def calculate_instance_result(
+        self,
+        instance,
+        definition,
+        calculation_context: CalculationContext,
+        period_id: str | None = None,
+        target_definition=None,
+    ) -> Result:
+        """
         Executa uma EquationInstance utilizando a expressão
         pertencente à EquationDefinition.
 
@@ -99,6 +129,16 @@ class EquationEngine:
         e é propagado ao ExpressionEvaluator como período padrão para
         resolver VAR/PARAM. Omitido, o comportamento é o mesmo de
         antes (sem dimensão temporal).
+
+        Etapa 3.3B — resultado canônico (app.domain.state_propagation):
+
+            1. as dependências reais da expressão são resolvidas pela
+               mesma regra do evaluator; se alguma tem estado, o alvo
+               HERDA esse estado sem valor (contrato 2.2 D3/§16) e a
+               expressão não é avaliada;
+            2. sem estado herdado, a expressão é avaliada como antes;
+            3. com `target_definition`, um literal declarado pela própria
+               variável alvo (D1) vira o estado correspondente.
         """
 
         expression = definition.expression
@@ -114,8 +154,16 @@ class EquationEngine:
             default_period_id=period_id,
         )
 
+        inherited = inherit_from_dependencies(
+            definition.target_variable_id,
+            evaluator.dependency_results(tree),
+        )
+
+        if inherited is not None:
+            return inherited
+
         try:
-            return evaluator.evaluate(tree)
+            value = evaluator.evaluate(tree)
 
         except (
             VariableNotFoundError,
@@ -130,3 +178,5 @@ class EquationEngine:
                 expression=expression,
                 original_error=exc,
             ) from exc
+
+        return translate_declared_literal(value, target_definition)

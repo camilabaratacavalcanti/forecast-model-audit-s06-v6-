@@ -41,7 +41,7 @@ from __future__ import annotations
 
 from app.domain.interblock.models import InterblockLink
 from app.domain.interblock.registry import InterblockLinkRegistry
-from app.domain.results import Result
+from app.domain.results import Result, scalar_of
 from app.domain.values import ScalarValue
 from app.engine.calculation_context import CalculationContext
 from app.engine.exceptions import (
@@ -131,9 +131,10 @@ class InterblockValueResolver:
         Nunca lê o valor do próprio consumidor.
         """
 
-        return self.resolve_result(
-            consumer_definition_id, scope_type, scope_value, period_id
-        ).value
+        return scalar_of(
+            self.resolve_result(consumer_definition_id, scope_type, scope_value, period_id),
+            f"{consumer_definition_id} ({scope_type}/{scope_value}, period_id={period_id})",
+        )
 
     def resolve_result(
         self,
@@ -204,9 +205,10 @@ class InterblockValueResolver:
         produtor e devolve o valor. Ver `transfer_result`.
         """
 
-        return self.transfer_result(
-            consumer_definition_id, scope_type, scope_value, period_id
-        ).value
+        return scalar_of(
+            self.transfer_result(consumer_definition_id, scope_type, scope_value, period_id),
+            f"{consumer_definition_id} ({scope_type}/{scope_value}, period_id={period_id})",
+        )
 
     def transfer_result(
         self,
@@ -278,8 +280,10 @@ class InterblockValueResolver:
             period_id = period_ids[link.frequency]
 
             for instance in link.instances:
-                value = self.transfer(link.consumer_definition_id, *instance, period_id)
-                transferred.append((link.consumer_definition_id, instance, period_id, value))
+                # Etapa 3.3B: o Result inteiro é gravado no consumidor; a
+                # lista devolve o valor (None quando o resultado só tem estado).
+                result = self.transfer_result(link.consumer_definition_id, *instance, period_id)
+                transferred.append((link.consumer_definition_id, instance, period_id, result.value))
 
         return transferred
 

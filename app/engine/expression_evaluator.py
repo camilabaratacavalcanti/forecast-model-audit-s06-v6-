@@ -40,6 +40,7 @@ from app.domain.values import (
 from app.engine import scoped_reference
 from app.engine.calculation_context import CalculationContext
 from app.engine.exceptions import (
+    AmbiguousSpatialPrecedenceError,
     ConditionalFailureError,
     DivisionByZeroError,
     EvaluationError,
@@ -182,6 +183,7 @@ class ExpressionEvaluator:
         identifier: str,
         scope_type: str,
         scope_value: str | None,
+        as_result: bool = False,
     ) -> int | float:
         """
         Resolve um valor de variável em um escopo concreto,
@@ -210,6 +212,10 @@ class ExpressionEvaluator:
 
         Propaga o erro apenas se nenhuma das tentativas encontrar o
         valor.
+
+        `as_result=True` (Etapa 3.3B): devolve `(chave, Result)` da
+        mesma resolução, sem a proteção de valor — usado para descobrir
+        o estado das dependências reais antes de avaliar.
         """
 
         candidate_period_ids = [self.default_period_id]
@@ -245,9 +251,11 @@ class ExpressionEvaluator:
                 last_error = exc
                 continue
 
-            # Etapa 3.3A: um resultado com state/detail não é consumido
-            # em cálculo sem a semântica da Etapa 3.3B (erro explícito,
-            # nunca descarte silencioso do estado).
+            if as_result:
+                return (identifier, scope_type, scope_value, period_id), result
+
+            # Um resultado com state/detail nunca é usado como número; a
+            # propagação acontece antes, no EquationEngine (Etapa 3.3B).
             require_plain_for_calculation(identifier, result)
 
             return result.value
@@ -315,6 +323,7 @@ class ExpressionEvaluator:
     def _get_variable_with_spatial_and_period_fallback(
         self,
         identifier: str,
+        as_result: bool = False,
     ) -> int | float:
         """
         Decision E: para cada candidato espacial do escopo padrão
@@ -339,11 +348,59 @@ class ExpressionEvaluator:
                     identifier,
                     scope_type=scope_type,
                     scope_value=scope_value,
+                    as_result=as_result,
                 )
             except VariableNotFoundError as exc:
                 last_error = exc
 
         raise last_error
+
+    def dependency_results(self, tree: ast.Expression) -> list:
+        """
+        Etapa 3.3B: resultados das dependências REAIS da expressão — toda
+        referência VAR escrita nela (inclusive em ramos de IF não
+        escolhidos: alcançabilidade estática do grafo, contrato D3),
+        resolvida pela MESMA regra de `_resolve_name` (escopo explícito:
+        fallback temporal; sem escopo: Decision E + fallback temporal).
+        Referências sem valor são ignoradas aqui (a avaliação normal
+        decide se faltam de fato). Lista ordenada por chave.
+        """
+
+        found = {}
+
+        for node in ast.walk(tree):
+            if not isinstance(node, ast.Name):
+                continue
+
+            identifier, scope_type, scope_value = (
+                scoped_reference.split_internal(node.id)
+            )
+
+            if not identifier.startswith("VAR"):
+                continue
+
+            try:
+                if scope_type is not None:
+                    key, result = self._get_variable_with_period_fallback(
+                        identifier,
+                        scope_type=scope_type,
+                        scope_value=scope_value,
+                        as_result=True,
+                    )
+                elif self.default_scope_type and self.default_scope_value:
+                    key, result = (
+                        self._get_variable_with_spatial_and_period_fallback(
+                            identifier, as_result=True
+                        )
+                    )
+                else:
+                    continue  # API legada não escopada: sempre valor simples
+            except (VariableNotFoundError, AmbiguousSpatialPrecedenceError):
+                continue
+
+            found[key] = result
+
+        return sorted(found.items(), key=lambda item: repr(item[0]))
 
     def _get_parameter_with_spatial_and_period_fallback(
         self,

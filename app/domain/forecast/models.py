@@ -61,6 +61,12 @@ class ForecastValue:
     detail: str | None = None
 
     def __post_init__(self) -> None:
+        # Etapa 3.3B: sem valor só com estado (contrato 2.2 §13).
+        if self.value is None and self.state is None:
+            raise ResultContractError(
+                f"{ResultContractError.code}: ForecastValue sem valor e sem estado."
+            )
+
         if self.state is not None and self.state not in RESULT_STATE_TAXONOMY:
             raise ResultContractError(
                 f"{ResultContractError.code}: state {self.state!r} fora da "

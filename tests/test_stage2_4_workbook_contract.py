@@ -41,6 +41,7 @@ from app.engine.forecast_engine import ForecastEngine
 from app.engine.temporal_aggregation_service import TemporalAggregationService
 from app.repositories.seed_loader import SeedLoader
 from app.validation import parameter_seed_validator, variable_seed_validator
+from app.domain.results import Result, StatefulResultOnScalarApiError
 from tools.workbook_seed.blocks import (
     BLOCKS,
     SEED_FILES,
@@ -748,9 +749,17 @@ def test_t24_10_declared_result_states_reach_the_domain(loaded):
 
 
 def test_t24_10_no_applicable_rule_produces_the_text_literal_f(loaded):
-    # Combinação não coberta por nenhum ramo -> "F" (texto, nunca número).
-    result = _run_retirada_grupo_l4_l5(loaded, _retirada_grupo_l4_l5_context(loaded, "1 By pass e LC", "Normal"))
-    assert result == "F"
+    # LEGACY_TEST_EXPECTATION (Etapa 3.3B, contrato D1 da Etapa 2.2 §6.3):
+    # até a 3.3A o runtime gravava o literal "F" no canal de valor. A
+    # variável declara NO_APPLICABLE_RULE -> "F", então o EquationEngine
+    # (com a definição alvo) produz Result(value=None,
+    # state=NO_APPLICABLE_RULE); a fórmula continua devolvendo "F" (a
+    # expressão avaliada sem tradução continua sendo texto, nunca número).
+    context = _retirada_grupo_l4_l5_context(loaded, "1 By pass e LC", "Normal")
+    with pytest.raises(StatefulResultOnScalarApiError):
+        _run_retirada_grupo_l4_l5(loaded, context)
+    target = variable_id("area_41", "retirada_condensado_grupo", "diário", "linha_grupo", "L4_L5")
+    assert context.get_variable_result(target, "linha_grupo", "L4_L5") == Result(None, "NO_APPLICABLE_RULE")
 
     engine = EquationEngine()
     consumer = EquationInstance.create(
