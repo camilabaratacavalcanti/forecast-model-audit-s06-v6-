@@ -45,6 +45,7 @@ from app.domain.forecast.aggregation import (
 from app.domain.interblock.registry import InterblockLinkRegistry
 from app.domain.parameters.registry import ParameterInstanceRegistry
 from app.domain.results import (
+    DetailWithoutStateError,
     Result,
     ResultContractError,
     StateAwareAggregationPendingError,
@@ -52,7 +53,6 @@ from app.domain.results import (
     StatefulResultOnScalarApiError,
 )
 from app.domain.state_propagation import (
-    DetailWithoutStatePropagationUndefinedError,
     MultiDetailCompositionUndefinedError,
     MultiStateCombinationUndefinedError,
     inherit_from_dependencies,
@@ -460,9 +460,15 @@ def test_24_no_priority_between_states_is_chosen_for_any_pair():
                 ])
 
 
-def test_25_detail_without_state_is_an_explicit_undefined_boundary():
-    with pytest.raises(DetailWithoutStatePropagationUndefinedError):
-        inherit_from_dependencies("T", [(("P", "linha", "L1", DAY), Result(1.0, None, "nota"))])
+def test_25_detail_without_state_is_invalid_at_construction():
+    """
+    LEGACY_TEST_EXPECTATION (fechamento 3.3B, D33B-03): antes a dependência
+    com detail e sem estado levantava DETAIL_WITHOUT_STATE_PROPAGATION_UNDEFINED
+    na propagação; agora detail sem estado é inválido já no Result.
+    """
+    with pytest.raises(DetailWithoutStateError) as error:
+        Result(1.0, None, "nota")
+    assert error.value.code == "DETAIL_WITHOUT_STATE"
     assert inherit_from_dependencies("T", [(("P", "linha", "L1", DAY), Result(1.0))]) is None
 
 
@@ -576,7 +582,7 @@ def test_38_direct_evaluator_never_uses_a_state_as_a_number():
 
 def test_39_state_errors_are_not_masked_as_math_or_not_found():
     for error in (MultiStateCombinationUndefinedError, MultiDetailCompositionUndefinedError,
-                  DetailWithoutStatePropagationUndefinedError, StateAwareAggregationPendingError):
+                  DetailWithoutStateError, StateAwareAggregationPendingError):
         assert issubclass(error, ResultContractError)
         assert not issubclass(error, (ValueError, ArithmeticError, LookupError))
 
@@ -725,7 +731,8 @@ def test_45_area_41_real_chain_numeric_values_unchanged(real_derived):
     )
 
 
-def test_48_topology_and_pending_decisions_d32_01_d32_02_preserved(real_derived):
+def test_48_topology_d32_01_preserved_and_d32_02_resolved(real_derived):
+    """LEGACY_TEST_EXPECTATION (D33B-04): D32-02 não é mais conflito; janelas coexistem."""
     official = InterblockExecutionOrchestrator.from_seed_root(SEED)
     with pytest.raises(InterblockSourceNotLoadedError):                       # D32-01
         official.plan(["VAR16008"])
@@ -737,8 +744,10 @@ def test_48_topology_and_pending_decisions_d32_01_d32_02_preserved(real_derived)
     for day in (1, 2):
         seed_inputs(context, {(A, l): Result(float(day)) for l in LINES}, f"2026-09-0{day}")
     orchestrator.execute([EM], context, date(2026, 9, 1))
-    with pytest.raises(InterblockConsumerValueConflictError):
-        orchestrator.execute([EM], context, date(2026, 9, 2))
+    orchestrator.execute([EM], context, date(2026, 9, 2))
+    assert context.result_windows(EM, "linha", "L1", MONTH) == ("2026-09-01", "2026-09-02")
+    assert context.get_variable_value(EM, "linha", "L1", MONTH, as_of=date(2026, 9, 1)) == 2.0
+    assert context.get_variable_value(EM, "linha", "L1", MONTH, as_of=date(2026, 9, 2)) == 3.0
 
 
 def test_forbidden_artifacts_are_not_touched_by_the_propagation_module():

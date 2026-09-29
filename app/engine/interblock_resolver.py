@@ -41,7 +41,7 @@ from __future__ import annotations
 
 from app.domain.interblock.models import InterblockLink
 from app.domain.interblock.registry import InterblockLinkRegistry
-from app.domain.results import Result, scalar_of
+from app.domain.results import Result, results_equivalent, scalar_of
 from app.domain.values import ScalarValue
 from app.engine.calculation_context import CalculationContext
 from app.engine.exceptions import (
@@ -226,7 +226,9 @@ class InterblockValueResolver:
         value = self.resolve_result(consumer_definition_id, scope_type, scope_value, period_id)
         existing = self._existing(consumer_definition_id, scope_type, scope_value, period_id)
 
-        if existing is not _MISSING and existing != value:
+        # D33B-04: mesma identidade temporal + resultado semanticamente igual
+        # -> idempotente; diferente -> conflito (nunca sobrescreve).
+        if existing is not _MISSING and not results_equivalent(existing, value):
             link = self.registry.link_for(consumer_definition_id)
             raise InterblockConsumerValueConflictError(
                 f"{link.consumer_block} {consumer_definition_id} já tem {existing!r} em "

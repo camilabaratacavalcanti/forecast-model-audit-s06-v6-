@@ -558,6 +558,23 @@ def test_cycle_fails_with_the_full_cycle():
 # Regressão dos blocos isolados (24..27)
 # ============================================================
 
+def by_period(mapping):
+    """
+    Identidade sem a janela efetiva: (variável, escopo, período) -> resultado.
+    LEGACY_TEST_EXPECTATION (fechamento 3.3B, D33B-04): o orquestrador
+    identifica resultados mensais/anuais do período corrente pela janela
+    efetiva (window_end = run_date); o ForecastEngine direto (fora de uma
+    execução com data) grava o período inteiro. O VALOR comparado é o
+    mesmo; cada período tem uma única janela aqui (sem colisão).
+    """
+    projected = {}
+    for key, value in mapping.items():
+        short = (key.entity_id, key.scope_type, key.scope_value, key.period_id)
+        assert short not in projected, f"duas janelas para {short}"
+        projected[short] = value
+    return projected
+
+
 def _direct_engine(orchestrator, plan, context, run_date=RUN):
     """Caminho existente: ForecastEngine direto sobre as equações do plano."""
     registry = EquationDefinitionRegistry()
@@ -610,7 +627,7 @@ def test_24_27_isolated_block_behaves_as_the_existing_engine(real_derived, block
     orchestrator.execute(local_plan, via_orchestrator, RUN)
     via_engine = prepare()
     _direct_engine(orchestrator, local_plan, via_engine)
-    assert via_orchestrator._scoped_variables == via_engine._scoped_variables
+    assert by_period(via_orchestrator._scoped_variables) == by_period(via_engine._scoped_variables)
     assert [k for k in via_engine._scoped_variables if k.entity_id == target]
 
 
@@ -650,7 +667,7 @@ def test_yield_official_execution_matches_existing_engine(official):
     ctx_b = CalculationContext()
     real_inputs(official, plan, ctx_b)
     _direct_engine(official, plan, ctx_b)
-    assert ctx_a._scoped_variables == ctx_b._scoped_variables
+    assert by_period(ctx_a._scoped_variables) == by_period(ctx_b._scoped_variables)
 
 
 # ============================================================
@@ -761,13 +778,15 @@ def test_pending_boundary_is_never_filled(official):
             official.plan([pending.consumer_definition_id])
 
 
-def test_progressive_period_rerun_in_same_context_is_an_explicit_conflict():
+def test_progressive_period_rerun_in_same_context_coexists_by_effective_window():
     """
-    Comportamento atual registrado (decisão D32-02 do relatório): o valor
-    mensal efetivo muda de um run_date para o seguinte no MESMO period_id
-    ("2026-09"); no mesmo contexto, a nova transferência encontra o valor
-    anterior no consumidor e falha pelo mecanismo da 3.1 — nunca
-    sobrescreve em silêncio. Um contexto por run_date não tem conflito.
+    LEGACY_TEST_EXPECTATION (fechamento 3.3B, D33B-04 resolve D32-02).
+    Antes: o valor mensal efetivo mudava de um run_date para o seguinte no
+    MESMO period_id ("2026-09") e a transferência falhava por conflito.
+    Agora a identidade inclui a janela efetiva (TimePeriodResolver:
+    "2026-09" truncado em run_date): até 09-01 e até 09-02 são resultados
+    diferentes que coexistem; reexecutar 09-01 é idempotente. Conflito
+    real (mesma janela, resultado diferente) continua sendo detectado.
     """
 
     orchestrator = synthetic()
@@ -776,10 +795,18 @@ def test_progressive_period_rerun_in_same_context_is_an_explicit_conflict():
         for i, line in enumerate(LINES, start=1):
             context.set_variable_value("VAR12901", float(day * i), "linha", line, f"2026-09-0{day}")
     orchestrator.execute(["VAR18901"], context, date(2026, 9, 1))
-    assert context.get_variable_value("VAR18901", "linha", "L1", "2026-09") == 2.0
+    orchestrator.execute(["VAR18901"], context, date(2026, 9, 2))
+    assert context.get_variable_value("VAR18901", "linha", "L1", "2026-09", as_of=date(2026, 9, 1)) == 2.0
+    assert context.get_variable_value("VAR18901", "linha", "L1", "2026-09", as_of=date(2026, 9, 2)) == 3.0
+    trace = orchestrator.execute(["VAR18901"], context, date(2026, 9, 1))  # P1 de novo
+    assert {e.status for e in trace.of_kind(TRANSFER)} == {"UNCHANGED"}
+
+    # mesma janela, resultado diferente no consumidor: conflito da 3.1
+    with context.effective_window(date(2026, 9, 2)):
+        context.set_variable_value("VAR18901", -1.0, "linha", "L1", "2026-09")
     with pytest.raises(InterblockConsumerValueConflictError):
         orchestrator.execute(["VAR18901"], context, date(2026, 9, 2))
-    assert context.get_variable_value("VAR18901", "linha", "L1", "2026-09") == 2.0
+    assert context.get_variable_value("VAR18901", "linha", "L1", "2026-09", as_of=date(2026, 9, 2)) == -1.0
 
     fresh = CalculationContext()
     for day in (1, 2):

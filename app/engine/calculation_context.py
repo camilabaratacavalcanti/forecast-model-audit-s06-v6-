@@ -52,12 +52,49 @@ mesma chave de antes (CalculationKey). A API por valor
 lê `Result.value` e grava `Result(value)` — a conversão acontece só em
 `as_result`. `get_variable_result`/`set_variable_result` dão acesso ao
 contrato completo. Parâmetros continuam numéricos (não são resultados).
+
+Identidade temporal (fechamento da Etapa 3.3B, D33B-04 / D32-02):
+
+    CalculationKey = (entity_id, scope_type, scope_value, period_id,
+                      window_end)
+
+    `window_end` é o fim da JANELA EFETIVA do período (conceito existente
+    em TimePeriodResolver.effective_window: um período mensal/anual que
+    contém `run_date` é truncado em `run_date`). "2026-09" até 2026-09-01
+    e "2026-09" até 2026-09-02 são resultados temporais diferentes (média
+    de 1 dia x média de 2 dias) e coexistem. Não é dimensão nova: é o
+    `end_date` do TimePeriod efetivo que já definia o cálculo.
+
+    window_end só é preenchido dentro de `effective_window(run_date)`
+    (aberto pelo InterblockExecutionOrchestrator.execute) e só para um
+    period_id que CONTÉM run_date e é mais largo que o dia (mensal
+    "YYYY-MM", anual "YYYY"). Diário, período sem data de execução ativa
+    ou período que não contém run_date: window_end=None, exatamente como
+    antes.
+
+    Leitura dentro da janela: a versão da janela; senão o valor do
+    período inteiro (window_end=None, ex.: uma entrada anual fornecida
+    para o ano) — o comportamento anterior para esses valores.
+    Leitura fora de janela (ou `as_of` explícito): window_end=None; senão
+    a ÚNICA versão de janela existente; mais de uma versão ->
+    RESULT_WINDOW_AMBIGUOUS (informe `as_of`). Nunca escolhe uma versão.
+
+    Não é um segundo armazenamento: é a mesma chave canônica com a
+    dimensão da janela; `_windows` é só um índice dessas chaves.
 """
 
+from contextlib import contextmanager
 from dataclasses import dataclass
+from datetime import date
 from typing import Iterable, Mapping
 
-from app.domain.results import Result, as_result, check_value_domain, scalar_of
+from app.domain.results import (
+    AmbiguousResultWindowError,
+    Result,
+    as_result,
+    check_value_domain,
+    scalar_of,
+)
 from app.domain.values import (
     NumericValue,
     ScalarValue,
@@ -87,12 +124,18 @@ class CalculationKey:
 
         VAR11001 / linha / L1 / 2026-01
         PARAM12001 / linha / L1 / 2026-01
+        VAR18901 / linha / L1 / 2026-09 / janela até 2026-09-02
+
+    `window_end` (D33B-04): fim da janela efetiva de um período truncado
+    em run_date; None para período diário, período inteiro ou fora de
+    uma execução com data (ver docstring do módulo).
     """
 
     entity_id: str
     scope_type: str | None = None
     scope_value: str | None = None
     period_id: str | None = None
+    window_end: str | None = None
 
 
 class CalculationContext:
@@ -144,6 +187,11 @@ class CalculationContext:
             CalculationKey,
             Result,
         ] = {}
+
+        # D33B-04: data de execução ativa (fim da janela efetiva) e índice
+        # (variável, escopo, período) -> janelas existentes.
+        self._window_end: str | None = None
+        self._windows: dict[tuple, set[str]] = {}
 
         # allowed_values por variável (domínio do valor categórico),
         # conhecido quando a definição é declarada ao contexto.
@@ -225,6 +273,66 @@ class CalculationContext:
             results[key] = as_result(value)
 
         self._scoped_results = results
+        self._windows = {}
+
+        for key in results:
+            self._index_window(key)
+
+    # ========================================================
+    # IDENTIDADE TEMPORAL (D33B-04)
+    # ========================================================
+
+    @contextmanager
+    def effective_window(self, run_date: date):
+        """
+        Abre a janela efetiva de uma execução: resultados de períodos que
+        contêm `run_date` (mensal/anual) passam a ser identificados pela
+        janela até `run_date`.
+        """
+
+        previous = self._window_end
+        self._window_end = run_date.isoformat()
+
+        try:
+            yield self
+        finally:
+            self._window_end = previous
+
+    @staticmethod
+    def window_for(period_id: str | None, as_of: str | None) -> str | None:
+        """
+        Fim da janela para `period_id` na data `as_of`: só quando o
+        período contém a data e é mais largo que o dia ("2026-09" e
+        "2026" contêm "2026-09-01"; "2026-09-01" é o próprio dia).
+        """
+
+        if as_of is None or period_id is None:
+            return None
+
+        if as_of.startswith(f"{period_id}-"):
+            return as_of
+
+        return None
+
+    def _index_window(self, key: CalculationKey) -> None:
+        if key.window_end is not None:
+            self._windows.setdefault(
+                (key.entity_id, key.scope_type, key.scope_value, key.period_id),
+                set(),
+            ).add(key.window_end)
+
+    def result_windows(
+        self,
+        variable_id: str,
+        scope_type: str | None = None,
+        scope_value: str | None = None,
+        period_id: str | None = None,
+    ) -> tuple[str, ...]:
+        """Janelas existentes para (variável, escopo, período), ordenadas."""
+
+        return tuple(sorted(
+            self._windows.get((variable_id, scope_type, scope_value, period_id), ())
+        ))
 
     # ========================================================
     # API LEGADA — VARIÁVEIS
@@ -305,6 +413,8 @@ class CalculationContext:
         scope_type: str | None = None,
         scope_value: str | None = None,
         period_id: str | None = None,
+        *,
+        as_of: date | str | None = None,
     ) -> ScalarValue:
         """
         Retorna o valor contextualizado de uma variável
@@ -315,7 +425,7 @@ class CalculationContext:
         # resposta escalar -> STATEFUL_RESULT_ON_SCALAR_API (nunca None).
         return scalar_of(
             self.get_variable_result(
-                variable_id, scope_type, scope_value, period_id
+                variable_id, scope_type, scope_value, period_id, as_of=as_of
             ),
             f"{variable_id} ({scope_type}/{scope_value}, period_id={period_id})",
         )
@@ -343,28 +453,65 @@ class CalculationContext:
         scope_type: str | None = None,
         scope_value: str | None = None,
         period_id: str | None = None,
+        *,
+        as_of: date | str | None = None,
     ) -> Result:
         """
-        Retorna o resultado canônico (value, state, detail).
+        Retorna o resultado canônico (value, state, detail) da identidade
+        temporal (D33B-04). `as_of` escolhe explicitamente a janela; sem
+        ele vale a janela da execução ativa (ver docstring do módulo).
         """
 
-        key = CalculationKey(
-            entity_id=variable_id,
-            scope_type=scope_type,
-            scope_value=scope_value,
-            period_id=period_id,
+        return self._scoped_results[
+            self.resolve_key(variable_id, scope_type, scope_value, period_id, as_of=as_of)
+        ]
+
+    def resolve_key(
+        self,
+        variable_id: str,
+        scope_type: str | None = None,
+        scope_value: str | None = None,
+        period_id: str | None = None,
+        *,
+        as_of: date | str | None = None,
+    ) -> CalculationKey:
+        """Chave canônica existente para a leitura (regra do módulo)."""
+
+        if isinstance(as_of, date):
+            as_of = as_of.isoformat()
+
+        base = CalculationKey(variable_id, scope_type, scope_value, period_id)
+        window = self.window_for(period_id, as_of if as_of is not None else self._window_end)
+
+        if window is not None:
+            windowed = CalculationKey(variable_id, scope_type, scope_value, period_id, window)
+
+            if windowed in self._scoped_results:
+                return windowed
+
+        if base in self._scoped_results:
+            return base
+
+        if as_of is None and self._window_end is None:
+            windows = self.result_windows(variable_id, scope_type, scope_value, period_id)
+
+            if len(windows) == 1:
+                return CalculationKey(variable_id, scope_type, scope_value, period_id, windows[0])
+
+            if len(windows) > 1:
+                raise AmbiguousResultWindowError(
+                    f"{AmbiguousResultWindowError.code}: {variable_id} "
+                    f"({scope_type}/{scope_value}, period_id={period_id}) tem "
+                    f"resultados para as janelas {list(windows)}; informe as_of."
+                )
+
+        raise VariableNotFoundError(
+            "Valor contextualizado da variável não encontrado: "
+            f"{variable_id}, "
+            f"scope_type={scope_type}, "
+            f"scope_value={scope_value}, "
+            f"period_id={period_id}"
         )
-
-        if key not in self._scoped_results:
-            raise VariableNotFoundError(
-                "Valor contextualizado da variável não encontrado: "
-                f"{variable_id}, "
-                f"scope_type={scope_type}, "
-                f"scope_value={scope_value}, "
-                f"period_id={period_id}"
-            )
-
-        return self._scoped_results[key]
 
     def set_variable_result(
         self,
@@ -400,9 +547,11 @@ class CalculationContext:
             scope_type=scope_type,
             scope_value=scope_value,
             period_id=period_id,
+            window_end=self.window_for(period_id, self._window_end),
         )
 
         self._scoped_results[key] = result
+        self._index_window(key)
 
     # ========================================================
     # API CONTEXTUALIZADA — PARÂMETROS

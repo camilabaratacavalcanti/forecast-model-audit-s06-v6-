@@ -480,13 +480,18 @@ class InterblockExecutionOrchestrator:
         # allowed_values) — validação de domínio centralizada no contexto.
         context.declare_variable_definitions(self.catalog.variable_definitions.all())
 
-        for index, node in enumerate(plan.steps):
-            if node.kind == EQUATION:
-                self._run_equation(index, node, context, run_date, trace)
-            elif node.kind == AGGREGATION:
-                self._run_aggregation(index, node, context, run_date, trace)
-            else:
-                self._run_transfer(index, node, resolver, context, run_date, trace)
+        # D33B-04: a execução acontece na janela efetiva de `run_date` —
+        # resultados mensais/anuais do período corrente são identificados
+        # pela janela (TimePeriodResolver.effective_window), então run_dates
+        # diferentes coexistem no mesmo contexto. Ordem e nós inalterados.
+        with context.effective_window(run_date):
+            for index, node in enumerate(plan.steps):
+                if node.kind == EQUATION:
+                    self._run_equation(index, node, context, run_date, trace)
+                elif node.kind == AGGREGATION:
+                    self._run_aggregation(index, node, context, run_date, trace)
+                else:
+                    self._run_transfer(index, node, resolver, context, run_date, trace)
 
         return trace
 

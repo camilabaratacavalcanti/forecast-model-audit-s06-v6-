@@ -358,11 +358,14 @@ def test_equation_reading_a_stated_result_is_an_explicit_boundary():
 
 
 def test_aggregation_over_a_stated_result_is_an_explicit_boundary():
+    # LEGACY_TEST_EXPECTATION (fechamento 3.3B, D33B-03): o resultado com
+    # detail e SEM estado (Result(40.0, None, "nota")) deixou de ser válido;
+    # a fronteira da 3.3C é exercida com detail acompanhado de estado.
     orchestrator = synthetic()
     context = CalculationContext()
     inputs(context)
     orchestrator.execute(["VAR12902"], context, RUN)
-    context._scoped_results[next(k for k in context._scoped_results if k.entity_id == "VAR12902" and k.scope_value == "L2")] = Result(40.0, None, "nota")
+    context._scoped_results[next(k for k in context._scoped_results if k.entity_id == "VAR12902" and k.scope_value == "L2")] = Result(40.0, "INVALID_INPUT", "nota")
     plan = orchestrator.plan(["VAR12903"])
     only_aggregation = type(plan)(plan.targets, tuple(s for s in plan.steps if s.kind == "AGGREGATION"), ())
     with pytest.raises(StateAwareAggregationPendingError) as error:
@@ -482,7 +485,9 @@ def test_28_31_block_results_are_plain_and_identical_to_the_existing_engine(real
     a, b = prepare(), prepare()
     orchestrator.execute(local, a, RUN)
     _direct_engine(orchestrator, local, b)
-    assert a._scoped_results == b._scoped_results
+    # LEGACY_TEST_EXPECTATION (D33B-04): comparação sem a janela efetiva.
+    from tests.test_stage3_2_execution_orchestration import by_period
+    assert by_period(a._scoped_results) == by_period(b._scoped_results)
     assert all(result.is_plain for result in a._scoped_results.values())
     assert [k for k in a._scoped_results if k.entity_id == target]
 
