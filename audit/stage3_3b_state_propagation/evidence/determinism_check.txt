@@ -1,0 +1,2 @@
+probe PYTHONHASHSEED=0 sha-equal PYTHONHASHSEED=4242: True
+bytes: 99229

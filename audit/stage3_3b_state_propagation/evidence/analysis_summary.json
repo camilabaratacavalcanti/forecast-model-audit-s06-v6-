@@ -1,0 +1,143 @@
+{
+  "aggregation_scenario": {
+    "rule": "AGR-PRODUCTION-CONSUMO_BAUXITA-GRUPO-L1_L7-MENSAL-AVERAGE",
+    "stated_input": "VAR12022"
+  },
+  "baseline": "eee88d6c9045f040270bc0d7c99d958485db9fff",
+  "control_choice": {
+    "VAR16021@L4": "Normal",
+    "VAR16021@L5": "Normal",
+    "VAR16021@L6": "Normal",
+    "VAR16021@L7": "Normal"
+  },
+  "deterministic": true,
+  "evidence_rows": 338,
+  "f_branch_choice": {
+    "VAR16021@L4": "Normal",
+    "VAR16021@L5": "1 By pass e LC",
+    "VAR16021@L6": "Normal",
+    "VAR16021@L7": "Normal"
+  },
+  "graph": {
+    "nodes_with_edges": 630,
+    "unresolved_references": 0
+  },
+  "literal_mapping": {
+    "declared_result_states": {
+      "VAR16025": {
+        "F": "NO_APPLICABLE_RULE"
+      },
+      "VAR16028": {
+        "F": "NO_APPLICABLE_RULE"
+      }
+    },
+    "equations_with_state_literal": [
+      [
+        "EQ16011",
+        "VAR16025",
+        "F",
+        "NO_APPLICABLE_RULE"
+      ],
+      [
+        "EQ16012",
+        "VAR16028",
+        "F",
+        "NO_APPLICABLE_RULE"
+      ]
+    ],
+    "mapping_proven_per_variable": true
+  },
+  "problems": {},
+  "scenarios": {
+    "S1_A41_F": {
+      "code": null,
+      "expected_code": null,
+      "herdado": 4,
+      "isolado": 37,
+      "stated_results": 4,
+      "steps": 23
+    },
+    "S2_A41_CONTROL": {
+      "code": null,
+      "expected_code": null,
+      "isolado": 41,
+      "stated_results": 0,
+      "steps": 23
+    },
+    "S3_LTH_META": {
+      "code": null,
+      "expected_code": null,
+      "herdado": 6,
+      "isolado": 30,
+      "stated_results": 7,
+      "steps": 6
+    },
+    "S4_MULTI_STATE": {
+      "code": "MULTI_STATE_COMBINATION_UNDEFINED",
+      "expected_code": "MULTI_STATE_COMBINATION_UNDEFINED",
+      "herdado": 7,
+      "isolado": 33,
+      "stated_results": 8,
+      "steps": 23
+    },
+    "S5_MULTI_DETAIL": {
+      "code": "MULTI_DETAIL_COMPOSITION_UNDEFINED",
+      "expected_code": "MULTI_DETAIL_COMPOSITION_UNDEFINED",
+      "herdado": 6,
+      "isolado": 15,
+      "stated_results": 8,
+      "steps": 4
+    },
+    "S6_SAME_DETAIL": {
+      "code": null,
+      "expected_code": null,
+      "herdado": 7,
+      "isolado": 15,
+      "stated_results": 9,
+      "steps": 4
+    },
+    "S7_AGGREGATION_3_3C": {
+      "code": "STATE_AWARE_AGGREGATION_PENDING_STAGE_3.3C",
+      "expected_code": "STATE_AWARE_AGGREGATION_PENDING_STAGE_3.3C",
+      "herdado": 9,
+      "isolado": 121,
+      "stated_results": 16,
+      "steps": 29
+    },
+    "S8_OFFICIAL_ENERGY": {
+      "code": null,
+      "expected_code": null,
+      "herdado": 1,
+      "isolado": 6,
+      "stated_results": 2,
+      "steps": 1
+    }
+  },
+  "static": {
+    "changed_since_baseline": [
+      "app/domain/forecast/models.py",
+      "app/domain/results.py",
+      "app/domain/state_propagation.py",
+      "app/engine/calculation_context.py",
+      "app/engine/equation_engine.py",
+      "app/engine/expression_evaluator.py",
+      "app/engine/forecast_engine.py",
+      "app/engine/interblock_resolver.py",
+      "tests/test_stage2_4_workbook_contract.py",
+      "tests/test_stage3_3a_result_contract.py",
+      "tests/test_stage3_3b_state_propagation.py"
+    ],
+    "f_constant_holders": [
+      "app/domain/values.py"
+    ],
+    "priority_words_in_policy": [
+      "prioridade",
+      "prioridade"
+    ],
+    "propagation_imports": [
+      "__future__",
+      "app.domain.results"
+    ],
+    "protected_touched": []
+  }
+}
