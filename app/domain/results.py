@@ -13,10 +13,19 @@ Contrato canônico de resultado (Etapa 3.3A).
     │            NO_APPLICABLE_RULE, INVALID_INPUT, VALIDATION_FAILED.
     │            Nenhum outro texto é estado. Não existe estado "OK"
     │            inventado: ausência de estado é None.
-    └── detail   None ou texto complementar associado ao resultado,
-                 preservado byte a byte (sem strip, sem normalização).
-                 Não é erro técnico, log, exceção, nome de variável nem
-                 source_block.
+    └── detail   None ou texto complementar DE UM ESTADO, preservado
+                 byte a byte (sem strip, sem normalização). Não é erro
+                 técnico, log, exceção, nome de variável nem source_block.
+                 D33B-03: detail sem state é inválido
+                 (DETAIL_WITHOUT_STATE) — não existe semântica para ele.
+
+Combinações válidas (D33B-03):
+    state=None,     detail=None     resultado válido
+    state=<estado>, detail=None     estado sem complemento
+    state=<estado>, detail=<texto>  estado com complemento
+    state=None,     detail=<texto>  INVÁLIDO (DetailWithoutStateError)
+
+Igualdade semântica (D33B-04, idempotência): `results_equivalent`.
 
 Compatibilidade centralizada: `as_result(x)` é o ÚNICO ponto que
 converte a representação legada (um ScalarValue, ex.: 42) no contrato
@@ -74,6 +83,21 @@ class ResultValueDomainError(ResultContractError):
     """Valor fora de `allowed_values` da variável."""
 
     code = "RESULT_VALUE_OUTSIDE_ALLOWED_VALUES"
+
+
+class DetailWithoutStateError(ResultContractError):
+    """D33B-03: detail é complemento de um estado; sem estado é inválido."""
+
+    code = "DETAIL_WITHOUT_STATE"
+
+
+class AmbiguousResultWindowError(ResultContractError):
+    """
+    D33B-04: leitura sem janela de um período com mais de uma janela
+    efetiva gravada; nenhuma versão é escolhida implicitamente.
+    """
+
+    code = "RESULT_WINDOW_AMBIGUOUS"
 
 
 class StatePropagationPendingError(ResultContractError):
@@ -136,6 +160,8 @@ class Result:
                 f"recebido {type(self.detail).__name__}."
             )
 
+        require_detail_with_state(self.state, self.detail)
+
     @staticmethod
     def code_prefix() -> str:
         return f"{ResultContractError.code}: "
@@ -154,6 +180,48 @@ class ResultIdentity:
     scope_value: str | None
     frequency: str | None
     period_id: str | None
+
+
+def require_detail_with_state(state, detail) -> None:
+    """D33B-03: único ponto que valida detail sem estado."""
+
+    if detail is not None and state is None:
+        raise DetailWithoutStateError(
+            f"{DetailWithoutStateError.code}: detail {detail!r} sem state; "
+            "detail só existe como complemento de um estado."
+        )
+
+
+def _value_kind(value) -> str:
+    if value is None:
+        return "none"
+    if isinstance(value, str):
+        return "text"
+    return "number"
+
+
+def results_equivalent(first: Result, second: Result) -> bool:
+    """
+    Igualdade semântica de dois resultados da MESMA identidade (D33B-04):
+    mesmo state (texto exato), mesmo detail (texto exato, byte a byte) e
+    mesmo valor. Valor: ambos ausentes; ou ambos texto e iguais; ou ambos
+    numéricos e numericamente iguais (value_type "numerico" é um único
+    domínio int|float — 2 e 2.0 são o mesmo número). Texto nunca é igual
+    a número ("2" != 2) e NaN nunca é igual a nada. Determinístico.
+    """
+
+    if first.state != second.state or first.detail != second.detail:
+        return False
+
+    kind = _value_kind(first.value)
+
+    if kind != _value_kind(second.value):
+        return False
+
+    if kind == "number" and (first.value != first.value or second.value != second.value):
+        return False  # NaN
+
+    return first.value == second.value
 
 
 def as_result(value) -> Result:
@@ -221,6 +289,8 @@ def require_plain_for_aggregation(variable_id: str, period_id, result: Result) -
 
 
 __all__ = [
+    "AmbiguousResultWindowError",
+    "DetailWithoutStateError",
     "Result",
     "ResultContractError",
     "ResultIdentity",
@@ -232,6 +302,8 @@ __all__ = [
     "as_result",
     "check_value_domain",
     "require_plain_for_aggregation",
+    "require_detail_with_state",
     "require_plain_for_calculation",
+    "results_equivalent",
     "scalar_of",
 ]

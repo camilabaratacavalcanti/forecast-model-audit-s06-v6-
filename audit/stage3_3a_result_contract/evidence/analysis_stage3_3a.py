@@ -157,7 +157,10 @@ for consumer in order:
         # resultado por chave do produtor.
         if producer not in links and (producer, *key, period) not in expected:
             n += 1
-            result = [1000.0 + n, STATES[n % 3] if n % 4 else None, f"{producer}|{key[1]}|{n}" if n % 5 else None]
+            # Fechamento 3.3B (D33B-03): detail só acompanha estado; a
+            # combinação state=None + detail deixou de ser válida.
+            state = STATES[n % 3] if n % 4 else None
+            result = [1000.0 + n, state, f"{producer}|{key[1]}|{n}" if n % 5 and state else None]
             writes.append([producer, *key, period, result])
             expected[(producer, *key, period)] = result
             # iscas: mesmo produtor em outro período e sem período
@@ -176,7 +179,8 @@ root = links[middle]["source_definition"]
 shortcut_writes, shortcut_transfers = [], []
 for inst in links[chain_consumer]["instances"]:
     key = (inst["scope_type"], inst["scope_value"])
-    shortcut_writes.append([root, *key, PERIOD["diário"], [1.0, None, "ROOT"]])
+    # Fechamento 3.3B (D33B-03): o detail "ROOT" passa a acompanhar um estado.
+    shortcut_writes.append([root, *key, PERIOD["diário"], [1.0, "VALIDATION_FAILED", "ROOT"]])
     shortcut_writes.append([middle, *key, PERIOD["diário"], [2.0, "INVALID_INPUT", "MIDDLE"]])
     shortcut_transfers.append([chain_consumer, *key, PERIOD["diário"]])
 commands.append({"kind": "transfer", "id": "D:shortcut", "writes": shortcut_writes, "transfers": shortcut_transfers})

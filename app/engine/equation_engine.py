@@ -132,13 +132,15 @@ class EquationEngine:
 
         Etapa 3.3B — resultado canônico (app.domain.state_propagation):
 
-            1. as dependências reais da expressão são resolvidas pela
-               mesma regra do evaluator; se alguma tem estado, o alvo
-               HERDA esse estado sem valor (contrato 2.2 D3/§16) e a
-               expressão não é avaliada;
-            2. sem estado herdado, a expressão é avaliada como antes;
-            3. com `target_definition`, um literal declarado pela própria
-               variável alvo (D1) vira o estado correspondente.
+            1. a expressão é avaliada UMA vez, como antes
+               (`evaluate_with_state`); uma dependência EXECUTADA com
+               estado é um operando com estado, nunca um número;
+            2. se alguma dependência executada tinha estado, o alvo
+               HERDA esse estado sem valor (contrato 2.2 D3/§16;
+               D33B-01/02 para estados/details diferentes). Um ramo de IF
+               não escolhido não foi executado e não contribui;
+            3. sem estado, com `target_definition`, um literal declarado
+               pela própria variável alvo (D1) vira o estado.
         """
 
         expression = definition.expression
@@ -154,16 +156,8 @@ class EquationEngine:
             default_period_id=period_id,
         )
 
-        inherited = inherit_from_dependencies(
-            definition.target_variable_id,
-            evaluator.dependency_results(tree),
-        )
-
-        if inherited is not None:
-            return inherited
-
         try:
-            value = evaluator.evaluate(tree)
+            value, stated_origins = evaluator.evaluate_with_state(tree)
 
         except (
             VariableNotFoundError,
@@ -178,5 +172,10 @@ class EquationEngine:
                 expression=expression,
                 original_error=exc,
             ) from exc
+
+        if stated_origins:
+            return inherit_from_dependencies(
+                definition.target_variable_id, stated_origins
+            )
 
         return translate_declared_literal(value, target_definition)

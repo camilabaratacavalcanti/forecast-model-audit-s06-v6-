@@ -20,19 +20,26 @@ Três funções, únicas e centrais:
         (inclusive "F" numa variável que não o declara) fica como está.
 
     inherit_from_dependencies(target, dependencies)
-        estado herdado das dependências REAIS de uma equação (as
-        referências da própria expressão, resolvidas pela mesma regra do
-        evaluator). Nenhuma dependência com estado -> None (calcula
-        normalmente). Um único estado -> Result(None, estado, detail).
+        estado herdado das dependências EXECUTADAS de uma equação: os
+        operandos com estado efetivamente consumidos pela avaliação
+        normal (ExpressionEvaluator.evaluate_with_state). Um ramo de IF
+        não escolhido não é executado e não contribui. Um único estado
+        -> Result(None, estado, detail).
 
-    As combinações sem contrato são erro explícito, nunca prioridade
-    escolhida aqui:
-        MULTI_STATE_COMBINATION_UNDEFINED   estados diferentes
-        MULTI_DETAIL_COMPOSITION_UNDEFINED  mesmo estado, details diferentes
-        DETAIL_WITHOUT_STATE_PROPAGATION_UNDEFINED  dependência com detail
-                                            e sem estado
+    Contrato fechado (Etapa 3.3B, decisões D33B-01..03):
+        D33B-01  estados diferentes -> MULTI_STATE_COMBINATION_UNDEFINED
+                 (sem prioridade, sem primeiro/último, sem estado novo)
+        D33B-02  mesmo estado, details diferentes ->
+                 MULTI_DETAIL_COMPOSITION_UNDEFINED (sem concatenação,
+                 sem escolha). Mesmo estado e mesmo detail (inclusive
+                 todos None) -> propaga. None e um texto são details
+                 diferentes: o contrato não define compatibilidade entre
+                 "sem complemento" e um complemento.
+        D33B-03  detail sem estado é inválido já na construção do Result
+                 (DETAIL_WITHOUT_STATE, app.domain.results) — não chega
+                 aqui.
 
-Isolamento: a propagação só percorre dependências reais; bloco,
+Isolamento: a propagação só percorre dependências executadas; bloco,
 instância, período ou execução em comum não propagam nada. Agregação
 temporal state-aware continua fora (STATE_AWARE_AGGREGATION_PENDING_STAGE_3.3C).
 """
@@ -48,10 +55,6 @@ class MultiStateCombinationUndefinedError(ResultContractError):
 
 class MultiDetailCompositionUndefinedError(ResultContractError):
     code = "MULTI_DETAIL_COMPOSITION_UNDEFINED"
-
-
-class DetailWithoutStatePropagationUndefinedError(ResultContractError):
-    code = "DETAIL_WITHOUT_STATE_PROPAGATION_UNDEFINED"
 
 
 def translate_declared_literal(value, target_definition) -> Result:
@@ -77,23 +80,12 @@ def _origin(key) -> str:
 
 def inherit_from_dependencies(target_variable_id: str, dependencies) -> Result | None:
     """
-    `dependencies`: pares (chave, Result) das dependências reais da
-    equação, chave = (variable_id, scope_type, scope_value, period_id).
+    `dependencies`: pares (chave, Result) das dependências executadas
+    da equação, chave = (variable_id, scope_type, scope_value, period_id).
     Resultado independente da ordem dos operandos.
     """
 
-    stated = []
-
-    for key, result in dependencies:
-        if result.state is not None:
-            stated.append((key, result))
-        elif result.detail is not None:
-            raise DetailWithoutStatePropagationUndefinedError(
-                f"{DetailWithoutStatePropagationUndefinedError.code}: "
-                f"{target_variable_id} depende de {_origin(key)} com detail "
-                f"{result.detail!r} e sem estado; o contrato não define se esse "
-                "detail propaga."
-            )
+    stated = [(key, result) for key, result in dependencies if result.state is not None]
 
     if not stated:
         return None
@@ -122,7 +114,6 @@ def inherit_from_dependencies(target_variable_id: str, dependencies) -> Result |
 
 
 __all__ = [
-    "DetailWithoutStatePropagationUndefinedError",
     "MultiDetailCompositionUndefinedError",
     "MultiStateCombinationUndefinedError",
     "inherit_from_dependencies",

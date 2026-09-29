@@ -1,7 +1,7 @@
 from dataclasses import dataclass
 from datetime import date
 
-from app.domain.results import Result, ResultContractError
+from app.domain.results import Result, ResultContractError, require_detail_with_state
 from app.domain.values import RESULT_STATE_TAXONOMY, ScalarValue
 
 
@@ -77,6 +77,8 @@ class ForecastValue:
             raise ResultContractError(
                 f"{ResultContractError.code}: detail deve ser texto ou None."
             )
+
+        require_detail_with_state(self.state, self.detail)
 
     @property
     def result(self) -> Result:

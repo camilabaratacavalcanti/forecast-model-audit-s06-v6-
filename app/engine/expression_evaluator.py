@@ -21,6 +21,25 @@ levanta ConditionalFailureError; a única leitura permitida é `== "F"`
 / `!= "F"` contra o literal "F" (verdadeiro/falso conforme o valor
 seja a falha; um número nunca é a falha). Um ramo de IF que devolve
 "F" apenas o repassa.
+
+Estado causal (Etapa 3.3B): uma dependência lida com state vira um
+operando com estado (`StatedOperand`), nunca um número. A avaliação
+segue a MESMA ordem e o mesmo curto-circuito de sempre; o operando com
+estado absorve toda operação que o consome (aritmética, função,
+comparação, condição) e acumula as origens efetivamente consumidas.
+Dependência estrutural (referência escrita na fórmula) não é o mesmo que
+dependência executada:
+
+    IF com condição sem estado  só o ramo escolhido é avaliado; o outro
+                                ramo não contribui com estado
+    IF com condição com estado  nenhum ramo é executado; o resultado
+                                carrega só o estado da condição
+    and / or                    operando com estado interrompe o curto-
+                                circuito (o restante não é executado)
+
+`evaluate_with_state` devolve (valor, origens). `evaluate` (chamada
+direta, sem propagação) nunca usa um estado como valor: levanta
+STATED_RESULT_CONSUMED_AS_VALUE.
 """
 
 import ast
@@ -28,6 +47,7 @@ import math
 import operator
 
 from app.domain.results import (
+    Result,
     ResultContractError,
     require_plain_for_calculation,
 )
@@ -40,7 +60,6 @@ from app.domain.values import (
 from app.engine import scoped_reference
 from app.engine.calculation_context import CalculationContext
 from app.engine.exceptions import (
-    AmbiguousSpatialPrecedenceError,
     ConditionalFailureError,
     DivisionByZeroError,
     EvaluationError,
@@ -110,6 +129,40 @@ def _natural_log(value: int | float) -> float:
 FUNCTIONS = {
     "ln": _natural_log,
 }
+
+
+class StatedOperand:
+    """
+    Operando com estado (Etapa 3.3B): uma dependência EXECUTADA cujo
+    resultado tem state. Nunca é número, texto ou condição; toda operação
+    que o consome devolve um StatedOperand com a união das origens.
+
+    `origins`: pares (chave, Result) ordenados pela chave e sem
+    repetição — independe da ordem dos operandos e da ordem de avaliação.
+    Não decide nada sobre combinação de estados: isso é
+    app.domain.state_propagation.inherit_from_dependencies.
+    """
+
+    __slots__ = ("origins",)
+
+    def __init__(self, origins):
+        self.origins = tuple(sorted(dict(origins).items(), key=lambda item: repr(item[0])))
+
+    @classmethod
+    def of(cls, key, result: Result) -> "StatedOperand":
+        return cls([(key, result)])
+
+    @classmethod
+    def merge(cls, *operands) -> "StatedOperand | None":
+        stated = [o for o in operands if isinstance(o, StatedOperand)]
+
+        if not stated:
+            return None
+
+        return cls([pair for operand in stated for pair in operand.origins])
+
+    def __repr__(self) -> str:
+        return f"StatedOperand({self.origins!r})"
 
 
 class ExpressionEvaluator:
@@ -254,8 +307,13 @@ class ExpressionEvaluator:
             if as_result:
                 return (identifier, scope_type, scope_value, period_id), result
 
-            # Um resultado com state/detail nunca é usado como número; a
-            # propagação acontece antes, no EquationEngine (Etapa 3.3B).
+            if result.state is not None:
+                # Etapa 3.3B: estado nunca é número; vira operando com
+                # estado, com a identidade exata que foi lida.
+                return StatedOperand.of(
+                    (identifier, scope_type, scope_value, period_id), result
+                )
+
             require_plain_for_calculation(identifier, result)
 
             return result.value
@@ -355,53 +413,6 @@ class ExpressionEvaluator:
 
         raise last_error
 
-    def dependency_results(self, tree: ast.Expression) -> list:
-        """
-        Etapa 3.3B: resultados das dependências REAIS da expressão — toda
-        referência VAR escrita nela (inclusive em ramos de IF não
-        escolhidos: alcançabilidade estática do grafo, contrato D3),
-        resolvida pela MESMA regra de `_resolve_name` (escopo explícito:
-        fallback temporal; sem escopo: Decision E + fallback temporal).
-        Referências sem valor são ignoradas aqui (a avaliação normal
-        decide se faltam de fato). Lista ordenada por chave.
-        """
-
-        found = {}
-
-        for node in ast.walk(tree):
-            if not isinstance(node, ast.Name):
-                continue
-
-            identifier, scope_type, scope_value = (
-                scoped_reference.split_internal(node.id)
-            )
-
-            if not identifier.startswith("VAR"):
-                continue
-
-            try:
-                if scope_type is not None:
-                    key, result = self._get_variable_with_period_fallback(
-                        identifier,
-                        scope_type=scope_type,
-                        scope_value=scope_value,
-                        as_result=True,
-                    )
-                elif self.default_scope_type and self.default_scope_value:
-                    key, result = (
-                        self._get_variable_with_spatial_and_period_fallback(
-                            identifier, as_result=True
-                        )
-                    )
-                else:
-                    continue  # API legada não escopada: sempre valor simples
-            except (VariableNotFoundError, AmbiguousSpatialPrecedenceError):
-                continue
-
-            found[key] = result
-
-        return sorted(found.items(), key=lambda item: repr(item[0]))
-
     def _get_parameter_with_spatial_and_period_fallback(
         self,
         identifier: str,
@@ -438,11 +449,34 @@ class ExpressionEvaluator:
 
         O resultado é um número ou um texto (categórico ou "F"); uma
         expressão cujo resultado final é uma condição (bool) é um
-        erro de tipo, não um número 0/1.
+        erro de tipo, não um número 0/1. Uma dependência executada com
+        estado é erro explícito aqui (STATED_RESULT_CONSUMED_AS_VALUE):
+        a propagação é feita por `evaluate_with_state`.
+        """
+
+        value, origins = self.evaluate_with_state(tree)
+
+        if origins:
+            key, result = origins[0]
+            require_plain_for_calculation(key[0], result)
+
+        return value
+
+    def evaluate_with_state(
+        self,
+        tree: ast.Expression,
+    ) -> tuple:
+        """
+        Uma única avaliação normal. Devolve (valor, ()) ou, se alguma
+        dependência EXECUTADA tinha estado, (None, origens) — origens =
+        pares (chave, Result) ordenados e sem repetição.
         """
 
         try:
             result = self._evaluate_node(tree.body)
+
+            if isinstance(result, StatedOperand):
+                return None, result.origins
 
             if isinstance(result, bool):
                 raise ExpressionTypeError(
@@ -450,7 +484,7 @@ class ExpressionEvaluator:
                     "(verdadeiro/falso), não um valor."
                 )
 
-            return result
+            return result, ()
 
         except EvaluationError:
             raise
@@ -497,6 +531,13 @@ class ExpressionEvaluator:
             )
 
         return value
+
+    @classmethod
+    def _numeric_or_stated(cls, value, operation: str):
+        if isinstance(value, StatedOperand):
+            return value
+
+        return cls._require_numeric(value, operation)
 
     @staticmethod
     def _require_condition(value, operation: str) -> bool:
@@ -596,12 +637,17 @@ class ExpressionEvaluator:
                 type(node.op).__name__,
             )
 
-            left = self._require_numeric(
+            left = self._numeric_or_stated(
                 self._evaluate_node(node.left), symbol
             )
-            right = self._require_numeric(
+            right = self._numeric_or_stated(
                 self._evaluate_node(node.right), symbol
             )
+
+            stated = StatedOperand.merge(left, right)
+
+            if stated is not None:
+                return stated
 
             try:
                 return operation(left, right)
@@ -625,10 +671,13 @@ class ExpressionEvaluator:
                     f"{type(node.op).__name__}"
                 )
 
-            value = self._require_numeric(
+            value = self._numeric_or_stated(
                 self._evaluate_node(node.operand),
                 type(node.op).__name__,
             )
+
+            if isinstance(value, StatedOperand):
+                return value
 
             return operation(value)
 
@@ -643,11 +692,16 @@ class ExpressionEvaluator:
                 )
 
             arguments = [
-                self._require_numeric(
+                self._numeric_or_stated(
                     self._evaluate_node(argument), function_name
                 )
                 for argument in node.args
             ]
+
+            stated = StatedOperand.merge(*arguments)
+
+            if stated is not None:
+                return stated
 
             return function(*arguments)
 
@@ -660,6 +714,13 @@ class ExpressionEvaluator:
                 node.ops, node.comparators
             ):
                 right = self._evaluate_node(comparator)
+
+                # Comparação com operando com estado não é decidida: o
+                # encadeamento para aqui (nada além foi executado).
+                stated = StatedOperand.merge(left, right)
+
+                if stated is not None:
+                    return stated
 
                 is_failure_check = any(
                     isinstance(operand, ast.Constant)
@@ -682,9 +743,12 @@ class ExpressionEvaluator:
             symbol = "and" if is_and else "or"
 
             for operand in node.values:
-                value = self._require_condition(
-                    self._evaluate_node(operand), symbol
-                )
+                value = self._evaluate_node(operand)
+
+                if isinstance(value, StatedOperand):
+                    return value  # curto-circuito indecidível: para aqui
+
+                value = self._require_condition(value, symbol)
 
                 if is_and and not value:
                     return False
@@ -697,6 +761,9 @@ class ExpressionEvaluator:
         if isinstance(node, ast.IfExp):
 
             condition = self._evaluate_node(node.test)
+
+            if isinstance(condition, StatedOperand):
+                return condition  # nenhum ramo é executado
 
             if not isinstance(condition, bool):
                 condition = self._require_numeric(
