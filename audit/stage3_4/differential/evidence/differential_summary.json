@@ -1,0 +1,116 @@
+{
+  "REFERENCE_DATA_TOOLS_INVARIANT": "PASS",
+  "aggregation_types": {
+    "AVERAGE": 342,
+    "MOVING_AVERAGE": 2,
+    "SUM": 42,
+    "WEIGHTED_AVERAGE": 9
+  },
+  "candidate_commit": "95e7adeffe43ff5b098289ae59a360c1009d9ff9",
+  "coverage": {
+    "AGGREGATION": {
+      "actual_cases": 2370,
+      "by_block": {
+        "energy": {
+          "instances": 17,
+          "matched": 102
+        },
+        "max_ht": {
+          "instances": 150,
+          "matched": 900
+        },
+        "production": {
+          "instances": 52,
+          "matched": 312
+        },
+        "yield": {
+          "instances": 176,
+          "matched": 1056
+        }
+      },
+      "dates": 2,
+      "expected_cases": 2370,
+      "instances": 395,
+      "matched": 2370,
+      "vectors": 3
+    },
+    "EQUATION": {
+      "actual_cases": 2352,
+      "by_block": {
+        "energy": {
+          "instances": 72,
+          "matched": 432
+        },
+        "max_ht": {
+          "instances": 41,
+          "matched": 246
+        },
+        "production": {
+          "instances": 81,
+          "matched": 486
+        },
+        "yield": {
+          "instances": 198,
+          "matched": 1188
+        }
+      },
+      "dates": 2,
+      "expected_cases": 2352,
+      "instances": 392,
+      "matched": 2352,
+      "vectors": 3
+    }
+  },
+  "dates": [
+    "2026-09-03",
+    "2026-12-31"
+  ],
+  "difference_types": {},
+  "differences": 0,
+  "harness_determinism": {
+    "hash_seeds": [
+      "0",
+      "4242"
+    ],
+    "runner_output_sha256": {
+      "candidate": "5ba9d45b9f0fc421d171d43a62e72a9d87c987ebb81aa69d2669ac85f15f7482",
+      "reference": "98f02fdd00da6a3f395ea99a09d1e8d113325ce6c47adb723f8e487c29b361eb"
+    }
+  },
+  "isolation": {
+    "candidate_app_sha256": "7c67071932f9ab413a86a06ef1cb39bf277d1f3b2163996930a14ce62d08a82d",
+    "candidate_foreign_modules": [],
+    "mechanism": "git archive <commit> app -> tempdir; python -I subprocess per side",
+    "python": [
+      "3.11.15",
+      "3.11.15"
+    ],
+    "reference_app_sha256": "a3cc3c50d152e634952da8cf8200d8aff5197eff50aca7140ce7660a47878b2a",
+    "reference_foreign_modules": []
+  },
+  "oracle_type": "DIFFERENTIAL_REGRESSION_ORACLE",
+  "problems": [],
+  "reference_commit": "7877551fd9f63a2d137ac6da7507afe6cbffd297",
+  "result": "PASS",
+  "side_coverage": {
+    "candidate": {
+      "actual": 4722,
+      "duplicates": 0,
+      "missing": 0,
+      "unexpected": 0,
+      "unique": 4722
+    },
+    "reference": {
+      "actual": 4722,
+      "duplicates": 0,
+      "missing": 0,
+      "unexpected": 0,
+      "unique": 4722
+    }
+  },
+  "vectors": [
+    "VECTOR_A",
+    "VECTOR_B",
+    "VECTOR_C"
+  ]
+}
