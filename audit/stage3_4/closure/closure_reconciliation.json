@@ -1,0 +1,589 @@
+{
+ "label": "REAL_DERIVED_TEST_RESULT",
+ "matrix": [
+  {
+   "area": "Planning targets",
+   "evidence": "planner + plan_evidence.csv",
+   "expected": 446,
+   "observed": 446,
+   "status": "PASS"
+  },
+  {
+   "area": "Integrated targets",
+   "evidence": "targets_of_blocks(4 blocos)",
+   "expected": 421,
+   "observed": 421,
+   "status": "PASS"
+  },
+  {
+   "area": "Area_41 excluded (only area_41)",
+   "evidence": "446 − 421, blocos dos excluídos",
+   "expected": 25,
+   "observed": 25,
+   "status": "PASS"
+  },
+  {
+   "area": "Planner nodes",
+   "evidence": "plan(421).steps",
+   "expected": 427,
+   "observed": 427,
+   "status": "PASS"
+  },
+  {
+   "area": "Equation nodes",
+   "evidence": "plan steps",
+   "expected": 218,
+   "observed": 218,
+   "status": "PASS"
+  },
+  {
+   "area": "Aggregation nodes",
+   "evidence": "plan steps",
+   "expected": 197,
+   "observed": 197,
+   "status": "PASS"
+  },
+  {
+   "area": "Transfer nodes",
+   "evidence": "plan steps",
+   "expected": 12,
+   "observed": 12,
+   "status": "PASS"
+  },
+  {
+   "area": "VAR12041 equation definitions (427 − 421)",
+   "evidence": "nós que produzem VAR12041",
+   "expected": 7,
+   "observed": 7,
+   "status": "PASS"
+  },
+  {
+   "area": "VAR12041 equation definitions (seeds)",
+   "evidence": "equations.json",
+   "expected": 7,
+   "observed": 7,
+   "status": "PASS"
+  },
+  {
+   "area": "Equation definitions",
+   "evidence": "equations.json (4 blocos)",
+   "expected": 218,
+   "observed": 218,
+   "status": "PASS"
+  },
+  {
+   "area": "Equation target variables",
+   "evidence": "218 − 6 (VAR12041)",
+   "expected": 212,
+   "observed": 212,
+   "status": "PASS"
+  },
+  {
+   "area": "Equation instances",
+   "evidence": "ForecastEngine.materialize_equation",
+   "expected": 392,
+   "observed": 392,
+   "status": "PASS"
+  },
+  {
+   "area": "Aggregation rules",
+   "evidence": "SeedLoader aggregation instances",
+   "expected": 197,
+   "observed": 197,
+   "status": "PASS"
+  },
+  {
+   "area": "Aggregation instances",
+   "evidence": "SeedLoader aggregation instances",
+   "expected": 395,
+   "observed": 395,
+   "status": "PASS"
+  },
+  {
+   "area": "Aggregation incl. area_41",
+   "evidence": "SeedLoader (5 blocos)",
+   "expected": 417,
+   "observed": 417,
+   "status": "PASS"
+  },
+  {
+   "area": "Historical 834 = 417 × 2 execution cases",
+   "evidence": "cálculo",
+   "expected": true,
+   "observed": true,
+   "status": "PASS"
+  },
+  {
+   "area": "Transfers (transfers.csv)",
+   "evidence": "transfers.csv; = TRANSFER nodes",
+   "expected": 12,
+   "observed": 12,
+   "status": "PASS"
+  },
+  {
+   "area": "Transfer events (32 datas)",
+   "evidence": "execução real + transfers.csv",
+   "expected": 1920,
+   "observed": 1920,
+   "status": "PASS"
+  },
+  {
+   "area": "Transfer events verified (3.4C evidence)",
+   "evidence": "transfers.csv",
+   "expected": 1920,
+   "observed": 1920,
+   "status": "PASS"
+  },
+  {
+   "area": "Execution dates",
+   "evidence": "2026-01-01 → 2026-02-01",
+   "expected": 32,
+   "observed": 32,
+   "status": "PASS"
+  },
+  {
+   "area": "Pending links (official, PENDING_LOAD)",
+   "evidence": "registry oficial + interblock_links.json",
+   "expected": 16,
+   "observed": 16,
+   "status": "PASS"
+  },
+  {
+   "area": "Annual rules",
+   "evidence": "target_frequency = anual",
+   "expected": 48,
+   "observed": 48,
+   "status": "PASS"
+  },
+  {
+   "area": "Monthly identities (jan / feb)",
+   "evidence": "check_temporal",
+   "expected": "313/313",
+   "observed": "313/313",
+   "status": "PASS"
+  },
+  {
+   "area": "Windows per January monthly identity",
+   "evidence": "store real",
+   "expected": [
+    31
+   ],
+   "observed": [
+    31
+   ],
+   "status": "PASS"
+  },
+  {
+   "area": "Annual identities",
+   "evidence": "check_temporal",
+   "expected": 185,
+   "observed": 185,
+   "status": "PASS"
+  },
+  {
+   "area": "Windows per annual identity (YTD)",
+   "evidence": "store real",
+   "expected": [
+    32
+   ],
+   "observed": [
+    32
+   ],
+   "status": "PASS"
+  },
+  {
+   "area": "Differential cases (3.4B)",
+   "evidence": "differential_cases.csv",
+   "expected": 4722,
+   "observed": 4722,
+   "status": "PASS"
+  },
+  {
+   "area": "Mutation evidence",
+   "evidence": "mutation_results.csv",
+   "expected": 58,
+   "observed": 58,
+   "status": "PASS"
+  },
+  {
+   "area": "Code mutants",
+   "evidence": "code_mutation_results.csv",
+   "expected": 17,
+   "observed": 17,
+   "status": "PASS"
+  },
+  {
+   "area": "Mutation detection",
+   "evidence": "75 / 75",
+   "expected": "100%",
+   "observed": "100%",
+   "status": "PASS"
+  },
+  {
+   "area": "Positive controls",
+   "evidence": "positive_controls.csv + CM-00",
+   "expected": 14,
+   "observed": 14,
+   "status": "PASS"
+  }
+ ],
+ "observed": {
+  "aggregations": {
+   "annual_rules": 48,
+   "annual_rules_by_block": {
+    "max_ht": 39,
+    "production": 9
+   },
+   "historical_834_equals_417x2": true,
+   "instances_4_blocks": 395,
+   "instances_with_area_41": 417,
+   "rules": 197,
+   "types": {
+    "AVERAGE": 342,
+    "MOVING_AVERAGE": 2,
+    "SUM": 42,
+    "WEIGHTED_AVERAGE": 9
+   }
+  },
+  "equations": {
+   "VAR12041_definitions": 7,
+   "definitions": 218,
+   "distinct_target_variables": 212,
+   "instances": 392
+  },
+  "links": {
+   "excluded_link": [
+    "yield.VAR11031 -> area_41.VAR16007"
+   ],
+   "loaded_links": 13,
+   "pending_fixture": 0,
+   "pending_official": 16,
+   "pending_persisted_status": {
+    "PENDING_LOAD": 16
+   },
+   "transfer_nodes_integrated": 12
+  },
+  "planner": {
+   "by_block": {
+    "energy": {
+     "AGGREGATION": 11,
+     "EQUATION": 24,
+     "TRANSFER": 8,
+     "nodes": 43,
+     "targets": 43
+    },
+    "max_ht": {
+     "AGGREGATION": 78,
+     "EQUATION": 29,
+     "TRANSFER": 2,
+     "nodes": 109,
+     "targets": 109
+    },
+    "production": {
+     "AGGREGATION": 28,
+     "EQUATION": 27,
+     "TRANSFER": 1,
+     "nodes": 56,
+     "targets": 50
+    },
+    "yield": {
+     "AGGREGATION": 80,
+     "EQUATION": 138,
+     "TRANSFER": 1,
+     "nodes": 219,
+     "targets": 219
+    }
+   },
+   "by_kind": {
+    "AGGREGATION": 197,
+    "EQUATION": 218,
+    "TRANSFER": 12
+   },
+   "graph_hash": "e372425d9a6f3cbccecfa9ff77c30ddff49be8587da4d567a252fb64d2e3d1ff",
+   "nodes": 427,
+   "nodes_minus_targets": 6,
+   "pending_blockers": 0,
+   "variables_with_multiple_nodes": {
+    "VAR12041": 7
+   }
+  },
+  "planning": {
+   "excluded": 25,
+   "excluded_blocks": [
+    "area_41"
+   ],
+   "integrated_subset_of_official": true,
+   "integrated_targets": 421,
+   "official_ok_blocked": {
+    "BLOCKED": 287,
+    "OK": 159
+   },
+   "official_targets_from_planner": 446,
+   "plan_evidence_equals_planner": true,
+   "plan_evidence_rows": 446
+  },
+  "protected": {
+   "changed_since_3_4A_outside_stage3_4": [],
+   "diff_vs_3_4A_baseline_app_data_tools": "",
+   "diff_vs_3_4E_baseline_app_data_tools": "",
+   "diff_vs_reference_data_tools": "",
+   "interblock_links_equal_7877551": true,
+   "interblock_links_equal_f3b6588": true,
+   "interblock_links_sha256": "e96ff4890cb77fe4a1a05169bd2692b37e88f0bee50b6395453e141609b0b697",
+   "workbooks_sha256": {
+    "descritivo_das_variáveis_A41_v9.xlsx": "36bbae135285ad9b",
+    "descritivo_das_variáveis_MaxHT_v10.xlsx": "3e40aab12ec0ec07",
+    "descritivo_das_variáveis_energy_v6.xlsx": "cfc46031fc2f3f37",
+    "descritivo_das_variáveis_production_v10.xlsx": "302cf18b92ac22c6",
+    "descritivo_das_variáveis_production_v11.xlsx": "d946dfd522c8cbb3",
+    "descritivo_das_variáveis_production_v9.xlsx": "3e3024e564ee6f18",
+    "descritivo_das_variáveis_yield_v11.xlsx": "639e8b980f19bc20"
+   },
+   "working_tree_app_data_tools": ""
+  },
+  "stage_3_4B": {
+   "aggregation_types": {
+    "AVERAGE": 342,
+    "MOVING_AVERAGE": 2,
+    "SUM": 42,
+    "WEIGHTED_AVERAGE": 9
+   },
+   "by_operation": {
+    "AGGREGATION": 2370,
+    "EQUATION": 2352
+   },
+   "candidate_commit": "95e7adeffe43ff5b098289ae59a360c1009d9ff9",
+   "cases": 4722,
+   "comparison": {
+    "MATCH": 4722
+   },
+   "dates": [
+    "2026-09-03",
+    "2026-12-31"
+   ],
+   "difference_types": {},
+   "oracle_type": "DIFFERENTIAL_REGRESSION_ORACLE",
+   "reference_commit": "7877551fd9f63a2d137ac6da7507afe6cbffd297",
+   "result": "PASS",
+   "unique_keys": 4722,
+   "vectors": [
+    "VECTOR_A",
+    "VECTOR_B",
+    "VECTOR_C"
+   ]
+  },
+  "stage_3_4C": {
+   "by_block": [
+    {
+     "aggregation_nodes": 28,
+     "block": "production",
+     "equation_nodes": 27,
+     "executed": 56,
+     "targets": 50,
+     "transfer_nodes": 1
+    },
+    {
+     "aggregation_nodes": 80,
+     "block": "yield",
+     "equation_nodes": 138,
+     "executed": 219,
+     "targets": 219,
+     "transfer_nodes": 1
+    },
+    {
+     "aggregation_nodes": 11,
+     "block": "energy",
+     "equation_nodes": 24,
+     "executed": 43,
+     "targets": 43,
+     "transfer_nodes": 8
+    },
+    {
+     "aggregation_nodes": 78,
+     "block": "max_ht",
+     "equation_nodes": 29,
+     "executed": 109,
+     "targets": 109,
+     "transfer_nodes": 2
+    }
+   ],
+   "coverage_class": "YEAR_TO_DATE_PARTIAL_COVERAGE",
+   "dates": 32,
+   "evidence_unchanged_since_043fe9c": true,
+   "fingerprints": {
+    "HASH_SEED_A": "d4de1aea572ad23a42cf746cee9ff9be357a05d51a5541f29616b4acca66e10d",
+    "HASH_SEED_B": "d4de1aea572ad23a42cf746cee9ff9be357a05d51a5541f29616b4acca66e10d",
+    "RUN_A": "d4de1aea572ad23a42cf746cee9ff9be357a05d51a5541f29616b4acca66e10d",
+    "RUN_B": "d4de1aea572ad23a42cf746cee9ff9be357a05d51a5541f29616b4acca66e10d"
+   },
+   "graph_hashes": {
+    "A": "e372425d9a6f3cbccecfa9ff77c30ddff49be8587da4d567a252fb64d2e3d1ff",
+    "A_rebuilt": "e372425d9a6f3cbccecfa9ff77c30ddff49be8587da4d567a252fb64d2e3d1ff",
+    "B": "e372425d9a6f3cbccecfa9ff77c30ddff49be8587da4d567a252fb64d2e3d1ff",
+    "tests_fixture": "e372425d9a6f3cbccecfa9ff77c30ddff49be8587da4d567a252fb64d2e3d1ff"
+   },
+   "hash_seeds": [
+    "0",
+    "4242"
+   ],
+   "nodes_executed": 427,
+   "reexecution": {
+    "2026-01-15": {
+     "first": {
+      "WRITTEN": 60
+     },
+     "new_keys": 0,
+     "re": {
+      "UNCHANGED": 60
+     },
+     "same_store": true
+    },
+    "2026-02-01": {
+     "first": {
+      "WRITTEN": 60
+     },
+     "new_keys": 0,
+     "re": {
+      "UNCHANGED": 60
+     },
+     "same_store": true
+    }
+   },
+   "result": "PASS",
+   "sc2": {
+    "active_branch_L1": [
+     "NoneType",
+     "None",
+     "VALIDATION_FAILED",
+     "t"
+    ],
+    "inactive_branch_L2": [
+     "float",
+     "1.4509999999999998",
+     null,
+     null
+    ]
+   },
+   "sc4": {
+    "detail_without_state": "DETAIL_WITHOUT_STATE",
+    "different_states": {
+     "error": "MULTI_STATE_COMBINATION_UNDEFINED",
+     "expected": "MULTI_STATE_COMBINATION_UNDEFINED",
+     "jan3_window_stated": [
+      [
+       "NoneType",
+       "None",
+       "INVALID_INPUT",
+       "x"
+      ]
+     ]
+    },
+    "same_state_different_details": {
+     "error": "MULTI_DETAIL_COMPOSITION_UNDEFINED",
+     "expected": "MULTI_DETAIL_COMPOSITION_UNDEFINED",
+     "jan3_window_stated": [
+      [
+       "NoneType",
+       "None",
+       "INVALID_INPUT",
+       "x"
+      ]
+     ]
+    }
+   },
+   "state": {
+    "SC1_EQ12012_and_chain": [],
+    "SC2_EQ18003": [],
+    "SC3_policy_b_real_rules": []
+   },
+   "store_fingerprints": {
+    "HASH_SEED_A": "619b4abd9e161dccab791978157ec0f62589fa7716ced169b53aea3e90e9730c",
+    "HASH_SEED_B": "619b4abd9e161dccab791978157ec0f62589fa7716ced169b53aea3e90e9730c",
+    "REEXECUTION": "619b4abd9e161dccab791978157ec0f62589fa7716ced169b53aea3e90e9730c",
+    "RUN_A": "619b4abd9e161dccab791978157ec0f62589fa7716ced169b53aea3e90e9730c",
+    "RUN_B": "619b4abd9e161dccab791978157ec0f62589fa7716ced169b53aea3e90e9730c"
+   },
+   "targets_executed": 421,
+   "transfer_events_executed": 1920,
+   "transfer_events_verified": 1920,
+   "transfers": 12
+  },
+  "stage_3_4D": {
+   "blackbox": "PASS",
+   "by_contract": {
+    "M1": 3,
+    "M10": 6,
+    "M2": 5,
+    "M3": 6,
+    "M4": 11,
+    "M5": 6,
+    "M6": 5,
+    "M7": 6,
+    "M8": 4,
+    "M9": 6
+   },
+   "code_detected": 17,
+   "code_killed_by": {
+    "DIFFERENTIAL": 7,
+    "INTEGRATED": 17,
+    "TESTS": 17
+   },
+   "code_mutant_ids": [
+    "CM-01",
+    "CM-02",
+    "CM-03",
+    "CM-04",
+    "CM-05",
+    "CM-06",
+    "CM-07",
+    "CM-08",
+    "CM-09",
+    "CM-10",
+    "CM-11",
+    "CM-12",
+    "CM-13",
+    "CM-14",
+    "CM-15",
+    "CM-16",
+    "CM-17"
+   ],
+   "code_mutants": 17,
+   "code_positive_control": "CM-00:ACCEPT",
+   "code_repository_untouched": true,
+   "evidence_detected": 58,
+   "evidence_mutations": 58,
+   "evidence_positive_controls": {
+    "ACCEPT": 13
+   },
+   "gap_probe": {
+    "G1_state_reach_unnamed_date": false,
+    "G2_value_with_state": false,
+    "G3_duplicated_transfer_interblock_check": false,
+    "G4_transfer_wrong_target_interblock_check": false,
+    "G5_monthly_identity_without_window": false
+   },
+   "gap_probe_baseline": "043fe9c36d9d02664db8be7dd29c0fd7014c73f8"
+  },
+  "temporal": {
+   "annual_identities": 185,
+   "dates": 32,
+   "events_per_day": [
+    847
+   ],
+   "first": "2026-01-01",
+   "last": "2026-02-01",
+   "monthly_identities_feb": 313,
+   "monthly_identities_jan": 313,
+   "temporal_problems": [],
+   "transfer_events": 1920,
+   "windows_per_annual_identity": [
+    32
+   ],
+   "windows_per_monthly_jan_identity": [
+    31
+   ]
+  }
+ },
+ "problems": [],
+ "result": "PASS"
+}
