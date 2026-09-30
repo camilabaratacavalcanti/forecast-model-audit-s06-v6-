@@ -42,9 +42,11 @@ INTEGRATED = REPO / "audit" / "stage3_4" / "integrated"
 DIFFERENTIAL = REPO / "audit" / "stage3_4" / "differential"
 for path in (REPO, INTEGRATED, DIFFERENTIAL, HERE):
     sys.path.insert(0, str(path))
+sys.path.append(str(HERE.parent / "taxonomy_migration"))
 
 import checks  # noqa: E402
 import fixture  # noqa: E402
+import taxonomy_guard  # noqa: E402
 import provenance  # noqa: E402
 import run_differential as differential  # noqa: E402
 import run_integrated as integrated  # noqa: E402
@@ -888,11 +890,29 @@ def positive_controls(w) -> list[dict]:
 
 
 # ============================================================== artefatos protegidos
+PROTECTED_OK = ("NO PRODUCTION CHANGES", "AUTHORIZED TAXONOMY MIGRATION (D-TAX-01)")
+
+
 def protected_artifacts() -> dict:
     diff = git("diff", "--stat", BASELINE, "--", "app", "data", "tools").decode()
     status = git("status", "--porcelain", "--", "app", "data", "tools").decode()
+    taxonomy = taxonomy_guard.classify_git(BASELINE)
+    if not diff and not status:
+        result = PROTECTED_OK[0]
+    elif taxonomy["taxonomy_only"]:          # única exceção: diff provadamente taxonômico
+        result = PROTECTED_OK[1]
+    else:
+        result = "PRODUCTION CHANGED"
     return {"baseline": BASELINE, "diff_vs_baseline_app_data_tools": diff, "working_tree_app_data_tools": status,
-            "result": "NO PRODUCTION CHANGES" if not diff and not status else "PRODUCTION CHANGED"}
+            "taxonomy_guard": {k: taxonomy[k] for k in ("files", "problems", "taxonomy_only")}, "result": result}
+
+
+def persisted_links_status(world) -> str:
+    persisted = (fixture.SEED / "interblock_links.json").read_bytes()
+    if persisted == world.baseline_links:
+        return "EQUAL_TO_BASELINE"
+    verdict = taxonomy_guard.classify({"data/seed/interblock_links.json": (world.baseline_links, persisted)})
+    return "AUTHORIZED_TAXONOMY_MIGRATION" if verdict["taxonomy_only"] else "CHANGED"
 
 
 # ============================================================== execução
@@ -935,8 +955,7 @@ def main() -> int:
                     "official_pending_links": len(world.official.catalog.links.pending()),
                     "fixture_pending_links": len(world.orchestrator.catalog.links.pending()),
                     "fixture_graph_hash": fixture.graph_hash(world.orchestrator),
-                    "persisted_links_equal_baseline":
-                        (fixture.SEED / "interblock_links.json").read_bytes() == world.baseline_links},
+                    "persisted_links_status": persisted_links_status(world)},
         "unmutated_baselines": {"differential_problems": world.differential["problems"],
                                 "differential_candidate_cases": len(world.differential["candidate"]["cases"]),
                                 "integrated_fingerprint_RUN_A": world.runs["RUN_A"]["results_sha256"]},
@@ -954,8 +973,8 @@ def main() -> int:
                                 and summary["code_mutants"]["positive_control"]["result"] == "ACCEPT"
                                 and summary["code_mutants"]["repository_untouched"])
     ok = (code_ok and summary["mutations_missed"] == 0 and not summary["positive_controls"]["rejected_unexpectedly"]
-          and protected["result"] == "NO PRODUCTION CHANGES" and summary["fixture"]["official_pending_links"] == 16
-          and summary["fixture"]["persisted_links_equal_baseline"])
+          and protected["result"] in PROTECTED_OK and summary["fixture"]["official_pending_links"] == 16
+          and summary["fixture"]["persisted_links_status"] in ("EQUAL_TO_BASELINE", "AUTHORIZED_TAXONOMY_MIGRATION"))
     summary["result"] = "PASS" if ok else "FAIL"
 
     if "--no-write" not in sys.argv[1:]:

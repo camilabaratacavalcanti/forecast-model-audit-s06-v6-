@@ -2,7 +2,8 @@
 Stage 3.4D — detector de isolamento do fixture e de proveniência (M10).
 
 REAL_DERIVED = TEST_FIXTURE_ONLY (DR-2, contrato 3.4A). O detector confirma:
-  * o arquivo persistente `interblock_links.json` é byte a byte o do baseline;
+  * o arquivo persistente `interblock_links.json` é byte a byte o do baseline, ou
+    difere dele SOMENTE pela migração taxonômica autorizada D-TAX-01;
   * os 16 vínculos pendentes reais continuam pendentes (mesmos consumidores,
     `resolution_status = PENDING_LOAD`) no dado persistente e no registro
     oficial carregado dele;
@@ -16,7 +17,11 @@ Não escreve nada; recebe o diretório de seeds a auditar (o real ou uma cópia)
 from __future__ import annotations
 
 import json
+import sys
 from pathlib import Path
+
+sys.path.append(str(Path(__file__).resolve().parent.parent / "taxonomy_migration"))
+import taxonomy_guard  # noqa: E402
 
 LABEL = "REAL_DERIVED_TEST_RESULT"
 CLASSIFICATION = "TEST_FIXTURE_ONLY"
@@ -35,7 +40,12 @@ def check_provenance(seed_root: Path, baseline_links: bytes, *, official_registr
     expected_pending = pending_ids(baseline)
     persisted = (Path(seed_root) / "interblock_links.json").read_bytes()
     if persisted != baseline_links:
-        problems.append("PROVENANCE_FAILURE registro persistente interblock_links.json alterado")
+        # D-TAX-01: a única diferença aceita é a seção `taxonomy` migrada (taxonomy_guard.py);
+        # links, pending, rejected e demais seções continuam exigindo igualdade.
+        taxonomy_problems = taxonomy_guard.classify({"data/seed/interblock_links.json":
+                                                     (baseline_links, persisted)})["problems"]
+        if taxonomy_problems:
+            problems.append("PROVENANCE_FAILURE registro persistente interblock_links.json alterado")
     payload = json.loads(persisted)
     if pending_ids(payload) != expected_pending:
         problems.append(f"PENDING_LINKS_ALTERED persistente: {len(payload['pending'])} pendências "

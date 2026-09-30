@@ -57,8 +57,8 @@ PRODUCTION_V10 = ("descritivo_das_variáveis_production_v10.xlsx",
 PRODUCTION_V9 = ("descritivo_das_variáveis_production_v9.xlsx",
                  "3e3024e564ee6f18b82e9771957e61f4940becd1e80db5705143123377956a28")
 
-# D26-01 final (D26B-02: max_ht), na ordem do proprietário.
-TAXONOMY = (
+# D26-01 final (D26B-02: max_ht), na ordem do proprietário. Registro histórico da 2.6C.
+TAXONOMY_D26_01 = (
     "maintenance", "area_04_13", "forecast_volume", "acido", "yield", "energy",
     "meta_volume_cheio", "custo_budget", "production", "boilers",
     "controle_espaco_vazio_meta", "custo_forecast_bdgt", "max_ht", "volume",
@@ -67,7 +67,24 @@ TAXONOMY = (
     "floculante_lama_dia", "forecast", "area_41", "vazao_condensado",
     "premissas_ppt_mensal", "shared",
 )
-assert len(TAXONOMY) == len(set(TAXONOMY)) == 28
+assert len(TAXONOMY_D26_01) == len(set(TAXONOMY_D26_01)) == 28
+
+# Historical note: a taxonomia canônica do repositório foi depois normalizada para
+# 29 blocos (D-TAX-01, posterior à Stage 3), na ordem das faixas de ID, incluindo
+# budget_vs_forecast; a faixa 30000-30999 chama-se thickener_flocculant. Como esta
+# análise independente roda hoje como teste (test_17), o oráculo atual é a lista
+# D-TAX-01 do proprietário; a D26-01 acima fica só como registro. A evidência
+# versionada desta etapa (validation_results.json) não é regenerada.
+TAXONOMY = (
+    "maintenance", "yield", "production", "max_ht", "alumina", "temperature_lp",
+    "area_41", "area_04_13", "energy", "boilers", "volume", "soda",
+    "residue_factor", "condensate_flow", "forecast_volume", "full_volume_target",
+    "empty_space_target_control", "lime", "hydrated_flocculant",
+    "sludge_flocculant", "thickener_flocculant", "acid", "budget_cost",
+    "budget_forecast_cost", "actual_forecast_cost", "budget", "forecast",
+    "budget_vs_forecast", "shared",
+)
+assert len(TAXONOMY) == len(set(TAXONOMY)) == 29
 LINES = [f"L{i}" for i in range(1, 8)]
 CONTRACT_DIMENSIONS = ("kind", "unit", "value_type", "allowed_values", "declared_result_states")
 CONTRACT_COLUMNS = (
@@ -399,7 +416,7 @@ divergences = [
     if independent.get(k) != builder.get(k)
 ]
 check(not divergences, f"divergências independente x builder: {divergences}")
-check(tuple(seed["taxonomy"]["official_blocks"]) == TAXONOMY, "taxonomia do seed != D26-01 final")
+check(tuple(seed["taxonomy"]["official_blocks"]) == TAXONOMY, "taxonomia do seed != D-TAX-01 (29 blocos)")
 
 manifests = {
     block: json.loads((SEED / block / "manifest.json").read_text(encoding="utf-8")) for block in OFFICIAL

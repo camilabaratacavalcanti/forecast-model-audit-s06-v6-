@@ -111,6 +111,12 @@ Comportamento testado:
 
 ## 6. D26-01 — taxonomia (28 blocos)
 
+> **Historical note (D-TAX-01, posterior à Stage 3):** o registro canônico de blocos do repositório foi
+> depois normalizado para **29 blocos**, na ordem das faixas de ID (`*_ID_RANGES`), incluindo
+> `budget_vs_forecast`, e `monthly_ppt_assumptions` foi renomeado para `thickener_flocculant`
+> (faixa 30000–30999). A lista de 28 nomes abaixo/acima registra o estado desta etapa, não o estado
+> normativo atual. Ver `audit/stage3_4/STAGE_3_4_TAXONOMY_MIGRATION.md`.
+
 maintenance, area_04_13, forecast_volume, acido, yield, energy, meta_volume_cheio, custo_budget, production, boilers,
 controle_espaco_vazio_meta, custo_forecast_bdgt, **max_ht**, volume, lime_dia, custo_forecast_real, alumina, soda,
 floculante_hidrato_2026, budget, temperature_lp, fator_residuo, floculante_lama_dia, forecast, area_41,

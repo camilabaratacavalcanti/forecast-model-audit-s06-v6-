@@ -766,7 +766,7 @@ def interblock_seed(models: dict[str, CanonicalModel], result: InterblockResult)
             for block in sorted(models)
         },
         "taxonomy": {
-            "decision": "D26-01",
+            "decision": "D-TAX-01",
             "official_blocks": list(BLOCK_TAXONOMY),
             "loaded_blocks": [
                 {"block": block, "in_taxonomy": block in OFFICIAL_BLOCKS}

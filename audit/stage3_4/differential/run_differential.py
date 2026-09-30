@@ -10,7 +10,10 @@ correção absoluta (ver STAGE_3_4B_DIFFERENTIAL_REGRESSION.md).
 
 Passos:
   1. pré-condições: `git diff 7877551..HEAD -- data tools` vazio
-     (REFERENCE_DATA_TOOLS_INVARIANT) e `app/` do working tree == HEAD;
+     (REFERENCE_DATA_TOOLS_INVARIANT) — ou, desde D-TAX-01, provadamente só a
+     migração taxonômica autorizada (PASS_AUTHORIZED_TAXONOMY_MIGRATION_D-TAX-01,
+     verificado por audit/stage3_4/taxonomy_migration/taxonomy_guard.py) — e `app/` do
+     working tree == HEAD;
   2. `git archive <commit> app` de cada versão para um diretório temporário
      (nenhum checkout; o repositório não é tocado);
   3. `runner.py` em subprocesso `python -I` por versão, com o MESMO
@@ -39,6 +42,8 @@ from pathlib import Path
 HERE = Path(__file__).resolve().parent
 REPO = HERE.parents[2]
 sys.path.insert(0, str(HERE))
+sys.path.append(str(HERE.parent / "taxonomy_migration"))
+import taxonomy_guard  # noqa: E402
 from compare import CASE_KEY_FIELDS, case_key, compare_case, coverage  # noqa: E402
 
 REFERENCE = "7877551"
@@ -49,6 +54,7 @@ EXPECTED_BY_BLOCK = {
 }
 EXPECTED_AGG_TYPES = {"AVERAGE": 342, "SUM": 42, "WEIGHTED_AVERAGE": 9, "MOVING_AVERAGE": 2}
 MIN_VECTORS, MIN_DATES = 3, 2
+AUTHORIZED_INVARIANT = "PASS_AUTHORIZED_TAXONOMY_MIGRATION_D-TAX-01"
 WRITE = "--no-write" not in sys.argv[1:]
 
 
@@ -81,8 +87,16 @@ def produce(mutate=None) -> dict:
 
     # 1. pré-condições -------------------------------------------------------
     invariant_diff = git("diff", f"{REFERENCE}..HEAD", "--", "data", "tools")
-    invariant = "PASS" if invariant_diff == "" else "FAIL"
-    if invariant != "PASS":
+    if invariant_diff == "":
+        invariant = "PASS"
+    else:
+        # D-TAX-01: única exceção autorizada — diff provadamente taxonômico (nomes de
+        # blocos), sem efeito em seeds de cálculo. Qualquer outra mudança continua FAIL.
+        taxonomy = taxonomy_guard.classify_git(REFERENCE, "HEAD", ("data", "tools"))
+        invariant = AUTHORIZED_INVARIANT if taxonomy["taxonomy_only"] else "FAIL"
+        if invariant == "FAIL":
+            problems += taxonomy["problems"][:5]
+    if invariant not in ("PASS", AUTHORIZED_INVARIANT):
         problems.append("REFERENCE_DATA_TOOLS_INVARIANT = FAIL")
     candidate_commit = git("rev-parse", "HEAD").strip()
     reference_commit = git("rev-parse", REFERENCE).strip()

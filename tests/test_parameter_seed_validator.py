@@ -1172,7 +1172,7 @@ def test_parameter_id_ranges_matches_official_taxonomy():
         "lime": (27000, 27999),
         "hydrated_flocculant": (28000, 28999),
         "sludge_flocculant": (29000, 29999),
-        "monthly_ppt_assumptions": (30000, 30999),
+        "thickener_flocculant": (30000, 30999),
         "acid": (31000, 31999),
         "budget_cost": (32000, 32999),
         "budget_forecast_cost": (33000, 33999),

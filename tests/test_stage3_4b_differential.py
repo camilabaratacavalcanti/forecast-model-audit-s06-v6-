@@ -123,7 +123,8 @@ def live():
 def test_live_differential_reference_vs_head_matches_exactly(live):
     code, summary = live
     assert code == 0, summary["problems"]
-    assert summary["REFERENCE_DATA_TOOLS_INVARIANT"] == "PASS"
+    # D-TAX-01: única exceção — diff provadamente taxonômico (guard); qualquer outra mudança é FAIL.
+    assert summary["REFERENCE_DATA_TOOLS_INVARIANT"] in ("PASS", "PASS_AUTHORIZED_TAXONOMY_MIGRATION_D-TAX-01")
     assert summary["reference_commit"].startswith("7877551")
     assert summary["differences"] == 0 and summary["problems"] == []
     eq, agg = summary["coverage"]["EQUATION"], summary["coverage"]["AGGREGATION"]

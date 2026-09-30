@@ -76,6 +76,12 @@ linha/L1..L7, numerico, ativo).
 
 ## 4. D26-01 — taxonomia oficial
 
+> **Historical note (D-TAX-01, posterior à Stage 3):** o registro canônico de blocos do repositório foi
+> depois normalizado para **29 blocos**, na ordem das faixas de ID (`*_ID_RANGES`), incluindo
+> `budget_vs_forecast`, e `monthly_ppt_assumptions` foi renomeado para `thickener_flocculant`
+> (faixa 30000–30999). A lista de 28 nomes abaixo/acima registra o estado desta etapa, não o estado
+> normativo atual. Ver `audit/stage3_4/STAGE_3_4_TAXONOMY_MIGRATION.md`.
+
 A taxonomia fica em `tools/workbook_seed/taxonomy.py` (`BLOCK_TAXONOMY`): 28 nomes na ordem recebida, comparados como
 texto exato. É independente dos workbooks carregados e não substitui as faixas de ID por bloco
 (`*_ID_RANGES`), que usam identificadores de código.

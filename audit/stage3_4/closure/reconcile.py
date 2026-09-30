@@ -29,9 +29,11 @@ HERE = Path(__file__).resolve().parent
 S34 = HERE.parent
 REPO = S34.parents[1]
 sys.path[:0] = [str(REPO), str(S34 / "integrated")]
+sys.path.append(str(S34 / "taxonomy_migration"))
 
 import checks  # noqa: E402
 import fixture  # noqa: E402
+import taxonomy_guard  # noqa: E402
 import run_integrated as integ  # noqa: E402
 
 from app.engine.forecast_engine import ForecastEngine  # noqa: E402
@@ -237,6 +239,11 @@ def main() -> int:
                                                                   f"{CONTRACT_BASELINE}:data/seed/interblock_links.json"),
         "workbooks_sha256": {p.name: hashlib.sha256(p.read_bytes()).hexdigest()[:16]
                              for p in sorted((REPO / "data/workbooks").iterdir())},
+        # D-TAX-01: a superfície protegida pode diferir SOMENTE pela migração taxonômica
+        # autorizada, provada arquivo a arquivo pelo guard (qualquer outra mudança falha).
+        "status_vs_reference_data_tools": taxonomy_guard.protected_status(REFERENCE, None, ("data", "tools")),
+        "status_vs_3_4A_baseline": taxonomy_guard.protected_status(CONTRACT_BASELINE),
+        "status_vs_3_4E_baseline": taxonomy_guard.protected_status(BASELINE_34E),
     }
 
     # ---------------- matriz final (esperado do contrato x observado)
@@ -287,13 +294,15 @@ def main() -> int:
              for a, e, ob, ev in matrix]
     problems = [f"{r['area']}: esperado {r['expected']} observado {r['observed']}" for r in table if r["status"] != "PASS"]
     pr = observed["protected"]
-    for field in ("diff_vs_reference_data_tools", "diff_vs_3_4A_baseline_app_data_tools",
-                  "diff_vs_3_4E_baseline_app_data_tools", "working_tree_app_data_tools"):
-        if pr[field]:
-            problems.append(f"PROTECTED_SURFACE_CHANGED {field}")
+    allowed = ("UNCHANGED", "AUTHORIZED_TAXONOMY_MIGRATION")
+    for field in ("status_vs_reference_data_tools", "status_vs_3_4A_baseline", "status_vs_3_4E_baseline"):
+        if pr[field] not in allowed:
+            problems.append(f"PROTECTED_SURFACE_CHANGED {field}: {pr[field]}")
     if pr["changed_since_3_4A_outside_stage3_4"]:
         problems.append(f"ALTERAÇÃO FORA DA STAGE 3.4 desde f3b6588: {pr['changed_since_3_4A_outside_stage3_4'][:3]}")
-    if not (pr["interblock_links_equal_7877551"] and pr["interblock_links_equal_f3b6588"]):
+    links_ok = pr["interblock_links_equal_7877551"] and pr["interblock_links_equal_f3b6588"]
+    if not links_ok and taxonomy_guard.classify({"data/seed/interblock_links.json": (
+            git_bytes("show", f"{REFERENCE}:data/seed/interblock_links.json"), links_now)})["problems"]:
         problems.append("REGISTRY_CHANGED interblock_links.json")
     if pl["graph_hash"] != GRAPH_HASH or observed["planning"]["excluded_blocks"] != ["area_41"]:
         problems.append("FIXTURE/PLANNING divergente")

@@ -13,6 +13,12 @@ taxonomia (28 blocos com a introdução de `max_ht`, remoção de
 `budget_vs_forecast` e a realocação de `shared` de 37000-37999 para
 38000-38999) não afetaram a classificação de nenhum ID já existente.
 
+D-TAX-01 (posterior à Stage 3): estas faixas são o registro canônico
+de 29 blocos em todas as fontes, idêntico, na mesma ordem, a
+`tools.workbook_seed.taxonomy.BLOCK_TAXONOMY` e à taxonomia de
+`data/seed/interblock_links.json`; a faixa 30000-30999 chama-se
+`thickener_flocculant` (ver tests/test_taxonomy_migration_d_tax_01.py).
+
 Não depende de seeds sintéticos: lê diretamente `data/seed/`.
 """
 

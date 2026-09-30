@@ -124,13 +124,14 @@ def build_tree(root: Path) -> None:
                           check=True).stdout.strip()
     subprocess.run(["git", "clone", "-q", "--shared", "--no-checkout", str(REPO), str(root)], check=True)
     subprocess.run(["git", "checkout", "-q", head], cwd=root, check=True)
-    for name in ("integrated", "differential", "mutation"):
+    for name in ("integrated", "differential", "mutation", "taxonomy_migration"):
         target = root / "audit" / "stage3_4" / name
         shutil.rmtree(target, ignore_errors=True)
         shutil.copytree(REPO / "audit" / "stage3_4" / name, target,
                         ignore=shutil.ignore_patterns("__pycache__", "*.pyc", "evidence"))
-    shutil.copytree(REPO / "audit" / "stage3_4" / "integrated" / "evidence",
-                    root / "audit" / "stage3_4" / "integrated" / "evidence")
+    for name in ("integrated", "taxonomy_migration"):          # evidência lida pelos testes/sondas
+        shutil.copytree(REPO / "audit" / "stage3_4" / name / "evidence",
+                        root / "audit" / "stage3_4" / name / "evidence")
     for name in HARNESS_TESTS:
         if (REPO / name).exists():
             shutil.copy2(REPO / name, root / name)
@@ -225,7 +226,8 @@ def run_all(workers: int = 4) -> tuple[dict, list[dict]]:
     summary = {"introduced": len(rows), "detected": killed, "surviving": len(rows) - killed,
                "surviving_ids": [r["mutant_id"] for r in rows if r["detected"] != "TRUE"],
                "positive_control": control_row,
-               "repository_untouched": before == after == "",
+               # o repositório não é tocado pela execução dos mutantes (mesmo estado antes e depois)
+               "repository_untouched": before == after,
                "by_detector": {d: sum(d in r["detected_by"].split("|") for r in rows)
                                for d in ("TESTS", "INTEGRATED", "DIFFERENTIAL")}}
     return summary, rows

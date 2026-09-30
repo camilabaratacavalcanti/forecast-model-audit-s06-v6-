@@ -443,6 +443,13 @@ Não podem ser alterados em nenhuma sub-stage da 3.4 sem nova decisão:
 - `app/**`: engine, planner/orchestrator, agregadores, contrato de estado, Policy B, `CalculationKey`;
 - testes e auditorias existentes. A 3.4 **adiciona** testes e auditorias próprios e não altera os existentes.
 
+> **Historical note (D-TAX-01, posterior ao fechamento da Stage 3):** a "nova decisão" prevista acima foi tomada
+> uma vez: a canonicalização da taxonomia para 29 blocos e o rename `monthly_ppt_assumptions` → `thickener_flocculant`
+> alteraram `tools/workbook_seed/{taxonomy,interblock}.py`, `data/seed/interblock_links.json` (só a seção `taxonomy`)
+> e as faixas de ID em `app/validation/` (só o nome). A exceção é provada arquivo a arquivo por
+> `audit/stage3_4/taxonomy_migration/taxonomy_guard.py`; qualquer outra alteração continua proibida. Ver
+> `audit/stage3_4/STAGE_3_4_TAXONOMY_MIGRATION.md`.
+
 ---
 
 ## 23. Known Limitations

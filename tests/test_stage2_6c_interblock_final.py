@@ -116,7 +116,8 @@ def test_01b_obs_is_not_part_of_the_seed():
 
 def test_02_taxonomy_contains_max_ht():
     assert "max_ht" in OFFICIAL_BLOCKS
-    assert len(BLOCK_TAXONOMY) == len(set(BLOCK_TAXONOMY)) == 28
+    # D-TAX-01: registro canônico de 29 blocos (antes, D26-01 com 28).
+    assert len(BLOCK_TAXONOMY) == len(set(BLOCK_TAXONOMY)) == 29
     assert set(BLOCKS) <= OFFICIAL_BLOCKS
     assert read_seed_file("max_ht", "manifest")["block"] == "max_ht"
 

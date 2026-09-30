@@ -1,0 +1,74 @@
+{
+ "after": {
+  "range_counts": {
+   "equation": 29,
+   "parameter": 29,
+   "variable": 29
+  },
+  "seed_decision": "D-TAX-01",
+  "seed_taxonomy_count": 29,
+  "taxonomy_count": 29
+ },
+ "before": {
+  "range_counts": {
+   "equation": 29,
+   "parameter": 29,
+   "variable": 29
+  },
+  "seed_decision": "D26-01",
+  "seed_taxonomy_count": 28,
+  "taxonomy_count": 28
+ },
+ "cardinalities": {
+  "aggregation_instances": 395,
+  "aggregation_rules": 197,
+  "equation_definitions": 218,
+  "equation_instances": 392,
+  "integrated_targets": 421,
+  "nodes_by_kind": {
+   "AGGREGATION": 197,
+   "EQUATION": 218,
+   "TRANSFER": 12
+  },
+  "official_targets": 446,
+  "pending_fixture": 0,
+  "pending_official": 16,
+  "plan_order_sha256": "b11425444db3d19509000b6f84bdbefc3d997bfaf42313bfb756cbe8bc4bcc39",
+  "planner_nodes": 427
+ },
+ "decision": "D-TAX-01",
+ "execution": {
+  "dates": 32,
+  "results_sha256": "d4de1aea572ad23a42cf746cee9ff9be357a05d51a5541f29616b4acca66e10d",
+  "store_sha256": "619b4abd9e161dccab791978157ec0f62589fa7716ced169b53aea3e90e9730c",
+  "temporal": {
+   "annual": 185,
+   "monthly_feb": 313,
+   "monthly_jan": 313
+  },
+  "temporal_problems": []
+ },
+ "fixture_graph_hash": "e372425d9a6f3cbccecfa9ff77c30ddff49be8587da4d567a252fb64d2e3d1ff",
+ "invariant_sections_identical": {
+  "cardinalities": true,
+  "execution": true,
+  "files_sha256": true,
+  "fixture_graph_hash": true,
+  "formulas_sha256": true,
+  "ids": true,
+  "interblock": true,
+  "label": true
+ },
+ "links": 13,
+ "pending_links": 16,
+ "problems": [],
+ "renamed_range": {
+  "new": "thickener_flocculant",
+  "old": "monthly_ppt_assumptions",
+  "range": [
+   30000,
+   30999
+  ]
+ },
+ "result": "PASS"
+}

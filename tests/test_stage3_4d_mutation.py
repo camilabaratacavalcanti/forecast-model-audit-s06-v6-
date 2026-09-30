@@ -55,8 +55,9 @@ def test_live_evidence_mutations_are_all_detected(live):
     assert s["mutations_defined"] == s["mutations_executed"] == s["mutations_detected"] == len(out["results"])
     assert s["mutations_missed"] == 0 and s["detection_rate"] == "100.0%"
     assert s["positive_controls"]["rejected_unexpectedly"] == [] and s["positive_controls"]["accepted"] >= 10
-    assert s["fixture"]["official_pending_links"] == 16 and s["fixture"]["persisted_links_equal_baseline"]
-    assert s["protected_artifacts"]["result"] == "NO PRODUCTION CHANGES"
+    assert s["fixture"]["official_pending_links"] == 16
+    assert s["fixture"]["persisted_links_status"] in ("EQUAL_TO_BASELINE", "AUTHORIZED_TAXONOMY_MIGRATION")
+    assert s["protected_artifacts"]["result"] in ("NO PRODUCTION CHANGES", "AUTHORIZED TAXONOMY MIGRATION (D-TAX-01)")
     assert s["synthetic_only_mutations"] == 0
 
 
@@ -108,7 +109,7 @@ def test_live_code_mutant_is_killed_in_a_temporary_copy():
     row = code_mutants.evaluate_mutant(mutant, code_mutants.expected_integrated())
     after = subprocess.run(["git", "status", "--porcelain", "--", "app", "data", "tools"], cwd=REPO,
                            capture_output=True, text=True, check=True).stdout
-    assert before == after == ""
+    assert before == after                                  # a execução do mutante não toca o repositório
     assert row["result"] == "PASS" and {"TESTS", "INTEGRATED"} <= set(row["detected_by"].split("|"))
     assert "MULTI_DETAIL_COMPOSITION_UNDEFINED" in row["evidence"]
 
@@ -176,8 +177,9 @@ def test_baseline_gaps_are_recorded_and_closed():
 
 
 def test_no_production_artifact_changed_since_baseline():
-    diff = subprocess.run(["git", "diff", "--stat", BASELINE, "--", "app", "data", "tools"], cwd=REPO,
-                          capture_output=True, text=True, check=True).stdout
-    status = subprocess.run(["git", "status", "--porcelain", "--", "app", "data", "tools"], cwd=REPO,
-                            capture_output=True, text=True, check=True).stdout
-    assert diff == "" and status == ""
+    # D-TAX-01: app/data/tools iguais ao baseline, ou diferentes SOMENTE pela migração
+    # taxonômica autorizada, provada arquivo a arquivo (qualquer outra mudança falha).
+    sys.path.append(str(REPO / "audit" / "stage3_4" / "taxonomy_migration"))
+    import taxonomy_guard as guard
+    verdict = guard.classify_git(BASELINE)
+    assert verdict["unchanged"] or verdict["taxonomy_only"], verdict["problems"]

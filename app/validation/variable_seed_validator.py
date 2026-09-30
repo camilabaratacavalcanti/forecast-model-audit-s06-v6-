@@ -52,11 +52,16 @@ ALLOWED_VARIABLE_FIELDS = set(REQUIRED_VARIABLE_FIELDS) | set(
 # custo_forecast_real) foram renomeadas para ingles (residue_factor,
 # condensate_flow, full_volume_target, empty_space_target_control,
 # lime, hydrated_flocculant, sludge_flocculant,
-# monthly_ppt_assumptions, acid, budget_cost, budget_forecast_cost,
+# thickener_flocculant, acid, budget_cost, budget_forecast_cost,
 # actual_forecast_cost), mantendo os mesmos ranges numericos.
 #
 # "budget_vs_forecast" foi introduzido em 37000-37999; "shared"
 # foi realocado de 37000-37999 para 38000-38999.
+# D-TAX-01 (decisao normativa posterior ao fechamento da Stage 3):
+# esta e a lista canonica de 29 blocos, na ordem canonica, em todas
+# as fontes -- identica a tools.workbook_seed.taxonomy.BLOCK_TAXONOMY
+# e a taxonomia de data/seed/interblock_links.json. A faixa
+# 30000-30999 chama-se thickener_flocculant.
 VARIABLE_ID_RANGES = {
     "maintenance": (10000, 10999),
     "yield": (11000, 11999),
@@ -78,7 +83,7 @@ VARIABLE_ID_RANGES = {
     "lime": (27000, 27999),
     "hydrated_flocculant": (28000, 28999),
     "sludge_flocculant": (29000, 29999),
-    "monthly_ppt_assumptions": (30000, 30999),
+    "thickener_flocculant": (30000, 30999),
     "acid": (31000, 31999),
     "budget_cost": (32000, 32999),
     "budget_forecast_cost": (33000, 33999),

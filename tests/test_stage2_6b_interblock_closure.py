@@ -52,15 +52,23 @@ from tools.workbook_seed.taxonomy import (
 
 
 # LEGACY_TEST_EXPECTATION (Etapa 2.6C, D26B-02): a lista recebida na
-# 2.6B tinha `mx_ht`; o proprietário fixou `max_ht` como nome canônico.
-D26_01_TAXONOMY = (
-    "maintenance", "area_04_13", "forecast_volume", "acido", "yield", "energy",
-    "meta_volume_cheio", "custo_budget", "production", "boilers",
-    "controle_espaco_vazio_meta", "custo_forecast_bdgt", "max_ht", "volume",
-    "lime_dia", "custo_forecast_real", "alumina", "soda",
-    "floculante_hidrato_2026", "budget", "temperature_lp", "fator_residuo",
-    "floculante_lama_dia", "forecast", "area_41", "vazao_condensado",
-    "premissas_ppt_mensal", "shared",
+# D-TAX-01 (posterior à Stage 3) substitui a lista D26-01 de 28 nomes: o
+# registro canônico tem 29 blocos, na ordem das faixas de ID. Lista histórica
+# D26-01 (2.6B tinha `mx_ht`; o proprietário fixou `max_ht`), mantida só como
+# registro: maintenance, area_04_13, forecast_volume, acido, yield, energy,
+# meta_volume_cheio, custo_budget, production, boilers,
+# controle_espaco_vazio_meta, custo_forecast_bdgt, max_ht, volume, lime_dia,
+# custo_forecast_real, alumina, soda, floculante_hidrato_2026, budget,
+# temperature_lp, fator_residuo, floculante_lama_dia, forecast, area_41,
+# vazao_condensado, premissas_ppt_mensal, shared.
+D_TAX_01_TAXONOMY = (
+    "maintenance", "yield", "production", "max_ht", "alumina", "temperature_lp",
+    "area_41", "area_04_13", "energy", "boilers", "volume", "soda",
+    "residue_factor", "condensate_flow", "forecast_volume", "full_volume_target",
+    "empty_space_target_control", "lime", "hydrated_flocculant",
+    "sludge_flocculant", "thickener_flocculant", "acid", "budget_cost",
+    "budget_forecast_cost", "actual_forecast_cost", "budget", "forecast",
+    "budget_vs_forecast", "shared",
 )
 
 
@@ -85,12 +93,12 @@ def _entity(official, block, name, frequency="diário"):
 
 
 # ------------------------------------------------------------
-# D26-01 — taxonomia
+# D26-01 — taxonomia (lista atual: D-TAX-01, 29 blocos)
 # ------------------------------------------------------------
 
 def test_taxonomy_is_the_owner_list_exactly():
-    assert BLOCK_TAXONOMY == D26_01_TAXONOMY
-    assert len(OFFICIAL_BLOCKS) == 28
+    assert BLOCK_TAXONOMY == D_TAX_01_TAXONOMY
+    assert len(OFFICIAL_BLOCKS) == 29
 
 
 def test_01_block_in_taxonomy_and_loaded_resolves():

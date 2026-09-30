@@ -573,3 +573,19 @@ STAGE 3 = CLOSED
 - a Stage 3 está fechada;
 - qualquer trabalho sobre os itens "não implementados" exige nova decisão e novo contrato, e não reabre os gates da Stage 3;
 - uma mudança intencional de comportamento exige regenerar e reaprovar a evidência versionada das 3.4B/3.4C (L8).
+
+---
+
+## Historical note — D-TAX-01 (posterior a este fechamento)
+
+Depois do fechamento acima (`547b920`), o proprietário tomou uma decisão normativa nova, **D-TAX-01**:
+- o registro canônico de blocos passou a ter **29 blocos**, na ordem das faixas de ID, incluindo `budget_vs_forecast`;
+- a faixa 30000–30999 passou a se chamar `thickener_flocculant` (antes `monthly_ppt_assumptions`).
+
+A mudança é exclusivamente de nomenclatura:
+- IDs, fórmulas, vínculos, os 16 `PENDING_LOAD`, cardinalidades (446/421/427, 218/392, 197/395, 12, 32 datas, 313/313/185), fingerprints e o hash do grafo REAL_DERIVED são idênticos;
+- a prova está em `audit/stage3_4/taxonomy_migration/evidence/migration_reconciliation.json`.
+
+Os guardas da Stage 3 passaram a aceitar **somente** esse diff, provado arquivo a arquivo por `audit/stage3_4/taxonomy_migration/taxonomy_guard.py`. Qualquer outra alteração em `app/`, `data/` ou `tools/` continua falhando.
+
+Os fatos e números deste documento descrevem o estado em `547b920` e **não** foram reescritos. O gate da Stage 3 não é reaberto. Ver `audit/stage3_4/STAGE_3_4_TAXONOMY_MIGRATION.md`.
