@@ -150,6 +150,7 @@ def observe(orchestrator, context, traces):
                                                    e.period_id, as_of=day)
             transfer_records.append({"date": day.isoformat(), "node": TRANSFER + ":" + e.node_id,
                                      "instance": f"{e.scope_type}/{e.scope_value}", "period": e.period_id,
+                                     "block": e.block, "source_block": e.source_block,
                                      "producer": encode(producer), "consumer": encode(consumer)})
         coverage_rows.append({
             "date": day.isoformat(), "targets": len(seen), "nodes": len(order),
@@ -161,11 +162,73 @@ def observe(orchestrator, context, traces):
     return executed_nodes, written, transfer_records, coverage_rows, problems
 
 
+def target_records(traces, targets) -> list:
+    """(data, variável, scope_type, scope_value, period_id) de cada evento que grava um alvo."""
+    return [(day.isoformat(), e.variable_id, e.scope_type, e.scope_value, e.period_id)
+            for day, trace in traces.items() for e in trace.events if e.variable_id in targets]
+
+
+def expected_periods(orchestrator, targets, days) -> dict:
+    """{(variável, data): period_id} pela frequência da definição."""
+    definitions = orchestrator.catalog.variable_definitions
+    return {(t, d.isoformat()): PERIODS.effective_window(definitions.get(t).frequency, d).period_id
+            for t in targets for d in days}
+
+
+def transfer_expectations(orchestrator, plan) -> dict:
+    """{nó TRANSFER: instâncias e blocos do vínculo} a partir do registro de vínculos do fixture."""
+    out = {}
+    for step in plan.steps:
+        if step.kind == TRANSFER:
+            link = orchestrator.catalog.links.link_for(step.node_id)
+            out[step.key] = {"instances": {f"{st}/{sv}" for st, sv in link.instances},
+                             "consumer_block": link.consumer_block, "source_block": link.source_block}
+    return out
+
+
+def node_expectations(orchestrator, plan) -> tuple[dict, dict]:
+    """
+    expected_events: {nó: nº de instâncias gravadas por data} (materialize_equation /
+    instâncias da regra / instâncias do vínculo); expected_instances: {alvo: {(st, sv)}}.
+    """
+    catalog, engine = orchestrator.catalog, ForecastEngine()
+    rules_by_id = defaultdict(list)
+    for instance in catalog.aggregation_rule_instances.all():
+        rules_by_id[instance.rule.aggregation_rule_id].append(instance)
+    expected_events = {}
+    for node in plan.steps:
+        if node.kind == EQUATION:
+            expected_events[node.key] = len(engine.materialize_equation(catalog.equation_definitions.get(node.node_id)))
+        elif node.kind == AGGREGATION:
+            expected_events[node.key] = len(rules_by_id[node.node_id])
+        else:
+            expected_events[node.key] = len(catalog.links.link_for(node.node_id).instances)
+    expected_instances = {}
+    for target in plan.targets:
+        definition = catalog.variable_definitions.get(target)
+        expected_instances[target] = set(ScopeResolver().resolve_scopes(definition.scope_type, definition.scope_value))
+    return expected_events, expected_instances
+
+
+def derived_variables(plan) -> set:
+    return {v for step in plan.steps for v in step.produces}
+
+
 # ------------------------------------------------------------------ determinismo (subprocesso)
-def fingerprint(order: str) -> dict:
+def fingerprint(order: str, mutate: bool = False) -> dict:
+    """
+    Fingerprint de uma sequência completa. `mutate` (só Stage 3.4D, nunca usado pela 3.4C):
+    altera UM resultado derivado depois da execução e antes do hash, simulando uma
+    execução não determinística para provar que o comparador de fingerprints a rejeita.
+    """
     orchestrator = fixture.build(order)
     plan = integrated_plan(orchestrator)
     context, traces = run_sequence(orchestrator, plan)
+    if mutate:
+        derived = derived_variables(plan)
+        victim = min((k for k, r in context._scoped_results.items()
+                      if k.entity_id in derived and r.state is None and isinstance(r.value, float)), key=repr)
+        context._scoped_results[victim] = Result(context._scoped_results[victim].value + 1.0)
     events = sorted(sorted(map(tuple, events_of(t)), key=lambda e: e[1:]) for t in traces.values())
     results = {"store": sorted([list(k), v] for k, v in store_of(context).items()),
                "events_without_step": [[e[1:] for e in day] for day in events]}
@@ -222,7 +285,6 @@ def main() -> int:
     # 3. alvo -> nós, nó -> alvos -------------------------------------------------
     nodes = {s.key: s for s in plan.steps}
     catalog = orchestrator.catalog
-    engine = ForecastEngine()
     producers = {t: sorted(k for k in orchestrator._producers.get(t, ()) if k in nodes) for t in integrated}
     closure = {t: [s.key for s in orchestrator.plan([t]).steps] for t in integrated}
     dependents = defaultdict(set)
@@ -256,21 +318,7 @@ def main() -> int:
                              i.rule.target_frequency == "anual"
                              for i in catalog.aggregation_rule_instances.all()
                              if i.rule.aggregation_rule_id == nodes[k].node_id))}
-    rules_by_id = defaultdict(list)
-    for instance in catalog.aggregation_rule_instances.all():
-        rules_by_id[instance.rule.aggregation_rule_id].append(instance)
-    expected_events = {}
-    for key, node in nodes.items():
-        if node.kind == EQUATION:
-            expected_events[key] = len(engine.materialize_equation(catalog.equation_definitions.get(node.node_id)))
-        elif node.kind == AGGREGATION:
-            expected_events[key] = len(rules_by_id[node.node_id])
-        else:
-            expected_events[key] = len(catalog.links.link_for(node.node_id).instances)
-    expected_instances = {}
-    for target in integrated:
-        definition = catalog.variable_definitions.get(target)
-        expected_instances[target] = set(ScopeResolver().resolve_scopes(definition.scope_type, definition.scope_value))
+    expected_events, expected_instances = node_expectations(orchestrator, plan)
 
     # 4. sequência limpa (RUN_A) -----------------------------------------------------
     context = fresh_context(orchestrator)
@@ -286,7 +334,10 @@ def main() -> int:
     problems += checks.check_targets(expected_instances, written)
     problems += checks.check_nodes(planned, expected_events, executed_nodes)
     transfer_nodes = {k for k in planned if k.startswith(TRANSFER)}
-    problems += checks.check_transfers(transfer_records, transfer_nodes)
+    problems += checks.check_transfers(transfer_records, transfer_nodes, transfer_expectations(orchestrator, plan))
+    problems += checks.check_target_identities(target_records(traces, set(integrated)),
+                                               expected_periods(orchestrator, integrated, DAYS))
+    problems += checks.check_result_contract(final_store)
     if any(r["targets"] != 421 or r["nodes"] != 427 for r in coverage_rows):
         problems.append("TEMPORAL_FAILURE data com plano incompleto")
 
@@ -322,9 +373,9 @@ def main() -> int:
     evidence["orchestrator_vs_engine"] = dict(consistency)
 
     # 6. virada de mês e identidade temporal -------------------------------------------
-    after = {k: v for k, v in final_store.items() if k[3] == "2026-01"}
-    if after != january_snapshot:
-        problems.append("TEMPORAL_FAILURE janelas de janeiro mudaram após 2026-02-01")
+    _counts, temporal_problems = checks.check_temporal(final_store, january_snapshot, [d.isoformat() for d in DAYS],
+                                                       derived_variables(plan))
+    problems += temporal_problems
     windows = defaultdict(set)
     for k in final_store:
         windows[(k[0], k[1], k[2], k[3])].add(k[4])
@@ -343,9 +394,8 @@ def main() -> int:
         "daily_keys_have_no_window": all(k[4] is None for k in final_store if k[3] and len(k[3]) == 10),
         "coverage_class": "YEAR_TO_DATE_PARTIAL_COVERAGE",
     }
-    if not (temporal["contiguous"] and temporal["monthly_jan_all_31_windows"] and temporal["annual_ytd_all_32_windows"]
-            and temporal["monthly_feb_windows"] == ["2026-02-01"] and temporal["daily_keys_have_no_window"]):
-        problems.append(f"TEMPORAL_FAILURE {temporal}")
+    if not temporal["contiguous"]:
+        problems.append("TEMPORAL_FAILURE sequência não contígua")
     evidence["temporal"] = temporal
 
     # 7. reexecução ----------------------------------------------------------------------
@@ -365,10 +415,8 @@ def main() -> int:
         reexecution[day.isoformat()]["first_run_transfer_statuses"] = dict(
             Counter(e.status for e in traces[day].of_kind(TRANSFER)))
         reexecution[day.isoformat()]["store_sha256_after"] = store_sha(context)
-        r = reexecution[day.isoformat()]
-        if not (r["same_store"] and r["new_keys"] == 0 and set(statuses) == {"UNCHANGED"}
-                and r["stated_results"] == 0 and r["first_run_events_equal"]):
-            problems.append(f"TEMPORAL_FAILURE reexecução {day} {r}")
+        problems += checks.check_reexecution(day.isoformat(), before, after_store, events_of(traces[day]),
+                                             events_of(trace))
     evidence["reexecution"] = reexecution
 
     # 8. determinismo -----------------------------------------------------------------------
@@ -394,8 +442,7 @@ def main() -> int:
     determinism["identical_store_including_reexecution"] = len(stores) == 1
     determinism["identical_plan_order"] = len(orders) == 1
     determinism["identical_graph"] = len(graphs) == 1
-    if not (len(results) == len(orders) == len(graphs) == len(stores) == 1):
-        problems.append(f"DETERMINISM_FAILURE {determinism}")
+    problems += checks.check_determinism({**runs, "REEXECUTION": {"store_sha256": store_sha(context)}})
     evidence["determinism"] = determinism
 
     # 9. estados ---------------------------------------------------------------------------
@@ -403,8 +450,7 @@ def main() -> int:
 
     # 10. isolamento entre contextos: a execução limpa nunca vê estado ------------------
     stated_in_clean = sum(1 for v in store_of(context).values() if v[2] is not None or v[3] is not None)
-    if stated_in_clean:
-        problems.append(f"STATE_PROPAGATION_FAILURE {stated_in_clean} estados no contexto limpo")
+    problems += checks.check_clean_context(store_of(context))
     evidence["clean_context_stated_results"] = stated_in_clean
 
     # 11. evidência ----------------------------------------------------------------------------
@@ -504,14 +550,19 @@ def rule_targets(orchestrator, source_variable_id, kind):
                    if i.rule.source_variable_id == source_variable_id and i.rule.aggregation_type == kind})
 
 
-def state_scenarios(orchestrator, plan, problems) -> dict:
-    report = {}
-    feb1 = date(2026, 2, 1)
+FEB1 = date(2026, 2, 1)
+JAN3, JAN4 = date(2026, 1, 3), date(2026, 1, 4)
 
-    # SC1 — IF causal EQ12012 + propagação production -> yield/energy/max_ht, 32 datas.
-    # L3: lth_meta mínimo => condição verdadeira => ramo ativo lê fator_ajuste_lth (VAR12024).
-    # L4: lth_meta enorme => ramo falso => VAR12024 não é executado.
-    # VAR12024 (mensal) com estado em janeiro, sem estado em fevereiro.
+
+# Cada cenário devolve a evidência REAL (execuções gêmeas) e o seu auditor. A Stage 3.4D
+# reaplica o mesmo auditor a cópias mutadas da evidência (audit/stage3_4/mutation/).
+def scenario_sc1(orchestrator, plan) -> dict:
+    """
+    SC1 — IF causal EQ12012 + propagação production -> yield/energy/max_ht, 32 datas.
+    L3: lth_meta mínimo => condição verdadeira => ramo ativo lê fator_ajuste_lth (VAR12024).
+    L4: lth_meta enorme => ramo falso => VAR12024 não é executado.
+    VAR12024 (mensal) com estado em janeiro, sem estado em fevereiro.
+    """
     def overrides(d):
         return [("VAR12066", "linha", "L3", "2026", Result(0.0001)),
                 ("VAR12066", "linha", "L4", "2026", Result(1.0e6))]
@@ -520,52 +571,77 @@ def state_scenarios(orchestrator, plan, problems) -> dict:
         if d.month != 1:
             return []
         return [("VAR12024", "linha", sv, "2026-01", Result(None, INV, "fa")) for sv in ("L3", "L4")]
-    clean, stated, (stated_context, stated_traces) = twin(orchestrator, plan, DAYS, overrides, injections)
+    clean, stated, (context, traces) = twin(orchestrator, plan, DAYS, overrides, injections)
     descendants = descendants_of(orchestrator, {"VAR12024"})
-    p = checks.check_state_diff(clean, stated, descendants, INV, "fa")
-    # transferências com estado: consumidor == produtor em (value, state, detail)
-    _e, _w, stated_records, _c, observed = observe(orchestrator, stated_context, stated_traces)
-    p += observed + checks.check_transfers(stated_records, {s.key for s in plan.steps if s.kind == TRANSFER})
-    stated_transfers = Counter(r["node"] for r in stated_records if r["producer"][2] is not None)
-    jan10 = date(2026, 1, 10)
-    must = [key("VAR12031", "linha", "L3", jan10)] + [key(v, "linha", "L3", jan10)
-                                                      for v in ("VAR11031", "VAR13062", "VAR18008")]
-    plain = [key("VAR12031", "linha", "L4", jan10), key("VAR12031", "linha", "L1", jan10),
-             key("VAR12031", "linha", "L3", feb1)] + [key(v, "linha", sv, jan10)
-                                                      for v in ("VAR11031", "VAR13062", "VAR18008") for sv in ("L4", "L1")]
-    p += checks.check_expectations(stated, must, plain, INV, "fa")
-    blocks = Counter(orchestrator.catalog.block_of.get(k[0]) for k, v in stated.items()
-                     if v[2] is not None and k[0] != "VAR12024")
-    report["SC1_EQ12012_and_chain"] = {"problems": p, "stated_by_block": dict(blocks),
-                                       "stated_transfer_events_verified": dict(sorted(stated_transfers.items())),
-                                       "descendant_variables": len(descendants),
-                                       "differing_keys": sum(1 for k in clean if clean[k] != stated.get(k))}
-    problems += p
+    # Alcance: TODO dia de janeiro — produtor e as três consumidoras em L3 com estado;
+    # L1 (outra linha), L4 (ramo inativo) e 2026-02-01 (outro período) sem estado.
+    chain = ("VAR12031", "VAR11031", "VAR13062", "VAR18008")
+    january = [d for d in DAYS if d.month == 1]
+    must = [key(v, "linha", "L3", d) for v in chain for d in january]
+    plain = [key(v, "linha", sv, d) for v in chain for sv in ("L1", "L4") for d in january] + \
+            [key(v, "linha", sv, FEB1) for v in chain for sv in ("L1", "L3", "L4")]
+    transfers = {s.key for s in plan.steps if s.kind == TRANSFER}
+    expected_transfers = transfer_expectations(orchestrator, plan)
 
-    # SC2 — IF causal EQ18003 (energy). VAR18012 (pendente de temperature_lp -> entrada livre
-    # no fixture): L1 = 10 (< 72: ramo else lê VAR18016); L2 = 100 (> 72: ramo then lê VAR18015).
+    def audit(store, context=context, traces=traces):
+        p = checks.check_state_diff(clean, store, descendants, INV, "fa")
+        # transferências com estado: consumidor == produtor em (value, state, detail)
+        _e, _w, records, _c, observed = observe(orchestrator, context, traces)
+        p += observed + checks.check_transfers(records, transfers, expected_transfers)
+        p += checks.check_expectations(store, must, plain, INV, "fa") + checks.check_result_contract(store)
+        return p
+
+    def report(store):
+        _e, _w, records, _c, _o = observe(orchestrator, context, traces)
+        stated_transfers = Counter(r["node"] for r in records if r["producer"][2] is not None)
+        blocks = Counter(orchestrator.catalog.block_of.get(k[0]) for k, v in store.items()
+                         if v[2] is not None and k[0] != "VAR12024")
+        return {"stated_by_block": dict(blocks),
+                "stated_transfer_events_verified": dict(sorted(stated_transfers.items())),
+                "descendant_variables": len(descendants),
+                "differing_keys": sum(1 for k in clean if clean[k] != store.get(k))}
+    return {"clean": clean, "stated": stated, "context": context, "traces": traces, "audit": audit,
+            "report": report, "descendants": descendants, "must": must, "plain": plain}
+
+
+def scenario_sc2(orchestrator, plan) -> dict:
+    """
+    SC2 — IF causal EQ18003 (energy). VAR18012 (pendente de temperature_lp -> entrada livre
+    no fixture): L1 = 10 (< 72: ramo else lê VAR18016); L2 = 100 (> 72: ramo then lê VAR18015).
+    """
     days = DAYS[:3]
-    def overrides_18012(d):
+
+    def overrides(d):
         return [("VAR18012", "linha", "L1", d.isoformat(), Result(10.0)),
                 ("VAR18012", "linha", "L2", d.isoformat(), Result(100.0))]
 
-    def injections_18016(d):
+    def injections(d):
         return [("VAR18016", "linha", sv, "2026-01", Result(None, VF, "t")) for sv in ("L1", "L2")]
-    clean, stated, _ = twin(orchestrator, plan, days, overrides_18012, injections_18016)
+    clean, stated, (context, traces) = twin(orchestrator, plan, days, overrides, injections)
     descendants = descendants_of(orchestrator, {"VAR18016"})
-    p = checks.check_state_diff(clean, stated, descendants, VF, "t")
-    d3 = days[-1]
-    p += checks.check_expectations(stated, [key("VAR18017", "linha", "L1", d3)],
-                                   [key("VAR18017", "linha", "L2", d3)], VF, "t")
-    report["SC2_EQ18003"] = {"problems": p, "active_branch_L1": stated.get(key("VAR18017", "linha", "L1", d3)),
-                             "inactive_branch_L2": stated.get(key("VAR18017", "linha", "L2", d3)),
-                             "stated_variables": sorted({k[0] for k, v in stated.items() if v[2] and k[0] != "VAR18016"})}
-    problems += p
+    must = [key("VAR18017", "linha", "L1", d) for d in days]
+    plain = [key("VAR18017", "linha", "L2", d) for d in days]
 
-    # SC3 — Policy B em regras REAIS de cada tipo, injeção em 2026-01-03 (VAR11001 também em 01-04:
-    # mesmo estado + mesmo detail em dois componentes da janela).
+    def audit(store):
+        return (checks.check_state_diff(clean, store, descendants, VF, "t")
+                + checks.check_expectations(store, must, plain, VF, "t") + checks.check_result_contract(store))
+
+    def report(store):
+        return {"active_branch_L1": store.get(must[-1]), "inactive_branch_L2": store.get(plain[-1]),
+                "stated_variables": sorted({k[0] for k, v in store.items() if v[2] and k[0] != "VAR18016"})}
+    return {"clean": clean, "stated": stated, "context": context, "traces": traces, "audit": audit,
+            "report": report, "descendants": descendants, "must": must, "plain": plain}
+
+
+SC3_SOURCES = {"AVERAGE": "VAR11001", "SUM": "VAR13068", "WEIGHTED_AVERAGE": "VAR18047", "MOVING_AVERAGE": "VAR12048"}
+
+
+def scenario_sc3(orchestrator, plan) -> dict:
+    """
+    SC3 — Policy B em regras REAIS de cada tipo, injeção em 2026-01-03 (VAR11001 também em 01-04:
+    mesmo estado + mesmo detail em dois componentes da janela).
+    """
     days = DAYS[:5]
-    jan3, jan4 = date(2026, 1, 3), date(2026, 1, 4)
     anchors = {"AVERAGE": ("VAR11001", "linha", "L1"), "SUM": ("VAR13113", None, None),
                "WEIGHTED_AVERAGE": ("VAR18046", None, None), "MOVING_AVERAGE": ("VAR12056", "linha", "L1")}
     vd = orchestrator.catalog.variable_definitions
@@ -579,54 +655,79 @@ def state_scenarios(orchestrator, plan, problems) -> dict:
     def inject(d):
         out = []
         for variable_id, st, sv in injected:
-            if d == jan3 or (variable_id == "VAR11001" and d == jan4):
+            if d == JAN3 or (variable_id == "VAR11001" and d == JAN4):
                 out.append((variable_id, st, sv, d.isoformat(), Result(None, INV, "agg")))
         return out
-    clean, stated, _ = twin(orchestrator, plan, days, None, inject)
+    clean, stated, (context, traces) = twin(orchestrator, plan, days, None, inject)
     descendants = descendants_of(orchestrator, {v for v, _s, _t in injected})
-    p = checks.check_state_diff(clean, stated, descendants, INV, "agg")
-    per_type = {}
-    sources = {"AVERAGE": "VAR11001", "SUM": "VAR13068", "WEIGHTED_AVERAGE": "VAR18047", "MOVING_AVERAGE": "VAR12048"}
-    for kind, source in sources.items():
-        found = []
+    windows = {}
+    for kind, source in SC3_SOURCES.items():
+        windows[kind] = []
         for instance in orchestrator.catalog.aggregation_rule_instances.all():
             rule = instance.rule
             if rule.source_variable_id != source or rule.aggregation_type != kind:
                 continue
-            before = key(rule.target_variable_id, instance.scope_type, instance.scope_value, date(2026, 1, 2),
-                         rule.target_frequency)
-            at = key(rule.target_variable_id, instance.scope_type, instance.scope_value, jan3, rule.target_frequency)
-            later = key(rule.target_variable_id, instance.scope_type, instance.scope_value, days[-1], rule.target_frequency)
-            if stated.get(at, [None, None, None])[2] is None and stated.get(later, [None, None, None])[2] is None:
+            keys = {d: key(rule.target_variable_id, instance.scope_type, instance.scope_value, d, rule.target_frequency)
+                    for d in days[1:]}
+            if stated.get(keys[JAN3], [None] * 3)[2] is None and stated.get(keys[days[-1]], [None] * 3)[2] is None:
                 continue
-            found.append({"rule": rule.aggregation_rule_id, "instance": f"{instance.scope_type}/{instance.scope_value}",
-                          "2026-01-02": stated.get(before), "2026-01-03": stated.get(at),
-                          days[-1].isoformat(): stated.get(later)})
-            p += checks.check_expectations(stated, [at, later], [before], INV, "agg")
-        if not found:
-            p.append(f"AGGREGATION_FAILURE nenhuma instância real {kind} recebeu estado")
-        per_type[kind] = found
-    report["SC3_policy_b_real_rules"] = {"problems": p, "per_type": per_type, "injected": injected}
-    problems += p
+            windows[kind].append((rule.aggregation_rule_id, f"{instance.scope_type}/{instance.scope_value}", keys))
+
+    def audit(store):
+        p = checks.check_state_diff(clean, store, descendants, INV, "agg")
+        for kind, found in windows.items():
+            if not found:
+                p.append(f"AGGREGATION_FAILURE nenhuma instância real {kind} recebeu estado")
+            for _rule, _instance, keys in found:
+                p += checks.check_expectations(store, [keys[d] for d in days[2:]], [keys[days[1]]], INV, "agg")
+        return p + checks.check_result_contract(store)
+
+    def report(store):
+        return {"per_type": {kind: [{"rule": rule, "instance": instance,
+                                     "2026-01-02": store.get(keys[days[1]]), "2026-01-03": store.get(keys[JAN3]),
+                                     days[-1].isoformat(): store.get(keys[days[-1]])}
+                                    for rule, instance, keys in found] for kind, found in windows.items()},
+                "injected": injected}
+    return {"clean": clean, "stated": stated, "context": context, "traces": traces, "audit": audit,
+            "report": report, "descendants": descendants, "windows": windows}
+
+
+def composition_run(orchestrator, plan, second: Result) -> tuple:
+    """
+    SC4 — VAR11001 L2 recebe INVALID_INPUT "x" em 2026-01-03 e `second` em 2026-01-04, em
+    contexto próprio; a agregação mensal real de VAR11001 compõe os dois na mesma janela.
+    Devolve (código do erro ou None, store).
+    """
+    ctx = fresh_context(orchestrator)
+    code = None
+    try:
+        for d in DAYS[:4]:
+            inj = []
+            if d == JAN3:
+                inj = [("VAR11001", "linha", "L2", d.isoformat(), Result(None, INV, "x"))]
+            if d == JAN4:
+                inj = [("VAR11001", "linha", "L2", d.isoformat(), second)]
+            execute_day(orchestrator, plan, ctx, d, (), inj)
+    except Exception as exc:  # noqa: BLE001 — o código do erro é a evidência
+        code = getattr(exc, "code", type(exc).__name__)
+    return code, store_of(ctx)
+
+
+def state_scenarios(orchestrator, plan, problems) -> dict:
+    report = {}
+    for label, build in (("SC1_EQ12012_and_chain", scenario_sc1), ("SC2_EQ18003", scenario_sc2),
+                         ("SC3_policy_b_real_rules", scenario_sc3)):
+        scenario = build(orchestrator, plan)
+        p = scenario["audit"](scenario["stated"])
+        report[label] = {"problems": p, **scenario["report"](scenario["stated"])}
+        problems += p
 
     # SC4 — composições sem contrato e detail sem estado (contextos próprios).
     sc4 = {}
     for label, second, expected in (("different_states", Result(None, VF, "x"), "MULTI_STATE_COMBINATION_UNDEFINED"),
                                     ("same_state_different_details", Result(None, INV, "y"),
                                      "MULTI_DETAIL_COMPOSITION_UNDEFINED")):
-        ctx = fresh_context(orchestrator)
-        code = None
-        try:
-            for d in DAYS[:4]:
-                inj = []
-                if d == jan3:
-                    inj = [("VAR11001", "linha", "L2", d.isoformat(), Result(None, INV, "x"))]
-                if d == jan4:
-                    inj = [("VAR11001", "linha", "L2", d.isoformat(), second)]
-                execute_day(orchestrator, plan, ctx, d, (), inj)
-        except Exception as exc:  # noqa: BLE001 — o código do erro é a evidência
-            code = getattr(exc, "code", type(exc).__name__)
-        store = store_of(ctx)
+        code, store = composition_run(orchestrator, plan, second)
         sc4[label] = {"error": code, "expected": expected,
                       "jan3_window_stated": [v for k, v in store.items()
                                              if k[1:3] == ("linha", "L2") and k[3] == "2026-01" and k[4] == "2026-01-03"
@@ -645,6 +746,7 @@ def state_scenarios(orchestrator, plan, problems) -> dict:
 
 if __name__ == "__main__":
     if "--fingerprint" in sys.argv:
-        print(json.dumps(fingerprint(sys.argv[sys.argv.index("--fingerprint") + 1]), sort_keys=True))
+        print(json.dumps(fingerprint(sys.argv[sys.argv.index("--fingerprint") + 1],
+                                     mutate="--mutate-one-result" in sys.argv), sort_keys=True))
         sys.exit(0)
     sys.exit(main())

@@ -1,0 +1,114 @@
+{
+ "baseline": "043fe9c36d9d02664db8be7dd29c0fd7014c73f8",
+ "by_contract": {
+  "M1": {
+   "defined": 3,
+   "detected": 3
+  },
+  "M10": {
+   "defined": 6,
+   "detected": 6
+  },
+  "M2": {
+   "defined": 5,
+   "detected": 5
+  },
+  "M3": {
+   "defined": 6,
+   "detected": 6
+  },
+  "M4": {
+   "defined": 11,
+   "detected": 11
+  },
+  "M5": {
+   "defined": 6,
+   "detected": 6
+  },
+  "M6": {
+   "defined": 5,
+   "detected": 5
+  },
+  "M7": {
+   "defined": 6,
+   "detected": 6
+  },
+  "M8": {
+   "defined": 4,
+   "detected": 4
+  },
+  "M9": {
+   "defined": 6,
+   "detected": 6
+  }
+ },
+ "code_mutants": {
+  "by_detector": {
+   "DIFFERENTIAL": 7,
+   "INTEGRATED": 17,
+   "TESTS": 17
+  },
+  "detected": 17,
+  "introduced": 17,
+  "positive_control": {
+   "contract": "controle positivo",
+   "description": "\u00e1rvore sem muta\u00e7\u00e3o",
+   "detected": "TRUE",
+   "detected_by": "",
+   "evidence": "",
+   "expected_detectors": "",
+   "file": null,
+   "missing_detectors": "",
+   "mutant_id": "CM-00",
+   "result": "ACCEPT"
+  },
+  "repository_untouched": true,
+  "surviving": 0,
+  "surviving_ids": []
+ },
+ "detection_rate": "100.0%",
+ "fixture": {
+  "REAL_DERIVED": "TEST_FIXTURE_ONLY",
+  "fixture_graph_hash": "e372425d9a6f3cbccecfa9ff77c30ddff49be8587da4d567a252fb64d2e3d1ff",
+  "fixture_pending_links": 0,
+  "official_pending_links": 16,
+  "persisted_links_equal_baseline": true
+ },
+ "label": "REAL_DERIVED_TEST_RESULT",
+ "missed": [],
+ "mutations_defined": 58,
+ "mutations_detected": 58,
+ "mutations_executed": 58,
+ "mutations_missed": 0,
+ "positive_controls": {
+  "accepted": 13,
+  "rejected_unexpectedly": [],
+  "total": 13
+ },
+ "protected_artifacts": {
+  "baseline": "043fe9c36d9d02664db8be7dd29c0fd7014c73f8",
+  "diff_vs_baseline_app_data_tools": "",
+  "result": "NO PRODUCTION CHANGES",
+  "working_tree_app_data_tools": ""
+ },
+ "real_path": {
+  "3.4B differential: real 7877551 x HEAD runner output": 6,
+  "3.4C integrated: real FIRST_RUN x REEXECUTION": 5,
+  "3.4C integrated: real fingerprints (subprocess / ORDER_B)": 4,
+  "3.4C integrated: real orchestrator execution of a crippled plan": 1,
+  "3.4C integrated: real planner + orchestrator + engine trace": 11,
+  "3.4C integrated: real re-execution on a context copy": 2,
+  "3.4C integrated: real state scenario (twin runs)": 16,
+  "3.4C integrated: real temporal store": 4,
+  "REAL_DERIVED fixture + persisted registry (temporary copy)": 6,
+  "app result/aggregation contract (real engine execution)": 3
+ },
+ "result": "PASS",
+ "stage": "3.4D",
+ "synthetic_only_mutations": 0,
+ "unmutated_baselines": {
+  "differential_candidate_cases": 4722,
+  "differential_problems": [],
+  "integrated_fingerprint_RUN_A": "d4de1aea572ad23a42cf746cee9ff9be357a05d51a5541f29616b4acca66e10d"
+ }
+}

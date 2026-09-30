@@ -71,7 +71,12 @@ def run(root: Path, out: Path, seed: str) -> bytes:
     return out.read_bytes()
 
 
-def main() -> int:
+def produce(mutate=None) -> dict:
+    """
+    Passos 1–3: pré-condições e execução isolada das duas versões (evidência real).
+    `mutate` (só Stage 3.4D): função aplicada ao `app/` EXTRAÍDO do candidate, no diretório
+    temporário, antes da execução — mutante de código que nunca toca o repositório.
+    """
     problems: list[str] = []
 
     # 1. pré-condições -------------------------------------------------------
@@ -90,6 +95,8 @@ def main() -> int:
         tmp = Path(tmp)
         extract(REFERENCE, tmp / "reference")
         extract("HEAD", tmp / "candidate")
+        if mutate is not None:
+            mutate(tmp / "candidate")
         raw = {}
         for side in ("reference", "candidate"):
             first = run(tmp / side, tmp / f"{side}_0.json", "0")
@@ -104,7 +111,18 @@ def main() -> int:
             problems.append(f"{side} carregou módulos de fora do seu app/: {payload['foreign_modules'][:3]}")
     if reference["app_sha256"] == candidate["app_sha256"]:
         problems.append("reference e candidate carregaram o mesmo código (fingerprint igual)")
+    return {"problems": problems, "invariant": invariant, "candidate_commit": candidate_commit,
+            "reference_commit": reference_commit, "reference": reference, "candidate": candidate,
+            "digests": digests}
 
+
+def evaluate(reference: dict, candidate: dict) -> dict:
+    """
+    Passos 4–5: universo esperado, cobertura por lado e comparação exata caso a caso.
+    É o detector da regressão diferencial; a Stage 3.4D o reaplica a cópias mutadas
+    da evidência real produzida por `produce()`.
+    """
+    problems: list[str] = []
     # 4. universo esperado -----------------------------------------------------
     vectors, dates = candidate["vectors"], candidate["dates"]
     if reference["vectors"] != vectors or reference["dates"] != dates:
@@ -157,6 +175,21 @@ def main() -> int:
         })
     if differences:
         problems.append(f"{len(differences)} casos com diferença")
+
+    return {"problems": problems, "vectors": vectors, "dates": dates, "by_op": by_op, "by_block": by_block,
+            "agg_types": agg_types, "cov": cov, "rows": rows, "differences": differences, "matched": matched}
+
+
+def main() -> int:
+    produced = produce()
+    reference, candidate = produced["reference"], produced["candidate"]
+    evaluated = evaluate(reference, candidate)
+    problems = produced["problems"] + evaluated["problems"]
+    invariant, digests = produced["invariant"], produced["digests"]
+    candidate_commit, reference_commit = produced["candidate_commit"], produced["reference_commit"]
+    vectors, dates, by_op, by_block = (evaluated[k] for k in ("vectors", "dates", "by_op", "by_block"))
+    agg_types, cov, rows = evaluated["agg_types"], evaluated["cov"], evaluated["rows"]
+    differences, matched = evaluated["differences"], evaluated["matched"]
 
     # 6. evidência -------------------------------------------------------------
     table = {}

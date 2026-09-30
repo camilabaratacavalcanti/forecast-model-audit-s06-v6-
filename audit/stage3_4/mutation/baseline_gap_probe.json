@@ -1,0 +1,32 @@
+{
+ "baseline": "043fe9c36d9d02664db8be7dd29c0fd7014c73f8",
+ "control_sc1_original_problems": [],
+ "probes": {
+  "G1_state_reach_unnamed_date": {
+   "detected_by_original_auditor": false,
+   "mutation": "VAR12031 L3 2026-01-05 perde o estado",
+   "problems": []
+  },
+  "G2_value_with_state": {
+   "detected_by_original_auditor": false,
+   "mutation": "VAR12031 L3 2026-01-05 = valor + INVALID_INPUT/fa",
+   "problems": []
+  },
+  "G3_duplicated_transfer_interblock_check": {
+   "detected_by_original_auditor": false,
+   "mutation": "evento TRANSFER:VAR18006 duplicado",
+   "problems": []
+  },
+  "G4_transfer_wrong_target_interblock_check": {
+   "detected_by_original_auditor": false,
+   "mutation": "TRANSFER:VAR11031 L2 atribu\u00edda a VAR13062",
+   "problems": []
+  },
+  "G5_monthly_identity_without_window": {
+   "detected_by_original_auditor": false,
+   "inspection": "filtro `None not in v` presente em 043fe9c",
+   "mutation": "identidade mensal derivada com window_end None",
+   "problems": []
+  }
+ }
+}
