@@ -1,0 +1,920 @@
+{
+ "by_block": [
+  {
+   "aggregation_nodes": 28,
+   "block": "production",
+   "equation_nodes": 27,
+   "executed": 56,
+   "targets": 50,
+   "transfer_nodes": 1
+  },
+  {
+   "aggregation_nodes": 80,
+   "block": "yield",
+   "equation_nodes": 138,
+   "executed": 219,
+   "targets": 219,
+   "transfer_nodes": 1
+  },
+  {
+   "aggregation_nodes": 11,
+   "block": "energy",
+   "equation_nodes": 24,
+   "executed": 43,
+   "targets": 43,
+   "transfer_nodes": 8
+  },
+  {
+   "aggregation_nodes": 78,
+   "block": "max_ht",
+   "equation_nodes": 29,
+   "executed": 109,
+   "targets": 109,
+   "transfer_nodes": 2
+  }
+ ],
+ "clean_context_stated_results": 0,
+ "determinism": {
+  "HASH_SEED_A": {
+   "graph_hash": "e372425d9a6f3cbccecfa9ff77c30ddff49be8587da4d567a252fb64d2e3d1ff",
+   "hash_seed": "0",
+   "order": "A",
+   "results_sha256": "d4de1aea572ad23a42cf746cee9ff9be357a05d51a5541f29616b4acca66e10d",
+   "store_sha256": "619b4abd9e161dccab791978157ec0f62589fa7716ced169b53aea3e90e9730c"
+  },
+  "HASH_SEED_B": {
+   "graph_hash": "e372425d9a6f3cbccecfa9ff77c30ddff49be8587da4d567a252fb64d2e3d1ff",
+   "hash_seed": "4242",
+   "order": "A",
+   "results_sha256": "d4de1aea572ad23a42cf746cee9ff9be357a05d51a5541f29616b4acca66e10d",
+   "store_sha256": "619b4abd9e161dccab791978157ec0f62589fa7716ced169b53aea3e90e9730c"
+  },
+  "REEXECUTION": {
+   "store_sha256": "619b4abd9e161dccab791978157ec0f62589fa7716ced169b53aea3e90e9730c"
+  },
+  "RUN_A": {
+   "graph_hash": "e372425d9a6f3cbccecfa9ff77c30ddff49be8587da4d567a252fb64d2e3d1ff",
+   "hash_seed": null,
+   "order": "A",
+   "results_sha256": "d4de1aea572ad23a42cf746cee9ff9be357a05d51a5541f29616b4acca66e10d",
+   "store_sha256": "619b4abd9e161dccab791978157ec0f62589fa7716ced169b53aea3e90e9730c"
+  },
+  "RUN_B": {
+   "graph_hash": "e372425d9a6f3cbccecfa9ff77c30ddff49be8587da4d567a252fb64d2e3d1ff",
+   "hash_seed": "0",
+   "order": "B",
+   "results_sha256": "d4de1aea572ad23a42cf746cee9ff9be357a05d51a5541f29616b4acca66e10d",
+   "store_sha256": "619b4abd9e161dccab791978157ec0f62589fa7716ced169b53aea3e90e9730c"
+  },
+  "identical_graph": true,
+  "identical_plan_order": true,
+  "identical_results": true,
+  "identical_store_including_reexecution": true
+ },
+ "fixture": {
+  "graph_hashes": {
+   "A": "e372425d9a6f3cbccecfa9ff77c30ddff49be8587da4d567a252fb64d2e3d1ff",
+   "A_rebuilt": "e372425d9a6f3cbccecfa9ff77c30ddff49be8587da4d567a252fb64d2e3d1ff",
+   "B": "e372425d9a6f3cbccecfa9ff77c30ddff49be8587da4d567a252fb64d2e3d1ff",
+   "tests_fixture": "e372425d9a6f3cbccecfa9ff77c30ddff49be8587da4d567a252fb64d2e3d1ff"
+  },
+  "pending_in_fixture": 0,
+  "pending_official": 16
+ },
+ "graph": {
+  "annual_aggregation_rules": 48,
+  "cross_block_edges": [
+   [
+    "production",
+    "energy"
+   ],
+   [
+    "production",
+    "max_ht"
+   ],
+   [
+    "production",
+    "yield"
+   ],
+   [
+    "yield",
+    "production"
+   ]
+  ],
+  "dependencies_precede_consumers": true,
+  "production_yield_cycle_at_block_level": true,
+  "production_yield_transfers": {
+   "TRANSFER:VAR11031": {
+    "consumer_block": "yield",
+    "position": 193,
+    "source_block": "production"
+   },
+   "TRANSFER:VAR12062": {
+    "consumer_block": "production",
+    "position": 257,
+    "source_block": "yield"
+   }
+  }
+ },
+ "label": "REAL_DERIVED_TEST_RESULT",
+ "nodes_executed": 427,
+ "orchestrator_vs_engine": {
+  "compared": 12544
+ },
+ "problems": [],
+ "reexecution": {
+  "2026-01-15": {
+   "first_run_events_equal": true,
+   "first_run_transfer_statuses": {
+    "WRITTEN": 60
+   },
+   "new_keys": 0,
+   "same_store": true,
+   "stated_results": 0,
+   "store_sha256_after": "619b4abd9e161dccab791978157ec0f62589fa7716ced169b53aea3e90e9730c",
+   "transfer_statuses": {
+    "UNCHANGED": 60
+   }
+  },
+  "2026-02-01": {
+   "first_run_events_equal": true,
+   "first_run_transfer_statuses": {
+    "WRITTEN": 60
+   },
+   "new_keys": 0,
+   "same_store": true,
+   "stated_results": 0,
+   "store_sha256_after": "619b4abd9e161dccab791978157ec0f62589fa7716ced169b53aea3e90e9730c",
+   "transfer_statuses": {
+    "UNCHANGED": 60
+   }
+  }
+ },
+ "result": "PASS",
+ "state": {
+  "SC1_EQ12012_and_chain": {
+   "descendant_variables": 260,
+   "differing_keys": 6452,
+   "problems": [],
+   "stated_by_block": {
+    "energy": 1395,
+    "max_ht": 1914,
+    "production": 1901,
+    "yield": 1240
+   },
+   "stated_transfer_events_verified": {
+    "TRANSFER:VAR11031": 31,
+    "TRANSFER:VAR12062": 31,
+    "TRANSFER:VAR13062": 31,
+    "TRANSFER:VAR13092": 93,
+    "TRANSFER:VAR18001": 93,
+    "TRANSFER:VAR18005": 93,
+    "TRANSFER:VAR18006": 31,
+    "TRANSFER:VAR18007": 31,
+    "TRANSFER:VAR18008": 31,
+    "TRANSFER:VAR18009": 31,
+    "TRANSFER:VAR18010": 31
+   }
+  },
+  "SC2_EQ18003": {
+   "active_branch_L1": [
+    "NoneType",
+    "None",
+    "VALIDATION_FAILED",
+    "t"
+   ],
+   "inactive_branch_L2": [
+    "float",
+    "1.4509999999999998",
+    null,
+    null
+   ],
+   "problems": [],
+   "stated_variables": [
+    "VAR18017",
+    "VAR18019",
+    "VAR18020",
+    "VAR18021",
+    "VAR18022",
+    "VAR18023",
+    "VAR18024",
+    "VAR18025",
+    "VAR18026",
+    "VAR18027",
+    "VAR18028",
+    "VAR18042",
+    "VAR18043",
+    "VAR18044",
+    "VAR18045",
+    "VAR18049",
+    "VAR18050",
+    "VAR18051",
+    "VAR18052"
+   ]
+  },
+  "SC3_policy_b_real_rules": {
+   "injected": [
+    [
+     "VAR11001",
+     "linha",
+     "L1"
+    ],
+    [
+     "VAR13113",
+     "linha_grupo",
+     "L1_L3"
+    ],
+    [
+     "VAR18046",
+     "linha_grupo",
+     "L1_L7"
+    ],
+    [
+     "VAR12056",
+     "linha",
+     "L1"
+    ]
+   ],
+   "per_type": {
+    "AVERAGE": [
+     {
+      "2026-01-02": [
+       "float",
+       "1.00015",
+       null,
+       null
+      ],
+      "2026-01-03": [
+       "NoneType",
+       "None",
+       "INVALID_INPUT",
+       "agg"
+      ],
+      "2026-01-05": [
+       "NoneType",
+       "None",
+       "INVALID_INPUT",
+       "agg"
+      ],
+      "instance": "linha/L1",
+      "rule": "AGR-YIELD-EOC_SOLIDS-LINHA-L1_L7-MENSAL-AVERAGE"
+     }
+    ],
+    "MOVING_AVERAGE": [
+     {
+      "2026-01-02": [
+       "float",
+       "3.029511267359043",
+       null,
+       null
+      ],
+      "2026-01-03": [
+       "NoneType",
+       "None",
+       "INVALID_INPUT",
+       "agg"
+      ],
+      "2026-01-05": [
+       "NoneType",
+       "None",
+       "INVALID_INPUT",
+       "agg"
+      ],
+      "instance": "linha_grupo/L1_L7",
+      "rule": "AGR-PRODUCTION-PRODUCAO_PLANTA_MOVEL-GRUPO-L1_L7-DIARIO-MOVING_AVERAGE"
+     }
+    ],
+    "SUM": [
+     {
+      "2026-01-02": [
+       "float",
+       "0.03322901957785046",
+       null,
+       null
+      ],
+      "2026-01-03": [
+       "NoneType",
+       "None",
+       "INVALID_INPUT",
+       "agg"
+      ],
+      "2026-01-05": [
+       "NoneType",
+       "None",
+       "INVALID_INPUT",
+       "agg"
+      ],
+      "instance": "linha_grupo/L1_L3",
+      "rule": "AGR-MAX_HT-MASSA_TOTAL_MAX_HT_SOMATORIO-GRUPO-L1_L3-ANUAL-SUM"
+     },
+     {
+      "2026-01-02": [
+       "float",
+       "0.03322901957785046",
+       null,
+       null
+      ],
+      "2026-01-03": [
+       "NoneType",
+       "None",
+       "INVALID_INPUT",
+       "agg"
+      ],
+      "2026-01-05": [
+       "NoneType",
+       "None",
+       "INVALID_INPUT",
+       "agg"
+      ],
+      "instance": "linha_grupo/L1_L3",
+      "rule": "AGR-MAX_HT-MASSA_TOTAL_MAX_HT_SOMATORIO-GRUPO-L1_L3-MENSAL-SUM"
+     }
+    ],
+    "WEIGHTED_AVERAGE": [
+     {
+      "2026-01-02": [
+       "float",
+       "11.884293149167227",
+       null,
+       null
+      ],
+      "2026-01-03": [
+       "NoneType",
+       "None",
+       "INVALID_INPUT",
+       "agg"
+      ],
+      "2026-01-05": [
+       "NoneType",
+       "None",
+       "INVALID_INPUT",
+       "agg"
+      ],
+      "instance": "linha_grupo/L1_L7",
+      "rule": "AGR-ENERGY-ESPECIFICO_VAPOR_OUTROS-GRUPO-L1_L7-MENSAL-WEIGHTED_AVERAGE"
+     }
+    ]
+   },
+   "problems": []
+  },
+  "SC4_composition_contracts": {
+   "detail_without_state": "DETAIL_WITHOUT_STATE",
+   "different_states": {
+    "error": "MULTI_STATE_COMBINATION_UNDEFINED",
+    "expected": "MULTI_STATE_COMBINATION_UNDEFINED",
+    "jan3_window_stated": [
+     [
+      "NoneType",
+      "None",
+      "INVALID_INPUT",
+      "x"
+     ]
+    ]
+   },
+   "same_state_different_details": {
+    "error": "MULTI_DETAIL_COMPOSITION_UNDEFINED",
+    "expected": "MULTI_DETAIL_COMPOSITION_UNDEFINED",
+    "jan3_window_stated": [
+     [
+      "NoneType",
+      "None",
+      "INVALID_INPUT",
+      "x"
+     ]
+    ]
+   }
+  }
+ },
+ "targets_executed": 421,
+ "temporal": {
+  "annual_ytd_all_32_windows": true,
+  "annual_ytd_identities": 185,
+  "contiguous": true,
+  "coverage_class": "YEAR_TO_DATE_PARTIAL_COVERAGE",
+  "daily_keys_have_no_window": true,
+  "dates": 32,
+  "monthly_feb_identities": 313,
+  "monthly_feb_windows": [
+   "2026-02-01"
+  ],
+  "monthly_jan_all_31_windows": true,
+  "monthly_jan_identities": 313
+ },
+ "temporal_coverage": [
+  {
+   "annual_ytd_events": 185,
+   "date": "2026-01-01",
+   "errors": 0,
+   "events": 847,
+   "monthly_events": 313,
+   "nodes": 427,
+   "targets": 421,
+   "transfer_events": 60
+  },
+  {
+   "annual_ytd_events": 185,
+   "date": "2026-01-02",
+   "errors": 0,
+   "events": 847,
+   "monthly_events": 313,
+   "nodes": 427,
+   "targets": 421,
+   "transfer_events": 60
+  },
+  {
+   "annual_ytd_events": 185,
+   "date": "2026-01-03",
+   "errors": 0,
+   "events": 847,
+   "monthly_events": 313,
+   "nodes": 427,
+   "targets": 421,
+   "transfer_events": 60
+  },
+  {
+   "annual_ytd_events": 185,
+   "date": "2026-01-04",
+   "errors": 0,
+   "events": 847,
+   "monthly_events": 313,
+   "nodes": 427,
+   "targets": 421,
+   "transfer_events": 60
+  },
+  {
+   "annual_ytd_events": 185,
+   "date": "2026-01-05",
+   "errors": 0,
+   "events": 847,
+   "monthly_events": 313,
+   "nodes": 427,
+   "targets": 421,
+   "transfer_events": 60
+  },
+  {
+   "annual_ytd_events": 185,
+   "date": "2026-01-06",
+   "errors": 0,
+   "events": 847,
+   "monthly_events": 313,
+   "nodes": 427,
+   "targets": 421,
+   "transfer_events": 60
+  },
+  {
+   "annual_ytd_events": 185,
+   "date": "2026-01-07",
+   "errors": 0,
+   "events": 847,
+   "monthly_events": 313,
+   "nodes": 427,
+   "targets": 421,
+   "transfer_events": 60
+  },
+  {
+   "annual_ytd_events": 185,
+   "date": "2026-01-08",
+   "errors": 0,
+   "events": 847,
+   "monthly_events": 313,
+   "nodes": 427,
+   "targets": 421,
+   "transfer_events": 60
+  },
+  {
+   "annual_ytd_events": 185,
+   "date": "2026-01-09",
+   "errors": 0,
+   "events": 847,
+   "monthly_events": 313,
+   "nodes": 427,
+   "targets": 421,
+   "transfer_events": 60
+  },
+  {
+   "annual_ytd_events": 185,
+   "date": "2026-01-10",
+   "errors": 0,
+   "events": 847,
+   "monthly_events": 313,
+   "nodes": 427,
+   "targets": 421,
+   "transfer_events": 60
+  },
+  {
+   "annual_ytd_events": 185,
+   "date": "2026-01-11",
+   "errors": 0,
+   "events": 847,
+   "monthly_events": 313,
+   "nodes": 427,
+   "targets": 421,
+   "transfer_events": 60
+  },
+  {
+   "annual_ytd_events": 185,
+   "date": "2026-01-12",
+   "errors": 0,
+   "events": 847,
+   "monthly_events": 313,
+   "nodes": 427,
+   "targets": 421,
+   "transfer_events": 60
+  },
+  {
+   "annual_ytd_events": 185,
+   "date": "2026-01-13",
+   "errors": 0,
+   "events": 847,
+   "monthly_events": 313,
+   "nodes": 427,
+   "targets": 421,
+   "transfer_events": 60
+  },
+  {
+   "annual_ytd_events": 185,
+   "date": "2026-01-14",
+   "errors": 0,
+   "events": 847,
+   "monthly_events": 313,
+   "nodes": 427,
+   "targets": 421,
+   "transfer_events": 60
+  },
+  {
+   "annual_ytd_events": 185,
+   "date": "2026-01-15",
+   "errors": 0,
+   "events": 847,
+   "monthly_events": 313,
+   "nodes": 427,
+   "targets": 421,
+   "transfer_events": 60
+  },
+  {
+   "annual_ytd_events": 185,
+   "date": "2026-01-16",
+   "errors": 0,
+   "events": 847,
+   "monthly_events": 313,
+   "nodes": 427,
+   "targets": 421,
+   "transfer_events": 60
+  },
+  {
+   "annual_ytd_events": 185,
+   "date": "2026-01-17",
+   "errors": 0,
+   "events": 847,
+   "monthly_events": 313,
+   "nodes": 427,
+   "targets": 421,
+   "transfer_events": 60
+  },
+  {
+   "annual_ytd_events": 185,
+   "date": "2026-01-18",
+   "errors": 0,
+   "events": 847,
+   "monthly_events": 313,
+   "nodes": 427,
+   "targets": 421,
+   "transfer_events": 60
+  },
+  {
+   "annual_ytd_events": 185,
+   "date": "2026-01-19",
+   "errors": 0,
+   "events": 847,
+   "monthly_events": 313,
+   "nodes": 427,
+   "targets": 421,
+   "transfer_events": 60
+  },
+  {
+   "annual_ytd_events": 185,
+   "date": "2026-01-20",
+   "errors": 0,
+   "events": 847,
+   "monthly_events": 313,
+   "nodes": 427,
+   "targets": 421,
+   "transfer_events": 60
+  },
+  {
+   "annual_ytd_events": 185,
+   "date": "2026-01-21",
+   "errors": 0,
+   "events": 847,
+   "monthly_events": 313,
+   "nodes": 427,
+   "targets": 421,
+   "transfer_events": 60
+  },
+  {
+   "annual_ytd_events": 185,
+   "date": "2026-01-22",
+   "errors": 0,
+   "events": 847,
+   "monthly_events": 313,
+   "nodes": 427,
+   "targets": 421,
+   "transfer_events": 60
+  },
+  {
+   "annual_ytd_events": 185,
+   "date": "2026-01-23",
+   "errors": 0,
+   "events": 847,
+   "monthly_events": 313,
+   "nodes": 427,
+   "targets": 421,
+   "transfer_events": 60
+  },
+  {
+   "annual_ytd_events": 185,
+   "date": "2026-01-24",
+   "errors": 0,
+   "events": 847,
+   "monthly_events": 313,
+   "nodes": 427,
+   "targets": 421,
+   "transfer_events": 60
+  },
+  {
+   "annual_ytd_events": 185,
+   "date": "2026-01-25",
+   "errors": 0,
+   "events": 847,
+   "monthly_events": 313,
+   "nodes": 427,
+   "targets": 421,
+   "transfer_events": 60
+  },
+  {
+   "annual_ytd_events": 185,
+   "date": "2026-01-26",
+   "errors": 0,
+   "events": 847,
+   "monthly_events": 313,
+   "nodes": 427,
+   "targets": 421,
+   "transfer_events": 60
+  },
+  {
+   "annual_ytd_events": 185,
+   "date": "2026-01-27",
+   "errors": 0,
+   "events": 847,
+   "monthly_events": 313,
+   "nodes": 427,
+   "targets": 421,
+   "transfer_events": 60
+  },
+  {
+   "annual_ytd_events": 185,
+   "date": "2026-01-28",
+   "errors": 0,
+   "events": 847,
+   "monthly_events": 313,
+   "nodes": 427,
+   "targets": 421,
+   "transfer_events": 60
+  },
+  {
+   "annual_ytd_events": 185,
+   "date": "2026-01-29",
+   "errors": 0,
+   "events": 847,
+   "monthly_events": 313,
+   "nodes": 427,
+   "targets": 421,
+   "transfer_events": 60
+  },
+  {
+   "annual_ytd_events": 185,
+   "date": "2026-01-30",
+   "errors": 0,
+   "events": 847,
+   "monthly_events": 313,
+   "nodes": 427,
+   "targets": 421,
+   "transfer_events": 60
+  },
+  {
+   "annual_ytd_events": 185,
+   "date": "2026-01-31",
+   "errors": 0,
+   "events": 847,
+   "monthly_events": 313,
+   "nodes": 427,
+   "targets": 421,
+   "transfer_events": 60
+  },
+  {
+   "annual_ytd_events": 185,
+   "date": "2026-02-01",
+   "errors": 0,
+   "events": 847,
+   "monthly_events": 313,
+   "nodes": 427,
+   "targets": 421,
+   "transfer_events": 60
+  }
+ ],
+ "transfers": [
+  {
+   "detail_2026-02-01": null,
+   "executed_events": 224,
+   "execution_status": "EXECUTED",
+   "frequency": "di\u00e1rio",
+   "instances": 7,
+   "node": "TRANSFER:VAR11031",
+   "source_block": "production",
+   "source_variable": "VAR12031",
+   "state_2026-02-01": null,
+   "target_block": "yield",
+   "target_variable": "VAR11031",
+   "value_2026-02-01": "1.352175573333333",
+   "verified_events": 224
+  },
+  {
+   "detail_2026-02-01": null,
+   "executed_events": 224,
+   "execution_status": "EXECUTED",
+   "frequency": "di\u00e1rio",
+   "instances": 7,
+   "node": "TRANSFER:VAR12062",
+   "source_block": "yield",
+   "source_variable": "VAR11226",
+   "state_2026-02-01": null,
+   "target_block": "production",
+   "target_variable": "VAR12062",
+   "value_2026-02-01": "-0.23979752347771544",
+   "verified_events": 224
+  },
+  {
+   "detail_2026-02-01": null,
+   "executed_events": 224,
+   "execution_status": "EXECUTED",
+   "frequency": "di\u00e1rio",
+   "instances": 7,
+   "node": "TRANSFER:VAR13062",
+   "source_block": "production",
+   "source_variable": "VAR12031",
+   "state_2026-02-01": null,
+   "target_block": "max_ht",
+   "target_variable": "VAR13062",
+   "value_2026-02-01": "1.352175573333333",
+   "verified_events": 224
+  },
+  {
+   "detail_2026-02-01": null,
+   "executed_events": 224,
+   "execution_status": "EXECUTED",
+   "frequency": "di\u00e1rio",
+   "instances": 7,
+   "node": "TRANSFER:VAR13092",
+   "source_block": "production",
+   "source_variable": "VAR12046",
+   "state_2026-02-01": null,
+   "target_block": "max_ht",
+   "target_variable": "VAR13092",
+   "value_2026-02-01": "0.40661784449650473",
+   "verified_events": 224
+  },
+  {
+   "detail_2026-02-01": null,
+   "executed_events": 224,
+   "execution_status": "EXECUTED",
+   "frequency": "di\u00e1rio",
+   "instances": 7,
+   "node": "TRANSFER:VAR18001",
+   "source_block": "production",
+   "source_variable": "VAR12046",
+   "state_2026-02-01": null,
+   "target_block": "energy",
+   "target_variable": "VAR18001",
+   "value_2026-02-01": "0.40661784449650473",
+   "verified_events": 224
+  },
+  {
+   "detail_2026-02-01": null,
+   "executed_events": 224,
+   "execution_status": "EXECUTED",
+   "frequency": "di\u00e1rio",
+   "instances": 7,
+   "node": "TRANSFER:VAR18005",
+   "source_block": "production",
+   "source_variable": "VAR12041",
+   "state_2026-02-01": null,
+   "target_block": "energy",
+   "target_variable": "VAR18005",
+   "value_2026-02-01": "13.060303098410483",
+   "verified_events": 224
+  },
+  {
+   "detail_2026-02-01": null,
+   "executed_events": 32,
+   "execution_status": "EXECUTED",
+   "frequency": "di\u00e1rio",
+   "instances": 1,
+   "node": "TRANSFER:VAR18006",
+   "source_block": "production",
+   "source_variable": "VAR12043",
+   "state_2026-02-01": null,
+   "target_block": "energy",
+   "target_variable": "VAR18006",
+   "value_2026-02-01": "13.940846916187041",
+   "verified_events": 32
+  },
+  {
+   "detail_2026-02-01": null,
+   "executed_events": 32,
+   "execution_status": "EXECUTED",
+   "frequency": "mensal",
+   "instances": 1,
+   "node": "TRANSFER:VAR18007",
+   "source_block": "production",
+   "source_variable": "VAR12044",
+   "state_2026-02-01": null,
+   "target_block": "energy",
+   "target_variable": "VAR18007",
+   "value_2026-02-01": "13.940846916187041",
+   "verified_events": 32
+  },
+  {
+   "detail_2026-02-01": null,
+   "executed_events": 224,
+   "execution_status": "EXECUTED",
+   "frequency": "di\u00e1rio",
+   "instances": 7,
+   "node": "TRANSFER:VAR18008",
+   "source_block": "production",
+   "source_variable": "VAR12031",
+   "state_2026-02-01": null,
+   "target_block": "energy",
+   "target_variable": "VAR18008",
+   "value_2026-02-01": "1.352175573333333",
+   "verified_events": 224
+  },
+  {
+   "detail_2026-02-01": null,
+   "executed_events": 32,
+   "execution_status": "EXECUTED",
+   "frequency": "di\u00e1rio",
+   "instances": 1,
+   "node": "TRANSFER:VAR18009",
+   "source_block": "production",
+   "source_variable": "VAR12033",
+   "state_2026-02-01": null,
+   "target_block": "energy",
+   "target_variable": "VAR18009",
+   "value_2026-02-01": "9.444445313333333",
+   "verified_events": 32
+  },
+  {
+   "detail_2026-02-01": null,
+   "executed_events": 32,
+   "execution_status": "EXECUTED",
+   "frequency": "mensal",
+   "instances": 1,
+   "node": "TRANSFER:VAR18010",
+   "source_block": "production",
+   "source_variable": "VAR12034",
+   "state_2026-02-01": null,
+   "target_block": "energy",
+   "target_variable": "VAR18010",
+   "value_2026-02-01": "9.444445313333333",
+   "verified_events": 32
+  },
+  {
+   "detail_2026-02-01": null,
+   "executed_events": 224,
+   "execution_status": "EXECUTED",
+   "frequency": "anual",
+   "instances": 7,
+   "node": "TRANSFER:VAR18011",
+   "source_block": "production",
+   "source_variable": "VAR12066",
+   "state_2026-02-01": null,
+   "target_block": "energy",
+   "target_variable": "VAR18011",
+   "value_2026-02-01": "1.3659999999999999",
+   "verified_events": 224
+  }
+ ],
+ "universe": {
+  "area_41_excluded": 25,
+  "integrated_targets": 421,
+  "nodes_by_kind": {
+   "AGGREGATION": 197,
+   "EQUATION": 218,
+   "TRANSFER": 12
+  },
+  "official_targets": 446,
+  "pending_blockers": 0,
+  "planner_nodes": 427,
+  "required_inputs": 51
+ }
+}
