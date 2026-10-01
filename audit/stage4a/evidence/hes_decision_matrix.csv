@@ -1,0 +1,51 @@
+group,hes_first,hes_second,engine_value,engine_value_type,engine_state,engine_detail,engine_error,workbook_branch,workbook_value,agree
+L4_L5,Normal,Normal,98.0,float,,,,Normal,98.0,True
+L4_L5,Normal,LC,77.58333333333333,float,,,,LC,77.58333333333333,True
+L4_L5,Normal,Overhaul/Parada,48.0,float,,,,Overhaul/Parada,48.0,True
+L4_L5,Normal,1 By pass,93.0,float,,,,1 By pass[41d],93.0,True
+L4_L5,Normal,1 By pass e LC,,NoneType,NO_APPLICABLE_RULE,,,F,F,True
+L4_L5,LC,Normal,77.58333333333333,float,,,,LC,77.58333333333333,True
+L4_L5,LC,LC,77.58333333333333,float,,,,LC,77.58333333333333,True
+L4_L5,LC,Overhaul/Parada,77.58333333333333,float,,,,LC,77.58333333333333,True
+L4_L5,LC,1 By pass,77.58333333333333,float,,,,LC,77.58333333333333,True
+L4_L5,LC,1 By pass e LC,77.58333333333333,float,,,,LC,77.58333333333333,True
+L4_L5,Overhaul/Parada,Normal,48.0,float,,,,Overhaul/Parada,48.0,True
+L4_L5,Overhaul/Parada,LC,77.58333333333333,float,,,,LC,77.58333333333333,True
+L4_L5,Overhaul/Parada,Overhaul/Parada,48.0,float,,,,Overhaul/Parada,48.0,True
+L4_L5,Overhaul/Parada,1 By pass,48.0,float,,,,Overhaul/Parada,48.0,True
+L4_L5,Overhaul/Parada,1 By pass e LC,48.0,float,,,,Overhaul/Parada,48.0,True
+L4_L5,1 By pass,Normal,93.0,float,,,,1 By pass[41d],93.0,True
+L4_L5,1 By pass,LC,77.58333333333333,float,,,,LC,77.58333333333333,True
+L4_L5,1 By pass,Overhaul/Parada,48.0,float,,,,Overhaul/Parada,48.0,True
+L4_L5,1 By pass,1 By pass,93.0,float,,,,1 By pass[41d],93.0,True
+L4_L5,1 By pass,1 By pass e LC,93.0,float,,,,1 By pass[41d],93.0,True
+L4_L5,1 By pass e LC,Normal,,NoneType,NO_APPLICABLE_RULE,,,F,F,True
+L4_L5,1 By pass e LC,LC,77.58333333333333,float,,,,LC,77.58333333333333,True
+L4_L5,1 By pass e LC,Overhaul/Parada,48.0,float,,,,Overhaul/Parada,48.0,True
+L4_L5,1 By pass e LC,1 By pass,93.0,float,,,,1 By pass[41d],93.0,True
+L4_L5,1 By pass e LC,1 By pass e LC,76.95833333333333,float,,,,1 By pass e LC[41c],76.95833333333333,True
+L6_L7,Normal,Normal,98.0,float,,,,Normal,98.0,True
+L6_L7,Normal,LC,77.58333333333333,float,,,,LC,77.58333333333333,True
+L6_L7,Normal,Overhaul/Parada,48.0,float,,,,Overhaul/Parada,48.0,True
+L6_L7,Normal,1 By pass,95.0,float,,,,1 By pass[41c],95.0,True
+L6_L7,Normal,1 By pass e LC,,NoneType,NO_APPLICABLE_RULE,,,F,F,True
+L6_L7,LC,Normal,77.58333333333333,float,,,,LC,77.58333333333333,True
+L6_L7,LC,LC,77.58333333333333,float,,,,LC,77.58333333333333,True
+L6_L7,LC,Overhaul/Parada,77.58333333333333,float,,,,LC,77.58333333333333,True
+L6_L7,LC,1 By pass,77.58333333333333,float,,,,LC,77.58333333333333,True
+L6_L7,LC,1 By pass e LC,77.58333333333333,float,,,,LC,77.58333333333333,True
+L6_L7,Overhaul/Parada,Normal,48.0,float,,,,Overhaul/Parada,48.0,True
+L6_L7,Overhaul/Parada,LC,77.58333333333333,float,,,,LC,77.58333333333333,True
+L6_L7,Overhaul/Parada,Overhaul/Parada,48.0,float,,,,Overhaul/Parada,48.0,True
+L6_L7,Overhaul/Parada,1 By pass,48.0,float,,,,Overhaul/Parada,48.0,True
+L6_L7,Overhaul/Parada,1 By pass e LC,48.0,float,,,,Overhaul/Parada,48.0,True
+L6_L7,1 By pass,Normal,95.0,float,,,,1 By pass[41c],95.0,True
+L6_L7,1 By pass,LC,77.58333333333333,float,,,,LC,77.58333333333333,True
+L6_L7,1 By pass,Overhaul/Parada,48.0,float,,,,Overhaul/Parada,48.0,True
+L6_L7,1 By pass,1 By pass,95.0,float,,,,1 By pass[41c],95.0,True
+L6_L7,1 By pass,1 By pass e LC,95.0,float,,,,1 By pass[41c],95.0,True
+L6_L7,1 By pass e LC,Normal,,NoneType,NO_APPLICABLE_RULE,,,F,F,True
+L6_L7,1 By pass e LC,LC,77.58333333333333,float,,,,LC,77.58333333333333,True
+L6_L7,1 By pass e LC,Overhaul/Parada,48.0,float,,,,Overhaul/Parada,48.0,True
+L6_L7,1 By pass e LC,1 By pass,95.0,float,,,,1 By pass[41c],95.0,True
+L6_L7,1 By pass e LC,1 By pass e LC,76.95833333333333,float,,,,1 By pass e LC[41c],76.95833333333333,True

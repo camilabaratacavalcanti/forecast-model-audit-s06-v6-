@@ -1,0 +1,84 @@
+{
+ "independent": {
+  "hes_f_combinations": [
+   [
+    "L4_L5",
+    "1 By pass e LC",
+    "Normal"
+   ],
+   [
+    "L4_L5",
+    "Normal",
+    "1 By pass e LC"
+   ],
+   [
+    "L6_L7",
+    "1 By pass e LC",
+    "Normal"
+   ],
+   [
+    "L6_L7",
+    "Normal",
+    "1 By pass e LC"
+   ]
+  ],
+  "interblock_links_sha256": "8dc6b7c8927393096dfe75f04bc37cf81848e9d5f485f1c83945fd5d520cd700",
+  "obs_rows": 26,
+  "official_plan.area_41": {
+   "INTERBLOCK_SOURCE_NOT_LOADED": 22,
+   "OK": 3
+  },
+  "official_plan.pending_links": 16,
+  "union.shared": [
+   "EQUATION:EQ12012",
+   "TRANSFER:VAR11031"
+  ],
+  "universe_4.nodes": 427,
+  "universe_5.aggregation_instances": 417,
+  "universe_5.equation_instances": 412,
+  "universe_5.events_per_date": 896,
+  "universe_5.nodes": 458,
+  "universe_5.nodes_by_kind": {
+   "AGGREGATION": 207,
+   "EQUATION": 238,
+   "TRANSFER": 13
+  },
+  "universe_5.required_inputs": 62,
+  "universe_5.targets": 446,
+  "universe_5.transfer_instances_per_date": 67
+ },
+ "integrated": {
+  "area_41_targets": 25,
+  "dates": 32,
+  "events_per_date": 896,
+  "integrated_targets": 446,
+  "interblock_links_sha256": "8dc6b7c8927393096dfe75f04bc37cf81848e9d5f485f1c83945fd5d520cd700",
+  "nodes_by_kind": {
+   "AGGREGATION": 207,
+   "EQUATION": 238,
+   "TRANSFER": 13
+  },
+  "official_targets": 446,
+  "pending_blockers": 0,
+  "planner_nodes": 458,
+  "previous_nodes": 427,
+  "previous_targets": 421,
+  "required_inputs": 62,
+  "transfer_events_per_date": 67,
+  "transfers": [
+   "TRANSFER:VAR11031",
+   "TRANSFER:VAR12062",
+   "TRANSFER:VAR13062",
+   "TRANSFER:VAR13092",
+   "TRANSFER:VAR16007",
+   "TRANSFER:VAR18001",
+   "TRANSFER:VAR18005",
+   "TRANSFER:VAR18006",
+   "TRANSFER:VAR18007",
+   "TRANSFER:VAR18008",
+   "TRANSFER:VAR18009",
+   "TRANSFER:VAR18010",
+   "TRANSFER:VAR18011"
+  ]
+ }
+}

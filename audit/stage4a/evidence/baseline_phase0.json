@@ -1,0 +1,44 @@
+{
+ "label": "REAL_DERIVED_TEST_RESULT",
+ "baseline_head": "d2847ab36933668bf4a1299b3ffe058827a82037",
+ "branch": "feature/stage-4a-area41-integration (criada a partir de main)",
+ "prerequisites": {
+  "main_contains_area_41": "OK",
+  "historical_hashes_f3b6588_7877551_8095011": "HASHES_OK",
+  "working_tree": "limpa"
+ },
+ "commands": {
+  "python -m pytest -q": "1921 passed in 308.78s (0:05:08)",
+  "run_differential.py --no-write": {
+   "result": "PASS",
+   "differences": 0,
+   "cases": 4722
+  },
+  "run_integrated.py --no-write": {
+   "result": "PASS",
+   "universe": {
+    "area_41_excluded": 25,
+    "integrated_targets": 421,
+    "nodes_by_kind": {
+     "AGGREGATION": 197,
+     "EQUATION": 218,
+     "TRANSFER": 12
+    },
+    "official_targets": 446,
+    "pending_blockers": 0,
+    "planner_nodes": 427,
+    "required_inputs": 51
+   },
+   "targets_executed": 421,
+   "nodes_executed": 427
+  },
+  "reconcile.py --no-write": {
+   "result": "PASS",
+   "problems": []
+  },
+  "python -I blackbox_audit.py --no-write": {
+   "result": "PASS"
+  },
+  "python -m tools.workbook_seed": "rc=0; git status --porcelain vazio (seeds = workbooks)"
+ }
+}
