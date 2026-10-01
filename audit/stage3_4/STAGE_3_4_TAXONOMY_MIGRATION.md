@@ -302,3 +302,20 @@ O commit que contém este relatório é o commit único da migração: `chore(ta
 ```text
 TAXONOMY_MIGRATION_GATE: PASS
 ```
+
+---
+
+## Adendo D-TAX-02 — correção da nota sobre o pareamento dos custos (append-only)
+
+A nota ¹ do §4 e a limitação 2 do §18 deste relatório dizem que os três blocos de custo foram pareados "por nome" e que "não há registro explícito anterior". **Essa afirmação estava incorreta.**
+
+O registro explícito existe. O commit `1d3276e` (`refactor(ids): update block taxonomy`) declara na mensagem `custo_budget->budget_cost`, `custo_forecast_bdgt->budget_forecast_cost` e `custo_forecast_real->actual_forecast_cost`, "mantendo os MESMOS ranges numericos". O diff desse commit troca cada chave no mesmo lugar e com a mesma faixa nos três registries.
+
+A decisão **D-TAX-02** formalizou os três pares como crosswalk normativo:
+- status **CONFIRMED**;
+- `inferred_only = false`;
+- protegidos por `taxonomy_guard.check_crosswalk` e por `tests/test_taxonomy_d_tax_02.py`.
+
+Ver `STAGE_3_4_TAXONOMY_D_TAX_02.md`. A limitação 2 deixa de valer, e **nenhum pareamento permanece inferido**.
+
+O texto original acima não foi reescrito. Nada da D-TAX-01 mudou: nomes, faixas, ordem, IDs e o gate `TAXONOMY_MIGRATION_GATE: PASS` continuam iguais.

@@ -51,15 +51,11 @@ ALLOWED_PARAMETER_FREQUENCIES = {"anual", "mensal", "diário"}
 # custo (budget_cost, budget_forecast_cost, actual_forecast_cost)
 # mais os blocos budget/forecast, cada um com faixa propria.
 #
-# As chaves antes em portugues (fator_residuo, vazao_condensado,
-# meta_volume_cheio, controle_espaco_vazio_meta, lime_dia,
-# floculante_hidrato_2026, floculante_lama_dia,
-# premissas_ppt_mensal, acido, custo_budget, custo_forecast_bdgt,
-# custo_forecast_real) foram renomeadas para ingles (residue_factor,
-# condensate_flow, full_volume_target, empty_space_target_control,
-# lime, hydrated_flocculant, sludge_flocculant,
-# thickener_flocculant, acid, budget_cost, budget_forecast_cost,
-# actual_forecast_cost), mantendo os mesmos ranges numericos.
+# As chaves da taxonomia anterior (em portugues) foram renomeadas
+# para ingles mantendo os mesmos ranges numericos (commit 1d3276e).
+# O crosswalk historico -> canonico e normativo (D-TAX-02, blocos de
+# custo) e nao deve ser inferido por nome: ver
+# audit/stage3_4/taxonomy_migration/cost_crosswalk_d_tax_02.json.
 #
 # "budget_vs_forecast" foi introduzido em 37000-37999; "shared"
 # foi realocado de 37000-37999 para 38000-38999.

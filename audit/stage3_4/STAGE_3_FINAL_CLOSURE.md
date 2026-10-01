@@ -589,3 +589,28 @@ A mudança é exclusivamente de nomenclatura:
 Os guardas da Stage 3 passaram a aceitar **somente** esse diff, provado arquivo a arquivo por `audit/stage3_4/taxonomy_migration/taxonomy_guard.py`. Qualquer outra alteração em `app/`, `data/` ou `tools/` continua falhando.
 
 Os fatos e números deste documento descrevem o estado em `547b920` e **não** foram reescritos. O gate da Stage 3 não é reaberto. Ver `audit/stage3_4/STAGE_3_4_TAXONOMY_MIGRATION.md`.
+
+---
+
+## Historical note — taxonomy decisions after Stage 3 closure (append-only)
+
+```text
+D-TAX-01  Canonical 29-block taxonomy            Status: APPLIED
+D-TAX-02  Historical cost-block crosswalk        Status: APPLIED
+Known architectural debt: two physical taxonomy projections remain (TD-TAX-01, OPEN)
+```
+
+- **D-TAX-02** formaliza `custo_budget → budget_cost`, `custo_forecast_bdgt → budget_forecast_cost` e `custo_forecast_real → actual_forecast_cost`:
+  - os três são **CONFIRMED** por registro explícito de rename (commit `1d3276e`) e pela mesma faixa nos três registries;
+  - os nomes históricos não são operacionais;
+  - a tradução é feita só pelo crosswalk `taxonomy_migration/cost_crosswalk_d_tax_02.json`.
+- **TD-TAX-01**: a taxonomia canônica é única, mas fisicamente tem duas implementações (`app/validation` e `tools/workbook_seed/taxonomy.py`), porque `app/` não importa `tools/`.
+  - A equivalência das 5 projeções é imposta por `taxonomy_guard.check_projections` e por testes.
+  - Não é bloqueador funcional.
+  - Ver `TECH_DEBT_TAXONOMY_DUPLICATION.md`.
+- Pendências atualizadas em `PLATFORM_PENDING_ITEMS.md`. Os 16 vínculos continuam `PENDING_LOAD`.
+- Nenhuma alteração funcional:
+  - IDs, faixas, fórmulas, planner, vínculos e cardinalidades estão iguais;
+  - `app/` só teve comentários trocados, com AST idêntico.
+
+Os fatos e números deste documento continuam descrevendo `547b920`. `FINAL_STAGE_3_GATE` permanece **CLOSED**, e as 3.4A–3.4E não foram reabertas.

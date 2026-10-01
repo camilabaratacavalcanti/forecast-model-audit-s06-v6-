@@ -24,6 +24,15 @@ um dos seis abaixo e a alteração é exatamente a da decisão:
     `taxonomy`; `taxonomy` = {decision: "D-TAX-01", official_blocks: 29
     canônicos, loaded_blocks: iguais aos da base}.
 
+A base pode ser pré-migração (D26-01) ou já migrada (D-TAX-01): o diff é aceito
+se for exatamente o rename ou nenhuma mudança de AST (ex.: só comentários, D-TAX-02).
+
+D-TAX-02 acrescenta dois guardas permanentes do estado atual (`check_current_registry`):
+  * `check_projections`: o canônico D-TAX-01 == toda projeção física (três faixas,
+    BLOCK_TAXONOMY, taxonomia do seed) em nomes, ordem, quantidade e faixas;
+  * `check_crosswalk`: o crosswalk persistido dos blocos de custo == os três pares
+    documentados, com faixas e status explícitos (nunca inferido por nome).
+
 Qualquer outro arquivo alterado, criado ou removido em app/, data/ ou tools/
 — fórmula, valor, faixa, vínculo, pendência, cardinalidade, código do engine
 — é NON_TAXONOMIC_CHANGE. Não importa `app`: é um verificador de artefatos.
@@ -103,7 +112,9 @@ def _without_docstring(tree: ast.Module) -> ast.Module:
 def _check_validator(path: str, old: bytes, new: bytes) -> list[str]:
     old_tree, new_tree = ast.parse(old), ast.parse(new)
     problems = []
-    if ast.dump(old_tree) != ast.dump(_Rename({NEW_NAME: OLD_NAME}).visit(ast.parse(new))):
+    # base pré-migração (nome antigo) ou já migrada (D-TAX-02 em diante): o AST tem de ser
+    # idêntico, a menos exatamente do rename; comentários não entram no AST.
+    if ast.dump(old_tree) not in (ast.dump(_Rename({NEW_NAME: OLD_NAME}).visit(ast.parse(new))), ast.dump(new_tree)):
         problems.append(f"NON_TAXONOMIC_CHANGE {path}: código difere além do rename {OLD_NAME} -> {NEW_NAME}")
     name = VALIDATORS[path]
     node = _assigned(new_tree, name)
@@ -113,8 +124,8 @@ def _check_validator(path: str, old: bytes, new: bytes) -> list[str]:
         problems.append(f"NON_TAXONOMIC_CHANGE {path}: {name} != registro canônico de 29 blocos")
     old_node = _assigned(old_tree, name)
     old_ranges = ast.literal_eval(old_node.value) if old_node is not None else None
-    if old_ranges is not None and [(k, v) for k, v in old_ranges.items()] != \
-            [(OLD_NAME if k == NEW_NAME else k, v) for k, v in expected.items()]:
+    if old_ranges is not None and [(k, v) for k, v in old_ranges.items()] not in (
+            [(OLD_NAME if k == NEW_NAME else k, v) for k, v in expected.items()], list(expected.items())):
         problems.append(f"NON_TAXONOMIC_CHANGE {path}: faixas da base diferem do registro (além do nome)")
     return problems
 
@@ -139,7 +150,8 @@ def _check_taxonomy(old: bytes, new: bytes) -> list[str]:
 def _check_interblock_py(old: bytes, new: bytes) -> list[str]:
     if new.count(DECISION.encode()) != 1:
         return [f"NON_TAXONOMIC_CHANGE {INTERBLOCK_PY}: rótulo {DECISION} ausente ou repetido"]
-    if ast.dump(ast.parse(old)) != ast.dump(_Rename({DECISION: "D26-01"}).visit(ast.parse(new))):
+    if ast.dump(ast.parse(old)) not in (ast.dump(_Rename({DECISION: "D26-01"}).visit(ast.parse(new))),
+                                        ast.dump(ast.parse(new))):
         return [f"NON_TAXONOMIC_CHANGE {INTERBLOCK_PY}: código difere além do rótulo da decisão"]
     return []
 
@@ -223,3 +235,91 @@ def protected_status(base: str, target: str | None = None, paths=PROTECTED) -> s
     if result["unchanged"]:
         return "UNCHANGED"
     return "AUTHORIZED_TAXONOMY_MIGRATION" if result["taxonomy_only"] else "NON_TAXONOMIC_CHANGE"
+
+
+# ============================================================== D-TAX-02
+# Crosswalk histórico normativo dos três blocos de custo (oráculo escrito da decisão).
+# Fonte machine-readable: audit/stage3_4/taxonomy_migration/cost_crosswalk_d_tax_02.json.
+D_TAX_02 = "D-TAX-02"
+COST_CROSSWALK = {
+    "custo_budget": ("budget_cost", 32000, 32999),
+    "custo_forecast_bdgt": ("budget_forecast_cost", 33000, 33999),
+    "custo_forecast_real": ("actual_forecast_cost", 34000, 34999),
+}
+CROSSWALK_JSON = "audit/stage3_4/taxonomy_migration/cost_crosswalk_d_tax_02.json"
+EXPLICIT_STATUSES = ("CONFIRMED", "UNRESOLVED")
+
+
+def physical_projections(repo: Path = REPO) -> dict:
+    """
+    As projeções físicas da taxonomia canônica, lidas dos artefatos (sem importar app/tools):
+    {nome: [(bloco, lo, hi) | (bloco, None, None)]}. As faixas não existem na taxonomia nem no seed.
+    """
+    out = {}
+    for path, name in VALIDATORS.items():
+        node = _assigned(ast.parse((repo / path).read_bytes()), name)
+        out[name] = [(k, lo, hi) for k, (lo, hi) in ast.literal_eval(node.value).items()]
+    node = _assigned(ast.parse((repo / TAXONOMY_PY).read_bytes()), "BLOCK_TAXONOMY")
+    out["BLOCK_TAXONOMY"] = [(k, None, None) for k in ast.literal_eval(node.value)]
+    seed = json.loads((repo / LINKS_JSON).read_bytes())
+    out["interblock_links.taxonomy"] = [(k, None, None) for k in seed["taxonomy"]["official_blocks"]]
+    return out
+
+
+def check_projections(projections: dict) -> list[str]:
+    """D-TAX-01 canônico == toda projeção física (nomes, ordem, quantidade e, onde existem, faixas)."""
+    problems = []
+    for source, rows in sorted(projections.items()):
+        names = tuple(row[0] for row in rows)
+        if len(rows) != len(CANONICAL):
+            problems.append(f"PROJECTION_DIVERGENCE {source}: {len(rows)} blocos != {len(CANONICAL)}")
+        missing, extra = set(CANONICAL_NAMES) - set(names), set(names) - set(CANONICAL_NAMES)
+        if missing or extra:
+            problems.append(f"PROJECTION_DIVERGENCE {source}: faltam {sorted(missing)} sobram {sorted(extra)}")
+        elif names != CANONICAL_NAMES:
+            problems.append(f"PROJECTION_DIVERGENCE {source}: ordem diferente da canônica")
+        if rows and rows[0][1] is not None:
+            ranges = {name: (lo, hi) for name, lo, hi in rows}
+            for name, lo, hi in CANONICAL:
+                if name in ranges and ranges[name] != (lo, hi):
+                    problems.append(f"PROJECTION_DIVERGENCE {source}: faixa de {name} {ranges[name]} != {(lo, hi)}")
+    return problems
+
+
+def check_crosswalk(payload: dict) -> list[str]:
+    """D-TAX-02: o crosswalk persistido == os pareamentos documentados, todos explícitos."""
+    problems = []
+    if payload.get("decision") != D_TAX_02 or payload.get("status") != "APPLIED":
+        problems.append("CROSSWALK_DIVERGENCE decisão/status != D-TAX-02 APPLIED")
+    if payload.get("inference_by_name_allowed") is not False or payload.get("historical_names_are_operational") is not False:
+        problems.append("CROSSWALK_DIVERGENCE inferência por nome ou nome histórico operacional permitido")
+    mapping = payload.get("historical_to_canonical", {})
+    if set(mapping) != set(COST_CROSSWALK):
+        problems.append(f"CROSSWALK_DIVERGENCE pares {sorted(mapping)} != {sorted(COST_CROSSWALK)}")
+    canonical_ranges = {name: (lo, hi) for name, lo, hi in CANONICAL}
+    for historical, (canonical, lo, hi) in COST_CROSSWALK.items():
+        entry = mapping.get(historical)
+        if entry is None:
+            continue
+        if entry.get("canonical") != canonical:
+            problems.append(f"CROSSWALK_DIVERGENCE {historical}: {entry.get('canonical')} != {canonical}")
+        for field in ("historical_range", "canonical_range"):
+            if tuple(entry.get(field) or ()) != (lo, hi):
+                problems.append(f"CROSSWALK_DIVERGENCE {historical}: {field} {entry.get(field)} != {[lo, hi]}")
+        if canonical_ranges.get(canonical) != (lo, hi):
+            problems.append(f"CROSSWALK_DIVERGENCE {historical}: faixa canônica de {canonical} diverge de D-TAX-01")
+        if entry.get("status") not in EXPLICIT_STATUSES:
+            problems.append(f"CROSSWALK_DIVERGENCE {historical}: status implícito/inválido {entry.get('status')!r}")
+        if entry.get("inferred_only") is not False or entry.get("same_id_range") is not True:
+            problems.append(f"CROSSWALK_DIVERGENCE {historical}: inferred_only/same_id_range inválidos")
+        if entry.get("status") == "CONFIRMED" and not entry.get("repository_evidence"):
+            problems.append(f"CROSSWALK_DIVERGENCE {historical}: CONFIRMED sem evidência")
+        if historical in CANONICAL_NAMES:
+            problems.append(f"CROSSWALK_DIVERGENCE {historical}: nome histórico é canônico")
+    return problems
+
+
+def check_current_registry(repo: Path = REPO) -> list[str]:
+    """Os dois guardas permanentes: projeções físicas (D-TAX-01) e crosswalk (D-TAX-02)."""
+    crosswalk = json.loads((repo / CROSSWALK_JSON).read_text(encoding="utf-8"))
+    return check_projections(physical_projections(repo)) + check_crosswalk(crosswalk)

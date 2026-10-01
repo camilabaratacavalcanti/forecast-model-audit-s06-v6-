@@ -1,0 +1,65 @@
+{
+  "decision": "D-TAX-02",
+  "title": "Formalização do Crosswalk Histórico dos Blocos de Custo",
+  "status": "APPLIED",
+  "canonical_authority": "D-TAX-01 (29 blocos; nomes canônicos atuais)",
+  "historical_names_are_operational": false,
+  "inference_by_name_allowed": false,
+  "relationship": "RENAME — mesma identidade de bloco (mesma faixa de IDs nos três registries); o nome histórico não é taxonomia operacional atual",
+  "evidence_sources": {
+    "8165b4b": "refactor(ids): expand variable block ranges — cria as chaves históricas: \"costs\" desmembrado em custo_budget, custo_forecast_bdgt, custo_forecast_real (32000-34999)",
+    "c734120": "refactor(ids): align parameter and equation block ranges — as mesmas chaves e faixas em PARAMETER_ID_RANGES e EQUATION_ID_RANGES",
+    "1d3276e": "refactor(ids): update block taxonomy — mensagem de commit registra explicitamente cada rename par a par ('custo_budget->budget_cost, custo_forecast_bdgt->budget_forecast_cost, custo_forecast_real->actual_forecast_cost') 'mantendo os MESMOS ranges numéricos'; o diff substitui cada chave no mesmo lugar, com a mesma faixa, nos três registries e nos testes dos três validadores",
+    "5e681dc": "feat(stage2.6b): taxonomia D26-01 com os títulos históricos custo_budget, custo_forecast_bdgt, custo_forecast_real",
+    "d8b5d55": "D-TAX-01: budget_cost, budget_forecast_cost, actual_forecast_cost são os nomes canônicos atuais (32000-34999)"
+  },
+  "historical_to_canonical": {
+    "custo_budget": {
+      "canonical": "budget_cost",
+      "historical_range": [32000, 32999],
+      "canonical_range": [32000, 32999],
+      "same_id_range": true,
+      "status": "CONFIRMED",
+      "inferred_only": false,
+      "evidence_class": ["EXPLICIT_RENAME_RECORD", "SAME_ID_RANGE_ALL_REGISTRIES"],
+      "repository_evidence": [
+        "1d3276e commit message: custo_budget->budget_cost",
+        "1d3276e diff: \"custo_budget\": (32000, 32999) -> \"budget_cost\": (32000, 32999) em VARIABLE/PARAMETER/EQUATION_ID_RANGES e nos testes dos três validadores",
+        "8165b4b/c734120: custo_budget criado em 32000-32999 a partir do desmembramento de \"costs\""
+      ],
+      "semantic_evidence": "Renomeação declarada da mesma chave de bloco (identidade = faixa 32000-32999), registrada no momento da mudança; tradução consistente (custo -> cost; budget). Nenhuma entidade existe na faixa, portanto não há conteúdo de dados a comparar."
+    },
+    "custo_forecast_bdgt": {
+      "canonical": "budget_forecast_cost",
+      "historical_range": [33000, 33999],
+      "canonical_range": [33000, 33999],
+      "same_id_range": true,
+      "status": "CONFIRMED",
+      "inferred_only": false,
+      "evidence_class": ["EXPLICIT_RENAME_RECORD", "SAME_ID_RANGE_ALL_REGISTRIES"],
+      "repository_evidence": [
+        "1d3276e commit message: custo_forecast_bdgt->budget_forecast_cost",
+        "1d3276e diff: \"custo_forecast_bdgt\": (33000, 33999) -> \"budget_forecast_cost\": (33000, 33999) em VARIABLE/PARAMETER/EQUATION_ID_RANGES e nos testes dos três validadores",
+        "8165b4b/c734120: custo_forecast_bdgt criado em 33000-33999 a partir do desmembramento de \"costs\""
+      ],
+      "semantic_evidence": "Renomeação declarada da mesma chave de bloco (identidade = faixa 33000-33999), registrada no momento da mudança; tradução consistente (custo -> cost; forecast_bdgt -> budget_forecast). Nenhuma entidade existe na faixa."
+    },
+    "custo_forecast_real": {
+      "canonical": "actual_forecast_cost",
+      "historical_range": [34000, 34999],
+      "canonical_range": [34000, 34999],
+      "same_id_range": true,
+      "status": "CONFIRMED",
+      "inferred_only": false,
+      "evidence_class": ["EXPLICIT_RENAME_RECORD", "SAME_ID_RANGE_ALL_REGISTRIES"],
+      "repository_evidence": [
+        "1d3276e commit message: custo_forecast_real->actual_forecast_cost",
+        "1d3276e diff: \"custo_forecast_real\": (34000, 34999) -> \"actual_forecast_cost\": (34000, 34999) em VARIABLE/PARAMETER/EQUATION_ID_RANGES e nos testes dos três validadores",
+        "8165b4b/c734120: custo_forecast_real criado em 34000-34999 a partir do desmembramento de \"costs\""
+      ],
+      "semantic_evidence": "Renomeação declarada da mesma chave de bloco (identidade = faixa 34000-34999), registrada no momento da mudança; tradução consistente (custo -> cost; forecast_real -> actual_forecast). Nenhuma entidade existe na faixa."
+    }
+  },
+  "validation_rule": "Nomes históricos nunca são aceitos como bloco operacional (taxonomia, faixas, seeds, fonte). Qualquer referência histórica deve ser traduzida por este crosswalk, nunca por similaridade de nome. Uma mudança de pareamento exige atualizar D-TAX-02 e o oráculo de taxonomy_guard.py.",
+  "functional_impact": "nenhum: IDs, faixas, fórmulas, planner, vínculos e PENDING_LOAD inalterados"
+}
