@@ -33,15 +33,19 @@ from pathlib import Path
 HERE = Path(__file__).resolve().parent
 STAGE = HERE.parent
 sys.path.insert(0, str(STAGE))
+sys.path.insert(0, str(HERE))
 
 import common  # noqa: E402
 
 from app.domain.equations.registry import EquationDefinitionRegistry  # noqa: E402
 from app.domain.results import Result  # noqa: E402
 from app.engine.forecast_engine import ForecastEngine  # noqa: E402
-from app.engine.interblock_orchestrator import AGGREGATION, EQUATION, TRANSFER  # noqa: E402
+from app.engine.interblock_orchestrator import (  # noqa: E402
+    AGGREGATION, EQUATION, TRANSFER, InterblockExecutionOrchestrator,
+)
 
 import checks  # noqa: E402  (3.4C/3.4D, sem alteração)
+import checks_4a  # noqa: E402
 
 ri, fixture = common.ri, common.fixture
 REPO = common.REPO
@@ -283,10 +287,16 @@ def composition_errors(universe) -> dict:
     return out
 
 
+def numeric_variables(universe) -> set:
+    catalog = universe.orchestrator.catalog
+    return {d.variable_definition_id for d in catalog.variable_definitions.all() if d.value_type == "numerico"}
+
+
 def state_coverage(universe, problems: list) -> dict:
     report = {}
+    numeric = numeric_variables(universe)
     for sc in scenarios(universe):
-        p = sc["audit"](sc["stated"])
+        p = sc["audit"](sc["stated"]) + checks_4a.check_no_text_in_numeric(sc["stated"], numeric)
         problems += p
         stated = {k: v for k, v in sc["stated"].items() if v[2] is not None}
         report[sc["name"]] = {
@@ -320,7 +330,13 @@ def main() -> int:  # noqa: C901 — sequência linear de verificações, espelh
     hashes["stage_3_4c"] = committed34["fixture"]["graph_hashes"]["A"]
     if len(set(hashes.values())) != 1:
         problems.append(f"FIXTURE_FAILURE hashes de grafo diferentes {hashes}")
+    official = InterblockExecutionOrchestrator.from_seed_root(fixture.SEED)
+    problems += checks_4a.check_provenance((fixture.SEED / "interblock_links.json").read_bytes(),
+                                           EXPECTED["interblock_links_sha256"], len(official.catalog.links.pending()),
+                                           len(catalog.links.pending()))
     evidence["fixture"] = {"graph_hashes": hashes, "pending_in_fixture": len(catalog.links.pending()),
+                           "pending_official": len(official.catalog.links.pending()),
+                           "interblock_links_sha256": EXPECTED["interblock_links_sha256"],
                            "input_protocol": "DR-4A-5: índices da 3.4C preservados; area_41 em 51..61"}
 
     # 2. universo (expectativas do contrato 4A) -------------------------------------
@@ -390,6 +406,7 @@ def main() -> int:  # noqa: C901 — sequência linear de verificações, espelh
     problems += checks.check_target_identities(ri.target_records(traces, set(plan.targets)),
                                                ri.expected_periods(orchestrator, plan.targets, DAYS))
     problems += checks.check_result_contract(final_store)
+    problems += checks_4a.check_no_text_in_numeric(final_store, numeric_variables(universe))
     if any(r["targets"] != EXPECTED["integrated_targets"] or r["nodes"] != EXPECTED["planner_nodes"]
            or r["events"] != EXPECTED["events_per_date"]
            or r["transfer_events"] != EXPECTED["transfer_events_per_date"] for r in coverage_rows):
@@ -486,8 +503,7 @@ def main() -> int:  # noqa: C901 — sequência linear de verificações, espelh
     determinism["identical_plan_order"] = len({ri.canonical(r["plan_order"]) for r in runs.values()}) == 1
     determinism["identical_graph"] = len({r["graph_hash"] for r in runs.values()}) == 1
     problems += checks.check_determinism({**runs, "REEXECUTION": {"store_sha256": ri.store_sha(context)}})
-    if len({r["area_41_store_sha256"] for r in runs.values()}) != 1:
-        problems.append("DETERMINISM_FAILURE area_41_store_sha256 diverge entre execuções")
+    problems += checks_4a.check_area_41_determinism(runs)
     evidence["determinism"] = determinism
 
     # 9. não-regressão dos 421 -----------------------------------------------------------------

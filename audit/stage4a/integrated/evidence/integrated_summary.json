@@ -95,7 +95,9 @@
    "stage_3_4c": "e372425d9a6f3cbccecfa9ff77c30ddff49be8587da4d567a252fb64d2e3d1ff"
   },
   "input_protocol": "DR-4A-5: índices da 3.4C preservados; area_41 em 51..61",
-  "pending_in_fixture": 0
+  "interblock_links_sha256": "8dc6b7c8927393096dfe75f04bc37cf81848e9d5f485f1c83945fd5d520cd700",
+  "pending_in_fixture": 0,
+  "pending_official": 16
  },
  "graph": {
   "area_41_closure_nodes": 33,

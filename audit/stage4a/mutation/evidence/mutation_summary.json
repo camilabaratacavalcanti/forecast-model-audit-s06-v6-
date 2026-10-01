@@ -1,0 +1,49 @@
+{
+ "code_mutants": {
+  "by_detector": {
+   "CONTRACT_4A": 7,
+   "INTEGRATED_4A": 9,
+   "ORACLE": 10,
+   "TESTS": 11
+  },
+  "detected": 11,
+  "expected_detectors_missed": {},
+  "git_status_app_data_tools_after": "",
+  "git_status_app_data_tools_before": "",
+  "introduced": 11,
+  "positive_control": {
+   "description": "controle positivo: árvore sem mutação",
+   "detected": "FALSE",
+   "detected_by": "",
+   "evidence": "",
+   "expected_detectors": "",
+   "file": null,
+   "missing_expected_detectors": "",
+   "mutant_id": "CM4A-00",
+   "result": "ACCEPT"
+  },
+  "repository_untouched": true,
+  "surviving": 0,
+  "surviving_ids": []
+ },
+ "detection_rate": "100.0%",
+ "evidence_mutations": {
+  "defined": 25,
+  "detected": 25,
+  "missed": []
+ },
+ "git_status_app_data_tools": {
+  "after": "",
+  "before": "",
+  "empty": true
+ },
+ "label": "REAL_DERIVED_TEST_RESULT",
+ "positive_controls": {
+  "accepted": 8,
+  "rejected_unexpectedly": [],
+  "total": 8
+ },
+ "problems": [],
+ "result": "PASS",
+ "stage": "4A"
+}

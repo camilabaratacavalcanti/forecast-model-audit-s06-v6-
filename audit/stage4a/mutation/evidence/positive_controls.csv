@@ -1,0 +1,9 @@
+control,problems,result,evidence
+"PC4A-01 run (alvos, nós, transferências, identidades)",0,ACCEPT,
+PC4A-02 contrato de resultado + sem texto em numérico,0,ACCEPT,
+PC4A-03 temporal,0,ACCEPT,
+PC4A-04 reexecução,0,ACCEPT,
+PC4A-05 determinismo,0,ACCEPT,
+PC4A-06 estado (SA5),0,ACCEPT,
+PC4A-07 não-regressão dos 421,0,ACCEPT,
+PC4A-08 proveniência,0,ACCEPT,
