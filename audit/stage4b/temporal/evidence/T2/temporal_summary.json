@@ -1,0 +1,89 @@
+{
+ "closed_periods": {
+  "checked": 2,
+  "unchanged": 2
+ },
+ "dates": {
+  "count": 62,
+  "first": "2028-01-01",
+  "last": "2028-03-02"
+ },
+ "determinism": {
+  "HASH_SEED_A": {
+   "dates": 62,
+   "hash_seed": "0",
+   "order": "A",
+   "plan_order": "ec50717ebce1002208aec7e3327e1fab9d311a43a217e00ba70a0dbf24c11d40",
+   "results_sha256": "f28b5ca85546c690a157af11191db84ee3f1f8389e308f63fac9c69da27fef3f",
+   "store_sha256": "61a8242274681766def22d55a771b116f2ee19a97f2a64af5e1f46825bca25cb"
+  },
+  "HASH_SEED_B": {
+   "dates": 62,
+   "hash_seed": "4242",
+   "order": "A",
+   "plan_order": "ec50717ebce1002208aec7e3327e1fab9d311a43a217e00ba70a0dbf24c11d40",
+   "results_sha256": "f28b5ca85546c690a157af11191db84ee3f1f8389e308f63fac9c69da27fef3f",
+   "store_sha256": "61a8242274681766def22d55a771b116f2ee19a97f2a64af5e1f46825bca25cb"
+  },
+  "RUN_A": {
+   "dates": 62,
+   "hash_seed": null,
+   "order": "A",
+   "plan_order": "ec50717ebce1002208aec7e3327e1fab9d311a43a217e00ba70a0dbf24c11d40",
+   "results_sha256": "f28b5ca85546c690a157af11191db84ee3f1f8389e308f63fac9c69da27fef3f",
+   "store_sha256": "61a8242274681766def22d55a771b116f2ee19a97f2a64af5e1f46825bca25cb"
+  },
+  "RUN_B": {
+   "dates": 62,
+   "hash_seed": "0",
+   "order": "B",
+   "plan_order": "ec50717ebce1002208aec7e3327e1fab9d311a43a217e00ba70a0dbf24c11d40",
+   "results_sha256": "f28b5ca85546c690a157af11191db84ee3f1f8389e308f63fac9c69da27fef3f",
+   "store_sha256": "61a8242274681766def22d55a771b116f2ee19a97f2a64af5e1f46825bca25cb"
+  }
+ },
+ "fingerprint": {
+  "dates": 62,
+  "hash_seed": null,
+  "order": "A",
+  "plan_order": "ec50717ebce1002208aec7e3327e1fab9d311a43a217e00ba70a0dbf24c11d40",
+  "results_sha256": "f28b5ca85546c690a157af11191db84ee3f1f8389e308f63fac9c69da27fef3f",
+  "store_sha256": "61a8242274681766def22d55a771b116f2ee19a97f2a64af5e1f46825bca25cb"
+ },
+ "identities": {
+  "annual": 196,
+  "monthly": 324
+ },
+ "label": "REAL_DERIVED_TEST_RESULT",
+ "month_ends": [
+  "2028-01-31",
+  "2028-02-29"
+ ],
+ "order": "A",
+ "per_date": {
+  "events": [
+   896
+  ],
+  "nodes": [
+   458
+  ],
+  "targets": [
+   446
+  ],
+  "transfer_events": [
+   67
+  ]
+ },
+ "performance": {
+  "dates": 62,
+  "mean_first_32": 0.19457500000000003,
+  "mean_last_32": 0.20469062500000007,
+  "ratio_last_over_first": 1.0519883078504435,
+  "store_keys_final": 68944,
+  "total_seconds": 14.8
+ },
+ "problems": [],
+ "range": "T2",
+ "result": "PASS",
+ "year_ends": []
+}

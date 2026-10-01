@@ -1,0 +1,43 @@
+{
+ "differing_keys": 1866,
+ "injections": {
+  "2026-03-10": [
+   "VAR16017",
+   "linha",
+   "L1"
+  ],
+  "2026-12-31": [
+   "VAR16021",
+   "linha",
+   "L6"
+  ],
+  "2027-01-01": [
+   "VAR16021",
+   "linha",
+   "L4"
+  ]
+ },
+ "l4_l5_2026_keys_identical_to_clean": true,
+ "must_keys": 383,
+ "plain_keys": 960,
+ "problems": [],
+ "stated_variables": [
+  "VAR16017",
+  "VAR16018",
+  "VAR16019",
+  "VAR16020",
+  "VAR16021",
+  "VAR16025",
+  "VAR16026",
+  "VAR16027",
+  "VAR16028",
+  "VAR16029",
+  "VAR16030",
+  "VAR16031",
+  "VAR16032",
+  "VAR16033",
+  "VAR16034",
+  "VAR16035",
+  "VAR16036"
+ ]
+}

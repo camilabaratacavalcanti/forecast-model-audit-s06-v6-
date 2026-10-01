@@ -1,0 +1,48 @@
+{
+ "2026-02-28": {
+  "first_run_transfer_statuses": {
+   "WRITTEN": 67
+  },
+  "new_keys": 0,
+  "same_store": true,
+  "transfer_statuses": {
+   "UNCHANGED": 67
+  }
+ },
+ "2026-12-31": {
+  "first_run_transfer_statuses": {
+   "WRITTEN": 67
+  },
+  "new_keys": 0,
+  "same_store": true,
+  "transfer_statuses": {
+   "UNCHANGED": 67
+  }
+ },
+ "2027-01-01": {
+  "first_run_transfer_statuses": {
+   "WRITTEN": 67
+  },
+  "new_keys": 0,
+  "same_store": true,
+  "transfer_statuses": {
+   "UNCHANGED": 67
+  }
+ },
+ "conflict_on_changed_upstream_input": {
+  "changed": "VAR12054 (diário, a montante de VAR12031)",
+  "date": "2026-02-28",
+  "error": "INTERBLOCK_CONSUMER_VALUE_CONFLICT"
+ },
+ "missing_new_year_input": {
+  "applicable": true,
+  "date": "2027-01-01",
+  "error": {
+   "message": "Valor da variável não encontrado: VAR12066",
+   "type": "VariableNotFoundError"
+  },
+  "previous_year_value_exists": true,
+  "removed": "VAR12066 (lth_meta, anual) do novo ano",
+  "removed_keys": 7
+ }
+}
