@@ -1,0 +1,118 @@
+{
+ "agree": 195156,
+ "bitwise_equal": 195156,
+ "by_range": {
+  "STATED_2026-01-01_10": {
+   "aggregations": {
+    "AVERAGE": {
+     "agree": 3640,
+     "compared": 3640,
+     "state": 88
+    },
+    "MOVING_AVERAGE": {
+     "agree": 20,
+     "compared": 20,
+     "state": 0
+    },
+    "SUM": {
+     "agree": 420,
+     "compared": 420,
+     "state": 0
+    },
+    "WEIGHTED_AVERAGE": {
+     "agree": 90,
+     "compared": 90,
+     "state": 16
+    }
+   },
+   "agree": 4170,
+   "bitwise_equal": 4170,
+   "calendar_mismatches": 0,
+   "compared": 4170,
+   "dates": 10,
+   "windowed_identities": 520
+  },
+  "T1": {
+   "aggregations": {
+    "AVERAGE": {
+     "agree": 144144,
+     "compared": 144144,
+     "state": 0
+    },
+    "MOVING_AVERAGE": {
+     "agree": 792,
+     "compared": 792,
+     "state": 0
+    },
+    "SUM": {
+     "agree": 16632,
+     "compared": 16632,
+     "state": 0
+    },
+    "WEIGHTED_AVERAGE": {
+     "agree": 3564,
+     "compared": 3564,
+     "state": 0
+    }
+   },
+   "agree": 165132,
+   "bitwise_equal": 165132,
+   "calendar_mismatches": 0,
+   "compared": 165132,
+   "dates": 396,
+   "windowed_identities": 4604
+  },
+  "T2": {
+   "aggregations": {
+    "AVERAGE": {
+     "agree": 22568,
+     "compared": 22568,
+     "state": 0
+    },
+    "MOVING_AVERAGE": {
+     "agree": 124,
+     "compared": 124,
+     "state": 0
+    },
+    "SUM": {
+     "agree": 2604,
+     "compared": 2604,
+     "state": 0
+    },
+    "WEIGHTED_AVERAGE": {
+     "agree": 558,
+     "compared": 558,
+     "state": 0
+    }
+   },
+   "agree": 25854,
+   "bitwise_equal": 25854,
+   "calendar_mismatches": 0,
+   "compared": 25854,
+   "dates": 62,
+   "windowed_identities": 1168
+  }
+ },
+ "compared": 195156,
+ "label": "REAL_DERIVED_TEST_RESULT",
+ "limitations": [
+  "valida coerência temporal e aritmética de agregação, não correção de negócio",
+  "os resultados diários que alimentam as agregações vêm do próprio engine"
+ ],
+ "oracle": "INDEPENDENT_TEMPORAL_ORACLE (calendário + aritmética de agregação)",
+ "problems": [],
+ "result": "PASS",
+ "rule_instances": 417,
+ "rules": 207,
+ "tolerance": {
+  "abs_tol": 1e-12,
+  "rel_tol": 1e-12,
+  "states": "igualdade exata"
+ },
+ "types_covered": [
+  "AVERAGE",
+  "MOVING_AVERAGE",
+  "SUM",
+  "WEIGHTED_AVERAGE"
+ ]
+}
