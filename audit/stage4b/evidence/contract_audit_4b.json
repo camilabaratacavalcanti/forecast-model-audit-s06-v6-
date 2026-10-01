@@ -1,0 +1,498 @@
+{
+ "label": "REAL_DERIVED_TEST_RESULT",
+ "mechanics": {
+  "effective_window": {
+   "2026-01-01": {
+    "diário": {
+     "period_id": "2026-01-01",
+     "start": "2026-01-01",
+     "end": "2026-01-01"
+    },
+    "mensal": {
+     "period_id": "2026-01",
+     "start": "2026-01-01",
+     "end": "2026-01-01"
+    },
+    "anual": {
+     "period_id": "2026",
+     "start": "2026-01-01",
+     "end": "2026-01-01"
+    }
+   },
+   "2026-02-28": {
+    "diário": {
+     "period_id": "2026-02-28",
+     "start": "2026-02-28",
+     "end": "2026-02-28"
+    },
+    "mensal": {
+     "period_id": "2026-02",
+     "start": "2026-02-01",
+     "end": "2026-02-28"
+    },
+    "anual": {
+     "period_id": "2026",
+     "start": "2026-01-01",
+     "end": "2026-02-28"
+    }
+   },
+   "2026-12-31": {
+    "diário": {
+     "period_id": "2026-12-31",
+     "start": "2026-12-31",
+     "end": "2026-12-31"
+    },
+    "mensal": {
+     "period_id": "2026-12",
+     "start": "2026-12-01",
+     "end": "2026-12-31"
+    },
+    "anual": {
+     "period_id": "2026",
+     "start": "2026-01-01",
+     "end": "2026-12-31"
+    }
+   },
+   "2027-01-01": {
+    "diário": {
+     "period_id": "2027-01-01",
+     "start": "2027-01-01",
+     "end": "2027-01-01"
+    },
+    "mensal": {
+     "period_id": "2027-01",
+     "start": "2027-01-01",
+     "end": "2027-01-01"
+    },
+    "anual": {
+     "period_id": "2027",
+     "start": "2027-01-01",
+     "end": "2027-01-01"
+    }
+   },
+   "2028-02-29": {
+    "diário": {
+     "period_id": "2028-02-29",
+     "start": "2028-02-29",
+     "end": "2028-02-29"
+    },
+    "mensal": {
+     "period_id": "2028-02",
+     "start": "2028-02-01",
+     "end": "2028-02-29"
+    },
+    "anual": {
+     "period_id": "2028",
+     "start": "2028-01-01",
+     "end": "2028-02-29"
+    }
+   }
+  },
+  "period_id_formats": {
+   "diário": "AAAA-MM-DD (10)",
+   "mensal": "AAAA-MM (7)",
+   "anual": "AAAA (4)"
+  },
+  "distinct_ids_on_2026_01_01": true,
+  "window_for": {
+   "2026|2026-01-01": "2026-01-01",
+   "2026-01|2026-01-31": "2026-01-31",
+   "2026-01|2026-02-01": null,
+   "2026|2027-01-01": null,
+   "2026-01-01|2026-01-01": null
+  }
+ },
+ "performance": {
+  "dates_measured": 361,
+  "mean_seconds_first_32": 0.17133351815624565,
+  "mean_seconds_days_330_361": 0.31750401165621156,
+  "ratio_late_over_early": 1.8531342557658064,
+  "store_keys_after_361_dates": 400841,
+  "store_growth_per_date": [
+   [
+    1109,
+    349
+   ],
+   [
+    1143,
+    11
+   ]
+  ],
+  "first_95": [
+   [
+    "2026-01-01",
+    0.1388,
+    1227
+   ],
+   [
+    "2026-01-06",
+    0.1653,
+    6772
+   ],
+   [
+    "2026-01-11",
+    0.1533,
+    12317
+   ],
+   [
+    "2026-01-16",
+    0.1506,
+    17862
+   ],
+   [
+    "2026-01-21",
+    0.1832,
+    23407
+   ],
+   [
+    "2026-01-26",
+    0.1751,
+    28952
+   ],
+   [
+    "2026-01-31",
+    0.1909,
+    34497
+   ],
+   [
+    "2026-02-05",
+    0.1596,
+    40076
+   ],
+   [
+    "2026-02-10",
+    0.1697,
+    45621
+   ],
+   [
+    "2026-02-15",
+    0.1877,
+    51166
+   ],
+   [
+    "2026-02-20",
+    0.2497,
+    56711
+   ],
+   [
+    "2026-02-25",
+    0.1888,
+    62256
+   ],
+   [
+    "2026-03-02",
+    0.1966,
+    67835
+   ],
+   [
+    "2026-03-07",
+    0.2049,
+    73380
+   ],
+   [
+    "2026-03-12",
+    0.1947,
+    78925
+   ],
+   [
+    "2026-03-17",
+    0.1783,
+    84470
+   ],
+   [
+    "2026-03-22",
+    0.1926,
+    90015
+   ],
+   [
+    "2026-03-27",
+    0.2335,
+    95560
+   ],
+   [
+    "2026-04-01",
+    0.1904,
+    101139
+   ]
+  ],
+  "estimate_seconds": {
+   "T1_396": 126,
+   "T2_62": 20,
+   "T3_792": 377
+  }
+ },
+ "E1_turn_of_year": {
+  "dates": [
+   "2026-12-28",
+   "2026-12-29",
+   "2026-12-30",
+   "2026-12-31",
+   "2027-01-01",
+   "2027-01-02",
+   "2027-01-03"
+  ],
+  "per_date": {
+   "2026-12-28": {
+    "monthly_period": "2026-12",
+    "annual_period": "2026",
+    "VAR16019_monthly_windows": 28,
+    "VAR16020_annual_windows": 362,
+    "transfer_events": 67,
+    "events": 896
+   },
+   "2026-12-29": {
+    "monthly_period": "2026-12",
+    "annual_period": "2026",
+    "VAR16019_monthly_windows": 29,
+    "VAR16020_annual_windows": 363,
+    "transfer_events": 67,
+    "events": 896
+   },
+   "2026-12-30": {
+    "monthly_period": "2026-12",
+    "annual_period": "2026",
+    "VAR16019_monthly_windows": 30,
+    "VAR16020_annual_windows": 364,
+    "transfer_events": 67,
+    "events": 896
+   },
+   "2026-12-31": {
+    "monthly_period": "2026-12",
+    "annual_period": "2026",
+    "VAR16019_monthly_windows": 31,
+    "VAR16020_annual_windows": 365,
+    "transfer_events": 67,
+    "events": 896
+   },
+   "2027-01-01": {
+    "monthly_period": "2027-01",
+    "annual_period": "2027",
+    "VAR16019_monthly_windows": 1,
+    "VAR16020_annual_windows": 1,
+    "transfer_events": 67,
+    "events": 896
+   },
+   "2027-01-02": {
+    "monthly_period": "2027-01",
+    "annual_period": "2027",
+    "VAR16019_monthly_windows": 2,
+    "VAR16020_annual_windows": 2,
+    "transfer_events": 67,
+    "events": 896
+   },
+   "2027-01-03": {
+    "monthly_period": "2027-01",
+    "annual_period": "2027",
+    "VAR16019_monthly_windows": 3,
+    "VAR16020_annual_windows": 3,
+    "transfer_events": 67,
+    "events": 896
+   }
+  },
+  "annual_2026_windows_per_identity": [
+   [
+    365,
+    196
+   ]
+  ],
+  "annual_2027_windows_per_identity": [
+   [
+    3,
+    196
+   ]
+  ],
+  "snapshot_2026_at_2027_01_01": [
+   405277,
+   "5d8a789a4f085e315ed42ca4c4854b759cbc78b9ecb88a25f72b9fc16af7c696"
+  ],
+  "snapshot_2026_after_2027_01_03": [
+   405277,
+   "5d8a789a4f085e315ed42ca4c4854b759cbc78b9ecb88a25f72b9fc16af7c696"
+  ],
+  "snapshot_2026_12_unchanged": true,
+  "year_2026_closed_unchanged": true,
+  "keys_2026_before_turn": [
+   400841,
+   "fd39fc66f77e5d3fb520f5b0d655a0879f90cb180d74af4fdd5e89ad4fae68f2"
+  ]
+ },
+ "collisions": {
+  "entities": 508,
+  "entities_with_wrong_period_format": [],
+  "keys": 408722,
+  "identities": 221966,
+  "windows_outside_their_period": [],
+  "monthly_and_annual_ids_share_entity": []
+ },
+ "E4_closed_periods": {
+  "2026-06-15": {
+   "new_keys": 0,
+   "changed_keys": 0,
+   "transfer_statuses": {
+    "UNCHANGED": 67
+   }
+  },
+  "2026-12-31": {
+   "new_keys": 0,
+   "changed_keys": 0,
+   "transfer_statuses": {
+    "UNCHANGED": 67
+   }
+  },
+  "snapshot_2026_after_reexecution_and_new_dates": [
+   405277,
+   "5d8a789a4f085e315ed42ca4c4854b759cbc78b9ecb88a25f72b9fc16af7c696"
+  ],
+  "year_2026_unchanged": true
+ },
+ "E3_missing_new_period_input": {
+  "annual_input_VAR12066_2027": {
+   "removed_keys": 7,
+   "previous_period_value_exists": true,
+   "if_branch_forced": false,
+   "must_fail": true,
+   "error": {
+    "type": "VariableNotFoundError",
+    "code": null,
+    "chain": [
+     "VariableNotFoundError"
+    ],
+    "message": "Valor da variável não encontrado: VAR12066"
+   }
+  },
+  "monthly_input_VAR16001_2027-01_unconditional": {
+   "removed_keys": 1,
+   "previous_period_value_exists": true,
+   "if_branch_forced": false,
+   "must_fail": true,
+   "error": {
+    "type": "VariableNotFoundError",
+    "code": null,
+    "chain": [
+     "VariableNotFoundError"
+    ],
+    "message": "Valor da variável não encontrado: VAR16001"
+   }
+  },
+  "monthly_input_VAR12024_2027-01_if_branch_inactive": {
+   "removed_keys": 7,
+   "previous_period_value_exists": true,
+   "if_branch_forced": false,
+   "must_fail": false,
+   "error": null
+  },
+  "monthly_input_VAR12024_2027-01_if_branch_forced": {
+   "removed_keys": 7,
+   "previous_period_value_exists": true,
+   "if_branch_forced": true,
+   "must_fail": true,
+   "error": {
+    "type": "VariableNotFoundError",
+    "code": null,
+    "chain": [
+     "VariableNotFoundError"
+    ],
+    "message": "Valor da variável não encontrado: VAR12024"
+   }
+  },
+  "VAR12024_not_read_when_branch_inactive": {
+   "differences_excluding_VAR12024": 0
+  },
+  "carry_over": "NONE: nenhuma leitura cai no período anterior; a chave é (variável, escopo, period_id[, janela])"
+ },
+ "E2_gaps": {
+  "skip_2026_01_06_then_run_01_07": {
+   "type": "VariableNotFoundError",
+   "code": null,
+   "chain": [
+    "VariableNotFoundError"
+   ],
+   "message": "Valor contextualizado da variável não encontrado: VAR13003, scope_type=linha, scope_value=L1, period_id=2026-01-06"
+  },
+  "fresh_context_starting_2026_01_10": {
+   "type": "VariableNotFoundError",
+   "code": null,
+   "chain": [
+    "VariableNotFoundError"
+   ],
+   "message": "Valor contextualizado da variável não encontrado: VAR13003, scope_type=linha, scope_value=L1, period_id=2026-01-01"
+  },
+  "fresh_context_starting_2026_02_01": {
+   "type": "VariableNotFoundError",
+   "code": null,
+   "chain": [
+    "VariableNotFoundError"
+   ],
+   "message": "Valor contextualizado da variável não encontrado: VAR13003, scope_type=linha, scope_value=L1, period_id=2026-01-01"
+  },
+  "policy": "EXPLICIT_FAILURE"
+ },
+ "E5_calendar": {
+  "2026": {
+   "2026-02 (28)": true,
+   "2026-04 (30)": true,
+   "2026-07 (31)": true
+  },
+  "2028": {
+   "feb_windows_VAR16019": 29,
+   "feb_29_daily_present": true,
+   "mar_windows_VAR16019": 2,
+   "annual_windows_VAR16020": 62,
+   "annual_windows_per_identity": [
+    [
+     62,
+     196
+    ]
+   ]
+  }
+ },
+ "independent": {
+  "result": "PASS",
+  "imports_app_or_tools": [],
+  "cycles": {
+   "instance_nodes": 1227,
+   "instance_edges": 2041,
+   "instance_cycles": [],
+   "variable_nodes": 505,
+   "variable_cycles": [],
+   "block_cycles": [
+    [
+     "production",
+     "yield"
+    ]
+   ],
+   "block_edges": [
+    [
+     "production",
+     "energy"
+    ],
+    [
+     "production",
+     "max_ht"
+    ],
+    [
+     "production",
+     "yield"
+    ],
+    [
+     "yield",
+     "area_41"
+    ],
+    [
+     "yield",
+     "production"
+    ]
+   ],
+   "lag_references": [],
+   "self_aggregations": [],
+   "explicit_windows": [],
+   "temporal_edges": "agregações leem apenas sub-períodos <= data de execução da mesma variável-fonte; nenhuma equação lê período anterior"
+  }
+ },
+ "empirical_acyclicity": {
+  "plan_nodes": 458,
+  "topological_order_valid": true
+ },
+ "problems": [],
+ "result": "PASS"
+}
