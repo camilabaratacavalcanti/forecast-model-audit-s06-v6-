@@ -1,0 +1,13 @@
+control,problems,result,evidence
+"PC4B-01 verificação por data (janelas, MA, plano)",0,ACCEPT,
+PC4B-02 identidades por data x calendário,0,ACCEPT,
+PC4B-03 cobertura por data,0,ACCEPT,
+PC4B-04 snapshots de T1,0,ACCEPT,
+PC4B-05 período encerrado (janeiro/2028),0,ACCEPT,
+PC4B-06 agregações x oracle (2028-03-02),0,ACCEPT,
+PC4B-07 estado (gêmeas),0,ACCEPT,
+PC4B-08 reexecução,0,ACCEPT,
+PC4B-09 conflito e E3 (T1),0,ACCEPT,
+PC4B-10 determinismo (T2),0,ACCEPT,
+PC4B-11 invariante de prefixo,0,ACCEPT,
+PC4B-12 proveniência,0,ACCEPT,

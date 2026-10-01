@@ -407,6 +407,16 @@ def main() -> int:
                "performance": result["performance"], "fingerprint": result["fingerprint"]}
     if result["performance"]["ratio_last_over_first"] > EXPECTED["performance_ratio_limit"]:
         summary["performance_followup"] = "REQUIRES_FOLLOWUP: razão acima do limite"
+    # Regressão contra a evidência 4B versionada (só leitura, --no-write, ORDER_A): os VALORES de todas as
+    # chaves do intervalo (store) e os eventos precisam reproduzir a execução aprovada. As verificações por
+    # data são estruturais (identidade/janela); esta comparação cobre o conteúdo (ver 4B.3b).
+    committed_path = EVIDENCE / label / "temporal_summary.json"
+    if args.no_write and args.order == "A" and committed_path.exists():
+        committed = json.loads(committed_path.read_text(encoding="utf-8"))["fingerprint"]
+        for field in ("results_sha256", "store_sha256", "plan_order"):
+            if result["fingerprint"][field] != committed[field]:
+                problems.append(f"EVIDENCE_REGRESSION {label}.{field} != evidência 4B versionada")
+        summary["regression_vs_committed_4b_evidence"] = "COMPARED"
     extras = {}
     if not args.skip_extras:
         log(f"{label} reexecução e conflito")
