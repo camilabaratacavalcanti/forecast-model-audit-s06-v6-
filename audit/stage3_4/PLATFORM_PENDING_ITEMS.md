@@ -69,3 +69,20 @@ Adição append-only. As seções acima não foram reescritas.
 | pontos de negócio do area_41 (coluna `OBS` e pontos novos N1..N8) | `REQUIRES_FOLLOWUP` com o cliente; **não bloqueiam** | `STAGE_4A_DECISION_CONTRACT.md` §3.1, §4 |
 | F4A-01 — `"F"` vira `NO_APPLICABLE_RULE` com `detail = None` (o prompt 4A esperava `detail = "F"`) | `REQUIRES_FOLLOWUP` (decisão de contrato; exige mudança em `app/`) | `STAGE_4A_DECISION_CONTRACT.md` §6 |
 | comparação com a planilha Excel original (aba "Forecast A41") | **aberta**; só o gancho (formato de extrato) foi entregue | `audit/stage4a/oracle/EXCEL_COMPARISON_HOOK.md` |
+
+---
+
+## Adição datada — 2026-10-01: Stage 4B (cobertura anual, virada de ano e ciclos)
+
+Adição append-only. As seções acima não foram reescritas.
+
+| item | estado após a 4B | fonte |
+|---|---|---|
+| cobertura anual completa (antes YTD parcial de 32 datas; `STAGE_3_FINAL_CLOSURE.md` L4) | **atendida no fixture REAL_DERIVED**: T1 2026-01-01..2027-01-31 (396 datas), T3 2026-01-01..2028-03-02 (792 datas, contexto único), 365 janelas anuais por identidade ao fim de 2026 e de 2027; todas as agregações recalculadas pelo oracle temporal independente | `audit/stage4b/STAGE_4B_FINAL_CLOSURE.md` |
+| virada de ano 31/12 → 01/01 | **atendida**: o ano novo nasce com 1 janela; o período encerrado fica imutável (snapshot por hash); entrada anual do ano novo ausente ⇒ falha explícita, sem carry-over | idem, E1/E3/E4 |
+| ano bissexto e meses de 28/29/30/31 dias | **atendida**: T2 2028 (29 janelas em fevereiro; 60 janelas anuais em 29/02) | idem, E5 |
+| longo prazo (desempenho) | **observado**: cerca de 0,17 → 0,32 s por data ao longo de um ano (cresce com a janela anual e reinicia em 1º de janeiro); 792 datas em cerca de 5 min. Sem degradação acima do limite (3,0) | idem §desempenho |
+| ciclo `production ↔ yield` no nível de variável/instância (`STAGE_3_FINAL_CLOSURE.md` L5) | **fechado estruturalmente**: grafo **acíclico** no nível de instância (1 227 nós) e de variável; o ciclo existe só entre blocos; nenhuma defasagem `t-1`. A convergência numérica de um ciclo real continua sem objeto, pois não há ciclo de instância | idem §ciclos |
+| política de lacunas | **REQUIRES_FOLLOWUP** (F4B-02): lacuna ⇒ falha explícita (`VariableNotFoundError` genérico). Uma execução não pode começar no meio do mês ou do ano sem o histórico desde o dia 1 / 1º de janeiro. É preciso decidir como carregar o realizado anterior em uso operacional | idem, E2 |
+| ano fiscal | **pendência de negócio** (DR-4B-3): a plataforma usa ano-calendário. Confirmar com o cliente se o ano de budget coincide com o calendário | idem |
+| F-01 (16 `PENDING_LOAD`) e F-02 (execução oficial) | **continuam abertos** (inalterados pela 4B) | — |
