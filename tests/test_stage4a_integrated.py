@@ -125,9 +125,14 @@ def test_committed_csv_evidence_is_complete():
 
 
 def test_stage_3_4c_evidence_is_untouched():
-    out = subprocess.run(["git", "status", "--porcelain", "--", "audit/stage3_4", "audit/stage3_2_execution_orchestration"],
+    """Harnesses e evidência das 3.2/3.4 idênticos ao baseline da 4A (árvore de trabalho incluída)."""
+    paths = ["audit/stage3_4/integrated", "audit/stage3_4/differential", "audit/stage3_4/mutation",
+             "audit/stage3_4/closure", "audit/stage3_4/taxonomy_migration", "audit/stage3_2_execution_orchestration"]
+    out = subprocess.run(["git", "diff", "--name-only", "d2847ab36933668bf4a1299b3ffe058827a82037", "--", *paths],
                          cwd=REPO, capture_output=True, text=True, check=True).stdout
-    assert out == ""
+    untracked = subprocess.run(["git", "ls-files", "--others", "--exclude-standard", "--", *paths],
+                               cwd=REPO, capture_output=True, text=True, check=True).stdout
+    assert out == "" and untracked == ""
 
 
 # ------------------------------------------------------------------ negativos

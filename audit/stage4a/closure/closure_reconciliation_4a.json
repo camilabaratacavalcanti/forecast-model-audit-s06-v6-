@@ -1,0 +1,601 @@
+{
+ "label": "REAL_DERIVED_TEST_RESULT",
+ "lines": [
+  {
+   "id": "R01",
+   "quantity": "alvos integrados",
+   "expected": 446,
+   "recomputed": 446,
+   "source": "integrated/evidence/targets.csv",
+   "result": "PASS"
+  },
+  {
+   "id": "R02",
+   "quantity": "alvos do area_41",
+   "expected": 25,
+   "recomputed": 25,
+   "source": "targets.csv",
+   "result": "PASS"
+  },
+  {
+   "id": "R03",
+   "quantity": "alvos por bloco (independente)",
+   "expected": {
+    "yield": 219,
+    "production": 50,
+    "max_ht": 109,
+    "area_41": 25,
+    "energy": 43
+   },
+   "recomputed": {
+    "yield": 219,
+    "production": 50,
+    "max_ht": 109,
+    "area_41": 25,
+    "energy": 43
+   },
+   "source": "independent_count.py x targets.csv",
+   "result": "PASS"
+  },
+  {
+   "id": "R04",
+   "quantity": "nós do plano",
+   "expected": 458,
+   "recomputed": 458,
+   "source": "integrated/evidence/nodes.csv",
+   "result": "PASS"
+  },
+  {
+   "id": "R05",
+   "quantity": "nós por tipo",
+   "expected": {
+    "AGGREGATION": 207,
+    "EQUATION": 238,
+    "TRANSFER": 13
+   },
+   "recomputed": {
+    "AGGREGATION": 207,
+    "EQUATION": 238,
+    "TRANSFER": 13
+   },
+   "source": "nodes.csv",
+   "result": "PASS"
+  },
+  {
+   "id": "R06",
+   "quantity": "nós por tipo (independente)",
+   "expected": {
+    "AGGREGATION": 207,
+    "EQUATION": 238,
+    "TRANSFER": 13
+   },
+   "recomputed": {
+    "AGGREGATION": 207,
+    "EQUATION": 238,
+    "TRANSFER": 13
+   },
+   "source": "independent_count.py x nodes.csv",
+   "result": "PASS"
+  },
+  {
+   "id": "R07",
+   "quantity": "nós = união (427 + 33 − 2)",
+   "expected": 458,
+   "recomputed": 458,
+   "source": "nodes.csv + independent_count.py",
+   "result": "PASS"
+  },
+  {
+   "id": "R08",
+   "quantity": "transferências (vínculos usados)",
+   "expected": 13,
+   "recomputed": 13,
+   "source": "integrated/evidence/transfers.csv",
+   "result": "PASS"
+  },
+  {
+   "id": "R09",
+   "quantity": "transferência VAR16007 executada e verificada",
+   "expected": 224,
+   "recomputed": 224,
+   "source": "transfers.csv",
+   "result": "PASS"
+  },
+  {
+   "id": "R10",
+   "quantity": "eventos por data (32 datas)",
+   "expected": [
+    896,
+    896,
+    896,
+    896,
+    896,
+    896,
+    896,
+    896,
+    896,
+    896,
+    896,
+    896,
+    896,
+    896,
+    896,
+    896,
+    896,
+    896,
+    896,
+    896,
+    896,
+    896,
+    896,
+    896,
+    896,
+    896,
+    896,
+    896,
+    896,
+    896,
+    896,
+    896
+   ],
+   "recomputed": [
+    896,
+    896,
+    896,
+    896,
+    896,
+    896,
+    896,
+    896,
+    896,
+    896,
+    896,
+    896,
+    896,
+    896,
+    896,
+    896,
+    896,
+    896,
+    896,
+    896,
+    896,
+    896,
+    896,
+    896,
+    896,
+    896,
+    896,
+    896,
+    896,
+    896,
+    896,
+    896
+   ],
+   "source": "temporal_coverage.csv",
+   "result": "PASS"
+  },
+  {
+   "id": "R11",
+   "quantity": "eventos de transferência por data",
+   "expected": [
+    67,
+    67,
+    67,
+    67,
+    67,
+    67,
+    67,
+    67,
+    67,
+    67,
+    67,
+    67,
+    67,
+    67,
+    67,
+    67,
+    67,
+    67,
+    67,
+    67,
+    67,
+    67,
+    67,
+    67,
+    67,
+    67,
+    67,
+    67,
+    67,
+    67,
+    67,
+    67
+   ],
+   "recomputed": [
+    67,
+    67,
+    67,
+    67,
+    67,
+    67,
+    67,
+    67,
+    67,
+    67,
+    67,
+    67,
+    67,
+    67,
+    67,
+    67,
+    67,
+    67,
+    67,
+    67,
+    67,
+    67,
+    67,
+    67,
+    67,
+    67,
+    67,
+    67,
+    67,
+    67,
+    67,
+    67
+   ],
+   "source": "temporal_coverage.csv",
+   "result": "PASS"
+  },
+  {
+   "id": "R12",
+   "quantity": "entradas livres (independente)",
+   "expected": 62,
+   "recomputed": 62,
+   "source": "independent_count.py",
+   "result": "PASS"
+  },
+  {
+   "id": "R13",
+   "quantity": "nós executados em 32 datas",
+   "expected": 458,
+   "recomputed": 458,
+   "source": "nodes.csv",
+   "result": "PASS"
+  },
+  {
+   "id": "R14",
+   "quantity": "plano oficial area_41 (OK / bloqueados)",
+   "expected": {
+    "INTERBLOCK_SOURCE_NOT_LOADED": 22,
+    "OK": 3
+   },
+   "recomputed": {
+    "OK": 3,
+    "INTERBLOCK_SOURCE_NOT_LOADED": 22
+   },
+   "source": "independent_count.py x plan_evidence.csv",
+   "result": "PASS"
+  },
+  {
+   "id": "R15",
+   "quantity": "plano oficial x plan_evidence.csv (diferenças)",
+   "expected": [],
+   "recomputed": [],
+   "source": "independent_count.py",
+   "result": "PASS"
+  },
+  {
+   "id": "R16",
+   "quantity": "PENDING_LOAD oficiais",
+   "expected": 16,
+   "recomputed": 16,
+   "source": "interblock_links.json",
+   "result": "PASS"
+  },
+  {
+   "id": "R17",
+   "quantity": "sha256 de interblock_links.json",
+   "expected": "8dc6b7c8927393096dfe75f04bc37cf81848e9d5f485f1c83945fd5d520cd700",
+   "recomputed": "8dc6b7c8927393096dfe75f04bc37cf81848e9d5f485f1c83945fd5d520cd700",
+   "source": "interblock_links.json",
+   "result": "PASS"
+  },
+  {
+   "id": "R18",
+   "quantity": "não-regressão: hash do subconjunto == 3.4C",
+   "expected": "619b4abd9e161dccab791978157ec0f62589fa7716ced169b53aea3e90e9730c",
+   "recomputed": "619b4abd9e161dccab791978157ec0f62589fa7716ced169b53aea3e90e9730c",
+   "source": "non_regression_421.json x 3.4C integrated_summary.json",
+   "result": "PASS"
+  },
+  {
+   "id": "R19",
+   "quantity": "não-regressão: diferenças em chaves dos 4 blocos",
+   "expected": 0,
+   "recomputed": 0,
+   "source": "non_regression_421.json",
+   "result": "PASS"
+  },
+  {
+   "id": "R20",
+   "quantity": "não-regressão: alvos 3.4C com resultado final diferente",
+   "expected": 0,
+   "recomputed": 0,
+   "source": "3.4C targets.csv x 4A targets.csv",
+   "result": "PASS"
+  },
+  {
+   "id": "R21",
+   "quantity": "identidades mensais de janeiro (3.4C + 11)",
+   "expected": 324,
+   "recomputed": 324,
+   "source": "integrated_summary.json (3.4C x 4A)",
+   "result": "PASS"
+  },
+  {
+   "id": "R22",
+   "quantity": "identidades anuais YTD (3.4C + 11)",
+   "expected": 196,
+   "recomputed": 196,
+   "source": "integrated_summary.json (3.4C x 4A)",
+   "result": "PASS"
+  },
+  {
+   "id": "R23",
+   "quantity": "janelas 31 (mensal jan) e 32 (anual)",
+   "expected": [
+    true,
+    true
+   ],
+   "recomputed": [
+    true,
+    true
+   ],
+   "source": "integrated_summary.json",
+   "result": "PASS"
+  },
+  {
+   "id": "R24",
+   "quantity": "reexecução: transferências WRITTEN -> UNCHANGED",
+   "expected": [
+    {
+     "UNCHANGED": 67
+    },
+    {
+     "UNCHANGED": 67
+    }
+   ],
+   "recomputed": [
+    {
+     "UNCHANGED": 67
+    },
+    {
+     "UNCHANGED": 67
+    }
+   ],
+   "source": "integrated_summary.json",
+   "result": "PASS"
+  },
+  {
+   "id": "R25",
+   "quantity": "determinismo: hashes idênticos (4 execuções + reexecução)",
+   "expected": 1,
+   "recomputed": 1,
+   "source": "integrated_summary.json",
+   "result": "PASS"
+  },
+  {
+   "id": "R26",
+   "quantity": "cenários de estado do area_41 sem problema",
+   "expected": 6,
+   "recomputed": 6,
+   "source": "integrated_summary.json state",
+   "result": "PASS"
+  },
+  {
+   "id": "R27",
+   "quantity": "composições indefinidas = erro do contrato",
+   "expected": 3,
+   "recomputed": 3,
+   "source": "integrated_summary.json",
+   "result": "PASS"
+  },
+  {
+   "id": "R28",
+   "quantity": "oracle: equações cobertas",
+   "expected": 20,
+   "recomputed": 20,
+   "source": "oracle_summary.json",
+   "result": "PASS"
+  },
+  {
+   "id": "R29",
+   "quantity": "oracle: combinações de hes por grupo",
+   "expected": [
+    25,
+    25
+   ],
+   "recomputed": [
+    25,
+    25
+   ],
+   "source": "oracle_summary.json",
+   "result": "PASS"
+  },
+  {
+   "id": "R30",
+   "quantity": "oracle: comparações concordantes",
+   "expected": 5015,
+   "recomputed": 5015,
+   "source": "oracle_summary.json",
+   "result": "PASS"
+  },
+  {
+   "id": "R31",
+   "quantity": "hes: engine x texto literal do workbook",
+   "expected": 50,
+   "recomputed": 50,
+   "source": "contract_audit.json",
+   "result": "PASS"
+  },
+  {
+   "id": "R32",
+   "quantity": "mutações de evidência detectadas",
+   "expected": 25,
+   "recomputed": 25,
+   "source": "mutation_summary.json",
+   "result": "PASS"
+  },
+  {
+   "id": "R33",
+   "quantity": "mutantes de código detectados",
+   "expected": 11,
+   "recomputed": 11,
+   "source": "mutation_summary.json",
+   "result": "PASS"
+  },
+  {
+   "id": "R34",
+   "quantity": "controles positivos aceitos",
+   "expected": 9,
+   "recomputed": 9,
+   "source": "mutation_summary.json",
+   "result": "PASS"
+  },
+  {
+   "id": "L8-1",
+   "quantity": "alvos da 3.4C idênticos",
+   "expected": true,
+   "recomputed": true,
+   "source": "3.4C x 4A evidence",
+   "result": "PASS"
+  },
+  {
+   "id": "L8-2",
+   "quantity": "nenhum alvo removido",
+   "expected": true,
+   "recomputed": true,
+   "source": "3.4C x 4A evidence",
+   "result": "PASS"
+  },
+  {
+   "id": "L8-3",
+   "quantity": "ordem relativa dos 427 nós",
+   "expected": true,
+   "recomputed": true,
+   "source": "3.4C x 4A evidence",
+   "result": "PASS"
+  },
+  {
+   "id": "L8-4",
+   "quantity": "12 transferências idênticas",
+   "expected": true,
+   "recomputed": true,
+   "source": "3.4C x 4A evidence",
+   "result": "PASS"
+  },
+  {
+   "id": "L8-5",
+   "quantity": "store dos 4 blocos idêntico",
+   "expected": true,
+   "recomputed": true,
+   "source": "3.4C x 4A evidence",
+   "result": "PASS"
+  },
+  {
+   "id": "L8-7",
+   "quantity": "evidência 3.4C e histórica não sobrescrita (git diff vazio)",
+   "expected": true,
+   "recomputed": true,
+   "source": "3.4C x 4A evidence",
+   "result": "PASS"
+  },
+  {
+   "id": "L8-8",
+   "quantity": "PLATFORM_PENDING_ITEMS.md alterado só por adição",
+   "expected": true,
+   "recomputed": true,
+   "source": "3.4C x 4A evidence",
+   "result": "PASS"
+  },
+  {
+   "id": "L8-6",
+   "quantity": "só area_41 acrescentado",
+   "expected": true,
+   "recomputed": true,
+   "source": "3.4C x 4A evidence",
+   "result": "PASS"
+  }
+ ],
+ "l8_comparison": {
+  "changed_only_by_area_41": {
+   "targets": {
+    "3.4C": 421,
+    "4A": 446,
+    "added": [
+     "VAR16004",
+     "VAR16005",
+     "VAR16006",
+     "VAR16007",
+     "VAR16008",
+     "VAR16009",
+     "VAR16010",
+     "VAR16014",
+     "VAR16015",
+     "VAR16016",
+     "VAR16018",
+     "VAR16019",
+     "VAR16020",
+     "VAR16025",
+     "VAR16026",
+     "VAR16027",
+     "VAR16028",
+     "VAR16029",
+     "VAR16030",
+     "VAR16031",
+     "VAR16032",
+     "VAR16033",
+     "VAR16034",
+     "VAR16035",
+     "VAR16036"
+    ]
+   },
+   "nodes": {
+    "3.4C": 427,
+    "4A": 458,
+    "added_blocks": {
+     "area_41": 31
+    }
+   },
+   "transfers": {
+    "3.4C": 12,
+    "4A": 13,
+    "added": [
+     "TRANSFER:VAR16007"
+    ]
+   },
+   "events_per_date": {
+    "3.4C": 847,
+    "4A": 896
+   }
+  },
+  "unchanged": {
+   "targets_final_results_identical": true,
+   "removed_targets": [],
+   "nodes_relative_order_identical": true,
+   "transfers_identical": true,
+   "store_4_blocks_sha256_identical": true,
+   "fixture_graph_hash_identical": true
+  },
+  "historical_paths_changed_since_baseline": [],
+  "pending_items_append_only": true
+ },
+ "passed": 42,
+ "total": 42,
+ "imports_app_or_tools": [],
+ "problems": [],
+ "result": "PASS"
+}

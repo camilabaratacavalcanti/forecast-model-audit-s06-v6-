@@ -52,3 +52,20 @@ As fontes de cada item estão indicadas. Nenhuma pendência funcional foi resolv
 | lista D26-01 da Stage 2.6B (nomes históricos `custo_*`, sem `budget_vs_forecast`) | substituída por D-TAX-01; os nomes são traduzidos pelo crosswalk D-TAX-02 | `audit/stage2_6b_interblock_closure/` |
 | nome `monthly_ppt_assumptions` (30000–30999) | aposentado por D-TAX-01 | `STAGE_3_4_TAXONOMY_MIGRATION.md` |
 | evidência versionada das 3.4B–3.4E | descreve o estado da época; não regenerada | `STAGE_3_FINAL_CLOSURE.md` §18 |
+
+---
+
+## Adição datada — 2026-10-01: Stage 4A (area_41 no universo integrado)
+
+Adição append-only. As seções acima não foram reescritas.
+
+| item | estado após a 4A | fonte |
+|---|---|---|
+| Stage 4A — area_41 incluído na regressão integrada (5 blocos: 446 alvos, 458 nós, 13 transferências; 0 diferenças nos 421 alvos anteriores) | **concluída** (gate no fechamento 4A) | `audit/stage4a/STAGE_4A_FINAL_CLOSURE.md` |
+| F-01 — 16 vínculos `PENDING_LOAD` | **continua aberto** (16 `PENDING_LOAD`, inalterados; o `hes` do area_41 continua pendente de `maintenance`) | `audit/stage4a/STAGE_4A_DECISION_CONTRACT.md` §1.5 |
+| F-02 — execução oficial das cadeias | **continua aberto** (plano oficial do area_41: 3 OK + 22 `INTERBLOCK_SOURCE_NOT_LOADED`) | idem |
+| F-03 — oracle numérico independente | **parcialmente atendido**: `INDEPENDENT_NUMERIC_ORACLE = PARTIAL (area_41, fidelidade ao workbook)`. As 20 equações e as 10 agregações do area_41 foram confrontadas com um oracle Python puro, com 5 015 de 5 015 comparações concordando. Valida fidelidade ao workbook A41 v9, **não** correção de negócio. Os demais blocos continuam sem oracle independente completo | `audit/stage4a/oracle/` |
+| D-TAX-02 | já estava `CLOSED / APPLIED` antes da 4A (registro mantido) | §4 acima |
+| pontos de negócio do area_41 (coluna `OBS` e pontos novos N1..N8) | `REQUIRES_FOLLOWUP` com o cliente; **não bloqueiam** | `STAGE_4A_DECISION_CONTRACT.md` §3.1, §4 |
+| F4A-01 — `"F"` vira `NO_APPLICABLE_RULE` com `detail = None` (o prompt 4A esperava `detail = "F"`) | `REQUIRES_FOLLOWUP` (decisão de contrato; exige mudança em `app/`) | `STAGE_4A_DECISION_CONTRACT.md` §6 |
+| comparação com a planilha Excel original (aba "Forecast A41") | **aberta**; só o gancho (formato de extrato) foi entregue | `audit/stage4a/oracle/EXCEL_COMPARISON_HOOK.md` |
