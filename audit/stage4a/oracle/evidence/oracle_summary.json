@@ -1,0 +1,221 @@
+{
+ "aggregation_windows_compared": {
+  "anual": 352,
+  "mensal": 352
+ },
+ "agree": 5015,
+ "by_mode": {
+  "chain": {
+   "agree": 2601,
+   "compared": 2601,
+   "exact": 2601
+  },
+  "equation": {
+   "agree": 902,
+   "compared": 902,
+   "exact": 902
+  },
+  "integrated_aggregation": {
+   "agree": 704,
+   "compared": 704,
+   "exact": 704
+  },
+  "integrated_aggregation_with_F": {
+   "agree": 88,
+   "compared": 88,
+   "exact": 88
+  },
+  "integrated_daily": {
+   "agree": 640,
+   "compared": 640,
+   "exact": 640
+  },
+  "integrated_daily_with_F": {
+   "agree": 80,
+   "compared": 80,
+   "exact": 80
+  }
+ },
+ "compared": 5015,
+ "equations_covered": 20,
+ "exact": 5015,
+ "hes_coverage": {
+  "L4_L5": {
+   "combinations": 25,
+   "no_applicable_rule": [
+    [
+     "1 By pass e LC",
+     "Normal"
+    ],
+    [
+     "Normal",
+     "1 By pass e LC"
+    ]
+   ]
+  },
+  "L6_L7": {
+   "combinations": 25,
+   "no_applicable_rule": [
+    [
+     "1 By pass e LC",
+     "Normal"
+    ],
+    [
+     "Normal",
+     "1 By pass e LC"
+    ]
+   ]
+  }
+ },
+ "label": "REAL_DERIVED_TEST_RESULT",
+ "limitations": [
+  "valida fidelidade ao workbook A41 v9, não correção de negócio",
+  "compartilha com o engine a leitura do workbook (o mesmo texto é a fonte dos dois); o mapeamento nome@escopo -> ID vem dos seeds"
+ ],
+ "oracle": "INDEPENDENT_NUMERIC_ORACLE = PARTIAL (area_41, fidelidade ao workbook)",
+ "per_equation": {
+  "EQ16001": {
+   "agree": 43,
+   "cases": 43,
+   "exact": 43,
+   "failure": 3,
+   "value": 40
+  },
+  "EQ16002": {
+   "agree": 43,
+   "cases": 43,
+   "exact": 43,
+   "failure": 3,
+   "value": 40
+  },
+  "EQ16003": {
+   "agree": 43,
+   "cases": 43,
+   "exact": 43,
+   "failure": 3,
+   "value": 40
+  },
+  "EQ16004": {
+   "agree": 40,
+   "cases": 40,
+   "exact": 40,
+   "value": 40
+  },
+  "EQ16005": {
+   "agree": 40,
+   "cases": 40,
+   "exact": 40,
+   "value": 40
+  },
+  "EQ16006": {
+   "agree": 40,
+   "cases": 40,
+   "exact": 40,
+   "value": 40
+  },
+  "EQ16007": {
+   "agree": 43,
+   "cases": 43,
+   "exact": 43,
+   "failure": 3,
+   "value": 40
+  },
+  "EQ16008": {
+   "agree": 43,
+   "cases": 43,
+   "exact": 43,
+   "failure": 3,
+   "value": 40
+  },
+  "EQ16009": {
+   "agree": 43,
+   "cases": 43,
+   "exact": 43,
+   "failure": 3,
+   "value": 40
+  },
+  "EQ16010": {
+   "agree": 40,
+   "cases": 40,
+   "exact": 40,
+   "value": 40
+  },
+  "EQ16011": {
+   "agree": 75,
+   "cases": 75,
+   "exact": 75,
+   "state": 6,
+   "value": 69
+  },
+  "EQ16012": {
+   "agree": 75,
+   "cases": 75,
+   "exact": 75,
+   "state": 6,
+   "value": 69
+  },
+  "EQ16013": {
+   "agree": 42,
+   "cases": 42,
+   "exact": 42,
+   "failure": 2,
+   "value": 40
+  },
+  "EQ16014": {
+   "agree": 42,
+   "cases": 42,
+   "exact": 42,
+   "failure": 2,
+   "value": 40
+  },
+  "EQ16015": {
+   "agree": 42,
+   "cases": 42,
+   "exact": 42,
+   "failure": 2,
+   "value": 40
+  },
+  "EQ16016": {
+   "agree": 42,
+   "cases": 42,
+   "exact": 42,
+   "failure": 2,
+   "value": 40
+  },
+  "EQ16017": {
+   "agree": 42,
+   "cases": 42,
+   "exact": 42,
+   "failure": 2,
+   "value": 40
+  },
+  "EQ16018": {
+   "agree": 42,
+   "cases": 42,
+   "exact": 42,
+   "failure": 2,
+   "value": 40
+  },
+  "EQ16019": {
+   "agree": 42,
+   "cases": 42,
+   "exact": 42,
+   "failure": 2,
+   "value": 40
+  },
+  "EQ16020": {
+   "agree": 40,
+   "cases": 40,
+   "exact": 40,
+   "value": 40
+  }
+ },
+ "problems": [],
+ "result": "PASS",
+ "tolerance": {
+  "abs_tol": 1e-12,
+  "rel_tol": 1e-12,
+  "states_and_failures": "igualdade exata"
+ },
+ "workbook_text_guard": "PASS"
+}
