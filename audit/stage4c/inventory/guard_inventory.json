@@ -1,0 +1,1112 @@
+{
+ "stage": "4C.1",
+ "classes": {
+  "H": "fechamento histórico — intervalo fixo baseline..fechamento; nunca lê HEAD",
+  "E": "imutabilidade de evidência histórica — arquivo do HEAD x commit de fechamento",
+  "R": "regressão viva — referência do registro `current`; harness recebe só parâmetro de diretório",
+  "S": "invariante semântico — IDs não renumerados, aposentados no `retired`, sem reuso, faixas",
+  "W": "árvore intacta pela execução — status antes/depois",
+  "C": "contrato de conteúdo atual — NÃO alterado na 4C; pré-lista da 5A"
+ },
+ "entries": [
+  {
+   "test": "tests/test_stage2_6b_interblock_closure.py::test_no_historical_id_was_renumbered",
+   "class": "S",
+   "reference_now": "`git show a126e02:manifest` x seed do HEAD; exige removed == added == ∅ (exceto production)",
+   "reference_new": "S: chaves comuns com o mesmo ID; removidas => ID no `retired` do ledger; novas => ID nunca emitido; o literal de production (lth_meta) vira H no intervalo a126e02..eceffd4",
+   "justification": "congela o conjunto de entidades desde a 2.6; a 5A aposenta VAR13001–13006 e cria VAR18053/VAR13117–13123 legitimamente. O invariante real (sem renumeração, sem reuso) continua ao vivo",
+   "r1_failed": null,
+   "location": "tests/test_stage2_6b_interblock_closure.py:410"
+  },
+  {
+   "test": "tests/test_stage2_6c_interblock_final.py::test_12_ids_are_stable_against_baselines",
+   "class": "S",
+   "reference_now": "`git show a126e02|eceffd4:manifest` x HEAD; para eceffd4 exige before == after",
+   "reference_new": "S ao vivo (mesmas regras); o `before == after` de eceffd4 vira H no intervalo eceffd4..7877551",
+   "justification": "idem; o congelamento total era a afirmação do fechamento 2.6C",
+   "r1_failed": null,
+   "location": "tests/test_stage2_6c_interblock_final.py:204"
+  },
+  {
+   "test": "tests/test_stage2_6c_interblock_final.py::test_13_retired_ids_are_recorded_and_never_reused",
+   "class": "S",
+   "reference_now": "ledger do HEAD",
+   "reference_new": "sem alteração",
+   "justification": "já é o invariante S (retired listado, sem reuso)",
+   "r1_failed": null,
+   "location": "tests/test_stage2_6c_interblock_final.py:216"
+  },
+  {
+   "test": "tests/test_stage2_6b_interblock_closure.py::test_ledger_retires_ids_and_never_reuses_them",
+   "class": "S",
+   "reference_now": "ledger do HEAD + build",
+   "reference_new": "sem alteração",
+   "justification": "invariante S; passa no ensaio R1",
+   "r1_failed": null,
+   "location": "tests/test_stage2_6b_interblock_closure.py:432"
+  },
+  {
+   "test": "tests/test_stage2_6b_interblock_closure.py::test_17_max_ht_is_the_canonical_block_name",
+   "class": "C",
+   "reference_now": "literal `descritivo_das_variáveis_MaxHT_v10.xlsx`",
+   "reference_new": "sem alteração (pré-lista 5A)",
+   "justification": "nome do workbook vigente é conteúdo atual",
+   "r1_failed": true,
+   "location": "tests/test_stage2_6b_interblock_closure.py:300"
+  },
+  {
+   "test": "tests/test_stage2_6b_interblock_closure.py::test_18_all_real_links_of_the_five_workbooks",
+   "class": "C",
+   "reference_now": "conjunto EXPECTED de vínculos (32 linhas fonte)",
+   "reference_new": "sem alteração (pré-lista 5A)",
+   "justification": "vínculos declarados nos workbooks vigentes",
+   "r1_failed": true,
+   "location": "tests/test_stage2_6b_interblock_closure.py:379"
+  },
+  {
+   "test": "tests/test_stage2_6c_interblock_final.py::test_17_independent_analysis_matches_the_builder",
+   "class": "C",
+   "reference_now": "análise 2.6C ao vivo + literal {SOURCE_BLOCK_NOT_LOADED: 16, VALID: 13}",
+   "reference_new": "sem alteração (pré-lista 5A)",
+   "justification": "contagens de vínculos do conteúdo vigente",
+   "r1_failed": true,
+   "location": "tests/test_stage2_6c_interblock_final.py:314"
+  },
+  {
+   "test": "tests/test_stage2_6c_interblock_final.py::test_14_repeated_builds_are_byte_identical_and_order_independent",
+   "class": "S",
+   "reference_now": "build isolado x seeds do HEAD",
+   "reference_new": "sem alteração",
+   "justification": "determinismo do gerador; independe do conteúdo",
+   "r1_failed": null,
+   "location": "tests/test_stage2_6c_interblock_final.py:260"
+  },
+  {
+   "test": "tests/test_stage2_6_interblock_contract.py::test_15_every_real_fonte_is_classified",
+   "class": "C",
+   "reference_now": "conjunto literal de vínculos reais",
+   "reference_new": "sem alteração (pré-lista 5A)",
+   "justification": "conteúdo dos workbooks",
+   "r1_failed": true,
+   "location": "tests/test_stage2_6_interblock_contract.py:594"
+  },
+  {
+   "test": "tests/test_stage2_4_workbook_contract.py::test_t24_02_each_block_builder_consumes_its_approved_workbook",
+   "class": "C",
+   "reference_now": "linhas por workbook (56/120…)",
+   "reference_new": "sem alteração (pré-lista 5A)",
+   "justification": "cardinalidade do workbook vigente",
+   "r1_failed": true,
+   "location": "tests/test_stage2_4_workbook_contract.py:254"
+  },
+  {
+   "test": "tests/test_stage2_4_workbook_contract.py::test_t24_02_total_rows_and_equations_match_stage_2_3",
+   "class": "C",
+   "reference_now": "total 572 linhas",
+   "reference_new": "sem alteração (pré-lista 5A)",
+   "justification": "cardinalidade do workbook vigente",
+   "r1_failed": true,
+   "location": "tests/test_stage2_4_workbook_contract.py:267"
+  },
+  {
+   "test": "tests/test_stage2_4_workbook_contract.py::test_t24_06_max_ht_v9_ignores_trailing_empty_rows",
+   "class": "C",
+   "reference_now": "120 linhas do MaxHT",
+   "reference_new": "sem alteração (pré-lista 5A)",
+   "justification": "cardinalidade do workbook vigente",
+   "r1_failed": true,
+   "location": "tests/test_stage2_4_workbook_contract.py:559"
+  },
+  {
+   "test": "tests/test_aggregation_dimensions.py::test_sum_factors_follow_the_approved_workbook_units",
+   "class": "C",
+   "reference_now": "unidades por fator de integração",
+   "reference_new": "sem alteração (pré-lista 5A)",
+   "justification": "unidades do workbook vigente",
+   "r1_failed": true,
+   "location": "tests/test_aggregation_dimensions.py:171"
+  },
+  {
+   "test": "tests/test_energy_seed_contract.py::test_entity_counts_match_the_workbook",
+   "class": "C",
+   "reference_now": "literais do seed energy v6",
+   "reference_new": "sem alteração (pré-lista 5A)",
+   "justification": "contrato do conteúdo energy vigente",
+   "r1_failed": true,
+   "location": "tests/test_energy_seed_contract.py:104"
+  },
+  {
+   "test": "tests/test_energy_seed_contract.py::test_equation_and_aggregation_counts",
+   "class": "C",
+   "reference_now": "literais do seed energy v6",
+   "reference_new": "sem alteração (pré-lista 5A)",
+   "justification": "contrato do conteúdo energy vigente",
+   "r1_failed": true,
+   "location": "tests/test_energy_seed_contract.py:115"
+  },
+  {
+   "test": "tests/test_energy_seed_contract.py::test_all_ids_are_inside_the_energy_range_and_unique",
+   "class": "C",
+   "reference_now": "literais do seed energy v6",
+   "reference_new": "sem alteração (pré-lista 5A)",
+   "justification": "contrato do conteúdo energy vigente",
+   "r1_failed": true,
+   "location": "tests/test_energy_seed_contract.py:125"
+  },
+  {
+   "test": "tests/test_energy_seed_contract.py::test_energy_ids_do_not_collide_with_other_blocks",
+   "class": "C",
+   "reference_now": "literais do seed energy v6",
+   "reference_new": "sem alteração (pré-lista 5A)",
+   "justification": "contrato do conteúdo energy vigente",
+   "r1_failed": true,
+   "location": "tests/test_energy_seed_contract.py:150"
+  },
+  {
+   "test": "tests/test_energy_seed_contract.py::test_variable_frequency_distribution",
+   "class": "C",
+   "reference_now": "literais do seed energy v6",
+   "reference_new": "sem alteração (pré-lista 5A)",
+   "justification": "contrato do conteúdo energy vigente",
+   "r1_failed": true,
+   "location": "tests/test_energy_seed_contract.py:239"
+  },
+  {
+   "test": "tests/test_energy_seed_contract.py::test_variable_type_distribution",
+   "class": "C",
+   "reference_now": "literais do seed energy v6",
+   "reference_new": "sem alteração (pré-lista 5A)",
+   "justification": "contrato do conteúdo energy vigente",
+   "r1_failed": true,
+   "location": "tests/test_energy_seed_contract.py:250"
+  },
+  {
+   "test": "tests/test_energy_seed_contract.py::test_scope_distribution",
+   "class": "C",
+   "reference_now": "literais do seed energy v6",
+   "reference_new": "sem alteração (pré-lista 5A)",
+   "justification": "contrato do conteúdo energy vigente",
+   "r1_failed": true,
+   "location": "tests/test_energy_seed_contract.py:265"
+  },
+  {
+   "test": "tests/test_energy_seed_contract.py::test_variable_instances_are_materialized_by_the_real_resolver",
+   "class": "C",
+   "reference_now": "literais do seed energy v6",
+   "reference_new": "sem alteração (pré-lista 5A)",
+   "justification": "contrato do conteúdo energy vigente",
+   "r1_failed": true,
+   "location": "tests/test_energy_seed_contract.py:340"
+  },
+  {
+   "test": "tests/test_energy_seed_contract.py::test_explicit_scoped_references_are_extracted",
+   "class": "C",
+   "reference_now": "literais do seed energy v6",
+   "reference_new": "sem alteração (pré-lista 5A)",
+   "justification": "contrato do conteúdo energy vigente",
+   "r1_failed": true,
+   "location": "tests/test_energy_seed_contract.py:456"
+  },
+  {
+   "test": "tests/test_energy_seed_contract.py::test_energia_bayer_and_energia_media_frct_bind_by_id_not_name",
+   "class": "C",
+   "reference_now": "literais do seed energy v6",
+   "reference_new": "sem alteração (pré-lista 5A)",
+   "justification": "contrato do conteúdo energy vigente",
+   "r1_failed": true,
+   "location": "tests/test_energy_seed_contract.py:489"
+  },
+  {
+   "test": "tests/test_energy_runtime_contract.py::test_the_23_daily_equations_all_execute",
+   "class": "C",
+   "reference_now": "fixture de entradas do energy v6",
+   "reference_new": "sem alteração (pré-lista 5A)",
+   "justification": "execução do conteúdo energy vigente (entrada nova VAR18053 ausente do fixture)",
+   "r1_failed": true,
+   "location": "tests/test_energy_runtime_contract.py:381"
+  },
+  {
+   "test": "tests/test_energy_runtime_contract.py::test_per_line_results",
+   "class": "C",
+   "reference_now": "fixture de entradas do energy v6",
+   "reference_new": "sem alteração (pré-lista 5A)",
+   "justification": "execução do conteúdo energy vigente (entrada nova VAR18053 ausente do fixture)",
+   "r1_failed": true,
+   "location": "tests/test_energy_runtime_contract.py:411"
+  },
+  {
+   "test": "tests/test_energy_runtime_contract.py::test_plant_group_results",
+   "class": "C",
+   "reference_now": "fixture de entradas do energy v6",
+   "reference_new": "sem alteração (pré-lista 5A)",
+   "justification": "execução do conteúdo energy vigente (entrada nova VAR18053 ausente do fixture)",
+   "r1_failed": true,
+   "location": "tests/test_energy_runtime_contract.py:422"
+  },
+  {
+   "test": "tests/test_energy_runtime_contract.py::test_subgroup_specific_evaporation",
+   "class": "C",
+   "reference_now": "fixture de entradas do energy v6",
+   "reference_new": "sem alteração (pré-lista 5A)",
+   "justification": "execução do conteúdo energy vigente (entrada nova VAR18053 ausente do fixture)",
+   "r1_failed": true,
+   "location": "tests/test_energy_runtime_contract.py:443"
+  },
+  {
+   "test": "tests/test_energy_runtime_contract.py::test_both_branches_of_the_conditional_are_exercised",
+   "class": "C",
+   "reference_now": "fixture de entradas do energy v6",
+   "reference_new": "sem alteração (pré-lista 5A)",
+   "justification": "execução do conteúdo energy vigente (entrada nova VAR18053 ausente do fixture)",
+   "r1_failed": true,
+   "location": "tests/test_energy_runtime_contract.py:457"
+  },
+  {
+   "test": "tests/test_energy_runtime_contract.py::test_energia_bayer_equals_digestion_plus_evaporation",
+   "class": "C",
+   "reference_now": "fixture de entradas do energy v6",
+   "reference_new": "sem alteração (pré-lista 5A)",
+   "justification": "execução do conteúdo energy vigente (entrada nova VAR18053 ausente do fixture)",
+   "r1_failed": true,
+   "location": "tests/test_energy_runtime_contract.py:491"
+  },
+  {
+   "test": "tests/test_energy_runtime_contract.py::test_no_calculated_variable_was_seeded_by_hand",
+   "class": "C",
+   "reference_now": "fixture de entradas do energy v6",
+   "reference_new": "sem alteração (pré-lista 5A)",
+   "justification": "execução do conteúdo energy vigente (entrada nova VAR18053 ausente do fixture)",
+   "r1_failed": true,
+   "location": "tests/test_energy_runtime_contract.py:504"
+  },
+  {
+   "test": "tests/test_energy_runtime_contract.py::test_perturbing_one_line_propagates_to_the_plant",
+   "class": "C",
+   "reference_now": "fixture de entradas do energy v6",
+   "reference_new": "sem alteração (pré-lista 5A)",
+   "justification": "execução do conteúdo energy vigente (entrada nova VAR18053 ausente do fixture)",
+   "r1_failed": true,
+   "location": "tests/test_energy_runtime_contract.py:544"
+  },
+  {
+   "test": "tests/test_energy_runtime_contract.py::test_perturbing_an_unrelated_line_does_not_change_a_subgroup",
+   "class": "C",
+   "reference_now": "fixture de entradas do energy v6",
+   "reference_new": "sem alteração (pré-lista 5A)",
+   "justification": "execução do conteúdo energy vigente (entrada nova VAR18053 ausente do fixture)",
+   "r1_failed": true,
+   "location": "tests/test_energy_runtime_contract.py:592"
+  },
+  {
+   "test": "tests/test_energy_runtime_contract.py::test_cross_block_inputs_are_declared_as_inputs_with_a_source",
+   "class": "C",
+   "reference_now": "fixture de entradas do energy v6",
+   "reference_new": "sem alteração (pré-lista 5A)",
+   "justification": "execução do conteúdo energy vigente (entrada nova VAR18053 ausente do fixture)",
+   "r1_failed": true,
+   "location": "tests/test_energy_runtime_contract.py:635"
+  },
+  {
+   "test": "tests/test_energy_runtime_contract.py::test_daily_to_monthly_chain_feeds_eq18020",
+   "class": "C",
+   "reference_now": "fixture de entradas do energy v6",
+   "reference_new": "sem alteração (pré-lista 5A)",
+   "justification": "execução do conteúdo energy vigente (entrada nova VAR18053 ausente do fixture)",
+   "r1_failed": true,
+   "location": "tests/test_energy_runtime_contract.py:760"
+  },
+  {
+   "test": "tests/test_energy_runtime_contract.py::test_eq18020_cannot_be_satisfied_by_daily_values_alone",
+   "class": "C",
+   "reference_now": "fixture de entradas do energy v6",
+   "reference_new": "sem alteração (pré-lista 5A)",
+   "justification": "execução do conteúdo energy vigente (entrada nova VAR18053 ausente do fixture)",
+   "r1_failed": true,
+   "location": "tests/test_energy_runtime_contract.py:902"
+  },
+  {
+   "test": "tests/test_max_ht_runtime_contract.py::test_entity_counts",
+   "class": "C",
+   "reference_now": "literais do seed max_ht v10",
+   "reference_new": "sem alteração (pré-lista 5A)",
+   "justification": "contrato do conteúdo max_ht vigente",
+   "r1_failed": true,
+   "location": "tests/test_max_ht_runtime_contract.py:67"
+  },
+  {
+   "test": "tests/test_max_ht_runtime_contract.py::test_all_math_equations_parse_successfully",
+   "class": "C",
+   "reference_now": "literais do seed max_ht v10",
+   "reference_new": "sem alteração (pré-lista 5A)",
+   "justification": "contrato do conteúdo max_ht vigente",
+   "r1_failed": true,
+   "location": "tests/test_max_ht_runtime_contract.py:136"
+  },
+  {
+   "test": "tests/test_max_ht_runtime_contract.py::test_full_seed_root_loads_without_errors",
+   "class": "C",
+   "reference_now": "literais do seed max_ht v10",
+   "reference_new": "sem alteração (pré-lista 5A)",
+   "justification": "contrato do conteúdo max_ht vigente",
+   "r1_failed": true,
+   "location": "tests/test_max_ht_runtime_contract.py:213"
+  },
+  {
+   "test": "tests/test_stage3_3a_result_contract.py::test_23_25_planning_code_is_unchanged_since_stage_3_2",
+   "class": "H",
+   "reference_now": "`git show a733487:interblock_orchestrator.py` x arquivo do HEAD",
+   "reference_new": "funções do planner em a733487 x em eee88d6 (fechamento 3.3A)",
+   "justification": "a afirmação é da 3.3A (o contrato de resultado não mexeu no planner); regressões de plano no HEAD são pegas pelos testes R (plan_order nos fingerprints)",
+   "r1_failed": null,
+   "location": "tests/test_stage3_3a_result_contract.py:432"
+  },
+  {
+   "test": "tests/test_stage3_4b_differential.py::test_live_differential_reference_vs_head_matches_exactly",
+   "class": "H",
+   "reference_now": "harness ao vivo 7877551 x HEAD sobre data/seed do HEAD",
+   "reference_new": "mesmo harness, sem alteração, executado num clone temporário no fechamento 4d54804 (7877551..4d54804)",
+   "justification": "o runtime de referência (7877551) não carrega dados futuros (unidades novas); a afirmação diferencial é histórica da 3.4B. Regressão do app no HEAD fica com os testes R (3.4C/4A/4B)",
+   "r1_failed": true,
+   "location": "tests/test_stage3_4b_differential.py:123"
+  },
+  {
+   "test": "tests/test_stage3_4b_differential.py::test_committed_evidence_reproduces_the_full_matrix",
+   "class": "H",
+   "reference_now": "evidência versionada x universo dos seeds do HEAD",
+   "reference_new": "evidência versionada x universo dos seeds em 4d54804 (calculado no clone)",
+   "justification": "a evidência descreve o universo do seu fechamento",
+   "r1_failed": true,
+   "location": "tests/test_stage3_4b_differential.py:161"
+  },
+  {
+   "test": "tests/test_stage3_4b_differential.py::test_committed_summary_is_the_differential_oracle",
+   "class": "E",
+   "reference_now": "summary versionado",
+   "reference_new": "sem alteração (+ sha256 no B0 e diff x fechamento)",
+   "justification": "evidência histórica",
+   "r1_failed": null,
+   "location": "tests/test_stage3_4b_differential.py:176"
+  },
+  {
+   "test": "tests/test_stage3_4c_integrated.py::test_live_integrated_regression_passes",
+   "class": "R",
+   "reference_now": "harness ao vivo + literais 446/25/421/427/218/197/12",
+   "reference_new": "harness com `--baseline-dir` do current; literais = universo da referência do registro (B0 = mesmos literais, provado em test_stage4c_baseline_registry)",
+   "justification": "regressão viva do HEAD",
+   "r1_failed": true,
+   "location": "tests/test_stage3_4c_integrated.py:56"
+  },
+  {
+   "test": "tests/test_stage3_4c_integrated.py::test_live_run_reproduces_committed_evidence_and_is_deterministic",
+   "class": "R",
+   "reference_now": "`audit/stage3_4/integrated/evidence/integrated_summary.json`",
+   "reference_new": "arquivo do conjunto stage3_4c_integrated do current",
+   "justification": "regressão viva x referência aprovada",
+   "r1_failed": true,
+   "location": "tests/test_stage3_4c_integrated.py:70"
+  },
+  {
+   "test": "tests/test_stage3_4c_integrated.py::test_committed_targets_nodes_transfers_and_coverage_are_complete",
+   "class": "R",
+   "reference_now": "CSVs versionados x plano vivo + literais 421/427/12/60",
+   "reference_new": "CSVs do current x plano vivo; literais da referência",
+   "justification": "compara plano vivo com evidência",
+   "r1_failed": true,
+   "location": "tests/test_stage3_4c_integrated.py:118"
+  },
+  {
+   "test": "tests/test_stage3_4c_integrated.py::test_committed_summary_contract",
+   "class": "E",
+   "reference_now": "summary versionado",
+   "reference_new": "sem alteração",
+   "justification": "conteúdo da evidência histórica",
+   "r1_failed": null,
+   "location": "tests/test_stage3_4c_integrated.py:86"
+  },
+  {
+   "test": "tests/test_stage3_4c_integrated.py::test_area_41_is_outside_the_integrated_universe",
+   "class": "C",
+   "reference_now": "literal 25 alvos do area_41",
+   "reference_new": "sem alteração (pré-lista 5A)",
+   "justification": "cardinalidade do conteúdo vigente",
+   "r1_failed": null,
+   "location": "tests/test_stage3_4c_integrated.py:141"
+  },
+  {
+   "test": "tests/test_stage3_4d_mutation.py::test_live_evidence_mutations_are_all_detected",
+   "class": "H",
+   "reference_now": "harness de mutação ao vivo no HEAD (alvos VAR13001–13003, BASELINE 043fe9c)",
+   "reference_new": "mesmo harness, sem alteração, num clone temporário em 8095011 (fechamento 3.4D)",
+   "justification": "a matriz de mutações nomeia IDs reais que a 5A aposenta (VAR13001–13003); a afirmação 'auditores 3.4B/3.4C detectam 100%' é do fechamento",
+   "r1_failed": true,
+   "location": "tests/test_stage3_4d_mutation.py:51"
+  },
+  {
+   "test": "tests/test_stage3_4d_mutation.py::test_live_run_reproduces_committed_mutation_results",
+   "class": "H",
+   "reference_now": "resultado vivo x mutation_results.csv",
+   "reference_new": "resultado no clone 8095011 x mutation_results.csv (E)",
+   "justification": "idem",
+   "r1_failed": true,
+   "location": "tests/test_stage3_4d_mutation.py:64"
+  },
+  {
+   "test": "tests/test_stage3_4d_mutation.py::test_live_code_mutant_is_killed_in_a_temporary_copy",
+   "class": "H",
+   "reference_now": "mutante CM-13 numa cópia do HEAD + status antes/depois",
+   "reference_new": "mutante CM-13 numa cópia de 8095011; status antes/depois do repositório (W) mantido",
+   "justification": "os detectores 'TESTS' rodam a suíte da cópia; no HEAD futuro a suíte tem falhas C alheias ao mutante",
+   "r1_failed": true,
+   "location": "tests/test_stage3_4d_mutation.py:104"
+  },
+  {
+   "test": "tests/test_stage3_4d_mutation.py::test_no_production_artifact_changed_since_baseline",
+   "class": "H",
+   "reference_now": "`classify_git(043fe9c)` x árvore de trabalho",
+   "reference_new": "`classify_git(043fe9c, 8095011)`",
+   "justification": "afirmação do fechamento 3.4D",
+   "r1_failed": true,
+   "location": "tests/test_stage3_4d_mutation.py:179"
+  },
+  {
+   "test": "tests/test_stage3_4d_mutation.py::test_committed_mutation_matrix_is_formal_and_complete",
+   "class": "E",
+   "reference_now": "artefatos versionados da 3.4B/3.4C/3.4D",
+   "reference_new": "sem alteração (+ sha256 no B0 e diff x fechamento)",
+   "justification": "só lê evidência histórica",
+   "r1_failed": null,
+   "location": "tests/test_stage3_4d_mutation.py:73"
+  },
+  {
+   "test": "tests/test_stage3_4d_mutation.py::test_committed_code_mutants_have_no_survivors",
+   "class": "E",
+   "reference_now": "artefatos versionados da 3.4B/3.4C/3.4D",
+   "reference_new": "sem alteração (+ sha256 no B0 e diff x fechamento)",
+   "justification": "só lê evidência histórica",
+   "r1_failed": null,
+   "location": "tests/test_stage3_4d_mutation.py:90"
+  },
+  {
+   "test": "tests/test_stage3_4d_mutation.py::test_blackbox_audit_passes_without_importing_app",
+   "class": "E",
+   "reference_now": "artefatos versionados da 3.4B/3.4C/3.4D",
+   "reference_new": "sem alteração (+ sha256 no B0 e diff x fechamento)",
+   "justification": "só lê evidência histórica",
+   "r1_failed": null,
+   "location": "tests/test_stage3_4d_mutation.py:119"
+  },
+  {
+   "test": "tests/test_stage3_4d_mutation.py::test_blackbox_audit_rejects_corrupted_evidence",
+   "class": "E",
+   "reference_now": "artefatos versionados da 3.4B/3.4C/3.4D",
+   "reference_new": "sem alteração (+ sha256 no B0 e diff x fechamento)",
+   "justification": "só lê evidência histórica",
+   "r1_failed": null,
+   "location": "tests/test_stage3_4d_mutation.py:157"
+  },
+  {
+   "test": "tests/test_stage3_4d_mutation.py::test_baseline_gaps_are_recorded_and_closed",
+   "class": "E",
+   "reference_now": "artefatos versionados da 3.4B/3.4C/3.4D",
+   "reference_new": "sem alteração (+ sha256 no B0 e diff x fechamento)",
+   "justification": "só lê evidência histórica",
+   "r1_failed": null,
+   "location": "tests/test_stage3_4d_mutation.py:167"
+  },
+  {
+   "test": "tests/test_taxonomy_migration_d_tax_01.py::test_tax_06_no_id_changed_by_the_rename",
+   "class": "H",
+   "reference_now": "snapshot da árvore de trabalho x before_snapshot.json (547b920)",
+   "reference_new": "snapshot calculado num clone temporário em d8b5d55 x before_snapshot.json",
+   "justification": "a migração D-TAX-01 é exclusivamente nomenclatural NO SEU INTERVALO; a árvore futura muda seeds legitimamente",
+   "r1_failed": true,
+   "location": "tests/test_taxonomy_migration_d_tax_01.py:112"
+  },
+  {
+   "test": "tests/test_taxonomy_migration_d_tax_01.py::test_tax_07_no_formula_changed",
+   "class": "H",
+   "reference_now": "snapshot da árvore de trabalho x before_snapshot.json (547b920)",
+   "reference_new": "snapshot calculado num clone temporário em d8b5d55 x before_snapshot.json",
+   "justification": "a migração D-TAX-01 é exclusivamente nomenclatural NO SEU INTERVALO; a árvore futura muda seeds legitimamente",
+   "r1_failed": true,
+   "location": "tests/test_taxonomy_migration_d_tax_01.py:121"
+  },
+  {
+   "test": "tests/test_taxonomy_migration_d_tax_01.py::test_tax_08_no_interblock_link_changed_semantically",
+   "class": "H",
+   "reference_now": "snapshot da árvore de trabalho x before_snapshot.json (547b920)",
+   "reference_new": "snapshot calculado num clone temporário em d8b5d55 x before_snapshot.json",
+   "justification": "a migração D-TAX-01 é exclusivamente nomenclatural NO SEU INTERVALO; a árvore futura muda seeds legitimamente",
+   "r1_failed": true,
+   "location": "tests/test_taxonomy_migration_d_tax_01.py:126"
+  },
+  {
+   "test": "tests/test_taxonomy_migration_d_tax_01.py::test_tax_09_the_16_pending_load_links_are_identical",
+   "class": "H",
+   "reference_now": "snapshot da árvore de trabalho x before_snapshot.json (547b920)",
+   "reference_new": "snapshot calculado num clone temporário em d8b5d55 x before_snapshot.json",
+   "justification": "a migração D-TAX-01 é exclusivamente nomenclatural NO SEU INTERVALO; a árvore futura muda seeds legitimamente",
+   "r1_failed": true,
+   "location": "tests/test_taxonomy_migration_d_tax_01.py:135"
+  },
+  {
+   "test": "tests/test_taxonomy_migration_d_tax_01.py::test_cardinalities_results_and_graph_unchanged",
+   "class": "H",
+   "reference_now": "snapshot da árvore de trabalho x before_snapshot.json (547b920)",
+   "reference_new": "snapshot calculado num clone temporário em d8b5d55 x before_snapshot.json",
+   "justification": "a migração D-TAX-01 é exclusivamente nomenclatural NO SEU INTERVALO; a árvore futura muda seeds legitimamente",
+   "r1_failed": true,
+   "location": "tests/test_taxonomy_migration_d_tax_01.py:144"
+  },
+  {
+   "test": "tests/test_taxonomy_migration_d_tax_01.py::test_tax_10_the_authorized_change_is_detected_as_taxonomic_not_functional",
+   "class": "H",
+   "reference_now": "`classify_git(547b920)` e `protected_status(ref, None)` x árvore de trabalho",
+   "reference_new": "`classify_git(547b920, d8b5d55)` e `protected_status(ref, d8b5d55)`",
+   "justification": "idem",
+   "r1_failed": true,
+   "location": "tests/test_taxonomy_migration_d_tax_01.py:156"
+  },
+  {
+   "test": "tests/test_taxonomy_migration_d_tax_01.py::test_guard_rejects_every_non_taxonomic_change",
+   "class": "H",
+   "reference_now": "`changes_between(547b920)` (árvore de trabalho) + arquivos do HEAD",
+   "reference_new": "`changes_between(547b920, d8b5d55)` + arquivos em d8b5d55",
+   "justification": "com a árvore futura já não-taxonômica o negativo passaria por vacuidade; fixar o intervalo preserva o poder",
+   "r1_failed": null,
+   "location": "tests/test_taxonomy_migration_d_tax_01.py:210"
+  },
+  {
+   "test": "tests/test_taxonomy_migration_d_tax_01.py::test_stage3_provenance_still_rejects_masked_pending_links",
+   "class": "H",
+   "reference_now": "interblock_links.json do HEAD x 043fe9c",
+   "reference_new": "interblock_links.json em d8b5d55 x 043fe9c",
+   "justification": "controle positivo é o arquivo pós-migração",
+   "r1_failed": true,
+   "location": "tests/test_taxonomy_migration_d_tax_01.py:225"
+  },
+  {
+   "test": "tests/test_taxonomy_d_tax_02.py::test_tax_02_07_crosswalk_changes_no_id_or_range",
+   "class": "H",
+   "reference_now": "`git diff d8b5d55` x árvore de trabalho",
+   "reference_new": "`git diff d8b5d55 d2847ab`; faixas ao vivo == CANONICAL (S)",
+   "justification": "afirmação do fechamento D-TAX-02; a parte 'faixas inalteradas' segue ao vivo como S",
+   "r1_failed": true,
+   "location": "tests/test_taxonomy_d_tax_02.py:156"
+  },
+  {
+   "test": "tests/test_taxonomy_d_tax_02.py::test_tax_02_05_historical_names_are_not_canonical_anywhere_operational",
+   "class": "S",
+   "reference_now": "`git grep` no HEAD",
+   "reference_new": "sem alteração",
+   "justification": "invariante vivo; independe de conteúdo",
+   "r1_failed": null,
+   "location": "tests/test_taxonomy_d_tax_02.py:111"
+  },
+  {
+   "test": "tests/test_stage4a_closure.py::test_independent_reconciliation_passes_without_app",
+   "class": "H",
+   "reference_now": "reconcile_4a.py no HEAD (recontagem viva + `git diff d2847ab`)",
+   "reference_new": "reconcile_4a.py, sem alteração, num clone temporário em 0a924e6; o JSON versionado segue E",
+   "justification": "reconciliação de fechamento",
+   "r1_failed": true,
+   "location": "tests/test_stage4a_closure.py:26"
+  },
+  {
+   "test": "tests/test_stage4a_closure.py::test_production_surface_and_stage_3_closure_untouched",
+   "class": "H",
+   "reference_now": "`git diff d2847ab` x HEAD",
+   "reference_new": "`git diff d2847ab 0a924e6` (F4B-06)",
+   "justification": "a guarda fecha a 4A; lida contra o HEAD falha a cada stage posterior (F4B-06)",
+   "r1_failed": true,
+   "location": "tests/test_stage4a_closure.py:53"
+  },
+  {
+   "test": "tests/test_stage4a_closure.py::test_pending_items_dated_addition_keeps_f01_f02_open_and_f03_partial",
+   "class": "S",
+   "reference_now": "`git show d2847ab:PLATFORM_PENDING_ITEMS.md` é prefixo do HEAD",
+   "reference_new": "sem alteração",
+   "justification": "invariante append-only da lista mestre; continua válido com adições futuras",
+   "r1_failed": null,
+   "location": "tests/test_stage4a_closure.py:60"
+  },
+  {
+   "test": "tests/test_stage4a_closure.py::test_l8_comparison_only_area_41_changed",
+   "class": "E",
+   "reference_now": "closure_reconciliation_4a.json",
+   "reference_new": "sem alteração",
+   "justification": "evidência histórica",
+   "r1_failed": null,
+   "location": "tests/test_stage4a_closure.py:37"
+  },
+  {
+   "test": "tests/test_stage4a_contract.py::test_independent_recount_matches_contract_without_importing_app",
+   "class": "R",
+   "reference_now": "independent_count --check x audit/stage4a/contract_expectations.json + literais 446/458/62/896",
+   "reference_new": "expectativas do conjunto stage4a_contract do current (`--baseline-dir`); literais = referência",
+   "justification": "",
+   "r1_failed": true,
+   "location": "tests/test_stage4a_contract.py:48"
+  },
+  {
+   "test": "tests/test_stage4a_contract.py::test_nodes_are_the_union_not_the_sum",
+   "class": "R",
+   "reference_now": "independent_count + literais (shared, 458)",
+   "reference_new": "expectativas do current",
+   "justification": "",
+   "r1_failed": true,
+   "location": "tests/test_stage4a_contract.py:59"
+  },
+  {
+   "test": "tests/test_stage4a_contract.py::test_derivation_agrees_with_independent_recount_and_frozen_expectations",
+   "class": "R",
+   "reference_now": "derive_4a --no-write x contract_expectations.json",
+   "reference_new": "x expectativas do current",
+   "justification": "",
+   "r1_failed": true,
+   "location": "tests/test_stage4a_contract.py:68"
+  },
+  {
+   "test": "tests/test_stage4a_contract.py::test_official_plan_pending_links_and_links_sha_are_unchanged",
+   "class": "R",
+   "reference_now": "plan_evidence.csv da 3.2 + sha dos vínculos em d2847ab + expectativas",
+   "reference_new": "plan_evidence e expectativas do current (R); 'vínculos iguais no intervalo da 4A' = H (d2847ab..0a924e6)",
+   "justification": "",
+   "r1_failed": true,
+   "location": "tests/test_stage4a_contract.py:75"
+  },
+  {
+   "test": "tests/test_stage4a_contract.py::test_official_plan_comparator_detects_a_changed_evidence_row",
+   "class": "R",
+   "reference_now": "plan_evidence.csv da 3.2",
+   "reference_new": "plan_evidence do current",
+   "justification": "negativo sobre a referência viva",
+   "r1_failed": true,
+   "location": "tests/test_stage4a_contract.py:88"
+  },
+  {
+   "test": "tests/test_stage4a_contract.py::test_hes_decision_tree_engine_equals_literal_workbook_in_all_50_combinations",
+   "class": "E",
+   "reference_now": "evidência versionada da 4A",
+   "reference_new": "sem alteração",
+   "justification": "lê evidência histórica (a parte viva é conteúdo do area_41, inalterado)",
+   "r1_failed": null,
+   "location": "tests/test_stage4a_contract.py:102"
+  },
+  {
+   "test": "tests/test_stage4a_contract.py::test_scopes_and_suffixes_verified_in_the_parser",
+   "class": "E",
+   "reference_now": "evidência versionada da 4A",
+   "reference_new": "sem alteração",
+   "justification": "lê evidência histórica (a parte viva é conteúdo do area_41, inalterado)",
+   "r1_failed": null,
+   "location": "tests/test_stage4a_contract.py:153"
+  },
+  {
+   "test": "tests/test_stage4a_contract.py::test_area_41_aggregation_rules_and_ytd_partial",
+   "class": "E",
+   "reference_now": "evidência versionada da 4A",
+   "reference_new": "sem alteração",
+   "justification": "lê evidência histórica (a parte viva é conteúdo do area_41, inalterado)",
+   "r1_failed": null,
+   "location": "tests/test_stage4a_contract.py:164"
+  },
+  {
+   "test": "tests/test_stage4a_contract.py::test_contract_document_records_decisions_findings_and_obs",
+   "class": "E",
+   "reference_now": "evidência versionada da 4A",
+   "reference_new": "sem alteração",
+   "justification": "lê evidência histórica (a parte viva é conteúdo do area_41, inalterado)",
+   "r1_failed": null,
+   "location": "tests/test_stage4a_contract.py:194"
+  },
+  {
+   "test": "tests/test_stage4a_contract.py::test_input_protocol_keeps_every_3_4c_input_index",
+   "class": "C",
+   "reference_now": "literal range(51, 62)",
+   "reference_new": "sem alteração (pré-lista 5A)",
+   "justification": "índices dependem do nº de entradas do plano vigente",
+   "r1_failed": null,
+   "location": "tests/test_stage4a_contract.py:185"
+  },
+  {
+   "test": "tests/test_stage4a_integrated.py::test_live_five_block_regression_passes_and_reproduces_committed_evidence",
+   "class": "R",
+   "reference_now": "harness ao vivo x evidência 4A + contract_expectations + literais 446/458/13/421/427",
+   "reference_new": "harness com `--baseline-dir`; literais = referência do current",
+   "justification": "",
+   "r1_failed": true,
+   "location": "tests/test_stage4a_integrated.py:48"
+  },
+  {
+   "test": "tests/test_stage4a_integrated.py::test_non_regression_of_the_421_previous_targets",
+   "class": "R",
+   "reference_now": "3.4C integrated_summary.json/targets.csv versionados",
+   "reference_new": "conjunto stage3_4c_integrated do current",
+   "justification": "",
+   "r1_failed": true,
+   "location": "tests/test_stage4a_integrated.py:63"
+  },
+  {
+   "test": "tests/test_stage4a_integrated.py::test_negative_corrupted_previous_key_is_detected",
+   "class": "R",
+   "reference_now": "harness.non_regression em processo (3.4C versionada)",
+   "reference_new": "idem, referência configurada pelo registro (conftest)",
+   "justification": "",
+   "r1_failed": true,
+   "location": "tests/test_stage4a_integrated.py:147"
+  },
+  {
+   "test": "tests/test_stage4a_integrated.py::test_negative_area_41_change_does_not_touch_the_421_check",
+   "class": "R",
+   "reference_now": "idem",
+   "reference_new": "idem",
+   "justification": "",
+   "r1_failed": true,
+   "location": "tests/test_stage4a_integrated.py:157"
+  },
+  {
+   "test": "tests/test_stage4a_integrated.py::test_stage_3_4c_evidence_is_untouched",
+   "class": "H",
+   "reference_now": "`git diff d2847ab` x árvore em audit/stage3_4/** e stage3_2/**",
+   "reference_new": "H: `git diff d2847ab 0a924e6` nesses caminhos; E: evidência (arquivos de dados) do HEAD x 0a924e6; não rastreados",
+   "justification": "a 4C muda harnesses da 3.4 só para o parâmetro de diretório; a evidência continua imutável",
+   "r1_failed": null,
+   "location": "tests/test_stage4a_integrated.py:127"
+  },
+  {
+   "test": "tests/test_stage4a_integrated.py::test_committed_non_regression_report",
+   "class": "E",
+   "reference_now": "evidência versionada 4A (+3.4C)",
+   "reference_new": "sem alteração",
+   "justification": "evidência histórica",
+   "r1_failed": null,
+   "location": "tests/test_stage4a_integrated.py:72"
+  },
+  {
+   "test": "tests/test_stage4a_integrated.py::test_committed_summary_temporal_reexecution_determinism_state",
+   "class": "E",
+   "reference_now": "evidência versionada 4A (+3.4C)",
+   "reference_new": "sem alteração",
+   "justification": "evidência histórica",
+   "r1_failed": null,
+   "location": "tests/test_stage4a_integrated.py:82"
+  },
+  {
+   "test": "tests/test_stage4a_integrated.py::test_committed_csv_evidence_is_complete",
+   "class": "E",
+   "reference_now": "evidência versionada 4A (+3.4C)",
+   "reference_new": "sem alteração",
+   "justification": "evidência histórica",
+   "r1_failed": null,
+   "location": "tests/test_stage4a_integrated.py:113"
+  },
+  {
+   "test": "tests/test_stage4a_mutation.py::test_live_evidence_mutations_are_all_detected_with_positive_controls",
+   "class": "R",
+   "reference_now": "evidência 4A e expectativas versionadas",
+   "reference_new": "conjuntos do current (`--baseline-dir`)",
+   "justification": "",
+   "r1_failed": true,
+   "location": "tests/test_stage4a_mutation.py:43"
+  },
+  {
+   "test": "tests/test_stage4a_mutation.py::test_minimum_mutant_set_is_defined_and_applies_to_unique_snippets",
+   "class": "C",
+   "reference_now": "trechos do código do app no HEAD",
+   "reference_new": "sem alteração (pré-lista 5A se a 5A tocar esses trechos)",
+   "justification": "contrato do código atual",
+   "r1_failed": null,
+   "location": "tests/test_stage4a_mutation.py:75"
+  },
+  {
+   "test": "tests/test_stage4a_mutation.py::test_mutants_never_touch_the_working_tree",
+   "class": "W",
+   "reference_now": "`git status -- app data tools` vazio",
+   "reference_new": "sem alteração",
+   "justification": "árvore intacta",
+   "r1_failed": null,
+   "location": "tests/test_stage4a_mutation.py:89"
+  },
+  {
+   "test": "tests/test_stage4a_mutation.py::test_committed_evidence_mutation_results",
+   "class": "E",
+   "reference_now": "evidência versionada",
+   "reference_new": "sem alteração",
+   "justification": "",
+   "r1_failed": null,
+   "location": "tests/test_stage4a_mutation.py:51"
+  },
+  {
+   "test": "tests/test_stage4a_mutation.py::test_committed_code_mutants_all_detected_in_temporary_copies",
+   "class": "E",
+   "reference_now": "evidência versionada",
+   "reference_new": "sem alteração",
+   "justification": "",
+   "r1_failed": null,
+   "location": "tests/test_stage4a_mutation.py:62"
+  },
+  {
+   "test": "tests/test_stage4a_oracle.py::test_live_oracle_agrees_with_engine_on_20_equations_and_25_hes_combinations",
+   "class": "C",
+   "reference_now": "workbook A41 v9 + literais (20 equações, 25 combinações)",
+   "reference_new": "sem alteração",
+   "justification": "fidelidade ao workbook vigente do area_41",
+   "r1_failed": null,
+   "location": "tests/test_stage4a_oracle.py:40"
+  },
+  {
+   "test": "tests/test_stage4a_oracle.py::test_committed_oracle_summary_declares_tolerance_and_limitations",
+   "class": "E",
+   "reference_now": "oracle_summary.json",
+   "reference_new": "sem alteração",
+   "justification": "",
+   "r1_failed": null,
+   "location": "tests/test_stage4a_oracle.py:53"
+  },
+  {
+   "test": "tests/test_stage4b_closure.py::test_independent_reconciliation_passes_without_app",
+   "class": "H",
+   "reference_now": "reconcile_4b.py no HEAD (G-01/G-02 com `git diff 0a924e6`)",
+   "reference_new": "reconcile_4b.py, sem alteração, num clone temporário em f573c1b; JSON versionado segue E",
+   "justification": "",
+   "r1_failed": true,
+   "location": "tests/test_stage4b_closure.py:26"
+  },
+  {
+   "test": "tests/test_stage4b_closure.py::test_production_surface_and_previous_stages_untouched",
+   "class": "H",
+   "reference_now": "`git diff 0a924e6` x HEAD",
+   "reference_new": "`git diff 0a924e6 f573c1b`; arquivos não rastreados (W) mantidos",
+   "justification": "mesmo defeito do F4B-06, um fechamento adiante",
+   "r1_failed": true,
+   "location": "tests/test_stage4b_closure.py:36"
+  },
+  {
+   "test": "tests/test_stage4b_closure.py::test_pending_items_dated_addition_is_append_only",
+   "class": "S",
+   "reference_now": "`git show 0a924e6` é prefixo do HEAD",
+   "reference_new": "sem alteração",
+   "justification": "append-only",
+   "r1_failed": null,
+   "location": "tests/test_stage4b_closure.py:45"
+  },
+  {
+   "test": "tests/test_stage4b_contract.py::test_independent_recount_matches_frozen_expectations",
+   "class": "R",
+   "reference_now": "contract_expectations_4b.json + literais 324/196",
+   "reference_new": "expectativas do conjunto stage4b_contract do current",
+   "justification": "",
+   "r1_failed": true,
+   "location": "tests/test_stage4b_contract.py:36"
+  },
+  {
+   "test": "tests/test_stage4b_contract.py::test_store_growth_predicted_from_seeds_matches_engine",
+   "class": "E",
+   "reference_now": "contract_audit_4b.json / contrato",
+   "reference_new": "sem alteração",
+   "justification": "",
+   "r1_failed": null,
+   "location": "tests/test_stage4b_contract.py:54"
+  },
+  {
+   "test": "tests/test_stage4b_contract.py::test_e1_turn_of_year_windows_and_snapshot",
+   "class": "E",
+   "reference_now": "contract_audit_4b.json / contrato",
+   "reference_new": "sem alteração",
+   "justification": "",
+   "r1_failed": null,
+   "location": "tests/test_stage4b_contract.py:60"
+  },
+  {
+   "test": "tests/test_stage4b_contract.py::test_e2_gaps_fail_explicitly",
+   "class": "E",
+   "reference_now": "contract_audit_4b.json / contrato",
+   "reference_new": "sem alteração",
+   "justification": "",
+   "r1_failed": null,
+   "location": "tests/test_stage4b_contract.py:71"
+  },
+  {
+   "test": "tests/test_stage4b_contract.py::test_e3_no_carry_over_of_new_period_inputs",
+   "class": "E",
+   "reference_now": "contract_audit_4b.json / contrato",
+   "reference_new": "sem alteração",
+   "justification": "",
+   "r1_failed": null,
+   "location": "tests/test_stage4b_contract.py:78"
+  },
+  {
+   "test": "tests/test_stage4b_contract.py::test_e4_closed_periods_and_e5_calendar",
+   "class": "E",
+   "reference_now": "contract_audit_4b.json / contrato",
+   "reference_new": "sem alteração",
+   "justification": "",
+   "r1_failed": null,
+   "location": "tests/test_stage4b_contract.py:88"
+  },
+  {
+   "test": "tests/test_stage4b_contract.py::test_performance_within_contract_limit",
+   "class": "E",
+   "reference_now": "contract_audit_4b.json / contrato",
+   "reference_new": "sem alteração",
+   "justification": "",
+   "r1_failed": null,
+   "location": "tests/test_stage4b_contract.py:132"
+  },
+  {
+   "test": "tests/test_stage4b_contract.py::test_contract_document_records_decisions_and_findings",
+   "class": "E",
+   "reference_now": "contract_audit_4b.json / contrato",
+   "reference_new": "sem alteração",
+   "justification": "",
+   "r1_failed": null,
+   "location": "tests/test_stage4b_contract.py:138"
+  },
+  {
+   "test": "tests/test_stage4b_temporal.py::test_live_t2_leap_year_passes",
+   "class": "R",
+   "reference_now": "harness T2 ao vivo x evidência T2 versionada + literais 446/458/896/67",
+   "reference_new": "harness com `--baseline-dir`; literais = referência do current",
+   "justification": "",
+   "r1_failed": true,
+   "location": "tests/test_stage4b_temporal.py:47"
+  },
+  {
+   "test": "tests/test_stage4b_temporal.py::test_committed_runs_cover_every_date",
+   "class": "E",
+   "reference_now": "evidência T1/T2/T3 versionada",
+   "reference_new": "sem alteração",
+   "justification": "",
+   "r1_failed": null,
+   "location": "tests/test_stage4b_temporal.py:56"
+  },
+  {
+   "test": "tests/test_stage4b_temporal.py::test_identities_and_windows_follow_the_calendar",
+   "class": "E",
+   "reference_now": "evidência T1/T2/T3 versionada",
+   "reference_new": "sem alteração",
+   "justification": "",
+   "r1_failed": null,
+   "location": "tests/test_stage4b_temporal.py:67"
+  },
+  {
+   "test": "tests/test_stage4b_temporal.py::test_t1_turn_of_year_and_closed_periods",
+   "class": "E",
+   "reference_now": "evidência T1/T2/T3 versionada",
+   "reference_new": "sem alteração",
+   "justification": "",
+   "r1_failed": null,
+   "location": "tests/test_stage4b_temporal.py:76"
+  },
+  {
+   "test": "tests/test_stage4b_temporal.py::test_prefix_invariant_against_stage_4a",
+   "class": "E",
+   "reference_now": "evidência T1/T2/T3 versionada",
+   "reference_new": "sem alteração",
+   "justification": "",
+   "r1_failed": null,
+   "location": "tests/test_stage4b_temporal.py:96"
+  },
+  {
+   "test": "tests/test_stage4b_temporal.py::test_state_over_the_year_and_isolation_between_years",
+   "class": "E",
+   "reference_now": "evidência T1/T2/T3 versionada",
+   "reference_new": "sem alteração",
+   "justification": "",
+   "r1_failed": null,
+   "location": "tests/test_stage4b_temporal.py:102"
+  },
+  {
+   "test": "tests/test_stage4b_temporal.py::test_determinism_configurations",
+   "class": "E",
+   "reference_now": "evidência T1/T2/T3 versionada",
+   "reference_new": "sem alteração",
+   "justification": "",
+   "r1_failed": null,
+   "location": "tests/test_stage4b_temporal.py:109"
+  },
+  {
+   "test": "tests/test_stage4b_temporal.py::test_performance_ratio_within_limit_and_t3_leap_and_two_year_ends",
+   "class": "E",
+   "reference_now": "evidência T1/T2/T3 versionada",
+   "reference_new": "sem alteração",
+   "justification": "",
+   "r1_failed": null,
+   "location": "tests/test_stage4b_temporal.py:119"
+  },
+  {
+   "test": "tests/test_stage4b_mutation.py::test_live_evidence_mutations_detected_and_controls_accepted",
+   "class": "R",
+   "reference_now": "evidência T1/T2 + expectativas 4A/4B versionadas",
+   "reference_new": "conjuntos do current (`--baseline-dir`)",
+   "justification": "",
+   "r1_failed": true,
+   "location": "tests/test_stage4b_mutation.py:42"
+  },
+  {
+   "test": "tests/test_stage4b_mutation.py::test_required_mutants_apply_to_unique_snippets",
+   "class": "C",
+   "reference_now": "trechos do código do app",
+   "reference_new": "sem alteração",
+   "justification": "contrato do código atual",
+   "r1_failed": null,
+   "location": "tests/test_stage4b_mutation.py:71"
+  },
+  {
+   "test": "tests/test_stage4b_mutation.py::test_working_tree_untouched",
+   "class": "W",
+   "reference_now": "`git status` vazio",
+   "reference_new": "sem alteração",
+   "justification": "",
+   "r1_failed": null,
+   "location": "tests/test_stage4b_mutation.py:83"
+  },
+  {
+   "test": "tests/test_stage4b_mutation.py::test_committed_evidence_mutations_cover_every_temporal_contract",
+   "class": "E",
+   "reference_now": "evidência versionada",
+   "reference_new": "sem alteração",
+   "justification": "",
+   "r1_failed": null,
+   "location": "tests/test_stage4b_mutation.py:50"
+  },
+  {
+   "test": "tests/test_stage4b_mutation.py::test_committed_code_mutants_all_detected",
+   "class": "E",
+   "reference_now": "evidência versionada",
+   "reference_new": "sem alteração",
+   "justification": "",
+   "r1_failed": null,
+   "location": "tests/test_stage4b_mutation.py:60"
+  },
+  {
+   "test": "tests/test_stage4b_oracle.py::test_live_oracle_t2_and_stated_run",
+   "class": "R",
+   "reference_now": "contract_expectations_4b.json (intervalos) via harness",
+   "reference_new": "expectativas do current",
+   "justification": "não compara com evidência",
+   "r1_failed": null,
+   "location": "tests/test_stage4b_oracle.py:37"
+  },
+  {
+   "test": "tests/test_stage4b_oracle.py::test_committed_oracle_covers_every_aggregation_on_t1_and_t2",
+   "class": "E",
+   "reference_now": "oracle_temporal_summary.json",
+   "reference_new": "sem alteração",
+   "justification": "",
+   "r1_failed": null,
+   "location": "tests/test_stage4b_oracle.py:45"
+  }
+ ],
+ "counts": {
+  "H": 21,
+  "E": 35,
+  "R": 17,
+  "S": 8,
+  "W": 2,
+  "C": 38
+ },
+ "total": 121,
+ "r1_failed_listed": 67
+}
