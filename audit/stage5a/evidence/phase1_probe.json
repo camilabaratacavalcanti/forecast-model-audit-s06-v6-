@@ -1,0 +1,354 @@
+{
+ "workbook_seed_rc": 0,
+ "workbook_seed": [
+  "area_41: descritivo_das_variáveis_A41_v9.xlsx sha256=36bbae135285ad9b3b88d21ef94e2bc9c92f2ef74736412b66bc62de4dcf3f50 {'variables': 36, 'parameters': 7, 'equations': 20, 'aggregation_rules': 10}",
+  "energy: descritivo_das_variáveis_energy_v9.xlsx sha256=731f71e9ab3850fef29ed384230aef37bc2c08a656cbf441f5eada9900973de2 {'variables': 53, 'parameters': 4, 'equations': 25, 'aggregation_rules': 11}",
+  "max_ht: descritivo_das_variáveis_MaxHT_v13.xlsx sha256=c9818920b3994ae6aaeef5f237e59dd94d8e1b8647f0bf64426fb5f3d9f0aa98 {'variables': 117, 'parameters': 4, 'equations': 30, 'aggregation_rules': 78}",
+  "production: descritivo_das_variáveis_production_v11.xlsx sha256=d946dfd522c8cbb301c0c63caa3c62263b74a849e043d7b2f4bcb0bdb262c922 {'variables': 66, 'parameters': 10, 'equations': 27, 'aggregation_rules': 28}",
+  "yield: descritivo_das_variáveis_yield_v11.xlsx sha256=639e8b980f19bc20429cf9763157ac1828d9067bdbabea3bf3db0badbc2df931 {'variables': 240, 'parameters': 8, 'equations': 138, 'aggregation_rules': 80}",
+  "interblock: 29 vínculos declarados em fonte, 13 válidos, 16 pendentes de carregamento, 0 rejeitados"
+ ],
+ "blocks": {
+  "yield": {
+   "variables": [
+    240,
+    240
+   ],
+   "variables_new": [],
+   "variables_removed": [],
+   "retired_in_ledger": [],
+   "parameters": [
+    8,
+    8
+   ],
+   "equations": [
+    138,
+    138
+   ],
+   "aggregation_rules": [
+    80,
+    80
+   ],
+   "rules_new": [],
+   "rules_removed": [],
+   "F5A_01_positional_eq_with_other_target": [],
+   "F5A_01_count": 0,
+   "ledger_simulation": {
+    "kept": 138,
+    "new": [],
+    "retired": [],
+    "renumbered": [],
+    "expression_changed_same_id": []
+   },
+   "sum_factor_not_1_B0": [],
+   "sum_factor_not_1_new": [],
+   "sum_rules_B0": 0
+  },
+  "production": {
+   "variables": [
+    66,
+    66
+   ],
+   "variables_new": [],
+   "variables_removed": [],
+   "retired_in_ledger": [
+    "PARAM12003"
+   ],
+   "parameters": [
+    10,
+    10
+   ],
+   "equations": [
+    27,
+    27
+   ],
+   "aggregation_rules": [
+    28,
+    28
+   ],
+   "rules_new": [],
+   "rules_removed": [],
+   "F5A_01_positional_eq_with_other_target": [],
+   "F5A_01_count": 0,
+   "ledger_simulation": {
+    "kept": 27,
+    "new": [],
+    "retired": [],
+    "renumbered": [],
+    "expression_changed_same_id": []
+   },
+   "sum_factor_not_1_B0": [],
+   "sum_factor_not_1_new": [],
+   "sum_rules_B0": 10
+  },
+  "energy": {
+   "variables": [
+    52,
+    53
+   ],
+   "variables_new": [
+    "VAR18053"
+   ],
+   "variables_removed": [],
+   "retired_in_ledger": [],
+   "parameters": [
+    4,
+    4
+   ],
+   "equations": [
+    24,
+    25
+   ],
+   "aggregation_rules": [
+    11,
+    11
+   ],
+   "rules_new": [],
+   "rules_removed": [],
+   "F5A_01_positional_eq_with_other_target": [
+    "EQ18011",
+    "EQ18012",
+    "EQ18013",
+    "EQ18014",
+    "EQ18015",
+    "EQ18016",
+    "EQ18017",
+    "EQ18018",
+    "EQ18019",
+    "EQ18020",
+    "EQ18021",
+    "EQ18022",
+    "EQ18023",
+    "EQ18024"
+   ],
+   "F5A_01_count": 14,
+   "ledger_simulation": {
+    "kept": 24,
+    "new": [
+     [
+      "EQ18025",
+      [
+       "variable",
+       "evaporado_total_evaporacao",
+       "diário",
+       "linha",
+       "L1_L7",
+       "L1_L7"
+      ]
+     ]
+    ],
+    "retired": [],
+    "renumbered": [],
+    "expression_changed_same_id": []
+   },
+   "sum_factor_not_1_B0": [],
+   "sum_factor_not_1_new": [],
+   "sum_rules_B0": 0
+  },
+  "max_ht": {
+   "variables": [
+    116,
+    117
+   ],
+   "variables_new": [
+    "VAR13117",
+    "VAR13118",
+    "VAR13119",
+    "VAR13120",
+    "VAR13121",
+    "VAR13122",
+    "VAR13123"
+   ],
+   "variables_removed": [
+    "VAR13001",
+    "VAR13002",
+    "VAR13003",
+    "VAR13004",
+    "VAR13005",
+    "VAR13006"
+   ],
+   "retired_in_ledger": [
+    "VAR13001",
+    "VAR13002",
+    "VAR13003",
+    "VAR13004",
+    "VAR13005",
+    "VAR13006"
+   ],
+   "parameters": [
+    4,
+    4
+   ],
+   "equations": [
+    29,
+    30
+   ],
+   "aggregation_rules": [
+    78,
+    78
+   ],
+   "rules_new": [
+    "AGR-MAX_HT-ALIMENTACAO_EVAP-LINHA-L1_L7-ANUAL-AVERAGE",
+    "AGR-MAX_HT-ALIMENTACAO_EVAP-LINHA-L1_L7-MENSAL-AVERAGE",
+    "AGR-MAX_HT-ALIMENTACAO_EVAP_TOTAL-GRUPO-L1_L7-ANUAL-AVERAGE",
+    "AGR-MAX_HT-ALIMENTACAO_EVAP_TOTAL-GRUPO-L1_L7-MENSAL-AVERAGE"
+   ],
+   "rules_removed": [
+    "AGR-MAX_HT-ALIMENTAÇÃO_EVAP-LINHA-L1_L7-ANUAL-AVERAGE",
+    "AGR-MAX_HT-ALIMENTAÇÃO_EVAP-LINHA-L1_L7-MENSAL-AVERAGE",
+    "AGR-MAX_HT-ALIMENTAÇÃO_EVAP_TOTAL-GRUPO-L1_L7-ANUAL-AVERAGE",
+    "AGR-MAX_HT-ALIMENTAÇÃO_EVAP_TOTAL-GRUPO-L1_L7-MENSAL-AVERAGE"
+   ],
+   "F5A_01_positional_eq_with_other_target": [
+    "EQ13001",
+    "EQ13022",
+    "EQ13023",
+    "EQ13024",
+    "EQ13025",
+    "EQ13026",
+    "EQ13027",
+    "EQ13028",
+    "EQ13029"
+   ],
+   "F5A_01_count": 9,
+   "ledger_simulation": {
+    "kept": 28,
+    "new": [
+     [
+      "EQ13030",
+      [
+       "variable",
+       "alimentacao_evap_total",
+       "diário",
+       "linha_grupo",
+       "L1_L7",
+       "L1_L7"
+      ]
+     ],
+     [
+      "EQ13031",
+      [
+       "variable",
+       "lth_total_ag",
+       "diário",
+       "linha_grupo",
+       "L1_L7",
+       "L1_L7"
+      ]
+     ]
+    ],
+    "retired": [
+     [
+      "EQ13001",
+      [
+       "variable",
+       "alimentação_evap_total",
+       "diário",
+       "linha_grupo",
+       "L1_L7",
+       "L1_L7"
+      ]
+     ]
+    ],
+    "renumbered": [],
+    "expression_changed_same_id": [
+     "EQ13019"
+    ]
+   },
+   "sum_factor_not_1_B0": [
+    "AGR-MAX_HT-LTH_TOTAL_SOMATORIO-GRUPO-L1_L7-ANUAL-SUM",
+    "AGR-MAX_HT-LTH_TOTAL_SOMATORIO-GRUPO-L1_L7-MENSAL-SUM"
+   ],
+   "sum_factor_not_1_new": [],
+   "sum_rules_B0": 20
+  },
+  "area_41": {
+   "variables": [
+    36,
+    36
+   ],
+   "variables_new": [],
+   "variables_removed": [],
+   "retired_in_ledger": [],
+   "parameters": [
+    7,
+    7
+   ],
+   "equations": [
+    20,
+    20
+   ],
+   "aggregation_rules": [
+    10,
+    10
+   ],
+   "rules_new": [],
+   "rules_removed": [],
+   "F5A_01_positional_eq_with_other_target": [],
+   "F5A_01_count": 0,
+   "ledger_simulation": {
+    "kept": 20,
+    "new": [],
+    "retired": [],
+    "renumbered": [],
+    "expression_changed_same_id": []
+   },
+   "sum_factor_not_1_B0": [],
+   "sum_factor_not_1_new": [],
+   "sum_rules_B0": 0
+  }
+ },
+ "links_B0": {
+  "valid": 13,
+  "pending": 16,
+  "rejected": 0,
+  "pending_set": [
+   "area_41.VAR16021<-maintenance",
+   "energy.VAR18012<-temperature_lp",
+   "energy.VAR18013<-temperature_lp",
+   "energy.VAR18014<-temperature_lp",
+   "energy.VAR18031<-area_04_13",
+   "max_ht.VAR13003<-alumina",
+   "production.VAR12028<-forecast",
+   "production.VAR12030<-forecast",
+   "production.VAR12054<-maintenance",
+   "production.VAR12055<-maintenance",
+   "production.VAR12056<-maintenance",
+   "production.VAR12057<-maintenance",
+   "production.VAR12058<-maintenance",
+   "production.VAR12059<-maintenance",
+   "production.VAR12060<-maintenance",
+   "production.VAR12061<-maintenance"
+  ]
+ },
+ "links_new": {
+  "valid": 13,
+  "pending": 16,
+  "rejected": 0,
+  "pending_set": [
+   "area_41.VAR16021<-maintenance",
+   "energy.VAR18012<-temperature_lp",
+   "energy.VAR18013<-temperature_lp",
+   "energy.VAR18014<-temperature_lp",
+   "energy.VAR18053<-area_04_13",
+   "max_ht.VAR13119<-alumina",
+   "production.VAR12028<-forecast",
+   "production.VAR12030<-forecast",
+   "production.VAR12054<-maintenance",
+   "production.VAR12055<-maintenance",
+   "production.VAR12056<-maintenance",
+   "production.VAR12057<-maintenance",
+   "production.VAR12058<-maintenance",
+   "production.VAR12059<-maintenance",
+   "production.VAR12060<-maintenance",
+   "production.VAR12061<-maintenance"
+  ]
+ },
+ "F5A_01_total": {
+  "yield": 0,
+  "production": 0,
+  "energy": 14,
+  "max_ht": 9,
+  "area_41": 0
+ }
+}
