@@ -5,6 +5,10 @@ Provam a reconciliação independente das cardinalidades (sem importar app/), o 
 L8 (3.4C preservada e comparada; só o area_41 mudou), a superfície de produção e a
 Stage 3 intactas, a adição append-only à lista mestre de pendências e o conteúdo
 obrigatório do fechamento (gate, limitações do oracle, gancho do Excel).
+
+Stage 4C (classe H, F4B-06): a reconciliação roda SEM alteração num clone temporário fixado no
+fechamento 0a924e6, e a superfície de produção é o intervalo fixo d2847ab..0a924e6 — a guarda
+fecha a 4A e nunca lê o HEAD (lida contra o HEAD, falhava a cada stage posterior).
 """
 
 from __future__ import annotations
@@ -17,15 +21,19 @@ from pathlib import Path
 REPO = Path(__file__).resolve().parents[1]
 STAGE = REPO / "audit" / "stage4a"
 BASELINE = "d2847ab36933668bf4a1299b3ffe058827a82037"
+CLOSURE = "0a924e66cfd0774a13e46a332b460b770283a554"
+
+sys.path.insert(0, str(REPO / "audit" / "baselines"))
+import historical  # noqa: E402  (Stage 4C: clone no fechamento)
 
 
 def git(*args) -> str:
     return subprocess.run(["git", *args], cwd=REPO, capture_output=True, text=True, check=True).stdout
 
 
-def test_independent_reconciliation_passes_without_app():
-    completed = subprocess.run([sys.executable, "-I", str(STAGE / "closure" / "reconcile_4a.py"), "--no-write"],
-                               cwd=REPO, capture_output=True, text=True)
+def test_independent_reconciliation_passes_without_app(tmp_path):
+    clone = historical.checkout(CLOSURE, tmp_path / "tree")
+    completed = historical.run(clone, "audit/stage4a/closure/reconcile_4a.py", "--no-write", isolated=True)
     out = json.loads(completed.stdout)
     assert completed.returncode == 0, out["problems"]
     assert out["passed"] == out["total"] >= 42
@@ -51,9 +59,10 @@ def test_l8_comparison_only_area_41_changed():
 
 
 def test_production_surface_and_stage_3_closure_untouched():
-    assert git("diff", "--stat", BASELINE, "--", "app", "data", "tools") == ""
-    assert git("diff", "--stat", BASELINE, "--", "audit/stage3_4/STAGE_3_FINAL_CLOSURE.md") == ""
-    changed = [p for p in git("diff", "--name-only", BASELINE).split() if not p.startswith(("audit/stage4a/", "tests/test_stage4a_"))]
+    assert git("diff", "--stat", BASELINE, CLOSURE, "--", "app", "data", "tools") == ""
+    assert git("diff", "--stat", BASELINE, CLOSURE, "--", "audit/stage3_4/STAGE_3_FINAL_CLOSURE.md") == ""
+    changed = [p for p in git("diff", "--name-only", BASELINE, CLOSURE).split()
+               if not p.startswith(("audit/stage4a/", "tests/test_stage4a_"))]
     assert changed == ["audit/stage3_4/PLATFORM_PENDING_ITEMS.md"]
 
 

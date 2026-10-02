@@ -228,6 +228,9 @@ def diff_report(new_entry: dict, previous: dict) -> str:
 def propose(entry_id: str, stage: str, reason: str) -> int:
     if not reason or not reason.strip():
         return fail("motivo (--reason) ausente ou vazio")
+    registry = reg.load()
+    if any(e["id"] == entry_id for e in registry["entries"]):
+        return fail(f"id {entry_id} já existe no registro")
     if not re.fullmatch(r"B[1-9][0-9]*(-[a-z0-9]+)?", entry_id or ""):
         return fail(f"id inválido {entry_id!r} (esperado B<n> ou B<n>-<sufixo>)")
     if not stage or not stage.strip():
@@ -235,9 +238,6 @@ def propose(entry_id: str, stage: str, reason: str) -> int:
     dirty = git("status", "--porcelain", "--untracked-files=all")
     if dirty:
         return fail(f"árvore suja: {dirty.splitlines()[:5]}")
-    registry = reg.load()
-    if any(e["id"] == entry_id for e in registry["entries"]):
-        return fail(f"id {entry_id} já existe no registro")
     if registry["entries"][-1]["status"] != "APPROVED":
         return fail(f"há proposta pendente: {registry['entries'][-1]['id']}")
     problems = reg.verify(registry)

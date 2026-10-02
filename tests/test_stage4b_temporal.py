@@ -28,6 +28,11 @@ sys.path[:0] = [str(REPO / "audit" / "stage4b"), str(HARNESS), str(REPO / "audit
 import independent_calendar as cal  # noqa: E402
 import run_temporal_4b as harness  # noqa: E402
 
+sys.path.insert(0, str(REPO / "audit" / "baselines"))
+import baseline_registry as reg  # noqa: E402  (Stage 4C: referência do registro, classe R)
+
+REF = reg.load_json("stage4b_contract", "contract_expectations_4b.json")["temporal"]
+
 
 def summary(label):
     return json.loads((EVIDENCE / label / "temporal_summary.json").read_text(encoding="utf-8"))
@@ -39,8 +44,8 @@ def rows(label, name):
 
 @pytest.fixture(scope="module")
 def live_t2():
-    completed = subprocess.run([sys.executable, str(HARNESS / "run_temporal_4b.py"), "--range", "T2", "--no-write"],
-                               cwd=REPO, capture_output=True, text=True)
+    completed = subprocess.run([sys.executable, str(HARNESS / "run_temporal_4b.py"), "--range", "T2", "--no-write",
+                                *reg.harness_args()], cwd=REPO, capture_output=True, text=True)
     return completed.returncode, json.loads(completed.stdout), completed.stderr
 
 
@@ -48,7 +53,8 @@ def test_live_t2_leap_year_passes(live_t2):
     code, out, stderr = live_t2
     assert code == 0, (out["problems"], stderr[-1500:])
     assert out["dates"] == {"count": 62, "first": "2028-01-01", "last": "2028-03-02"}
-    assert out["per_date"] == {"targets": [446], "nodes": [458], "events": [896], "transfer_events": [67]}
+    assert out["per_date"] == {"targets": [REF["targets"]], "nodes": [REF["planner_nodes"]],      # B0: 446/458/896/67
+                               "events": [REF["events_per_date"]], "transfer_events": [REF["transfer_events_per_date"]]}
     assert out["closed_periods"] == {"checked": 2, "unchanged": 2}
 
 

@@ -4,6 +4,10 @@ Stage 4B.4 — fechamento (REAL_DERIVED_TEST_RESULT).
 Provam a reconciliação independente (python -I, sem app/), a superfície de produção e as
 stages anteriores intactas, a adição append-only à lista mestre e o conteúdo obrigatório do
 fechamento (gate de 16 critérios, E1–E5, ciclos, limitações, comandos).
+
+Stage 4C (classe H): a reconciliação roda SEM alteração num clone temporário fixado no fechamento
+f573c1b, e a superfície é o intervalo fixo 0a924e6..f573c1b; os arquivos não rastreados nas stages
+anteriores continuam verificados na árvore de trabalho (W).
 """
 
 from __future__ import annotations
@@ -16,6 +20,10 @@ from pathlib import Path
 REPO = Path(__file__).resolve().parents[1]
 STAGE = REPO / "audit" / "stage4b"
 BASELINE = "0a924e66cfd0774a13e46a332b460b770283a554"
+CLOSURE = "f573c1b6cb9365b4669ec6af688f0ada36ad438d"
+
+sys.path.insert(0, str(REPO / "audit" / "baselines"))
+import historical  # noqa: E402  (Stage 4C: clone no fechamento)
 PENDING = "audit/stage3_4/PLATFORM_PENDING_ITEMS.md"
 
 
@@ -23,9 +31,9 @@ def git(*args) -> str:
     return subprocess.run(["git", *args], cwd=REPO, capture_output=True, text=True, check=True).stdout
 
 
-def test_independent_reconciliation_passes_without_app():
-    completed = subprocess.run([sys.executable, "-I", str(STAGE / "closure" / "reconcile_4b.py"), "--no-write"],
-                               cwd=REPO, capture_output=True, text=True)
+def test_independent_reconciliation_passes_without_app(tmp_path):
+    clone = historical.checkout(CLOSURE, tmp_path / "tree")
+    completed = historical.run(clone, "audit/stage4b/closure/reconcile_4b.py", "--no-write", isolated=True)
     out = json.loads(completed.stdout)
     assert completed.returncode == 0, out["problems"]
     committed = json.loads((STAGE / "closure" / "closure_reconciliation_4b.json").read_text(encoding="utf-8"))
@@ -34,8 +42,8 @@ def test_independent_reconciliation_passes_without_app():
 
 
 def test_production_surface_and_previous_stages_untouched():
-    assert git("diff", "--stat", BASELINE, "--", "app", "data", "tools") == ""
-    changed = [p for p in git("diff", "--name-only", BASELINE).split()
+    assert git("diff", "--stat", BASELINE, CLOSURE, "--", "app", "data", "tools") == ""
+    changed = [p for p in git("diff", "--name-only", BASELINE, CLOSURE).split()
                if not p.startswith(("audit/stage4b/", "tests/test_stage4b_"))]
     assert changed == [PENDING]
     untracked = git("ls-files", "--others", "--exclude-standard", "--", "audit/stage3_4", "audit/stage4a")

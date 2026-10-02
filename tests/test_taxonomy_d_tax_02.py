@@ -35,6 +35,7 @@ from app.validation.variable_seed_validator import VARIABLE_ID_RANGES  # noqa: E
 from tools.workbook_seed.taxonomy import BLOCK_TAXONOMY, OFFICIAL_BLOCKS  # noqa: E402
 
 D_TAX_01_COMMIT = "d8b5d55810c55a06cfc54e8a2a25ac9f796f08b7"   # HEAD antes de D-TAX-02
+D_TAX_02_COMMIT = "d2847ab36933668bf4a1299b3ffe058827a82037"   # fechamento da D-TAX-02 (Stage 4C, H)
 EXPECTED = {
     "custo_budget": ("budget_cost", [32000, 32999]),
     "custo_forecast_bdgt": ("budget_forecast_cost", [33000, 33999]),
@@ -154,13 +155,14 @@ def test_tax_02_06c_versioned_occurrence_evidence_is_consistent():
 # ------------------------------------------------------------------ TAX-02-07
 
 def test_tax_02_07_crosswalk_changes_no_id_or_range():
-    changed = set(git("diff", "--name-only", D_TAX_01_COMMIT, "--", "app", "tools", "data").split())
+    # Stage 4C (H): a afirmação é do fechamento D-TAX-02 (d8b5d55..d2847ab); a faixa viva == CANONICAL é S.
+    changed = set(git("diff", "--name-only", D_TAX_01_COMMIT, D_TAX_02_COMMIT, "--", "app", "tools", "data").split())
     assert changed <= {"app/validation/variable_seed_validator.py", "app/validation/parameter_seed_validator.py"}
     for path in changed:                                         # só comentários: AST idêntico
         before = ast.parse(git("show", f"{D_TAX_01_COMMIT}:{path}"))
-        after = ast.parse((REPO / path).read_bytes())
+        after = ast.parse(git("show", f"{D_TAX_02_COMMIT}:{path}"))
         assert ast.dump(before) == ast.dump(after), path
-    assert guard.protected_status(D_TAX_01_COMMIT) in ("UNCHANGED", "AUTHORIZED_TAXONOMY_MIGRATION")
+    assert guard.protected_status(D_TAX_01_COMMIT, D_TAX_02_COMMIT) in ("UNCHANGED", "AUTHORIZED_TAXONOMY_MIGRATION")
     assert [(n, lo, hi) for n, (lo, hi) in VARIABLE_ID_RANGES.items()] == list(guard.CANONICAL)
 
 

@@ -8,6 +8,10 @@ Validam o harness `audit/stage4a/integrated/run_integrated_4a.py`:
     * testes NEGATIVOS: corrupção de chave dos 4 blocos, corrupção de estado e o
       protocolo de entradas ingênuo precisam ser detectados.
 Nenhum teste altera app/, data/, tools/ nem a evidência da 3.4C.
+
+Stage 4C: os testes vivos (classe R) leem a referência do registro de baseline (`current`); os testes
+da evidência versionada (classe E) leem o histórico; a guarda dos caminhos da 3.2/3.4 é H no intervalo
+da 4A (`d2847ab..0a924e6`) + E da evidência.
 """
 
 from __future__ import annotations
@@ -30,8 +34,16 @@ sys.path.insert(0, str(HARNESS))
 import common  # noqa: E402
 import run_integrated_4a as harness  # noqa: E402
 
+sys.path.insert(0, str(REPO / "audit" / "baselines"))
+import baseline_registry as reg  # noqa: E402
+
+# classe E (evidência histórica versionada)
 EXPECTED = json.loads((STAGE / "contract_expectations.json").read_text(encoding="utf-8"))["integrated"]
 STAGE34 = json.loads((common.STAGE34_EVIDENCE / "integrated_summary.json").read_text(encoding="utf-8"))
+# classe R (referência do registro; em B0 = os mesmos arquivos)
+REF = reg.load_json("stage4a_contract", "contract_expectations.json")["integrated"]
+REF34 = reg.load_json("stage3_4c_integrated", "integrated_summary.json")
+BASELINE_4A, CLOSURE_4A = "d2847ab36933668bf4a1299b3ffe058827a82037", "0a924e66cfd0774a13e46a332b460b770283a554"
 
 
 def read_csv(name):
@@ -40,8 +52,8 @@ def read_csv(name):
 
 @pytest.fixture(scope="module")
 def live():
-    completed = subprocess.run([sys.executable, str(HARNESS / "run_integrated_4a.py"), "--no-write"],
-                               cwd=REPO, capture_output=True, text=True)
+    completed = subprocess.run([sys.executable, str(HARNESS / "run_integrated_4a.py"), "--no-write",
+                                *reg.harness_args()], cwd=REPO, capture_output=True, text=True)
     return completed.returncode, json.loads(completed.stdout), completed.stderr
 
 
@@ -50,12 +62,12 @@ def test_live_five_block_regression_passes_and_reproduces_committed_evidence(liv
     assert code == 0, (summary["problems"], stderr[-2000:])
     assert summary["result"] == "PASS" and summary["problems"] == []
     universe = summary["universe"]
-    assert universe["integrated_targets"] == 446 == universe["official_targets"]
-    assert universe["planner_nodes"] == 458 and universe["nodes_by_kind"] == {
-        "EQUATION": 238, "AGGREGATION": 207, "TRANSFER": 13}
-    assert "TRANSFER:VAR16007" in universe["transfers"] and len(universe["transfers"]) == 13
-    assert (universe["previous_targets"], universe["previous_nodes"]) == (421, 427)
-    assert summary["targets_executed"] == 446 and summary["nodes_executed"] == 458
+    # B0: 446 / 458 / {238, 207, 13} / 13 transferências / (421, 427) — provado no teste do registro
+    assert universe["integrated_targets"] == REF["integrated_targets"] == universe["official_targets"]
+    assert universe["planner_nodes"] == REF["planner_nodes"] and universe["nodes_by_kind"] == REF["nodes_by_kind"]
+    assert "TRANSFER:VAR16007" in universe["transfers"] and len(universe["transfers"]) == len(REF["transfers"])
+    assert (universe["previous_targets"], universe["previous_nodes"]) == (REF["previous_targets"], REF["previous_nodes"])
+    assert summary["targets_executed"] == REF["integrated_targets"] and summary["nodes_executed"] == REF["planner_nodes"]
     assert summary["orchestrator_vs_engine"].get("different", 0) == 0
     assert summary["orchestrator_vs_engine"]["compared_area_41"] > 0
 
@@ -64,9 +76,9 @@ def test_non_regression_of_the_421_previous_targets(live):
     _code, summary, _ = live
     report = summary["non_regression_421"]
     assert report["result"] == "PASS" and report["differences"] == 0 and report["targets_different"] == 0
-    assert report["targets_compared"] == 421 and report["keys_compared"] > 30000
+    assert report["targets_compared"] == REF["previous_targets"] and report["keys_compared"] > 30000
     assert report["subset_store_sha256"] == report["reference_store_sha256"] == \
-        STAGE34["determinism"]["RUN_A"]["store_sha256"]
+        REF34["determinism"]["RUN_A"]["store_sha256"]
 
 
 def test_committed_non_regression_report():
@@ -125,14 +137,21 @@ def test_committed_csv_evidence_is_complete():
 
 
 def test_stage_3_4c_evidence_is_untouched():
-    """Harnesses e evidência das 3.2/3.4 idênticos ao baseline da 4A (árvore de trabalho incluída)."""
+    """Harnesses e evidência das 3.2/3.4 idênticos ao baseline durante a 4A (H: d2847ab..0a924e6) e a
+    evidência (arquivos que não são código) idêntica ao fechamento da 4A também no HEAD (E)."""
     paths = ["audit/stage3_4/integrated", "audit/stage3_4/differential", "audit/stage3_4/mutation",
              "audit/stage3_4/closure", "audit/stage3_4/taxonomy_migration", "audit/stage3_2_execution_orchestration"]
-    out = subprocess.run(["git", "diff", "--name-only", "d2847ab36933668bf4a1299b3ffe058827a82037", "--", *paths],
+    out = subprocess.run(["git", "diff", "--name-only", BASELINE_4A, CLOSURE_4A, "--", *paths],
                          cwd=REPO, capture_output=True, text=True, check=True).stdout
+    evidence = [p for p in subprocess.run(["git", "ls-tree", "-r", "--name-only", CLOSURE_4A, "--", *paths], cwd=REPO,
+                                          capture_output=True, text=True, check=True).stdout.split()
+                if not p.endswith(".py")]
+    changed_evidence = subprocess.run(["git", "diff", "--name-only", CLOSURE_4A, "--", *evidence],
+                                      cwd=REPO, capture_output=True, text=True, check=True).stdout
     untracked = subprocess.run(["git", "ls-files", "--others", "--exclude-standard", "--", *paths],
                                cwd=REPO, capture_output=True, text=True, check=True).stdout
     assert out == "" and untracked == ""
+    assert len(evidence) > 20 and changed_evidence == ""
 
 
 # ------------------------------------------------------------------ negativos

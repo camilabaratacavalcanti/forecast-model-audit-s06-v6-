@@ -10,6 +10,10 @@ Validam o harness em `audit/stage3_4/integrated/`:
       corrupção de transferência e corrupção de estado precisam ser detectadas;
     * hash do grafo do fixture estável e sensível.
 Nenhum teste altera app/, data/, tools/, seeds ou vínculos.
+
+Stage 4C (classe R): a referência das comparações vivas vem do registro de baseline (`current`);
+em B0 é a evidência histórica e os literais 446/421/427/12/60 continuam provados em
+`test_stage4c_baseline_registry.py`. O teste do summary versionado (classe E) lê o histórico.
 """
 
 from __future__ import annotations
@@ -39,6 +43,19 @@ from app.engine.interblock_orchestrator import (  # noqa: E402
 
 DAYS = [date(2026, 1, 1) + timedelta(days=n) for n in range(32)]
 
+sys.path.insert(0, str(REPO / "audit" / "baselines"))
+import baseline_registry as reg  # noqa: E402
+
+SET = "stage3_4c_integrated"
+
+
+def reference_csv(name):
+    return list(csv.DictReader(reg.path(SET, name).open(encoding="utf-8")))
+
+
+def reference_universe():
+    return reg.load_json(SET, "integrated_summary.json")["universe"]
+
 
 def read_csv(name):
     return list(csv.DictReader((EVIDENCE / name).open(encoding="utf-8")))
@@ -48,8 +65,8 @@ def read_csv(name):
 
 @pytest.fixture(scope="module")
 def live():
-    completed = subprocess.run([sys.executable, str(HARNESS / "run_integrated.py"), "--no-write"],
-                               cwd=REPO, capture_output=True, text=True)
+    completed = subprocess.run([sys.executable, str(HARNESS / "run_integrated.py"), "--no-write",
+                                *reg.harness_args()], cwd=REPO, capture_output=True, text=True)
     return completed.returncode, json.loads(completed.stdout), completed.stderr
 
 
@@ -57,19 +74,22 @@ def test_live_integrated_regression_passes(live):
     code, summary, stderr = live
     assert code == 0, (summary["problems"], stderr[-2000:])
     assert summary["result"] == "PASS" and summary["problems"] == []
+    ref = reference_universe()                       # B0: 446/25/421/427/{218,197,12}/0 (teste do registro)
     assert summary["universe"] == {
-        "official_targets": 446, "area_41_excluded": 25, "integrated_targets": 421, "planner_nodes": 427,
-        "nodes_by_kind": {EQUATION: 218, AGGREGATION: 197, TRANSFER: 12}, "pending_blockers": 0,
+        "official_targets": ref["official_targets"], "area_41_excluded": ref["area_41_excluded"],
+        "integrated_targets": ref["integrated_targets"], "planner_nodes": ref["planner_nodes"],
+        "nodes_by_kind": ref["nodes_by_kind"], "pending_blockers": 0,
         "required_inputs": summary["universe"]["required_inputs"]}
-    assert summary["targets_executed"] == 421 and summary["nodes_executed"] == 427
-    assert len({446, 421, 427}) == 3                                             # 446 != 421 != 427
+    assert set(summary["universe"]["nodes_by_kind"]) == {EQUATION, AGGREGATION, TRANSFER}
+    assert summary["targets_executed"] == ref["integrated_targets"] and summary["nodes_executed"] == ref["planner_nodes"]
+    assert len({ref["official_targets"], ref["integrated_targets"], ref["planner_nodes"]}) == 3   # 446 != 421 != 427
     assert summary["orchestrator_vs_engine"].get("different", 0) == 0
     assert summary["orchestrator_vs_engine"]["compared"] > 0
 
 
 def test_live_run_reproduces_committed_evidence_and_is_deterministic(live):
     _code, summary, _ = live
-    committed = json.loads((EVIDENCE / "integrated_summary.json").read_text(encoding="utf-8"))
+    committed = reg.load_json(SET, "integrated_summary.json")
     det = summary["determinism"]
     for label in ("RUN_A", "RUN_B", "HASH_SEED_A", "HASH_SEED_B"):
         assert det[label]["results_sha256"] == committed["determinism"][label]["results_sha256"]
@@ -119,23 +139,27 @@ def test_committed_targets_nodes_transfers_and_coverage_are_complete():
     orchestrator = fixture.build("A")
     integrated = orchestrator.targets_of_blocks(fixture.OFFICIAL_BLOCKS)       # derivado, não fixo
     plan = orchestrator.plan(integrated)
-    targets = read_csv("targets.csv")
-    assert [r["target"] for r in targets] == integrated and len(integrated) == 421
+    ref = reference_universe()
+    targets = reference_csv("targets.csv")
+    assert [r["target"] for r in targets] == integrated and len(integrated) == ref["integrated_targets"]
     assert {r["execution_status"] for r in targets} == {"EXECUTED"}
     assert all(r["producer_nodes"] for r in targets)
-    nodes = read_csv("nodes.csv")
-    assert [r["node"] for r in nodes] == [s.key for s in plan.steps] and len(nodes) == 427
+    nodes = reference_csv("nodes.csv")
+    assert [r["node"] for r in nodes] == [s.key for s in plan.steps] and len(nodes) == ref["planner_nodes"]
     assert {r["execution_status"] for r in nodes} == {"EXECUTED"} and {r["dates_executed"] for r in nodes} == {"32"}
     assert all(r["dependent_targets"] and r["result_identity"] for r in nodes)
     assert all(r["planner_nodes"] and int(r["executed_nodes"]) == len(r["planner_nodes"].split("|")) for r in targets)
     assert {r["result_status"] for r in targets} == {"VALUE_WITHOUT_STATE"}
-    transfers = read_csv("transfers.csv")
-    assert len(transfers) == 12
+    transfers = reference_csv("transfers.csv")
+    assert len(transfers) == ref["nodes_by_kind"][TRANSFER]
     assert all(r["executed_events"] == r["verified_events"] == str(32 * int(r["instances"])) for r in transfers)
     assert {r["execution_status"] for r in transfers} == {"EXECUTED"}
-    coverage = read_csv("temporal_coverage.csv")
+    coverage = reference_csv("temporal_coverage.csv")
     assert [r["date"] for r in coverage] == [d.isoformat() for d in DAYS]
-    assert {(r["targets"], r["nodes"], r["transfer_events"], r["errors"]) for r in coverage} == {("421", "427", "60", "0")}
+    transfer_events = sum(len(orchestrator.catalog.links.link_for(s.node_id).instances)       # B0: 60
+                          for s in plan.steps if s.kind == TRANSFER)
+    assert {(r["targets"], r["nodes"], r["transfer_events"], r["errors"]) for r in coverage} == {
+        (str(ref["integrated_targets"]), str(ref["planner_nodes"]), str(transfer_events), "0")}
 
 
 def test_area_41_is_outside_the_integrated_universe():

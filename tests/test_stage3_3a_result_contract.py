@@ -430,11 +430,17 @@ def test_25_production_max_ht_same_topology(real_derived):
 
 
 def test_23_25_planning_code_is_unchanged_since_stage_3_2():
-    """_build_graph, _upstream, plan, _order, _find_cycle idênticos aos de a733487."""
+    """_build_graph, _upstream, plan, _order, _find_cycle idênticos aos de a733487.
+
+    Stage 4C (classe H): a afirmação é do fechamento 3.3A — o contrato de resultado não mexeu no
+    planner —, então o intervalo é fixo: a733487 (3.3A baseline) x eee88d6 (3.3A fechamento).
+    """
     baseline = subprocess.check_output(
         ["git", "show", "a733487:app/engine/interblock_orchestrator.py"], cwd=REPO,
     ).decode("utf-8")
-    current = (REPO / "app/engine/interblock_orchestrator.py").read_text(encoding="utf-8")
+    current = subprocess.check_output(
+        ["git", "show", "eee88d6:app/engine/interblock_orchestrator.py"], cwd=REPO,
+    ).decode("utf-8")
 
     def functions(source):
         tree = ast.parse(source)

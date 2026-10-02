@@ -8,6 +8,12 @@ Validam o próprio harness em `audit/stage3_4/differential/`:
     * a evidência versionada reproduz a matriz executada e o universo atual
       (392 instâncias de equação, 395 de agregação, 3 vetores, 2 datas).
 Nenhum teste altera o engine.
+
+Stage 4C (classe H, DR-4C-3): a afirmação diferencial é a do fechamento da 3.4B. A execução real
+roda o harness SEM alteração num clone temporário fixado em 4d54804 (intervalo 7877551..4d54804,
+com os dados daquele commit), e o universo da evidência é recalculado no mesmo clone. Nunca lê o
+HEAD: o runtime de referência não aceita dados de stages futuras. Regressões do app no HEAD ficam
+com as regressões vivas (classe R) das 3.4C/4A/4B.
 """
 
 from __future__ import annotations
@@ -21,6 +27,9 @@ from pathlib import Path
 
 import pytest
 
+sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "audit" / "baselines"))
+import historical  # noqa: E402  (Stage 4C: clone no fechamento)
+
 REPO = Path(__file__).resolve().parents[1]
 HARNESS = REPO / "audit" / "stage3_4" / "differential"
 sys.path.insert(0, str(HARNESS))
@@ -33,6 +42,7 @@ from app.repositories.seed_loader import SeedLoader  # noqa: E402
 BLOCKS = ("energy", "max_ht", "production", "yield")
 VECTORS = ("VECTOR_A", "VECTOR_B", "VECTOR_C")
 DATES = ("2026-09-03", "2026-12-31")
+CLOSURE_3_4B = "4d54804"
 
 
 def value(v):
@@ -114,9 +124,13 @@ def test_coverage_detects_duplicates_missing_and_unexpected():
 # ------------------------------------------------------------ execução real
 
 @pytest.fixture(scope="module")
-def live():
-    completed = subprocess.run([sys.executable, str(HARNESS / "run_differential.py"), "--no-write"],
-                               cwd=REPO, capture_output=True, text=True)
+def closure(tmp_path_factory):
+    return historical.checkout(CLOSURE_3_4B, tmp_path_factory.mktemp("stage3_4b_closure") / "tree")
+
+
+@pytest.fixture(scope="module")
+def live(closure):
+    completed = historical.run(closure, "audit/stage3_4/differential/run_differential.py", "--no-write")
     return completed.returncode, json.loads(completed.stdout)
 
 
@@ -126,6 +140,7 @@ def test_live_differential_reference_vs_head_matches_exactly(live):
     # D-TAX-01: única exceção — diff provadamente taxonômico (guard); qualquer outra mudança é FAIL.
     assert summary["REFERENCE_DATA_TOOLS_INVARIANT"] in ("PASS", "PASS_AUTHORIZED_TAXONOMY_MIGRATION_D-TAX-01")
     assert summary["reference_commit"].startswith("7877551")
+    assert summary["candidate_commit"].startswith(CLOSURE_3_4B)                  # H: intervalo fixo
     assert summary["differences"] == 0 and summary["problems"] == []
     eq, agg = summary["coverage"]["EQUATION"], summary["coverage"]["AGGREGATION"]
     assert (eq["instances"], eq["expected_cases"], eq["actual_cases"], eq["matched"]) == (392, 2352, 2352, 2352)
@@ -135,6 +150,23 @@ def test_live_differential_reference_vs_head_matches_exactly(live):
 
 
 # ------------------------------------------------------------ evidência versionada
+
+UNIVERSE_SNIPPET = """
+import json, sys
+from pathlib import Path
+sys.path.insert(0, str(Path.cwd()))
+sys.path.insert(0, str(Path.cwd() / "tests"))
+from test_stage3_4b_differential import current_universe
+print(json.dumps(sorted(map(list, current_universe()))))
+"""
+
+
+def universe_at(root):
+    """Universo calculado no clone pela `current_universe` do próprio commit de fechamento."""
+    done = subprocess.run([sys.executable, "-c", UNIVERSE_SNIPPET], cwd=root, capture_output=True, text=True,
+                          env=historical.clean_env(), check=True)
+    return {tuple(x) for x in json.loads(done.stdout)}
+
 
 def current_universe():
     loader = SeedLoader(REPO / "data" / "seed")
@@ -158,11 +190,11 @@ def current_universe():
     return instances
 
 
-def test_committed_evidence_reproduces_the_full_matrix():
+def test_committed_evidence_reproduces_the_full_matrix(closure):
     rows = list(csv.DictReader((HARNESS / "evidence" / "differential_cases.csv").open(encoding="utf-8")))
     keys = [(r["block"], r["operation_type"], r["instance_id"], r["input_vector"], r["run_date"]) for r in rows]
     assert len(keys) == len(set(keys)) == 4722                                  # sem duplicados
-    universe = current_universe()
+    universe = universe_at(closure)                                             # H: seeds de 4d54804
     assert Counter(op for _b, op, _i in universe) == Counter({"EQUATION": 392, "AGGREGATION": 395})
     expected = {(b, op, i, v, d) for (b, op, i) in universe for v in VECTORS for d in DATES}
     assert set(keys) == expected                                               # nem faltante nem excedente

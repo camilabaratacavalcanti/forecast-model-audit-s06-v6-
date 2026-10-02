@@ -7,6 +7,12 @@ as fontes normativas e que a migração é exclusivamente nomenclatural: nenhum
 ID, fórmula, vínculo, pendência, cardinalidade ou resultado mudou. Os testes
 negativos provam que o guard "taxonomy-only" da Stage 3 não aceita nenhuma
 outra mudança (não é um bypass dos controles).
+
+Stage 4C (classe H, DR-4C-5): a migração é exclusivamente nomenclatural NO SEU INTERVALO,
+547b920..d8b5d55. O snapshot "depois" é calculado num clone temporário fixado em d8b5d55 (nunca na
+árvore de trabalho, que muda seeds legitimamente em stages futuras) e os negativos do guard partem
+das mudanças desse intervalo e dos arquivos daquele commit — sem isso, com uma árvore já não
+taxonômica, cada negativo passaria por vacuidade (F4C-03). TAX-01..05 seguem vivos (invariante S).
 """
 
 from __future__ import annotations
@@ -25,12 +31,16 @@ sys.path.append(str(MIGRATION))
 
 import taxonomy_guard as guard  # noqa: E402
 
+sys.path.insert(0, str(REPO / "audit" / "baselines"))
+import historical  # noqa: E402  (Stage 4C: clone no fechamento)
+
 from app.validation.equation_seed_validator import EQUATION_ID_RANGES  # noqa: E402
 from app.validation.parameter_seed_validator import PARAMETER_ID_RANGES  # noqa: E402
 from app.validation.variable_seed_validator import VARIABLE_ID_RANGES  # noqa: E402
 from tools.workbook_seed.taxonomy import BLOCK_TAXONOMY, OFFICIAL_BLOCKS  # noqa: E402
 
 PRE_MIGRATION = "547b9202f5f17fb57034624d7f4c94b0618854e1"   # HEAD antes de D-TAX-01
+D_TAX_01 = "d8b5d55810c55a06cfc54e8a2a25ac9f796f08b7"        # fechamento da D-TAX-01 (Stage 4C: fim do intervalo H)
 RETIRED = "monthly_" + "ppt_assumptions"                     # nome aposentado (montado para não ser ocorrência)
 SEED_LINKS = REPO / "data" / "seed" / "interblock_links.json"
 REGISTRIES = {"variable": VARIABLE_ID_RANGES, "parameter": PARAMETER_ID_RANGES, "equation": EQUATION_ID_RANGES}
@@ -43,6 +53,11 @@ def seed_links() -> dict:
 def base(path: str) -> bytes:
     return subprocess.run(["git", "show", f"{PRE_MIGRATION}:{path}"], cwd=REPO, capture_output=True,
                           check=True).stdout
+
+
+def migrated(path: str) -> bytes:
+    """Arquivo no fechamento da D-TAX-01 (Stage 4C, H)."""
+    return subprocess.run(["git", "show", f"{D_TAX_01}:{path}"], cwd=REPO, capture_output=True, check=True).stdout
 
 
 # ------------------------------------------------------------ TAX-01..TAX-05
@@ -102,9 +117,11 @@ def test_tax_05_retired_name_absent_from_current_code_data_and_configuration():
 
 @pytest.fixture(scope="module")
 def snapshots(tmp_path_factory):
-    after = tmp_path_factory.mktemp("dtax01") / "after.json"
-    subprocess.run([sys.executable, str(MIGRATION / "snapshot.py"), str(after)], cwd=REPO, check=True,
-                   capture_output=True)
+    root = tmp_path_factory.mktemp("dtax01")
+    after = root / "after.json"
+    clone = historical.checkout(D_TAX_01, root / "tree")
+    done = historical.run(clone, "audit/stage3_4/taxonomy_migration/snapshot.py", after)
+    assert done.returncode == 0, done.stderr[-2000:]
     before = json.loads((MIGRATION / "evidence" / "before_snapshot.json").read_text(encoding="utf-8"))
     return before, json.loads(after.read_text(encoding="utf-8"))
 
@@ -126,7 +143,7 @@ def test_tax_07_no_formula_changed(snapshots):
 def test_tax_08_no_interblock_link_changed_semantically(snapshots):
     before, after = snapshots
     assert after["interblock"] == before["interblock"]                    # links, pending, rejected, resto do JSON
-    old, new = json.loads(base("data/seed/interblock_links.json")), seed_links()
+    old, new = json.loads(base("data/seed/interblock_links.json")), json.loads(migrated("data/seed/interblock_links.json"))
     assert {k: v for k, v in old.items() if k != "taxonomy"} == {k: v for k, v in new.items() if k != "taxonomy"}
     assert new["taxonomy"]["loaded_blocks"] == old["taxonomy"]["loaded_blocks"]
     assert {link["source_block"] for link in new["links"] + new["pending"]} <= OFFICIAL_BLOCKS
@@ -154,15 +171,15 @@ def test_cardinalities_results_and_graph_unchanged(snapshots):
 # ------------------------------------------------------------ TAX-10 e guard
 
 def test_tax_10_the_authorized_change_is_detected_as_taxonomic_not_functional():
-    verdict = guard.classify_git(PRE_MIGRATION)
+    verdict = guard.classify_git(PRE_MIGRATION, D_TAX_01)
     assert verdict["taxonomy_only"] and verdict["problems"] == [], verdict["problems"]
     assert set(verdict["files"]) == set(guard.AUTHORIZED)
     for reference in ("7877551", "f3b6588", "043fe9c"):                  # baselines da Stage 3
-        assert guard.protected_status(reference, None, ("data", "tools")) == "AUTHORIZED_TAXONOMY_MIGRATION"
+        assert guard.protected_status(reference, D_TAX_01, ("data", "tools")) == "AUTHORIZED_TAXONOMY_MIGRATION"
 
 
 def _real(path: str) -> bytes:
-    return (REPO / path).read_bytes()
+    return migrated(path)                                               # Stage 4C (H): arquivo em d8b5d55
 
 
 def _mutated_json(path: str, fn) -> bytes:
@@ -209,7 +226,7 @@ NEGATIVE = {
 @pytest.mark.parametrize("case", sorted(NEGATIVE))
 def test_guard_rejects_every_non_taxonomic_change(case):
     path, mutate = NEGATIVE[case]
-    changes = guard.changes_between(PRE_MIGRATION)                      # a migração real ...
+    changes = guard.changes_between(PRE_MIGRATION, D_TAX_01)            # a migração real ...
     old = changes[path][0] if path in changes else base(path)
     changes[path] = (old, mutate())                                     # ... + UMA mudança não taxonômica
     verdict = guard.classify(changes)

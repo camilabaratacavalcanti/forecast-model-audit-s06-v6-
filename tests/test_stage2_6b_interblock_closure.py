@@ -400,23 +400,37 @@ def test_18_all_real_links_of_the_five_workbooks(official):
 # Livro de IDs — nenhuma renumeração histórica
 # ------------------------------------------------------------
 
-def _head_manifest(block):
+def _head_manifest(block, commit="a126e02"):
     raw = subprocess.check_output(
-        ["git", "show", f"a126e02:data/seed/{block}/manifest.json"], cwd=REPO_ROOT,
+        ["git", "show", f"{commit}:data/seed/{block}/manifest.json"], cwd=REPO_ROOT,
     )
     return json.loads(raw)
 
 
+def _manifest_ids(manifest):
+    return {
+        identity_key(e["kind"], e["name"], e["frequency"], e["scope_type"], e["scope_value"]): e["entity_id"]
+        for e in manifest["entities"]
+    }
+
+
 def test_no_historical_id_was_renumbered():
+    # Stage 4C (S, ao vivo a126e02 x HEAD): mesma identidade => mesmo ID; identidade removida => ID
+    # aposentado no `retired` do ledger; identidade nova => ID nunca emitido nem aposentado.
     for block in BLOCKS:
-        before = {
-            identity_key(e["kind"], e["name"], e["frequency"], e["scope_type"], e["scope_value"]): e["entity_id"]
-            for e in _head_manifest(block)["entities"]
-        }
-        after = {
-            identity_key(e["kind"], e["name"], e["frequency"], e["scope_type"], e["scope_value"]): e["entity_id"]
-            for e in read_seed_file(block, "manifest")["entities"]
-        }
+        before = _manifest_ids(_head_manifest(block))
+        after = _manifest_ids(read_seed_file(block, "manifest"))
+        for key in before.keys() & after.keys():
+            assert before[key] == after[key], (block, key)
+        retired = {r["entity_id"] for r in json.loads((ID_LEDGER_ROOT / f"{block}.json").read_text(encoding="utf-8"))["retired"]}
+        for key in before.keys() - after.keys():
+            assert before[key] in retired, (block, key, "removido sem aposentar no ledger")
+        for key in after.keys() - before.keys():
+            assert after[key] not in set(before.values()) | retired, (block, key, "ID reutilizado")
+    # Stage 4C (H, fechamento 2.6B a126e02..eceffd4): o único movimento foi lth_meta parâmetro -> variável.
+    for block in BLOCKS:
+        before = _manifest_ids(_head_manifest(block))
+        after = _manifest_ids(_head_manifest(block, "eceffd4"))
         for key in before.keys() & after.keys():
             assert before[key] == after[key], (block, key)
         removed = before.keys() - after.keys()

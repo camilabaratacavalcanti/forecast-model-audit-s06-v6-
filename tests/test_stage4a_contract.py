@@ -6,6 +6,10 @@ E confirmadas por recálculo independente (processo `python -I` que não importa
 app/tools), que o plano oficial e os 16 PENDING_LOAD continuam intactos, que a
 árvore de decisão de `hes` do engine é a do texto literal do workbook e que o
 literal "F" vira estado (nunca texto no valor). Nenhum teste altera app/, data/ ou tools/.
+
+Stage 4C: recálculo independente, derivação e plano oficial são classe R (expectativas e plan_evidence
+do registro `current`; em B0 os literais 446/458/62/896 são provados no teste do registro). O fato
+"vínculos inalterados durante a 4A" é H (`d2847ab` x `0a924e6`).
 """
 
 from __future__ import annotations
@@ -15,6 +19,8 @@ import json
 import subprocess
 import sys
 from pathlib import Path
+
+import hashlib
 
 import openpyxl
 import pytest
@@ -26,21 +32,27 @@ sys.path.insert(0, str(STAGE))
 import common  # noqa: E402
 import independent_count as independent  # noqa: E402
 
-EXPECTATIONS = json.loads((STAGE / "contract_expectations.json").read_text(encoding="utf-8"))
+sys.path.insert(0, str(REPO / "audit" / "baselines"))
+import baseline_registry as reg  # noqa: E402
+
+EXPECTATIONS = reg.load_json("stage4a_contract", "contract_expectations.json")      # classe R
+IND = EXPECTATIONS["independent"]
+LINKS = "data/seed/interblock_links.json"
+BASELINE_4A, CLOSURE_4A = "d2847ab36933668bf4a1299b3ffe058827a82037", "0a924e66cfd0774a13e46a332b460b770283a554"
 NAR = "NO_APPLICABLE_RULE"
 F_COMBINATIONS = {("Normal", "1 By pass e LC"), ("1 By pass e LC", "Normal")}
 
 
 @pytest.fixture(scope="module")
 def independent_run():
-    completed = subprocess.run([sys.executable, "-I", str(STAGE / "independent_count.py"), "--check"],
-                               cwd=REPO, capture_output=True, text=True)
+    completed = subprocess.run([sys.executable, "-I", str(STAGE / "independent_count.py"), "--check",
+                                *reg.harness_args()], cwd=REPO, capture_output=True, text=True)
     return completed.returncode, json.loads(completed.stdout)
 
 
 @pytest.fixture(scope="module")
 def derived_run():
-    completed = subprocess.run([sys.executable, str(STAGE / "derive_4a.py"), "--no-write"],
+    completed = subprocess.run([sys.executable, str(STAGE / "derive_4a.py"), "--no-write", *reg.harness_args()],
                                cwd=REPO, capture_output=True, text=True)
     return completed.returncode, json.loads(completed.stdout), completed.stderr
 
@@ -50,17 +62,21 @@ def test_independent_recount_matches_contract_without_importing_app(independent_
     assert code == 0, out["problems"]
     assert out["imports_app_or_tools"] == []
     u5 = out["universe_5"]
-    assert (u5["targets"], u5["nodes"], u5["required_inputs"], u5["events_per_date"]) == (446, 458, 62, 896)
-    assert u5["nodes_by_kind"] == {"EQUATION": 238, "AGGREGATION": 207, "TRANSFER": 13}
-    assert u5["targets_by_block"]["area_41"] == 25
-    assert out["universe_4"]["nodes"] == 427 and out["universe_area_41_only"]["nodes"] == 33
+    # B0: (446, 458, 62, 896), {238, 207, 13}, 25, 427 — provados no teste do registro
+    assert (u5["targets"], u5["nodes"], u5["required_inputs"], u5["events_per_date"]) == (
+        IND["universe_5.targets"], IND["universe_5.nodes"], IND["universe_5.required_inputs"],
+        IND["universe_5.events_per_date"])
+    assert u5["nodes_by_kind"] == IND["universe_5.nodes_by_kind"]
+    assert u5["targets_by_block"]["area_41"] == EXPECTATIONS["integrated"]["area_41_targets"]
+    assert out["universe_4"]["nodes"] == IND["universe_4.nodes"] and out["universe_area_41_only"]["nodes"] == 33
 
 
 def test_nodes_are_the_union_not_the_sum(independent_run):
     _code, out = independent_run
     union = out["union"]
-    assert union["shared"] == ["EQUATION:EQ12012", "TRANSFER:VAR11031"]
-    assert union["union"] == union["nodes_4"] + union["nodes_area_41_only"] - len(union["shared"]) == 458
+    assert union["shared"] == IND["union.shared"]                      # B0: [EQ12012, TRANSFER:VAR11031]
+    assert union["union"] == union["nodes_4"] + union["nodes_area_41_only"] - len(union["shared"]) == \
+        IND["universe_5.nodes"]
     assert union["union_equals_5"] is True
     assert out["link_VAR16007_used_in_5"] is True and out["link_VAR16007_used_in_4"] is False
 
@@ -76,13 +92,16 @@ def test_official_plan_pending_links_and_links_sha_are_unchanged(derived_run):
     _code, out, _ = derived_run
     plan = out["official_plan"]
     assert plan["identical_to_plan_evidence"] is True and plan["differences"] == []
-    assert plan["area_41"] == {"OK": 3, "INTERBLOCK_SOURCE_NOT_LOADED": 22}
+    assert plan["area_41"] == IND["official_plan.area_41"]           # B0: {OK: 3, INTERBLOCK_SOURCE_NOT_LOADED: 22}
     assert plan["area_41_pending_blocks"] == ["maintenance"]
-    assert plan["pending_links"] == 16
+    assert plan["pending_links"] == IND["official_plan.pending_links"] == 16
     assert plan["pending_by_source_block"] == {"alumina": 1, "area_04_13": 1, "forecast": 2, "maintenance": 9,
                                                "temperature_lp": 3}
-    assert plan["interblock_links_sha256"] == plan["interblock_links_sha256_at_baseline"] == \
-        EXPECTATIONS["integrated"]["interblock_links_sha256"]
+    assert plan["interblock_links_sha256"] == EXPECTATIONS["integrated"]["interblock_links_sha256"]   # R
+    links = {commit: subprocess.run(["git", "show", f"{commit}:{LINKS}"], cwd=REPO, capture_output=True,
+                                    check=True).stdout for commit in (BASELINE_4A, CLOSURE_4A)}
+    assert plan["interblock_links_sha256_at_baseline"] == hashlib.sha256(links[BASELINE_4A]).hexdigest() == \
+        hashlib.sha256(links[CLOSURE_4A]).hexdigest()                  # H: vínculos inalterados durante a 4A
 
 
 def test_official_plan_comparator_detects_a_changed_evidence_row(tmp_path, monkeypatch):

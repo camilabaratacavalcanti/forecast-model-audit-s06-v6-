@@ -331,3 +331,10 @@ audit/baselines/
 - Todos os 121 testes foram classificados sem perda de poder de detecção no próprio escopo.
 - Nenhum BLOCKER de produção.
 - **Segue para a Fase 2.**
+
+## 7. Adendo da Fase 2 (append-only; a tabela do §2 fica como gerada no commit 4c.1)
+
+| id | classe | finding / reclassificação |
+|---|---|---|
+| F4C-05 | DOCUMENTATION_ONLY | `test_stage4b_oracle.py::test_live_oracle_t2_and_stated_run` foi inventariado como R, mas `run_oracle_4b.py` **não lê nenhuma referência** (só calendário e engine x oracle puro). Classe corrigida: **C**, sem alteração no teste. Contagem final: H 21, E 35, **R 16**, S 8, W 2, **C 39** |
+| F4C-06 | DOCUMENTATION_ONLY | o ponto fixo H da 3.4D é **`d8b5d55`**, não `8095011`. A D-TAX-01 fez a última revisão do harness e da evidência da 3.4D (`persisted_links_status`, `mutation_results.csv`), e em `8095011` o harness ainda não emitia o status taxonômico que o teste exige. Intervalo da guarda de produção: `043fe9c..d8b5d55` (só a migração autorizada). DR-4C-4 vale com esse commit |

@@ -24,6 +24,9 @@ sys.path.insert(0, str(MUTATION))
 
 import code_mutants_4b  # noqa: E402
 
+sys.path.insert(0, str(REPO / "audit" / "baselines"))
+import baseline_registry as reg  # noqa: E402  (Stage 4C: referência do registro, classe R)
+
 REQUIRED = {"CM4B-01": "YTD", "CM4B-02": "off-by-one", "CM4B-03": "period_id anual", "CM4B-04": "bissexto",
             "CM4B-05": "MOVING_AVERAGE", "CM4B-06": "snapshot", "CM4B-07": "carry-over", "CM4B-08": "estado anual"}
 
@@ -35,7 +38,7 @@ def read_csv(name):
 @pytest.fixture(scope="module")
 def live():
     completed = subprocess.run([sys.executable, str(MUTATION / "run_mutation_4b.py"), "--no-write",
-                                "--skip-code-mutants"], cwd=REPO, capture_output=True, text=True)
+                                "--skip-code-mutants", *reg.harness_args()], cwd=REPO, capture_output=True, text=True)
     return completed.returncode, json.loads(completed.stdout), completed.stderr
 
 

@@ -12,6 +12,13 @@ Validam, sem alterar app/, data/, tools/ ou seeds:
     * a auditoria black-box (sem importar app/) aceita a evidência correta e
       rejeita cópias corrompidas;
     * os gaps dos auditores da 3.4C no baseline estão registrados e fechados.
+
+Stage 4C (classe H, DR-4C-4): as execuções vivas (mutações de evidência e mutante CM-13) rodam o harness
+SEM alteração num clone temporário fixado em d8b5d55 — a última revisão do harness e da evidência da 3.4D
+(D-TAX-01; o fechamento original 8095011 não tinha o status taxonômico dos vínculos) — porque a matriz
+nomeia IDs reais (VAR13001–13003) que stages futuras aposentam. A guarda de produção é o intervalo fixo
+043fe9c..d8b5d55 (só a migração taxonômica autorizada). A árvore de
+trabalho continua verificada antes/depois (W).
 """
 
 from __future__ import annotations
@@ -32,6 +39,19 @@ sys.path.insert(0, str(MUTATION))
 import blackbox_audit  # noqa: E402
 
 BASELINE = "043fe9c36d9d02664db8be7dd29c0fd7014c73f8"
+CLOSURE_3_4D = "d8b5d55"          # última revisão do harness/evidência da 3.4D (D-TAX-01)
+
+sys.path.insert(0, str(REPO / "audit" / "baselines"))
+import historical  # noqa: E402  (Stage 4C: clone no fechamento)
+
+CM13_SNIPPET = """
+import json, sys
+from pathlib import Path
+sys.path.insert(0, str(Path.cwd() / "audit" / "stage3_4" / "mutation"))
+import code_mutants
+mutant = next(m for m in code_mutants.CODE_MUTANTS if m[0] == "CM-13")
+print(json.dumps(code_mutants.evaluate_mutant(mutant, code_mutants.expected_integrated()), default=str))
+"""
 
 
 def read_csv(path):
@@ -42,9 +62,13 @@ def read_csv(path):
 # ------------------------------------------------------------ mutações de evidência (ao vivo)
 
 @pytest.fixture(scope="module")
-def live():
-    done = subprocess.run([sys.executable, str(MUTATION / "run_mutation.py"), "--no-write", "--skip-code-mutants"],
-                          cwd=REPO, capture_output=True, text=True)
+def closure(tmp_path_factory):
+    return historical.checkout(CLOSURE_3_4D, tmp_path_factory.mktemp("stage3_4d_closure") / "tree")
+
+
+@pytest.fixture(scope="module")
+def live(closure):
+    done = historical.run(closure, "audit/stage3_4/mutation/run_mutation.py", "--no-write", "--skip-code-mutants")
     return done.returncode, json.loads(done.stdout), done.stderr
 
 
@@ -101,15 +125,21 @@ def test_committed_code_mutants_have_no_survivors():
         assert "TESTS" in detected and detected & {"INTEGRATED", "DIFFERENTIAL"}
 
 
-def test_live_code_mutant_is_killed_in_a_temporary_copy():
-    import code_mutants
+def test_live_code_mutant_is_killed_in_a_temporary_copy(closure):
     before = subprocess.run(["git", "status", "--porcelain", "--", "app", "data", "tools"], cwd=REPO,
                             capture_output=True, text=True, check=True).stdout
-    mutant = next(m for m in code_mutants.CODE_MUTANTS if m[0] == "CM-13")
-    row = code_mutants.evaluate_mutant(mutant, code_mutants.expected_integrated())
+    clone_before = subprocess.run(["git", "status", "--porcelain"], cwd=closure, capture_output=True, text=True,
+                                  check=True).stdout
+    done = subprocess.run([sys.executable, "-c", CM13_SNIPPET], cwd=closure, capture_output=True, text=True,
+                          env=historical.clean_env())
+    assert done.returncode == 0, done.stderr[-2000:]
+    row = json.loads(done.stdout.strip().splitlines()[-1])
     after = subprocess.run(["git", "status", "--porcelain", "--", "app", "data", "tools"], cwd=REPO,
                            capture_output=True, text=True, check=True).stdout
+    clone_after = subprocess.run(["git", "status", "--porcelain"], cwd=closure, capture_output=True, text=True,
+                                 check=True).stdout
     assert before == after                                  # a execução do mutante não toca o repositório
+    assert clone_before == clone_after                      # nem o clone histórico
     assert row["result"] == "PASS" and {"TESTS", "INTEGRATED"} <= set(row["detected_by"].split("|"))
     assert "MULTI_DETAIL_COMPOSITION_UNDEFINED" in row["evidence"]
 
@@ -181,5 +211,5 @@ def test_no_production_artifact_changed_since_baseline():
     # taxonômica autorizada, provada arquivo a arquivo (qualquer outra mudança falha).
     sys.path.append(str(REPO / "audit" / "stage3_4" / "taxonomy_migration"))
     import taxonomy_guard as guard
-    verdict = guard.classify_git(BASELINE)
+    verdict = guard.classify_git(BASELINE, CLOSURE_3_4D)               # Stage 4C (H): intervalo fixo da 3.4D
     assert verdict["unchanged"] or verdict["taxonomy_only"], verdict["problems"]

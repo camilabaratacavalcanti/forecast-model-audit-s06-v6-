@@ -23,13 +23,18 @@ sys.path[:0] = [str(STAGE), str(REPO / "audit" / "stage4a")]
 
 import independent_calendar as cal  # noqa: E402
 
+sys.path.insert(0, str(REPO / "audit" / "baselines"))
+import baseline_registry as reg  # noqa: E402  (Stage 4C: expectativas do registro, classe R)
+
+REF_IND = reg.load_json("stage4b_contract", "contract_expectations_4b.json")["independent"]
+
 AUDIT = json.loads((STAGE / "evidence" / "contract_audit_4b.json").read_text(encoding="utf-8"))
 
 
 @pytest.fixture(scope="module")
 def independent():
-    completed = subprocess.run([sys.executable, "-I", str(STAGE / "independent_calendar.py"), "--check"],
-                               cwd=REPO, capture_output=True, text=True)
+    completed = subprocess.run([sys.executable, "-I", str(STAGE / "independent_calendar.py"), "--check",
+                                *reg.harness_args()], cwd=REPO, capture_output=True, text=True)
     return completed.returncode, json.loads(completed.stdout)
 
 
@@ -39,7 +44,9 @@ def test_independent_recount_matches_frozen_expectations(independent):
     assert out["imports_app_or_tools"] == []
     assert (out["calendar"]["T1"]["dates"], out["calendar"]["T2"]["dates"], out["calendar"]["T3"]["dates"]) == (396, 62, 792)
     assert out["calendar"]["T2"]["feb_29_dates"] == ["2028-02-29"]
-    assert out["identity_profile"]["derived_mensal"] == 324 and out["identity_profile"]["derived_anual"] == 196
+    # B0: 324 / 196 (teste do registro)
+    assert out["identity_profile"]["derived_mensal"] == REF_IND["identity_profile"]["derived_mensal"]
+    assert out["identity_profile"]["derived_anual"] == REF_IND["identity_profile"]["derived_anual"]
 
 
 def test_calendar_expectations_are_pure_calendar_arithmetic():

@@ -200,17 +200,28 @@ def _manifest_ids(text):
     }
 
 
+def _manifest_at(commit, block):
+    return _manifest_ids(subprocess.check_output(
+        ["git", "show", f"{commit}:data/seed/{block}/manifest.json"], cwd=REPO_ROOT,
+    ).decode("utf-8"))
+
+
 @pytest.mark.parametrize("baseline", ["a126e02", "eceffd4"])
 def test_12_ids_are_stable_against_baselines(baseline):
+    # Stage 4C (S, ao vivo baseline x HEAD): sem renumeração; removido => aposentado no ledger; novo => ID inédito.
     for block in BLOCKS:
-        before = _manifest_ids(subprocess.check_output(
-            ["git", "show", f"{baseline}:data/seed/{block}/manifest.json"], cwd=REPO_ROOT,
-        ).decode("utf-8"))
+        before = _manifest_at(baseline, block)
         after = _manifest_ids((SEED_ROOT / block / "manifest.json").read_text(encoding="utf-8"))
         for key in before.keys() & after.keys():
             assert before[key] == after[key], (block, key)
+        retired = {r["entity_id"] for r in json.loads((ID_LEDGER_ROOT / f"{block}.json").read_text(encoding="utf-8"))["retired"]}
+        for key in before.keys() - after.keys():
+            assert before[key] in retired, (block, key, "removido sem aposentar no ledger")
+        for key in after.keys() - before.keys():
+            assert after[key] not in set(before.values()) | retired, (block, key, "ID reutilizado")
         if baseline == "eceffd4":
-            assert before == after, block
+            # Stage 4C (H, fechamento 2.6C eceffd4..7877551): nenhuma identidade mudou na 2.6C.
+            assert before == _manifest_at("7877551", block), block
 
 
 def test_13_retired_ids_are_recorded_and_never_reused():
