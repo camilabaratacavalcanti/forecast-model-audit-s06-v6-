@@ -6,12 +6,12 @@
       "sha256": "36bbae135285ad9b3b88d21ef94e2bc9c92f2ef74736412b66bc62de4dcf3f50"
     },
     "energy": {
-      "file_name": "descritivo_das_variáveis_energy_v6.xlsx",
-      "sha256": "cfc46031fc2f3f375b87ebbba58676d23ad92f3ee43fb81b353fe5a8247e1df8"
+      "file_name": "descritivo_das_variáveis_energy_v9.xlsx",
+      "sha256": "731f71e9ab3850fef29ed384230aef37bc2c08a656cbf441f5eada9900973de2"
     },
     "max_ht": {
-      "file_name": "descritivo_das_variáveis_MaxHT_v10.xlsx",
-      "sha256": "3e40aab12ec0ec07918c5e358145b09f138663f635ca9e7fc0990d1b765b683b"
+      "file_name": "descritivo_das_variáveis_MaxHT_v13.xlsx",
+      "sha256": "c9818920b3994ae6aaeef5f237e59dd94d8e1b8647f0bf64426fb5f3d9f0aa98"
     },
     "production": {
       "file_name": "descritivo_das_variáveis_production_v11.xlsx",
@@ -519,7 +519,7 @@
         }
       ],
       "consumer_rows": [
-        98
+        99
       ]
     },
     {
@@ -739,8 +739,8 @@
     },
     {
       "consumer_block": "energy",
-      "consumer_definition": "VAR18031",
-      "consumer_name": "evaporado_total_evaporacao",
+      "consumer_definition": "VAR18053",
+      "consumer_name": "retirada_total_condensado_area13",
       "consumer_frequency": "diário",
       "consumer_scope": {
         "scope_type": "linha",
@@ -761,14 +761,14 @@
           "dimension": "source_block",
           "consumer_value": "area_04_13",
           "producer_value": "bloco da taxonomia oficial sem workbook carregado",
-          "message": "INTERBLOCK_SOURCE_BLOCK_NOT_LOADED: consumidor energy linha 37 'evaporado_total_evaporacao' (diário linha/L1_L7), fonte='area_04_13': dimensão 'source_block' — consumidor 'area_04_13', produtor 'bloco da taxonomia oficial sem workbook carregado'. Vínculo pendente de carregamento: o produtor não é inventado nem validado neste build."
+          "message": "INTERBLOCK_SOURCE_BLOCK_NOT_LOADED: consumidor energy linha 37 'retirada_total_condensado_area13' (diário linha/L1_L7), fonte='area_04_13': dimensão 'source_block' — consumidor 'area_04_13', produtor 'bloco da taxonomia oficial sem workbook carregado'. Vínculo pendente de carregamento: o produtor não é inventado nem validado neste build."
         }
       ]
     },
     {
       "consumer_block": "max_ht",
-      "consumer_definition": "VAR13003",
-      "consumer_name": "alimentação_evap",
+      "consumer_definition": "VAR13119",
+      "consumer_name": "alimentacao_evap",
       "consumer_frequency": "diário",
       "consumer_scope": {
         "scope_type": "linha",
@@ -789,7 +789,7 @@
           "dimension": "source_block",
           "consumer_value": "alumina",
           "producer_value": "bloco da taxonomia oficial sem workbook carregado",
-          "message": "INTERBLOCK_SOURCE_BLOCK_NOT_LOADED: consumidor max_ht linha 5 'alimentação_evap' (diário linha/L1_L7), fonte='alumina': dimensão 'source_block' — consumidor 'alumina', produtor 'bloco da taxonomia oficial sem workbook carregado'. Vínculo pendente de carregamento: o produtor não é inventado nem validado neste build."
+          "message": "INTERBLOCK_SOURCE_BLOCK_NOT_LOADED: consumidor max_ht linha 5 'alimentacao_evap' (diário linha/L1_L7), fonte='alumina': dimensão 'source_block' — consumidor 'alumina', produtor 'bloco da taxonomia oficial sem workbook carregado'. Vínculo pendente de carregamento: o produtor não é inventado nem validado neste build."
         }
       ]
     },

@@ -9,7 +9,7 @@
     "frequency": null,
     "scope_type": "linha",
     "scope_value": "L1_L7",
-    "source_reference": "descritivo_das_variáveis_energy_v6.xlsx",
+    "source_reference": "descritivo_das_variáveis_energy_v9.xlsx",
     "status": "ativo",
     "value_type": "numerico"
   },
@@ -23,7 +23,7 @@
     "frequency": null,
     "scope_type": "linha",
     "scope_value": "L1_L7",
-    "source_reference": "descritivo_das_variáveis_energy_v6.xlsx",
+    "source_reference": "descritivo_das_variáveis_energy_v9.xlsx",
     "status": "ativo",
     "value_type": "numerico"
   },
@@ -37,7 +37,7 @@
     "frequency": null,
     "scope_type": "linha",
     "scope_value": "L1_L7",
-    "source_reference": "descritivo_das_variáveis_energy_v6.xlsx",
+    "source_reference": "descritivo_das_variáveis_energy_v9.xlsx",
     "status": "ativo",
     "value_type": "numerico"
   },
@@ -51,7 +51,7 @@
     "frequency": null,
     "scope_type": "linha_grupo",
     "scope_value": "L1_L7",
-    "source_reference": "descritivo_das_variáveis_energy_v6.xlsx",
+    "source_reference": "descritivo_das_variáveis_energy_v9.xlsx",
     "status": "ativo",
     "value_type": "numerico"
   }

@@ -1,33 +1,33 @@
 [
   {
-    "aggregation_rule_id": "AGR-MAX_HT-ALIMENTAÇÃO_EVAP-LINHA-L1_L7-ANUAL-AVERAGE",
-    "source_variable_id": "VAR13003",
+    "aggregation_rule_id": "AGR-MAX_HT-ALIMENTACAO_EVAP-LINHA-L1_L7-ANUAL-AVERAGE",
+    "source_variable_id": "VAR13119",
     "source_frequency": "diário",
-    "target_variable_id": "VAR13001",
+    "target_variable_id": "VAR13117",
     "target_frequency": "anual",
     "aggregation_type": "AVERAGE"
   },
   {
-    "aggregation_rule_id": "AGR-MAX_HT-ALIMENTAÇÃO_EVAP-LINHA-L1_L7-MENSAL-AVERAGE",
-    "source_variable_id": "VAR13003",
+    "aggregation_rule_id": "AGR-MAX_HT-ALIMENTACAO_EVAP-LINHA-L1_L7-MENSAL-AVERAGE",
+    "source_variable_id": "VAR13119",
     "source_frequency": "diário",
-    "target_variable_id": "VAR13002",
+    "target_variable_id": "VAR13118",
     "target_frequency": "mensal",
     "aggregation_type": "AVERAGE"
   },
   {
-    "aggregation_rule_id": "AGR-MAX_HT-ALIMENTAÇÃO_EVAP_TOTAL-GRUPO-L1_L7-ANUAL-AVERAGE",
-    "source_variable_id": "VAR13004",
+    "aggregation_rule_id": "AGR-MAX_HT-ALIMENTACAO_EVAP_TOTAL-GRUPO-L1_L7-ANUAL-AVERAGE",
+    "source_variable_id": "VAR13120",
     "source_frequency": "diário",
-    "target_variable_id": "VAR13005",
+    "target_variable_id": "VAR13121",
     "target_frequency": "anual",
     "aggregation_type": "AVERAGE"
   },
   {
-    "aggregation_rule_id": "AGR-MAX_HT-ALIMENTAÇÃO_EVAP_TOTAL-GRUPO-L1_L7-MENSAL-AVERAGE",
-    "source_variable_id": "VAR13004",
+    "aggregation_rule_id": "AGR-MAX_HT-ALIMENTACAO_EVAP_TOTAL-GRUPO-L1_L7-MENSAL-AVERAGE",
+    "source_variable_id": "VAR13120",
     "source_frequency": "diário",
-    "target_variable_id": "VAR13006",
+    "target_variable_id": "VAR13122",
     "target_frequency": "mensal",
     "aggregation_type": "AVERAGE"
   },
@@ -321,21 +321,21 @@
   },
   {
     "aggregation_rule_id": "AGR-MAX_HT-LTH_TOTAL_SOMATORIO-GRUPO-L1_L7-ANUAL-SUM",
-    "source_variable_id": "VAR13063",
+    "source_variable_id": "VAR13123",
     "source_frequency": "diário",
     "target_variable_id": "VAR13066",
     "target_frequency": "anual",
     "aggregation_type": "SUM",
-    "integration_factor": 24.0
+    "integration_factor": 1.0
   },
   {
     "aggregation_rule_id": "AGR-MAX_HT-LTH_TOTAL_SOMATORIO-GRUPO-L1_L7-MENSAL-SUM",
-    "source_variable_id": "VAR13063",
+    "source_variable_id": "VAR13123",
     "source_frequency": "diário",
     "target_variable_id": "VAR13067",
     "target_frequency": "mensal",
     "aggregation_type": "SUM",
-    "integration_factor": 24.0
+    "integration_factor": 1.0
   },
   {
     "aggregation_rule_id": "AGR-MAX_HT-MASSA_TOTAL_MAX_HT-GRUPO-L1_L3-ANUAL-AVERAGE",

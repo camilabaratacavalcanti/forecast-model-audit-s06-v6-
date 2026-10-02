@@ -1,19 +1,19 @@
 {
   "block": "max_ht",
   "workbook": {
-    "file_name": "descritivo_das_variáveis_MaxHT_v10.xlsx",
-    "sha256": "3e40aab12ec0ec07918c5e358145b09f138663f635ca9e7fc0990d1b765b683b",
+    "file_name": "descritivo_das_variáveis_MaxHT_v13.xlsx",
+    "sha256": "c9818920b3994ae6aaeef5f237e59dd94d8e1b8647f0bf64426fb5f3d9f0aa98",
     "sheet": "MaxHT",
     "header_row": 2,
-    "data_rows": 120,
+    "data_rows": 121,
     "empty_rows_ignored": 214,
-    "last_sheet_row": 336
+    "last_sheet_row": 337
   },
   "entities": [
     {
-      "entity_id": "VAR13001",
+      "entity_id": "VAR13117",
       "kind": "variable",
-      "name": "alimentação_evap",
+      "name": "alimentacao_evap",
       "frequency": "anual",
       "scope_type": "linha",
       "scope_value": "L1_L7",
@@ -22,9 +22,9 @@
       ]
     },
     {
-      "entity_id": "VAR13002",
+      "entity_id": "VAR13118",
       "kind": "variable",
-      "name": "alimentação_evap",
+      "name": "alimentacao_evap",
       "frequency": "mensal",
       "scope_type": "linha",
       "scope_value": "L1_L7",
@@ -33,9 +33,9 @@
       ]
     },
     {
-      "entity_id": "VAR13003",
+      "entity_id": "VAR13119",
       "kind": "variable",
-      "name": "alimentação_evap",
+      "name": "alimentacao_evap",
       "frequency": "diário",
       "scope_type": "linha",
       "scope_value": "L1_L7",
@@ -45,9 +45,9 @@
       "source_block": "alumina"
     },
     {
-      "entity_id": "VAR13004",
+      "entity_id": "VAR13120",
       "kind": "variable",
-      "name": "alimentação_evap_total",
+      "name": "alimentacao_evap_total",
       "frequency": "diário",
       "scope_type": "linha_grupo",
       "scope_value": "L1_L7",
@@ -56,9 +56,9 @@
       ]
     },
     {
-      "entity_id": "VAR13005",
+      "entity_id": "VAR13121",
       "kind": "variable",
-      "name": "alimentação_evap_total",
+      "name": "alimentacao_evap_total",
       "frequency": "anual",
       "scope_type": "linha_grupo",
       "scope_value": "L1_L7",
@@ -67,9 +67,9 @@
       ]
     },
     {
-      "entity_id": "VAR13006",
+      "entity_id": "VAR13122",
       "kind": "variable",
-      "name": "alimentação_evap_total",
+      "name": "alimentacao_evap_total",
       "frequency": "mensal",
       "scope_type": "linha_grupo",
       "scope_value": "L1_L7",
@@ -772,6 +772,17 @@
       ]
     },
     {
+      "entity_id": "VAR13123",
+      "kind": "variable",
+      "name": "lth_total_ag",
+      "frequency": "diário",
+      "scope_type": "linha_grupo",
+      "scope_value": "L1_L7",
+      "rows": [
+        72
+      ]
+    },
+    {
       "entity_id": "VAR13066",
       "kind": "variable",
       "name": "lth_total_somatorio",
@@ -779,7 +790,7 @@
       "scope_type": "linha_grupo",
       "scope_value": "L1_L7",
       "rows": [
-        72
+        73
       ]
     },
     {
@@ -790,7 +801,7 @@
       "scope_type": "linha_grupo",
       "scope_value": "L1_L7",
       "rows": [
-        73
+        74
       ]
     },
     {
@@ -801,7 +812,7 @@
       "scope_type": "linha_grupo",
       "scope_value": "L1_L3",
       "rows": [
-        74
+        75
       ]
     },
     {
@@ -812,7 +823,7 @@
       "scope_type": "linha_grupo",
       "scope_value": "L4_L5",
       "rows": [
-        75
+        76
       ]
     },
     {
@@ -823,7 +834,7 @@
       "scope_type": "linha_grupo",
       "scope_value": "L6_L7",
       "rows": [
-        76
+        77
       ]
     },
     {
@@ -834,7 +845,7 @@
       "scope_type": "linha_grupo",
       "scope_value": "L1_L3",
       "rows": [
-        77
+        78
       ]
     },
     {
@@ -845,7 +856,7 @@
       "scope_type": "linha_grupo",
       "scope_value": "L4_L5",
       "rows": [
-        78
+        79
       ]
     },
     {
@@ -856,7 +867,7 @@
       "scope_type": "linha_grupo",
       "scope_value": "L6_L7",
       "rows": [
-        79
+        80
       ]
     },
     {
@@ -867,7 +878,7 @@
       "scope_type": "linha_grupo",
       "scope_value": "L1_L3",
       "rows": [
-        80
+        81
       ]
     },
     {
@@ -878,7 +889,7 @@
       "scope_type": "linha_grupo",
       "scope_value": "L4_L5",
       "rows": [
-        81
+        82
       ]
     },
     {
@@ -889,7 +900,7 @@
       "scope_type": "linha_grupo",
       "scope_value": "L6_L7",
       "rows": [
-        82
+        83
       ]
     },
     {
@@ -900,7 +911,7 @@
       "scope_type": "linha_grupo",
       "scope_value": "L1_L3",
       "rows": [
-        83
+        84
       ]
     },
     {
@@ -911,7 +922,7 @@
       "scope_type": "linha_grupo",
       "scope_value": "L4_L5",
       "rows": [
-        84
+        85
       ]
     },
     {
@@ -922,7 +933,7 @@
       "scope_type": "linha_grupo",
       "scope_value": "L6_L7",
       "rows": [
-        85
+        86
       ]
     },
     {
@@ -933,7 +944,7 @@
       "scope_type": "linha_grupo",
       "scope_value": "L1_L3",
       "rows": [
-        86
+        87
       ]
     },
     {
@@ -944,7 +955,7 @@
       "scope_type": "linha_grupo",
       "scope_value": "L4_L5",
       "rows": [
-        87
+        88
       ]
     },
     {
@@ -955,7 +966,7 @@
       "scope_type": "linha_grupo",
       "scope_value": "L6_L7",
       "rows": [
-        88
+        89
       ]
     },
     {
@@ -966,7 +977,7 @@
       "scope_type": "linha_grupo",
       "scope_value": "L1_L7",
       "rows": [
-        89
+        90
       ]
     },
     {
@@ -977,7 +988,7 @@
       "scope_type": "linha_grupo",
       "scope_value": "L1_L7",
       "rows": [
-        90
+        91
       ]
     },
     {
@@ -988,7 +999,7 @@
       "scope_type": "linha_grupo",
       "scope_value": "L1_L7",
       "rows": [
-        91
+        92
       ]
     },
     {
@@ -999,7 +1010,7 @@
       "scope_type": "linha_grupo",
       "scope_value": "L1_L7",
       "rows": [
-        92
+        93
       ]
     },
     {
@@ -1010,7 +1021,7 @@
       "scope_type": "linha_grupo",
       "scope_value": "L1_L7",
       "rows": [
-        93
+        94
       ]
     },
     {
@@ -1021,7 +1032,7 @@
       "scope_type": "linha",
       "scope_value": "L1_L7",
       "rows": [
-        94
+        95
       ]
     },
     {
@@ -1032,7 +1043,7 @@
       "scope_type": "linha",
       "scope_value": "L1_L7",
       "rows": [
-        95
+        96
       ]
     },
     {
@@ -1043,7 +1054,7 @@
       "scope_type": "linha",
       "scope_value": "L1_L7",
       "rows": [
-        96
+        97
       ]
     },
     {
@@ -1054,7 +1065,7 @@
       "scope_type": "linha",
       "scope_value": "L1_L7",
       "rows": [
-        97
+        98
       ]
     },
     {
@@ -1065,7 +1076,7 @@
       "scope_type": "linha",
       "scope_value": "L1_L7",
       "rows": [
-        98
+        99
       ],
       "source_block": "production"
     },
@@ -1077,7 +1088,7 @@
       "scope_type": "linha_grupo",
       "scope_value": "L1_L3",
       "rows": [
-        99
+        100
       ]
     },
     {
@@ -1088,7 +1099,7 @@
       "scope_type": "linha_grupo",
       "scope_value": "L4_L5",
       "rows": [
-        100
+        101
       ]
     },
     {
@@ -1099,7 +1110,7 @@
       "scope_type": "linha_grupo",
       "scope_value": "L6_L7",
       "rows": [
-        101
+        102
       ]
     },
     {
@@ -1110,7 +1121,7 @@
       "scope_type": "linha_grupo",
       "scope_value": "L1_L3",
       "rows": [
-        102
+        103
       ]
     },
     {
@@ -1121,7 +1132,7 @@
       "scope_type": "linha_grupo",
       "scope_value": "L4_L5",
       "rows": [
-        103
+        104
       ]
     },
     {
@@ -1132,7 +1143,7 @@
       "scope_type": "linha_grupo",
       "scope_value": "L6_L7",
       "rows": [
-        104
+        105
       ]
     },
     {
@@ -1143,7 +1154,7 @@
       "scope_type": "linha_grupo",
       "scope_value": "L1_L3",
       "rows": [
-        105
+        106
       ]
     },
     {
@@ -1154,7 +1165,7 @@
       "scope_type": "linha_grupo",
       "scope_value": "L4_L5",
       "rows": [
-        106
+        107
       ]
     },
     {
@@ -1165,7 +1176,7 @@
       "scope_type": "linha_grupo",
       "scope_value": "L6_L7",
       "rows": [
-        107
+        108
       ]
     },
     {
@@ -1176,7 +1187,7 @@
       "scope_type": "linha_grupo",
       "scope_value": "L1_L3",
       "rows": [
-        108
+        109
       ]
     },
     {
@@ -1187,7 +1198,7 @@
       "scope_type": "linha_grupo",
       "scope_value": "L4_L5",
       "rows": [
-        109
+        110
       ]
     },
     {
@@ -1198,7 +1209,7 @@
       "scope_type": "linha_grupo",
       "scope_value": "L6_L7",
       "rows": [
-        110
+        111
       ]
     },
     {
@@ -1209,7 +1220,7 @@
       "scope_type": "linha_grupo",
       "scope_value": "L1_L3",
       "rows": [
-        111
+        112
       ]
     },
     {
@@ -1220,7 +1231,7 @@
       "scope_type": "linha_grupo",
       "scope_value": "L4_L5",
       "rows": [
-        112
+        113
       ]
     },
     {
@@ -1231,7 +1242,7 @@
       "scope_type": "linha_grupo",
       "scope_value": "L6_L7",
       "rows": [
-        113
+        114
       ]
     },
     {
@@ -1242,7 +1253,7 @@
       "scope_type": "linha_grupo",
       "scope_value": "L1_L7",
       "rows": [
-        114
+        115
       ]
     },
     {
@@ -1253,7 +1264,7 @@
       "scope_type": "linha_grupo",
       "scope_value": "L1_L7",
       "rows": [
-        115
+        116
       ]
     },
     {
@@ -1264,7 +1275,7 @@
       "scope_type": "linha_grupo",
       "scope_value": "L1_L7",
       "rows": [
-        116
+        117
       ]
     },
     {
@@ -1275,7 +1286,7 @@
       "scope_type": "linha_grupo",
       "scope_value": "L1_L7",
       "rows": [
-        117
+        118
       ]
     },
     {
@@ -1286,7 +1297,7 @@
       "scope_type": "linha_grupo",
       "scope_value": "L1_L7",
       "rows": [
-        118
+        119
       ]
     },
     {
@@ -1297,7 +1308,7 @@
       "scope_type": "linha_grupo",
       "scope_value": "L1_L3",
       "rows": [
-        119
+        120
       ]
     },
     {
@@ -1308,7 +1319,7 @@
       "scope_type": "linha_grupo",
       "scope_value": "L4_L5",
       "rows": [
-        120
+        121
       ]
     },
     {
@@ -1319,7 +1330,7 @@
       "scope_type": "linha_grupo",
       "scope_value": "L6_L7",
       "rows": [
-        121
+        122
       ]
     },
     {
@@ -1330,15 +1341,11 @@
       "scope_type": "linha_grupo",
       "scope_value": "L1_L7",
       "rows": [
-        122
+        123
       ]
     }
   ],
   "equations": [
-    {
-      "equation_id": "EQ13001",
-      "row": 6
-    },
     {
       "equation_id": "EQ13002",
       "row": 11
@@ -1421,52 +1428,60 @@
     },
     {
       "equation_id": "EQ13022",
-      "row": 74
-    },
-    {
-      "equation_id": "EQ13023",
       "row": 75
     },
     {
-      "equation_id": "EQ13024",
+      "equation_id": "EQ13023",
       "row": 76
     },
     {
+      "equation_id": "EQ13024",
+      "row": 77
+    },
+    {
       "equation_id": "EQ13025",
-      "row": 89
+      "row": 90
     },
     {
       "equation_id": "EQ13026",
-      "row": 105
-    },
-    {
-      "equation_id": "EQ13027",
       "row": 106
     },
     {
-      "equation_id": "EQ13028",
+      "equation_id": "EQ13027",
       "row": 107
     },
     {
+      "equation_id": "EQ13028",
+      "row": 108
+    },
+    {
       "equation_id": "EQ13029",
-      "row": 116
+      "row": 117
+    },
+    {
+      "equation_id": "EQ13030",
+      "row": 6
+    },
+    {
+      "equation_id": "EQ13031",
+      "row": 72
     }
   ],
   "aggregation_rules": [
     {
-      "aggregation_rule_id": "AGR-MAX_HT-ALIMENTAÇÃO_EVAP-LINHA-L1_L7-ANUAL-AVERAGE",
+      "aggregation_rule_id": "AGR-MAX_HT-ALIMENTACAO_EVAP-LINHA-L1_L7-ANUAL-AVERAGE",
       "row": 3
     },
     {
-      "aggregation_rule_id": "AGR-MAX_HT-ALIMENTAÇÃO_EVAP-LINHA-L1_L7-MENSAL-AVERAGE",
+      "aggregation_rule_id": "AGR-MAX_HT-ALIMENTACAO_EVAP-LINHA-L1_L7-MENSAL-AVERAGE",
       "row": 4
     },
     {
-      "aggregation_rule_id": "AGR-MAX_HT-ALIMENTAÇÃO_EVAP_TOTAL-GRUPO-L1_L7-ANUAL-AVERAGE",
+      "aggregation_rule_id": "AGR-MAX_HT-ALIMENTACAO_EVAP_TOTAL-GRUPO-L1_L7-ANUAL-AVERAGE",
       "row": 7
     },
     {
-      "aggregation_rule_id": "AGR-MAX_HT-ALIMENTAÇÃO_EVAP_TOTAL-GRUPO-L1_L7-MENSAL-AVERAGE",
+      "aggregation_rule_id": "AGR-MAX_HT-ALIMENTACAO_EVAP_TOTAL-GRUPO-L1_L7-MENSAL-AVERAGE",
       "row": 8
     },
     {
@@ -1615,155 +1630,155 @@
     },
     {
       "aggregation_rule_id": "AGR-MAX_HT-LTH_TOTAL_SOMATORIO-GRUPO-L1_L7-ANUAL-SUM",
-      "row": 72
-    },
-    {
-      "aggregation_rule_id": "AGR-MAX_HT-LTH_TOTAL_SOMATORIO-GRUPO-L1_L7-MENSAL-SUM",
       "row": 73
     },
     {
-      "aggregation_rule_id": "AGR-MAX_HT-MASSA_TOTAL_MAX_HT-GRUPO-L1_L3-ANUAL-AVERAGE",
-      "row": 77
+      "aggregation_rule_id": "AGR-MAX_HT-LTH_TOTAL_SOMATORIO-GRUPO-L1_L7-MENSAL-SUM",
+      "row": 74
     },
     {
-      "aggregation_rule_id": "AGR-MAX_HT-MASSA_TOTAL_MAX_HT-GRUPO-L4_L5-ANUAL-AVERAGE",
+      "aggregation_rule_id": "AGR-MAX_HT-MASSA_TOTAL_MAX_HT-GRUPO-L1_L3-ANUAL-AVERAGE",
       "row": 78
     },
     {
-      "aggregation_rule_id": "AGR-MAX_HT-MASSA_TOTAL_MAX_HT-GRUPO-L6_L7-ANUAL-AVERAGE",
+      "aggregation_rule_id": "AGR-MAX_HT-MASSA_TOTAL_MAX_HT-GRUPO-L4_L5-ANUAL-AVERAGE",
       "row": 79
     },
     {
-      "aggregation_rule_id": "AGR-MAX_HT-MASSA_TOTAL_MAX_HT-GRUPO-L1_L3-MENSAL-AVERAGE",
+      "aggregation_rule_id": "AGR-MAX_HT-MASSA_TOTAL_MAX_HT-GRUPO-L6_L7-ANUAL-AVERAGE",
       "row": 80
     },
     {
-      "aggregation_rule_id": "AGR-MAX_HT-MASSA_TOTAL_MAX_HT-GRUPO-L4_L5-MENSAL-AVERAGE",
+      "aggregation_rule_id": "AGR-MAX_HT-MASSA_TOTAL_MAX_HT-GRUPO-L1_L3-MENSAL-AVERAGE",
       "row": 81
     },
     {
-      "aggregation_rule_id": "AGR-MAX_HT-MASSA_TOTAL_MAX_HT-GRUPO-L6_L7-MENSAL-AVERAGE",
+      "aggregation_rule_id": "AGR-MAX_HT-MASSA_TOTAL_MAX_HT-GRUPO-L4_L5-MENSAL-AVERAGE",
       "row": 82
     },
     {
-      "aggregation_rule_id": "AGR-MAX_HT-MASSA_TOTAL_MAX_HT_SOMATORIO-GRUPO-L1_L3-ANUAL-SUM",
+      "aggregation_rule_id": "AGR-MAX_HT-MASSA_TOTAL_MAX_HT-GRUPO-L6_L7-MENSAL-AVERAGE",
       "row": 83
     },
     {
-      "aggregation_rule_id": "AGR-MAX_HT-MASSA_TOTAL_MAX_HT_SOMATORIO-GRUPO-L4_L5-ANUAL-SUM",
+      "aggregation_rule_id": "AGR-MAX_HT-MASSA_TOTAL_MAX_HT_SOMATORIO-GRUPO-L1_L3-ANUAL-SUM",
       "row": 84
     },
     {
-      "aggregation_rule_id": "AGR-MAX_HT-MASSA_TOTAL_MAX_HT_SOMATORIO-GRUPO-L6_L7-ANUAL-SUM",
+      "aggregation_rule_id": "AGR-MAX_HT-MASSA_TOTAL_MAX_HT_SOMATORIO-GRUPO-L4_L5-ANUAL-SUM",
       "row": 85
     },
     {
-      "aggregation_rule_id": "AGR-MAX_HT-MASSA_TOTAL_MAX_HT_SOMATORIO-GRUPO-L1_L3-MENSAL-SUM",
+      "aggregation_rule_id": "AGR-MAX_HT-MASSA_TOTAL_MAX_HT_SOMATORIO-GRUPO-L6_L7-ANUAL-SUM",
       "row": 86
     },
     {
-      "aggregation_rule_id": "AGR-MAX_HT-MASSA_TOTAL_MAX_HT_SOMATORIO-GRUPO-L4_L5-MENSAL-SUM",
+      "aggregation_rule_id": "AGR-MAX_HT-MASSA_TOTAL_MAX_HT_SOMATORIO-GRUPO-L1_L3-MENSAL-SUM",
       "row": 87
     },
     {
-      "aggregation_rule_id": "AGR-MAX_HT-MASSA_TOTAL_MAX_HT_SOMATORIO-GRUPO-L6_L7-MENSAL-SUM",
+      "aggregation_rule_id": "AGR-MAX_HT-MASSA_TOTAL_MAX_HT_SOMATORIO-GRUPO-L4_L5-MENSAL-SUM",
       "row": 88
     },
     {
-      "aggregation_rule_id": "AGR-MAX_HT-MASSA_TOTAL_MAX_HT_TOTAL-GRUPO-L1_L7-ANUAL-AVERAGE",
-      "row": 90
+      "aggregation_rule_id": "AGR-MAX_HT-MASSA_TOTAL_MAX_HT_SOMATORIO-GRUPO-L6_L7-MENSAL-SUM",
+      "row": 89
     },
     {
-      "aggregation_rule_id": "AGR-MAX_HT-MASSA_TOTAL_MAX_HT_TOTAL-GRUPO-L1_L7-MENSAL-AVERAGE",
+      "aggregation_rule_id": "AGR-MAX_HT-MASSA_TOTAL_MAX_HT_TOTAL-GRUPO-L1_L7-ANUAL-AVERAGE",
       "row": 91
     },
     {
-      "aggregation_rule_id": "AGR-MAX_HT-MASSA_TOTAL_MAX_HT_TOTAL_SOMATORIO-GRUPO-L1_L7-ANUAL-SUM",
+      "aggregation_rule_id": "AGR-MAX_HT-MASSA_TOTAL_MAX_HT_TOTAL-GRUPO-L1_L7-MENSAL-AVERAGE",
       "row": 92
     },
     {
-      "aggregation_rule_id": "AGR-MAX_HT-MASSA_TOTAL_MAX_HT_TOTAL_SOMATORIO-GRUPO-L1_L7-MENSAL-SUM",
+      "aggregation_rule_id": "AGR-MAX_HT-MASSA_TOTAL_MAX_HT_TOTAL_SOMATORIO-GRUPO-L1_L7-ANUAL-SUM",
       "row": 93
     },
     {
-      "aggregation_rule_id": "AGR-MAX_HT-PRODUCAO-LINHA-L1_L7-ANUAL-AVERAGE",
+      "aggregation_rule_id": "AGR-MAX_HT-MASSA_TOTAL_MAX_HT_TOTAL_SOMATORIO-GRUPO-L1_L7-MENSAL-SUM",
       "row": 94
     },
     {
-      "aggregation_rule_id": "AGR-MAX_HT-PRODUCAO-LINHA-L1_L7-MENSAL-AVERAGE",
+      "aggregation_rule_id": "AGR-MAX_HT-PRODUCAO-LINHA-L1_L7-ANUAL-AVERAGE",
       "row": 95
     },
     {
-      "aggregation_rule_id": "AGR-MAX_HT-PRODUCAO_SOMATORIO-LINHA-L1_L7-ANUAL-SUM",
+      "aggregation_rule_id": "AGR-MAX_HT-PRODUCAO-LINHA-L1_L7-MENSAL-AVERAGE",
       "row": 96
     },
     {
-      "aggregation_rule_id": "AGR-MAX_HT-PRODUCAO_SOMATORIO-LINHA-L1_L7-MENSAL-SUM",
+      "aggregation_rule_id": "AGR-MAX_HT-PRODUCAO_SOMATORIO-LINHA-L1_L7-ANUAL-SUM",
       "row": 97
     },
     {
-      "aggregation_rule_id": "AGR-MAX_HT-PRODUCAO_GRUPO-GRUPO-L1_L3-ANUAL-AVERAGE",
-      "row": 99
+      "aggregation_rule_id": "AGR-MAX_HT-PRODUCAO_SOMATORIO-LINHA-L1_L7-MENSAL-SUM",
+      "row": 98
     },
     {
-      "aggregation_rule_id": "AGR-MAX_HT-PRODUCAO_GRUPO-GRUPO-L4_L5-ANUAL-AVERAGE",
+      "aggregation_rule_id": "AGR-MAX_HT-PRODUCAO_GRUPO-GRUPO-L1_L3-ANUAL-AVERAGE",
       "row": 100
     },
     {
-      "aggregation_rule_id": "AGR-MAX_HT-PRODUCAO_GRUPO-GRUPO-L6_L7-ANUAL-AVERAGE",
+      "aggregation_rule_id": "AGR-MAX_HT-PRODUCAO_GRUPO-GRUPO-L4_L5-ANUAL-AVERAGE",
       "row": 101
     },
     {
-      "aggregation_rule_id": "AGR-MAX_HT-PRODUCAO_GRUPO-GRUPO-L1_L3-MENSAL-AVERAGE",
+      "aggregation_rule_id": "AGR-MAX_HT-PRODUCAO_GRUPO-GRUPO-L6_L7-ANUAL-AVERAGE",
       "row": 102
     },
     {
-      "aggregation_rule_id": "AGR-MAX_HT-PRODUCAO_GRUPO-GRUPO-L4_L5-MENSAL-AVERAGE",
+      "aggregation_rule_id": "AGR-MAX_HT-PRODUCAO_GRUPO-GRUPO-L1_L3-MENSAL-AVERAGE",
       "row": 103
     },
     {
-      "aggregation_rule_id": "AGR-MAX_HT-PRODUCAO_GRUPO-GRUPO-L6_L7-MENSAL-AVERAGE",
+      "aggregation_rule_id": "AGR-MAX_HT-PRODUCAO_GRUPO-GRUPO-L4_L5-MENSAL-AVERAGE",
       "row": 104
     },
     {
-      "aggregation_rule_id": "AGR-MAX_HT-PRODUCAO_GRUPO_SOMATORIO-GRUPO-L1_L3-ANUAL-SUM",
-      "row": 108
+      "aggregation_rule_id": "AGR-MAX_HT-PRODUCAO_GRUPO-GRUPO-L6_L7-MENSAL-AVERAGE",
+      "row": 105
     },
     {
-      "aggregation_rule_id": "AGR-MAX_HT-PRODUCAO_GRUPO_SOMATORIO-GRUPO-L4_L5-ANUAL-SUM",
+      "aggregation_rule_id": "AGR-MAX_HT-PRODUCAO_GRUPO_SOMATORIO-GRUPO-L1_L3-ANUAL-SUM",
       "row": 109
     },
     {
-      "aggregation_rule_id": "AGR-MAX_HT-PRODUCAO_GRUPO_SOMATORIO-GRUPO-L6_L7-ANUAL-SUM",
+      "aggregation_rule_id": "AGR-MAX_HT-PRODUCAO_GRUPO_SOMATORIO-GRUPO-L4_L5-ANUAL-SUM",
       "row": 110
     },
     {
-      "aggregation_rule_id": "AGR-MAX_HT-PRODUCAO_GRUPO_SOMATORIO-GRUPO-L1_L3-MENSAL-SUM",
+      "aggregation_rule_id": "AGR-MAX_HT-PRODUCAO_GRUPO_SOMATORIO-GRUPO-L6_L7-ANUAL-SUM",
       "row": 111
     },
     {
-      "aggregation_rule_id": "AGR-MAX_HT-PRODUCAO_GRUPO_SOMATORIO-GRUPO-L4_L5-MENSAL-SUM",
+      "aggregation_rule_id": "AGR-MAX_HT-PRODUCAO_GRUPO_SOMATORIO-GRUPO-L1_L3-MENSAL-SUM",
       "row": 112
     },
     {
-      "aggregation_rule_id": "AGR-MAX_HT-PRODUCAO_GRUPO_SOMATORIO-GRUPO-L6_L7-MENSAL-SUM",
+      "aggregation_rule_id": "AGR-MAX_HT-PRODUCAO_GRUPO_SOMATORIO-GRUPO-L4_L5-MENSAL-SUM",
       "row": 113
     },
     {
-      "aggregation_rule_id": "AGR-MAX_HT-REFINERY-GRUPO-L1_L7-ANUAL-AVERAGE",
+      "aggregation_rule_id": "AGR-MAX_HT-PRODUCAO_GRUPO_SOMATORIO-GRUPO-L6_L7-MENSAL-SUM",
       "row": 114
     },
     {
-      "aggregation_rule_id": "AGR-MAX_HT-REFINERY-GRUPO-L1_L7-MENSAL-AVERAGE",
+      "aggregation_rule_id": "AGR-MAX_HT-REFINERY-GRUPO-L1_L7-ANUAL-AVERAGE",
       "row": 115
     },
     {
+      "aggregation_rule_id": "AGR-MAX_HT-REFINERY-GRUPO-L1_L7-MENSAL-AVERAGE",
+      "row": 116
+    },
+    {
       "aggregation_rule_id": "AGR-MAX_HT-REFINERY_SOMATORIO-GRUPO-L1_L7-ANUAL-SUM",
-      "row": 117
+      "row": 118
     },
     {
       "aggregation_rule_id": "AGR-MAX_HT-REFINERY_SOMATORIO-GRUPO-L1_L7-MENSAL-SUM",
-      "row": 118
+      "row": 119
     }
   ],
   "pending_contract_decisions": []

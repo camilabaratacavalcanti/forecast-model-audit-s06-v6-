@@ -8,7 +8,7 @@
     "frequency": "diário",
     "scope_type": "linha",
     "scope_value": "L1_L7",
-    "source_reference": "descritivo_das_variáveis_energy_v6.xlsx",
+    "source_reference": "descritivo_das_variáveis_energy_v9.xlsx",
     "status": "ativo",
     "value_type": "numerico"
   },
@@ -21,7 +21,7 @@
     "frequency": "diário",
     "scope_type": "linha",
     "scope_value": "L1_L7",
-    "source_reference": "descritivo_das_variáveis_energy_v6.xlsx",
+    "source_reference": "descritivo_das_variáveis_energy_v9.xlsx",
     "status": "ativo",
     "value_type": "numerico"
   },
@@ -34,7 +34,7 @@
     "frequency": "diário",
     "scope_type": "linha_grupo",
     "scope_value": "L1_L7",
-    "source_reference": "descritivo_das_variáveis_energy_v6.xlsx",
+    "source_reference": "descritivo_das_variáveis_energy_v9.xlsx",
     "status": "ativo",
     "value_type": "numerico"
   },
@@ -47,7 +47,7 @@
     "frequency": "diário",
     "scope_type": "linha_grupo",
     "scope_value": "L1_L7",
-    "source_reference": "descritivo_das_variáveis_energy_v6.xlsx",
+    "source_reference": "descritivo_das_variáveis_energy_v9.xlsx",
     "status": "ativo",
     "value_type": "numerico"
   },
@@ -60,7 +60,7 @@
     "frequency": "diário",
     "scope_type": "linha",
     "scope_value": "L1_L7",
-    "source_reference": "descritivo_das_variáveis_energy_v6.xlsx",
+    "source_reference": "descritivo_das_variáveis_energy_v9.xlsx",
     "status": "ativo",
     "value_type": "numerico"
   },
@@ -73,7 +73,7 @@
     "frequency": "diário",
     "scope_type": "linha_grupo",
     "scope_value": "L1_L7",
-    "source_reference": "descritivo_das_variáveis_energy_v6.xlsx",
+    "source_reference": "descritivo_das_variáveis_energy_v9.xlsx",
     "status": "ativo",
     "value_type": "numerico"
   },
@@ -86,7 +86,7 @@
     "frequency": "mensal",
     "scope_type": "linha_grupo",
     "scope_value": "L1_L7",
-    "source_reference": "descritivo_das_variáveis_energy_v6.xlsx",
+    "source_reference": "descritivo_das_variáveis_energy_v9.xlsx",
     "status": "ativo",
     "value_type": "numerico"
   },
@@ -99,7 +99,7 @@
     "frequency": "diário",
     "scope_type": "linha",
     "scope_value": "L1_L7",
-    "source_reference": "descritivo_das_variáveis_energy_v6.xlsx",
+    "source_reference": "descritivo_das_variáveis_energy_v9.xlsx",
     "status": "ativo",
     "value_type": "numerico"
   },
@@ -112,7 +112,7 @@
     "frequency": "diário",
     "scope_type": "linha_grupo",
     "scope_value": "L1_L7",
-    "source_reference": "descritivo_das_variáveis_energy_v6.xlsx",
+    "source_reference": "descritivo_das_variáveis_energy_v9.xlsx",
     "status": "ativo",
     "value_type": "numerico"
   },
@@ -125,7 +125,7 @@
     "frequency": "mensal",
     "scope_type": "linha_grupo",
     "scope_value": "L1_L7",
-    "source_reference": "descritivo_das_variáveis_energy_v6.xlsx",
+    "source_reference": "descritivo_das_variáveis_energy_v9.xlsx",
     "status": "ativo",
     "value_type": "numerico"
   },
@@ -138,7 +138,7 @@
     "frequency": "anual",
     "scope_type": "linha",
     "scope_value": "L1_L7",
-    "source_reference": "descritivo_das_variáveis_energy_v6.xlsx",
+    "source_reference": "descritivo_das_variáveis_energy_v9.xlsx",
     "status": "ativo",
     "value_type": "numerico"
   },
@@ -151,7 +151,7 @@
     "frequency": "diário",
     "scope_type": "linha",
     "scope_value": "L1_L7",
-    "source_reference": "descritivo_das_variáveis_energy_v6.xlsx",
+    "source_reference": "descritivo_das_variáveis_energy_v9.xlsx",
     "status": "ativo",
     "value_type": "numerico"
   },
@@ -164,7 +164,7 @@
     "frequency": "mensal",
     "scope_type": "linha",
     "scope_value": "L1_L7",
-    "source_reference": "descritivo_das_variáveis_energy_v6.xlsx",
+    "source_reference": "descritivo_das_variáveis_energy_v9.xlsx",
     "status": "ativo",
     "value_type": "numerico"
   },
@@ -177,7 +177,7 @@
     "frequency": "mensal",
     "scope_type": "linha_grupo",
     "scope_value": "L1_L7",
-    "source_reference": "descritivo_das_variáveis_energy_v6.xlsx",
+    "source_reference": "descritivo_das_variáveis_energy_v9.xlsx",
     "status": "ativo",
     "value_type": "numerico"
   },
@@ -190,7 +190,7 @@
     "frequency": "mensal",
     "scope_type": "linha",
     "scope_value": "L1_L7",
-    "source_reference": "descritivo_das_variáveis_energy_v6.xlsx",
+    "source_reference": "descritivo_das_variáveis_energy_v9.xlsx",
     "status": "ativo",
     "value_type": "numerico"
   },
@@ -203,7 +203,7 @@
     "frequency": "mensal",
     "scope_type": "linha",
     "scope_value": "L1_L7",
-    "source_reference": "descritivo_das_variáveis_energy_v6.xlsx",
+    "source_reference": "descritivo_das_variáveis_energy_v9.xlsx",
     "status": "ativo",
     "value_type": "numerico"
   },
@@ -216,7 +216,7 @@
     "frequency": "diário",
     "scope_type": "linha",
     "scope_value": "L1_L7",
-    "source_reference": "descritivo_das_variáveis_energy_v6.xlsx",
+    "source_reference": "descritivo_das_variáveis_energy_v9.xlsx",
     "status": "ativo",
     "value_type": "numerico"
   },
@@ -229,7 +229,7 @@
     "frequency": "diário",
     "scope_type": "linha",
     "scope_value": "L1_L7",
-    "source_reference": "descritivo_das_variáveis_energy_v6.xlsx",
+    "source_reference": "descritivo_das_variáveis_energy_v9.xlsx",
     "status": "ativo",
     "value_type": "numerico"
   },
@@ -242,7 +242,7 @@
     "frequency": "diário",
     "scope_type": "linha",
     "scope_value": "L1_L7",
-    "source_reference": "descritivo_das_variáveis_energy_v6.xlsx",
+    "source_reference": "descritivo_das_variáveis_energy_v9.xlsx",
     "status": "ativo",
     "value_type": "numerico"
   },
@@ -255,7 +255,7 @@
     "frequency": "diário",
     "scope_type": "linha",
     "scope_value": "L1_L7",
-    "source_reference": "descritivo_das_variáveis_energy_v6.xlsx",
+    "source_reference": "descritivo_das_variáveis_energy_v9.xlsx",
     "status": "ativo",
     "value_type": "numerico"
   },
@@ -268,7 +268,7 @@
     "frequency": "mensal",
     "scope_type": "linha",
     "scope_value": "L1_L7",
-    "source_reference": "descritivo_das_variáveis_energy_v6.xlsx",
+    "source_reference": "descritivo_das_variáveis_energy_v9.xlsx",
     "status": "ativo",
     "value_type": "numerico"
   },
@@ -281,7 +281,7 @@
     "frequency": "diário",
     "scope_type": "linha_grupo",
     "scope_value": "L1_L7",
-    "source_reference": "descritivo_das_variáveis_energy_v6.xlsx",
+    "source_reference": "descritivo_das_variáveis_energy_v9.xlsx",
     "status": "ativo",
     "value_type": "numerico"
   },
@@ -294,7 +294,7 @@
     "frequency": "mensal",
     "scope_type": "linha_grupo",
     "scope_value": "L1_L7",
-    "source_reference": "descritivo_das_variáveis_energy_v6.xlsx",
+    "source_reference": "descritivo_das_variáveis_energy_v9.xlsx",
     "status": "ativo",
     "value_type": "numerico"
   },
@@ -307,7 +307,7 @@
     "frequency": "diário",
     "scope_type": "linha",
     "scope_value": "L1_L7",
-    "source_reference": "descritivo_das_variáveis_energy_v6.xlsx",
+    "source_reference": "descritivo_das_variáveis_energy_v9.xlsx",
     "status": "ativo",
     "value_type": "numerico"
   },
@@ -320,7 +320,7 @@
     "frequency": "diário",
     "scope_type": "linha_grupo",
     "scope_value": "L1_L7",
-    "source_reference": "descritivo_das_variáveis_energy_v6.xlsx",
+    "source_reference": "descritivo_das_variáveis_energy_v9.xlsx",
     "status": "ativo",
     "value_type": "numerico"
   },
@@ -333,7 +333,7 @@
     "frequency": "mensal",
     "scope_type": "linha_grupo",
     "scope_value": "L1_L7",
-    "source_reference": "descritivo_das_variáveis_energy_v6.xlsx",
+    "source_reference": "descritivo_das_variáveis_energy_v9.xlsx",
     "status": "ativo",
     "value_type": "numerico"
   },
@@ -346,7 +346,7 @@
     "frequency": "diário",
     "scope_type": "linha_grupo",
     "scope_value": "L1_L7",
-    "source_reference": "descritivo_das_variáveis_energy_v6.xlsx",
+    "source_reference": "descritivo_das_variáveis_energy_v9.xlsx",
     "status": "ativo",
     "value_type": "numerico"
   },
@@ -359,7 +359,7 @@
     "frequency": "mensal",
     "scope_type": "linha_grupo",
     "scope_value": "L1_L7",
-    "source_reference": "descritivo_das_variáveis_energy_v6.xlsx",
+    "source_reference": "descritivo_das_variáveis_energy_v9.xlsx",
     "status": "ativo",
     "value_type": "numerico"
   },
@@ -372,7 +372,7 @@
     "frequency": "mensal",
     "scope_type": "linha",
     "scope_value": "L1_L7",
-    "source_reference": "descritivo_das_variáveis_energy_v6.xlsx",
+    "source_reference": "descritivo_das_variáveis_energy_v9.xlsx",
     "status": "ativo",
     "value_type": "numerico"
   },
@@ -385,7 +385,20 @@
     "frequency": "diário",
     "scope_type": "linha",
     "scope_value": "L1_L7",
-    "source_reference": "descritivo_das_variáveis_energy_v6.xlsx",
+    "source_reference": "descritivo_das_variáveis_energy_v9.xlsx",
+    "status": "ativo",
+    "value_type": "numerico"
+  },
+  {
+    "variable_id": "VAR18053",
+    "variable_name": "retirada_total_condensado_area13",
+    "description": "Vazão volumétrica total de evaporado utilizada no processo de evaporação.",
+    "unit": "m³/h",
+    "variable_type": "entrada_externa",
+    "frequency": "diário",
+    "scope_type": "linha",
+    "scope_value": "L1_L7",
+    "source_reference": "descritivo_das_variáveis_energy_v9.xlsx",
     "status": "ativo",
     "value_type": "numerico"
   },
@@ -394,11 +407,11 @@
     "variable_name": "evaporado_total_evaporacao",
     "description": "Vazão total de evaporado utilizada no processo de evaporação.",
     "unit": "t/h",
-    "variable_type": "entrada_externa",
+    "variable_type": "calculado",
     "frequency": "diário",
     "scope_type": "linha",
     "scope_value": "L1_L7",
-    "source_reference": "descritivo_das_variáveis_energy_v6.xlsx",
+    "source_reference": "descritivo_das_variáveis_energy_v9.xlsx",
     "status": "ativo",
     "value_type": "numerico"
   },
@@ -411,7 +424,7 @@
     "frequency": "diário",
     "scope_type": "linha",
     "scope_value": "L1_L7",
-    "source_reference": "descritivo_das_variáveis_energy_v6.xlsx",
+    "source_reference": "descritivo_das_variáveis_energy_v9.xlsx",
     "status": "ativo",
     "value_type": "numerico"
   },
@@ -424,7 +437,7 @@
     "frequency": "diário",
     "scope_type": "linha_grupo",
     "scope_value": "L1_L7",
-    "source_reference": "descritivo_das_variáveis_energy_v6.xlsx",
+    "source_reference": "descritivo_das_variáveis_energy_v9.xlsx",
     "status": "ativo",
     "value_type": "numerico"
   },
@@ -437,7 +450,7 @@
     "frequency": "diário",
     "scope_type": "linha",
     "scope_value": "L1_L7",
-    "source_reference": "descritivo_das_variáveis_energy_v6.xlsx",
+    "source_reference": "descritivo_das_variáveis_energy_v9.xlsx",
     "status": "ativo",
     "value_type": "numerico"
   },
@@ -450,7 +463,7 @@
     "frequency": "diário",
     "scope_type": "linha_grupo",
     "scope_value": "L1_L3",
-    "source_reference": "descritivo_das_variáveis_energy_v6.xlsx",
+    "source_reference": "descritivo_das_variáveis_energy_v9.xlsx",
     "status": "ativo",
     "value_type": "numerico"
   },
@@ -463,7 +476,7 @@
     "frequency": "diário",
     "scope_type": "linha_grupo",
     "scope_value": "L4_L5",
-    "source_reference": "descritivo_das_variáveis_energy_v6.xlsx",
+    "source_reference": "descritivo_das_variáveis_energy_v9.xlsx",
     "status": "ativo",
     "value_type": "numerico"
   },
@@ -476,7 +489,7 @@
     "frequency": "diário",
     "scope_type": "linha_grupo",
     "scope_value": "L6_L7",
-    "source_reference": "descritivo_das_variáveis_energy_v6.xlsx",
+    "source_reference": "descritivo_das_variáveis_energy_v9.xlsx",
     "status": "ativo",
     "value_type": "numerico"
   },
@@ -489,7 +502,7 @@
     "frequency": "diário",
     "scope_type": "linha_grupo",
     "scope_value": "L1_L7",
-    "source_reference": "descritivo_das_variáveis_energy_v6.xlsx",
+    "source_reference": "descritivo_das_variáveis_energy_v9.xlsx",
     "status": "ativo",
     "value_type": "numerico"
   },
@@ -502,7 +515,7 @@
     "frequency": "mensal",
     "scope_type": "linha_grupo",
     "scope_value": "L1_L7",
-    "source_reference": "descritivo_das_variáveis_energy_v6.xlsx",
+    "source_reference": "descritivo_das_variáveis_energy_v9.xlsx",
     "status": "ativo",
     "value_type": "numerico"
   },
@@ -515,7 +528,7 @@
     "frequency": "diário",
     "scope_type": "linha_grupo",
     "scope_value": "L1_L7",
-    "source_reference": "descritivo_das_variáveis_energy_v6.xlsx",
+    "source_reference": "descritivo_das_variáveis_energy_v9.xlsx",
     "status": "ativo",
     "value_type": "numerico"
   },
@@ -528,7 +541,7 @@
     "frequency": "mensal",
     "scope_type": "linha_grupo",
     "scope_value": "L1_L7",
-    "source_reference": "descritivo_das_variáveis_energy_v6.xlsx",
+    "source_reference": "descritivo_das_variáveis_energy_v9.xlsx",
     "status": "ativo",
     "value_type": "numerico"
   },
@@ -541,7 +554,7 @@
     "frequency": "diário",
     "scope_type": "linha_grupo",
     "scope_value": "L1_L7",
-    "source_reference": "descritivo_das_variáveis_energy_v6.xlsx",
+    "source_reference": "descritivo_das_variáveis_energy_v9.xlsx",
     "status": "ativo",
     "value_type": "numerico"
   },
@@ -554,7 +567,7 @@
     "frequency": "mensal",
     "scope_type": "linha_grupo",
     "scope_value": "L1_L7",
-    "source_reference": "descritivo_das_variáveis_energy_v6.xlsx",
+    "source_reference": "descritivo_das_variáveis_energy_v9.xlsx",
     "status": "ativo",
     "value_type": "numerico"
   },
@@ -567,7 +580,7 @@
     "frequency": "mensal",
     "scope_type": "linha_grupo",
     "scope_value": "L1_L7",
-    "source_reference": "descritivo_das_variáveis_energy_v6.xlsx",
+    "source_reference": "descritivo_das_variáveis_energy_v9.xlsx",
     "status": "ativo",
     "value_type": "numerico"
   },
@@ -580,7 +593,7 @@
     "frequency": "diário",
     "scope_type": "linha_grupo",
     "scope_value": "L1_L7",
-    "source_reference": "descritivo_das_variáveis_energy_v6.xlsx",
+    "source_reference": "descritivo_das_variáveis_energy_v9.xlsx",
     "status": "ativo",
     "value_type": "numerico"
   },
@@ -593,7 +606,7 @@
     "frequency": "diário",
     "scope_type": "linha_grupo",
     "scope_value": "L1_L7",
-    "source_reference": "descritivo_das_variáveis_energy_v6.xlsx",
+    "source_reference": "descritivo_das_variáveis_energy_v9.xlsx",
     "status": "ativo",
     "value_type": "numerico"
   },
@@ -606,7 +619,7 @@
     "frequency": "diário",
     "scope_type": "linha_grupo",
     "scope_value": "L1_L7",
-    "source_reference": "descritivo_das_variáveis_energy_v6.xlsx",
+    "source_reference": "descritivo_das_variáveis_energy_v9.xlsx",
     "status": "ativo",
     "value_type": "numerico"
   },
@@ -619,7 +632,7 @@
     "frequency": "mensal",
     "scope_type": "linha_grupo",
     "scope_value": "L1_L7",
-    "source_reference": "descritivo_das_variáveis_energy_v6.xlsx",
+    "source_reference": "descritivo_das_variáveis_energy_v9.xlsx",
     "status": "ativo",
     "value_type": "numerico"
   },
@@ -632,7 +645,7 @@
     "frequency": "diário",
     "scope_type": "linha_grupo",
     "scope_value": "L1_L7",
-    "source_reference": "descritivo_das_variáveis_energy_v6.xlsx",
+    "source_reference": "descritivo_das_variáveis_energy_v9.xlsx",
     "status": "ativo",
     "value_type": "numerico"
   },
@@ -645,7 +658,7 @@
     "frequency": "diário",
     "scope_type": "linha_grupo",
     "scope_value": "L1_L7",
-    "source_reference": "descritivo_das_variáveis_energy_v6.xlsx",
+    "source_reference": "descritivo_das_variáveis_energy_v9.xlsx",
     "status": "ativo",
     "value_type": "numerico"
   },
@@ -658,7 +671,7 @@
     "frequency": "mensal",
     "scope_type": "linha_grupo",
     "scope_value": "L1_L7",
-    "source_reference": "descritivo_das_variáveis_energy_v6.xlsx",
+    "source_reference": "descritivo_das_variáveis_energy_v9.xlsx",
     "status": "ativo",
     "value_type": "numerico"
   },
@@ -671,7 +684,7 @@
     "frequency": "mensal",
     "scope_type": "linha_grupo",
     "scope_value": "L1_L7",
-    "source_reference": "descritivo_das_variáveis_energy_v6.xlsx",
+    "source_reference": "descritivo_das_variáveis_energy_v9.xlsx",
     "status": "ativo",
     "value_type": "numerico"
   }

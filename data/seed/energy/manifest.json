@@ -1,13 +1,13 @@
 {
   "block": "energy",
   "workbook": {
-    "file_name": "descritivo_das_variáveis_energy_v6.xlsx",
-    "sha256": "cfc46031fc2f3f375b87ebbba58676d23ad92f3ee43fb81b353fe5a8247e1df8",
+    "file_name": "descritivo_das_variáveis_energy_v9.xlsx",
+    "sha256": "731f71e9ab3850fef29ed384230aef37bc2c08a656cbf441f5eada9900973de2",
     "sheet": "energy",
     "header_row": 2,
-    "data_rows": 56,
+    "data_rows": 57,
     "empty_rows_ignored": 249,
-    "last_sheet_row": 307
+    "last_sheet_row": 308
   },
   "entities": [
     {
@@ -396,9 +396,9 @@
       ]
     },
     {
-      "entity_id": "VAR18031",
+      "entity_id": "VAR18053",
       "kind": "variable",
-      "name": "evaporado_total_evaporacao",
+      "name": "retirada_total_condensado_area13",
       "frequency": "diário",
       "scope_type": "linha",
       "scope_value": "L1_L7",
@@ -408,6 +408,17 @@
       "source_block": "area_04_13"
     },
     {
+      "entity_id": "VAR18031",
+      "kind": "variable",
+      "name": "evaporado_total_evaporacao",
+      "frequency": "diário",
+      "scope_type": "linha",
+      "scope_value": "L1_L7",
+      "rows": [
+        38
+      ]
+    },
+    {
       "entity_id": "VAR18032",
       "kind": "variable",
       "name": "consumo_vapor_evaporadores",
@@ -415,7 +426,7 @@
       "scope_type": "linha",
       "scope_value": "L1_L7",
       "rows": [
-        38
+        39
       ]
     },
     {
@@ -426,7 +437,7 @@
       "scope_type": "linha_grupo",
       "scope_value": "L1_L7",
       "rows": [
-        39
+        40
       ]
     },
     {
@@ -437,7 +448,7 @@
       "scope_type": "linha",
       "scope_value": "L1_L7",
       "rows": [
-        40
+        41
       ]
     },
     {
@@ -448,7 +459,7 @@
       "scope_type": "linha_grupo",
       "scope_value": "L1_L3",
       "rows": [
-        41
+        42
       ]
     },
     {
@@ -459,7 +470,7 @@
       "scope_type": "linha_grupo",
       "scope_value": "L4_L5",
       "rows": [
-        42
+        43
       ]
     },
     {
@@ -470,7 +481,7 @@
       "scope_type": "linha_grupo",
       "scope_value": "L6_L7",
       "rows": [
-        43
+        44
       ]
     },
     {
@@ -481,7 +492,7 @@
       "scope_type": "linha_grupo",
       "scope_value": "L1_L7",
       "rows": [
-        44
+        45
       ]
     },
     {
@@ -492,7 +503,7 @@
       "scope_type": "linha_grupo",
       "scope_value": "L1_L7",
       "rows": [
-        45
+        46
       ]
     },
     {
@@ -503,7 +514,7 @@
       "scope_type": "linha_grupo",
       "scope_value": "L1_L7",
       "rows": [
-        46
+        47
       ]
     },
     {
@@ -514,7 +525,7 @@
       "scope_type": "linha_grupo",
       "scope_value": "L1_L7",
       "rows": [
-        47
+        48
       ]
     },
     {
@@ -525,7 +536,7 @@
       "scope_type": "linha_grupo",
       "scope_value": "L1_L7",
       "rows": [
-        48
+        49
       ]
     },
     {
@@ -536,7 +547,7 @@
       "scope_type": "linha_grupo",
       "scope_value": "L1_L7",
       "rows": [
-        49
+        50
       ]
     },
     {
@@ -547,7 +558,7 @@
       "scope_type": "linha_grupo",
       "scope_value": "L1_L7",
       "rows": [
-        50
+        51
       ]
     },
     {
@@ -558,7 +569,7 @@
       "scope_type": "linha_grupo",
       "scope_value": "L1_L7",
       "rows": [
-        51
+        52
       ]
     },
     {
@@ -569,7 +580,7 @@
       "scope_type": "linha_grupo",
       "scope_value": "L1_L7",
       "rows": [
-        52
+        53
       ]
     },
     {
@@ -580,7 +591,7 @@
       "scope_type": "linha_grupo",
       "scope_value": "L1_L7",
       "rows": [
-        53
+        54
       ]
     },
     {
@@ -591,7 +602,7 @@
       "scope_type": "linha_grupo",
       "scope_value": "L1_L7",
       "rows": [
-        54
+        55
       ]
     },
     {
@@ -602,7 +613,7 @@
       "scope_type": "linha_grupo",
       "scope_value": "L1_L7",
       "rows": [
-        55
+        56
       ]
     },
     {
@@ -613,7 +624,7 @@
       "scope_type": "linha_grupo",
       "scope_value": "L1_L7",
       "rows": [
-        56
+        57
       ]
     },
     {
@@ -624,7 +635,7 @@
       "scope_type": "linha_grupo",
       "scope_value": "L1_L7",
       "rows": [
-        57
+        58
       ]
     },
     {
@@ -635,7 +646,7 @@
       "scope_type": "linha_grupo",
       "scope_value": "L1_L7",
       "rows": [
-        58
+        59
       ]
     }
   ],
@@ -682,59 +693,63 @@
     },
     {
       "equation_id": "EQ18011",
-      "row": 38
-    },
-    {
-      "equation_id": "EQ18012",
       "row": 39
     },
     {
-      "equation_id": "EQ18013",
+      "equation_id": "EQ18012",
       "row": 40
     },
     {
-      "equation_id": "EQ18014",
+      "equation_id": "EQ18013",
       "row": 41
     },
     {
-      "equation_id": "EQ18015",
+      "equation_id": "EQ18014",
       "row": 42
     },
     {
-      "equation_id": "EQ18016",
+      "equation_id": "EQ18015",
       "row": 43
     },
     {
-      "equation_id": "EQ18017",
+      "equation_id": "EQ18016",
       "row": 44
     },
     {
+      "equation_id": "EQ18017",
+      "row": 45
+    },
+    {
       "equation_id": "EQ18018",
-      "row": 46
+      "row": 47
     },
     {
       "equation_id": "EQ18019",
-      "row": 48
+      "row": 49
     },
     {
       "equation_id": "EQ18020",
-      "row": 50
-    },
-    {
-      "equation_id": "EQ18021",
       "row": 51
     },
     {
+      "equation_id": "EQ18021",
+      "row": 52
+    },
+    {
       "equation_id": "EQ18022",
-      "row": 53
+      "row": 54
     },
     {
       "equation_id": "EQ18023",
-      "row": 55
+      "row": 56
     },
     {
       "equation_id": "EQ18024",
-      "row": 56
+      "row": 57
+    },
+    {
+      "equation_id": "EQ18025",
+      "row": 38
     }
   ],
   "aggregation_rules": [
@@ -760,27 +775,27 @@
     },
     {
       "aggregation_rule_id": "AGR-ENERGY-ESPECIFICO_VAPOR_EVAPORACAO_TOTAL-GRUPO-L1_L7-MENSAL-WEIGHTED_AVERAGE",
-      "row": 45
+      "row": 46
     },
     {
       "aggregation_rule_id": "AGR-ENERGY-ENERGIA_EVAPORACAO-GRUPO-L1_L7-MENSAL-WEIGHTED_AVERAGE",
-      "row": 47
+      "row": 48
     },
     {
       "aggregation_rule_id": "AGR-ENERGY-ENERGIA_BAYER-GRUPO-L1_L7-MENSAL-WEIGHTED_AVERAGE",
-      "row": 49
+      "row": 50
     },
     {
       "aggregation_rule_id": "AGR-ENERGY-ESPECIFICO_VAPOR_OUTROS-GRUPO-L1_L7-MENSAL-WEIGHTED_AVERAGE",
-      "row": 54
+      "row": 55
     },
     {
       "aggregation_rule_id": "AGR-ENERGY-ESPECIFICO_DEMANDA_BAYER_MEDIO-GRUPO-L1_L7-MENSAL-AVERAGE",
-      "row": 57
+      "row": 58
     },
     {
       "aggregation_rule_id": "AGR-ENERGY-ESPECIFICO_DEMANDA_BAYER_MEDIA_PONDERADA-GRUPO-L1_L7-MENSAL-WEIGHTED_AVERAGE",
-      "row": 58
+      "row": 59
     }
   ],
   "pending_contract_decisions": []

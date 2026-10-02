@@ -2,49 +2,49 @@
   "block": "max_ht",
   "entries": [
     {
-      "entity_id": "VAR13001",
+      "entity_id": "VAR13117",
       "kind": "variable",
-      "name": "alimentação_evap",
+      "name": "alimentacao_evap",
       "frequency": "anual",
       "scope_type": "linha",
       "scope_value": "L1_L7"
     },
     {
-      "entity_id": "VAR13002",
+      "entity_id": "VAR13118",
       "kind": "variable",
-      "name": "alimentação_evap",
+      "name": "alimentacao_evap",
       "frequency": "mensal",
       "scope_type": "linha",
       "scope_value": "L1_L7"
     },
     {
-      "entity_id": "VAR13003",
+      "entity_id": "VAR13119",
       "kind": "variable",
-      "name": "alimentação_evap",
+      "name": "alimentacao_evap",
       "frequency": "diário",
       "scope_type": "linha",
       "scope_value": "L1_L7"
     },
     {
-      "entity_id": "VAR13004",
+      "entity_id": "VAR13120",
       "kind": "variable",
-      "name": "alimentação_evap_total",
+      "name": "alimentacao_evap_total",
       "frequency": "diário",
       "scope_type": "linha_grupo",
       "scope_value": "L1_L7"
     },
     {
-      "entity_id": "VAR13005",
+      "entity_id": "VAR13121",
       "kind": "variable",
-      "name": "alimentação_evap_total",
+      "name": "alimentacao_evap_total",
       "frequency": "anual",
       "scope_type": "linha_grupo",
       "scope_value": "L1_L7"
     },
     {
-      "entity_id": "VAR13006",
+      "entity_id": "VAR13122",
       "kind": "variable",
-      "name": "alimentação_evap_total",
+      "name": "alimentacao_evap_total",
       "frequency": "mensal",
       "scope_type": "linha_grupo",
       "scope_value": "L1_L7"
@@ -554,6 +554,14 @@
       "scope_value": "L1_L7"
     },
     {
+      "entity_id": "VAR13123",
+      "kind": "variable",
+      "name": "lth_total_ag",
+      "frequency": "diário",
+      "scope_type": "linha_grupo",
+      "scope_value": "L1_L7"
+    },
+    {
       "entity_id": "VAR13066",
       "kind": "variable",
       "name": "lth_total_somatorio",
@@ -962,17 +970,63 @@
       "scope_value": "L1_L7"
     }
   ],
-  "retired": [],
-  "equations": [
+  "retired": [
     {
-      "equation_id": "EQ13001",
+      "entity_id": "VAR13001",
+      "kind": "variable",
+      "name": "alimentação_evap",
+      "frequency": "anual",
+      "scope_type": "linha",
+      "scope_value": "L1_L7",
+      "retired_in": "descritivo_das_variáveis_MaxHT_v13.xlsx"
+    },
+    {
+      "entity_id": "VAR13002",
+      "kind": "variable",
+      "name": "alimentação_evap",
+      "frequency": "mensal",
+      "scope_type": "linha",
+      "scope_value": "L1_L7",
+      "retired_in": "descritivo_das_variáveis_MaxHT_v13.xlsx"
+    },
+    {
+      "entity_id": "VAR13003",
+      "kind": "variable",
+      "name": "alimentação_evap",
+      "frequency": "diário",
+      "scope_type": "linha",
+      "scope_value": "L1_L7",
+      "retired_in": "descritivo_das_variáveis_MaxHT_v13.xlsx"
+    },
+    {
+      "entity_id": "VAR13004",
       "kind": "variable",
       "name": "alimentação_evap_total",
       "frequency": "diário",
       "scope_type": "linha_grupo",
       "scope_value": "L1_L7",
-      "equation_scope_value": "L1_L7"
+      "retired_in": "descritivo_das_variáveis_MaxHT_v13.xlsx"
     },
+    {
+      "entity_id": "VAR13005",
+      "kind": "variable",
+      "name": "alimentação_evap_total",
+      "frequency": "anual",
+      "scope_type": "linha_grupo",
+      "scope_value": "L1_L7",
+      "retired_in": "descritivo_das_variáveis_MaxHT_v13.xlsx"
+    },
+    {
+      "entity_id": "VAR13006",
+      "kind": "variable",
+      "name": "alimentação_evap_total",
+      "frequency": "mensal",
+      "scope_type": "linha_grupo",
+      "scope_value": "L1_L7",
+      "retired_in": "descritivo_das_variáveis_MaxHT_v13.xlsx"
+    }
+  ],
+  "equations": [
     {
       "equation_id": "EQ13002",
       "kind": "variable",
@@ -1224,7 +1278,36 @@
       "scope_type": "linha_grupo",
       "scope_value": "L1_L7",
       "equation_scope_value": "L1_L7"
+    },
+    {
+      "equation_id": "EQ13030",
+      "kind": "variable",
+      "name": "alimentacao_evap_total",
+      "frequency": "diário",
+      "scope_type": "linha_grupo",
+      "scope_value": "L1_L7",
+      "equation_scope_value": "L1_L7"
+    },
+    {
+      "equation_id": "EQ13031",
+      "kind": "variable",
+      "name": "lth_total_ag",
+      "frequency": "diário",
+      "scope_type": "linha_grupo",
+      "scope_value": "L1_L7",
+      "equation_scope_value": "L1_L7"
     }
   ],
-  "retired_equations": []
+  "retired_equations": [
+    {
+      "equation_id": "EQ13001",
+      "kind": "variable",
+      "name": "alimentação_evap_total",
+      "frequency": "diário",
+      "scope_type": "linha_grupo",
+      "scope_value": "L1_L7",
+      "equation_scope_value": "L1_L7",
+      "retired_in": "descritivo_das_variáveis_MaxHT_v13.xlsx"
+    }
+  ]
 }

@@ -274,6 +274,14 @@
       "scope_value": "L1_L7"
     },
     {
+      "entity_id": "VAR18053",
+      "kind": "variable",
+      "name": "retirada_total_condensado_area13",
+      "frequency": "diário",
+      "scope_type": "linha",
+      "scope_value": "L1_L7"
+    },
+    {
       "entity_id": "VAR18031",
       "kind": "variable",
       "name": "evaporado_total_evaporacao",
@@ -665,6 +673,15 @@
       "name": "especifico_demanda_bayer",
       "frequency": "diário",
       "scope_type": "linha_grupo",
+      "scope_value": "L1_L7",
+      "equation_scope_value": "L1_L7"
+    },
+    {
+      "equation_id": "EQ18025",
+      "kind": "variable",
+      "name": "evaporado_total_evaporacao",
+      "frequency": "diário",
+      "scope_type": "linha",
       "scope_value": "L1_L7",
       "equation_scope_value": "L1_L7"
     }
