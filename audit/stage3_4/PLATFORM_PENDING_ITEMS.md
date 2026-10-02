@@ -86,3 +86,18 @@ Adição append-only. As seções acima não foram reescritas.
 | política de lacunas | **REQUIRES_FOLLOWUP** (F4B-02): lacuna ⇒ falha explícita (`VariableNotFoundError` genérico). Uma execução não pode começar no meio do mês ou do ano sem o histórico desde o dia 1 / 1º de janeiro. É preciso decidir como carregar o realizado anterior em uso operacional | idem, E2 |
 | ano fiscal | **pendência de negócio** (DR-4B-3): a plataforma usa ano-calendário. Confirmar com o cliente se o ano de budget coincide com o calendário | idem |
 | F-01 (16 `PENDING_LOAD`) e F-02 (execução oficial) | **continuam abertos** (inalterados pela 4B) | — |
+
+---
+
+## Adição datada — 2026-10-02: Stage 4C (governança de baseline)
+
+Adição append-only. As seções acima não foram reescritas.
+
+| item | estado após a 4C | fonte |
+|---|---|---|
+| F4B-06 — guardas de fechamento 4A/4B lidas contra o HEAD | **resolvido**: viraram H com intervalos fixos `d2847ab..0a924e6` (4A) e `0a924e6..f573c1b` (4B); as reconciliações rodam em clone no fechamento | `audit/stage4c/STAGE_4C_FINAL_CLOSURE.md` |
+| F4A-01 — `"F"` vira `NO_APPLICABLE_RULE` com `detail = None` | **CLOSED** (mantido o contrato 3.3B; sem mudança no `app/`) | `audit/stage4c/STAGE_4C_DECISION_CONTRACT.md` §4.1 |
+| L8 — protocolo de regeneração de evidência | **formalizado**: a evidência histórica nunca é regravada. A referência viva muda por re-baseline governado (`audit/baselines/rebaseline.py`: proposta PROPOSED com DIFF_REPORT, aprovação humana com selo, `--check`) | `audit/stage4c/REBASELINE_PROCEDURE.md` |
+| F4B-02 — política de lacunas / carga do realizado anterior | **continua pendência de negócio** (REQUIRES_FOLLOWUP) | `audit/stage4b/STAGE_4B_FINAL_CLOSURE.md` |
+| DR-4B-3 — ano fiscal x ano-calendário | **continua pendência de negócio** | idem |
+| F-01 (16 `PENDING_LOAD`) e F-02 (execução oficial) | **continuam abertos** (inalterados pela 4C) | — |
