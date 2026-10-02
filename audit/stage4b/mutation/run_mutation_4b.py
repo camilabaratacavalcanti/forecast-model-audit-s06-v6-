@@ -113,7 +113,10 @@ class World:
         return problems
 
     def audit_coverage_rows(self, rows=None) -> list[str]:
-        want = {"targets": "446", "nodes": "458", "events": "896", "transfer_events": "67"}
+        # Stage 4C: fonte da referência = expectativas do baseline (em B0: 446 / 458 / 896 / 67)
+        want = {"targets": str(harness.EXPECTED["targets"]), "nodes": str(harness.EXPECTED["planner_nodes"]),
+                "events": str(harness.EXPECTED["events_per_date"]),
+                "transfer_events": str(harness.EXPECTED["transfer_events_per_date"])}
         return [f"COVERAGE {r['date']} {k}" for r in rows or self.coverage_rows for k, v in want.items() if r[k] != v]
 
     def audit_snapshots(self, snapshots=None) -> list[str]:

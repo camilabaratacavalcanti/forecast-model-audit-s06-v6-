@@ -47,6 +47,7 @@ REPO = common.REPO
 EVIDENCE = HERE / "evidence"
 EXPECTATIONS = common.bp.path("stage4a_contract", "contract_expectations.json")   # Stage 4C: fonte via --baseline-dir
 BASELINE = "d2847ab36933668bf4a1299b3ffe058827a82037"
+CLOSURE_4A = "0a924e66cfd0774a13e46a332b460b770283a554"      # Stage 4C: fim do intervalo H da 4A
 HES = independent.HES_VALUES
 NAR = "NO_APPLICABLE_RULE"
 
@@ -273,7 +274,7 @@ def main() -> int:
     audit.update(universe(u))
     audit["official_plan"] = official_plan()
 
-    completed = subprocess.run([sys.executable, "-I", str(HERE / "independent_count.py")],
+    completed = subprocess.run([sys.executable, "-I", str(HERE / "independent_count.py"), *common.bp.argv()],
                                cwd=REPO, capture_output=True, text=True)
     ind = json.loads(completed.stdout)
     audit["independent"] = {"result": ind["result"], "imports_app_or_tools": ind["imports_app_or_tools"]}
@@ -301,7 +302,10 @@ def main() -> int:
     plan = audit["official_plan"]
     if not plan["identical_to_plan_evidence"]:
         problems.append(f"OFFICIAL_PLAN_CHANGED {plan['differences'][:3]}")
-    if plan["interblock_links_sha256"] != plan["interblock_links_sha256_at_baseline"]:
+    # Stage 4C (H): "a 4A não mudou os vínculos" é fato do intervalo fixo d2847ab..0a924e6; o vínculo vivo
+    # é comparado com a referência pelas expectativas (interblock_links_sha256 / EXPECTATIONS_DRIFT).
+    if hashlib.sha256(git_bytes(f"{BASELINE}:data/seed/interblock_links.json")).hexdigest() != \
+            hashlib.sha256(git_bytes(f"{CLOSURE_4A}:data/seed/interblock_links.json")).hexdigest():
         problems.append("INTERBLOCK_LINKS_CHANGED")
 
     # hes: engine x avaliação literal do workbook
@@ -362,7 +366,8 @@ def main() -> int:
             "obs_rows": len(obs),
         },
         "integrated": {
-            "official_targets": 446, "integrated_targets": audit["universe_5"]["targets"],
+            # Stage 4C: fonte da referência = plano oficial derivado (em B0 = 446, o literal anterior)
+            "official_targets": audit["official_plan"]["targets"], "integrated_targets": audit["universe_5"]["targets"],
             "area_41_targets": audit["universe_5"]["targets_by_block"].get("area_41"),
             "planner_nodes": audit["universe_5"]["nodes"],
             "nodes_by_kind": audit["universe_5"]["nodes_by_kind"],

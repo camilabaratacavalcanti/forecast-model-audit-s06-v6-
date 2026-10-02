@@ -1,0 +1,11 @@
+{
+ "scenario": "R2a",
+ "suite": {
+  "returncode": 0,
+  "summary": "2040 passed in 858.06s (0:14:18)",
+  "failed": [],
+  "by_class": {},
+  "failure_lines": []
+ },
+ "working_tree_untouched": true
+}

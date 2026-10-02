@@ -269,7 +269,7 @@ def main() -> int:  # noqa: C901 — sequência de experimentos documentados
     out["E5_calendar"] = e5
 
     # recálculo independente
-    completed = subprocess.run([sys.executable, "-I", str(HERE / "independent_calendar.py")], cwd=REPO,
+    completed = subprocess.run([sys.executable, "-I", str(HERE / "independent_calendar.py"), *common.bp.argv()], cwd=REPO,
                                capture_output=True, text=True)
     ind = json.loads(completed.stdout)
     out["independent"] = {"result": ind["result"], "imports_app_or_tools": ind["imports_app_or_tools"],
@@ -288,6 +288,10 @@ def main() -> int:  # noqa: C901 — sequência de experimentos documentados
     if not out["empirical_acyclicity"]["topological_order_valid"]:
         problems.append("BLOCKER plano sem ordem topológica válida")
 
+    # Stage 4C: universo por data = referência de montante (expectativas do contrato 4A do mesmo baseline);
+    # em B0 são os literais anteriores 446 / 458 / 13 / 67 / 896.
+    integrated_4a = json.loads(common.bp.path("stage4a_contract", "contract_expectations.json")
+                               .read_text(encoding="utf-8"))["integrated"]
     expectations = {
         "independent": {
             "calendar.T1.dates": ind["calendar"]["T1"]["dates"], "calendar.T2.dates": ind["calendar"]["T2"]["dates"],
@@ -301,8 +305,10 @@ def main() -> int:  # noqa: C901 — sequência de experimentos documentados
             "cycles.block_cycles": ind["cycles"]["block_cycles"], "cycles.lag_references": [],
         },
         "temporal": {
-            "targets": 446, "planner_nodes": 458, "transfers_per_date": 13,
-            "transfer_events_per_date": 67, "events_per_date": 896,
+            "targets": integrated_4a["integrated_targets"], "planner_nodes": integrated_4a["planner_nodes"],
+            "transfers_per_date": len(integrated_4a["transfers"]),
+            "transfer_events_per_date": integrated_4a["transfer_events_per_date"],
+            "events_per_date": integrated_4a["events_per_date"],
             "derived_monthly_identities": ind["identity_profile"]["derived_mensal"],
             "derived_annual_identities": ind["identity_profile"]["derived_anual"],
             "derived_daily_instances": ind["identity_profile"]["derived_diário"],

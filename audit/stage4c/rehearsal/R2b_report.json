@@ -1,0 +1,47 @@
+{
+ "scenario": "R2b",
+ "changed": "EQ16001: 19.475 -> 19.476 (data/seed/area_41/equations.json)",
+ "suite": {
+  "returncode": 1,
+  "summary": "8 failed, 2032 passed in 858.07s (0:14:18)",
+  "failed": [
+   "tests/test_stage2_4_workbook_contract.py::test_t24_01_builder_output_equals_versioned_seed[area_41]",
+   "tests/test_stage2_4_workbook_contract.py::test_t24_01_every_workbook_row_is_represented_in_the_seed[area_41]",
+   "tests/test_stage2_6c_interblock_final.py::test_14_repeated_builds_are_byte_identical_and_order_independent",
+   "tests/test_stage4a_integrated.py::test_live_five_block_regression_passes_and_reproduces_committed_evidence",
+   "tests/test_stage4a_oracle.py::test_live_oracle_agrees_with_engine_on_20_equations_and_25_hes_combinations",
+   "tests/test_stage4a_oracle.py::test_negative_oracle_detects_a_deviating_engine_behaviour",
+   "tests/test_stage4b_mutation.py::test_live_evidence_mutations_detected_and_controls_accepted",
+   "tests/test_stage4b_temporal.py::test_live_t2_leap_year_passes"
+  ],
+  "by_class": {
+   "C": [
+    "tests/test_stage4a_oracle.py::test_live_oracle_agrees_with_engine_on_20_equations_and_25_hes_combinations"
+   ],
+   "FORA_DO_INVENTARIO": [
+    "tests/test_stage2_4_workbook_contract.py::test_t24_01_builder_output_equals_versioned_seed[area_41]",
+    "tests/test_stage2_4_workbook_contract.py::test_t24_01_every_workbook_row_is_represented_in_the_seed[area_41]",
+    "tests/test_stage4a_oracle.py::test_negative_oracle_detects_a_deviating_engine_behaviour"
+   ],
+   "R": [
+    "tests/test_stage4a_integrated.py::test_live_five_block_regression_passes_and_reproduces_committed_evidence",
+    "tests/test_stage4b_mutation.py::test_live_evidence_mutations_detected_and_controls_accepted",
+    "tests/test_stage4b_temporal.py::test_live_t2_leap_year_passes"
+   ],
+   "S": [
+    "tests/test_stage2_6c_interblock_final.py::test_14_repeated_builds_are_byte_identical_and_order_independent"
+   ]
+  },
+  "failure_lines": [
+   "FAILED tests/test_stage2_4_workbook_contract.py::test_t24_01_builder_output_equals_versioned_seed[area_41]",
+   "FAILED tests/test_stage2_4_workbook_contract.py::test_t24_01_every_workbook_row_is_represented_in_the_seed[area_41]",
+   "FAILED tests/test_stage2_6c_interblock_final.py::test_14_repeated_builds_are_byte_identical_and_order_independent",
+   "FAILED tests/test_stage4a_integrated.py::test_live_five_block_regression_passes_and_reproduces_committed_evidence",
+   "FAILED tests/test_stage4a_oracle.py::test_live_oracle_agrees_with_engine_on_20_equations_and_25_hes_combinations",
+   "FAILED tests/test_stage4a_oracle.py::test_negative_oracle_detects_a_deviating_engine_behaviour",
+   "FAILED tests/test_stage4b_mutation.py::test_live_evidence_mutations_detected_and_controls_accepted",
+   "FAILED tests/test_stage4b_temporal.py::test_live_t2_leap_year_passes - Assert..."
+  ]
+ },
+ "working_tree_untouched": true
+}

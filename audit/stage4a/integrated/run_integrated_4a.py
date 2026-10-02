@@ -489,7 +489,8 @@ def main() -> int:  # noqa: C901 — sequência linear de verificações, espelh
     # 8. determinismo -------------------------------------------------------------------------
     runs = {}
     for label, order, seed in (("HASH_SEED_A", "A", "0"), ("HASH_SEED_B", "A", "4242"), ("RUN_B", "B", "0")):
-        out = subprocess.run([sys.executable, str(HERE / "run_integrated_4a.py"), "--fingerprint", order],
+        out = subprocess.run([sys.executable, str(HERE / "run_integrated_4a.py"), "--fingerprint", order,
+                              *common.bp.argv()],
                              cwd=REPO, capture_output=True, text=True, check=True,
                              env={**os.environ, "PYTHONHASHSEED": seed})
         runs[label] = json.loads(out.stdout)

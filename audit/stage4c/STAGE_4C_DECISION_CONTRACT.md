@@ -338,3 +338,15 @@ audit/baselines/
 |---|---|---|
 | F4C-05 | DOCUMENTATION_ONLY | `test_stage4b_oracle.py::test_live_oracle_t2_and_stated_run` foi inventariado como R, mas `run_oracle_4b.py` **não lê nenhuma referência** (só calendário e engine x oracle puro). Classe corrigida: **C**, sem alteração no teste. Contagem final: H 21, E 35, **R 16**, S 8, W 2, **C 39** |
 | F4C-06 | DOCUMENTATION_ONLY | o ponto fixo H da 3.4D é **`d8b5d55`**, não `8095011`. A D-TAX-01 fez a última revisão do harness e da evidência da 3.4D (`persisted_links_status`, `mutation_results.csv`), e em `8095011` o harness ainda não emitia o status taxonômico que o teste exige. Intervalo da guarda de produção: `043fe9c..d8b5d55` (só a migração autorizada). DR-4C-4 vale com esse commit |
+
+## 8. Adendo da Fase 3 (ensaio R1, append-only)
+
+O R1 mostrou três pontos em que os geradores de referência ainda fixavam conteúdo **dentro do harness**. Todos foram corrigidos só na **fonte da referência**, permitida pelo §3. Em B0 os arquivos regenerados continuam bit a bit iguais (`b0_reproduction.py`).
+
+| id | classe | finding | correção |
+|---|---|---|---|
+| F4C-07 | REQUIRES_FOLLOWUP (resolvido) | `derive_4a.py` gravava o literal `official_targets: 446` nas expectativas, e `derive_4b.py` gravava 446/458/13/67/896 como universo por data. Com conteúdo novo, a regeneração falharia sempre | `official_targets` passa a vir do plano oficial derivado. O universo por data da 4B passa a vir das expectativas do contrato 4A do mesmo baseline (referência de montante). Em B0, mesmos valores |
+| F4C-08 | REQUIRES_FOLLOWUP (resolvido) | `derive_4a.py` comparava os vínculos **vivos** com `d2847ab` (guarda H embutida, lida contra a árvore) | vira H no intervalo fixo `d2847ab` x `0a924e6`. O vínculo vivo continua guardado pela expectativa R `interblock_links_sha256` (`EXPECTATIONS_DRIFT`, `check_provenance`, teste R) |
+| F4C-09 | DOCUMENTATION_ONLY | `derive_4a`/`derive_4b`/fingerprint 4A chamavam subprocessos do próprio harness sem repassar o diretório | repassam `--baseline-dir` (`bp.argv()`) |
+| F4C-10 | REQUIRES_FOLLOWUP (resolvido) | o auditor `audit_coverage_rows` da mutação 4B (controle PC4B-03) comparava cada data com os literais 446/458/896/67 | fonte da referência = expectativas `temporal` do baseline (`harness.EXPECTED`). Em B0, mesmos valores |
+| F4C-11 | REQUIRES_FOLLOWUP (pré-5A, conteúdo) | no R1 o gerador renomeia 4 IDs de regra de agregação do max_ht (`ALIMENTAÇÃO_EVAP…` → `ALIMENTACAO_EVAP…`; o nome da variável perdeu o acento no MaxHT v13). Regras de agregação não estão no ledger de IDs | a 5A deve confirmar com o cliente o nome canônico e registrar a troca no relatório da stage |

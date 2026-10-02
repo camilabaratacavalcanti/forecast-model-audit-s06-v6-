@@ -1,0 +1,374 @@
+{
+ "label": "Stage 4C.2 — reprodução B0",
+ "steps": [
+  {
+   "label": "stage3_2_plan",
+   "command": "audit/stage3_2_execution_orchestration/evidence/analysis_stage3_2.py --baseline-dir /tmp/stage4c_b0_uiuajzem/B0-repro",
+   "returncode": 0
+  },
+  {
+   "label": "stage3_4c_integrated",
+   "command": "audit/stage3_4/integrated/run_integrated.py --baseline-dir /tmp/stage4c_b0_uiuajzem/B0-repro",
+   "returncode": 0
+  },
+  {
+   "label": "stage4a_contract",
+   "command": "audit/stage4a/derive_4a.py --baseline-dir /tmp/stage4c_b0_uiuajzem/B0-repro",
+   "returncode": 0
+  },
+  {
+   "label": "stage4a_integrated",
+   "command": "audit/stage4a/integrated/run_integrated_4a.py --baseline-dir /tmp/stage4c_b0_uiuajzem/B0-repro",
+   "returncode": 0
+  },
+  {
+   "label": "stage4b_contract",
+   "command": "audit/stage4b/derive_4b.py --baseline-dir /tmp/stage4c_b0_uiuajzem/B0-repro",
+   "returncode": 0
+  },
+  {
+   "label": "stage4b_temporal T2",
+   "command": "audit/stage4b/temporal/run_temporal_4b.py --range T2 --baseline-dir /tmp/stage4c_b0_uiuajzem/B0-repro",
+   "returncode": 0
+  },
+  {
+   "label": "stage4b_temporal T1",
+   "command": "audit/stage4b/temporal/run_temporal_4b.py --range T1 --baseline-dir /tmp/stage4c_b0_uiuajzem/B0-repro",
+   "returncode": 0
+  },
+  {
+   "label": "stage4b_temporal T3",
+   "command": "audit/stage4b/temporal/run_temporal_4b.py --range T3 --baseline-dir /tmp/stage4c_b0_uiuajzem/B0-repro",
+   "returncode": 0
+  }
+ ],
+ "files": [
+  {
+   "set": "stage3_2_plan",
+   "file": "analysis_summary.json",
+   "historical": "audit/stage3_2_execution_orchestration/evidence/analysis_summary.json",
+   "sha256_b0": "0b3c896d14d2feb29b5956cbc359ec1c13efcd14f656fde201ecd53c5975e5b5",
+   "sha256_regenerated": "0b3c896d14d2feb29b5956cbc359ec1c13efcd14f656fde201ecd53c5975e5b5",
+   "result": "BIT_A_BIT"
+  },
+  {
+   "set": "stage3_2_plan",
+   "file": "plan_evidence.csv",
+   "historical": "audit/stage3_2_execution_orchestration/evidence/plan_evidence.csv",
+   "sha256_b0": "843bddf7d5119236df30139f851b6ac1a4e740cf02c5fb46db7032e3d70fb084",
+   "sha256_regenerated": "843bddf7d5119236df30139f851b6ac1a4e740cf02c5fb46db7032e3d70fb084",
+   "result": "BIT_A_BIT"
+  },
+  {
+   "set": "stage3_2_plan",
+   "file": "transfer_evidence.csv",
+   "historical": "audit/stage3_2_execution_orchestration/evidence/transfer_evidence.csv",
+   "sha256_b0": "cdf522e6badbdee4b29e3b1befb89d96769193c0f1b64c6c1f8d3a82b77bf8d2",
+   "sha256_regenerated": "cdf522e6badbdee4b29e3b1befb89d96769193c0f1b64c6c1f8d3a82b77bf8d2",
+   "result": "BIT_A_BIT"
+  },
+  {
+   "set": "stage3_4c_integrated",
+   "file": "integrated_summary.json",
+   "historical": "audit/stage3_4/integrated/evidence/integrated_summary.json",
+   "sha256_b0": "714c156be821224502145f566f20bb5d4c357d01d91ee905a6b47dba43b9d8ee",
+   "sha256_regenerated": "714c156be821224502145f566f20bb5d4c357d01d91ee905a6b47dba43b9d8ee",
+   "result": "BIT_A_BIT"
+  },
+  {
+   "set": "stage3_4c_integrated",
+   "file": "nodes.csv",
+   "historical": "audit/stage3_4/integrated/evidence/nodes.csv",
+   "sha256_b0": "6d6349ec80ddcbc5a24181611d8b0b1a3e643c6a6b0417730e161139aa1f0966",
+   "sha256_regenerated": "6d6349ec80ddcbc5a24181611d8b0b1a3e643c6a6b0417730e161139aa1f0966",
+   "result": "BIT_A_BIT"
+  },
+  {
+   "set": "stage3_4c_integrated",
+   "file": "targets.csv",
+   "historical": "audit/stage3_4/integrated/evidence/targets.csv",
+   "sha256_b0": "9514a8810c247545fa0959eb61fd9b533e69443fafe2d1b22ae87e3f0a824511",
+   "sha256_regenerated": "9514a8810c247545fa0959eb61fd9b533e69443fafe2d1b22ae87e3f0a824511",
+   "result": "BIT_A_BIT"
+  },
+  {
+   "set": "stage3_4c_integrated",
+   "file": "temporal_coverage.csv",
+   "historical": "audit/stage3_4/integrated/evidence/temporal_coverage.csv",
+   "sha256_b0": "113c6c5740df9ee6469f4cd0fe53a6738847a9526f132551daf93e2bb3d8d008",
+   "sha256_regenerated": "113c6c5740df9ee6469f4cd0fe53a6738847a9526f132551daf93e2bb3d8d008",
+   "result": "BIT_A_BIT"
+  },
+  {
+   "set": "stage3_4c_integrated",
+   "file": "transfers.csv",
+   "historical": "audit/stage3_4/integrated/evidence/transfers.csv",
+   "sha256_b0": "bf35efc4b1718a54ea3f9c85b70a91f3d991d4dc9534fadab528b188f9157d7c",
+   "sha256_regenerated": "bf35efc4b1718a54ea3f9c85b70a91f3d991d4dc9534fadab528b188f9157d7c",
+   "result": "BIT_A_BIT"
+  },
+  {
+   "set": "stage4a_contract",
+   "file": "contract_audit.json",
+   "historical": "audit/stage4a/evidence/contract_audit.json",
+   "sha256_b0": "caaffc42b6a2e44fedf523674533e6fbc10a36fb4c09b0033085f1df178b5b33",
+   "sha256_regenerated": "caaffc42b6a2e44fedf523674533e6fbc10a36fb4c09b0033085f1df178b5b33",
+   "result": "BIT_A_BIT"
+  },
+  {
+   "set": "stage4a_contract",
+   "file": "contract_expectations.json",
+   "historical": "audit/stage4a/contract_expectations.json",
+   "sha256_b0": "9dcfcb86170ca301a31de5e855c4de61bbaec3203a24b50c6a1f592acfbe7537",
+   "sha256_regenerated": "9dcfcb86170ca301a31de5e855c4de61bbaec3203a24b50c6a1f592acfbe7537",
+   "result": "BIT_A_BIT"
+  },
+  {
+   "set": "stage4a_contract",
+   "file": "hes_decision_matrix.csv",
+   "historical": "audit/stage4a/evidence/hes_decision_matrix.csv",
+   "sha256_b0": "620f1818f46cdb5c19591481eb8c94a2ed029c2cd9f06bd08b01b637b31e7a3f",
+   "sha256_regenerated": "620f1818f46cdb5c19591481eb8c94a2ed029c2cd9f06bd08b01b637b31e7a3f",
+   "result": "BIT_A_BIT"
+  },
+  {
+   "set": "stage4a_contract",
+   "file": "obs_register.csv",
+   "historical": "audit/stage4a/evidence/obs_register.csv",
+   "sha256_b0": "e6500c9ea328f68f3ccaa29369637c665d9c48b85206d085e0283c51fd2fb66f",
+   "sha256_regenerated": "e6500c9ea328f68f3ccaa29369637c665d9c48b85206d085e0283c51fd2fb66f",
+   "result": "BIT_A_BIT"
+  },
+  {
+   "set": "stage4a_integrated",
+   "file": "integrated_summary.json",
+   "historical": "audit/stage4a/integrated/evidence/integrated_summary.json",
+   "sha256_b0": "a401f3b9b646ebd975e2f62ca11498c34daa7254af6d54db0b5ed0d2375f06ee",
+   "sha256_regenerated": "a401f3b9b646ebd975e2f62ca11498c34daa7254af6d54db0b5ed0d2375f06ee",
+   "result": "BIT_A_BIT"
+  },
+  {
+   "set": "stage4a_integrated",
+   "file": "nodes.csv",
+   "historical": "audit/stage4a/integrated/evidence/nodes.csv",
+   "sha256_b0": "9bcbdce4864b911ef2ced2eed7427adc16ab5565cec800cfcec9fd41965c6459",
+   "sha256_regenerated": "9bcbdce4864b911ef2ced2eed7427adc16ab5565cec800cfcec9fd41965c6459",
+   "result": "BIT_A_BIT"
+  },
+  {
+   "set": "stage4a_integrated",
+   "file": "non_regression_421.json",
+   "historical": "audit/stage4a/integrated/evidence/non_regression_421.json",
+   "sha256_b0": "39ac06592e82708eed41f50871605d91c110fb56a82cc4ef01dd2d8b4a1a8e30",
+   "sha256_regenerated": "39ac06592e82708eed41f50871605d91c110fb56a82cc4ef01dd2d8b4a1a8e30",
+   "result": "BIT_A_BIT"
+  },
+  {
+   "set": "stage4a_integrated",
+   "file": "targets.csv",
+   "historical": "audit/stage4a/integrated/evidence/targets.csv",
+   "sha256_b0": "725d2ff5c384d40e889c155fd8558d7e07fef55c9b58c64bd7b59c960902ee8c",
+   "sha256_regenerated": "725d2ff5c384d40e889c155fd8558d7e07fef55c9b58c64bd7b59c960902ee8c",
+   "result": "BIT_A_BIT"
+  },
+  {
+   "set": "stage4a_integrated",
+   "file": "temporal_coverage.csv",
+   "historical": "audit/stage4a/integrated/evidence/temporal_coverage.csv",
+   "sha256_b0": "be4f4046f11d2397843901501c63c8d704aa38fea8a50ecd075d9cb05a8ba13b",
+   "sha256_regenerated": "be4f4046f11d2397843901501c63c8d704aa38fea8a50ecd075d9cb05a8ba13b",
+   "result": "BIT_A_BIT"
+  },
+  {
+   "set": "stage4a_integrated",
+   "file": "transfers.csv",
+   "historical": "audit/stage4a/integrated/evidence/transfers.csv",
+   "sha256_b0": "1872e2297c0f050f66afcda78e2420b9cfe442c9f9b46cd2db565cb502c8563d",
+   "sha256_regenerated": "1872e2297c0f050f66afcda78e2420b9cfe442c9f9b46cd2db565cb502c8563d",
+   "result": "BIT_A_BIT"
+  },
+  {
+   "set": "stage4b_contract",
+   "file": "contract_audit_4b.json",
+   "historical": "audit/stage4b/evidence/contract_audit_4b.json",
+   "sha256_b0": "dcf5e0a69eef9edd150d8a6e039cce3e6499ac4615d3551126a5a7cf23db90a0",
+   "sha256_regenerated": "ff37a47e59bd93ecffb991287b73cc1b6537e7f4386ffc394a715eefe3d2ac8a",
+   "result": "EQUIVALENTE (só tempo de execução)"
+  },
+  {
+   "set": "stage4b_contract",
+   "file": "contract_expectations_4b.json",
+   "historical": "audit/stage4b/contract_expectations_4b.json",
+   "sha256_b0": "610fc76bf2c641dfd76897095c7156f963f2bc147f4cdb3bc4afc4841e389d76",
+   "sha256_regenerated": "610fc76bf2c641dfd76897095c7156f963f2bc147f4cdb3bc4afc4841e389d76",
+   "result": "BIT_A_BIT"
+  },
+  {
+   "set": "stage4b_contract",
+   "file": "performance_probe.csv",
+   "historical": "audit/stage4b/evidence/performance_probe.csv",
+   "sha256_b0": "90d60503d5acae136e9b6d985a98b914882ebef12eb92bdf20278f436b92e271",
+   "sha256_regenerated": "5d52c9033fea5e2b7cd27e93f452fb74708bd6199cddd486d1769e5ab4982584",
+   "result": "EQUIVALENTE (só tempo de execução)"
+  },
+  {
+   "set": "stage4b_temporal",
+   "file": "T1/identities_by_date.csv",
+   "historical": "audit/stage4b/temporal/evidence/T1/identities_by_date.csv",
+   "sha256_b0": "993aa61a9d86d5bab9cf31937edee8cea619f1ef935a3f66af2d7415ad179851",
+   "sha256_regenerated": "993aa61a9d86d5bab9cf31937edee8cea619f1ef935a3f66af2d7415ad179851",
+   "result": "BIT_A_BIT"
+  },
+  {
+   "set": "stage4b_temporal",
+   "file": "T1/performance_profile.csv",
+   "historical": "audit/stage4b/temporal/evidence/T1/performance_profile.csv",
+   "sha256_b0": "a6f261fdf006aec9e57e02b725f97a40aa0ae87d5d46dab489a273756b246b34",
+   "sha256_regenerated": "7cc736f17cd634eaf0150701151ac2a3f073dbabc34ef6838129618f16568470",
+   "result": "EQUIVALENTE (só tempo de execução)"
+  },
+  {
+   "set": "stage4b_temporal",
+   "file": "T1/period_snapshots.json",
+   "historical": "audit/stage4b/temporal/evidence/T1/period_snapshots.json",
+   "sha256_b0": "f38f997336c9eca2c47d053606152cb347aa8e3cd055126b1c3884e62502e1e3",
+   "sha256_regenerated": "f38f997336c9eca2c47d053606152cb347aa8e3cd055126b1c3884e62502e1e3",
+   "result": "BIT_A_BIT"
+  },
+  {
+   "set": "stage4b_temporal",
+   "file": "T1/reexecution.json",
+   "historical": "audit/stage4b/temporal/evidence/T1/reexecution.json",
+   "sha256_b0": "1e6a3ef54998e3befd9f9141ce983b722248b7d81fb2b50e158c5861adea11ff",
+   "sha256_regenerated": "1e6a3ef54998e3befd9f9141ce983b722248b7d81fb2b50e158c5861adea11ff",
+   "result": "BIT_A_BIT"
+  },
+  {
+   "set": "stage4b_temporal",
+   "file": "T1/state_scenarios.json",
+   "historical": "audit/stage4b/temporal/evidence/T1/state_scenarios.json",
+   "sha256_b0": "03654ebb51589d0970a8c0bca3b0f91d22b8c294bcad8ed4db2fd9a0b9d5185c",
+   "sha256_regenerated": "03654ebb51589d0970a8c0bca3b0f91d22b8c294bcad8ed4db2fd9a0b9d5185c",
+   "result": "BIT_A_BIT"
+  },
+  {
+   "set": "stage4b_temporal",
+   "file": "T1/temporal_coverage.csv",
+   "historical": "audit/stage4b/temporal/evidence/T1/temporal_coverage.csv",
+   "sha256_b0": "984bccec5a91a0b51cd97da282719b5942cf9d71ddbe7b19ddb12330c982d46d",
+   "sha256_regenerated": "984bccec5a91a0b51cd97da282719b5942cf9d71ddbe7b19ddb12330c982d46d",
+   "result": "BIT_A_BIT"
+  },
+  {
+   "set": "stage4b_temporal",
+   "file": "T1/temporal_summary.json",
+   "historical": "audit/stage4b/temporal/evidence/T1/temporal_summary.json",
+   "sha256_b0": "bb69f1b9b3ba25d0f2cfe705428d8694d6d7de751def14eaf630b8139383a782",
+   "sha256_regenerated": "273db36f9adb691639f839a3000d022dac0446ae7be44bbeead3f3c7f39b667d",
+   "result": "EQUIVALENTE (só tempo de execução)"
+  },
+  {
+   "set": "stage4b_temporal",
+   "file": "T2/identities_by_date.csv",
+   "historical": "audit/stage4b/temporal/evidence/T2/identities_by_date.csv",
+   "sha256_b0": "3456dffc121afec8c0d2c08435dc7549c8d502bcb0bb2671e113a2bf0e35cc0b",
+   "sha256_regenerated": "3456dffc121afec8c0d2c08435dc7549c8d502bcb0bb2671e113a2bf0e35cc0b",
+   "result": "BIT_A_BIT"
+  },
+  {
+   "set": "stage4b_temporal",
+   "file": "T2/performance_profile.csv",
+   "historical": "audit/stage4b/temporal/evidence/T2/performance_profile.csv",
+   "sha256_b0": "7171801549b9d2c81f298a4c5f117eee8bed489b9f4c3ceb6db560781c145b5b",
+   "sha256_regenerated": "76ade5eace6aa672135fe8a5231eb832e813b530fe9660022dc7395eb8c5b741",
+   "result": "EQUIVALENTE (só tempo de execução)"
+  },
+  {
+   "set": "stage4b_temporal",
+   "file": "T2/period_snapshots.json",
+   "historical": "audit/stage4b/temporal/evidence/T2/period_snapshots.json",
+   "sha256_b0": "09754ad4256dc5fcc5ba419d1ec3a55c5a13d7d9ec21ebda93741fd47c22e4aa",
+   "sha256_regenerated": "09754ad4256dc5fcc5ba419d1ec3a55c5a13d7d9ec21ebda93741fd47c22e4aa",
+   "result": "BIT_A_BIT"
+  },
+  {
+   "set": "stage4b_temporal",
+   "file": "T2/reexecution.json",
+   "historical": "audit/stage4b/temporal/evidence/T2/reexecution.json",
+   "sha256_b0": "d4e0ff1076ac0bc10c486b9125c17c7a33545410cd04851890dcc198c7344b36",
+   "sha256_regenerated": "d4e0ff1076ac0bc10c486b9125c17c7a33545410cd04851890dcc198c7344b36",
+   "result": "BIT_A_BIT"
+  },
+  {
+   "set": "stage4b_temporal",
+   "file": "T2/temporal_coverage.csv",
+   "historical": "audit/stage4b/temporal/evidence/T2/temporal_coverage.csv",
+   "sha256_b0": "a17e97b1caca8076cc23a335f5bdf515b9b3b12efabc8e56d65bfc92cea4470e",
+   "sha256_regenerated": "a17e97b1caca8076cc23a335f5bdf515b9b3b12efabc8e56d65bfc92cea4470e",
+   "result": "BIT_A_BIT"
+  },
+  {
+   "set": "stage4b_temporal",
+   "file": "T2/temporal_summary.json",
+   "historical": "audit/stage4b/temporal/evidence/T2/temporal_summary.json",
+   "sha256_b0": "747b98f2ce6624d25f5afd23cbc539ce602c3ad8d69eb2f1f86003c9e9515e72",
+   "sha256_regenerated": "d2db62ab59ac03dce80beb936ee56fd02fa97ae46da3bed605c91a6f1088f17f",
+   "result": "EQUIVALENTE (só tempo de execução)"
+  },
+  {
+   "set": "stage4b_temporal",
+   "file": "T3/identities_by_date.csv",
+   "historical": "audit/stage4b/temporal/evidence/T3/identities_by_date.csv",
+   "sha256_b0": "142fa4009b703c56e2651bdce9b7a9a6cb0f8eadccf2ed11d5d59b36291c7542",
+   "sha256_regenerated": "142fa4009b703c56e2651bdce9b7a9a6cb0f8eadccf2ed11d5d59b36291c7542",
+   "result": "BIT_A_BIT"
+  },
+  {
+   "set": "stage4b_temporal",
+   "file": "T3/performance_profile.csv",
+   "historical": "audit/stage4b/temporal/evidence/T3/performance_profile.csv",
+   "sha256_b0": "c8144cb326979f49257aecff48adb94f1fc8368640ee47d6ba5660db85479f93",
+   "sha256_regenerated": "b6062a76faa1f000196af07ee6cf982c8d5c919514105615cddf32699d8fe314",
+   "result": "EQUIVALENTE (só tempo de execução)"
+  },
+  {
+   "set": "stage4b_temporal",
+   "file": "T3/period_snapshots.json",
+   "historical": "audit/stage4b/temporal/evidence/T3/period_snapshots.json",
+   "sha256_b0": "d32b854ec5a547d2a3a136170d53d6305e583d39b2426e51fbdf86a39dab1969",
+   "sha256_regenerated": "d32b854ec5a547d2a3a136170d53d6305e583d39b2426e51fbdf86a39dab1969",
+   "result": "BIT_A_BIT"
+  },
+  {
+   "set": "stage4b_temporal",
+   "file": "T3/reexecution.json",
+   "historical": "audit/stage4b/temporal/evidence/T3/reexecution.json",
+   "sha256_b0": "e828785207c1617429cf7a53e86a54d91ae25e618768ce8796811d18568b89c4",
+   "sha256_regenerated": "e828785207c1617429cf7a53e86a54d91ae25e618768ce8796811d18568b89c4",
+   "result": "BIT_A_BIT"
+  },
+  {
+   "set": "stage4b_temporal",
+   "file": "T3/temporal_coverage.csv",
+   "historical": "audit/stage4b/temporal/evidence/T3/temporal_coverage.csv",
+   "sha256_b0": "96cc24909fffa05c07b374c25db9b2dafc83903f959aae5b31353f4e20d5be57",
+   "sha256_regenerated": "96cc24909fffa05c07b374c25db9b2dafc83903f959aae5b31353f4e20d5be57",
+   "result": "BIT_A_BIT"
+  },
+  {
+   "set": "stage4b_temporal",
+   "file": "T3/temporal_summary.json",
+   "historical": "audit/stage4b/temporal/evidence/T3/temporal_summary.json",
+   "sha256_b0": "9b0c8b042ad2cb820b371fad8edbcba42c6604d8f90a9d7d2812157462e4c7ce",
+   "sha256_regenerated": "b05306212f7bd44732d6806f5091accb7b8861b2234fc302f90dd353884ada6c",
+   "result": "EQUIVALENTE (só tempo de execução)"
+  }
+ ],
+ "problems": [],
+ "summary": {
+  "BIT_A_BIT": 32,
+  "EQUIVALENTE": 8,
+  "DIVERGENTE": 0
+ },
+ "result": "PASS"
+}
