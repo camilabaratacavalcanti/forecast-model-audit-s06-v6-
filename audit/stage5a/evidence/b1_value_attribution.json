@@ -1,0 +1,23 @@
+{
+ "label": "Stage 5A.3 — atribuição das diferenças de valor do B1",
+ "b0_commit": "e262e03",
+ "head_inputs": 51,
+ "b0_inputs": 51,
+ "renamed_inputs": {
+  "VAR13119": "VAR13003",
+  "VAR18053": "VAR18031"
+ },
+ "b0_inputs_without_head_counterpart": [],
+ "targets": 423,
+ "by_kind": {
+  "COMUM": "416/416 iguais",
+  "ENTRADA_B0_AGORA_CALCULADA": "1/1 iguais",
+  "NOVO_SEM_PAR": "0/1 iguais",
+  "RENOMEADO": "5/5 iguais"
+ },
+ "not_compared": [
+  "VAR13123"
+ ],
+ "problems": [],
+ "result": "PASS"
+}

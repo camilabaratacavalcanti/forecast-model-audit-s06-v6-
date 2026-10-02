@@ -1,0 +1,892 @@
+{
+ "by_block": [
+  {
+   "aggregation_nodes": 28,
+   "block": "production",
+   "equation_nodes": 27,
+   "executed": 56,
+   "targets": 50,
+   "transfer_nodes": 1
+  },
+  {
+   "aggregation_nodes": 80,
+   "block": "yield",
+   "equation_nodes": 138,
+   "executed": 219,
+   "targets": 219,
+   "transfer_nodes": 1
+  },
+  {
+   "aggregation_nodes": 11,
+   "block": "energy",
+   "equation_nodes": 25,
+   "executed": 44,
+   "targets": 44,
+   "transfer_nodes": 8
+  },
+  {
+   "aggregation_nodes": 78,
+   "block": "max_ht",
+   "equation_nodes": 30,
+   "executed": 110,
+   "targets": 110,
+   "transfer_nodes": 2
+  },
+  {
+   "aggregation_nodes": 10,
+   "block": "area_41",
+   "equation_nodes": 20,
+   "executed": 31,
+   "targets": 25,
+   "transfer_nodes": 1
+  }
+ ],
+ "clean_context_stated_results": 0,
+ "determinism": {
+  "HASH_SEED_A": {
+   "area_41_store_sha256": "aa7ca93df0afaf18918cca88e2bf7761b039715d9faad38823285065a1d3e516",
+   "graph_hash": "75f3c9242503d850cc299df39605aabbb5e19d03bb583e3108ad07985d634152",
+   "hash_seed": "0",
+   "order": "A",
+   "previous_store_sha256": "80b9632533c92f7dc711b18056b6d2b21c1b59132a8d9e7fafbfbb2e3c8cdf5f",
+   "results_sha256": "e403e03eb4a43e9bfe2278ae3870a8888cdcbc58e167541abc01dc000f2083ac",
+   "store_sha256": "57f5192b6b2a7aedbbefe5843d566f3e449903119a16796fa0d87ae0879849d3"
+  },
+  "HASH_SEED_B": {
+   "area_41_store_sha256": "aa7ca93df0afaf18918cca88e2bf7761b039715d9faad38823285065a1d3e516",
+   "graph_hash": "75f3c9242503d850cc299df39605aabbb5e19d03bb583e3108ad07985d634152",
+   "hash_seed": "4242",
+   "order": "A",
+   "previous_store_sha256": "80b9632533c92f7dc711b18056b6d2b21c1b59132a8d9e7fafbfbb2e3c8cdf5f",
+   "results_sha256": "e403e03eb4a43e9bfe2278ae3870a8888cdcbc58e167541abc01dc000f2083ac",
+   "store_sha256": "57f5192b6b2a7aedbbefe5843d566f3e449903119a16796fa0d87ae0879849d3"
+  },
+  "REEXECUTION": {
+   "store_sha256": "57f5192b6b2a7aedbbefe5843d566f3e449903119a16796fa0d87ae0879849d3"
+  },
+  "RUN_A": {
+   "area_41_store_sha256": "aa7ca93df0afaf18918cca88e2bf7761b039715d9faad38823285065a1d3e516",
+   "graph_hash": "75f3c9242503d850cc299df39605aabbb5e19d03bb583e3108ad07985d634152",
+   "hash_seed": null,
+   "order": "A",
+   "previous_store_sha256": "80b9632533c92f7dc711b18056b6d2b21c1b59132a8d9e7fafbfbb2e3c8cdf5f",
+   "results_sha256": "e403e03eb4a43e9bfe2278ae3870a8888cdcbc58e167541abc01dc000f2083ac",
+   "store_sha256": "57f5192b6b2a7aedbbefe5843d566f3e449903119a16796fa0d87ae0879849d3"
+  },
+  "RUN_B": {
+   "area_41_store_sha256": "aa7ca93df0afaf18918cca88e2bf7761b039715d9faad38823285065a1d3e516",
+   "graph_hash": "75f3c9242503d850cc299df39605aabbb5e19d03bb583e3108ad07985d634152",
+   "hash_seed": "0",
+   "order": "B",
+   "previous_store_sha256": "80b9632533c92f7dc711b18056b6d2b21c1b59132a8d9e7fafbfbb2e3c8cdf5f",
+   "results_sha256": "e403e03eb4a43e9bfe2278ae3870a8888cdcbc58e167541abc01dc000f2083ac",
+   "store_sha256": "57f5192b6b2a7aedbbefe5843d566f3e449903119a16796fa0d87ae0879849d3"
+  },
+  "identical_graph": true,
+  "identical_plan_order": true,
+  "identical_results": true,
+  "identical_store_including_reexecution": true
+ },
+ "fixture": {
+  "graph_hashes": {
+   "A": "75f3c9242503d850cc299df39605aabbb5e19d03bb583e3108ad07985d634152",
+   "A_rebuilt": "75f3c9242503d850cc299df39605aabbb5e19d03bb583e3108ad07985d634152",
+   "B": "75f3c9242503d850cc299df39605aabbb5e19d03bb583e3108ad07985d634152",
+   "stage_3_4c": "75f3c9242503d850cc299df39605aabbb5e19d03bb583e3108ad07985d634152"
+  },
+  "input_protocol": "DR-4A-5: índices da 3.4C preservados; area_41 em 51..61",
+  "interblock_links_sha256": "b1e683071aeee31476a755b024ba89cc11a7a4965136d767af4ed23e3f191e00",
+  "pending_in_fixture": 0,
+  "pending_official": 16
+ },
+ "graph": {
+  "area_41_closure_nodes": 33,
+  "cross_block_edges": [
+   [
+    "production",
+    "energy"
+   ],
+   [
+    "production",
+    "max_ht"
+   ],
+   [
+    "production",
+    "yield"
+   ],
+   [
+    "yield",
+    "area_41"
+   ],
+   [
+    "yield",
+    "production"
+   ]
+  ],
+  "dependencies_precede_consumers": true
+ },
+ "label": "REAL_DERIVED_TEST_RESULT",
+ "nodes_executed": 460,
+ "non_regression_421": {
+  "differences": 0,
+  "keys_compared": 33996,
+  "reference_store_sha256": "80b9632533c92f7dc711b18056b6d2b21c1b59132a8d9e7fafbfbb2e3c8cdf5f",
+  "result": "PASS",
+  "subset_store_sha256": "80b9632533c92f7dc711b18056b6d2b21c1b59132a8d9e7fafbfbb2e3c8cdf5f",
+  "targets_compared": 423,
+  "targets_different": 0
+ },
+ "orchestrator_vs_engine": {
+  "compared": 13440,
+  "compared_area_41": 640,
+  "compared_energy": 2528,
+  "compared_max_ht": 1344,
+  "compared_production": 2592,
+  "compared_yield": 6336
+ },
+ "problems": [],
+ "reexecution": {
+  "2026-01-15": {
+   "first_run_transfer_statuses": {
+    "WRITTEN": 67
+   },
+   "new_keys": 0,
+   "same_store": true,
+   "stated_results": 0,
+   "store_sha256_after": "57f5192b6b2a7aedbbefe5843d566f3e449903119a16796fa0d87ae0879849d3",
+   "transfer_statuses": {
+    "UNCHANGED": 67
+   }
+  },
+  "2026-02-01": {
+   "first_run_transfer_statuses": {
+    "WRITTEN": 67
+   },
+   "new_keys": 0,
+   "same_store": true,
+   "stated_results": 0,
+   "store_sha256_after": "57f5192b6b2a7aedbbefe5843d566f3e449903119a16796fa0d87ae0879849d3",
+   "transfer_statuses": {
+    "UNCHANGED": 67
+   }
+  }
+ },
+ "regression_vs_committed_4a_evidence": "NOT_COMPARED (regeneração)",
+ "result": "PASS",
+ "state": {
+  "SA1_transfer_VAR16007_from_yield": {
+   "descendant_variables": 261,
+   "detail": "fa",
+   "differing_keys": 7046,
+   "must_keys": 311,
+   "plain_keys": 349,
+   "problems": [],
+   "state": "INVALID_INPUT",
+   "stated_area_41_variables": [
+    "VAR16007",
+    "VAR16008",
+    "VAR16014",
+    "VAR16018",
+    "VAR16019",
+    "VAR16020",
+    "VAR16031",
+    "VAR16032",
+    "VAR16033",
+    "VAR16034",
+    "VAR16035",
+    "VAR16036"
+   ],
+   "stated_by_block": {
+    "area_41": 563,
+    "energy": 1395,
+    "max_ht": 1945,
+    "production": 1903,
+    "yield": 1240
+   }
+  },
+  "SA2_hes_condition_state": {
+   "descendant_variables": 13,
+   "detail": "hes",
+   "differing_keys": 29,
+   "must_keys": 13,
+   "plain_keys": 60,
+   "problems": [],
+   "state": "INVALID_INPUT",
+   "stated_area_41_variables": [
+    "VAR16021",
+    "VAR16025",
+    "VAR16026",
+    "VAR16027",
+    "VAR16031",
+    "VAR16032",
+    "VAR16033",
+    "VAR16034",
+    "VAR16035",
+    "VAR16036"
+   ],
+   "stated_by_block": {
+    "area_41": 29
+   }
+  },
+  "SA3a_boundary_41c_branch_not_executed": {
+   "descendant_variables": 10,
+   "detail": "41c",
+   "differing_keys": 1,
+   "must_keys": 0,
+   "plain_keys": 8,
+   "problems": [],
+   "state": "INVALID_INPUT",
+   "stated_area_41_variables": [
+    "VAR16022"
+   ],
+   "stated_by_block": {
+    "area_41": 1
+   }
+  },
+  "SA3b_boundary_41c_branch_executed": {
+   "descendant_variables": 10,
+   "detail": "41c",
+   "differing_keys": 29,
+   "must_keys": 2,
+   "plain_keys": 24,
+   "problems": [],
+   "state": "INVALID_INPUT",
+   "stated_area_41_variables": [
+    "VAR16022",
+    "VAR16025",
+    "VAR16026",
+    "VAR16027",
+    "VAR16031",
+    "VAR16032",
+    "VAR16033",
+    "VAR16034",
+    "VAR16035",
+    "VAR16036"
+   ],
+   "stated_by_block": {
+    "area_41": 29
+   }
+  },
+  "SA4_boundary_vazao_ltp_L1_L3": {
+   "descendant_variables": 11,
+   "detail": "ltp",
+   "differing_keys": 65,
+   "must_keys": 24,
+   "plain_keys": 52,
+   "problems": [],
+   "state": "INVALID_INPUT",
+   "stated_area_41_variables": [
+    "VAR16001",
+    "VAR16004",
+    "VAR16018",
+    "VAR16019",
+    "VAR16020",
+    "VAR16031",
+    "VAR16032",
+    "VAR16033",
+    "VAR16034",
+    "VAR16035",
+    "VAR16036"
+   ],
+   "stated_by_block": {
+    "area_41": 65
+   }
+  },
+  "SA5_F_literal_no_applicable_rule": {
+   "descendant_variables": 13,
+   "detail": null,
+   "differing_keys": 47,
+   "must_keys": 31,
+   "plain_keys": 49,
+   "problems": [],
+   "state": "NO_APPLICABLE_RULE",
+   "stated_area_41_variables": [
+    "VAR16025",
+    "VAR16026",
+    "VAR16027",
+    "VAR16028",
+    "VAR16029",
+    "VAR16030",
+    "VAR16031",
+    "VAR16032",
+    "VAR16033",
+    "VAR16034",
+    "VAR16035",
+    "VAR16036"
+   ],
+   "stated_by_block": {
+    "area_41": 47
+   }
+  },
+  "SA6_undefined_compositions": {
+   "aggregation_window_same_state_two_details": {
+    "error": "MULTI_DETAIL_COMPOSITION_UNDEFINED",
+    "expected": "MULTI_DETAIL_COMPOSITION_UNDEFINED"
+   },
+   "aggregation_window_two_states": {
+    "error": "MULTI_STATE_COMBINATION_UNDEFINED",
+    "expected": "MULTI_STATE_COMBINATION_UNDEFINED"
+   },
+   "equation_total_two_states": {
+    "error": "MULTI_STATE_COMBINATION_UNDEFINED",
+    "expected": "MULTI_STATE_COMBINATION_UNDEFINED"
+   }
+  }
+ },
+ "targets_executed": 448,
+ "temporal": {
+  "annual_ytd_all_32_windows": true,
+  "annual_ytd_identities": 196,
+  "area_41_annual_identities": 11,
+  "area_41_monthly_jan_identities": 11,
+  "check_temporal_counts": {
+   "annual": 196,
+   "monthly_feb": 324,
+   "monthly_jan": 324
+  },
+  "contiguous": true,
+  "coverage_class": "YEAR_TO_DATE_PARTIAL_COVERAGE",
+  "daily_keys_have_no_window": true,
+  "dates": 32,
+  "monthly_feb_identities": 324,
+  "monthly_jan_all_31_windows": true,
+  "monthly_jan_identities": 324
+ },
+ "temporal_coverage": [
+  {
+   "annual_ytd_events": 196,
+   "date": "2026-01-01",
+   "errors": 0,
+   "events": 904,
+   "monthly_events": 324,
+   "nodes": 460,
+   "targets": 448,
+   "transfer_events": 67
+  },
+  {
+   "annual_ytd_events": 196,
+   "date": "2026-01-02",
+   "errors": 0,
+   "events": 904,
+   "monthly_events": 324,
+   "nodes": 460,
+   "targets": 448,
+   "transfer_events": 67
+  },
+  {
+   "annual_ytd_events": 196,
+   "date": "2026-01-03",
+   "errors": 0,
+   "events": 904,
+   "monthly_events": 324,
+   "nodes": 460,
+   "targets": 448,
+   "transfer_events": 67
+  },
+  {
+   "annual_ytd_events": 196,
+   "date": "2026-01-04",
+   "errors": 0,
+   "events": 904,
+   "monthly_events": 324,
+   "nodes": 460,
+   "targets": 448,
+   "transfer_events": 67
+  },
+  {
+   "annual_ytd_events": 196,
+   "date": "2026-01-05",
+   "errors": 0,
+   "events": 904,
+   "monthly_events": 324,
+   "nodes": 460,
+   "targets": 448,
+   "transfer_events": 67
+  },
+  {
+   "annual_ytd_events": 196,
+   "date": "2026-01-06",
+   "errors": 0,
+   "events": 904,
+   "monthly_events": 324,
+   "nodes": 460,
+   "targets": 448,
+   "transfer_events": 67
+  },
+  {
+   "annual_ytd_events": 196,
+   "date": "2026-01-07",
+   "errors": 0,
+   "events": 904,
+   "monthly_events": 324,
+   "nodes": 460,
+   "targets": 448,
+   "transfer_events": 67
+  },
+  {
+   "annual_ytd_events": 196,
+   "date": "2026-01-08",
+   "errors": 0,
+   "events": 904,
+   "monthly_events": 324,
+   "nodes": 460,
+   "targets": 448,
+   "transfer_events": 67
+  },
+  {
+   "annual_ytd_events": 196,
+   "date": "2026-01-09",
+   "errors": 0,
+   "events": 904,
+   "monthly_events": 324,
+   "nodes": 460,
+   "targets": 448,
+   "transfer_events": 67
+  },
+  {
+   "annual_ytd_events": 196,
+   "date": "2026-01-10",
+   "errors": 0,
+   "events": 904,
+   "monthly_events": 324,
+   "nodes": 460,
+   "targets": 448,
+   "transfer_events": 67
+  },
+  {
+   "annual_ytd_events": 196,
+   "date": "2026-01-11",
+   "errors": 0,
+   "events": 904,
+   "monthly_events": 324,
+   "nodes": 460,
+   "targets": 448,
+   "transfer_events": 67
+  },
+  {
+   "annual_ytd_events": 196,
+   "date": "2026-01-12",
+   "errors": 0,
+   "events": 904,
+   "monthly_events": 324,
+   "nodes": 460,
+   "targets": 448,
+   "transfer_events": 67
+  },
+  {
+   "annual_ytd_events": 196,
+   "date": "2026-01-13",
+   "errors": 0,
+   "events": 904,
+   "monthly_events": 324,
+   "nodes": 460,
+   "targets": 448,
+   "transfer_events": 67
+  },
+  {
+   "annual_ytd_events": 196,
+   "date": "2026-01-14",
+   "errors": 0,
+   "events": 904,
+   "monthly_events": 324,
+   "nodes": 460,
+   "targets": 448,
+   "transfer_events": 67
+  },
+  {
+   "annual_ytd_events": 196,
+   "date": "2026-01-15",
+   "errors": 0,
+   "events": 904,
+   "monthly_events": 324,
+   "nodes": 460,
+   "targets": 448,
+   "transfer_events": 67
+  },
+  {
+   "annual_ytd_events": 196,
+   "date": "2026-01-16",
+   "errors": 0,
+   "events": 904,
+   "monthly_events": 324,
+   "nodes": 460,
+   "targets": 448,
+   "transfer_events": 67
+  },
+  {
+   "annual_ytd_events": 196,
+   "date": "2026-01-17",
+   "errors": 0,
+   "events": 904,
+   "monthly_events": 324,
+   "nodes": 460,
+   "targets": 448,
+   "transfer_events": 67
+  },
+  {
+   "annual_ytd_events": 196,
+   "date": "2026-01-18",
+   "errors": 0,
+   "events": 904,
+   "monthly_events": 324,
+   "nodes": 460,
+   "targets": 448,
+   "transfer_events": 67
+  },
+  {
+   "annual_ytd_events": 196,
+   "date": "2026-01-19",
+   "errors": 0,
+   "events": 904,
+   "monthly_events": 324,
+   "nodes": 460,
+   "targets": 448,
+   "transfer_events": 67
+  },
+  {
+   "annual_ytd_events": 196,
+   "date": "2026-01-20",
+   "errors": 0,
+   "events": 904,
+   "monthly_events": 324,
+   "nodes": 460,
+   "targets": 448,
+   "transfer_events": 67
+  },
+  {
+   "annual_ytd_events": 196,
+   "date": "2026-01-21",
+   "errors": 0,
+   "events": 904,
+   "monthly_events": 324,
+   "nodes": 460,
+   "targets": 448,
+   "transfer_events": 67
+  },
+  {
+   "annual_ytd_events": 196,
+   "date": "2026-01-22",
+   "errors": 0,
+   "events": 904,
+   "monthly_events": 324,
+   "nodes": 460,
+   "targets": 448,
+   "transfer_events": 67
+  },
+  {
+   "annual_ytd_events": 196,
+   "date": "2026-01-23",
+   "errors": 0,
+   "events": 904,
+   "monthly_events": 324,
+   "nodes": 460,
+   "targets": 448,
+   "transfer_events": 67
+  },
+  {
+   "annual_ytd_events": 196,
+   "date": "2026-01-24",
+   "errors": 0,
+   "events": 904,
+   "monthly_events": 324,
+   "nodes": 460,
+   "targets": 448,
+   "transfer_events": 67
+  },
+  {
+   "annual_ytd_events": 196,
+   "date": "2026-01-25",
+   "errors": 0,
+   "events": 904,
+   "monthly_events": 324,
+   "nodes": 460,
+   "targets": 448,
+   "transfer_events": 67
+  },
+  {
+   "annual_ytd_events": 196,
+   "date": "2026-01-26",
+   "errors": 0,
+   "events": 904,
+   "monthly_events": 324,
+   "nodes": 460,
+   "targets": 448,
+   "transfer_events": 67
+  },
+  {
+   "annual_ytd_events": 196,
+   "date": "2026-01-27",
+   "errors": 0,
+   "events": 904,
+   "monthly_events": 324,
+   "nodes": 460,
+   "targets": 448,
+   "transfer_events": 67
+  },
+  {
+   "annual_ytd_events": 196,
+   "date": "2026-01-28",
+   "errors": 0,
+   "events": 904,
+   "monthly_events": 324,
+   "nodes": 460,
+   "targets": 448,
+   "transfer_events": 67
+  },
+  {
+   "annual_ytd_events": 196,
+   "date": "2026-01-29",
+   "errors": 0,
+   "events": 904,
+   "monthly_events": 324,
+   "nodes": 460,
+   "targets": 448,
+   "transfer_events": 67
+  },
+  {
+   "annual_ytd_events": 196,
+   "date": "2026-01-30",
+   "errors": 0,
+   "events": 904,
+   "monthly_events": 324,
+   "nodes": 460,
+   "targets": 448,
+   "transfer_events": 67
+  },
+  {
+   "annual_ytd_events": 196,
+   "date": "2026-01-31",
+   "errors": 0,
+   "events": 904,
+   "monthly_events": 324,
+   "nodes": 460,
+   "targets": 448,
+   "transfer_events": 67
+  },
+  {
+   "annual_ytd_events": 196,
+   "date": "2026-02-01",
+   "errors": 0,
+   "events": 904,
+   "monthly_events": 324,
+   "nodes": 460,
+   "targets": 448,
+   "transfer_events": 67
+  }
+ ],
+ "transfers": [
+  {
+   "executed_events": 224,
+   "execution_status": "EXECUTED",
+   "frequency": "diário",
+   "instances": 7,
+   "node": "TRANSFER:VAR11031",
+   "source_block": "production",
+   "source_variable": "VAR12031",
+   "state_2026-02-01": null,
+   "target_block": "yield",
+   "target_variable": "VAR11031",
+   "value_2026-02-01": "1.352175573333333",
+   "verified_events": 224
+  },
+  {
+   "executed_events": 224,
+   "execution_status": "EXECUTED",
+   "frequency": "diário",
+   "instances": 7,
+   "node": "TRANSFER:VAR12062",
+   "source_block": "yield",
+   "source_variable": "VAR11226",
+   "state_2026-02-01": null,
+   "target_block": "production",
+   "target_variable": "VAR12062",
+   "value_2026-02-01": "-0.23979752347771544",
+   "verified_events": 224
+  },
+  {
+   "executed_events": 224,
+   "execution_status": "EXECUTED",
+   "frequency": "diário",
+   "instances": 7,
+   "node": "TRANSFER:VAR13062",
+   "source_block": "production",
+   "source_variable": "VAR12031",
+   "state_2026-02-01": null,
+   "target_block": "max_ht",
+   "target_variable": "VAR13062",
+   "value_2026-02-01": "1.352175573333333",
+   "verified_events": 224
+  },
+  {
+   "executed_events": 224,
+   "execution_status": "EXECUTED",
+   "frequency": "diário",
+   "instances": 7,
+   "node": "TRANSFER:VAR13092",
+   "source_block": "production",
+   "source_variable": "VAR12046",
+   "state_2026-02-01": null,
+   "target_block": "max_ht",
+   "target_variable": "VAR13092",
+   "value_2026-02-01": "0.40661784449650473",
+   "verified_events": 224
+  },
+  {
+   "executed_events": 224,
+   "execution_status": "EXECUTED",
+   "frequency": "diário",
+   "instances": 7,
+   "node": "TRANSFER:VAR16007",
+   "source_block": "yield",
+   "source_variable": "VAR11031",
+   "state_2026-02-01": null,
+   "target_block": "area_41",
+   "target_variable": "VAR16007",
+   "value_2026-02-01": "1.352175573333333",
+   "verified_events": 224
+  },
+  {
+   "executed_events": 224,
+   "execution_status": "EXECUTED",
+   "frequency": "diário",
+   "instances": 7,
+   "node": "TRANSFER:VAR18001",
+   "source_block": "production",
+   "source_variable": "VAR12046",
+   "state_2026-02-01": null,
+   "target_block": "energy",
+   "target_variable": "VAR18001",
+   "value_2026-02-01": "0.40661784449650473",
+   "verified_events": 224
+  },
+  {
+   "executed_events": 224,
+   "execution_status": "EXECUTED",
+   "frequency": "diário",
+   "instances": 7,
+   "node": "TRANSFER:VAR18005",
+   "source_block": "production",
+   "source_variable": "VAR12041",
+   "state_2026-02-01": null,
+   "target_block": "energy",
+   "target_variable": "VAR18005",
+   "value_2026-02-01": "13.060303098410483",
+   "verified_events": 224
+  },
+  {
+   "executed_events": 32,
+   "execution_status": "EXECUTED",
+   "frequency": "diário",
+   "instances": 1,
+   "node": "TRANSFER:VAR18006",
+   "source_block": "production",
+   "source_variable": "VAR12043",
+   "state_2026-02-01": null,
+   "target_block": "energy",
+   "target_variable": "VAR18006",
+   "value_2026-02-01": "13.940846916187041",
+   "verified_events": 32
+  },
+  {
+   "executed_events": 32,
+   "execution_status": "EXECUTED",
+   "frequency": "mensal",
+   "instances": 1,
+   "node": "TRANSFER:VAR18007",
+   "source_block": "production",
+   "source_variable": "VAR12044",
+   "state_2026-02-01": null,
+   "target_block": "energy",
+   "target_variable": "VAR18007",
+   "value_2026-02-01": "13.940846916187041",
+   "verified_events": 32
+  },
+  {
+   "executed_events": 224,
+   "execution_status": "EXECUTED",
+   "frequency": "diário",
+   "instances": 7,
+   "node": "TRANSFER:VAR18008",
+   "source_block": "production",
+   "source_variable": "VAR12031",
+   "state_2026-02-01": null,
+   "target_block": "energy",
+   "target_variable": "VAR18008",
+   "value_2026-02-01": "1.352175573333333",
+   "verified_events": 224
+  },
+  {
+   "executed_events": 32,
+   "execution_status": "EXECUTED",
+   "frequency": "diário",
+   "instances": 1,
+   "node": "TRANSFER:VAR18009",
+   "source_block": "production",
+   "source_variable": "VAR12033",
+   "state_2026-02-01": null,
+   "target_block": "energy",
+   "target_variable": "VAR18009",
+   "value_2026-02-01": "9.444445313333333",
+   "verified_events": 32
+  },
+  {
+   "executed_events": 32,
+   "execution_status": "EXECUTED",
+   "frequency": "mensal",
+   "instances": 1,
+   "node": "TRANSFER:VAR18010",
+   "source_block": "production",
+   "source_variable": "VAR12034",
+   "state_2026-02-01": null,
+   "target_block": "energy",
+   "target_variable": "VAR18010",
+   "value_2026-02-01": "9.444445313333333",
+   "verified_events": 32
+  },
+  {
+   "executed_events": 224,
+   "execution_status": "EXECUTED",
+   "frequency": "anual",
+   "instances": 7,
+   "node": "TRANSFER:VAR18011",
+   "source_block": "production",
+   "source_variable": "VAR12066",
+   "state_2026-02-01": null,
+   "target_block": "energy",
+   "target_variable": "VAR18011",
+   "value_2026-02-01": "1.3659999999999999",
+   "verified_events": 224
+  }
+ ],
+ "universe": {
+  "area_41_targets": 25,
+  "dates": 32,
+  "integrated_targets": 448,
+  "nodes_by_kind": {
+   "AGGREGATION": 207,
+   "EQUATION": 240,
+   "TRANSFER": 13
+  },
+  "official_targets": 448,
+  "pending_blockers": 0,
+  "planner_nodes": 460,
+  "previous_nodes": 429,
+  "previous_targets": 423,
+  "required_inputs": 62,
+  "transfers": [
+   "TRANSFER:VAR11031",
+   "TRANSFER:VAR12062",
+   "TRANSFER:VAR13062",
+   "TRANSFER:VAR13092",
+   "TRANSFER:VAR16007",
+   "TRANSFER:VAR18001",
+   "TRANSFER:VAR18005",
+   "TRANSFER:VAR18006",
+   "TRANSFER:VAR18007",
+   "TRANSFER:VAR18008",
+   "TRANSFER:VAR18009",
+   "TRANSFER:VAR18010",
+   "TRANSFER:VAR18011"
+  ]
+ }
+}

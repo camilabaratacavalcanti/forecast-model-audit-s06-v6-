@@ -686,6 +686,777 @@
    "selo": "2907772605b197a04f238b1ce0e3d7386392a1ad10563c0d3680fe00f49514a1",
    "stage": "4C",
    "status": "APPROVED"
+  },
+  {
+   "anterior": "B0",
+   "commit_comportamento": "a12954a6ad8d603d7c83e3c51a96fcb8a74d84da",
+   "conjuntos": {
+    "stage3_2_plan": {
+     "arquivos": {
+      "analysis_summary.json": {
+       "caminho": "audit/baselines/B1/stage3_2_plan/analysis_summary.json",
+       "sha256": "4a8bcdf64076e5bbaaf62c8f33979fc9d6c27facbec5520a40330eff6291e749"
+      },
+      "plan_evidence.csv": {
+       "caminho": "audit/baselines/B1/stage3_2_plan/plan_evidence.csv",
+       "sha256": "1f3dbe8994a68bec58664fccb2765f10763e2b4aa794f211389ab77e7920ef71"
+      },
+      "transfer_evidence.csv": {
+       "caminho": "audit/baselines/B1/stage3_2_plan/transfer_evidence.csv",
+       "sha256": "cdf522e6badbdee4b29e3b1befb89d96769193c0f1b64c6c1f8d3a82b77bf8d2"
+      }
+     },
+     "classe": "R",
+     "commit_evidencia_historica": "a733487",
+     "expectativas": {
+      "by_observed": {
+       "INTERBLOCK_SOURCE_NOT_LOADED": 289,
+       "OK": 159
+      },
+      "official_targets": 448,
+      "transfer_rows": 200
+     },
+     "herdado_de": null
+    },
+    "stage3_4b_differential": {
+     "arquivos": {
+      "differential_cases.csv": {
+       "caminho": "audit/stage3_4/differential/evidence/differential_cases.csv",
+       "sha256": "e19738dbb292eb4a509c8a50f32b6536396e32104b7f0a8deb6128c43dc396fd"
+      },
+      "differential_summary.json": {
+       "caminho": "audit/stage3_4/differential/evidence/differential_summary.json",
+       "sha256": "c448ecb914a77125a60feb4ef6f20ca8f7c36d23e8ba4c5d11a1691a9ce0cdcc"
+      }
+     },
+     "classe": "H",
+     "commit_evidencia_historica": "4d54804",
+     "expectativas": {},
+     "herdado_de": "B0"
+    },
+    "stage3_4c_integrated": {
+     "arquivos": {
+      "integrated_summary.json": {
+       "caminho": "audit/baselines/B1/stage3_4c_integrated/integrated_summary.json",
+       "sha256": "7d8d15cdeae256d6b36d3bef28855dd2fb2b965de7f8db966a27d96e19ccea17"
+      },
+      "nodes.csv": {
+       "caminho": "audit/baselines/B1/stage3_4c_integrated/nodes.csv",
+       "sha256": "5063bdb843041bfd7bbbf6d0ca2222a21264c583653ca7af65a97eb195422d5d"
+      },
+      "targets.csv": {
+       "caminho": "audit/baselines/B1/stage3_4c_integrated/targets.csv",
+       "sha256": "33640a5d3f82370b1919d0a6a304bdc4c507c33df49020067b0b8a6fe1d72185"
+      },
+      "temporal_coverage.csv": {
+       "caminho": "audit/baselines/B1/stage3_4c_integrated/temporal_coverage.csv",
+       "sha256": "3d5ec1a2abb2928f6cdc1f0f76df591f92310dede6e1f82632afc40638302bf4"
+      },
+      "transfers.csv": {
+       "caminho": "audit/baselines/B1/stage3_4c_integrated/transfers.csv",
+       "sha256": "bf35efc4b1718a54ea3f9c85b70a91f3d991d4dc9534fadab528b188f9157d7c"
+      }
+     },
+     "classe": "R",
+     "commit_evidencia_historica": "043fe9c",
+     "expectativas": {
+      "dates": 32,
+      "nodes_executed": 429,
+      "per_date": [
+       [
+        "423",
+        "429",
+        "60",
+        "0"
+       ]
+      ],
+      "result": "PASS",
+      "results_sha256_RUN_A": "09896d0e3f6dc6e63aecac5dc42455816f84fd81d36761263f2b477f1be8201e",
+      "store_sha256_RUN_A": "80b9632533c92f7dc711b18056b6d2b21c1b59132a8d9e7fafbfbb2e3c8cdf5f",
+      "targets_executed": 423,
+      "transfers": 12,
+      "universe": {
+       "area_41_excluded": 25,
+       "integrated_targets": 423,
+       "nodes_by_kind": {
+        "AGGREGATION": 197,
+        "EQUATION": 220,
+        "TRANSFER": 12
+       },
+       "official_targets": 448,
+       "pending_blockers": 0,
+       "planner_nodes": 429,
+       "required_inputs": 51
+      }
+     },
+     "herdado_de": null
+    },
+    "stage3_4d_mutation": {
+     "arquivos": {
+      "baseline_gap_probe.json": {
+       "caminho": "audit/stage3_4/mutation/baseline_gap_probe.json",
+       "sha256": "83e89dd4911c275af77614f41332498f66c421841c28d64c5f49cb161bc96aad"
+      },
+      "blackbox_audit.json": {
+       "caminho": "audit/stage3_4/mutation/blackbox_audit.json",
+       "sha256": "10fb0ed01a0ef6f0a17297353a546fd5e59dd2f1b8f6ebc51356d4de77102381"
+      },
+      "code_mutation_results.csv": {
+       "caminho": "audit/stage3_4/mutation/code_mutation_results.csv",
+       "sha256": "aa1e73642d2e73d862411ca84c6962b87b35b3edc7ef5fcc2e7781ccbbb47c56"
+      },
+      "mutation_matrix.csv": {
+       "caminho": "audit/stage3_4/mutation/mutation_matrix.csv",
+       "sha256": "7f6d7ae8d759c8e711095ff17e0e265a452fca71d6741744597b0859ae11e5a1"
+      },
+      "mutation_results.csv": {
+       "caminho": "audit/stage3_4/mutation/mutation_results.csv",
+       "sha256": "1e56ff019205b2fb1626741a6bd0ce06aab4ff10c2b5efb6d5453d51de26739c"
+      },
+      "mutation_summary.json": {
+       "caminho": "audit/stage3_4/mutation/mutation_summary.json",
+       "sha256": "e8bb693b83fa3af493f5981689658801bfd45e327a39aee20aeebc080b6c8368"
+      },
+      "positive_controls.csv": {
+       "caminho": "audit/stage3_4/mutation/positive_controls.csv",
+       "sha256": "f4416acef8401e3f2230181777f1486f7c1a7007d1cf6cdcf480ac7a63588e72"
+      }
+     },
+     "classe": "H",
+     "commit_evidencia_historica": "d8b5d55",
+     "expectativas": {},
+     "herdado_de": "B0"
+    },
+    "stage4a_closure": {
+     "arquivos": {
+      "closure_reconciliation_4a.json": {
+       "caminho": "audit/stage4a/closure/closure_reconciliation_4a.json",
+       "sha256": "9fec126f20e224f153caae1308255957d562b2016e93ca229d34868434ad1241"
+      },
+      "evidence_regeneration_report.md": {
+       "caminho": "audit/stage4a/closure/evidence_regeneration_report.md",
+       "sha256": "13ef876c86c082998ad07ff54be784665fce00ea068db9c752a550c4facf644c"
+      }
+     },
+     "classe": "H",
+     "commit_evidencia_historica": "0a924e6",
+     "expectativas": {},
+     "herdado_de": "B0"
+    },
+    "stage4a_contract": {
+     "arquivos": {
+      "contract_audit.json": {
+       "caminho": "audit/baselines/B1/stage4a_contract/contract_audit.json",
+       "sha256": "5774b60754d8e9439997b43d48cbf6d1563dc0b855d4e5f6539478b7069547c2"
+      },
+      "contract_expectations.json": {
+       "caminho": "audit/baselines/B1/stage4a_contract/contract_expectations.json",
+       "sha256": "18d2cd2ba94704bdcc313d23f852bf5508a123ec79ac2d0f82e21f93b5c51434"
+      },
+      "hes_decision_matrix.csv": {
+       "caminho": "audit/baselines/B1/stage4a_contract/hes_decision_matrix.csv",
+       "sha256": "620f1818f46cdb5c19591481eb8c94a2ed029c2cd9f06bd08b01b637b31e7a3f"
+      },
+      "obs_register.csv": {
+       "caminho": "audit/baselines/B1/stage4a_contract/obs_register.csv",
+       "sha256": "e6500c9ea328f68f3ccaa29369637c665d9c48b85206d085e0283c51fd2fb66f"
+      }
+     },
+     "classe": "R",
+     "commit_evidencia_historica": "fdeec18",
+     "expectativas": {
+      "independent": {
+       "hes_f_combinations": [
+        [
+         "L4_L5",
+         "1 By pass e LC",
+         "Normal"
+        ],
+        [
+         "L4_L5",
+         "Normal",
+         "1 By pass e LC"
+        ],
+        [
+         "L6_L7",
+         "1 By pass e LC",
+         "Normal"
+        ],
+        [
+         "L6_L7",
+         "Normal",
+         "1 By pass e LC"
+        ]
+       ],
+       "interblock_links_sha256": "b1e683071aeee31476a755b024ba89cc11a7a4965136d767af4ed23e3f191e00",
+       "obs_rows": 26,
+       "official_plan.area_41": {
+        "INTERBLOCK_SOURCE_NOT_LOADED": 22,
+        "OK": 3
+       },
+       "official_plan.pending_links": 16,
+       "union.shared": [
+        "EQUATION:EQ12012",
+        "TRANSFER:VAR11031"
+       ],
+       "universe_4.nodes": 429,
+       "universe_5.aggregation_instances": 417,
+       "universe_5.equation_instances": 420,
+       "universe_5.events_per_date": 904,
+       "universe_5.nodes": 460,
+       "universe_5.nodes_by_kind": {
+        "AGGREGATION": 207,
+        "EQUATION": 240,
+        "TRANSFER": 13
+       },
+       "universe_5.required_inputs": 62,
+       "universe_5.targets": 448,
+       "universe_5.transfer_instances_per_date": 67
+      },
+      "integrated": {
+       "area_41_targets": 25,
+       "dates": 32,
+       "events_per_date": 904,
+       "integrated_targets": 448,
+       "interblock_links_sha256": "b1e683071aeee31476a755b024ba89cc11a7a4965136d767af4ed23e3f191e00",
+       "nodes_by_kind": {
+        "AGGREGATION": 207,
+        "EQUATION": 240,
+        "TRANSFER": 13
+       },
+       "official_targets": 448,
+       "pending_blockers": 0,
+       "planner_nodes": 460,
+       "previous_nodes": 429,
+       "previous_targets": 423,
+       "required_inputs": 62,
+       "transfer_events_per_date": 67,
+       "transfers": [
+        "TRANSFER:VAR11031",
+        "TRANSFER:VAR12062",
+        "TRANSFER:VAR13062",
+        "TRANSFER:VAR13092",
+        "TRANSFER:VAR16007",
+        "TRANSFER:VAR18001",
+        "TRANSFER:VAR18005",
+        "TRANSFER:VAR18006",
+        "TRANSFER:VAR18007",
+        "TRANSFER:VAR18008",
+        "TRANSFER:VAR18009",
+        "TRANSFER:VAR18010",
+        "TRANSFER:VAR18011"
+       ]
+      }
+     },
+     "herdado_de": null
+    },
+    "stage4a_integrated": {
+     "arquivos": {
+      "integrated_summary.json": {
+       "caminho": "audit/baselines/B1/stage4a_integrated/integrated_summary.json",
+       "sha256": "8a899309b69d55dabe40b1bfb9bb9534baa3cea7c6e831275733dae4e9dc220b"
+      },
+      "nodes.csv": {
+       "caminho": "audit/baselines/B1/stage4a_integrated/nodes.csv",
+       "sha256": "9a676a5bd7dee7df5e4d4a0a9db9e513df9e01a635c3ed948fc94c8396396326"
+      },
+      "non_regression_421.json": {
+       "caminho": "audit/baselines/B1/stage4a_integrated/non_regression_421.json",
+       "sha256": "88551dbe14aeec8a08029806afe47ca71ce2bb0691823db5c46fa9fe56a76dfa"
+      },
+      "targets.csv": {
+       "caminho": "audit/baselines/B1/stage4a_integrated/targets.csv",
+       "sha256": "2054032be481f12543d85af249a3d217aac3a4fa1881d9a3f65f1e5a7f8b3d20"
+      },
+      "temporal_coverage.csv": {
+       "caminho": "audit/baselines/B1/stage4a_integrated/temporal_coverage.csv",
+       "sha256": "931802bd45d706740aa7f78a5a90487bfe761a2be9ce80056dbb3505518cfd67"
+      },
+      "transfers.csv": {
+       "caminho": "audit/baselines/B1/stage4a_integrated/transfers.csv",
+       "sha256": "1872e2297c0f050f66afcda78e2420b9cfe442c9f9b46cd2db565cb502c8563d"
+      }
+     },
+     "classe": "R",
+     "commit_evidencia_historica": "99d5a67",
+     "expectativas": {
+      "nodes_executed": 460,
+      "previous_store_sha256": "80b9632533c92f7dc711b18056b6d2b21c1b59132a8d9e7fafbfbb2e3c8cdf5f",
+      "result": "PASS",
+      "results_sha256_RUN_A": "e403e03eb4a43e9bfe2278ae3870a8888cdcbc58e167541abc01dc000f2083ac",
+      "store_sha256_RUN_A": "57f5192b6b2a7aedbbefe5843d566f3e449903119a16796fa0d87ae0879849d3",
+      "targets_executed": 448,
+      "transfers": 13,
+      "universe": {
+       "area_41_targets": 25,
+       "dates": 32,
+       "integrated_targets": 448,
+       "nodes_by_kind": {
+        "AGGREGATION": 207,
+        "EQUATION": 240,
+        "TRANSFER": 13
+       },
+       "official_targets": 448,
+       "pending_blockers": 0,
+       "planner_nodes": 460,
+       "previous_nodes": 429,
+       "previous_targets": 423,
+       "required_inputs": 62,
+       "transfers": [
+        "TRANSFER:VAR11031",
+        "TRANSFER:VAR12062",
+        "TRANSFER:VAR13062",
+        "TRANSFER:VAR13092",
+        "TRANSFER:VAR16007",
+        "TRANSFER:VAR18001",
+        "TRANSFER:VAR18005",
+        "TRANSFER:VAR18006",
+        "TRANSFER:VAR18007",
+        "TRANSFER:VAR18008",
+        "TRANSFER:VAR18009",
+        "TRANSFER:VAR18010",
+        "TRANSFER:VAR18011"
+       ]
+      }
+     },
+     "herdado_de": null
+    },
+    "stage4a_mutation": {
+     "arquivos": {
+      "code_mutation_results.csv": {
+       "caminho": "audit/stage4a/mutation/evidence/code_mutation_results.csv",
+       "sha256": "c0a8fbc97b74427989e86f53e8f0404905d66a5ff95f38c8d6f304378ed07153"
+      },
+      "mutation_results.csv": {
+       "caminho": "audit/stage4a/mutation/evidence/mutation_results.csv",
+       "sha256": "38bdc9aefd8a4c24ea7ad50b069e5377eadaf8e4b592a4c0011e4c5c8715d802"
+      },
+      "mutation_summary.json": {
+       "caminho": "audit/stage4a/mutation/evidence/mutation_summary.json",
+       "sha256": "fe7f88eb404380ca8d76a1d75043347b5c9e1fdeafd476c6d58e1c19efa11389"
+      },
+      "positive_controls.csv": {
+       "caminho": "audit/stage4a/mutation/evidence/positive_controls.csv",
+       "sha256": "a1fdb3c0fe344b1e285973989fd27a5c660bf7b4b336a22a3be74d006b4739fe"
+      }
+     },
+     "classe": "E",
+     "commit_evidencia_historica": "99d5a67",
+     "expectativas": {},
+     "herdado_de": "B0"
+    },
+    "stage4a_oracle": {
+     "arquivos": {
+      "oracle_cases.csv": {
+       "caminho": "audit/stage4a/oracle/evidence/oracle_cases.csv",
+       "sha256": "105d86bb7c7abe43f1b16c2d55f40e02536cc8d25559a27d9f492ff34dce0fce"
+      },
+      "oracle_summary.json": {
+       "caminho": "audit/stage4a/oracle/evidence/oracle_summary.json",
+       "sha256": "df75368717ba656774bd350a2763e2e9a587bc45695252a555e74b9d625bd223"
+      }
+     },
+     "classe": "E",
+     "commit_evidencia_historica": "a34b865",
+     "expectativas": {},
+     "herdado_de": "B0"
+    },
+    "stage4b_closure": {
+     "arquivos": {
+      "closure_reconciliation_4b.json": {
+       "caminho": "audit/stage4b/closure/closure_reconciliation_4b.json",
+       "sha256": "e5b30e01d6239bf068bf1a7c4e3390f841f81309fdcfa27ecd4194a681f2ab06"
+      }
+     },
+     "classe": "H",
+     "commit_evidencia_historica": "f573c1b",
+     "expectativas": {},
+     "herdado_de": "B0"
+    },
+    "stage4b_contract": {
+     "arquivos": {
+      "contract_audit_4b.json": {
+       "caminho": "audit/baselines/B1/stage4b_contract/contract_audit_4b.json",
+       "sha256": "dfbc11d0beb825e671e9133bd70440000e08f478d16d8f53662aeee827ed767f"
+      },
+      "contract_expectations_4b.json": {
+       "caminho": "audit/baselines/B1/stage4b_contract/contract_expectations_4b.json",
+       "sha256": "dd08637f8619f256bcabbf046754f2c1502b6f2771420195b49016f742a8bd7e"
+      },
+      "performance_probe.csv": {
+       "caminho": "audit/baselines/B1/stage4b_contract/performance_probe.csv",
+       "sha256": "21796d19d8bdcd70e89d0a855d5d78d5f00bd41cd7f2953019d8646a5a753124"
+      }
+     },
+     "classe": "R",
+     "commit_evidencia_historica": "b0c3da3",
+     "expectativas": {
+      "independent": {
+       "calendar.T1.dates": 396,
+       "calendar.T2.dates": 62,
+       "calendar.T2.feb_29_dates": [
+        "2028-02-29"
+       ],
+       "calendar.T3.dates": 792,
+       "cycles.block_cycles": [
+        [
+         "production",
+         "yield"
+        ]
+       ],
+       "cycles.instance_cycles": [],
+       "cycles.lag_references": [],
+       "cycles.variable_cycles": [],
+       "identity_profile": {
+        "derived_anual": 196,
+        "derived_diário": 384,
+        "derived_mensal": 324,
+        "input_anual": 84,
+        "input_diário": 213,
+        "input_mensal": 34
+       },
+       "store_growth_first_day": 1235,
+       "store_growth_first_of_month": 1151,
+       "store_growth_regular_day": 1117
+      },
+      "temporal": {
+       "derived_annual_identities": 196,
+       "derived_daily_instances": 384,
+       "derived_monthly_identities": 324,
+       "events_per_date": 904,
+       "performance_ratio_limit": 3.0,
+       "planner_nodes": 460,
+       "ranges": {
+        "T1": [
+         "2026-01-01",
+         "2027-01-31"
+        ],
+        "T2": [
+         "2028-01-01",
+         "2028-03-02"
+        ],
+        "T3": [
+         "2026-01-01",
+         "2028-03-02"
+        ]
+       },
+       "reexecution_dates": [
+        "2026-02-28",
+        "2026-12-31",
+        "2027-01-01",
+        "2028-02-29",
+        "2028-03-01"
+       ],
+       "targets": 448,
+       "transfer_events_per_date": 67,
+       "transfers_per_date": 13
+      }
+     },
+     "herdado_de": null
+    },
+    "stage4b_mutation": {
+     "arquivos": {
+      "code_mutation_results.csv": {
+       "caminho": "audit/stage4b/mutation/evidence/code_mutation_results.csv",
+       "sha256": "50e4c4ceb0aa024a1a719deee2cd1002f1c5ea44a8985934d62e6d56da382f7b"
+      },
+      "first_round_analysis.json": {
+       "caminho": "audit/stage4b/mutation/evidence/first_round_analysis.json",
+       "sha256": "6df841a5bf7f6557b6407abcaf18e5df7c637874945df82182b76353f5e7709c"
+      },
+      "mutation_results.csv": {
+       "caminho": "audit/stage4b/mutation/evidence/mutation_results.csv",
+       "sha256": "f890afdceeb3beedd3fa38ac30577f6a2884f161b575201159921f7af5d67b59"
+      },
+      "mutation_summary.json": {
+       "caminho": "audit/stage4b/mutation/evidence/mutation_summary.json",
+       "sha256": "87dc27a9b1ed160b975306e8f3d596424dfdf4542ec48b73fa9c7b3d1b0a0988"
+      },
+      "positive_controls.csv": {
+       "caminho": "audit/stage4b/mutation/evidence/positive_controls.csv",
+       "sha256": "e27fd4fd383f35b16fad036c5ff41e9908d0f5755f1bf774b969513b1d1866a2"
+      }
+     },
+     "classe": "E",
+     "commit_evidencia_historica": "314224d",
+     "expectativas": {},
+     "herdado_de": "B0"
+    },
+    "stage4b_oracle": {
+     "arquivos": {
+      "oracle_temporal_summary.json": {
+       "caminho": "audit/stage4b/oracle/evidence/oracle_temporal_summary.json",
+       "sha256": "4a43f6691d853904c2b820c8c5690413b87af4c90f129a661b702664626dccce"
+      }
+     },
+     "classe": "E",
+     "commit_evidencia_historica": "d5c37a3",
+     "expectativas": {},
+     "herdado_de": "B0"
+    },
+    "stage4b_temporal": {
+     "arquivos": {
+      "T1/identities_by_date.csv": {
+       "caminho": "audit/baselines/B1/stage4b_temporal/T1/identities_by_date.csv",
+       "sha256": "7c2090f71e3633bf691de5f744bbeaec57a88b5411d22c994340b3455a5a8fdb"
+      },
+      "T1/performance_profile.csv": {
+       "caminho": "audit/baselines/B1/stage4b_temporal/T1/performance_profile.csv",
+       "sha256": "1e5c3a12109b4f91458472e2bb703532c7034f9e2c408b326ef579c3edc443d3"
+      },
+      "T1/period_snapshots.json": {
+       "caminho": "audit/baselines/B1/stage4b_temporal/T1/period_snapshots.json",
+       "sha256": "eb523a2684a487e899d934adb4d806e746aa765194ccb6106aa4486761423356"
+      },
+      "T1/reexecution.json": {
+       "caminho": "audit/baselines/B1/stage4b_temporal/T1/reexecution.json",
+       "sha256": "1e6a3ef54998e3befd9f9141ce983b722248b7d81fb2b50e158c5861adea11ff"
+      },
+      "T1/state_scenarios.json": {
+       "caminho": "audit/baselines/B1/stage4b_temporal/T1/state_scenarios.json",
+       "sha256": "03654ebb51589d0970a8c0bca3b0f91d22b8c294bcad8ed4db2fd9a0b9d5185c"
+      },
+      "T1/temporal_coverage.csv": {
+       "caminho": "audit/baselines/B1/stage4b_temporal/T1/temporal_coverage.csv",
+       "sha256": "420bc0dbc71f624d703f94ea761aea1c50508c70f6b9039b17014cd0214735e0"
+      },
+      "T1/temporal_summary.json": {
+       "caminho": "audit/baselines/B1/stage4b_temporal/T1/temporal_summary.json",
+       "sha256": "23b3dbb61168d507cde93841332f00b75cba9f946293ca4cae71fdfb796b1d61"
+      },
+      "T2/identities_by_date.csv": {
+       "caminho": "audit/baselines/B1/stage4b_temporal/T2/identities_by_date.csv",
+       "sha256": "222f0f814baedfaa8f6e59c7d5134c358f40d62bdcd376b28adbb7e393bc61d9"
+      },
+      "T2/performance_profile.csv": {
+       "caminho": "audit/baselines/B1/stage4b_temporal/T2/performance_profile.csv",
+       "sha256": "7ff316219123c75a0b1b15fa096a47eb7dcefe229562398b6977c1a704620882"
+      },
+      "T2/period_snapshots.json": {
+       "caminho": "audit/baselines/B1/stage4b_temporal/T2/period_snapshots.json",
+       "sha256": "4a9cf69c0dafe2d027e3fe7039886cf5771138a110049092ed60ec6bfafad47c"
+      },
+      "T2/reexecution.json": {
+       "caminho": "audit/baselines/B1/stage4b_temporal/T2/reexecution.json",
+       "sha256": "d4e0ff1076ac0bc10c486b9125c17c7a33545410cd04851890dcc198c7344b36"
+      },
+      "T2/temporal_coverage.csv": {
+       "caminho": "audit/baselines/B1/stage4b_temporal/T2/temporal_coverage.csv",
+       "sha256": "bb9844dcc754a4963c503fee5996edf1a2a32dd6862c3aeb113ff8ad948aa7de"
+      },
+      "T2/temporal_summary.json": {
+       "caminho": "audit/baselines/B1/stage4b_temporal/T2/temporal_summary.json",
+       "sha256": "3ecffde23036f3f013994fa6311c9856344310b03af8170cda2f7b967e99f0c3"
+      },
+      "T3/identities_by_date.csv": {
+       "caminho": "audit/baselines/B1/stage4b_temporal/T3/identities_by_date.csv",
+       "sha256": "f062af312b368963bf468be494b11a280307e1cfc36ce2dfa4359f64c35e3389"
+      },
+      "T3/performance_profile.csv": {
+       "caminho": "audit/baselines/B1/stage4b_temporal/T3/performance_profile.csv",
+       "sha256": "731a840965e2709f1195d565be00dd38d1273a37c704e0acc63ed4e52be2ca21"
+      },
+      "T3/period_snapshots.json": {
+       "caminho": "audit/baselines/B1/stage4b_temporal/T3/period_snapshots.json",
+       "sha256": "0db0d4945a99a93cd65df20c5f8092a00ee19cb68aef753d96096dac5f510196"
+      },
+      "T3/reexecution.json": {
+       "caminho": "audit/baselines/B1/stage4b_temporal/T3/reexecution.json",
+       "sha256": "e828785207c1617429cf7a53e86a54d91ae25e618768ce8796811d18568b89c4"
+      },
+      "T3/temporal_coverage.csv": {
+       "caminho": "audit/baselines/B1/stage4b_temporal/T3/temporal_coverage.csv",
+       "sha256": "9036f554f4371bd431ed5256baaadd3310e84a315331fef86a797d50229599bc"
+      },
+      "T3/temporal_summary.json": {
+       "caminho": "audit/baselines/B1/stage4b_temporal/T3/temporal_summary.json",
+       "sha256": "4a6e2e89fc4ab1c84bdf69637f9bcb82ad20b87708cb7d801ea56f11781e423b"
+      }
+     },
+     "classe": "R",
+     "commit_evidencia_historica": "ec6f270",
+     "expectativas": {
+      "T1": {
+       "dates": {
+        "count": 396,
+        "first": "2026-01-01",
+        "last": "2027-01-31"
+       },
+       "identities": {
+        "annual": 196,
+        "monthly": 324
+       },
+       "per_date": {
+        "events": [
+         904
+        ],
+        "nodes": [
+         460
+        ],
+        "targets": [
+         448
+        ],
+        "transfer_events": [
+         67
+        ]
+       },
+       "result": "PASS",
+       "results_sha256": "95e42bd5db2651a1eb7f8c8650e92f7484a12b9165556c788425df627cb9fc35",
+       "store_sha256": "decd0f1745eec227ef65f160ea5ce40dee928121921294a2ad996092578e3bc9"
+      },
+      "T2": {
+       "dates": {
+        "count": 62,
+        "first": "2028-01-01",
+        "last": "2028-03-02"
+       },
+       "identities": {
+        "annual": 196,
+        "monthly": 324
+       },
+       "per_date": {
+        "events": [
+         904
+        ],
+        "nodes": [
+         460
+        ],
+        "targets": [
+         448
+        ],
+        "transfer_events": [
+         67
+        ]
+       },
+       "result": "PASS",
+       "results_sha256": "4a6779435e5b38bd01581e3830e50061b20e0cd8afa3d479d82ab303e39c2609",
+       "store_sha256": "17504b5b23de2ceb4a5994b671b90b5ded523b1eaf32b99920caa0481421c44b"
+      },
+      "T3": {
+       "dates": {
+        "count": 792,
+        "first": "2026-01-01",
+        "last": "2028-03-02"
+       },
+       "identities": {
+        "annual": 196,
+        "monthly": 324
+       },
+       "per_date": {
+        "events": [
+         904
+        ],
+        "nodes": [
+         460
+        ],
+        "targets": [
+         448
+        ],
+        "transfer_events": [
+         67
+        ]
+       },
+       "result": "PASS",
+       "results_sha256": "02c6ab7fac704e3c99d60aa46791d417307d5d3f3d8593c7454fa42b26be7782",
+       "store_sha256": "83e6944b3af0d21d7c54a893115f64ce60ff3f0f1c00876048cfd5a7fe39bccb"
+      }
+     },
+     "herdado_de": null
+    }
+   },
+   "data": "2026-10-02",
+   "execucao": [
+    {
+     "command": "audit/stage3_2_execution_orchestration/evidence/analysis_stage3_2.py --baseline-dir audit/baselines/B1",
+     "label": "stage3_2_plan",
+     "returncode": 0
+    },
+    {
+     "command": "audit/stage3_4/integrated/run_integrated.py --baseline-dir audit/baselines/B1",
+     "label": "stage3_4c_integrated",
+     "returncode": 0
+    },
+    {
+     "command": "audit/stage4a/derive_4a.py --baseline-dir audit/baselines/B1",
+     "label": "stage4a_contract",
+     "returncode": 0
+    },
+    {
+     "command": "audit/stage4a/integrated/run_integrated_4a.py --baseline-dir audit/baselines/B1",
+     "label": "stage4a_integrated",
+     "returncode": 0
+    },
+    {
+     "command": "audit/stage4b/derive_4b.py --baseline-dir audit/baselines/B1",
+     "label": "stage4b_contract",
+     "returncode": 0
+    },
+    {
+     "command": "audit/stage4b/temporal/run_temporal_4b.py --range T2 --baseline-dir audit/baselines/B1",
+     "label": "stage4b_temporal T2",
+     "returncode": 0
+    },
+    {
+     "command": "audit/stage4b/temporal/run_temporal_4b.py --range T1 --baseline-dir audit/baselines/B1",
+     "label": "stage4b_temporal T1",
+     "returncode": 0
+    },
+    {
+     "command": "audit/stage4b/temporal/run_temporal_4b.py --range T3 --baseline-dir audit/baselines/B1",
+     "label": "stage4b_temporal T3",
+     "returncode": 0
+    },
+    {
+     "command": "audit/stage3_4/integrated/run_integrated.py --no-write --baseline-dir audit/baselines/B1",
+     "label": "3.4C x referência",
+     "returncode": 0
+    },
+    {
+     "command": "-I audit/stage4a/independent_count.py --check --baseline-dir audit/baselines/B1",
+     "label": "4A recálculo independente",
+     "returncode": 0
+    },
+    {
+     "command": "audit/stage4a/derive_4a.py --no-write --baseline-dir audit/baselines/B1",
+     "label": "4A expectativas",
+     "returncode": 0
+    },
+    {
+     "command": "audit/stage4a/integrated/run_integrated_4a.py --no-write --baseline-dir audit/baselines/B1",
+     "label": "4A integrado x referência",
+     "returncode": 0
+    },
+    {
+     "command": "-I audit/stage4b/independent_calendar.py --check --baseline-dir audit/baselines/B1",
+     "label": "4B recálculo independente",
+     "returncode": 0
+    },
+    {
+     "command": "audit/stage4b/derive_4b.py --no-write --baseline-dir audit/baselines/B1",
+     "label": "4B expectativas",
+     "returncode": 0
+    },
+    {
+     "command": "audit/stage4b/temporal/run_temporal_4b.py --range T2 --no-write --baseline-dir audit/baselines/B1",
+     "label": "4B T2 x referência",
+     "returncode": 0
+    },
+    {
+     "command": "audit/stage4b/temporal/run_temporal_4b.py --range T1 --no-write --skip-extras --baseline-dir audit/baselines/B1",
+     "label": "4B T1 x referência",
+     "returncode": 0
+    },
+    {
+     "command": "audit/stage4b/temporal/run_temporal_4b.py --range T3 --no-write --skip-extras --baseline-dir audit/baselines/B1",
+     "label": "4B T3 x referência",
+     "returncode": 0
+    }
+   ],
+   "id": "B1",
+   "layout": "audit/baselines/B1",
+   "motivo": "energy v9, max_ht v13, livro de equações, fim do ×24, unidades novas",
+   "stage": "5A",
+   "status": "PROPOSED"
   }
  ],
  "schema": "forecast-baseline-registry/1"

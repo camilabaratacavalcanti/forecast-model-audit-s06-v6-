@@ -1,0 +1,24 @@
+{
+ "area_41_keys": 1900,
+ "dates": 32,
+ "differences": 0,
+ "hash_method": "sha256(json.dumps(sorted([list(k), [tipo, repr(valor), state, detail]]), sort_keys=True)) sobre as chaves (entity_id, scope_type, scope_value, period_id, window_end) cuja entidade não pertence ao area_41 — mesma função run_integrated.store_sha da 3.4C",
+ "invariant": "incluir o area_41 não muda value, state, detail nem identidade temporal de nenhuma chave dos 4 blocos",
+ "isolated_4_block_store_sha256": "80b9632533c92f7dc711b18056b6d2b21c1b59132a8d9e7fafbfbb2e3c8cdf5f",
+ "keys_by_period_kind": {
+  "annual": 6004,
+  "daily": 17920,
+  "monthly": 10072
+ },
+ "keys_compared": 33996,
+ "keys_new_outside_area_41": 0,
+ "keys_only_in_4_blocks": 0,
+ "label": "REAL_DERIVED_TEST_RESULT",
+ "reference": "audit/stage3_4/integrated/evidence/integrated_summary.json determinism.RUN_A.store_sha256",
+ "reference_store_sha256": "80b9632533c92f7dc711b18056b6d2b21c1b59132a8d9e7fafbfbb2e3c8cdf5f",
+ "result": "PASS",
+ "subset_store_sha256": "80b9632533c92f7dc711b18056b6d2b21c1b59132a8d9e7fafbfbb2e3c8cdf5f",
+ "targets_compared": 423,
+ "targets_different": 0,
+ "window_dates_covered": 32
+}

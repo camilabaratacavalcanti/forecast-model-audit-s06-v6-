@@ -1,0 +1,30 @@
+{
+ "2028-02-29": {
+  "first_run_transfer_statuses": {
+   "WRITTEN": 67
+  },
+  "new_keys": 0,
+  "same_store": true,
+  "transfer_statuses": {
+   "UNCHANGED": 67
+  }
+ },
+ "2028-03-01": {
+  "first_run_transfer_statuses": {
+   "WRITTEN": 67
+  },
+  "new_keys": 0,
+  "same_store": true,
+  "transfer_statuses": {
+   "UNCHANGED": 67
+  }
+ },
+ "conflict_on_changed_upstream_input": {
+  "changed": "VAR12054 (diário, a montante de VAR12031)",
+  "date": "2028-02-29",
+  "error": "INTERBLOCK_CONSUMER_VALUE_CONFLICT"
+ },
+ "missing_new_year_input": {
+  "applicable": false
+ }
+}

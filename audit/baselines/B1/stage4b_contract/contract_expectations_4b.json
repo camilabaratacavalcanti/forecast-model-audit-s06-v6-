@@ -1,0 +1,62 @@
+{
+ "independent": {
+  "calendar.T1.dates": 396,
+  "calendar.T2.dates": 62,
+  "calendar.T2.feb_29_dates": [
+   "2028-02-29"
+  ],
+  "calendar.T3.dates": 792,
+  "cycles.block_cycles": [
+   [
+    "production",
+    "yield"
+   ]
+  ],
+  "cycles.instance_cycles": [],
+  "cycles.lag_references": [],
+  "cycles.variable_cycles": [],
+  "identity_profile": {
+   "derived_anual": 196,
+   "derived_diário": 384,
+   "derived_mensal": 324,
+   "input_anual": 84,
+   "input_diário": 213,
+   "input_mensal": 34
+  },
+  "store_growth_first_day": 1235,
+  "store_growth_first_of_month": 1151,
+  "store_growth_regular_day": 1117
+ },
+ "temporal": {
+  "derived_annual_identities": 196,
+  "derived_daily_instances": 384,
+  "derived_monthly_identities": 324,
+  "events_per_date": 904,
+  "performance_ratio_limit": 3.0,
+  "planner_nodes": 460,
+  "ranges": {
+   "T1": [
+    "2026-01-01",
+    "2027-01-31"
+   ],
+   "T2": [
+    "2028-01-01",
+    "2028-03-02"
+   ],
+   "T3": [
+    "2026-01-01",
+    "2028-03-02"
+   ]
+  },
+  "reexecution_dates": [
+   "2026-02-28",
+   "2026-12-31",
+   "2027-01-01",
+   "2028-02-29",
+   "2028-03-01"
+  ],
+  "targets": 448,
+  "transfer_events_per_date": 67,
+  "transfers_per_date": 13
+ }
+}

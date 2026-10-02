@@ -1,0 +1,100 @@
+{
+ "closed_periods": {
+  "checked": 28,
+  "unchanged": 28
+ },
+ "dates": {
+  "count": 792,
+  "first": "2026-01-01",
+  "last": "2028-03-02"
+ },
+ "determinism": {
+  "RUN_A": {
+   "dates": 792,
+   "hash_seed": null,
+   "order": "A",
+   "plan_order": "6c061861b8c19710caebd43bac73112f185c1cec2ed0cb83c1563df642c21287",
+   "results_sha256": "02c6ab7fac704e3c99d60aa46791d417307d5d3f3d8593c7454fa42b26be7782",
+   "store_sha256": "83e6944b3af0d21d7c54a893115f64ce60ff3f0f1c00876048cfd5a7fe39bccb"
+  }
+ },
+ "fingerprint": {
+  "dates": 792,
+  "hash_seed": null,
+  "order": "A",
+  "plan_order": "6c061861b8c19710caebd43bac73112f185c1cec2ed0cb83c1563df642c21287",
+  "results_sha256": "02c6ab7fac704e3c99d60aa46791d417307d5d3f3d8593c7454fa42b26be7782",
+  "store_sha256": "83e6944b3af0d21d7c54a893115f64ce60ff3f0f1c00876048cfd5a7fe39bccb"
+ },
+ "identities": {
+  "annual": 196,
+  "monthly": 324
+ },
+ "label": "REAL_DERIVED_TEST_RESULT",
+ "month_ends": [
+  "2026-01-31",
+  "2026-02-28",
+  "2026-03-31",
+  "2026-04-30",
+  "2026-05-31",
+  "2026-06-30",
+  "2026-07-31",
+  "2026-08-31",
+  "2026-09-30",
+  "2026-10-31",
+  "2026-11-30",
+  "2026-12-31",
+  "2027-01-31",
+  "2027-02-28",
+  "2027-03-31",
+  "2027-04-30",
+  "2027-05-31",
+  "2027-06-30",
+  "2027-07-31",
+  "2027-08-31",
+  "2027-09-30",
+  "2027-10-31",
+  "2027-11-30",
+  "2027-12-31",
+  "2028-01-31",
+  "2028-02-29"
+ ],
+ "order": "A",
+ "per_date": {
+  "events": [
+   904
+  ],
+  "nodes": [
+   460
+  ],
+  "targets": [
+   448
+  ],
+  "transfer_events": [
+   67
+  ]
+ },
+ "performance": {
+  "dates": 792,
+  "mean_first_32": 0.2602968749999999,
+  "mean_last_32": 0.24170312500000002,
+  "ratio_last_over_first": 0.9285671408848073,
+  "store_keys_final": 885834,
+  "total_seconds": 365.7
+ },
+ "prefix_invariant": {
+  "differences": 0,
+  "first_differences": [],
+  "keys_compared": 35896,
+  "prefix_subset_sha256": "57f5192b6b2a7aedbbefe5843d566f3e449903119a16796fa0d87ae0879849d3",
+  "recomputed_4a_store_sha256": "57f5192b6b2a7aedbbefe5843d566f3e449903119a16796fa0d87ae0879849d3",
+  "reference_4a_store_sha256": "57f5192b6b2a7aedbbefe5843d566f3e449903119a16796fa0d87ae0879849d3"
+ },
+ "problems": [],
+ "range": "T3",
+ "result": "PASS",
+ "year_ends": [
+  "2026-12-31",
+  "2027-12-31"
+ ]
+}

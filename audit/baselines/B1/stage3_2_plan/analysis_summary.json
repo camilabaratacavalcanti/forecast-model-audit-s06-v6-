@@ -1,0 +1,25 @@
+{
+  "targets_planned": 448,
+  "targets_executable_official": 159,
+  "targets_blocked_official": 289,
+  "blocked_by_block": {
+    "maintenance": 260,
+    "forecast": 23,
+    "alumina": 61,
+    "temperature_lp": 30,
+    "area_04_13": 19
+  },
+  "blocked_executions_checked": 19,
+  "executions_checked": {
+    "official": 1,
+    "real_derived": 16
+  },
+  "transfer_events_checked": 200,
+  "deterministic_across_hash_seeds": true,
+  "divergências": 0,
+  "transferências fora do contrato": 0,
+  "atalhos": 0,
+  "execuções fora da ordem": 0,
+  "valores fictícios": 0,
+  "problems": []
+}
