@@ -450,5 +450,224 @@
       "scope_value": "L1_L7"
     }
   ],
-  "retired": []
+  "retired": [],
+  "equations": [
+    {
+      "equation_id": "EQ18001",
+      "kind": "variable",
+      "name": "producao_t_h",
+      "frequency": "diário",
+      "scope_type": "linha",
+      "scope_value": "L1_L7",
+      "equation_scope_value": "L1_L7"
+    },
+    {
+      "equation_id": "EQ18002",
+      "kind": "variable",
+      "name": "producao_planta_t_h",
+      "frequency": "diário",
+      "scope_type": "linha_grupo",
+      "scope_value": "L1_L7",
+      "equation_scope_value": "L1_L7"
+    },
+    {
+      "equation_id": "EQ18003",
+      "kind": "variable",
+      "name": "delta_t_regenerativo",
+      "frequency": "diário",
+      "scope_type": "linha",
+      "scope_value": "L1_L7",
+      "equation_scope_value": "L1_L7"
+    },
+    {
+      "equation_id": "EQ18004",
+      "kind": "variable",
+      "name": "delta_t_vapor_vivo",
+      "frequency": "diário",
+      "scope_type": "linha",
+      "scope_value": "L1_L7",
+      "equation_scope_value": "L1_L7"
+    },
+    {
+      "equation_id": "EQ18005",
+      "kind": "variable",
+      "name": "vazao_vapor_digestao",
+      "frequency": "diário",
+      "scope_type": "linha",
+      "scope_value": "L1_L7",
+      "equation_scope_value": "L1_L7"
+    },
+    {
+      "equation_id": "EQ18006",
+      "kind": "variable",
+      "name": "vazao_vapor_digestao_total",
+      "frequency": "diário",
+      "scope_type": "linha_grupo",
+      "scope_value": "L1_L7",
+      "equation_scope_value": "L1_L7"
+    },
+    {
+      "equation_id": "EQ18007",
+      "kind": "variable",
+      "name": "especifico_vapor_digestao",
+      "frequency": "diário",
+      "scope_type": "linha",
+      "scope_value": "L1_L7",
+      "equation_scope_value": "L1_L7"
+    },
+    {
+      "equation_id": "EQ18008",
+      "kind": "variable",
+      "name": "especifico_vapor_digestao_medio",
+      "frequency": "diário",
+      "scope_type": "linha_grupo",
+      "scope_value": "L1_L7",
+      "equation_scope_value": "L1_L7"
+    },
+    {
+      "equation_id": "EQ18009",
+      "kind": "variable",
+      "name": "energia_digestao",
+      "frequency": "diário",
+      "scope_type": "linha_grupo",
+      "scope_value": "L1_L7",
+      "equation_scope_value": "L1_L7"
+    },
+    {
+      "equation_id": "EQ18010",
+      "kind": "variable",
+      "name": "economicidade_evaporacao",
+      "frequency": "diário",
+      "scope_type": "linha",
+      "scope_value": "L1_L7",
+      "equation_scope_value": "L1_L7"
+    },
+    {
+      "equation_id": "EQ18011",
+      "kind": "variable",
+      "name": "consumo_vapor_evaporadores",
+      "frequency": "diário",
+      "scope_type": "linha",
+      "scope_value": "L1_L7",
+      "equation_scope_value": "L1_L7"
+    },
+    {
+      "equation_id": "EQ18012",
+      "kind": "variable",
+      "name": "consumo_vapor_evaporadores_total",
+      "frequency": "diário",
+      "scope_type": "linha_grupo",
+      "scope_value": "L1_L7",
+      "equation_scope_value": "L1_L7"
+    },
+    {
+      "equation_id": "EQ18013",
+      "kind": "variable",
+      "name": "especifico_vapor_evaporacao",
+      "frequency": "diário",
+      "scope_type": "linha",
+      "scope_value": "L1_L7",
+      "equation_scope_value": "L1_L7"
+    },
+    {
+      "equation_id": "EQ18014",
+      "kind": "variable",
+      "name": "especifico_vapor_evaporacao",
+      "frequency": "diário",
+      "scope_type": "linha_grupo",
+      "scope_value": "L1_L3",
+      "equation_scope_value": "L1_L3"
+    },
+    {
+      "equation_id": "EQ18015",
+      "kind": "variable",
+      "name": "especifico_vapor_evaporacao",
+      "frequency": "diário",
+      "scope_type": "linha_grupo",
+      "scope_value": "L4_L5",
+      "equation_scope_value": "L4_L5"
+    },
+    {
+      "equation_id": "EQ18016",
+      "kind": "variable",
+      "name": "especifico_vapor_evaporacao",
+      "frequency": "diário",
+      "scope_type": "linha_grupo",
+      "scope_value": "L6_L7",
+      "equation_scope_value": "L6_L7"
+    },
+    {
+      "equation_id": "EQ18017",
+      "kind": "variable",
+      "name": "especifico_vapor_evaporacao_total",
+      "frequency": "diário",
+      "scope_type": "linha_grupo",
+      "scope_value": "L1_L7",
+      "equation_scope_value": "L1_L7"
+    },
+    {
+      "equation_id": "EQ18018",
+      "kind": "variable",
+      "name": "energia_evaporacao",
+      "frequency": "diário",
+      "scope_type": "linha_grupo",
+      "scope_value": "L1_L7",
+      "equation_scope_value": "L1_L7"
+    },
+    {
+      "equation_id": "EQ18019",
+      "kind": "variable",
+      "name": "energia_bayer",
+      "frequency": "diário",
+      "scope_type": "linha_grupo",
+      "scope_value": "L1_L7",
+      "equation_scope_value": "L1_L7"
+    },
+    {
+      "equation_id": "EQ18020",
+      "kind": "variable",
+      "name": "energia_media_frct",
+      "frequency": "mensal",
+      "scope_type": "linha_grupo",
+      "scope_value": "L1_L7",
+      "equation_scope_value": "L1_L7"
+    },
+    {
+      "equation_id": "EQ18021",
+      "kind": "variable",
+      "name": "consumo_total_vapor",
+      "frequency": "diário",
+      "scope_type": "linha_grupo",
+      "scope_value": "L1_L7",
+      "equation_scope_value": "L1_L7"
+    },
+    {
+      "equation_id": "EQ18022",
+      "kind": "variable",
+      "name": "especifico_vapor_outros",
+      "frequency": "diário",
+      "scope_type": "linha_grupo",
+      "scope_value": "L1_L7",
+      "equation_scope_value": "L1_L7"
+    },
+    {
+      "equation_id": "EQ18023",
+      "kind": "variable",
+      "name": "demanda_bayer",
+      "frequency": "diário",
+      "scope_type": "linha_grupo",
+      "scope_value": "L1_L7",
+      "equation_scope_value": "L1_L7"
+    },
+    {
+      "equation_id": "EQ18024",
+      "kind": "variable",
+      "name": "especifico_demanda_bayer",
+      "frequency": "diário",
+      "scope_type": "linha_grupo",
+      "scope_value": "L1_L7",
+      "equation_scope_value": "L1_L7"
+    }
+  ],
+  "retired_equations": []
 }

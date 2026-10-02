@@ -346,5 +346,188 @@
       "scope_value": "L1_L7"
     }
   ],
-  "retired": []
+  "retired": [],
+  "equations": [
+    {
+      "equation_id": "EQ16001",
+      "kind": "variable",
+      "name": "retirada_cond_corr_ltp",
+      "frequency": "diário",
+      "scope_type": "linha_grupo",
+      "scope_value": "L1_L3",
+      "equation_scope_value": "L1_L3"
+    },
+    {
+      "equation_id": "EQ16002",
+      "kind": "variable",
+      "name": "retirada_cond_corr_ltp",
+      "frequency": "diário",
+      "scope_type": "linha_grupo",
+      "scope_value": "L4_L5",
+      "equation_scope_value": "L4_L5"
+    },
+    {
+      "equation_id": "EQ16003",
+      "kind": "variable",
+      "name": "retirada_cond_corr_ltp",
+      "frequency": "diário",
+      "scope_type": "linha_grupo",
+      "scope_value": "L6_L7",
+      "equation_scope_value": "L6_L7"
+    },
+    {
+      "equation_id": "EQ16004",
+      "kind": "variable",
+      "name": "lth_grupo",
+      "frequency": "diário",
+      "scope_type": "linha_grupo",
+      "scope_value": "L1_L3",
+      "equation_scope_value": "L1_L3"
+    },
+    {
+      "equation_id": "EQ16005",
+      "kind": "variable",
+      "name": "lth_grupo",
+      "frequency": "diário",
+      "scope_type": "linha_grupo",
+      "scope_value": "L4_L5",
+      "equation_scope_value": "L4_L5"
+    },
+    {
+      "equation_id": "EQ16006",
+      "kind": "variable",
+      "name": "lth_grupo",
+      "frequency": "diário",
+      "scope_type": "linha_grupo",
+      "scope_value": "L6_L7",
+      "equation_scope_value": "L6_L7"
+    },
+    {
+      "equation_id": "EQ16007",
+      "kind": "variable",
+      "name": "retirada_cond_corr_lth",
+      "frequency": "diário",
+      "scope_type": "linha_grupo",
+      "scope_value": "L1_L3",
+      "equation_scope_value": "L1_L3"
+    },
+    {
+      "equation_id": "EQ16008",
+      "kind": "variable",
+      "name": "retirada_cond_corr_lth",
+      "frequency": "diário",
+      "scope_type": "linha_grupo",
+      "scope_value": "L4_L5",
+      "equation_scope_value": "L4_L5"
+    },
+    {
+      "equation_id": "EQ16009",
+      "kind": "variable",
+      "name": "retirada_cond_corr_lth",
+      "frequency": "diário",
+      "scope_type": "linha_grupo",
+      "scope_value": "L6_L7",
+      "equation_scope_value": "L6_L7"
+    },
+    {
+      "equation_id": "EQ16010",
+      "kind": "variable",
+      "name": "retirada_condensado_grupo",
+      "frequency": "diário",
+      "scope_type": "linha_grupo",
+      "scope_value": "L1_L3",
+      "equation_scope_value": "L1_L3"
+    },
+    {
+      "equation_id": "EQ16011",
+      "kind": "variable",
+      "name": "retirada_condensado_grupo",
+      "frequency": "diário",
+      "scope_type": "linha_grupo",
+      "scope_value": "L4_L5",
+      "equation_scope_value": "L4_L5"
+    },
+    {
+      "equation_id": "EQ16012",
+      "kind": "variable",
+      "name": "retirada_condensado_grupo",
+      "frequency": "diário",
+      "scope_type": "linha_grupo",
+      "scope_value": "L6_L7",
+      "equation_scope_value": "L6_L7"
+    },
+    {
+      "equation_id": "EQ16013",
+      "kind": "variable",
+      "name": "retirada_condensado_linha",
+      "frequency": "diário",
+      "scope_type": "linha",
+      "scope_value": "L1_L7",
+      "equation_scope_value": "L1"
+    },
+    {
+      "equation_id": "EQ16014",
+      "kind": "variable",
+      "name": "retirada_condensado_linha",
+      "frequency": "diário",
+      "scope_type": "linha",
+      "scope_value": "L1_L7",
+      "equation_scope_value": "L2"
+    },
+    {
+      "equation_id": "EQ16015",
+      "kind": "variable",
+      "name": "retirada_condensado_linha",
+      "frequency": "diário",
+      "scope_type": "linha",
+      "scope_value": "L1_L7",
+      "equation_scope_value": "L3"
+    },
+    {
+      "equation_id": "EQ16016",
+      "kind": "variable",
+      "name": "retirada_condensado_linha",
+      "frequency": "diário",
+      "scope_type": "linha",
+      "scope_value": "L1_L7",
+      "equation_scope_value": "L4"
+    },
+    {
+      "equation_id": "EQ16017",
+      "kind": "variable",
+      "name": "retirada_condensado_linha",
+      "frequency": "diário",
+      "scope_type": "linha",
+      "scope_value": "L1_L7",
+      "equation_scope_value": "L5"
+    },
+    {
+      "equation_id": "EQ16018",
+      "kind": "variable",
+      "name": "retirada_condensado_linha",
+      "frequency": "diário",
+      "scope_type": "linha",
+      "scope_value": "L1_L7",
+      "equation_scope_value": "L6"
+    },
+    {
+      "equation_id": "EQ16019",
+      "kind": "variable",
+      "name": "retirada_condensado_linha",
+      "frequency": "diário",
+      "scope_type": "linha",
+      "scope_value": "L1_L7",
+      "equation_scope_value": "L7"
+    },
+    {
+      "equation_id": "EQ16020",
+      "kind": "variable",
+      "name": "retirada_condensado_total",
+      "frequency": "diário",
+      "scope_type": "linha_grupo",
+      "scope_value": "L1_L7",
+      "equation_scope_value": "L1_L7"
+    }
+  ],
+  "retired_equations": []
 }

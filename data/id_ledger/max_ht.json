@@ -962,5 +962,269 @@
       "scope_value": "L1_L7"
     }
   ],
-  "retired": []
+  "retired": [],
+  "equations": [
+    {
+      "equation_id": "EQ13001",
+      "kind": "variable",
+      "name": "alimentação_evap_total",
+      "frequency": "diário",
+      "scope_type": "linha_grupo",
+      "scope_value": "L1_L7",
+      "equation_scope_value": "L1_L7"
+    },
+    {
+      "equation_id": "EQ13002",
+      "kind": "variable",
+      "name": "esp_max_ht_planta",
+      "frequency": "diário",
+      "scope_type": "linha_grupo",
+      "scope_value": "L1_L7",
+      "equation_scope_value": "L1_L7"
+    },
+    {
+      "equation_id": "EQ13003",
+      "kind": "variable",
+      "name": "esp_max_ht_planta",
+      "frequency": "mensal",
+      "scope_type": "linha_grupo",
+      "scope_value": "L1_L7",
+      "equation_scope_value": "L1_L7"
+    },
+    {
+      "equation_id": "EQ13004",
+      "kind": "variable",
+      "name": "esp_max_ht_planta",
+      "frequency": "anual",
+      "scope_type": "linha_grupo",
+      "scope_value": "L1_L7",
+      "equation_scope_value": "L1_L7"
+    },
+    {
+      "equation_id": "EQ13005",
+      "kind": "variable",
+      "name": "esp_maxht",
+      "frequency": "diário",
+      "scope_type": "linha_grupo",
+      "scope_value": "L1_L3",
+      "equation_scope_value": "L1_L3"
+    },
+    {
+      "equation_id": "EQ13006",
+      "kind": "variable",
+      "name": "esp_maxht",
+      "frequency": "diário",
+      "scope_type": "linha_grupo",
+      "scope_value": "L4_L5",
+      "equation_scope_value": "L4_L5"
+    },
+    {
+      "equation_id": "EQ13007",
+      "kind": "variable",
+      "name": "esp_maxht",
+      "frequency": "diário",
+      "scope_type": "linha_grupo",
+      "scope_value": "L6_L7",
+      "equation_scope_value": "L6_L7"
+    },
+    {
+      "equation_id": "EQ13008",
+      "kind": "variable",
+      "name": "fluxo_para_a13_linha_grupo",
+      "frequency": "diário",
+      "scope_type": "linha_grupo",
+      "scope_value": "L1_L3",
+      "equation_scope_value": "L1_L3"
+    },
+    {
+      "equation_id": "EQ13009",
+      "kind": "variable",
+      "name": "fluxo_para_a13_linha_grupo",
+      "frequency": "diário",
+      "scope_type": "linha_grupo",
+      "scope_value": "L4_L5",
+      "equation_scope_value": "L4_L5"
+    },
+    {
+      "equation_id": "EQ13010",
+      "kind": "variable",
+      "name": "fluxo_para_a13_linha_grupo",
+      "frequency": "diário",
+      "scope_type": "linha_grupo",
+      "scope_value": "L6_L7",
+      "equation_scope_value": "L6_L7"
+    },
+    {
+      "equation_id": "EQ13011",
+      "kind": "variable",
+      "name": "fluxo_para_a18_a13_linha_grupo",
+      "frequency": "diário",
+      "scope_type": "linha_grupo",
+      "scope_value": "L1_L3",
+      "equation_scope_value": "L1_L3"
+    },
+    {
+      "equation_id": "EQ13012",
+      "kind": "variable",
+      "name": "fluxo_para_a18_a13_linha_grupo",
+      "frequency": "diário",
+      "scope_type": "linha_grupo",
+      "scope_value": "L4_L5",
+      "equation_scope_value": "L4_L5"
+    },
+    {
+      "equation_id": "EQ13013",
+      "kind": "variable",
+      "name": "fluxo_para_a18_a13_linha_grupo",
+      "frequency": "diário",
+      "scope_type": "linha_grupo",
+      "scope_value": "L6_L7",
+      "equation_scope_value": "L6_L7"
+    },
+    {
+      "equation_id": "EQ13014",
+      "kind": "variable",
+      "name": "fluxo_para_a18_linha",
+      "frequency": "diário",
+      "scope_type": "linha",
+      "scope_value": "L1_L7",
+      "equation_scope_value": "L1_L7"
+    },
+    {
+      "equation_id": "EQ13015",
+      "kind": "variable",
+      "name": "fluxo_para_a18_linha_grupo",
+      "frequency": "diário",
+      "scope_type": "linha_grupo",
+      "scope_value": "L1_L3",
+      "equation_scope_value": "L1_L3"
+    },
+    {
+      "equation_id": "EQ13016",
+      "kind": "variable",
+      "name": "fluxo_para_a18_linha_grupo",
+      "frequency": "diário",
+      "scope_type": "linha_grupo",
+      "scope_value": "L4_L5",
+      "equation_scope_value": "L4_L5"
+    },
+    {
+      "equation_id": "EQ13017",
+      "kind": "variable",
+      "name": "fluxo_para_a18_linha_grupo",
+      "frequency": "diário",
+      "scope_type": "linha_grupo",
+      "scope_value": "L6_L7",
+      "equation_scope_value": "L6_L7"
+    },
+    {
+      "equation_id": "EQ13018",
+      "kind": "variable",
+      "name": "fluxo_para_a18_linha_total",
+      "frequency": "diário",
+      "scope_type": "linha_grupo",
+      "scope_value": "L1_L7",
+      "equation_scope_value": "L1_L7"
+    },
+    {
+      "equation_id": "EQ13019",
+      "kind": "variable",
+      "name": "fluxo_para_evap",
+      "frequency": "diário",
+      "scope_type": "linha",
+      "scope_value": "L1_L7",
+      "equation_scope_value": "L1_L7"
+    },
+    {
+      "equation_id": "EQ13020",
+      "kind": "variable",
+      "name": "fluxo_para_evap_total",
+      "frequency": "diário",
+      "scope_type": "linha_grupo",
+      "scope_value": "L1_L7",
+      "equation_scope_value": "L1_L7"
+    },
+    {
+      "equation_id": "EQ13021",
+      "kind": "variable",
+      "name": "lth_total",
+      "frequency": "diário",
+      "scope_type": "linha_grupo",
+      "scope_value": "L1_L7",
+      "equation_scope_value": "L1_L7"
+    },
+    {
+      "equation_id": "EQ13022",
+      "kind": "variable",
+      "name": "massa_total_max_ht",
+      "frequency": "diário",
+      "scope_type": "linha_grupo",
+      "scope_value": "L1_L3",
+      "equation_scope_value": "L1_L3"
+    },
+    {
+      "equation_id": "EQ13023",
+      "kind": "variable",
+      "name": "massa_total_max_ht",
+      "frequency": "diário",
+      "scope_type": "linha_grupo",
+      "scope_value": "L4_L5",
+      "equation_scope_value": "L4_L5"
+    },
+    {
+      "equation_id": "EQ13024",
+      "kind": "variable",
+      "name": "massa_total_max_ht",
+      "frequency": "diário",
+      "scope_type": "linha_grupo",
+      "scope_value": "L6_L7",
+      "equation_scope_value": "L6_L7"
+    },
+    {
+      "equation_id": "EQ13025",
+      "kind": "variable",
+      "name": "massa_total_max_ht_total",
+      "frequency": "diário",
+      "scope_type": "linha_grupo",
+      "scope_value": "L1_L7",
+      "equation_scope_value": "L1_L7"
+    },
+    {
+      "equation_id": "EQ13026",
+      "kind": "variable",
+      "name": "producao_grupo",
+      "frequency": "diário",
+      "scope_type": "linha_grupo",
+      "scope_value": "L1_L3",
+      "equation_scope_value": "L1_L3"
+    },
+    {
+      "equation_id": "EQ13027",
+      "kind": "variable",
+      "name": "producao_grupo",
+      "frequency": "diário",
+      "scope_type": "linha_grupo",
+      "scope_value": "L4_L5",
+      "equation_scope_value": "L4_L5"
+    },
+    {
+      "equation_id": "EQ13028",
+      "kind": "variable",
+      "name": "producao_grupo",
+      "frequency": "diário",
+      "scope_type": "linha_grupo",
+      "scope_value": "L6_L7",
+      "equation_scope_value": "L6_L7"
+    },
+    {
+      "equation_id": "EQ13029",
+      "kind": "variable",
+      "name": "refinery",
+      "frequency": "diário",
+      "scope_type": "linha_grupo",
+      "scope_value": "L1_L7",
+      "equation_scope_value": "L1_L7"
+    }
+  ],
+  "retired_equations": []
 }

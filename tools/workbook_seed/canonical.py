@@ -167,6 +167,9 @@ class CanonicalModel:
     workbook: WorkbookData
     entities: list[CanonicalEntity] = field(default_factory=list)
     pending_decisions: list[PendingDecision] = field(default_factory=list)
+    # D-5A-4: livro usado no build (equações) e atribuições de EQ feitas por seeds.build_equations.
+    id_ledger: IdLedger | None = None
+    equation_assignments: list | None = None
 
     def by_id(self) -> dict[str, CanonicalEntity]:
         return {entity.entity_id: entity for entity in self.entities}
@@ -363,7 +366,7 @@ def build_canonical_model(
     id_base: int,
     id_ledger: IdLedger | None = None,
 ) -> CanonicalModel:
-    model = CanonicalModel(block=block, workbook=workbook)
+    model = CanonicalModel(block=block, workbook=workbook, id_ledger=id_ledger)
 
     for row in workbook.rows:
         _check_row(workbook, row)

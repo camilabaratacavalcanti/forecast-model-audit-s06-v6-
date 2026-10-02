@@ -1938,5 +1938,1250 @@
       "scope_value": "L1_L7"
     }
   ],
-  "retired": []
+  "retired": [],
+  "equations": [
+    {
+      "equation_id": "EQ11001",
+      "kind": "variable",
+      "name": "eoc_solids_grupo",
+      "frequency": "diário",
+      "scope_type": "linha_grupo",
+      "scope_value": "L1_L3",
+      "equation_scope_value": "L1_L3"
+    },
+    {
+      "equation_id": "EQ11002",
+      "kind": "variable",
+      "name": "eoc_solids_grupo",
+      "frequency": "diário",
+      "scope_type": "linha_grupo",
+      "scope_value": "L4_L5",
+      "equation_scope_value": "L4_L5"
+    },
+    {
+      "equation_id": "EQ11003",
+      "kind": "variable",
+      "name": "eoc_solids_grupo",
+      "frequency": "diário",
+      "scope_type": "linha_grupo",
+      "scope_value": "L6_L7",
+      "equation_scope_value": "L6_L7"
+    },
+    {
+      "equation_id": "EQ11004",
+      "kind": "variable",
+      "name": "eoc_solids_total",
+      "frequency": "diário",
+      "scope_type": "linha_grupo",
+      "scope_value": "L1_L7",
+      "equation_scope_value": "L1_L7"
+    },
+    {
+      "equation_id": "EQ11005",
+      "kind": "variable",
+      "name": "eoc_solids_base_grupo",
+      "frequency": "anual",
+      "scope_type": "linha_grupo",
+      "scope_value": "L1_L3",
+      "equation_scope_value": "L1_L3"
+    },
+    {
+      "equation_id": "EQ11006",
+      "kind": "variable",
+      "name": "eoc_solids_base_grupo",
+      "frequency": "anual",
+      "scope_type": "linha_grupo",
+      "scope_value": "L4_L5",
+      "equation_scope_value": "L4_L5"
+    },
+    {
+      "equation_id": "EQ11007",
+      "kind": "variable",
+      "name": "eoc_solids_base_grupo",
+      "frequency": "anual",
+      "scope_type": "linha_grupo",
+      "scope_value": "L6_L7",
+      "equation_scope_value": "L6_L7"
+    },
+    {
+      "equation_id": "EQ11008",
+      "kind": "variable",
+      "name": "eoc_solids_base_total",
+      "frequency": "anual",
+      "scope_type": "linha_grupo",
+      "scope_value": "L1_L7",
+      "equation_scope_value": "L1_L7"
+    },
+    {
+      "equation_id": "EQ11009",
+      "kind": "variable",
+      "name": "eoc_temp_grupo",
+      "frequency": "diário",
+      "scope_type": "linha_grupo",
+      "scope_value": "L1_L3",
+      "equation_scope_value": "L1_L3"
+    },
+    {
+      "equation_id": "EQ11010",
+      "kind": "variable",
+      "name": "eoc_temp_grupo",
+      "frequency": "diário",
+      "scope_type": "linha_grupo",
+      "scope_value": "L4_L5",
+      "equation_scope_value": "L4_L5"
+    },
+    {
+      "equation_id": "EQ11011",
+      "kind": "variable",
+      "name": "eoc_temp_grupo",
+      "frequency": "diário",
+      "scope_type": "linha_grupo",
+      "scope_value": "L6_L7",
+      "equation_scope_value": "L6_L7"
+    },
+    {
+      "equation_id": "EQ11012",
+      "kind": "variable",
+      "name": "eoc_temp_total",
+      "frequency": "diário",
+      "scope_type": "linha_grupo",
+      "scope_value": "L1_L7",
+      "equation_scope_value": "L1_L7"
+    },
+    {
+      "equation_id": "EQ11013",
+      "kind": "variable",
+      "name": "eoc_temp_base_grupo",
+      "frequency": "anual",
+      "scope_type": "linha_grupo",
+      "scope_value": "L1_L3",
+      "equation_scope_value": "L1_L3"
+    },
+    {
+      "equation_id": "EQ11014",
+      "kind": "variable",
+      "name": "eoc_temp_base_grupo",
+      "frequency": "anual",
+      "scope_type": "linha_grupo",
+      "scope_value": "L4_L5",
+      "equation_scope_value": "L4_L5"
+    },
+    {
+      "equation_id": "EQ11015",
+      "kind": "variable",
+      "name": "eoc_temp_base_grupo",
+      "frequency": "anual",
+      "scope_type": "linha_grupo",
+      "scope_value": "L6_L7",
+      "equation_scope_value": "L6_L7"
+    },
+    {
+      "equation_id": "EQ11016",
+      "kind": "variable",
+      "name": "eoc_temp_base_total",
+      "frequency": "anual",
+      "scope_type": "linha_grupo",
+      "scope_value": "L1_L7",
+      "equation_scope_value": "L1_L7"
+    },
+    {
+      "equation_id": "EQ11017",
+      "kind": "variable",
+      "name": "lth_grupo",
+      "frequency": "diário",
+      "scope_type": "linha_grupo",
+      "scope_value": "L1_L3",
+      "equation_scope_value": "L1_L3"
+    },
+    {
+      "equation_id": "EQ11018",
+      "kind": "variable",
+      "name": "lth_grupo",
+      "frequency": "diário",
+      "scope_type": "linha_grupo",
+      "scope_value": "L4_L5",
+      "equation_scope_value": "L4_L5"
+    },
+    {
+      "equation_id": "EQ11019",
+      "kind": "variable",
+      "name": "lth_grupo",
+      "frequency": "diário",
+      "scope_type": "linha_grupo",
+      "scope_value": "L6_L7",
+      "equation_scope_value": "L6_L7"
+    },
+    {
+      "equation_id": "EQ11020",
+      "kind": "variable",
+      "name": "lth_total",
+      "frequency": "diário",
+      "scope_type": "linha_grupo",
+      "scope_value": "L1_L7",
+      "equation_scope_value": "L1_L7"
+    },
+    {
+      "equation_id": "EQ11021",
+      "kind": "variable",
+      "name": "lth_base_grupo",
+      "frequency": "anual",
+      "scope_type": "linha_grupo",
+      "scope_value": "L1_L3",
+      "equation_scope_value": "L1_L3"
+    },
+    {
+      "equation_id": "EQ11022",
+      "kind": "variable",
+      "name": "lth_base_grupo",
+      "frequency": "anual",
+      "scope_type": "linha_grupo",
+      "scope_value": "L4_L5",
+      "equation_scope_value": "L4_L5"
+    },
+    {
+      "equation_id": "EQ11023",
+      "kind": "variable",
+      "name": "lth_base_grupo",
+      "frequency": "anual",
+      "scope_type": "linha_grupo",
+      "scope_value": "L6_L7",
+      "equation_scope_value": "L6_L7"
+    },
+    {
+      "equation_id": "EQ11024",
+      "kind": "variable",
+      "name": "lth_base_total",
+      "frequency": "anual",
+      "scope_type": "linha_grupo",
+      "scope_value": "L1_L7",
+      "equation_scope_value": "L1_L7"
+    },
+    {
+      "equation_id": "EQ11025",
+      "kind": "variable",
+      "name": "ltp",
+      "frequency": "diário",
+      "scope_type": "linha",
+      "scope_value": "L1_L7",
+      "equation_scope_value": "L1_L7"
+    },
+    {
+      "equation_id": "EQ11026",
+      "kind": "variable",
+      "name": "ltp_grupo",
+      "frequency": "diário",
+      "scope_type": "linha_grupo",
+      "scope_value": "L1_L3",
+      "equation_scope_value": "L1_L3"
+    },
+    {
+      "equation_id": "EQ11027",
+      "kind": "variable",
+      "name": "ltp_grupo",
+      "frequency": "diário",
+      "scope_type": "linha_grupo",
+      "scope_value": "L4_L5",
+      "equation_scope_value": "L4_L5"
+    },
+    {
+      "equation_id": "EQ11028",
+      "kind": "variable",
+      "name": "ltp_grupo",
+      "frequency": "diário",
+      "scope_type": "linha_grupo",
+      "scope_value": "L6_L7",
+      "equation_scope_value": "L6_L7"
+    },
+    {
+      "equation_id": "EQ11029",
+      "kind": "variable",
+      "name": "ltp_total",
+      "frequency": "diário",
+      "scope_type": "linha_grupo",
+      "scope_value": "L1_L7",
+      "equation_scope_value": "L1_L7"
+    },
+    {
+      "equation_id": "EQ11030",
+      "kind": "variable",
+      "name": "ltp_a_c_grupo",
+      "frequency": "diário",
+      "scope_type": "linha_grupo",
+      "scope_value": "L1_L3",
+      "equation_scope_value": "L1_L3"
+    },
+    {
+      "equation_id": "EQ11031",
+      "kind": "variable",
+      "name": "ltp_a_c_grupo",
+      "frequency": "diário",
+      "scope_type": "linha_grupo",
+      "scope_value": "L4_L5",
+      "equation_scope_value": "L4_L5"
+    },
+    {
+      "equation_id": "EQ11032",
+      "kind": "variable",
+      "name": "ltp_a_c_grupo",
+      "frequency": "diário",
+      "scope_type": "linha_grupo",
+      "scope_value": "L6_L7",
+      "equation_scope_value": "L6_L7"
+    },
+    {
+      "equation_id": "EQ11033",
+      "kind": "variable",
+      "name": "ltp_a_c_total",
+      "frequency": "diário",
+      "scope_type": "linha_grupo",
+      "scope_value": "L1_L7",
+      "equation_scope_value": "L1_L7"
+    },
+    {
+      "equation_id": "EQ11034",
+      "kind": "variable",
+      "name": "ltp_a_c_base_grupo",
+      "frequency": "anual",
+      "scope_type": "linha_grupo",
+      "scope_value": "L1_L3",
+      "equation_scope_value": "L1_L3"
+    },
+    {
+      "equation_id": "EQ11035",
+      "kind": "variable",
+      "name": "ltp_a_c_base_grupo",
+      "frequency": "anual",
+      "scope_type": "linha_grupo",
+      "scope_value": "L4_L5",
+      "equation_scope_value": "L4_L5"
+    },
+    {
+      "equation_id": "EQ11036",
+      "kind": "variable",
+      "name": "ltp_a_c_base_grupo",
+      "frequency": "anual",
+      "scope_type": "linha_grupo",
+      "scope_value": "L6_L7",
+      "equation_scope_value": "L6_L7"
+    },
+    {
+      "equation_id": "EQ11037",
+      "kind": "variable",
+      "name": "ltp_a_c_base_total",
+      "frequency": "anual",
+      "scope_type": "linha_grupo",
+      "scope_value": "L1_L7",
+      "equation_scope_value": "L1_L7"
+    },
+    {
+      "equation_id": "EQ11038",
+      "kind": "variable",
+      "name": "ltp_base",
+      "frequency": "anual",
+      "scope_type": "linha",
+      "scope_value": "L1_L7",
+      "equation_scope_value": "L1_L7"
+    },
+    {
+      "equation_id": "EQ11039",
+      "kind": "variable",
+      "name": "ltp_base_grupo",
+      "frequency": "anual",
+      "scope_type": "linha_grupo",
+      "scope_value": "L1_L3",
+      "equation_scope_value": "L1_L3"
+    },
+    {
+      "equation_id": "EQ11040",
+      "kind": "variable",
+      "name": "ltp_base_grupo",
+      "frequency": "anual",
+      "scope_type": "linha_grupo",
+      "scope_value": "L4_L5",
+      "equation_scope_value": "L4_L5"
+    },
+    {
+      "equation_id": "EQ11041",
+      "kind": "variable",
+      "name": "ltp_base_grupo",
+      "frequency": "anual",
+      "scope_type": "linha_grupo",
+      "scope_value": "L6_L7",
+      "equation_scope_value": "L6_L7"
+    },
+    {
+      "equation_id": "EQ11042",
+      "kind": "variable",
+      "name": "ltp_base_total",
+      "frequency": "anual",
+      "scope_type": "linha_grupo",
+      "scope_value": "L1_L7",
+      "equation_scope_value": "L1_L7"
+    },
+    {
+      "equation_id": "EQ11043",
+      "kind": "variable",
+      "name": "ltp_lth_grupo",
+      "frequency": "diário",
+      "scope_type": "linha_grupo",
+      "scope_value": "L1_L3",
+      "equation_scope_value": "L1_L3"
+    },
+    {
+      "equation_id": "EQ11044",
+      "kind": "variable",
+      "name": "ltp_lth_grupo",
+      "frequency": "diário",
+      "scope_type": "linha_grupo",
+      "scope_value": "L4_L5",
+      "equation_scope_value": "L4_L5"
+    },
+    {
+      "equation_id": "EQ11045",
+      "kind": "variable",
+      "name": "ltp_lth_grupo",
+      "frequency": "diário",
+      "scope_type": "linha_grupo",
+      "scope_value": "L6_L7",
+      "equation_scope_value": "L6_L7"
+    },
+    {
+      "equation_id": "EQ11046",
+      "kind": "variable",
+      "name": "ltp_lth_total",
+      "frequency": "diário",
+      "scope_type": "linha_grupo",
+      "scope_value": "L1_L7",
+      "equation_scope_value": "L1_L7"
+    },
+    {
+      "equation_id": "EQ11047",
+      "kind": "variable",
+      "name": "ltp_lth_base_grupo",
+      "frequency": "anual",
+      "scope_type": "linha_grupo",
+      "scope_value": "L1_L3",
+      "equation_scope_value": "L1_L3"
+    },
+    {
+      "equation_id": "EQ11048",
+      "kind": "variable",
+      "name": "ltp_lth_base_grupo",
+      "frequency": "anual",
+      "scope_type": "linha_grupo",
+      "scope_value": "L4_L5",
+      "equation_scope_value": "L4_L5"
+    },
+    {
+      "equation_id": "EQ11049",
+      "kind": "variable",
+      "name": "ltp_lth_base_grupo",
+      "frequency": "anual",
+      "scope_type": "linha_grupo",
+      "scope_value": "L6_L7",
+      "equation_scope_value": "L6_L7"
+    },
+    {
+      "equation_id": "EQ11050",
+      "kind": "variable",
+      "name": "ltp_lth_base_total",
+      "frequency": "anual",
+      "scope_type": "linha_grupo",
+      "scope_value": "L1_L7",
+      "equation_scope_value": "L1_L7"
+    },
+    {
+      "equation_id": "EQ11051",
+      "kind": "variable",
+      "name": "ltp_tc_grupo",
+      "frequency": "diário",
+      "scope_type": "linha_grupo",
+      "scope_value": "L1_L3",
+      "equation_scope_value": "L1_L3"
+    },
+    {
+      "equation_id": "EQ11052",
+      "kind": "variable",
+      "name": "ltp_tc_grupo",
+      "frequency": "diário",
+      "scope_type": "linha_grupo",
+      "scope_value": "L4_L5",
+      "equation_scope_value": "L4_L5"
+    },
+    {
+      "equation_id": "EQ11053",
+      "kind": "variable",
+      "name": "ltp_tc_grupo",
+      "frequency": "diário",
+      "scope_type": "linha_grupo",
+      "scope_value": "L6_L7",
+      "equation_scope_value": "L6_L7"
+    },
+    {
+      "equation_id": "EQ11054",
+      "kind": "variable",
+      "name": "ltp_tc_total",
+      "frequency": "diário",
+      "scope_type": "linha_grupo",
+      "scope_value": "L1_L7",
+      "equation_scope_value": "L1_L7"
+    },
+    {
+      "equation_id": "EQ11055",
+      "kind": "variable",
+      "name": "ltp_tc_base_grupo",
+      "frequency": "anual",
+      "scope_type": "linha_grupo",
+      "scope_value": "L1_L3",
+      "equation_scope_value": "L1_L3"
+    },
+    {
+      "equation_id": "EQ11056",
+      "kind": "variable",
+      "name": "ltp_tc_base_grupo",
+      "frequency": "anual",
+      "scope_type": "linha_grupo",
+      "scope_value": "L4_L5",
+      "equation_scope_value": "L4_L5"
+    },
+    {
+      "equation_id": "EQ11057",
+      "kind": "variable",
+      "name": "ltp_tc_base_grupo",
+      "frequency": "anual",
+      "scope_type": "linha_grupo",
+      "scope_value": "L6_L7",
+      "equation_scope_value": "L6_L7"
+    },
+    {
+      "equation_id": "EQ11058",
+      "kind": "variable",
+      "name": "ltp_tc_base_total",
+      "frequency": "anual",
+      "scope_type": "linha_grupo",
+      "scope_value": "L1_L7",
+      "equation_scope_value": "L1_L7"
+    },
+    {
+      "equation_id": "EQ11059",
+      "kind": "variable",
+      "name": "n_ppt",
+      "frequency": "diário",
+      "scope_type": "linha",
+      "scope_value": "L1_L7",
+      "equation_scope_value": "L1_L7"
+    },
+    {
+      "equation_id": "EQ11060",
+      "kind": "variable",
+      "name": "n_ppt_grupo",
+      "frequency": "diário",
+      "scope_type": "linha_grupo",
+      "scope_value": "L1_L3",
+      "equation_scope_value": "L1_L3"
+    },
+    {
+      "equation_id": "EQ11061",
+      "kind": "variable",
+      "name": "n_ppt_grupo",
+      "frequency": "diário",
+      "scope_type": "linha_grupo",
+      "scope_value": "L4_L5",
+      "equation_scope_value": "L4_L5"
+    },
+    {
+      "equation_id": "EQ11062",
+      "kind": "variable",
+      "name": "n_ppt_grupo",
+      "frequency": "diário",
+      "scope_type": "linha_grupo",
+      "scope_value": "L6_L7",
+      "equation_scope_value": "L6_L7"
+    },
+    {
+      "equation_id": "EQ11063",
+      "kind": "variable",
+      "name": "n_ppt_total",
+      "frequency": "diário",
+      "scope_type": "linha_grupo",
+      "scope_value": "L1_L7",
+      "equation_scope_value": "L1_L7"
+    },
+    {
+      "equation_id": "EQ11064",
+      "kind": "variable",
+      "name": "n_ppt_base_grupo",
+      "frequency": "anual",
+      "scope_type": "linha_grupo",
+      "scope_value": "L1_L3",
+      "equation_scope_value": "L1_L3"
+    },
+    {
+      "equation_id": "EQ11065",
+      "kind": "variable",
+      "name": "n_ppt_base_grupo",
+      "frequency": "anual",
+      "scope_type": "linha_grupo",
+      "scope_value": "L4_L5",
+      "equation_scope_value": "L4_L5"
+    },
+    {
+      "equation_id": "EQ11066",
+      "kind": "variable",
+      "name": "n_ppt_base_grupo",
+      "frequency": "anual",
+      "scope_type": "linha_grupo",
+      "scope_value": "L6_L7",
+      "equation_scope_value": "L6_L7"
+    },
+    {
+      "equation_id": "EQ11067",
+      "kind": "variable",
+      "name": "n_ppt_base_total",
+      "frequency": "anual",
+      "scope_type": "linha_grupo",
+      "scope_value": "L1_L7",
+      "equation_scope_value": "L1_L7"
+    },
+    {
+      "equation_id": "EQ11068",
+      "kind": "variable",
+      "name": "oee_grupo",
+      "frequency": "diário",
+      "scope_type": "linha_grupo",
+      "scope_value": "L1_L3",
+      "equation_scope_value": "L1_L3"
+    },
+    {
+      "equation_id": "EQ11069",
+      "kind": "variable",
+      "name": "oee_grupo",
+      "frequency": "diário",
+      "scope_type": "linha_grupo",
+      "scope_value": "L4_L5",
+      "equation_scope_value": "L4_L5"
+    },
+    {
+      "equation_id": "EQ11070",
+      "kind": "variable",
+      "name": "oee_grupo",
+      "frequency": "diário",
+      "scope_type": "linha_grupo",
+      "scope_value": "L6_L7",
+      "equation_scope_value": "L6_L7"
+    },
+    {
+      "equation_id": "EQ11071",
+      "kind": "variable",
+      "name": "oee_total",
+      "frequency": "diário",
+      "scope_type": "linha_grupo",
+      "scope_value": "L1_L7",
+      "equation_scope_value": "L1_L7"
+    },
+    {
+      "equation_id": "EQ11072",
+      "kind": "variable",
+      "name": "oee_base_grupo",
+      "frequency": "anual",
+      "scope_type": "linha_grupo",
+      "scope_value": "L1_L3",
+      "equation_scope_value": "L1_L3"
+    },
+    {
+      "equation_id": "EQ11073",
+      "kind": "variable",
+      "name": "oee_base_grupo",
+      "frequency": "anual",
+      "scope_type": "linha_grupo",
+      "scope_value": "L4_L5",
+      "equation_scope_value": "L4_L5"
+    },
+    {
+      "equation_id": "EQ11074",
+      "kind": "variable",
+      "name": "oee_base_grupo",
+      "frequency": "anual",
+      "scope_type": "linha_grupo",
+      "scope_value": "L6_L7",
+      "equation_scope_value": "L6_L7"
+    },
+    {
+      "equation_id": "EQ11075",
+      "kind": "variable",
+      "name": "oee_base_total",
+      "frequency": "anual",
+      "scope_type": "linha_grupo",
+      "scope_value": "L1_L7",
+      "equation_scope_value": "L1_L7"
+    },
+    {
+      "equation_id": "EQ11076",
+      "kind": "variable",
+      "name": "producao_base_ppt",
+      "frequency": "diário",
+      "scope_type": "linha",
+      "scope_value": "L1_L7",
+      "equation_scope_value": "L1_L7"
+    },
+    {
+      "equation_id": "EQ11077",
+      "kind": "variable",
+      "name": "producao_base_ppt_grupo",
+      "frequency": "diário",
+      "scope_type": "linha_grupo",
+      "scope_value": "L1_L3",
+      "equation_scope_value": "L1_L3"
+    },
+    {
+      "equation_id": "EQ11078",
+      "kind": "variable",
+      "name": "producao_base_ppt_grupo",
+      "frequency": "diário",
+      "scope_type": "linha_grupo",
+      "scope_value": "L4_L5",
+      "equation_scope_value": "L4_L5"
+    },
+    {
+      "equation_id": "EQ11079",
+      "kind": "variable",
+      "name": "producao_base_ppt_grupo",
+      "frequency": "diário",
+      "scope_type": "linha_grupo",
+      "scope_value": "L6_L7",
+      "equation_scope_value": "L6_L7"
+    },
+    {
+      "equation_id": "EQ11080",
+      "kind": "variable",
+      "name": "producao_base_ppt_total",
+      "frequency": "diário",
+      "scope_type": "linha_grupo",
+      "scope_value": "L1_L7",
+      "equation_scope_value": "L1_L7"
+    },
+    {
+      "equation_id": "EQ11081",
+      "kind": "variable",
+      "name": "producao_base_ppt_base",
+      "frequency": "anual",
+      "scope_type": "linha",
+      "scope_value": "L1_L7",
+      "equation_scope_value": "L1_L7"
+    },
+    {
+      "equation_id": "EQ11082",
+      "kind": "variable",
+      "name": "producao_base_ppt_base_grupo",
+      "frequency": "anual",
+      "scope_type": "linha_grupo",
+      "scope_value": "L1_L3",
+      "equation_scope_value": "L1_L3"
+    },
+    {
+      "equation_id": "EQ11083",
+      "kind": "variable",
+      "name": "producao_base_ppt_base_grupo",
+      "frequency": "anual",
+      "scope_type": "linha_grupo",
+      "scope_value": "L4_L5",
+      "equation_scope_value": "L4_L5"
+    },
+    {
+      "equation_id": "EQ11084",
+      "kind": "variable",
+      "name": "producao_base_ppt_base_grupo",
+      "frequency": "anual",
+      "scope_type": "linha_grupo",
+      "scope_value": "L6_L7",
+      "equation_scope_value": "L6_L7"
+    },
+    {
+      "equation_id": "EQ11085",
+      "kind": "variable",
+      "name": "producao_base_ppt_base_total",
+      "frequency": "anual",
+      "scope_type": "linha_grupo",
+      "scope_value": "L1_L7",
+      "equation_scope_value": "L1_L7"
+    },
+    {
+      "equation_id": "EQ11086",
+      "kind": "variable",
+      "name": "ratio_spent",
+      "frequency": "diário",
+      "scope_type": "linha",
+      "scope_value": "L1_L7",
+      "equation_scope_value": "L1_L7"
+    },
+    {
+      "equation_id": "EQ11087",
+      "kind": "variable",
+      "name": "ratio_spent_grupo",
+      "frequency": "diário",
+      "scope_type": "linha_grupo",
+      "scope_value": "L1_L3",
+      "equation_scope_value": "L1_L3"
+    },
+    {
+      "equation_id": "EQ11088",
+      "kind": "variable",
+      "name": "ratio_spent_grupo",
+      "frequency": "diário",
+      "scope_type": "linha_grupo",
+      "scope_value": "L4_L5",
+      "equation_scope_value": "L4_L5"
+    },
+    {
+      "equation_id": "EQ11089",
+      "kind": "variable",
+      "name": "ratio_spent_grupo",
+      "frequency": "diário",
+      "scope_type": "linha_grupo",
+      "scope_value": "L6_L7",
+      "equation_scope_value": "L6_L7"
+    },
+    {
+      "equation_id": "EQ11090",
+      "kind": "variable",
+      "name": "ratio_spent_total",
+      "frequency": "diário",
+      "scope_type": "linha_grupo",
+      "scope_value": "L1_L7",
+      "equation_scope_value": "L1_L7"
+    },
+    {
+      "equation_id": "EQ11091",
+      "kind": "variable",
+      "name": "ratio_spent_base_grupo",
+      "frequency": "anual",
+      "scope_type": "linha_grupo",
+      "scope_value": "L1_L3",
+      "equation_scope_value": "L1_L3"
+    },
+    {
+      "equation_id": "EQ11092",
+      "kind": "variable",
+      "name": "ratio_spent_base_grupo",
+      "frequency": "anual",
+      "scope_type": "linha_grupo",
+      "scope_value": "L4_L5",
+      "equation_scope_value": "L4_L5"
+    },
+    {
+      "equation_id": "EQ11093",
+      "kind": "variable",
+      "name": "ratio_spent_base_grupo",
+      "frequency": "anual",
+      "scope_type": "linha_grupo",
+      "scope_value": "L6_L7",
+      "equation_scope_value": "L6_L7"
+    },
+    {
+      "equation_id": "EQ11094",
+      "kind": "variable",
+      "name": "ratio_spent_base_total",
+      "frequency": "anual",
+      "scope_type": "linha_grupo",
+      "scope_value": "L1_L7",
+      "equation_scope_value": "L1_L7"
+    },
+    {
+      "equation_id": "EQ11095",
+      "kind": "variable",
+      "name": "sl_solids_grupo",
+      "frequency": "diário",
+      "scope_type": "linha_grupo",
+      "scope_value": "L1_L3",
+      "equation_scope_value": "L1_L3"
+    },
+    {
+      "equation_id": "EQ11096",
+      "kind": "variable",
+      "name": "sl_solids_grupo",
+      "frequency": "diário",
+      "scope_type": "linha_grupo",
+      "scope_value": "L4_L5",
+      "equation_scope_value": "L4_L5"
+    },
+    {
+      "equation_id": "EQ11097",
+      "kind": "variable",
+      "name": "sl_solids_grupo",
+      "frequency": "diário",
+      "scope_type": "linha_grupo",
+      "scope_value": "L6_L7",
+      "equation_scope_value": "L6_L7"
+    },
+    {
+      "equation_id": "EQ11098",
+      "kind": "variable",
+      "name": "sl_solids_total",
+      "frequency": "diário",
+      "scope_type": "linha_grupo",
+      "scope_value": "L1_L7",
+      "equation_scope_value": "L1_L7"
+    },
+    {
+      "equation_id": "EQ11099",
+      "kind": "variable",
+      "name": "sl_solids_base_grupo",
+      "frequency": "anual",
+      "scope_type": "linha_grupo",
+      "scope_value": "L1_L3",
+      "equation_scope_value": "L1_L3"
+    },
+    {
+      "equation_id": "EQ11100",
+      "kind": "variable",
+      "name": "sl_solids_base_grupo",
+      "frequency": "anual",
+      "scope_type": "linha_grupo",
+      "scope_value": "L4_L5",
+      "equation_scope_value": "L4_L5"
+    },
+    {
+      "equation_id": "EQ11101",
+      "kind": "variable",
+      "name": "sl_solids_base_grupo",
+      "frequency": "anual",
+      "scope_type": "linha_grupo",
+      "scope_value": "L6_L7",
+      "equation_scope_value": "L6_L7"
+    },
+    {
+      "equation_id": "EQ11102",
+      "kind": "variable",
+      "name": "sl_solids_base_total",
+      "frequency": "anual",
+      "scope_type": "linha_grupo",
+      "scope_value": "L1_L7",
+      "equation_scope_value": "L1_L7"
+    },
+    {
+      "equation_id": "EQ11103",
+      "kind": "variable",
+      "name": "ssa_media",
+      "frequency": "diário",
+      "scope_type": "linha",
+      "scope_value": "L1_L7",
+      "equation_scope_value": "L1_L7"
+    },
+    {
+      "equation_id": "EQ11104",
+      "kind": "variable",
+      "name": "ssa_media_grupo",
+      "frequency": "diário",
+      "scope_type": "linha_grupo",
+      "scope_value": "L1_L3",
+      "equation_scope_value": "L1_L3"
+    },
+    {
+      "equation_id": "EQ11105",
+      "kind": "variable",
+      "name": "ssa_media_grupo",
+      "frequency": "diário",
+      "scope_type": "linha_grupo",
+      "scope_value": "L4_L5",
+      "equation_scope_value": "L4_L5"
+    },
+    {
+      "equation_id": "EQ11106",
+      "kind": "variable",
+      "name": "ssa_media_grupo",
+      "frequency": "diário",
+      "scope_type": "linha_grupo",
+      "scope_value": "L6_L7",
+      "equation_scope_value": "L6_L7"
+    },
+    {
+      "equation_id": "EQ11107",
+      "kind": "variable",
+      "name": "ssa_media_total",
+      "frequency": "diário",
+      "scope_type": "linha_grupo",
+      "scope_value": "L1_L7",
+      "equation_scope_value": "L1_L7"
+    },
+    {
+      "equation_id": "EQ11108",
+      "kind": "variable",
+      "name": "ssa_media_base",
+      "frequency": "anual",
+      "scope_type": "linha",
+      "scope_value": "L1_L7",
+      "equation_scope_value": "L1_L7"
+    },
+    {
+      "equation_id": "EQ11109",
+      "kind": "variable",
+      "name": "ssa_media_base_grupo",
+      "frequency": "anual",
+      "scope_type": "linha_grupo",
+      "scope_value": "L1_L3",
+      "equation_scope_value": "L1_L3"
+    },
+    {
+      "equation_id": "EQ11110",
+      "kind": "variable",
+      "name": "ssa_media_base_grupo",
+      "frequency": "anual",
+      "scope_type": "linha_grupo",
+      "scope_value": "L4_L5",
+      "equation_scope_value": "L4_L5"
+    },
+    {
+      "equation_id": "EQ11111",
+      "kind": "variable",
+      "name": "ssa_media_base_grupo",
+      "frequency": "anual",
+      "scope_type": "linha_grupo",
+      "scope_value": "L6_L7",
+      "equation_scope_value": "L6_L7"
+    },
+    {
+      "equation_id": "EQ11112",
+      "kind": "variable",
+      "name": "ssa_media_base_total",
+      "frequency": "anual",
+      "scope_type": "linha_grupo",
+      "scope_value": "L1_L7",
+      "equation_scope_value": "L1_L7"
+    },
+    {
+      "equation_id": "EQ11113",
+      "kind": "variable",
+      "name": "ssa_sf_grupo",
+      "frequency": "diário",
+      "scope_type": "linha_grupo",
+      "scope_value": "L1_L3",
+      "equation_scope_value": "L1_L3"
+    },
+    {
+      "equation_id": "EQ11114",
+      "kind": "variable",
+      "name": "ssa_sf_grupo",
+      "frequency": "diário",
+      "scope_type": "linha_grupo",
+      "scope_value": "L4_L5",
+      "equation_scope_value": "L4_L5"
+    },
+    {
+      "equation_id": "EQ11115",
+      "kind": "variable",
+      "name": "ssa_sf_grupo",
+      "frequency": "diário",
+      "scope_type": "linha_grupo",
+      "scope_value": "L6_L7",
+      "equation_scope_value": "L6_L7"
+    },
+    {
+      "equation_id": "EQ11116",
+      "kind": "variable",
+      "name": "ssa_sf_total",
+      "frequency": "diário",
+      "scope_type": "linha_grupo",
+      "scope_value": "L1_L7",
+      "equation_scope_value": "L1_L7"
+    },
+    {
+      "equation_id": "EQ11117",
+      "kind": "variable",
+      "name": "ssa_sf_base_grupo",
+      "frequency": "anual",
+      "scope_type": "linha_grupo",
+      "scope_value": "L1_L3",
+      "equation_scope_value": "L1_L3"
+    },
+    {
+      "equation_id": "EQ11118",
+      "kind": "variable",
+      "name": "ssa_sf_base_grupo",
+      "frequency": "anual",
+      "scope_type": "linha_grupo",
+      "scope_value": "L4_L5",
+      "equation_scope_value": "L4_L5"
+    },
+    {
+      "equation_id": "EQ11119",
+      "kind": "variable",
+      "name": "ssa_sf_base_grupo",
+      "frequency": "anual",
+      "scope_type": "linha_grupo",
+      "scope_value": "L6_L7",
+      "equation_scope_value": "L6_L7"
+    },
+    {
+      "equation_id": "EQ11120",
+      "kind": "variable",
+      "name": "ssa_sf_base_total",
+      "frequency": "anual",
+      "scope_type": "linha_grupo",
+      "scope_value": "L1_L7",
+      "equation_scope_value": "L1_L7"
+    },
+    {
+      "equation_id": "EQ11121",
+      "kind": "variable",
+      "name": "ssa_sg_grupo",
+      "frequency": "diário",
+      "scope_type": "linha_grupo",
+      "scope_value": "L1_L3",
+      "equation_scope_value": "L1_L3"
+    },
+    {
+      "equation_id": "EQ11122",
+      "kind": "variable",
+      "name": "ssa_sg_grupo",
+      "frequency": "diário",
+      "scope_type": "linha_grupo",
+      "scope_value": "L4_L5",
+      "equation_scope_value": "L4_L5"
+    },
+    {
+      "equation_id": "EQ11123",
+      "kind": "variable",
+      "name": "ssa_sg_grupo",
+      "frequency": "diário",
+      "scope_type": "linha_grupo",
+      "scope_value": "L6_L7",
+      "equation_scope_value": "L6_L7"
+    },
+    {
+      "equation_id": "EQ11124",
+      "kind": "variable",
+      "name": "ssa_sg_total",
+      "frequency": "diário",
+      "scope_type": "linha_grupo",
+      "scope_value": "L1_L7",
+      "equation_scope_value": "L1_L7"
+    },
+    {
+      "equation_id": "EQ11125",
+      "kind": "variable",
+      "name": "ssa_sg_base_grupo",
+      "frequency": "anual",
+      "scope_type": "linha_grupo",
+      "scope_value": "L1_L3",
+      "equation_scope_value": "L1_L3"
+    },
+    {
+      "equation_id": "EQ11126",
+      "kind": "variable",
+      "name": "ssa_sg_base_grupo",
+      "frequency": "anual",
+      "scope_type": "linha_grupo",
+      "scope_value": "L4_L5",
+      "equation_scope_value": "L4_L5"
+    },
+    {
+      "equation_id": "EQ11127",
+      "kind": "variable",
+      "name": "ssa_sg_base_grupo",
+      "frequency": "anual",
+      "scope_type": "linha_grupo",
+      "scope_value": "L6_L7",
+      "equation_scope_value": "L6_L7"
+    },
+    {
+      "equation_id": "EQ11128",
+      "kind": "variable",
+      "name": "ssa_sg_base_total",
+      "frequency": "anual",
+      "scope_type": "linha_grupo",
+      "scope_value": "L1_L7",
+      "equation_scope_value": "L1_L7"
+    },
+    {
+      "equation_id": "EQ11129",
+      "kind": "variable",
+      "name": "yield",
+      "frequency": "diário",
+      "scope_type": "linha",
+      "scope_value": "L1_L7",
+      "equation_scope_value": "L1_L7"
+    },
+    {
+      "equation_id": "EQ11130",
+      "kind": "variable",
+      "name": "yield_grupo",
+      "frequency": "diário",
+      "scope_type": "linha_grupo",
+      "scope_value": "L1_L3",
+      "equation_scope_value": "L1_L3"
+    },
+    {
+      "equation_id": "EQ11131",
+      "kind": "variable",
+      "name": "yield_grupo",
+      "frequency": "diário",
+      "scope_type": "linha_grupo",
+      "scope_value": "L4_L5",
+      "equation_scope_value": "L4_L5"
+    },
+    {
+      "equation_id": "EQ11132",
+      "kind": "variable",
+      "name": "yield_grupo",
+      "frequency": "diário",
+      "scope_type": "linha_grupo",
+      "scope_value": "L6_L7",
+      "equation_scope_value": "L6_L7"
+    },
+    {
+      "equation_id": "EQ11133",
+      "kind": "variable",
+      "name": "yield_total",
+      "frequency": "diário",
+      "scope_type": "linha_grupo",
+      "scope_value": "L1_L7",
+      "equation_scope_value": "L1_L7"
+    },
+    {
+      "equation_id": "EQ11134",
+      "kind": "variable",
+      "name": "yield_base",
+      "frequency": "anual",
+      "scope_type": "linha",
+      "scope_value": "L1_L7",
+      "equation_scope_value": "L1_L7"
+    },
+    {
+      "equation_id": "EQ11135",
+      "kind": "variable",
+      "name": "yield_base_grupo",
+      "frequency": "anual",
+      "scope_type": "linha_grupo",
+      "scope_value": "L1_L3",
+      "equation_scope_value": "L1_L3"
+    },
+    {
+      "equation_id": "EQ11136",
+      "kind": "variable",
+      "name": "yield_base_grupo",
+      "frequency": "anual",
+      "scope_type": "linha_grupo",
+      "scope_value": "L4_L5",
+      "equation_scope_value": "L4_L5"
+    },
+    {
+      "equation_id": "EQ11137",
+      "kind": "variable",
+      "name": "yield_base_grupo",
+      "frequency": "anual",
+      "scope_type": "linha_grupo",
+      "scope_value": "L6_L7",
+      "equation_scope_value": "L6_L7"
+    },
+    {
+      "equation_id": "EQ11138",
+      "kind": "variable",
+      "name": "yield_base_total",
+      "frequency": "anual",
+      "scope_type": "linha_grupo",
+      "scope_value": "L1_L7",
+      "equation_scope_value": "L1_L7"
+    }
+  ],
+  "retired_equations": []
 }

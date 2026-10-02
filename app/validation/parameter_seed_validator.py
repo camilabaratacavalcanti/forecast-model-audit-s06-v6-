@@ -105,6 +105,12 @@ ALLOWED_STATUSES = {
 
 
 ALLOWED_UNITS = {
+    # D-5A-1 (Stage 5A): boilers (5B), max_ht v13 e area_04_13
+    "kWh/tv",
+    "tv/MWh",
+    "tv/t carvão",
+    "GJ/d",
+    "m³/d",
     "t",
     "kg",
     "g/l",

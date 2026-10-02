@@ -37,6 +37,7 @@ from tools.workbook_seed.canonical import (
     CanonicalModelError,
     PendingDecision,
 )
+from tools.workbook_seed.id_ledger import equation_key, identity_key
 
 
 SCOPE_LABELS = {
@@ -204,10 +205,23 @@ def unreachable_references(
 
 
 def build_equations(model: CanonicalModel, id_base: int) -> tuple[list[dict], list[dict]]:
+    """
+    D-5A-4: o ID de cada equação vem do livro (`model.id_ledger.equations`) pela identidade
+    (variável alvo + escopo da instância); identidade nova recebe o número seguinte ao maior já
+    emitido (ativos ou aposentados). Livro sem a seção de equações => numeração sequencial
+    (comportamento anterior). As equações saem em ordem crescente de EQ (DR-5A-1).
+    """
     index = _index(model)
     equations = []
     provenance = []
-    next_id = id_base + 1
+    ledger = model.id_ledger.equations if model.id_ledger is not None else None
+    retired_equation_ids = (
+        {r["equation_id"] for r in model.id_ledger.retired_equations} if model.id_ledger is not None else set()
+    )
+    next_id = (
+        id_base + 1 if ledger is None else max(id_base, model.id_ledger.highest_equation()) + 1
+    )
+    assignments = []
 
     for entity in model.entities:
         if entity.kind != "variable":
@@ -230,8 +244,27 @@ def build_equations(model: CanonicalModel, id_base: int) -> tuple[list[dict], li
                     f"({entity.name}): {error}"
                 ) from error
 
-            equation_id = f"EQ{next_id}"
-            next_id += 1
+            key = equation_key(
+                identity_key(entity.kind, entity.name, entity.frequency, entity.scope_type, entity.scope_value),
+                r.scope_value,
+            )
+
+            if any(existing == key for existing, _id in assignments):
+                raise CanonicalModelError(
+                    f"{model.workbook.file_name} linha {r.row} ({entity.name}): identidade de equação "
+                    f"repetida {key}."
+                )
+
+            if ledger is not None and key in ledger:
+                equation_id = ledger[key]
+            else:
+                equation_id = f"EQ{next_id}"
+                next_id += 1
+
+            if equation_id in retired_equation_ids:
+                raise CanonicalModelError(f"{model.block}: {equation_id} aposentado não pode ser reutilizado.")
+
+            assignments.append((key, equation_id))
 
             for problem in unreachable_references(
                 model, expression, (entity.scope_type, r.scope_value)
@@ -276,6 +309,11 @@ def build_equations(model: CanonicalModel, id_base: int) -> tuple[list[dict], li
 
     if next_id - 1 > id_base + 999:
         raise CanonicalModelError(f"{model.block}: faixa de EQ esgotada.")
+
+    model.equation_assignments = assignments
+    order = {e["equation_id"]: int(e["equation_id"][2:]) for e in equations}
+    equations.sort(key=lambda e: order[e["equation_id"]])
+    provenance.sort(key=lambda e: order[e["equation_id"]])
 
     return equations, provenance
 
