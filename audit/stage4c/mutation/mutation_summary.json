@@ -1,0 +1,28 @@
+{
+ "stage": "4C.4",
+ "mutants": 21,
+ "detected": 21,
+ "missed": [],
+ "detection_rate": "100.0%",
+ "by_class": {
+  "E": "3/3",
+  "H": "8/8",
+  "R": "1/1",
+  "REG": "5/5",
+  "S": "3/3",
+  "W": "1/1"
+ },
+ "positive_control": {
+  "tests": 23,
+  "returncode": 0,
+  "failed": [],
+  "summary": "23 passed in 207.66s (0:03:27)",
+  "result": "ACCEPT"
+ },
+ "git_status_app_data_tools": {
+  "before": "",
+  "after": "",
+  "empty": true
+ },
+ "result": "PASS"
+}

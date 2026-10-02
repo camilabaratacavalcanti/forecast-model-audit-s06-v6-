@@ -183,14 +183,22 @@ def rebaseline(root, *args):
     return done.returncode, json.loads(done.stdout)
 
 
+def test_preflight_accepts_a_valid_request_on_a_clean_tree(clone):
+    """Controle positivo: as recusas abaixo não são vacuamente verdes."""
+    assert git("status", "--porcelain", "--untracked-files=all", cwd=clone).stdout == ""
+    code, out = rebaseline(clone, "--preflight-only", "--id", "B1", "--stage", "x", "--reason", "controle")
+    assert code == 0 and out["result"] == "PREFLIGHT_OK"
+
+
 @pytest.mark.parametrize("args, reason", [
     (["--id", "B1", "--stage", "x"], "motivo"),
     (["--id", "B1", "--stage", "x", "--reason", "   "], "motivo"),
     (["--id", "B0", "--stage", "x", "--reason", "repetido"], "já existe"),
     (["--id", "Bx", "--stage", "x", "--reason", "id ruim"], "id inválido"),
 ])
-def test_rebaseline_refuses_invalid_requests(clone, args, reason):
-    code, out = rebaseline(clone, *args)
+@pytest.mark.parametrize("mode", [[], ["--preflight-only"]])
+def test_rebaseline_refuses_invalid_requests(clone, args, reason, mode):
+    code, out = rebaseline(clone, *mode, *args)
     assert code == 2 and out["result"] == "REFUSED" and reason in out["reason"]
     assert not (clone / "audit" / "baselines" / "B1").exists()
 
@@ -199,7 +207,7 @@ def test_rebaseline_refuses_a_dirty_tree(clone):
     marker = clone / "audit" / "stage4c" / "dirty.txt"
     marker.write_text("sujo\n", encoding="utf-8")
     try:
-        code, out = rebaseline(clone, "--id", "B1", "--stage", "x", "--reason", "árvore suja")
+        code, out = rebaseline(clone, "--preflight-only", "--id", "B1", "--stage", "x", "--reason", "árvore suja")
     finally:
         marker.unlink()
     assert code == 2 and "árvore suja" in out["reason"]

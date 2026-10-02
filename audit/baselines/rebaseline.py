@@ -225,27 +225,36 @@ def diff_report(new_entry: dict, previous: dict) -> str:
 
 
 # ------------------------------------------------------------------ comandos
-def propose(entry_id: str, stage: str, reason: str) -> int:
+def preflight(entry_id: str, stage: str, reason: str) -> str | None:
+    """Recusas da proposta (nada é escrito). None = pode prosseguir; senão o motivo da recusa."""
     if not reason or not reason.strip():
-        return fail("motivo (--reason) ausente ou vazio")
+        return "motivo (--reason) ausente ou vazio"
     registry = reg.load()
     if any(e["id"] == entry_id for e in registry["entries"]):
-        return fail(f"id {entry_id} já existe no registro")
+        return f"id {entry_id} já existe no registro"
     if not re.fullmatch(r"B[1-9][0-9]*(-[a-z0-9]+)?", entry_id or ""):
-        return fail(f"id inválido {entry_id!r} (esperado B<n> ou B<n>-<sufixo>)")
+        return f"id inválido {entry_id!r} (esperado B<n> ou B<n>-<sufixo>)"
     if not stage or not stage.strip():
-        return fail("stage (--stage) ausente ou vazio")
+        return "stage (--stage) ausente ou vazio"
     dirty = git("status", "--porcelain", "--untracked-files=all")
     if dirty:
-        return fail(f"árvore suja: {dirty.splitlines()[:5]}")
+        return f"árvore suja: {dirty.splitlines()[:5]}"
     if registry["entries"][-1]["status"] != "APPROVED":
-        return fail(f"há proposta pendente: {registry['entries'][-1]['id']}")
+        return f"há proposta pendente: {registry['entries'][-1]['id']}"
     problems = reg.verify(registry)
     if problems:
-        return fail(f"registro inválido antes da proposta: {problems[:5]}")
+        return f"registro inválido antes da proposta: {problems[:5]}"
+    if (HERE / entry_id).exists():
+        return f"{(HERE / entry_id).relative_to(REPO)} já existe"
+    return None
+
+
+def propose(entry_id: str, stage: str, reason: str) -> int:
+    refusal = preflight(entry_id, stage, reason)
+    if refusal:
+        return fail(refusal)
+    registry = reg.load()
     target = HERE / entry_id
-    if target.exists():
-        return fail(f"{target.relative_to(REPO)} já existe")
     previous = reg.current(registry)
     steps = []
     try:
@@ -344,7 +353,15 @@ def main() -> int:
     parser.add_argument("--approve")
     parser.add_argument("--check", action="store_true")
     parser.add_argument("--init-b0", action="store_true")
+    parser.add_argument("--preflight-only", action="store_true",
+                        help="só as recusas da proposta (nada é executado nem escrito)")
     args = parser.parse_args()
+    if args.preflight_only:
+        refusal = preflight(args.id, args.stage, args.reason)
+        if refusal:
+            return fail(refusal)
+        print(json.dumps({"result": "PREFLIGHT_OK", "id": args.id}, ensure_ascii=False))
+        return 0
     if args.check:
         return check()
     if args.init_b0:
