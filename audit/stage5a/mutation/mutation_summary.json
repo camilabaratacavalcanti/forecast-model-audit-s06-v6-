@@ -1,0 +1,27 @@
+{
+ "stage": "5A.4",
+ "mutants": 13,
+ "detected": 13,
+ "missed": [],
+ "detection_rate": "100.0%",
+ "by_class": {
+  "BlockSpec": "1/1",
+  "D-5A-1": "6/6",
+  "D-5A-2": "2/2",
+  "D-5A-4": "1/1",
+  "S": "3/3"
+ },
+ "positive_control": {
+  "tests": 17,
+  "returncode": 0,
+  "failed": [],
+  "summary": "17 passed in 1.15s",
+  "result": "ACCEPT"
+ },
+ "git_status_app_data_tools": {
+  "before": "",
+  "after": "",
+  "empty": true
+ },
+ "result": "PASS"
+}
