@@ -1,5 +1,5 @@
 {
- "current": "B0",
+ "current": "B1",
  "entries": [
   {
    "anterior": null,
@@ -689,6 +689,7 @@
   },
   {
    "anterior": "B0",
+   "aprovado_em": "2026-10-02",
    "commit_comportamento": "a12954a6ad8d603d7c83e3c51a96fcb8a74d84da",
    "conjuntos": {
     "stage3_2_plan": {
@@ -1455,8 +1456,9 @@
    "id": "B1",
    "layout": "audit/baselines/B1",
    "motivo": "energy v9, max_ht v13, livro de equações, fim do ×24, unidades novas",
+   "selo": "c8ad92b2bf6dc3cfb1573e9f607b6d5453f9409894ab816246945c88db79a9ef",
    "stage": "5A",
-   "status": "PROPOSED"
+   "status": "APPROVED"
   }
  ],
  "schema": "forecast-baseline-registry/1"

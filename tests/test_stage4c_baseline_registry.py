@@ -177,6 +177,17 @@ def clone(tmp_path_factory):
     return historical.checkout("HEAD", tmp_path_factory.mktemp("stage4c_rebaseline") / "tree")
 
 
+def _next_free_id() -> str:
+    # Stage 5A (F5A-07): o próximo ID livre vem do registro do HEAD (o clone é o HEAD). Antes era o literal "B1",
+    # válido só enquanto B1 não existia; com B1 aprovado na 5A, o controle positivo e as recusas passariam a
+    # testar "já existe"/"proposta pendente" em vez do que dizem testar. Nenhuma asserção muda.
+    head = json.loads(git("show", "HEAD:audit/baselines/BASELINE_REGISTRY.json").stdout)
+    return f"B{max(int(e['id'][1:].split('-')[0]) for e in head['entries']) + 1}"
+
+
+NEXT = _next_free_id()
+
+
 def rebaseline(root, *args):
     done = subprocess.run([sys.executable, "audit/baselines/rebaseline.py", *args], cwd=root,
                           capture_output=True, text=True, env=historical.clean_env())
@@ -186,13 +197,13 @@ def rebaseline(root, *args):
 def test_preflight_accepts_a_valid_request_on_a_clean_tree(clone):
     """Controle positivo: as recusas abaixo não são vacuamente verdes."""
     assert git("status", "--porcelain", "--untracked-files=all", cwd=clone).stdout == ""
-    code, out = rebaseline(clone, "--preflight-only", "--id", "B1", "--stage", "x", "--reason", "controle")
+    code, out = rebaseline(clone, "--preflight-only", "--id", NEXT, "--stage", "x", "--reason", "controle")
     assert code == 0 and out["result"] == "PREFLIGHT_OK"
 
 
 @pytest.mark.parametrize("args, reason", [
-    (["--id", "B1", "--stage", "x"], "motivo"),
-    (["--id", "B1", "--stage", "x", "--reason", "   "], "motivo"),
+    (["--id", NEXT, "--stage", "x"], "motivo"),
+    (["--id", NEXT, "--stage", "x", "--reason", "   "], "motivo"),
     (["--id", "B0", "--stage", "x", "--reason", "repetido"], "já existe"),
     (["--id", "Bx", "--stage", "x", "--reason", "id ruim"], "id inválido"),
 ])
@@ -200,14 +211,14 @@ def test_preflight_accepts_a_valid_request_on_a_clean_tree(clone):
 def test_rebaseline_refuses_invalid_requests(clone, args, reason, mode):
     code, out = rebaseline(clone, *mode, *args)
     assert code == 2 and out["result"] == "REFUSED" and reason in out["reason"]
-    assert not (clone / "audit" / "baselines" / "B1").exists()
+    assert not (clone / "audit" / "baselines" / NEXT).exists()
 
 
 def test_rebaseline_refuses_a_dirty_tree(clone):
     marker = clone / "audit" / "stage4c" / "dirty.txt"
     marker.write_text("sujo\n", encoding="utf-8")
     try:
-        code, out = rebaseline(clone, "--preflight-only", "--id", "B1", "--stage", "x", "--reason", "árvore suja")
+        code, out = rebaseline(clone, "--preflight-only", "--id", NEXT, "--stage", "x", "--reason", "árvore suja")
     finally:
         marker.unlink()
     assert code == 2 and "árvore suja" in out["reason"]
