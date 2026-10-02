@@ -75,14 +75,15 @@ class AggregationRule:
                 f"{self.integration_factor!r}"
             )
 
-        if (
-            self.integration_factor != 1
-            and self.aggregation_type != "SUM"
-        ):
+        # D-5A-2 (Stage 5A): fim da conversão automática taxa -> quantidade
+        # diária. Toda agregação (inclusive SUM) exige origem já diária; a
+        # conversão é explícita no workbook por variável intermediária `*_ag`.
+        if self.integration_factor != 1:
             raise InvalidAggregationRuleError(
-                "integration_factor só se aplica a SUM "
-                f"(regra {self.aggregation_rule_id} é "
-                f"{self.aggregation_type})."
+                "integration_factor deve ser 1 (D-5A-2): a regra "
+                f"{self.aggregation_rule_id} ({self.aggregation_type}) declara "
+                f"{self.integration_factor!r}; converta a origem para quantidade "
+                "diária por uma variável intermediária '*_ag' no workbook."
             )
 
         if (

@@ -25,7 +25,7 @@ from __future__ import annotations
 
 import re
 
-from app.domain.units import required_sum_factor
+from app.domain.units import parse_unit, required_sum_factor
 from app.engine import reference_resolver
 from app.engine.scope_resolver import ScopeResolver
 from app.engine.scoped_reference import scope_type_for
@@ -407,6 +407,16 @@ def build_aggregation_rules(model: CanonicalModel) -> tuple[list[dict], list[dic
                     raise CanonicalModelError(
                         f"{where}: SUM de {source.unit} para {target.unit} "
                         f"({target.frequency}) não é dimensionalmente coerente."
+                    )
+
+                if factor != 1:
+                    # D-5A-2: sem conversão automática taxa -> quantidade diária.
+                    numerator = parse_unit(source.unit).numerator
+                    raise CanonicalModelError(
+                        f"{where}: SUM de '{source.name}' ({source.unit}) exige fator "
+                        f"{factor:g}; a conversão para quantidade diária deve ser explícita "
+                        f"no workbook por uma variável intermediária '{source.name}_ag' "
+                        f"({numerator}/d) — D-5A-2."
                     )
 
                 rule["integration_factor"] = factor
