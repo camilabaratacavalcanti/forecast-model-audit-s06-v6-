@@ -70,7 +70,8 @@ SEED_ROOT = REPO / "data" / "seed"
 LINES = ["L1", "L2", "L3", "L4", "L5", "L6", "L7"]
 BLOCK_NAMES = sorted(BLOCKS)
 
-EXPECTED_ROWS = {"area_41": 54, "energy": 56, "max_ht": 120, "production": 88, "yield": 254}
+# C (Stage 5A): energy 56 -> 57 (v9: +retirada_total_condensado_area13), max_ht 120 -> 121 (v13: +lth_total_ag).
+EXPECTED_ROWS = {"area_41": 54, "energy": 57, "max_ht": 121, "production": 88, "yield": 254}
 EXPECTED_HEADER_ROW = {"area_41": 2, "energy": 2, "max_ht": 2, "production": 2, "yield": 1}
 EXPECTED_RULES = {"area_41": 10, "energy": 11, "max_ht": 78, "production": 28, "yield": 80}
 
@@ -265,10 +266,11 @@ def test_t24_02_each_block_builder_consumes_its_approved_workbook(block):
 
 
 def test_t24_02_total_rows_and_equations_match_stage_2_3(builds):
-    assert sum(len(b.workbook.rows) for b in builds.values()) == 572
+    assert sum(len(b.workbook.rows) for b in builds.values()) == 574  # C (Stage 5A): antes 572; +1 energy v9, +1 MaxHT v13
     # 234 expressões executáveis da 2.3 + as 4 linhas antes recusadas
     # pela A019 (lth r35, oee r48, producao r71, n_ppt r107).
-    assert sum(len(b.seeds["equations"]) for b in builds.values()) == 238
+    # C (Stage 5A): antes 238; energy v9 +1 (EQ18025), MaxHT v13 +1 (−EQ13001, +EQ13030, +EQ13031).
+    assert sum(len(b.seeds["equations"]) for b in builds.values()) == 240
 
 
 # ============================================================
@@ -558,9 +560,10 @@ def _build_synthetic(path, block="yield"):
 
 def test_t24_06_max_ht_v9_ignores_trailing_empty_rows(builds):
     workbook = builds["max_ht"].workbook
-    assert len(workbook.rows) == 120
-    assert workbook.rows[-1].row == 122
-    assert len(workbook.empty_rows) == workbook.last_sheet_row - 122
+    # C (Stage 5A): MaxHT v13 tem 121 linhas de definição (antes 120), última na linha 123 (antes 122).
+    assert len(workbook.rows) == 121
+    assert workbook.rows[-1].row == 123
+    assert len(workbook.empty_rows) == workbook.last_sheet_row - 123
 
 
 def test_t24_06_trailing_empty_rows_never_become_entities(tmp_path):

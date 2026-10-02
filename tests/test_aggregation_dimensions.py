@@ -132,8 +132,19 @@ def _hourly_context():
 
 
 def test_sum_applies_integration_factor():
+    # C (Stage 5A, D-5A-2): antes, SUM com integration_factor=24 multiplicava a soma das taxas horárias
+    # (60 m³/h -> 1440). Agora o runtime recusa fator != 1 e a conversão é explícita no workbook por uma
+    # variável intermediária `*_ag` (m³/d = m³/h × 24); a SUM de fator 1 sobre ela dá o MESMO 1440.
+    with pytest.raises(InvalidAggregationRuleError, match="D-5A-2"):
+        _rule(factor=24.0)
+
+    context = _hourly_context()
+    for day, value in enumerate([10.0, 20.0, 30.0], start=1):
+        context.set_variable_value(          # VAR92003 = VAR92001_ag: quantidade diária
+            "VAR92003", value * 24, "linha", "L1", f"2026-03-{day:02d}"
+        )
     result = TemporalAggregationService().aggregate(
-        _rule(factor=24.0), _hourly_context(), "linha", "L1", date(2026, 3, 3)
+        dataclasses.replace(_rule(), source_variable_id="VAR92003"), context, "linha", "L1", date(2026, 3, 3)
     )
 
     assert result.value == pytest.approx(60.0 * 24)
@@ -174,6 +185,10 @@ def test_sum_factors_follow_the_approved_workbook_units(seed_rules_and_issues):
     (app.domain.units.required_sum_factor). Nos workbooks aprovados
     (Etapa 2.3: 30 SUMs, "fator 1" ou "fator 24"), só as duas SUMs de
     m³/h do MaxHT v9 exigem 24; as demais somam taxas diárias (fator 1).
+
+    C (Stage 5A, D-5A-2): o MaxHT v13 soma `lth_total_ag` (m³/d) nas duas
+    SUMs de `lth_total_somatorio`; não há mais fator 24 (antes
+    {1.0: {t/d, kg/d}, 24.0: {m³/h}} com 2 regras de fator 24).
     """
 
     rules, definitions, _issues = seed_rules_and_issues
@@ -187,8 +202,15 @@ def test_sum_factors_follow_the_approved_workbook_units(seed_rules_and_issues):
         source_unit = definitions.get(rule.source_variable_id).unit
         by_factor.setdefault(rule.integration_factor, set()).add(source_unit)
 
-    assert by_factor == {1.0: {"t/d", "kg/d"}, 24.0: {"m³/h"}}
-    assert sum(1 for rule in sums if rule.integration_factor == 24.0) == 2
+    assert by_factor == {1.0: {"t/d", "kg/d", "m³/d"}}
+    assert sum(1 for rule in sums if rule.integration_factor == 24.0) == 0
+    assert sorted(
+        rule.aggregation_rule_id for rule in sums
+        if definitions.get(rule.source_variable_id).unit == "m³/d"
+    ) == [
+        "AGR-MAX_HT-LTH_TOTAL_SOMATORIO-GRUPO-L1_L7-ANUAL-SUM",
+        "AGR-MAX_HT-LTH_TOTAL_SOMATORIO-GRUPO-L1_L7-MENSAL-SUM",
+    ]
 
     non_sums = [rule for rule in rules.all() if rule.aggregation_type != "SUM"]
     assert {rule.integration_factor for rule in non_sums} == {1.0}

@@ -42,11 +42,16 @@ from tools.workbook_seed.interblock import (
 )
 from tools.workbook_seed.taxonomy import BLOCK_TAXONOMY, OFFICIAL_BLOCKS
 
+sys.path.insert(0, str(REPO_ROOT / "audit" / "baselines"))
+import historical  # noqa: E402  (Stage 5A: clone pré-5A)
+
 
 V10 = "descritivo_das_variáveis_production_v10.xlsx"
 V11 = "descritivo_das_variáveis_production_v11.xlsx"
 V11_SHA256 = "d946dfd522c8cbb301c0c63caa3c62263b74a849e043d7b2f4bcb0bdb262c922"
 ANALYSIS = REPO_ROOT / "audit" / "stage2_6c_interblock_final" / "evidence" / "analysis_stage2_6c.py"
+ANALYSIS_5A = REPO_ROOT / "audit" / "stage5a" / "analysis_interblock_5a.py"  # Stage 5A (C)
+PRE_5A = "e262e03"  # main antes da 5A (H do test_17b)
 
 
 @pytest.fixture(scope="module")
@@ -323,10 +328,28 @@ def test_16_no_orphan_link_or_reference():
 
 
 def test_17_independent_analysis_matches_the_builder():
+    # C (Stage 5A): a análise 2.6C fixa como dado os workbooks da época (energy v6, MaxHT v10) e a lista
+    # exata de IDs novos/aposentados. Antes: o script 2.6C ao vivo. Agora: o wrapper 5A, que roda a MESMA
+    # lógica trocando só essas constantes (energy v9, MaxHT v13; +VAR18053, +VAR13117..123, VAR13001..006
+    # aposentados — max_ht v13 renomeia alimentação_evap*, D-5A-3). Asserções abaixo inalteradas.
+    # A forma histórica fica no test_17b (H, clone em e262e03).
     completed = subprocess.run(
-        [sys.executable, str(ANALYSIS), "--no-write"],
+        [sys.executable, str(ANALYSIS_5A), "--no-write"],
         cwd=REPO_ROOT, capture_output=True, text=True,
     )
+    assert completed.returncode == 0, completed.stdout + completed.stderr
+    summary = json.loads(completed.stdout)
+    assert summary["independent_vs_builder_divergences"] == []
+    assert summary["failures"] == []
+    assert summary["links_by_class_definitions"] == {"SOURCE_BLOCK_NOT_LOADED": 16, "VALID": 13}
+    assert summary["cycles_overapproximated"] == []
+
+
+def test_17b_historical_analysis_passes_at_the_last_commit_before_stage_5a(tmp_path):
+    # H (Stage 5A): o script 2.6C, sem alteração, no clone de e262e03 (último commit com energy v6 e
+    # MaxHT v10 vigentes) — mesmas asserções que o test_17 fazia antes da 5A.
+    clone = historical.checkout(PRE_5A, tmp_path / "tree")
+    completed = historical.run(clone, ANALYSIS.relative_to(REPO_ROOT), "--no-write", isolated=True)
     assert completed.returncode == 0, completed.stdout + completed.stderr
     summary = json.loads(completed.stdout)
     assert summary["independent_vs_builder_divergences"] == []

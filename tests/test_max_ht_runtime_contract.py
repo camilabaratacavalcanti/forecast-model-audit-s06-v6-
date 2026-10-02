@@ -65,9 +65,9 @@ def aggregation_rules():
 
 
 def test_entity_counts(variables, parameters, equations, aggregation_rules):
-    assert len(variables) == 116  # MaxHT v9 (aprovado): 120 linhas, 4 parâmetros
+    assert len(variables) == 117  # MaxHT v13 (aprovado, Stage 5A): 121 linhas, 4 parâmetros; antes 116 (v9/v10) — +lth_total_ag (D-5A-2)
     assert len(parameters) == 4
-    assert len(equations) == 29
+    assert len(equations) == 30  # Stage 5A: antes 29; −EQ13001 (alimentação_evap_total), +EQ13030, +EQ13031 (lth_total_ag)
     assert len(aggregation_rules) == 78  # AVERAGE 58 + SUM 20 (Etapa 2.3)
 
 
@@ -129,7 +129,7 @@ def test_units_used_by_the_block_are_exactly_the_expected_set(variables):
 
 
 # ============================================================
-# Parser real: 29/29 expressões matemáticas
+# Parser real: 30/30 expressões matemáticas (Stage 5A; antes 29/29)
 # ============================================================
 
 
@@ -140,7 +140,7 @@ def test_all_math_equations_parse_successfully(equations):
         ExpressionParser().parse(equation["expression"])
         ok += 1
 
-    assert ok == 29
+    assert ok == 30  # C (Stage 5A): antes 29; MaxHT v13
 
 
 def test_no_unresolved_tokens_in_equations(variables, parameters, equations):
@@ -228,8 +228,8 @@ def test_full_seed_root_loads_without_errors():
         if d.equation_definition_id.startswith("EQ13")
     ]
 
-    assert len(max_ht_var_defs) == 116
-    assert len(max_ht_eq_defs) == 29
+    assert len(max_ht_var_defs) == 117  # C (Stage 5A): antes 116; MaxHT v13 (+lth_total_ag)
+    assert len(max_ht_eq_defs) == 30  # C (Stage 5A): antes 29; MaxHT v13
 
     agg = loader.load_aggregation_rules()
     max_ht_rules = [

@@ -308,7 +308,7 @@ def test_17_max_ht_is_the_canonical_block_name(official):
     spec = BLOCKS["max_ht"]
     assert "max_ht" in BLOCKS and "max_ht" in OFFICIAL_BLOCKS
     assert "mx_ht" not in OFFICIAL_BLOCKS and "mx_ht" not in BLOCKS
-    assert (spec.sheet, spec.file_name) == ("MaxHT", "descritivo_das_variáveis_MaxHT_v10.xlsx")
+    assert (spec.sheet, spec.file_name) == ("MaxHT", "descritivo_das_variáveis_MaxHT_v13.xlsx")  # C (Stage 5A): antes v10
     assert not {"mx_ht", "max_ht"} & {l.source_block for l in official.interblock.links}
 
     seed = read_interblock_seed()
@@ -357,8 +357,10 @@ EXPECTED = {
     ("energy", "temperatura_lp", "diário"): SOURCE_BLOCK_NOT_LOADED,
     ("energy", "temperatura_lp", "mensal"): SOURCE_BLOCK_NOT_LOADED,
     ("energy", "temperatura_lp_media", "mensal"): SOURCE_BLOCK_NOT_LOADED,
-    ("energy", "evaporado_total_evaporacao", "diário"): SOURCE_BLOCK_NOT_LOADED,
-    ("max_ht", "alimentação_evap", "diário"): SOURCE_BLOCK_NOT_LOADED,
+    # C (Stage 5A): energy v9 recebe retirada_total_condensado_area13 de area_04_13 (antes evaporado_total_evaporacao,
+    # agora calculado); MaxHT v13 renomeia alimentação_evap -> alimentacao_evap (D-5A-3). Classes inalteradas.
+    ("energy", "retirada_total_condensado_area13", "diário"): SOURCE_BLOCK_NOT_LOADED,
+    ("max_ht", "alimentacao_evap", "diário"): SOURCE_BLOCK_NOT_LOADED,
     ("max_ht", "lth", "diário"): VALID,
     ("max_ht", "producao", "diário"): VALID,
     ("production", "fator_mpsa_kg_t", "diário"): SOURCE_BLOCK_NOT_LOADED,

@@ -9,7 +9,7 @@ Composição (núcleo único da 3.3B, `compose_states`):
 Matemática: a aritmética existente de cada agregador, inalterada, só
 quando todo componente tem value; componente com estado e sem value ->
 value agregado None (com o estado composto).
-Agregadores do runtime: AVERAGE, SUM (com integration_factor),
+Agregadores do runtime: AVERAGE, SUM (origem diária; `*_ag` explícita, D-5A-2),
 WEIGHTED_AVERAGE (pesos também são componentes), MOVING_AVERAGE.
 """
 
@@ -52,13 +52,17 @@ RUN = date(2026, 9, 3)
 SOURCE, TARGET, WEIGHT = "VAR19901", "VAR19902", "VAR19903"
 WEIGHTS = [1.0, 2.0, 3.0]
 
-AGGREGATORS = ["AVERAGE", "SUM", "SUM_X24", "WEIGHTED_AVERAGE", "MOVING_AVERAGE"]
+# C (Stage 5A, D-5A-2): antes "SUM_X24" = SUM com integration_factor=24 sobre taxas horárias; o runtime agora
+# recusa fator != 1 (tests/test_stage5a_sum_daily_origin.py). O caso passa a ser "SUM_AG": SUM de fator 1 sobre a
+# variável intermediária explícita `*_ag` (valor horário × 24, mesmo state/detail) — mesma aritmética
+# (Σ v·24) e mesmos cenários de composição de estado.
+AGGREGATORS = ["AVERAGE", "SUM", "SUM_AG", "WEIGHTED_AVERAGE", "MOVING_AVERAGE"]
 
 
 def rule(kind, window=None):
     extra = {}
-    if kind == "SUM_X24":
-        kind, extra = "SUM", {"integration_factor": 24.0}
+    if kind == "SUM_AG":
+        kind = "SUM"                                          # fator 1: a origem já é quantidade diária
     if kind == "WEIGHTED_AVERAGE":
         extra["weight_variable_id"] = WEIGHT
     if window:
@@ -73,15 +77,23 @@ def expected_value(kind, values, weights=WEIGHTS):
     """Aritmética contratual de cada agregador (independente do serviço)."""
     if kind == "SUM":
         return sum(values)
-    if kind == "SUM_X24":
+    if kind == "SUM_AG":
         return sum(v * 24.0 for v in values)
     if kind == "WEIGHTED_AVERAGE":
         return sum(v * w for v, w in zip(values, weights)) / sum(weights)
     return sum(values) / len(values)
 
 
+def as_daily_quantity(result):
+    """`*_ag` explícita (D-5A-2): taxa horária × 24; estado e detail inalterados."""
+    value = result.value * 24.0 if isinstance(result.value, float) else result.value
+    return Result(value, result.state, result.detail)
+
+
 def aggregate(kind, results, weights=None, run_date=RUN):
     context = CalculationContext()
+    if kind == "SUM_AG":
+        results = [as_daily_quantity(r) for r in results]
     for day, result in zip(DAYS, results):
         context.set_variable_result(SOURCE, result, "linha", "L1", day)
     for day, weight in zip(DAYS, weights or [Result(w) for w in WEIGHTS]):

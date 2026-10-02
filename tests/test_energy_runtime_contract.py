@@ -1,7 +1,8 @@
 """
 Validação runtime da cadeia completa do bloco `energy`.
 
-As 23 equações diárias são executadas de uma só vez pelo
+As 24 equações diárias (23 até o energy v6 + EQ18025 do energy v9,
+Stage 5A) são executadas de uma só vez pelo
 `ForecastEngine` real, a partir das EquationDefinitions REAIS do seed:
 
     SeedLoader (real)
@@ -132,8 +133,9 @@ LINE_INPUTS = {
 
 CONSUMO_VAPOR_OUTROS = 33.0
 
+# Stage 5A (energy v9): + EQ18025 (`evaporado_total_evaporacao` = `retirada_total_condensado_area13` / 1).
 DAILY_EQUATION_IDS = [
-    f"EQ180{n:02d}" for n in range(1, 25) if n != 20
+    f"EQ180{n:02d}" for n in range(1, 26) if n != 20
 ]
 
 
@@ -183,7 +185,10 @@ LINE_INPUT_VARIABLES = (
     ("VAR18016", "ref_superior"),
     ("VAR18018", "temperatura_he6"),
     ("VAR18029", "economicidade_ref"),
-    ("VAR18031", "evaporado"),
+    # Stage 5A (energy v9): a entrada vinda do area_04_13 passa a ser `retirada_total_condensado_area13`
+    # (VAR18053, m³/h); `evaporado_total_evaporacao` (VAR18031) é calculada por EQ18025 = VAR18053 / 1,
+    # então o mesmo número de entrada chega a VAR18031 pela cadeia real.
+    ("VAR18053", "evaporado"),
 )
 
 
@@ -393,8 +398,8 @@ def test_the_23_daily_equations_all_execute(
         calculation_context=ctx,
     )
 
-    # 16 equações de linha_grupo (1 instância cada) e 7 de linha
-    # (7 instâncias cada) -- a contagem é conferida a partir das
+    # 16 equações de linha_grupo (1 instância cada) e 8 de linha
+    # (7 instâncias cada; 5A: + EQ18025) -- a contagem é conferida a partir das
     # Definitions reais, não fixada à mão.
     expected_instances = 0
 
@@ -648,7 +653,7 @@ def test_cross_block_inputs_are_declared_as_inputs_with_a_source(
         "VAR18001": "producao",
         "VAR18008": "lth",
         "VAR18012": "temperatura_lp",
-        "VAR18031": "evaporado_total_evaporacao",
+        "VAR18053": "retirada_total_condensado_area13",   # 5A: substitui VAR18031, agora calculada
     }
 
     for variable_id, name in cross_block.items():
@@ -664,7 +669,7 @@ def test_cross_block_inputs_are_declared_as_inputs_with_a_source(
 @pytest.mark.parametrize(
     "variable_id,description",
     [
-        ("VAR18031", "evaporado_total_evaporacao (bloco area_04_13)"),
+        ("VAR18053", "retirada_total_condensado_area13 (bloco area_04_13; 5A: substitui VAR18031)"),
         ("VAR18012", "temperatura_lp (bloco temperature_lp)"),
         ("VAR18001", "producao (bloco production)"),
         ("VAR18008", "lth (bloco production)"),
@@ -764,7 +769,7 @@ def test_daily_to_monthly_chain_feeds_eq18020(
     Executa a composição completa, sem escrever à mão nenhum valor
     calculado:
 
-        23 equações diárias (ForecastEngine real, um dia por vez)
+        24 equações diárias (ForecastEngine real, um dia por vez)
             -> energia_digestao / energia_evaporacao DIÁRIOS
         AggregationRule WEIGHTED_AVERAGE (serviço real)
             -> energia_digestao / energia_evaporacao MENSAIS

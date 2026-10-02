@@ -566,7 +566,8 @@ EXPECTED_VALID = {
     # Etapa 2.6B (D26-02): production v10 corrigiu lth_meta.
     ("energy", 13, "lth_meta", "production"),
     ("max_ht", 68, "lth", "production"),
-    ("max_ht", 98, "producao", "production"),
+    # C (Stage 5A): MaxHT v13 insere uma linha antes de producao (98 -> 99).
+    ("max_ht", 99, "producao", "production"),
     ("production", 87, "yield", "yield"),
     ("yield", 32, "lth", "production"),
 }

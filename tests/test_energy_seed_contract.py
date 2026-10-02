@@ -4,8 +4,10 @@ Contrato estrutural do bloco `energy`.
 Valida, contra os Registries REAIS carregados por `SeedLoader`, que os
 seeds gerados a partir do workbook v2 respeitam:
 
-    - as contagens declaradas (56 entidades = 52 Variables + 4
-      Parameters; 24 Equations; 11 AggregationRules);
+    - as contagens declaradas (57 entidades = 53 Variables + 4
+      Parameters; 25 Equations; 11 AggregationRules — energy v9,
+      Stage 5A: + `retirada_total_condensado_area13` e a equação de
+      `evaporado_total_evaporacao`);
     - a faixa de IDs reservada ao bloco (18000-18999), sem colisão com
       qualquer outro bloco;
     - unidades, frequências, variable_types e escopos permitidos,
@@ -103,17 +105,19 @@ def energy(loaded_seed):
 
 def test_entity_counts_match_the_workbook(energy):
     """
-    56 linhas de dados da aba `energy` -> 52 Variables + 4 Parameters.
+    57 linhas de dados da aba `energy` -> 53 Variables + 4 Parameters.
     A aba `Planilha1` é auxiliar e não gera nenhuma entidade.
+    Stage 5A (energy v9): 52 -> 53 variáveis (+ `retirada_total_condensado_area13`).
     """
 
-    assert len(energy["var_defs"]) == 52
+    assert len(energy["var_defs"]) == 53
     assert len(energy["param_defs"]) == 4
-    assert len(energy["var_defs"]) + len(energy["param_defs"]) == 56
+    assert len(energy["var_defs"]) + len(energy["param_defs"]) == 57
 
 
 def test_equation_and_aggregation_counts(energy):
-    assert len(energy["eq_defs"]) == 24
+    # Stage 5A (energy v9): 24 -> 25 equações (`evaporado_total_evaporacao` passa a calculada).
+    assert len(energy["eq_defs"]) == 25
     assert len(energy["rules"]) == 11
 
 
@@ -133,15 +137,19 @@ def test_all_ids_are_inside_the_energy_range_and_unique(energy):
         d.equation_definition_id for d in energy["eq_defs"]
     ]
 
-    assert variable_ids == sorted(set(variable_ids))
+    # Stage 5A: com o livro de IDs (2.6B/D-5A-4) a variável nova recebe o número seguinte ao maior
+    # emitido (VAR18053) e fica na posição da sua linha no workbook; a lista de variáveis deixa de
+    # ser crescente, mas continua única e contígua, sem buraco nem renumeração. As equações saem em
+    # ordem crescente de EQ (DR-5A-1).
+    assert len(variable_ids) == len(set(variable_ids))
+    assert sorted(variable_ids) == [f"VAR180{n:02d}" for n in range(1, 54)]
+    assert variable_ids[-1] == "VAR18052" and "VAR18053" in variable_ids
     assert parameter_ids == sorted(set(parameter_ids))
     assert equation_ids == sorted(set(equation_ids))
 
     assert variable_ids[0] == "VAR18001"
-    assert variable_ids[-1] == "VAR18052"
     assert parameter_ids == [f"PARAM1800{n}" for n in range(1, 5)]
-    assert equation_ids[0] == "EQ18001"
-    assert equation_ids[-1] == "EQ18024"
+    assert equation_ids == [f"EQ180{n:02d}" for n in range(1, 26)]
 
     for entity_id in variable_ids + parameter_ids + equation_ids:
         assert _is_energy(entity_id), entity_id
@@ -176,13 +184,13 @@ def test_energy_ids_do_not_collide_with_other_blocks(loaded_seed):
     assert len(all_parameter_keys) == len(set(all_parameter_keys))
     assert len(all_equation_keys) == len(set(all_equation_keys))
 
-    assert sum(1 for i in all_variable_ids if _is_energy(i)) == 52
+    assert sum(1 for i in all_variable_ids if _is_energy(i)) == 53      # 5A: 52 -> 53
     assert sum(
         1 for i, _t, _v in all_parameter_keys if _is_energy(i)
     ) == 4
     assert sum(
         1 for i, _t, _v in all_equation_keys if _is_energy(i)
-    ) == 24
+    ) == 25                                                             # 5A: 24 -> 25
 
 
 # ============================================================
@@ -244,7 +252,8 @@ def test_variable_frequency_distribution(energy):
             counts.get(definition.frequency, 0) + 1
         )
 
-    assert counts == {"diário": 33, "mensal": 18, "anual": 1}
+    # 5A (energy v9): diário 33 -> 34 (`retirada_total_condensado_area13`).
+    assert counts == {"diário": 34, "mensal": 18, "anual": 1}
 
 
 def test_variable_type_distribution(energy):
@@ -255,8 +264,10 @@ def test_variable_type_distribution(energy):
             counts.get(definition.variable_type, 0) + 1
         )
 
+    # 5A (energy v9): `evaporado_total_evaporacao` entrada_externa -> calculado (35 -> 36);
+    # `retirada_total_condensado_area13` é a nova entrada_externa (6 -> 6).
     assert counts == {
-        "calculado": 35,
+        "calculado": 36,
         "entrada": 11,
         "entrada_externa": 6,
     }
@@ -269,8 +280,9 @@ def test_scope_distribution(energy):
         key = (definition.scope_type, definition.scope_value)
         counts[key] = counts.get(key, 0) + 1
 
+    # 5A (energy v9): linha/L1_L7 20 -> 21 (`retirada_total_condensado_area13`).
     assert counts == {
-        ("linha", "L1_L7"): 20,
+        ("linha", "L1_L7"): 21,
         ("linha_grupo", "L1_L7"): 29,
         ("linha_grupo", "L1_L3"): 1,
         ("linha_grupo", "L4_L5"): 1,
@@ -341,13 +353,14 @@ def test_variable_instances_are_materialized_by_the_real_resolver(
     energy,
 ):
     """
-    20 Definitions em linha/L1_L7 -> 7 instâncias cada = 140;
+    21 Definitions em linha/L1_L7 -> 7 instâncias cada = 147;
     32 Definitions em linha_grupo -> 1 instância cada = 32.
-    Total 172. O teste não expande escopo nenhum: apenas confere o que
+    Total 179 (5A: 172 -> 179, + `retirada_total_condensado_area13` em
+    linha/L1_L7). O teste não expande escopo nenhum: apenas confere o que
     o ScopeResolver real produziu.
     """
 
-    assert len(energy["var_instances"]) == 172
+    assert len(energy["var_instances"]) == 179
 
     by_definition = {}
 
@@ -615,3 +628,29 @@ def test_eq18003_boundary_is_not_strictly_greater(energy):
     )
 
     assert result == pytest.approx(52.5)
+
+
+def test_evaporado_total_evaporacao_is_the_condensate_withdrawal_over_its_specific_volume(energy):
+    """
+    Stage 5A (energy v9): `evaporado_total_evaporacao` (VAR18031) deixa de ser entrada vinda do
+    area_04_13 e passa a calculada = `retirada_total_condensado_area13` / 1 (volume específico do
+    condensado). A entrada nova (VAR18053, m³/h) é a que vem do area_04_13.
+    """
+
+    variables = {d.variable_definition_id: d for d in energy["var_defs"]}
+    target, source = variables["VAR18031"], variables["VAR18053"]
+
+    assert (target.variable_name, target.variable_type) == ("evaporado_total_evaporacao", "calculado")
+    assert (source.variable_name, source.variable_type, source.unit, source.frequency) == (
+        "retirada_total_condensado_area13", "entrada_externa", "m³/h", "diário")
+    assert (source.scope_type, source.scope_value) == ("linha", "L1_L7")
+
+    equations = [d for d in energy["eq_defs"] if d.target_variable_id == "VAR18031"]
+    assert [(d.equation_definition_id, d.expression) for d in equations] == [("EQ18025", "VAR18053 / 1")]
+
+    context = CalculationContext()
+    context.set_variable_value("VAR18053", 123.5, "linha", "L3")
+    evaluator = ExpressionEvaluator(
+        calculation_context=context, default_scope_type="linha", default_scope_value="L3",
+    )
+    assert evaluator.evaluate(ExpressionParser().parse(equations[0].expression)) == 123.5
