@@ -43,6 +43,13 @@ BLOCKS5 = BLOCKS4 + ("area_41",)
 START, END = date(2026, 1, 1), date(2026, 2, 1)
 DAYS = [START + timedelta(days=n) for n in range((END - START).days + 1)]
 STAGE34_EVIDENCE = STAGE34_INTEGRATED / "evidence"
+sys.path.insert(0, str(REPO / "audit" / "baselines"))
+import baseline_paths as bp  # noqa: E402  (Stage 4C: fonte da referência da 3.4C)
+
+
+def stage34(name: str) -> Path:
+    """Arquivo da evidência de referência da 3.4C: histórico (default) ou do `--baseline-dir`."""
+    return bp.path("stage3_4c_integrated", name)
 PERIODS = TimePeriodResolver()
 
 

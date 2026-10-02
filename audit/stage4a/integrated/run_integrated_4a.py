@@ -51,7 +51,8 @@ ri, fixture = common.ri, common.fixture
 REPO = common.REPO
 DAYS = common.DAYS
 EVIDENCE = HERE / "evidence"
-EXPECTED = json.loads((STAGE / "contract_expectations.json").read_text(encoding="utf-8"))["integrated"]
+# Stage 4C: as referências (expectativas do contrato, evidência 3.4C e 4A) vêm do `--baseline-dir` quando dado.
+EXPECTED = json.loads(common.bp.path("stage4a_contract", "contract_expectations.json").read_text(encoding="utf-8"))["integrated"]
 REEXECUTE = (date(2026, 1, 15), date(2026, 2, 1))
 INV, NAR = "INVALID_INPUT", "NO_APPLICABLE_RULE"
 FEB1 = date(2026, 2, 1)
@@ -79,7 +80,7 @@ def fingerprint(order: str) -> dict:
 def non_regression(universe, store5: dict, context5) -> tuple[dict, list[str]]:
     """Subconjunto sem area_41 == 3.4C: hash versionado, 4 blocos isolados chave a chave, targets.csv."""
     problems = []
-    committed = json.loads((common.STAGE34_EVIDENCE / "integrated_summary.json").read_text(encoding="utf-8"))
+    committed = json.loads(common.stage34("integrated_summary.json").read_text(encoding="utf-8"))
     reference_sha = committed["determinism"]["RUN_A"]["store_sha256"]
     subset_sha = common.subset_sha(store5, universe.area_41_entities)
     if subset_sha != reference_sha:
@@ -100,7 +101,7 @@ def non_regression(universe, store5: dict, context5) -> tuple[dict, list[str]]:
         problems.append("NON_REGRESSION_FAILURE execução isolada de 4 blocos != 3.4C versionada")
 
     # targets.csv da 3.4C: resultado final de 2026-02-01, alvo a alvo
-    rows = list(csv.DictReader((common.STAGE34_EVIDENCE / "targets.csv").open(encoding="utf-8")))
+    rows = list(csv.DictReader(common.stage34("targets.csv").open(encoding="utf-8")))
     definitions = orchestrator.catalog.variable_definitions
     target_diffs = []
     for row in rows:
@@ -326,7 +327,7 @@ def main() -> int:  # noqa: C901 — sequência linear de verificações, espelh
     # 1. fixture --------------------------------------------------------------------
     hashes = {"A": fixture.graph_hash(orchestrator), "A_rebuilt": fixture.graph_hash(fixture.build("A")),
               "B": fixture.graph_hash(fixture.build("B"))}
-    committed34 = json.loads((common.STAGE34_EVIDENCE / "integrated_summary.json").read_text(encoding="utf-8"))
+    committed34 = json.loads(common.stage34("integrated_summary.json").read_text(encoding="utf-8"))
     hashes["stage_3_4c"] = committed34["fixture"]["graph_hashes"]["A"]
     if len(set(hashes.values())) != 1:
         problems.append(f"FIXTURE_FAILURE hashes de grafo diferentes {hashes}")
@@ -341,7 +342,7 @@ def main() -> int:  # noqa: C901 — sequência linear de verificações, espelh
 
     # 2. universo (expectativas do contrato 4A) -------------------------------------
     plan_rows = list(csv.DictReader(
-        (REPO / "audit/stage3_2_execution_orchestration/evidence/plan_evidence.csv").open(encoding="utf-8")))
+        common.bp.path("stage3_2_plan", "plan_evidence.csv").open(encoding="utf-8")))
     targets = orchestrator.targets_of_blocks(common.BLOCKS5)
     if sorted(r["target"] for r in plan_rows) != targets:
         problems.append("PLANNER_FAILURE plan_evidence.csv != targets_of_blocks (5 blocos)")
@@ -520,7 +521,9 @@ def main() -> int:  # noqa: C901 — sequência linear de verificações, espelh
                                                    if v[2] is not None or v[3] is not None)
 
     # 11. regressão contra a evidência 4A versionada (só leitura, --no-write) --------------------------
-    summary_path = EVIDENCE / "integrated_summary.json"
+    summary_path = common.bp.path("stage4a_integrated", "integrated_summary.json")
+    if "--no-write" in sys.argv[1:] and not summary_path.exists() and not common.bp.is_default():
+        problems.append("REFERENCE_MISSING integrated_summary.json da 4A no baseline indicado")
     if "--no-write" in sys.argv[1:] and summary_path.exists():
         committed = json.loads(summary_path.read_text(encoding="utf-8"))
         for label in ("RUN_A", "RUN_B", "HASH_SEED_A", "HASH_SEED_B"):
@@ -568,12 +571,13 @@ def main() -> int:  # noqa: C901 — sequência linear de verificações, espelh
     evidence["result"] = "PASS" if not problems else "FAIL"
 
     if "--no-write" not in sys.argv[1:]:
-        EVIDENCE.mkdir(exist_ok=True)
-        (EVIDENCE / "integrated_summary.json").write_text(
+        if common.bp.is_default():
+            EVIDENCE.mkdir(exist_ok=True)
+        common.bp.writable("stage4a_integrated", "integrated_summary.json").write_text(
             json.dumps(evidence, indent=1, sort_keys=True, default=str, ensure_ascii=False) + "\n", encoding="utf-8")
-        (EVIDENCE / "non_regression_421.json").write_text(
+        common.bp.writable("stage4a_integrated", "non_regression_421.json").write_text(
             json.dumps(non_reg, indent=1, sort_keys=True, ensure_ascii=False) + "\n", encoding="utf-8")
-        with (EVIDENCE / "targets.csv").open("w", encoding="utf-8", newline="") as handle:
+        with common.bp.writable("stage4a_integrated", "targets.csv").open("w", encoding="utf-8", newline="") as handle:
             w = csv.writer(handle, lineterminator="\n")
             w.writerow(["target", "block", "planner_status", "producer_nodes", "planner_nodes", "executed_nodes",
                         "instances", "execution_status", "result_status", "final_results_2026-02-01"])
@@ -588,7 +592,7 @@ def main() -> int:  # noqa: C901 — sequência linear de verificações, espelh
                                                              for v in final.values()) else "STATED_OR_EMPTY"
                 w.writerow([t, catalog.block_of.get(t), "PLANNED", "|".join(producers[t]), "|".join(closure[t]),
                             len(executed), len(expected_instances[t]), status, result_status, ri.canonical(final)])
-        with (EVIDENCE / "nodes.csv").open("w", encoding="utf-8", newline="") as handle:
+        with common.bp.writable("stage4a_integrated", "nodes.csv").open("w", encoding="utf-8", newline="") as handle:
             w = csv.writer(handle, lineterminator="\n")
             w.writerow(["order", "node", "kind", "block", "result_identity", "dependencies", "upstream_nodes",
                         "events_per_day", "dates_executed", "dependent_targets", "in_stage_3_4c_plan", "execution_status"])
@@ -601,7 +605,7 @@ def main() -> int:  # noqa: C901 — sequência linear de verificações, espelh
                             "|".join(upstream[k]), expected_events[k], dates, "|".join(sorted(dependents[k])),
                             k in plan4, "EXECUTED" if dates == len(DAYS) else "NOT_EXECUTED"])
         for name, rows in (("transfers.csv", transfer_rows), ("temporal_coverage.csv", coverage_rows)):
-            with (EVIDENCE / name).open("w", encoding="utf-8", newline="") as handle:
+            with common.bp.writable("stage4a_integrated", name).open("w", encoding="utf-8", newline="") as handle:
                 w = csv.DictWriter(handle, fieldnames=list(rows[0]), lineterminator="\n")
                 w.writeheader()
                 w.writerows(rows)

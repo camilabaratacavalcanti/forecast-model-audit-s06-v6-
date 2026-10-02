@@ -45,7 +45,7 @@ from app.validation.variable_seed_validator import ALLOWED_UNITS  # noqa: E402
 
 REPO = common.REPO
 EVIDENCE = HERE / "evidence"
-EXPECTATIONS = HERE / "contract_expectations.json"
+EXPECTATIONS = common.bp.path("stage4a_contract", "contract_expectations.json")   # Stage 4C: fonte via --baseline-dir
 BASELINE = "d2847ab36933668bf4a1299b3ffe058827a82037"
 HES = independent.HES_VALUES
 NAR = "NO_APPLICABLE_RULE"
@@ -384,16 +384,17 @@ def main() -> int:
             problems.append("EXPECTATIONS_DRIFT expectativas derivadas != contract_expectations.json")
             audit["result"] = "FAIL"
     else:
-        EVIDENCE.mkdir(exist_ok=True)
-        (EVIDENCE / "contract_audit.json").write_text(
+        if common.bp.is_default():
+            EVIDENCE.mkdir(exist_ok=True)
+        common.bp.writable("stage4a_contract", "contract_audit.json").write_text(
             json.dumps(audit, indent=1, ensure_ascii=False, sort_keys=True, default=str) + "\n", encoding="utf-8")
-        EXPECTATIONS.write_text(json.dumps(expectations, indent=1, ensure_ascii=False, sort_keys=True) + "\n",
+        common.bp.writable("stage4a_contract", "contract_expectations.json").write_text(json.dumps(expectations, indent=1, ensure_ascii=False, sort_keys=True) + "\n",
                                 encoding="utf-8")
-        with (EVIDENCE / "obs_register.csv").open("w", encoding="utf-8", newline="") as handle:
+        with common.bp.writable("stage4a_contract", "obs_register.csv").open("w", encoding="utf-8", newline="") as handle:
             w = csv.DictWriter(handle, fieldnames=list(obs[0]), lineterminator="\n")
             w.writeheader()
             w.writerows(obs)
-        with (EVIDENCE / "hes_decision_matrix.csv").open("w", encoding="utf-8", newline="") as handle:
+        with common.bp.writable("stage4a_contract", "hes_decision_matrix.csv").open("w", encoding="utf-8", newline="") as handle:
             w = csv.DictWriter(handle, fieldnames=list(matrix[0]), lineterminator="\n")
             w.writeheader()
             w.writerows(matrix)

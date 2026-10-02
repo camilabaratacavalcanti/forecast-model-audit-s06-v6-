@@ -73,7 +73,7 @@ class World:
         trace = u.execute_day(self.context, JAN15)
         self.reex = {"before": before, "after": ri.store_of(self.context),
                      "first": ri.events_of(self.traces[JAN15]), "again": ri.events_of(trace)}
-        committed = json.loads((STAGE / "integrated" / "evidence" / "integrated_summary.json").read_text(encoding="utf-8"))
+        committed = json.loads(common.bp.path("stage4a_integrated", "integrated_summary.json").read_text(encoding="utf-8"))
         self.runs = {k: committed["determinism"][k] for k in ("RUN_A", "RUN_B", "HASH_SEED_A", "HASH_SEED_B")}
         self.sa5 = next(s for s in harness.scenarios(u) if s["name"] == "SA5_F_literal_no_applicable_rule")
         self.links_bytes = (fixture.SEED / "interblock_links.json").read_bytes()

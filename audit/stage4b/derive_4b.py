@@ -42,7 +42,7 @@ from app.engine.time_period_resolver import TimePeriodResolver  # noqa: E402
 
 ri = common.ri
 EVIDENCE = HERE / "evidence"
-EXPECTATIONS = HERE / "contract_expectations_4b.json"
+EXPECTATIONS = common.bp.path("stage4b_contract", "contract_expectations_4b.json")  # Stage 4C: fonte via --baseline-dir
 PERIODS = TimePeriodResolver()
 D = date
 
@@ -318,12 +318,13 @@ def main() -> int:  # noqa: C901 — sequência de experimentos documentados
             problems.append("EXPECTATIONS_DRIFT")
             out["result"] = "FAIL"
     else:
-        EVIDENCE.mkdir(exist_ok=True)
-        (EVIDENCE / "contract_audit_4b.json").write_text(json.dumps(out, indent=1, ensure_ascii=False, default=str)
+        if common.bp.is_default():
+            EVIDENCE.mkdir(exist_ok=True)
+        common.bp.writable("stage4b_contract", "contract_audit_4b.json").write_text(json.dumps(out, indent=1, ensure_ascii=False, default=str)
                                                          + "\n", encoding="utf-8")
-        EXPECTATIONS.write_text(json.dumps(expectations, indent=1, ensure_ascii=False, sort_keys=True) + "\n",
+        common.bp.writable("stage4b_contract", "contract_expectations_4b.json").write_text(json.dumps(expectations, indent=1, ensure_ascii=False, sort_keys=True) + "\n",
                                 encoding="utf-8")
-        with (EVIDENCE / "performance_probe.csv").open("w", encoding="utf-8") as handle:
+        with common.bp.writable("stage4b_contract", "performance_probe.csv").open("w", encoding="utf-8") as handle:
             handle.write("date,seconds,store_keys\n")
             for d, t, n in timings:
                 handle.write(f"{d},{t:.4f},{n}\n")

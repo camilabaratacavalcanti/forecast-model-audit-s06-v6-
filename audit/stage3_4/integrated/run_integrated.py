@@ -1,13 +1,17 @@
 """
 Stage 3.4C — Integrated Four-Block Regression (REAL_DERIVED_TEST_RESULT).
 
-    python audit/stage3_4/integrated/run_integrated.py [--no-write]
+    python audit/stage3_4/integrated/run_integrated.py [--no-write] [--baseline-dir <dir>]
     python audit/stage3_4/integrated/run_integrated.py --fingerprint A|B   (uso interno: determinismo)
 
 Universo (contrato 3.4A §13–§15, §18):
     446 alvos oficiais (plan_evidence.csv) - 25 de area_41 = 421 alvos integrados
     plano integrado de 421 alvos = 427 nós (218 EQUATION + 197 AGGREGATION + 12 TRANSFER)
     sequência diária contígua 2026-01-01 .. 2026-02-01 (32 datas) no MESMO contexto
+
+Stage 4C: `--baseline-dir <dir>` só muda a FONTE das referências (plan_evidence em `<dir>/stage3_2_plan/`,
+universo esperado em `<dir>/stage3_4c_integrated/integrated_summary.json`) e o destino da evidência
+(`<dir>/stage3_4c_integrated/`). Sem ele: caminhos e constantes históricos (comportamento idêntico).
 
 Tudo roda sobre o fixture REAL_DERIVED (TEST_FIXTURE_ONLY): nada é
 escrito em seeds/links; nenhum bloco ausente é carregado.
@@ -43,11 +47,31 @@ from app.engine.time_period_resolver import TimePeriodResolver  # noqa: E402
 import checks  # noqa: E402
 import fixture  # noqa: E402
 
+sys.path.insert(0, str(REPO / "audit" / "baselines"))
+import baseline_paths as bp  # noqa: E402  (Stage 4C: só a fonte das referências e o destino)
+
 START, END = date(2026, 1, 1), date(2026, 2, 1)
 DAYS = [START + timedelta(days=n) for n in range((END - START).days + 1)]
 REEXECUTE = (date(2026, 1, 15), date(2026, 2, 1))
 PERIODS = TimePeriodResolver()
 INV, VF = "INVALID_INPUT", "VALIDATION_FAILED"
+
+
+EXPECTED_UNIVERSE_B0 = {"official_targets": 446, "area_41_excluded": 25, "integrated_targets": 421,
+                        "planner_nodes": 427, "nodes_by_kind": {EQUATION: 218, AGGREGATION: 197, TRANSFER: 12},
+                        "pending_blockers": 0}
+
+
+def expected_universe():
+    """Universo de referência: constantes históricas (default) ou o do summary do baseline indicado.
+    None = regeneração (a referência do próprio conjunto ainda não existe)."""
+    if bp.is_default():
+        return EXPECTED_UNIVERSE_B0
+    reference = bp.path("stage3_4c_integrated", "integrated_summary.json")
+    if not reference.exists():
+        return None
+    universe = json.loads(reference.read_text(encoding="utf-8"))["universe"]
+    return {k: universe[k] for k in EXPECTED_UNIVERSE_B0}
 
 
 # ------------------------------------------------------------------ utilidades
@@ -258,7 +282,7 @@ def main() -> int:
 
     # 2. universos ----------------------------------------------------------------
     plan_rows = list(csv.DictReader(
-        (REPO / "audit/stage3_2_execution_orchestration/evidence/plan_evidence.csv").open(encoding="utf-8")))
+        bp.path("stage3_2_plan", "plan_evidence.csv").open(encoding="utf-8")))
     official_targets = sorted(r["target"] for r in plan_rows)
     all_blocks = fixture.OFFICIAL_BLOCKS + ("area_41",)
     if official_targets != official.targets_of_blocks(all_blocks):
@@ -274,10 +298,10 @@ def main() -> int:
                 "integrated_targets": len(integrated), "planner_nodes": len(planned),
                 "nodes_by_kind": dict(kinds), "pending_blockers": len(plan.pending_blockers),
                 "required_inputs": len(plan.required_inputs)}
-    expected_universe = {"official_targets": 446, "area_41_excluded": 25, "integrated_targets": 421,
-                         "planner_nodes": 427, "nodes_by_kind": {EQUATION: 218, AGGREGATION: 197, TRANSFER: 12},
-                         "pending_blockers": 0}
-    for key, value in expected_universe.items():
+    reference_universe = expected_universe()
+    if reference_universe is None and "--no-write" in sys.argv[1:]:
+        problems.append("REFERENCE_MISSING integrated_summary.json do baseline indicado")
+    for key, value in (reference_universe or {}).items():
         if universe[key] != value:
             problems.append(f"PLANNER_FAILURE {key} {universe[key]} != {value}")
     evidence["universe"] = universe
@@ -338,7 +362,9 @@ def main() -> int:
     problems += checks.check_target_identities(target_records(traces, set(integrated)),
                                                expected_periods(orchestrator, integrated, DAYS))
     problems += checks.check_result_contract(final_store)
-    if any(r["targets"] != 421 or r["nodes"] != 427 for r in coverage_rows):
+    expected_per_date = (reference_universe or universe)
+    if any(r["targets"] != expected_per_date["integrated_targets"] or r["nodes"] != expected_per_date["planner_nodes"]
+           for r in coverage_rows):
         problems.append("TEMPORAL_FAILURE data com plano incompleto")
 
     # 5. orquestrador x engine por bloco (mesmas entradas) ---------------------------
@@ -489,11 +515,12 @@ def main() -> int:
 
     if "--no-write" not in sys.argv[1:]:
         out = HERE / "evidence"
-        out.mkdir(exist_ok=True)
-        (out / "integrated_summary.json").write_text(
+        if bp.is_default():
+            out.mkdir(exist_ok=True)
+        bp.writable("stage3_4c_integrated", "integrated_summary.json").write_text(
             json.dumps(evidence, indent=1, sort_keys=True, default=str) + "\n", encoding="utf-8")
         feb1 = END
-        with (out / "targets.csv").open("w", encoding="utf-8", newline="") as handle:
+        with bp.writable("stage3_4c_integrated", "targets.csv").open("w", encoding="utf-8", newline="") as handle:
             w = csv.writer(handle, lineterminator="\n")
             w.writerow(["target", "block", "planner_status", "producer_nodes", "planner_nodes", "executed_nodes",
                         "instances", "execution_status", "result_status", "final_results_2026-02-01"])
@@ -509,7 +536,7 @@ def main() -> int:
                 w.writerow([t, catalog.block_of.get(t), "PLANNED" if t in plan.targets else "NOT_PLANNED",
                             "|".join(producers[t]), "|".join(closure[t]), len(executed), len(expected_instances[t]),
                             status, result_status, canonical(final)])
-        with (out / "nodes.csv").open("w", encoding="utf-8", newline="") as handle:
+        with bp.writable("stage3_4c_integrated", "nodes.csv").open("w", encoding="utf-8", newline="") as handle:
             w = csv.writer(handle, lineterminator="\n")
             w.writerow(["order", "node", "kind", "block", "result_identity", "dependencies", "upstream_nodes",
                         "events_per_day", "dates_executed", "dependent_targets", "execution_status"])
@@ -521,7 +548,7 @@ def main() -> int:
                             "|".join(upstream[key]), expected_events[key], dates, "|".join(sorted(dependents[key])),
                             "EXECUTED" if dates == len(DAYS) else "NOT_EXECUTED"])
         for name, rows in (("transfers.csv", transfer_rows), ("temporal_coverage.csv", coverage_rows)):
-            with (out / name).open("w", encoding="utf-8", newline="") as handle:
+            with bp.writable("stage3_4c_integrated", name).open("w", encoding="utf-8", newline="") as handle:
                 w = csv.DictWriter(handle, fieldnames=list(rows[0]), lineterminator="\n")
                 w.writeheader()
                 w.writerows(rows)

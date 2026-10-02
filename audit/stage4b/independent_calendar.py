@@ -31,7 +31,7 @@ sys.path.insert(0, str(REPO / "audit" / "stage4a"))
 
 import independent_count as base  # noqa: E402  (puro: sem app/)
 
-EXPECTATIONS = HERE / "contract_expectations_4b.json"
+EXPECTATIONS = base.bp.path("stage4b_contract", "contract_expectations_4b.json")   # Stage 4C: fonte via --baseline-dir
 RANGES = {"T1": (date(2026, 1, 1), date(2027, 1, 31)), "T2": (date(2028, 1, 1), date(2028, 3, 2)),
           "T3": (date(2026, 1, 1), date(2028, 3, 2)), "4A": (date(2026, 1, 1), date(2026, 2, 1))}
 LAG = re.compile(r"t\s*-\s*\d|\[\s*-?\d+\s*\]|\b(lag|prev|shift|anterior|offset)\s*\(", re.I)

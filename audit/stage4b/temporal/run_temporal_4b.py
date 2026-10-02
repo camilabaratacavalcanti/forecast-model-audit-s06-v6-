@@ -54,7 +54,8 @@ from app.engine.interblock_orchestrator import TRANSFER  # noqa: E402
 import checks  # noqa: E402  (3.4C/3.4D, sem alteração)
 
 ri = common.ri
-EXPECTED = json.loads((STAGE / "contract_expectations_4b.json").read_text(encoding="utf-8"))["temporal"]
+# Stage 4C: expectativas e evidências de referência vêm do `--baseline-dir` quando dado.
+EXPECTED = json.loads(common.bp.path("stage4b_contract", "contract_expectations_4b.json").read_text(encoding="utf-8"))["temporal"]
 EVIDENCE = HERE / "evidence"
 INV = "INVALID_INPUT"
 MA_RULES = ("AGR-PRODUCTION-PRODUCAO_PLANTA_MOVEL-GRUPO-L1_L7-DIARIO-MOVING_AVERAGE",
@@ -266,7 +267,7 @@ def missing_new_year_input(label: str) -> tuple[dict, list[str]]:
 
 def prefix_invariant(store: dict) -> tuple[dict, list[str]]:
     """T1/T3 nas 32 primeiras datas == evidência 4A (hash versionado + execução 4A chave a chave)."""
-    committed = json.loads((REPO / "audit/stage4a/integrated/evidence/integrated_summary.json").read_text(encoding="utf-8"))
+    committed = json.loads(common.bp.path("stage4a_integrated", "integrated_summary.json").read_text(encoding="utf-8"))
     reference = committed["determinism"]["RUN_A"]["store_sha256"]
     u = common.Universe("A")
     context4a, _ = u.run_sequence(common.DAYS)
@@ -348,7 +349,7 @@ def state_scenarios(label: str, clean_store: dict) -> tuple[dict, list[str]]:
 
 def fingerprint_subprocess(label: str, order: str, seed: str) -> dict:
     out = subprocess.run([sys.executable, str(HERE / "run_temporal_4b.py"), "--range", label, "--order", order,
-                          "--fingerprint"], cwd=REPO, capture_output=True, text=True, check=True,
+                          "--fingerprint", *common.bp.argv()], cwd=REPO, capture_output=True, text=True, check=True,
                          env={**os.environ, "PYTHONHASHSEED": seed})
     return json.loads(out.stdout.strip().splitlines()[-1])
 
@@ -381,6 +382,7 @@ def main() -> int:
     parser.add_argument("--hashseed")
     parser.add_argument("--log")
     parser.add_argument("--no-write", action="store_true")
+    parser.add_argument("--baseline-dir", help="Stage 4C: diretório de baseline (referências e destino)")
     parser.add_argument("--fingerprint", action="store_true")
     parser.add_argument("--skip-extras", action="store_true", help="só a sequência e as verificações por data")
     args = parser.parse_args()
@@ -410,7 +412,9 @@ def main() -> int:
     # Regressão contra a evidência 4B versionada (só leitura, --no-write, ORDER_A): os VALORES de todas as
     # chaves do intervalo (store) e os eventos precisam reproduzir a execução aprovada. As verificações por
     # data são estruturais (identidade/janela); esta comparação cobre o conteúdo (ver 4B.3b).
-    committed_path = EVIDENCE / label / "temporal_summary.json"
+    committed_path = common.bp.path("stage4b_temporal", f"{label}/temporal_summary.json")
+    if args.no_write and args.order == "A" and not committed_path.exists() and not common.bp.is_default():
+        problems.append(f"REFERENCE_MISSING {label}/temporal_summary.json no baseline indicado")
     if args.no_write and args.order == "A" and committed_path.exists():
         committed = json.loads(committed_path.read_text(encoding="utf-8"))["fingerprint"]
         for field in ("results_sha256", "store_sha256", "plan_order"):
@@ -462,7 +466,7 @@ def main() -> int:
                                                    indent=1, sort_keys=True, ensure_ascii=False) + "\n"
         if "state" in extras:
             files["state_scenarios.json"] = json.dumps(extras["state"], indent=1, sort_keys=True, ensure_ascii=False) + "\n"
-        write_atomic(EVIDENCE / label, files)
+        write_atomic(common.bp.writable("stage4b_temporal", f"{label}/temporal_summary.json").parent, files)
     print(json.dumps({k: summary[k] for k in ("range", "dates", "per_date", "closed_periods", "performance",
                                               "problems", "result")}, indent=1, sort_keys=True, ensure_ascii=False))
     return 0 if not problems else 1

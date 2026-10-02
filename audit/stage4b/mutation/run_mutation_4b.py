@@ -43,8 +43,9 @@ import checks  # noqa: E402  (3.4C/3.4D, sem alteração)
 
 ri = common.ri
 EVIDENCE = HERE / "evidence"
-T2_EVIDENCE = STAGE / "temporal" / "evidence" / "T2"
-T1_EVIDENCE = STAGE / "temporal" / "evidence" / "T1"
+# Stage 4C: evidência de referência (T1/T2 e expectativas da 4A) via `--baseline-dir`.
+T2_EVIDENCE = common.bp.path("stage4b_temporal", "T2/temporal_summary.json").parent
+T1_EVIDENCE = common.bp.path("stage4b_temporal", "T1/temporal_summary.json").parent
 C_RUN = "4B temporal: execução real T2 (5 blocos, 2028-01-01..03-02, contexto único)"
 C_EVID = "4B temporal: evidência versionada (identities_by_date.csv / period_snapshots.json / reexecution.json)"
 C_STATE = "4B temporal: execução gêmea real com injeção (2028-01-10)"
@@ -165,7 +166,7 @@ class World:
         return harness.prefix_invariant(store)[1]
 
     def audit_provenance(self, links_bytes=None) -> list[str]:
-        expected = json.loads((REPO / "audit/stage4a/contract_expectations.json").read_text(
+        expected = json.loads(common.bp.path("stage4a_contract", "contract_expectations.json").read_text(
             encoding="utf-8"))["integrated"]["interblock_links_sha256"]
         return checks_4a.check_provenance(links_bytes or self.links_bytes, expected, 16, 0)
 

@@ -1,7 +1,10 @@
 """
 Etapa 3.2 — auditoria independente da execução coordenada interbloco.
 
-    python audit/stage3_2_execution_orchestration/evidence/analysis_stage3_2.py [--no-write]
+    python audit/stage3_2_execution_orchestration/evidence/analysis_stage3_2.py [--no-write] [--baseline-dir <dir>]
+
+Stage 4C: `--baseline-dir` só muda ONDE a evidência é gravada (`<dir>/stage3_2_plan/`); sem ele,
+os caminhos históricos (comportamento idêntico).
 
 Não importa nada de app/ nem de tools/. Lê os seeds diretamente,
 reconstrói o grafo de execução em nível de definição (equações,
@@ -36,6 +39,8 @@ ROOT = HERE.parent
 REPO = HERE.parents[2]
 SEED = REPO / "data" / "seed"
 WRITE = "--no-write" not in sys.argv[1:]
+sys.path.insert(0, str(REPO / "audit" / "baselines"))
+import baseline_paths as bp  # noqa: E402  (Stage 4C: só o diretório de saída)
 RUN_DATE = "2026-09-01"
 PERIOD = {"diário": "2026-09-01", "mensal": "2026-09", "anual": "2026"}
 LINES = [f"L{i}" for i in range(1, 8)]
@@ -279,11 +284,12 @@ summary = {
     "problems": problems[:50],
 }
 if WRITE:
-    for path, rows in ((HERE / "plan_evidence.csv", plan_rows), (HERE / "transfer_evidence.csv", transfer_rows)):
+    for path, rows in ((bp.writable("stage3_2_plan", "plan_evidence.csv"), plan_rows),
+                       (bp.writable("stage3_2_plan", "transfer_evidence.csv"), transfer_rows)):
         with open(path, "w", newline="", encoding="utf-8") as f:
             w = csv.DictWriter(f, fieldnames=list(rows[0]))
             w.writeheader()
             w.writerows(rows)
-    (HERE / "analysis_summary.json").write_text(json.dumps(summary, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    bp.writable("stage3_2_plan", "analysis_summary.json").write_text(json.dumps(summary, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
 print(json.dumps(summary, ensure_ascii=False, indent=1))
 sys.exit(1 if problems else 0)

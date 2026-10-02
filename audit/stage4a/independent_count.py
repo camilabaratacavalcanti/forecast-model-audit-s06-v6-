@@ -28,8 +28,11 @@ HERE = Path(__file__).resolve().parent
 REPO = HERE.parents[1]
 SEED = REPO / "data" / "seed"
 WORKBOOK = REPO / "data" / "workbooks" / "descritivo_das_variáveis_A41_v9.xlsx"
-PLAN_EVIDENCE = REPO / "audit" / "stage3_2_execution_orchestration" / "evidence" / "plan_evidence.csv"
-EXPECTATIONS = HERE / "contract_expectations.json"
+sys.path.insert(0, str(REPO / "audit" / "baselines"))
+import baseline_paths as bp  # noqa: E402  (Stage 4C: só a fonte das referências; não importa app/tools)
+
+PLAN_EVIDENCE = bp.path("stage3_2_plan", "plan_evidence.csv")
+EXPECTATIONS = bp.path("stage4a_contract", "contract_expectations.json")
 BLOCKS4 = ("production", "yield", "energy", "max_ht")
 BLOCKS5 = BLOCKS4 + ("area_41",)
 ACTIVE = {"PUBLISHED", "ativo"}
