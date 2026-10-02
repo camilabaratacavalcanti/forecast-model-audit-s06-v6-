@@ -101,3 +101,23 @@ Adição append-only. As seções acima não foram reescritas.
 | F4B-02 — política de lacunas / carga do realizado anterior | **continua pendência de negócio** (REQUIRES_FOLLOWUP) | `audit/stage4b/STAGE_4B_FINAL_CLOSURE.md` |
 | DR-4B-3 — ano fiscal x ano-calendário | **continua pendência de negócio** | idem |
 | F-01 (16 `PENDING_LOAD`) e F-02 (execução oficial) | **continuam abertos** (inalterados pela 4C) | — |
+
+---
+
+## Adição datada — 2026-10-02: Stage 5A (unidades, livro de equações, fim do ×24, energy v9 e max_ht v13)
+
+Adição append-only. As seções acima não foram reescritas.
+
+| item | estado após a 5A | fonte |
+|---|---|---|
+| D-5A-1 — unidades `kWh/tv`, `tv/MWh`, `tv/t carvão`, `GJ/d`, `m³/d` | **aplicada** (validadores de variáveis e de parâmetros) | `audit/stage5a/STAGE_5A_FINAL_CLOSURE.md` §2 |
+| D-5A-2 — SUM só com origem diária (fator 1) | **aplicada**: builder e runtime recusam fator ≠ 1; a conversão é explícita no workbook (`*_ag`); checagem dimensional mantida | idem |
+| D-5A-3 — `alimentação_evap*` → `alimentacao_evap*` | **aplicada**: VAR13001–VAR13006 e EQ13001 aposentados; 4 IDs de regra com a nova grafia | idem |
+| D-5A-4 — livro de IDs de equação | **aplicada** (`data/id_ledger/*.json`, seções `equations`/`retired_equations`) | idem |
+| F5A-01 — EQ atribuídos por posição (14 energy + 9 max_ht mudariam de alvo) | **resolvido** pelo livro: 0 EQ existente mudou de alvo | idem §3 |
+| referência viva | **B1** aprovado (`current` = B1); B0 preservado como histórico | `audit/baselines/BASELINE_REGISTRY.json`, `audit/stage5a/B1_REVIEW.md` |
+| F4C-12 — reconciliadores 4A/4B | verificados **no clone do commit de fechamento** (`0a924e6` / `f573c1b`, testes H). Os comandos "no HEAD" citados nos fechamentos 4A/4B/4C são históricos; aqueles documentos não foram editados | `audit/stage4c/STAGE_4C_FINAL_CLOSURE.md` |
+| F5A-07 — testes de recusa do re-baseline fixavam `"B1"` | corrigidos para o próximo ID do registro; **aguarda aceite da engenheira** | `STAGE_5A_FINAL_CLOSURE.md` §5, §8 |
+| F-01 (16 `PENDING_LOAD`) | **continua aberto**: 16 pendentes. Na 5A só trocaram 2 pares de ID (`energy.VAR18053<-area_04_13`, `max_ht.VAR13119<-alumina`) | `data/seed/interblock_links.json` |
+| F-02 (execução oficial) | **continua aberto** | — |
+| pendências de negócio (F4B-02, DR-4B-3, OBS do area_41) | **inalteradas** | seções anteriores |
