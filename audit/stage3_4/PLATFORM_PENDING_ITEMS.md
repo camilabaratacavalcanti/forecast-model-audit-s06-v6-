@@ -121,3 +121,15 @@ Adição append-only. As seções acima não foram reescritas.
 | F-01 (16 `PENDING_LOAD`) | **continua aberto**: 16 pendentes. Na 5A só trocaram 2 pares de ID (`energy.VAR18053<-area_04_13`, `max_ht.VAR13119<-alumina`) | `data/seed/interblock_links.json` |
 | F-02 (execução oficial) | **continua aberto** | — |
 | pendências de negócio (F4B-02, DR-4B-3, OBS do area_41) | **inalteradas** | seções anteriores |
+
+---
+
+## Adição datada — 2026-10-04: decisão pós-gate da Stage 5A
+
+Adição append-only. As seções acima não foram reescritas.
+
+| item | estado | fonte |
+|---|---|---|
+| F5A-07 — testes de recusa do re-baseline fixavam `"B1"` | **ACEITO** pela engenheira: correção de teste de infraestrutura, fora do inventário C da 4C, autorizada. O gate da 5A passa a `PASS (após decisão F5A-07)` | `audit/stage5a/STAGE_5A_FINAL_CLOSURE.md` §13 |
+| F5A-05 — fixture sintético REAL_DERIVED atribui entradas por **posição** em `required_inputs` (troca de entrada muda valores a jusante sem mudança de fórmula) | **REQUIRES_FOLLOWUP** para a 5B | `audit/stage5a/B1_REVIEW.md` §4; `audit/stage5a/b1_value_attribution.py` |
+| ramo multiplicativo de `integration_factor` em `app/engine/temporal_aggregation_service.py` | **REQUIRES_FOLLOWUP** para a 5B: código morto desde o D-5A-2 (o runtime recusa fator ≠ 1 em `AggregationRule`); não foi removido na 5A por limite de superfície | `STAGE_5A_FINAL_CLOSURE.md` §11 |

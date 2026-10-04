@@ -2,7 +2,7 @@
 
 - Branch: `feature/stage-5a-contract-energy-maxht`, a partir de `main` = `e262e03`.
 - Sem push e sem merge.
-- Resultado: **`FINAL_STAGE_5A_GATE = READY_FOR_DECISION`** (§10). Um único ponto de decisão: F5A-07.
+- Resultado: **`FINAL_STAGE_5A_GATE = PASS (após decisão F5A-07)`** (§10, §13). O gate estava em `READY_FOR_DECISION` até a decisão sobre F5A-07.
 
 ## 1. Baseline (Fase 0, recalculada)
 
@@ -159,7 +159,7 @@ Nenhum BLOCKER aberto. As pendências de negócio e as colunas OBS seguem inalte
 | 4 | energy v9 e MaxHT v13 com os SHA aprovados; workbooks antigos preservados | PASS |
 | 5 | D-5A-2: builder e runtime recusam fator ≠ 1; nenhuma regra com fator ≠ 1; checagem dimensional mantida | PASS |
 | 6 | 5 unidades novas nos dois validadores | PASS |
-| 7 | só testes C atualizados (com justificativa); nenhum H/E/S/W alterado; nada apagado, pulado ou afrouxado | **PASS com ressalva**: F5A-07 alterou testes REG fora do inventário (sem afrouxar). Decisão da engenheira |
+| 7 | só testes C atualizados (com justificativa); nenhum H/E/S/W alterado; nada apagado, pulado ou afrouxado | **PASS** (após decisão F5A-07, §13): F5A-07 alterou testes REG fora do inventário, sem afrouxar; aceito pela engenheira |
 | 8 | B1 proposto, revisado item a item, aprovado; `--check` PASS | PASS |
 | 9 | expectativas da Fase 1 confirmadas (448/460, 29/13/16, IDs novos e aposentados) | PASS |
 | 10 | mutação 100%; controle positivo aceito | PASS |
@@ -167,7 +167,7 @@ Nenhum BLOCKER aberto. As pendências de negócio e as colunas OBS seguem inalte
 | 12 | `app/` só nos pontos autorizados; `data/` só via builder (+ 2 workbooks) | PASS |
 | 13 | pendências registradas (append-only); nenhum BLOCKER aberto | PASS |
 
-**`FINAL_STAGE_5A_GATE = READY_FOR_DECISION`.** Os critérios 1–6 e 8–13 dão PASS. O critério 7 depende de aceitar o F5A-07. Se a engenheira aceitar, o gate passa a PASS.
+**`FINAL_STAGE_5A_GATE = PASS (após decisão F5A-07)`.** Os 13 critérios dão PASS. Antes da decisão (§13), o resultado era `READY_FOR_DECISION`.
 
 ## 11. Limitações
 
@@ -188,3 +188,13 @@ python audit/stage5a/mutation/run_mutation_5a.py                # 13 mutantes
 # B0 íntegro como histórico (DR-5A-3):
 git clone --shared --no-checkout . /tmp/b0 && git -C /tmp/b0 checkout e262e03 && (cd /tmp/b0 && python -I audit/stage4c/b0_reproduction.py)
 ```
+
+## 13. Decisão pós-gate (2026-10-04)
+
+Decisão da engenheira responsável: **F5A-07 ACEITO**.
+
+- Os testes de `tests/test_stage4c_baseline_registry.py` fixavam `"B1"` como "próximo ID livre". Era um defeito latente da 4C: depois de qualquer re-baseline, o teste passaria a exercitar uma recusa diferente da que declara.
+- Derivar o próximo ID do registro preserva a intenção e todas as asserções. Não é afrouxamento.
+- Classificação: correção de teste de infraestrutura, fora do inventário C da 4C, autorizada.
+
+Efeito: o critério 7 passa a PASS e o resultado vira **`FINAL_STAGE_5A_GATE = PASS (após decisão F5A-07)`**.
